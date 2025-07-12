@@ -1,0 +1,26 @@
+		<div id="content">
+			<!-- Page Banner -->
+			<div class="page-banner" style=" background-color:#336C9D;">
+				<div class="container">
+					<h2>虚拟主机</h2>
+					<ul class="page-tree">
+						<li><a href="/">首页</a></li>
+						<li><a href="?c=nproduct&a=lists&group_id=1">虚拟主机</a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- Page Banner end -->
+		</div>
+		<br />
+<br />
+
+	<div class="container">
+								<ul class="tag-list">
+													{{if $nproducts}}
+	               {{foreach from=$groups item=row}}
+									<li><a href="?c=nproduct&amp;a=lists&amp;group_id={{$row.group_id}}"><font size="+1"><i class="fa fa-check-circle"></i>{{$row.group_name}}</font></a></li>
+					{{/foreach}}
+                   {{/if}}
+				   
+								</ul>
+                        	<hr />

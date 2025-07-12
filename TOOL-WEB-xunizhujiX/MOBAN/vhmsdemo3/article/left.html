@@ -1,0 +1,13 @@
+										<h4>在线帮助文章列表</h4>
+										<div id="external-events">
+											<hr/>
+											{{foreach from=$list item=row}}
+											<label for="drop-remove">
+											<a href='?c=article&a=lists&id={{$row.id}}&type={{$row.type}}'><font color="#009999">{{$row.title|truncate:30}}</font></a>
+											</label><br>
+											{{/foreach}}
+										</div>
+										<!-- END DRAGGABLE EVENTS PORTLET-->
+
+
+			

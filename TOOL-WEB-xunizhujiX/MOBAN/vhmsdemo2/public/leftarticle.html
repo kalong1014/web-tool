@@ -1,0 +1,5 @@
+				            {{if $news}}
+							{{foreach $news as $n key=key}}
+                                 <li><a href="?c=public&a=viewNewsById&id={{$n.id}}"><i class="fa fa-bell-o"></i>{{$n.title|truncate:24}}</a></li>							
+							{{/foreach}}
+				            {{/if}}

@@ -1,0 +1,222 @@
+{{dispatch c='nproduct'  a='left'}}
+<link href="{{$STATIC}}style/2014hostv2/assets/admin/pages/css/login.css" rel="stylesheet" type="text/css"/>
+<link href="{{$STATIC}}style/2014hostv2/assets/admin/pages/css/pricing-table.css" rel="stylesheet" type="text/css"/>
+<link href="{{$STATIC}}style/2014hostv2/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css"/>
+<link href="{{$STATIC}}style/2014hostv2/assets/admin/pages/css/profile.css" rel="stylesheet" type="text/css"/>
+<link href="{{$STATIC}}style/2014hostv2/assets/admin/pages/css/tasks.css" rel="stylesheet" type="text/css"/>
+		<!-- BEGIN CONTENT -->
+		<div class="page-content-wrapper">
+			<div class="page-content">
+				<!-- BEGIN PAGE HEADER-->
+				<h3 class="page-title">
+				账户首页 <small>账户基本信息页</small>
+				</h3>
+				<div class="page-bar">
+					<ul class="page-breadcrumb">
+						<li>
+							<i class="fa fa-home"></i>
+							<a href="#">会员中心</a>
+							<i class="fa fa-angle-right"></i>
+						</li>
+						<li>
+                          <a href="#">账户管理</a>
+						</li>
+					</ul>
+				</div>
+				<!-- END PAGE HEADER-->
+				<!-- BEGIN PAGE CONTENT-->
+				<div class="row">
+					<div class="col-md-12">
+						<!-- BEGIN PROFILE SIDEBAR -->
+						<div class="profile-sidebar" style="width:250px;">
+									<div class="panel panel-success">
+							<div class="panel-heading">
+								<div class="caption">
+									<i class="fa fa-cogs"></i> 主机套餐详情
+								</div>
+							</div>
+							<div class="panel-body">
+						
+							<!-- PORTLET MAIN -->
+								<!-- SIDEBAR MENU -->
+										<div class="pricing-head">
+											<h3>{{$product.name}}
+											</h3>
+										</div>
+										<ul class="pricing-content list-unstyled">
+                                        {{$product.describe}}
+										</ul>
+
+
+								<!-- END MENU -->
+							<!-- END PORTLET MAIN -->
+						</div></div></div>
+						<!-- END BEGIN PROFILE SIDEBAR -->
+						
+						<div class="profile-content">
+							<div class="row">
+							<!-- BEGIN PROFILE CONTENT -->
+								<div class="col-md-12">							
+									<div class="panel panel-success">
+							<div class="panel-heading">
+								<div class="caption">
+									<i class="fa fa-edit"></i> 配置主机产品参数
+								</div>
+								<div class="tools">
+									<a href="javascript:;" class="collapse">
+									</a>
+									<a href="javascript:;" class="reload">
+									</a>
+								</div>
+							</div>
+							
+											<!-- 计划套餐开始 -->
+												<div class="panel-body">
+			<form name='reg' action="?c=product&a=modBuy&product_id={{$product.id}}&nodename={{$nodename}}" method="post">
+		{{if !$msg}}
+		<div class="form-group">
+		<div class="input-group" style="text-align:left">
+		       			<div class="input-icon">
+				<i class="fa fa-user"></i>
+				<input class="form-control" type="text" id="name" placeholder="FTP用户名" name="name" style="width:183px;"/>
+				<span class="input-group-btn">
+				<a href="javascript:;" name="Submit" onClick="check_name()" class="btn green">
+				<i class="fa fa-check"></i> 检测 </a>
+				</span></div>
+		</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label visible-ie8 visible-ie9">Password</label>
+			<div class="input-icon">
+				<i class="fa fa-key"></i>
+				<input class="form-control placeholder-no-fix" type="password" placeholder="密    码" name="passwd" minlength='6' id="passwd" style="width:260px;"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label visible-ie8 visible-ie9">Password2</label>
+			<div class="input-icon">
+				<i class="fa fa-key"></i>
+				<input class="form-control placeholder-no-fix" type="password" placeholder="确认密码" name="passwd2" id="passwd2" style="width:260px;"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label visible-ie8 visible-ie9">Password2</label>
+			<div class="input-icon">
+				<i class="fa fa-globe"></i>
+				<input class="form-control placeholder-no-fix" name="domain" type="text" placeholder="域   名" style="width:260px;"/>
+			</div>
+		</div>
+		<br />
+					{{if $entkey}}
+		<div class="form-group">
+		<div class="input-group" style="text-align:left">
+		       			<div class="input-icon">
+				<i class="fa fa-info"></i>
+				<input class="form-control" type="text" id='key' placeholder="请输入优惠码" name="ent_key" style="width:183px;"/>
+				<span class="input-group-btn">
+				<a href="javascript:;" onclick='check_entkey()' class="btn green">
+				<i class="fa fa-check"></i> 使用 </a>
+				</span></div>
+		</div>
+
+					{{/if}}
+					<br />
+					
+					<tr>
+
+						<td id="show_name">产品价格：</td>
+
+						<td id="show_price" style="text-align: left"><font color="#FF0000">{{if $product.noagentprice}}特价:{{/if}}{{$product.price}}元 / {{($product.pay_cycle=='year') ? '每年' : "每月"}}
+						<br>
+						 {{if $product.noagentprice}}<strong style='text-decoration: line-through'>原价：{{$product.noagentprice}}元 / {{($product.pay_cycle=='year') ? '每年' : "每月"}}{{/if}}</strong></font>
+						</td>
+
+					</tr>
+					
+					{{else}}
+						<tr>
+
+						<td colspan=2>{{$msg}}</td>
+
+
+					</tr>
+					{{/if}}<br>
+		<div class="form-actions">
+		    <input type="button" class="btn green-haze pull-left" value="购  买" onClick="check_register()">
+		</div><br>
+	</form>
+												</div>
+							
+											<!-- 计划套餐结束 -->
+									</div>
+								</div>
+								<!-- END PROFILE CONTENT -->
+									
+
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- END PAGE CONTENT-->
+			</div>
+		</div>
+		<!-- END CONTENT -->
+
+
+
+<script type='text/javascript'>
+	var nodename = '{{$nodename}}';
+
+	var product_id = '{{$product.id}}';
+</script>
+
+<script type='text/javascript' src='{{$STATIC}}js/nproduct.js'></script>
+
+<script type='text/javascript'>
+	var money = '{{$product.price}}';
+	function show_entkey_input() {
+		document.getElementById('key_onclick').style.display = 'none';
+		document.getElementById('key_input').style.display = 'block';
+	}
+	function checkMoney() {
+		$.ajax({
+			url : '?c=hosting&a=checkMoney&money=' + money,
+			dataType : 'json',
+			success : function(ret) {
+				if (ret['code'] != 200) {
+					art.dialog({
+						id : 'id22',
+						content : '<b class=red>余额不足'+money+'元,请充值后再继续本次操作</b>',
+						time : 4,
+						title : "提示",
+						icon : 'warning'
+					});
+
+				}
+			}
+		})
+	}
+	$(document).ready(function() {
+		checkMoney();
+	});
+	function check_entkey() {
+		var key = $.trim($("#key").val());
+		if (!key) {
+			return alert("请输入优惠码");
+		}
+		$.ajax({
+			type : 'post',
+			url : '?c=entkey&a=checkKey',
+			data : 'key=' + key + '&product_id=' + product_id,
+			dataType : 'json',
+			success : function(ret) {
+				if (ret['code'] != 200) {
+					return alert(ret['msg'] ? ret['msg'] : '优惠码不可用');
+				}
+				//alert('可用');
+				$("#checkresult").html('<b class=red>*可用</b>');
+			}
+		});
+	}
+</script>

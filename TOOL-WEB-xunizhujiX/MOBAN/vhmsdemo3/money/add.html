@@ -1,0 +1,116 @@
+  {{dispatch c='user' a='left'}}
+<link rel="stylesheet" type="text/css" href="{{$STATIC}}style/2014hostv2/assets/global/plugins/select2/select2.css"/>
+<link rel="stylesheet" type="text/css" href="{{$STATIC}}style/2014hostv2/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css"/>
+<link rel="stylesheet" type="text/css" href="{{$STATIC}}style/2014hostv2/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css"/>
+		<!-- BEGIN CONTENT -->
+		<div class="page-content-wrapper">
+			<div class="page-content">
+				<!-- BEGIN PAGE HEADER-->
+				<h3 class="page-title">
+				在线充值 <small>为您的账户充值</small>
+				</h3>
+				<div class="page-bar">
+					<ul class="page-breadcrumb">
+						<li>
+							<i class="fa fa-home"></i>
+							<a href="#">会员中心</a>
+							<i class="fa fa-angle-right"></i>
+						</li>
+						<li>
+                          <a href="#">在线充值</a>
+						</li>
+					</ul>
+				</div>
+				<!-- END PAGE HEADER-->
+				<!-- BEGIN PAGE CONTENT-->
+				<div class="row">
+					<div class="col-md-12">
+						<!-- BEGIN PROFILE CONTENT -->
+						<div class="profile-content">
+							<div class="row">
+								<div class="col-md-12">
+						<!-- Begin: life time stats -->
+						<div class="portlet light">
+							<div class="portlet-title">
+								<div class="caption">
+									<i class="fa fa-money font-green-sharp"></i>
+									<span class="caption-subject font-green-sharp bold uppercase"> 在线充值</span>
+									<span class="caption-helper">为您的账户充值</span>
+								</div>
+							</div>
+							<div class="portlet-body">
+								<div class="table-container">
+								<p>
+								<span class="label label-primary">
+								温馨提示：</span>
+								<span>
+								 如果选择支付宝充值，请在支付页面选择“即时到账”选项。如果选择“担保交易”，请联系客服人员完成充值操作！</span></p>
+								 <div class="portlet-body flip-scroll">
+							<form name='frm' action="?c=money&a=add" method="post" target='_blank'>
+
+										<p><h5>支付方式： 
+										{{if !$setting.alipay_close}}
+										<input type="radio" name="gw"  value="1" checked="checked"	onclick='show_china(1)' /> 支付宝&nbsp;
+										{{/if}}
+										{{if !$setting.china_close}}
+										&nbsp;<input type="radio" name="gw"  	value="2" checked="checked" onclick='show_china(2)' /> 在线网银&nbsp;
+										{{/if}}
+										{{if !$setting.tenpay_close}}
+										&nbsp;<input type="radio" name="gw"  	value="3" checked="checked" onclick='show_china(3)' /> 财付通&nbsp;
+										{{/if}}
+										&nbsp;<input type="radio" name="gw"  	value="100"  onclick='show_china(100)' /> <i class="fa fa-credit-card"></i> 充值卡</h5></p><br />
+										
+
+									<p id="money_tr">
+
+										<input name='money' class="form-control placeholder-no-fix" type="text" placeholder="请输入金额" style="width:260px;" />
+
+
+									</p>
+
+									<p id="entkey_tr" style="display:none">
+
+										<input name='ent_key' class="form-control placeholder-no-fix" type="text" placeholder="请输入充值卡号" style="width:260px;" />
+
+
+									</p>
+									
+<br />
+									<p class="alignleft">
+
+										<input type="submit" class="btn green" value="立即充值" />
+
+									</p>
+
+
+							</form>
+							</div>								</div>
+							</div>
+						</div>
+						<!-- End: life time stats -->
+								</div>
+							</div>
+						</div>
+						<!-- END PROFILE CONTENT -->					
+
+
+<script type="text/javascript">
+
+	function show_china(val) {
+		switch (val) {
+		case 1:
+		case 2:
+		case 3:
+			$("#entkey_tr").hide();
+			$("#money_tr").show();
+			break;
+		case 100:
+			$("#entkey_tr").show();
+			$("#money_tr").hide();
+			break;
+		default:
+			break;
+		
+		}
+	}
+</script>

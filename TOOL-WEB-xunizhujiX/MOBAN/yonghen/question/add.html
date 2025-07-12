@@ -1,0 +1,41 @@
+{{dispatch c='user'  a='left'}}
+
+                        <div class="column dt-sc-two-third">
+                            <div class="side-nav-content">
+                        <div class="column dt-sc-one-column blog-fullwidth with-sidebar">
+                                <div class="dt-sc-tabs-frame-content" style="display: block;">
+                                        <p><h3>Open Ticket & 新开工单</h3></p>
+                            <form method="post" class="contact-frm" action="?c=question&a=add" name="reg" novalidate="novalidate">
+                                <div class="dt-sc-one-half column first"><input type="text" name="title" placeholder="标题 （必填）" required=""> </div>
+                                <div class="dt-sc-one-half column"><input type="email" name="txtemail" placeholder="E-mail （可不填）" required=""></div>
+                             
+                                <div class="dt-sc-one-column column">
+                                    <textarea name="body" placeholder="内容 （必填）"></textarea>
+                                    <p class="alignleft" ><input type="submit" name="btnsend" value="提交工单" class="dt-sc-button medium"></p>
+                                </div>
+                            </form>
+                     </div> 
+                        </div>                            
+                    </div> <!-- **Primary Ends** -->
+                                        
+                </div> <!-- **Container Ends** --> 
+            </section>  <!-- **Content Main Ends** -->
+</div>
+
+
+<script src="{{$STATIC}}style/js/jquery.validate.min.js" type="text/javascript"></script>	
+
+<script src="{{$STATIC}}style/js/validate_zh.js" type="text/javascript"></script>		
+
+<script type="text/javascript">
+
+	$(function(){
+
+		 $('#form').validate();
+
+	})
+
+</script>		
+
+
+

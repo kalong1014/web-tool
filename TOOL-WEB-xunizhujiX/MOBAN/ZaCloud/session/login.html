@@ -1,0 +1,53 @@
+<SCRIPT language='javascript'>
+function check_submit() 
+{
+	var username = jQuery("#user").val();
+	var passwd = jQuery("#pw").val();
+	if (username == "" || passwd == "") {
+		return alert("账号密码不能为空");
+	}
+	document.getElementById('from').submit();
+}
+</SCRIPT>
+<script language='javascript'>
+form2.username.focus();
+
+</script>
+<div class="customer_center_banner">
+</div>
+<div class="blog single" style="padding-top: 15px;">
+    <div class="row">
+    		<div class="col-sm-12">
+    <!-- Login -->
+    <section class="login">
+
+        <div class="row">
+            <div class="col-sm-12 ">
+                <div class="login-form-panel">
+<div class="row">
+
+                        <div class="col-sm-5 col-xs-12 center-block">
+                            <div class="login-form">
+			    <h3 style="text-align:left;padding:0 20px;">登陆<span style="float:right"><a href="?c=public&a=register_n">注册</a></span></h3>
+                                <form action="?c=session&a=login" method=post name="form2" id='from' style="clear:both">
+                                    <input type="text" id='user' name="username"  placeholder="输入您的邮箱" />
+                                    <input type="password" id='pw' name="passwd" size="20" placeholder="输入您的密码" />
+                                    <p class="text-center"><a href="pwreset.php">忘记密码？</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    </p>
+					<input type="button" onclick='check_submit();' value="立即登录" />
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+    <!-- End of Login -->
+        </div>
+        
+    </div>
+</div>									

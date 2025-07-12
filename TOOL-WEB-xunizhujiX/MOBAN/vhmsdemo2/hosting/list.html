@@ -1,0 +1,85 @@
+<script type='text/javascript'>
+	$(document).ready(function() {
+		$.ajax({
+			type : 'get',
+			url : '?c=nproduct&a=getNproducts',
+			data : null,
+			dataType : 'json',
+			success : function(ret) {
+				if (ret['count'] <= 0) {
+					return;
+				}
+				var nps = ret['nproducts'];
+				var count = ret['count'];
+				$(".js_show_product_name").each(function() {
+					var pid = $(this).text();
+					for ( var i in nps) {
+						if (nps[i]['id'] == pid) {
+							$(this).html(nps[i]['name']);
+						}
+					}
+				});
+			}
+		});
+	});
+</script>
+		<div id="content">
+			<!-- Page Banner -->
+			<div class="page-banner" style=" background-color:#336C9D;">
+				<div class="container">
+					<h2>我的产品</h2>
+					<ul class="page-tree">
+						<li><a href="/">首页</a></li>
+						<li><a href="?c=user&a=index">会员中心</a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- Page Banner end -->
+		</div>
+		<br />
+	
+  {{dispatch c='user' a='left'}}
+  
+	<div class="col-md-9 blog-side">
+	   <h3><i class="fa fa-hdd-o"></i> 主机列表</h3>
+							<div class="alert alert-success alert-dismissable">
+								<strong><i class="fa fa-bell"></i></strong>&nbsp; 如果因忘记FTP密码而无法登陆主机控制面板，请&nbsp; <a href="http://wpa.qq.com/msgrd?v=3&uin=1927704576&site=qq&menu=yes" target="_blank" class="alert-link">
+								<i class="fa fa-qq"></i> 联系我们</a> &nbsp;或&nbsp; <a href="?c=question&a=addFrom" class="alert-link">提交工单</a> &nbsp;，我们会为您重置FTP密码！							</div>
+							
+	                            <div class="widget footer-widgets tag-widget">
+								 <div class="form-group">
+									<label class="col-sm-2 control-label">FTP用户名</label>
+									<label class="col-sm-2 control-label">产品套餐</label>
+									<label class="col-sm-3 control-label">开通时间 &nbsp;-&nbsp; 到期时间</label>
+									<label class="col-sm-2 control-label">主机状态</label>
+									<label class="col-sm-3 control-label">管理主机</label>
+								  </div>
+	  </div><hr /><hr />
+								 
+									{{foreach from=$list item=row}}
+									<div class="form-group">
+									<p class="col-sm-2" style="color:#000000;"><a href='?c=hosting&a=link&name={{$row.name}}' target="_blank">{{$row.name}}</a></p>
+									<p class="col-sm-2 js_show_product_name" style="color:#000000;"><a href='?c=host&a=showProductFrom&product_id={{$row.product_id}}'>{{$row.product_id}}</a></p>
+									<p class="col-sm-3" style="color:#000000;">{{substr($row.create_time,0,10)}} &nbsp;-&nbsp; {{substr($row.expire_time,0,10)}}</p>
+									<p class="col-sm-2" style="color:#000000;">{{if $row.status==0}}<font color="#009933"><i class="fa fa-check-circle"></i> 正常</font>{{else}}<font color='red'><i class="fa  fa-times-circle"></i> 暂停</font>{{/if}}</p>
+									<p class="col-sm-3" style="color:#000000;">[<a href="?c=hosting&a=upgradeFrom&name={{$row.name}}"><font color="#396A95">升级</font></a>] [<a href="?c=hosting&a=renewFrom&name={{$row.name}}"><font color="#396A95">续费</font></a>] [<a href='?c=hosting&a=link&name={{$row.name}}' target="_blank"><font color="#396A95">控制面板</font></a>]</p>
+									</div><p>&nbsp;</p>
+									{{/foreach}}
+									
+	   
+	
+
+		<div class="r_mar_top" align="right" style="font-size:12px;">
+			{{if $page>1}} <a href='{{$action}}&page=0'>首页</a> <a href='{{$action}}&page={{$page-1}}'>上一页</a> {{else}} 首页 上一页 {{/if}} {{if $page!=$total_page}} <a
+				href='{{$action}}&page={{$page+1}}'>下一页</a> <a href='{{$action}}&page={{$total_page}}'>尾页</a> {{else}}下一页 尾页 {{/if}} {{$page}}/{{$total_page}}&nbsp;
+			共计{{$count}}记录
+		</div>
+								
+</div>
+
+
+
+  <!-- 必须要加 -->
+  </div></div></div>
+
+<br />	   

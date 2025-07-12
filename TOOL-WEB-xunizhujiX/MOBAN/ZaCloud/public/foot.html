@@ -1,0 +1,194 @@
+<section class="footer">
+	<div class="row">
+		<div class="col-sm-2">
+			<h4>云虚拟主机</h4>
+			<ul>
+				<li><a href="#">链接待添加</a></li>
+				<li><a href="#">链接待添加</a></li>
+				<li><a href="#">链接待添加</a></li>
+				<li><a href="#">链接待添加</a></li>
+			</ul>
+		</div>
+		<div class="col-sm-2">
+			<h4>友情链接</h4>
+			<ul>
+				<li><a href="www.52webhl.com">www.52webhl.com</a></li>
+				<li><a href="#">链接待添加</a></li>
+				<li><a href="#">链接待添加</a></li>
+			</ul>
+		</div>
+		<div class="col-sm-2">
+			<h4>快捷导航</h4>
+			<ul>
+				<li><a href="index.php?c=user&a=index">官方公告</a></li>
+				<li><a href="https://yueliangxiefang.taobao.com">淘宝店铺</a></li>
+				<li><a href="http://www.52webhl.com">主机博客</a></li>
+				<li><a href="index.php?c=user&a=index">会员中心</a></li>
+			</ul>
+		</div>
+		<div class="col-sm-1"></div>
+		<div class="col-sm-3">
+			<h4>客服支持</h4>
+			<ul class="questions">
+				<li> 
+					<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=这里是QQ&site=qq&menu=yes"><i class="fa fa-qq"></i>&nbsp;售前</a>&nbsp;&nbsp;&nbsp; 
+					<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=这里是QQ&site=qq&menu=yes"><i class="fa fa-qq"></i>&nbsp;售后</a>&nbsp;&nbsp;&nbsp; 
+					<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=这里是QQ&site=qq&menu=yes"><i class="fa fa-qq"></i>&nbsp;技术</a>
+				</li>
+				<li>
+					<a href="mailto:1406615365@qq.com"><i class="fa fa-envelope"></i>Email : 1406615365@qq.com</a>
+				</li>
+				<li>
+					<a href="?c=question&a=addFrom"><i class="fa fa-comments-o"></i>&nbsp;在线提交服务单(7*24h)</a>
+				</li>
+			</ul>
+		</div>
+	</div> 
+</section>
+<div class="social">
+	<div class="row">
+		<div class="col-xs-12 col-md-6">{{$setting.web_name.value}} ©2016 All Rights Reserved. 
+		</div>
+	</div>
+</div>
+<a href="#top" id="back-to-top"><i class="fa fa-angle-up"></i></a> 
+<script src="{{$STATIC}}js/jquery.min.js"></script> <script>jQuery.noConflict();</script> 
+<script src="{{$STATIC}}js/bootstrap.min.js"></script> 
+<script src="{{$STATIC}}js/hoverintent.js"></script> 
+<script src="{{$STATIC}}js/superfish.min.js"></script> 
+<script src="{{$STATIC}}js/owl.carousel.js"></script> 
+<script src="{{$STATIC}}js/wow.min.js"></script> 
+<script src="{{$STATIC}}js/jquery.circliful.min.js"></script> 
+<script src="{{$STATIC}}js/waypoints.min.js"></script> 
+<script src="{{$STATIC}}js/jquery.slicknav.min.js"></script> 
+<script src="{{$STATIC}}js/custom.js"></script> 
+<script>
+/* Home Page Slider
+   ========================================================================== */
+    jQuery(document).ready(function($) {
+
+
+    var sync1 = $("#mainslider");
+    var sync2 = $("#mainslider-nav");
+
+    sync1.owlCarousel({
+    singleItem : true,
+    slideSpeed : 1000,
+    paginationSpeed: 800,
+    navigation: false,
+    pagination:false,
+    autoPlay:7500,
+    afterAction : syncPosition,
+    responsiveRefreshRate : 200,
+    });
+
+    sync2.owlCarousel({
+    items : 4,
+    itemsDesktop : [1199,4],
+    itemsDesktopSmall : [979,4],
+    itemsTablet : [768,4],
+    itemsMobile : [479,2],
+    pagination:false,
+    responsiveRefreshRate : 100,
+    afterInit : function(el){
+    el.find(".owl-item").eq(0).addClass("synced");
+    }
+    });
+
+    function syncPosition(el){
+    var current = this.currentItem;
+    $("#mainslider-nav")
+    .find(".owl-item")
+    .removeClass("synced")
+    .eq(current)
+    .addClass("synced")
+    if($("#mainslider-nav").data("owlCarousel") !== undefined){
+    center(current)
+    }
+    }
+
+    $("#mainslider-nav").on("click", ".owl-item", function(e){
+    e.preventDefault();
+    var number = $(this).data("owlItem");
+    sync1.trigger("owl.goTo",number);
+    });
+
+    function center(number){
+    var sync2visible = sync2.data("owlCarousel").owl.visibleItems;
+    var num = number;
+    var found = false;
+    for(var i in sync2visible){
+    if(num === sync2visible[i]){
+    var found = true;
+    }
+    }
+
+    if(found===false){
+    if(num>sync2visible[sync2visible.length-1]){
+    sync2.trigger("owl.goTo", num - sync2visible.length+2)
+    }else{
+    if(num - 1 === -1){
+    num = 0;
+    }
+    sync2.trigger("owl.goTo", num);
+    }
+    } else if(num === sync2visible[sync2visible.length-1]){
+    sync2.trigger("owl.goTo", sync2visible[1])
+    } else if(num === sync2visible[0]){
+    sync2.trigger("owl.goTo", num-1)
+    }
+    }
+
+    });
+
+/* Τestimonials
+   ========================================================================== */
+ jQuery(document).ready(function($) {
+        $("#testimonials-carousel").owlCarousel({
+            items: 1,
+            autoPlay: 5000,
+            itemsDesktop: [1199, 1],
+            itemsDesktopSmall: [979, 1],
+            itemsTablet: [768, 1]
+        });
+    });
+
+    // ______________ STATS
+jQuery(document).ready(function($) {
+$('.statistics').waypoint(function() {
+
+ $('#myStat1').circliful();
+ $('#myStat2').circliful();
+ $('#myStat3').circliful();
+ $('#myStat4').circliful();
+
+}, { offset: 800, triggerOnce: true });
+});
+</script> 
+<link href="{{$STATIC}}css/qq.service.css" rel="stylesheet" type="text/css" />
+<div id="floatTools" class="myservices-cs">
+<div class="floatL"> 
+	<a style="display: block" id="aFloatTools_Show" class="btnOpen" title="查看在线客服" href="javascript:void(0);"> 展开</a> 
+	<a style="display: none" id="aFloatTools_Hide" class="btnCtn" title="关闭在线客服" href="javascript:void(0);"> 收缩</a>
+</div>
+<div id="divFloatToolsView" class="floatR" style="display: none">
+<div class="cn">
+	<h3 class="titZx">售前咨询</h3>
+	<ul>
+		<li>
+			<span>售前客服</span> 
+			<a target="_blank" href="tencent://message/?uin=这里是QQ&&Site=www.cloudleft.com&&Menu=yes"><img border="0" src="{{$STATIC}}picture/button_qq.gif" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
+		</li>
+	</ul>
+	<h3>技术支持</h3>
+		<ul>
+			<li>
+				<span>技术客服</span> 
+				<a target="_blank" href="tencent://message/?uin=这里是QQ&&Site=www.cloudleft.com&&Menu=yes"><img border="0" src="{{$STATIC}}picture/button_qq.gif" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
+			</li>
+		</ul>
+</div>
+</div>
+</div> 
+<script src="{{$STATIC}}js/qq.service.js"></script> 
+</body></html>

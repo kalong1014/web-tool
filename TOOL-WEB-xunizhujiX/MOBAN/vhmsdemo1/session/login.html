@@ -1,0 +1,92 @@
+<SCRIPT language='javascript'>
+function check_submit() 
+{
+	var username = jQuery("#user").val();
+	var passwd = jQuery("#pw").val();
+	if (username == "" || passwd == "") {
+		return alert("账号密码不能为空");
+	}
+	document.getElementById('from').submit();
+}
+</SCRIPT>										
+<body class="login">		
+<section class="loginform">
+	<div class="row">
+		<div class="logincontainer col-sm-12">
+			
+			<a class="navbar-brand" href="?c=user&a=index" title="51chinahost">51ChinaHost用户登录</a>
+			
+			<div class="login-content">
+			    <form method="post" action="?c=session&a=login" name="form2" id='from' role="form" >
+								    
+			        <div class="form-group form-group-top">
+			            <label for="inputEmail">账号：</label>
+			            <input name="username" class="form-control" id="user" placeholder="输入账号" autofocus="" >
+			        </div>
+			
+			        <div class="form-group">
+			            <label for="inputPassword">密码</label>
+			            <input class="form-control" placeholder="密码" autocomplete="off" type="password" id='pw' name="passwd"/ >
+			        </div>
+			
+			        <div class="form-group">
+			            <input id="login" class="btn btn-success btn-block" value="登录" type="button" onclick='check_submit();'>
+			        </div>
+			        
+			        
+			    <div class="foot text-center">
+				    	<a href="?c=public&a=findPasswdFrom">忘记密码?联系客服重置或点击此处重置！</a>
+			    </div>
+			</form>
+			</div>
+		    <div class="nav">
+				<p class="back"><a href="javascript:;" onclick="javascript :history.go(-1);"><i class="fa fa-angle-double-left" aria-hidden="true"></i> 返回</a></p>
+				<p class="register">您还没有注册账户? <a href="?c=public&a=register_n">注册账户</a></p>
+		    </div>
+		</div>	
+</section>
+</body>	
+<script src="/user/view/51chinahost/js/bootstrap.min.js"></script>
+<script src="/user/view/51chinahost/js/wow.min.js"></script>
+<script src="/user/view/51chinahost/js/bootstrap-hover.min.js"></script>
+<script src="/user/view/51chinahost/js/bootstrap-select.min.js"></script>
+<script src="/user/view/51chinahost/js/jquery.zclip.js"></script>
+<script src="/user/view/51chinahost/js/jquery-ui.min.js"></script>
+<script type="text/javascript">
+    var csrfToken = '083bd0a5e8b02ad87bcd76cdade3a15fac47cca8',
+        markdownGuide = 'Markdown Guide',
+        locale = 'en_GB',
+        saved = 'saved',
+        saving = 'autosaving';
+</script>
+<script src="/user/view/51chinahost/js/whmcs.js"></script>
+<script src="/user/view/51chinahost/js/ajaxmodal.js"></script>
+
+<div class="modal system-modal fade" id="modalAjax" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content panel panel-primary">
+            <div class="modal-header panel-heading">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title">Title</h4>
+            </div>
+            <div class="modal-body panel-body">
+                Loading...
+            </div>
+            <div class="modal-footer panel-footer">
+                <div class="pull-left loader">
+                    <i class="fa fa-circle-o-notch fa-spin"></i> Loading...
+                </div>
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    Close
+                </button>
+                <button type="button" class="btn btn-primary modal-submit">
+                    Submit
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+		

@@ -1,0 +1,164 @@
+{{dispatch c='nproduct'  a='left'}}
+		<div id="main">
+            <section class="content-main">
+			<div style="height:10px"></div>
+<div class="fullwidth-section dt-sc-parallax">
+<div class="fullwidth-bg">	  
+<div class="container"> 
+		   
+		   <!-- 循环开始 -->
+		 
+							
+			<!-- 循环结束 -->	
+			
+												<div style="height:35px"></div>
+							<h2 class="hr-border-title"><span>订购产品</span></h2>
+			
+			<!-- 新的模板测试 -->
+            <!-- **Content Main** -->
+					<div class="left-sidebar" id="secondary">
+                        <aside class="widget widget_gallery">
+                            <h3 class="widgettitle"><a data-delay="300" data-animation="bounceIn" class="dt-sc-button  small  alignleft  ocean" href="#"><i class="fa fa-bell"></i>&nbsp;  温馨提示</a></h3>
+                            <div class="carousel-container">
+                                <ul class="carousel-gallery carousel_items">
+                                    <li>
+							<div style="height:20px"></div>
+                                        <div class="entry-body">
+                                            <p>购买主机产品前请仔细阅读我们的<font color="#993300"><b>服务条款</b></font>，避免产生不必要的纠纷！</p>
+											<p>所有主机产品均支持<font color="#009933"><b>7天无理由退款</b></font>，所以我们不提供产品试用，请放心购买！</p>
+											<p>在产品购买页的产品详情里有<font color="#339999"><b>折扣优惠</b></font>说明的，请<font color="#339999"><b>联系客服</b></font>索要优惠码！</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+							
+								  <div class="dt-sc-hr-invisible-very-small"></div>
+                                  <div class="dt-sc-clear"></div>
+								  <div class="dt-sc-hr-invisible-very-small"></div>
+                                  <div class="dt-sc-clear"></div>
+                        </aside>
+                     </div>         
+
+                    <!-- **Primary** -->
+                    <div class="with-left-sidebar" id="primary">
+                        <div class="column dt-sc-one-column blog-fullwidth with-sidebar">
+                            <article class="blog-entry single format-image"> 
+							<div style="height:8px"></div>
+	<form name='reg' action="?c=product&a=modBuy&product_id={{$product.id}}&nodename={{$nodename}}" method="post">
+                <div class="dt-sc-tabs-frame-content" style="display: block;">
+                            <div>
+								<div style="height:5px"></div>                           
+                                <h3 class="hr-border-title"><span><i class="fa fa-hdd-o"> </i>&nbsp; 产品详情</span></h3>
+								<h4><font color="#006699"><b>{{$product.name}}</b></font></h4> 
+								<h5>{{$product.describe}}</h5><br />
+                                <h3 class="hr-border-title"><span><i class="fa fa-edit"> </i>&nbsp; 配置账户</span></h3>
+							<p><font color="#000000">注意事项：这里配置的是主机管理系统的账户，非您的会员中心账户，请注意区分开来！用户名可以设置成相同的以方便记忆。</font><br /><font color="#000000">强烈建议：<b>控制面板密码</b>与<b>会员中心账户密码</b>不要使用同一个密码！ </font></p>
+							<div class="column dt-sc-two-third first">                           
+							<div class="dt-sc-tabs-container">
+							
+	                  				{{if !$msg}}
+									     <p><input type="button" name="Submit" value="检测用户名" onClick="check_name()"></p>
+										<div style="height:5px"></div>
+									    <h5>控制面板用户名：[ 3 - 12 字符数 ]<input type="text" name="name" placeholder="" id="name"></h5>
+										<h5>控制面板密码：<input type="password" name="passwd" id="passwd" placeholder=""></h5>
+										<h5>确认控制面板密码：<input type="password" name="passwd2" id="passwd2" placeholder=""></h5>
+										<h5>您的域名：<input type="text" name="domain" placeholder="可不填，稍后可在控制面板绑定域名"></h5>
+                                        {{if $entkey}}
+							 <div style="height:25px"></div>
+						<h4><div id='key_input' style='display: none'>
+
+								<span id='checkresult'><input type='button' value='检测优惠码' class="submit" onclick='check_entkey()'></span><input name="ent_key" id='key' placeholder="请输入优惠码" size=32 type="text"> 
+
+							</div>
+							<div id='key_onclick'>
+								<a href='javascript:show_entkey_input();'><font color="red"><b><i class="fa fa-bolt"> </i>&nbsp; 我有优惠码，现在使用</font></b></a>
+							</div></h4>
+							 <div style="height:10px"></div>
+					        {{/if}}
+                                </div>
+                                 </div>
+								  <div class="dt-sc-hr-invisible-very-small"></div>
+                                <h3 class="hr-border-title"><span><i class="fa fa-shopping-cart"> </i>&nbsp; 购买结算</span></h3>
+								<h4><i class="fa fa-money"></i>&nbsp;  价格/周期：<font color="#0099CC"><b>{{if $product.noagentprice}}特价:{{/if}}￥{{$product.price}} 元 /  {{($product.pay_cycle=='year') ? '年付' : "月付"}}</b>&nbsp; &nbsp; &nbsp; 
+					               <strong style='text-decoration: line-through'>
+					                {{if $product.noagentprice}}原价:￥{{$product.noagentprice}} 元 /  {{($product.pay_cycle=='year') ? '年付' : "月付"}}{{/if}}</strong></font></h4>
+                             <p class="alignleft" ><input type="button" value="立即购买" class="dt-sc-button medium lightgreen" onClick="check_register()"></p>
+							 	{{else}}
+								<p>
+								{{$msg}}</p>
+                                {{/if}}
+                            </div>
+                        </div>  
+	</form>
+
+
+                             
+                             </article><!-- **Blog Entry Ends** -->
+					</div>   
+					                    
+                    </div> <!-- **Primary Ends** -->
+                    <!-- **Secondary Section** -->    
+<!--框架尾部 -->							
+<!-- 新的模板测试 -->
+
+</div>
+</div>
+</div>
+</section>
+</div>
+
+<script type='text/javascript'>
+	var nodename = '{{$nodename}}';
+
+	var product_id = '{{$product.id}}';
+</script>
+
+<script type='text/javascript' src='{{$STATIC}}js/nproduct.js'></script>
+
+<script type='text/javascript'>
+	var money = '{{$product.price}}';
+	function show_entkey_input() {
+		document.getElementById('key_onclick').style.display = 'none';
+		document.getElementById('key_input').style.display = 'block';
+	}
+	function checkMoney() {
+		$.ajax({
+			url : '?c=hosting&a=checkMoney&money=' + money,
+			dataType : 'json',
+			success : function(ret) {
+				if (ret['code'] != 200) {
+					art.dialog({
+						id : 'id22',
+						content : '<b class=red>余额不足'+money+'元,请充值后再继续本次操作</b>',
+						time : 4,
+						title : "提示",
+						icon : 'warning'
+					});
+
+				}
+			}
+		})
+	}
+	$(document).ready(function() {
+		checkMoney();
+	});
+	function check_entkey() {
+		var key = $.trim($("#key").val());
+		if (!key) {
+			return alert("请输入优惠折抵码");
+		}
+		$.ajax({
+			type : 'post',
+			url : '?c=entkey&a=checkKey',
+			data : 'key=' + key + '&product_id=' + product_id,
+			dataType : 'json',
+			success : function(ret) {
+				if (ret['code'] != 200) {
+					return alert(ret['msg'] ? ret['msg'] : '不可用');
+				}
+				//alert('可用');
+				$("#checkresult").html('<b class=red>*可用</b>');
+			}
+		});
+	}
+</script>

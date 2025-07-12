@@ -1,0 +1,126 @@
+爱Q技术网：www.aq86.cn 站长交流QQ群：13131412 
+
+首先大家先购买一台服务器官网地址：http://qizuxi.cn/
+搭建虚拟主机销售网
+
+今天教大家搭建这个网站，先给大家看看演示
+
+就是这样的销售网站，网上很多免费空间的就是用这个系统的（等会送大家几套模板）
+
+首先购买一台服务器或者VPS，系统选择centos 6  64位的不要32位
+
+购买之后打开连接软件（我会打包），输入IP下面点击下  输入账号回车，输入密码  输入密码是不显示的，注意大小写 输好直接回车
+
+提示这个是密码错的，提示root开头的是登录成功了
+
+然后直接复制脚本安装，复制 在连接器上，鼠标右键直接粘贴  然后回车
+
+等他自己安装成功不要动
+
+好了，提示这个就行了
+
+然后我们登了面板
+
+easypanel控制面板管理员后台：ip:3312/admin
+
+帐号：admin
+密码：kangle
+
+账号：root 密码自己写  端口：3306  主机:localhost
+
+
+提示√的才是正常的
+
+好了，我们搭建那个销售网站
+
+需要更多PHP的可以自己安装，直接复制脚本一键安装，复制上回车 等会他家安装好了，然后就可以选择了，这样就安装好了
+
+
+创建网站  上传文件 我会打包  有点慢
+
+然后解压   放到www 目录  绑定域名
+
+运行域名安装 填写数据库账号密码 就是创建的 账号密码是一样的  安装好登录
+
+
+自己看着设置  添加主机 都填写IP  账号就是3312的登录账号密码  还有安全码  显示这个才可以开通虚拟主机
+
+然后添加产品 先添加组在添加产品 自己看着设置
+
+上传模板 放到这个/ wwwroot / user / view /目录  解压 更改模板  喜欢那个就用那个，详细信息需要改模板文件
+
+开通正常，可以自己配置支付，都在里面，自行研究
+
+
+php-5.4.45: wget http://github.itzmx.com/1265578519/kangle/master/php/5.4/5445/completed/tpl_php5445.sh -O tpl_php5445.sh;sh tpl_php5445.sh
+
+php-5.5.38: wget http://github.itzmx.com/1265578519/kangle/master/php/5.5/5538/completed/tpl_php5538.sh -O tpl_php5538.sh;sh tpl_php5538.sh
+
+php-5.6.33: wget http://github.itzmx.com/1265578519/kangle/master/php/5.6/5633/completed/tpl_php5633.sh -O tpl_php5633.sh; sh tpl_php5633.sh
+
+php-7.0.27: wget http://github.itzmx.com/1265578519/kangle/master/php/7.0/7027/completed/tpl_php7027.sh -O tpl_php7027.sh;sh tpl_php7027.sh
+
+php-7.1.13: wget http://github.itzmx.com/1265578519/kangle/master/php/7.1/7113/completed/tpl_php7113.sh -O tpl_php7113.sh;sh tpl_php7113.sh
+
+
+在一个脚本安装时间较长的时候可以关闭连接重新换个脚本安装（超过2个小时的时候）说明延迟了或者卡住了，好了今天就到
+
+一键脚本：（国内VPS）
+yum -y install wget;wget http://kangle.odata.cc/start;sh start
+
+
+备用脚本：（国外）
+yum -y install wget
+echo "timeout=120" >> /etc/yum.conf
+yum -y update
+yum -y install epel-release
+chkconfig nscd off;service nscd stop;yum -y install dnsmasq;sed -i 's/#listen-address.*/listen-address=127.0.0.1/g' /etc/dnsmasq.conf;echo -e 'nameserver 127.0.0.1\nnameserver 208.67.222.222\nnameserver 8.8.8.8\nnameserver 114.114.114.114\nnameserver 119.29.29.29\noptions timeout:1 attempts:1 rotate' > /etc/resolv.conf;chkconfig dnsmasq on;service dnsmasq start
+rm -rf /etc/yum.repos.d/CentOS-Base.repo
+wget http://github.itzmx.com/1265578519/mirrors/master/CentOS/CentOS6-Base-itzmx.repo -O /etc/yum.repos.d/CentOS6-Base-itzmx.repo
+rm -rf /etc/yum.repos.d/*pel.repo
+rm -rf /etc/yum.repos.d/epel-testing.repo
+wget http://github.itzmx.com/1265578519/mirrors/master/EPEL/epel.repo -O /etc/yum.repos.d/epel.repo
+wget http://github.itzmx.com/1265578519/mirrors/master/EPEL/epel-testing.repo -O /etc/yum.repos.d/epel-testing.repo
+rpm -ivh http://github.itzmx.com/1265578519/repo/master/CentOS/mysql-community-release-el6-5.noarch.rpm
+rm -rf /etc/yum.repos.d/mysql-community.repo
+rm -rf /etc/yum.repos.d/mysql-community-source.repo
+wget http://github.itzmx.com/1265578519/repo/master/CentOS/mysql-community.repo -O /etc/yum.repos.d/mysql-community.repo
+wget http://github.itzmx.com/1265578519/repo/master/CentOS/mysql-community-source.repo -O /etc/yum.repos.d/mysql-community-source.repo
+yum -y install which file wget make automake gcc gcc-c++ pcre-devel zlib-devel openssl-devel sqlite-devel quota unzip bzip2 libaio-devel
+ulimit -n 1048576
+echo "* soft nofile 1048576" >> /etc/security/limits.conf
+echo "* hard nofile 1048576" >> /etc/security/limits.conf
+wget http://github.itzmx.com/1265578519/kangle/master/ent/e.sh -O e.sh;sh e.sh /vhs/kangle
+wget http://github.itzmx.com/1265578519/kangle/master/kangle/easypanel/ep.sh -O ep.sh;sh ep.sh
+wget http://github.itzmx.com/1265578519/transmission/master/2.84/libevent-2.0.21-stable.tar.gz
+tar zxf libevent-2.0.21-stable.tar.gz
+cd libevent-2.0.21-stable
+./configure
+make -s -j 4
+make -s install
+ln -s /usr/local/lib/libevent-2.0.so.5 /usr/lib/libevent-2.0.so.5
+ln -s /usr/local/lib/libevent-2.0.so.5.1.9 /usr/lib/libevent-2.0.so.5.1.9
+ln -s /usr/lib/libevent-2.0.so.5 /usr/local/lib/libevent-2.0.so.5
+ln -s /usr/lib/libevent-2.0.so.5.1.9 /usr/local/lib/libevent-2.0.so.5.1.9
+cd ..
+yum -y install memcached php-pecl-memcache
+yum -y install php-pecl-apc
+rm -rf /etc/sysconfig/memcached
+wget http://github.itzmx.com/1265578519/kangle/master/memcached/memcached -O /etc/sysconfig/memcached
+service memcached start
+chkconfig --level 2345 memcached on
+echo "127.0.0.1 download.safedog.cn" >> /etc/hosts
+setenforce 0 && sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
+wget http://github.itzmx.com/1265578519/safedog/master/2.4/safedog_linux64.tar.gz
+tar xzf safedog_linux64.tar.gz
+cd safedog_linux64
+chmod -R 777 install.py
+./install.py
+sdcmd webflag 0
+sdcmd twreuse 1
+sdcmd sshddenyflag 1
+cd ..
+yum -y install mysql mysql-server
+rm -rf /etc/my.cnf
+wget http://github.itzmx.com/1265578519/kangle/master/mysql/5.6/my.cnf -O /etc/my.cnf
+service mysqld restart

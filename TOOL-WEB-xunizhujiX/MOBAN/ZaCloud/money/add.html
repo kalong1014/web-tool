@@ -1,0 +1,109 @@
+<script type="text/javascript">
+	function show_china(val) {
+	return;
+		if (val == 1) {
+			document.getElementById('chinabank').style.display = 'block';
+		} else {
+			document.getElementById('chinabank').style.display = 'none';
+		}
+	}
+</script>
+
+ <div class="customer_center_banner">
+</div>
+<div class="client-nav">
+<div class="row">
+    <div class="col-sm-12">
+          <ul id="navul">
+					<li><a href="?c=user&a=index"  class="cur"><em class="fa fa-home"></em>  客户中心</a></li>
+                    <li class="li-products"><a href="?c=hosting&a=pageHost"><em class="fa fa-server"></em>  我的产品</a></li>
+                    <li class="li-domains"><a href="?c=user&a=changeForm"><em class="fa fa-send"></em> 修改资料</a></li>
+                    <li><a href="?c=user&a=changePasswordForm"><em class="fa fa-money"></em>  修改密码</a></li>
+                    <li><a href="?c=money&a=moneyout" ><em class="fa fa-rmb"></em>  消费记录</a></li>
+                    <li><a href="?c=money&a=moneyin"><em class="fa fa-calculator"></em>  充值记录</a></li>
+                    <li><a href="?c=question&a=addFrom"><em class="fa fa-external-link"></em>  提交服务单</a></li>
+                    <li class="li-ticket"><a href="?c=question&a=pageByuser"><em class="fa fa-comments"></em>  查看服务单</a></li>
+                </ul>
+    </div>
+</div>
+
+</div>
+<div class="blog single" style="padding-top: 15px;">
+    <div class="row">
+    		<div class="col-sm-12 member-col-left">
+    
+
+<div class="halfwidthcontainer">
+
+<div class="page-header">
+    <div class="styled_title"><h1>账户充值 <small>您可以预先充值余额自动支付账单</small></h1></div>
+</div>
+
+
+<p>给您的账户增加预存款,这样可以自动支付您的订单.</p>
+<br>
+
+<form class="form-horizontal" name='frm' action="?c=money&a=add" method="post" target='_blank' >
+<div class="logincontainer">
+
+    <fieldset>
+
+        <div class="control-group">
+            <label  for="amount">充值金额:</label>
+            <div class="controls">
+				<input type="text" name='money' size="24" placeholder="请输入金额"  >
+		&nbsp;&nbsp;<font color="red">选择支付宝/财付通/网银请在此处填写充值金额</font>	&nbsp;&nbsp;			
+            </div>
+        </div>
+        <div class="control-group">
+            <label  for="amount">充值码:</label>
+            <div class="controls">
+                <input type="text" name='ent_key' size="48" placeholder="请输入充值卡号"  >&nbsp;&nbsp;
+				&nbsp;&nbsp;<font color="red">选择充值卡请在此处填写充值卡号</font>
+            </div>
+        </div>
+        <div class="control-group">
+
+            <label  for="paymentmethod">付款方式:
+			
+			
+
+										{{if !$setting.alipay_close}}
+										<input type="radio" name="gw"  value="1" checked="checked"	onclick='show_china(1)' /> 支付宝
+										{{/if}}
+										{{if !$setting.china_close}}
+										<input type="radio" name="gw"  	value="2" checked="checked" onclick='show_china(2)' /> 在线网银
+										{{/if}}
+										{{if !$setting.tenpay_close}}
+										<input type="radio" name="gw"  	value="3" checked="checked" onclick='show_china(3)' /> 财付通
+										{{/if}}
+										<input type="radio" name="gw"  	value="100"  onclick='show_china(100)' /> 充值卡
+
+			
+			
+			
+			
+
+        </div>
+
+    </fieldset>
+
+<p align="center"><input type="submit" value="充值" class="btn btn-success"></p>
+
+<br>
+
+<p align="center"></p>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+

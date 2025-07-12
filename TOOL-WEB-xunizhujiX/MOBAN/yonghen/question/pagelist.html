@@ -1,0 +1,55 @@
+{{dispatch c='user'  a='left'}}
+
+                        <div class="column dt-sc-two-third">
+                            <div class="side-nav-content">
+                        <div class="column dt-sc-one-column blog-fullwidth with-sidebar">
+                                  <h3 class="hr-border-title"><span>Ticket & 我的工单</span></h3> 
+	<div align="right">
+							<form action='?c=question&a=pageByUser' method='post'>
+				<a href="?c=question&a=addFrom" target="{{$target}}" class="dt-sc-button  small  alignleft"><span class="font_1">提交新工单</span></a>
+				<div style="height:27px"></div>
+			<p align="right">
+										{{if $page>1}}
+
+										<a href='?c=question&a=pageByuser&sortname={{$smarty.request.sortname}}&page=0'>首页</a> 
+
+										<a href='?c=question&a=pageByuser&sortname={{$smarty.request.sortname}}&page={{$page-1}}'>上一页</a> 
+
+											{{else}}
+
+											首页 上一页 
+
+											{{/if}}
+
+											{{if $page!=$total_page}} 
+
+											<a href='?c=question&a=pageByuser&sortname={{$smarty.request.sortname}}&page={{$page+1}}'>下一页</a>
+
+											<a href='?c=question&a=pageByuser&sortname={{$smarty.request.sortname}}&page={{$total_page}}'>尾页</a>
+
+											{{else}}下一页 尾页
+
+											{{/if}} 
+
+											{{$page}}/{{$total_page}}&nbsp;
+
+											共计{{$count}}记录
+			</p>
+		</form>
+	</div>
+	</div>
+				
+                <div class="dt-sc-tabs-frame-content" style="display: block;">
+					{{foreach from=$list item=row}}
+					<p>
+				 {{if $row.status==1}}<i class="fa fa-envelope"> </i>&nbsp;<a href='?c=question&a=getQuestion&id={{$row.id}}'><font color="#0066CC">已回复</a></font>{{else}}<i class="fa fa-user"></i>&nbsp;<a href='?c=question&a=getQuestion&id={{$row.id}}'><font color=red>未回复</font></a>{{/if}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href='?c=question&a=getQuestion&id={{$row.id}}'>{{substr($row.title,0,85)}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{if $row.status==1}}<i class="fa fa-clock-o"></i>&nbsp;{{$row.reply_time}}{{else}}{{/if}}
+				 </p>
+				 {{/foreach}} 
+                  </div>
+                        </div>                            
+                    </div> <!-- **Primary Ends** -->
+                                        
+                </div> <!-- **Container Ends** --> 
+            </section>  <!-- **Content Main Ends** -->
+</div>
+

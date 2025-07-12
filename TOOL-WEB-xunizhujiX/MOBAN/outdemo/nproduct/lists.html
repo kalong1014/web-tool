@@ -1,0 +1,27 @@
+{{*避免变量覆盖 重新赋值*}}
+{{$new_products=$products}}<!--套餐开始-->					      <div class="zt_qy">        <div class="zt_qy1">           <!---->   <div class="zt_qy2">              <p>请认真看清楚虚拟主机信息在购买</p>            </div>								{{if !empty($new_products)}}									{{foreach $new_products as $v}}									         <ul class="zt_qy1_ul">           <li >              <p class="zt_li1">{{$v.name}}<br />                  价格：{{$v.price}}元/{{($groupinfo.pay_cycle=='year') ? '年' : '月'}}</p>              <p class="zt_li2">				  			  {{$v.describe}}           </p>	<a href="?c=product&a=sellForm&product=n_{{$v.id}}" class="zt_li3">立即购买</a>														  </li> 			  			  			  			  			  			  			  			  			  			  			  			  			  			  			  			  			  			  			              									{{/foreach}}								{{/if}}										 <li>               <p class="zt_li1">更多优惠套餐<br />               请联系商务人员</p>		       <p class="zt_li2">服务热线：<br />               400-163-5599</p>               <p class="zt_li2">企业QQ：<br />               1349443473</p>               <a href="#" class="zt_li3"  >立即咨询</a>           </li>							         </ul>						<!--			                <div class="clear"> </div>
+						<div class="wrap_box_info">
+								<div class="host host_virtual">
+								{{if !empty($new_products)}}
+									{{foreach $new_products as $v}}
+									<dl{{if $v@iteration is div by 3}} class="index"{{/if}}>
+										<dt class="host_ico">
+											<span>{{$v.name}}</span>
+											<b>价格：{{$v.price}}元/{{($groupinfo.pay_cycle=='year') ? '年' : '月'}}</b>
+										</dt>
+										<dd>
+										{{$v.describe}}
+										</dd>
+										<dd>
+											<a href="?c=product&a=sellForm&product=n_{{$v.id}}"  class="host_more">查看详情</a>											<a href="?c=product&a=sellForm&product=n_{{$v.id}}"  class="host_more host_more2">立即购买</a>
+										</dd>
+									</dl>
+									{{/foreach}}
+								{{/if}}
+								</div>
+						</div>
+						<!--//wrap_box_info-->
+					</div>	
+					<!--//wrap_box-->				
+			</div>
+			<!--//wrap_main-->	

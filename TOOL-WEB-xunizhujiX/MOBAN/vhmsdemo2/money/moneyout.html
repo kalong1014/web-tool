@@ -1,0 +1,80 @@
+		<div id="content">
+			<!-- Page Banner -->
+			<div class="page-banner" style=" background-color:#336C9D;">
+				<div class="container">
+					<h2>消费记录</h2>
+					<ul class="page-tree">
+						<li><a href="/">首页</a></li>
+						<li><a href="?c=user&a=index">会员中心</a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- Page Banner end -->
+		</div>
+		<br />
+	
+  {{dispatch c='user' a='left'}}
+  
+	<div class="col-md-9 blog-side">
+	   <h3><i class="fa fa-credit-card"></i> 消费记录</h3>
+							<div class="alert alert-success alert-dismissable">
+								<strong><i class="fa fa-bell"></i></strong>&nbsp; 对于您在本站的任何消费，如果您有疑问，欢迎&nbsp; <a href="http://wpa.qq.com/msgrd?v=3&uin=1927704576&site=qq&menu=yes" target="_blank" class="alert-link">
+								<i class="fa fa-qq"></i> 联系我们</a> &nbsp;或&nbsp; <a href="?c=question&a=addFrom" class="alert-link">提交工单</a> ！							</div>
+							
+	                            <div class="widget footer-widgets tag-widget">
+								 <div class="form-group">
+									<label class="col-sm-3 control-label">消费时间</label>
+									<label class="col-sm-2 control-label">消费金额</label>
+									<label class="col-sm-7 control-label">消费详情</label>
+								  </div>
+	  </div><hr /><hr />
+								 
+									{{foreach from=$list item=row}}
+									<div class="form-group">
+									<p class="col-sm-3" style="color:#000000;">{{$row.add_time}}</p>
+									<p class="col-sm-2 js_show_product_name" style="color:#000000;">{{$row.money/100}}元</p>
+									<p class="col-sm-7" style="color:#000000;">{{$row.mem}}</p>
+									</div><p>&nbsp;</p>
+									{{/foreach}}
+									
+	   
+	<br />
+
+		<div class="r_mar_top" align="right" style="font-size:12px;">
+									{{if $page>1}}
+
+									<a href='?c=money&a=moneyout&page=0'>首页</a> 
+
+									<a href='?c=money&a=moneyout&page={{$page-1}}'>上一页</a> 
+
+									{{else}}
+
+									首页 上一页 
+
+									{{/if}}
+
+									{{if $page!=$total_page}} 
+
+									<a href='?c=money&a=moneyout&page={{$page+1}}'>下一页</a>
+
+									<a href='?c=money&a=moneyout&page={{$total_page}}'>尾页</a>
+
+									{{else}}下一页 尾页
+
+									{{/if}} 
+
+									{{$page}}/{{$total_page}}&nbsp;
+
+									共计{{$count}}记录
+		</div>
+								
+</div>
+
+
+
+  <!-- 必须要加 -->
+  </div></div></div>
+
+<br />	   
+
+

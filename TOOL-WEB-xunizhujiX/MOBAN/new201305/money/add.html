@@ -1,0 +1,20 @@
+ {{dispatch c='user' a='left'}}    </div>    <div class="rightCon"><h1><span>在线充值</span><span class="line"></span></h1><style type="text/css">.regmenu_label{width:100%;position:relative;height:37px;}.regmenu_input,.ziliao_shuru{width:246px;padding:9px;height:17px;line-height:17px;color:#646A6F;float:left;border-radius:0px;border:1px solid #98a1a6;vertical-align:middle;}.regmenu_label .iefujia{line-height:37px;color:#646A6F;left:37px;}/*提示语*/.regmenu_poptip{border:1px solid #B10614;height:16px;line-height:16px;padding:5px 10px 5px;background:#FFF3F4;position:absolute;top:-35px;left:10px;border-radius:8px;display:none;}.regmenu_arrow{position:absolute;z-index:10;*zoom:1}.regmenu_arrow em,.regmenu_arrow span{position:absolute;*zoom:1;width:0;height:0;border-color:rgba(255,255,255,0);border-color:transparent transparent \0;*border-color:transparent transparent;_border-color:tomato;_filter:chroma(color=tomato);border-style:solid;overflow:hidden;top:0;left:10px}.regmenu_arrow{left:0px;bottom:0px;}.regmenu_arrow em{top:1px;left:10px;border-top-color:#B10614;border-width:6px 6px 0px 6px}.regmenu_arrow span{border-top-color:#FFF3F4;border-width:6px 6px 0px 6px}.regmenu_content{color:#000;}</style><div class="list">	<table cellspacing="1" cellpadding="0" class="ziliao">
+							<form name='frm' action="?c=money&a=add" method="post">
+					
+									<tr>
+										<td>支付方式:</td>
+										<td >										<div style="float:left">										{{if !$setting.alipay_close}}										<input type="radio" name="gw"  value="1" checked="checked"	onclick='show_china(1)' /> 支付宝										{{/if}}										{{if !$setting.china_close}}										<input type="radio" name="gw"  	value="2" checked="checked" onclick='show_china(2)' /> 在线网银										{{/if}}										{{if !$setting.tenpay_close}}										<input type="radio" name="gw"  	value="3" checked="checked" onclick='show_china(3)' /> 财付通										{{/if}}										<input type="radio" name="gw"  	value="100"  onclick='show_china(100)' /> 充值卡										</div>										</td>
+									</tr>									<tr>				<th>金额(元):</th>				<td style="text-align:left">					<div class="regmenu_label">						<input type="text" name='money' value="{{$user.name}}" class="regmenu_input" id="nickname" placeholder="请输入金额"/>						<span class="regmenu_content" id="nicknames"></span>　					</div>				</td>			</tr>												<tr>				<th>充值码:</th>				<td style="text-align:left">					<div class="regmenu_label">						<input type="text" name='ent_key' value="{{$user.name}}" class="regmenu_input" id="nickname" placeholder="请输入充值码"/>						<span class="regmenu_content" id="nicknames"></span>　					</div>				</td>			</tr>
+			
+								<tr>				<th>&nbsp;</th>				<td style="text-align:left"><input type="submit" style="width:60px;font-weight:700;" value="提交" class="input" id="submit" />								注意,如果是充值码请不要填金额，只有开通了快捷支付才填。								</td>			</tr>
+								</table>
+							</form>
+						</div>
+						<!--//wrap_box_info-->
+					</div>	
+					<!--//wrap_box-->							
+			</div>
+			<!--//wrap_main-->	
+<script type="text/javascript">
+	function show_china(val) {		switch (val) {		case 1:		case 2:		case 3:			$("#entkey_tr").hide();			$("#money_tr").show();			break;		case 100:			$("#entkey_tr").show();			$("#money_tr").hide();			break;		default:			break;				}
+	}</script>

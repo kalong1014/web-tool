@@ -1,0 +1,14 @@
+
+{{if $nproducts}}
+	{{foreach from=$groups item=row}}
+		{{for $j=0;$j< count($nproducts);$j++}}
+			{{if $nproducts[$j].group_id==$row.group_id}}
+					<li id="menu-item-23" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-23">
+					<a href="?c=product&a=sellForm&product=n_{{$nproducts[$j].id}}">{{$nproducts[$j].name}} <img src="{{$STATIC}}picture/icon_hot.png" /></a>
+					</li>
+
+			{{/if}}
+		{{/for}}
+	{{/foreach}}
+{{/if}}
+		

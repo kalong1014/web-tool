@@ -1,0 +1,86 @@
+  {{dispatch c='user' a='left'}}
+
+                        <div class="column dt-sc-two-third">
+                            <div class="side-nav-content">
+                        <div class="column dt-sc-one-column blog-fullwidth with-sidebar">
+                                <div class="dt-sc-tabs-frame-content" style="display: block;">
+                                        <p><h3>Finance & 账户充值</h3></p>
+										<p><font color="#660000">温馨提示：如不熟悉支付宝担保支付流程的客户，建议您登陆我们的淘宝店铺购买充值卡，24小时全自动发货。店铺地址：https://shop105420269.taobao.com/</font></p>
+										<div style="height:10px"></div>
+							<div class="column dt-sc-two-third first">                           
+							<div class="dt-sc-tabs-container">
+							<form name='frm' action="?c=money&a=add" method="post" target='_blank'>
+
+										<h5>支付方式： 
+										{{if !$setting.alipay_close}}
+										<input type="radio" name="gw"  value="1" checked="checked"	onclick='show_china(1)' /> 支付宝
+										{{/if}}
+										{{if !$setting.china_close}}
+										<input type="radio" name="gw"  	value="2" checked="checked" onclick='show_china(2)' /> 在线网银
+										{{/if}}
+										{{if !$setting.tenpay_close}}
+										<input type="radio" name="gw"  	value="3" checked="checked" onclick='show_china(3)' /> 财付通
+										{{/if}}
+										<input type="radio" name="gw"  	value="100"  onclick='show_china(100)' /> 充值卡</h5>
+										
+
+									<p id="money_tr">
+
+										<input name='money' type="text" placeholder="请输入金额"  />
+
+
+									</p>
+
+									<p id="entkey_tr" style="display:none">
+
+										<input name='ent_key' type="text" placeholder="请输入充值卡号" />
+
+
+									</p>
+									
+
+									<p class="alignleft">
+
+										<input type="submit" class="dt-sc-button medium" value="立即充值" />
+
+									</p>
+
+
+							</form>
+                                </div>
+                                 </div></div>
+                            </div>
+                     </div> 
+                        </div>                            
+                    </div> <!-- **Primary Ends** -->
+                                        
+                </div> <!-- **Container Ends** --> 
+            </section>  <!-- **Content Main Ends** -->
+</div>
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+	function show_china(val) {
+		switch (val) {
+		case 1:
+		case 2:
+		case 3:
+			$("#entkey_tr").hide();
+			$("#money_tr").show();
+			break;
+		case 100:
+			$("#entkey_tr").show();
+			$("#money_tr").hide();
+			break;
+		default:
+			break;
+		
+		}
+	}
+</script>

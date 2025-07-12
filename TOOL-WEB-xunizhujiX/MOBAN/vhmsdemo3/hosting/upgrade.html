@@ -1,0 +1,168 @@
+  {{dispatch c='user' a='left'}}
+<link rel="stylesheet" type="text/css" href="{{$STATIC}}style/2014hostv2/assets/global/plugins/select2/select2.css"/>
+<link rel="stylesheet" type="text/css" href="{{$STATIC}}style/2014hostv2/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css"/>
+<link rel="stylesheet" type="text/css" href="{{$STATIC}}style/2014hostv2/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css"/>
+		<!-- BEGIN CONTENT -->
+		<div class="page-content-wrapper">
+			<div class="page-content">
+				<!-- BEGIN PAGE HEADER-->
+				<h3 class="page-title">
+				产品升级 <small>升级您的主机产品套餐</small>
+				</h3>
+				<div class="page-bar">
+					<ul class="page-breadcrumb">
+						<li>
+							<i class="fa fa-home"></i>
+							<a href="#">会员中心</a>
+							<i class="fa fa-angle-right"></i>
+						</li>
+						<li>
+                          <a href="#">产品管理</a>
+						</li>
+					</ul>
+				</div>
+				<!-- END PAGE HEADER-->
+				<!-- BEGIN PAGE CONTENT-->
+				<div class="row">
+					<div class="col-md-12">
+						<!-- BEGIN PROFILE CONTENT -->
+						<div class="profile-content">
+							<div class="row">
+								<div class="col-md-12">
+						<!-- Begin: life time stats -->
+						<div class="portlet light">
+							<div class="portlet-title">
+								<div class="caption">
+									<i class="icon-basket font-green-sharp"></i>
+									<span class="caption-subject font-green-sharp bold uppercase"> 产品升级</span>
+									<span class="caption-helper">升级产品套餐</span>
+								</div>
+								<div class="actions">
+									<a href="/?c=nproduct&a=lists&group_id=1" class="btn btn-circle btn-default">
+									<i class="fa fa-plus"></i>
+									<span>
+									购买主机产品 </span>
+									</a>
+								</div>
+							</div>
+							<div class="portlet-body">
+								<div class="table-container">
+								<p>
+								<span class="label label-primary">
+								温馨提示：</span>
+								<span>
+								 升级您的产品前请确认您的账户余额是否足够，如果余额不足，请及时充值！</span></p>
+								 <div class="portlet-body">
+							<form name='reg' action="?c=product&a=upgrade&name={{$name}}&product_type=n" method="post">		
+							<br />
+							<p>请选择新主机套餐：
+								<select name='product_id' onChange='show_product()' id='product' class="select" style="padding:5px">
+									{{foreach from=$products item=product}}
+									<option value='{{$product.id}}'>{{$product.name}}</option>
+									{{/foreach}}
+									</select></p>
+									<table width="80%">
+									<tr><td width="110">
+                               升级所需金额：</td>
+									<td align="left">
+							   <font color="#FF0000">
+							   <p>
+                               <div id='price'></div>
+                          </p></font></td></tr></table><br />
+							<p class="alignleft"><input type="submit" value="升级主机" class="btn green">   <a href="?c=hosting&a=pageHost" class="btn default">取消</a></p>
+							</form>
+							</div>								</div>
+							</div>
+						</div>
+						<!-- End: life time stats -->
+								</div>
+							</div>
+						</div>
+						<!-- END PROFILE CONTENT -->					
+
+<script language="javascript">
+
+var name = '{{$name}}';
+function show_product()
+{
+	var p_id = $("#product").val();
+	$.ajax({
+		type:'get',
+		url :'?c=nproduct&a=getById',
+		data:'id=' + p_id,
+		dataType:'json',
+		success:function(ret) {
+			if (ret['code'] != 200) {
+				return alert(ret['msg'] ? ret['msg'] : "获取数据错误");
+			}
+			var p = ret['product'];
+			var str = '';
+			var j = 0;
+			for (var i in p) {
+				
+				if (p[i]['value']) {
+					str += '<div class=\'product_div\'><span class=\'span1\'>'+ p[i]['key'] + ':</span><span class=span2>';
+					if (p[i]['value'] == 'on'){
+						str += "是";	
+					}else {
+						str += p[i]['value'];
+						if (p[i]['description']){
+							str +=  "&nbsp;" + p[i]['description'];
+						}
+					}
+					str +=  '</span></div>';
+					j++;
+					if (j%2==0) {
+						//str += '<br/>';
+					}
+				}
+			}
+			$("#product_info").html(str);
+			show_price();
+		}
+	});
+	
+	
+}
+function show_price()
+{
+	if (name == '') {
+		return alert("获取数据错误");
+	}
+	var p_id = $("#product").val();
+	$.ajax({
+		type:'get',
+		url :'?c=nproduct&a=getUpgradePrice',
+		data:'name=' + name + '&id=' + p_id,
+		dataType:'json',
+		success:function(ret){
+			if (ret['code'] != 200) {
+				return alert("获取升级价格错误");
+			}
+			$("#price").html(ret['price']+ " 元");
+		}
+	});
+	
+}
+
+</script>
+<style type='text/css'>
+.span1{
+	
+	width:50%;
+}
+.product_info {
+	width:100%;
+}
+.span2{
+	width:50%;
+}
+.product_div{
+	float:left;
+	width:50%;
+
+}
+</style>
+<script language='javascript'>
+show_product();
+</script>

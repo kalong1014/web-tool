@@ -1,0 +1,62 @@
+{{include file='common/head.html'}}
+<body>
+<div class="top-bar">
+	<div class="row">
+		<div class="col-sm-3">{{$setting.web_name.value}}专注优质高速主机!</div>
+		<div class="col-sm-9">
+			<div class="topnav">
+				<ul>
+					<li id="menu-item-490" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-490">我们7x24小时真诚为您服务！
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="top">
+	<div class="row">
+		<div class="col-sm-3">
+			<div class="logo"> <a href="/"><img src="{{$STATIC}}picture/logo.png" alt="云左科技" /></a></div>
+		</div>
+		<div class="col-sm-9">
+			<nav id="desktop-menu">
+			<ul id="navigation" class="sf-menu">
+				<li id="menu-item-24" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-24">
+					<a href="index.php">首页</a>
+				</li>	
+				<li id="menu-item-941" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-941">
+				<a href="#">云虚拟主机</a>
+				<ul class="sub-menu">
+					<li id="menu-item-23" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-23">
+						<a href="?c=nproduct&a=lists&group_id=1">自定义虚拟主机 <img src="{{$STATIC}}picture/icon_hot.png" /></a>
+					</li>
+					<li id="menu-item-24" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-23">
+						<a href="?c=nproduct&a=lists&group_id=2">自定义虚拟主机 <img src="{{$STATIC}}picture/icon_hot.png" /></a>
+					</li>
+				</ul>
+				</li>
+
+				<li id="menu-item-24" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-24">
+					<a href="#">主机博客</a>
+				</li>					
+				{{if $role.user}}
+				<li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41">
+					<a href='?c=user&a=index'>客户中心</a> 
+				</li>
+				<li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41">				
+					<a href='?c=session&a=logout'>退出</a>
+				</li>
+				{{else}}
+				<li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41">
+					<a href="?c=user&a=index"><i class="fa fa-user"></i> 客户中心</a>
+				</li>
+					{{/if}}
+			<ul>
+			</nav>
+		</div>
+	</div>
+</div>
+
+
+
+

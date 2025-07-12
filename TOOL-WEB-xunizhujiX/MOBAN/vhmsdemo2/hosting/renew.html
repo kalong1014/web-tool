@@ -1,0 +1,56 @@
+		<div id="content">
+			<!-- Page Banner -->
+			<div class="page-banner" style=" background-color:#336C9D;">
+				<div class="container">
+					<h2>产品续费</h2>
+					<ul class="page-tree">
+						<li><a href="/">首页</a></li>
+						<li><a href="?c=user&a=index">会员中心</a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- Page Banner end -->
+		</div>
+		<br />
+	
+  {{dispatch c='user' a='left'}}
+  
+	<div class="col-md-9 blog-side">
+	   <h3><i class="fa fa-hdd-o"></i> 续费主机</h3><hr />
+	   
+		<div class="container">
+			<div class="row">
+
+							<form name='vhostform' action="?c=hosting&a=renew&product_id={{$product.id}}&product_type=n&name={{$name}}" method="post" class="form-horizontal">
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-2 control-label">续费的产品：</label>
+									<label for="inputEmail3" class="col-sm-2 control-label">{{$name}}
+										</label></div>
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-2 control-label">产品套餐：</label>
+									<label for="inputEmail3" class="col-sm-2 control-label">{{$product.name}}
+										</label></div>
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-2 control-label">续费价格：</label>
+									<label for="inputEmail3" class="col-sm-2 control-label">{{$product.price}}元
+										</label></div><br />
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-2 control-label"></label>
+									<div class="col-sm-1">
+									<input type="submit" value="续 费" class="btn btn-success"></div>
+									<div class="col-sm-1">
+									<a href="?c=hosting&a=pageHost" class="btn btn-default">返 回</a>
+										</div></div>
+							</form>
+
+
+			</div>
+			</div>
+	   
+	   
+	   
+  <!-- 必须要加 -->
+  </div></div></div>
+
+<br />	   
+

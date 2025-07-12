@@ -1,0 +1,118 @@
+  {{dispatch c='user' a='left'}}
+  
+                        <div class="column dt-sc-two-third">
+                            <div class="side-nav-content">
+                        <div class="column dt-sc-one-column blog-fullwidth with-sidebar">
+                                <div class="dt-sc-tabs-frame-content" style="display: block;">
+                                        <p><h3>Servers & 产品升级</h3></p><br />
+							<div class="column dt-sc-two-third first">                           
+							<div class="dt-sc-tabs-container">
+                                    <form name="reg" class="inquiry-form" action="?c=product&a=upgrade&name={{$name}}&product_type=n" method="post">
+										<p>请选择新产品套餐</p>
+										<p>		<select name='product_id' onChange='show_product()' id='product'>
+		{{foreach from=$products item=product}}
+		<option value='{{$product.id}}'>{{$product.name}}</option>
+		{{/foreach}}
+		</select>
+</p>
+								   <p class="alignleft"><input type="submit" value="升  级" class="dt-sc-button medium"></p><br />
+                                   <p class="alignleft"><font color="#000000">需扣除金额：<h5 id='price'></h5></font></p>
+                                    </form>                                                                              
+                                </div>
+                                 </div></div>
+                            </div>
+                     </div> 
+                        </div>                            
+                    </div> <!-- **Primary Ends** -->
+                                        
+                </div> <!-- **Container Ends** --> 
+            </section>  <!-- **Content Main Ends** -->
+</div>
+  
+  
+<script language="javascript">
+
+var name = '{{$name}}';
+function show_product()
+{
+	var p_id = $("#product").val();
+	$.ajax({
+		type:'get',
+		url :'?c=nproduct&a=getById',
+		data:'id=' + p_id,
+		dataType:'json',
+		success:function(ret) {
+			if (ret['code'] != 200) {
+				return alert(ret['msg'] ? ret['msg'] : "获取数据错误");
+			}
+			var p = ret['product'];
+			var str = '';
+			var j = 0;
+			for (var i in p) {
+				
+				if (p[i]['value']) {
+					str += '<div class=\'product_div\'><span class=\'span1\'>'+ p[i]['key'] + ':</span><span class=span2>';
+					if (p[i]['value'] == 'on'){
+						str += "是";	
+					}else {
+						str += p[i]['value'];
+						if (p[i]['description']){
+							str +=  "&nbsp;" + p[i]['description'];
+						}
+					}
+					str +=  '</span></div>';
+					j++;
+					if (j%2==0) {
+						//str += '<br/>';
+					}
+				}
+			}
+			$("#product_info").html(str);
+			show_price();
+		}
+	});
+	
+	
+}
+function show_price()
+{
+	if (name == '') {
+		return alert("获取数据错误");
+	}
+	var p_id = $("#product").val();
+	$.ajax({
+		type:'get',
+		url :'?c=nproduct&a=getUpgradePrice',
+		data:'name=' + name + '&id=' + p_id,
+		dataType:'json',
+		success:function(ret){
+			if (ret['code'] != 200) {
+				return alert("获取升级价格错误");
+			}
+			$("#price").html(ret['price']+ " 元");
+		}
+	});
+	
+}
+
+</script>
+<style type='text/css'>
+.span1{
+	
+	width:50%;
+}
+.product_info {
+	width:100%;
+}
+.span2{
+	width:50%;
+}
+.product_div{
+	float:left;
+	width:50%;
+
+}
+</style>
+<script language='javascript'>
+show_product();
+</script>

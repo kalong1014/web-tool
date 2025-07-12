@@ -1,0 +1,31 @@
+{{dispatch c='user'  a='left'}}
+
+                        <div class="column dt-sc-two-third">
+                            <div class="side-nav-content">
+                        <div class="column dt-sc-one-column blog-fullwidth with-sidebar">
+                                  <h3 class="hr-border-title"><span>Ticket & 工单详情</span></h3> 
+                <div class="dt-sc-tabs-frame-content" style="display: block;">
+                            <div>
+								<div style="height:5px"></div>                           
+                                <h3><i class="fa fa-pencil"> </i>&nbsp; {{$log.title}}</h3> 
+								<p><i class="fa fa-user"></i>&nbsp; 用户:{{$log.username}}&nbsp;&nbsp; <i class="fa fa-clock-o"></i>&nbsp; 提交时间：{{$log.add_time}}</p>
+								<div style="height:5px"></div>                           
+                            	<p>{{$log.body}}</p> 
+								<div style="height:35px"></div>                           
+                                <h3 class="hr-border-title"><span><i class="fa fa-envelope"> </i>&nbsp;客服回复</span></h3>
+								{{if $log.reply_time!=""}}
+								<p><i class="fa fa-user"></i>&nbsp; 客服:Admin&nbsp; &nbsp;
+								<i class="fa fa-clock-o"></i>&nbsp; 回复时间：{{$log.reply_time}}
+								</p>
+								<div style="height:10px"></div>                           
+								<h5>{{$log.reply}}</h5>
+								{{else}}
+								<p>暂无客服回复消息</p>
+								{{/if}}
+								<div style="height:10px"></div>                           
+                            </div>
+                        </div>       
+								  
+                </div> <!-- **Container Ends** --> 
+            </section>  <!-- **Content Main Ends** -->
+</div>

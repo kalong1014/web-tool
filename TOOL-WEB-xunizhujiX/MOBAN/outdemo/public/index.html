@@ -1,0 +1,180 @@
+ <!--banner结束-->
+      <div class="flexslider">
+        <ul class="slides">
+          <li style="background:url(http://www.duanxin.cm//Public/Home/images/003.jpg) center 0 no-repeat;"><a href="#"  target="_blank"></a></li>
+          <li style="background:url(http://www.duanxin.cm//Public/Home/images/003.jpg) center 0 no-repeat;"><a href="#"  target="_blank"></a></li>
+          <li style="background:url(http://wap.meiis.cn/Template/meiis/images/bg1.jpg) center 0 no-repeat;"><a href="#"  target="_blank"></a></li>
+        </ul>
+	 </div>
+	 <!--banner结束-->
+
+
+	 <!--应用介绍开始-->
+	 <div class="sy_al">
+	      <div class="sy_lb2 fl"><p>web互联行业中的应用</p></div> 
+		     <div class="sy_lb3 fr">
+		          <img src="http://www.duanxin.cm//Public/Home/images/turn1.gif">
+		          <img src="http://www.duanxin.cm//Public/Home/images/turn2.gif">
+		          <img src="http://www.duanxin.cm//Public/Home/images/turn3.gif">
+		          <img src="http://www.duanxin.cm//Public/Home/images/turn4.gif">
+		          <img src="http://www.duanxin.cm//Public/Home/images/turn5.gif">
+		          <img src="http://www.duanxin.cm//Public/Home/images/turn6.gif">
+		          <img src="http://www.duanxin.cm//Public/Home/images/turn7.gif">
+		          <img src="http://www.duanxin.cm//Public/Home/images/turn8.gif">
+		          <img src="http://www.duanxin.cm//Public/Home/images/turn9.gif">
+		     </div>
+		            <div class="clear"></div>
+
+
+          <div class="sy_bt">
+		      <ul>
+                  <a href="/" target="_blank"><li class="sy_bt1"><p>免费试用</p></li></a>
+				  <li class="sy_bt2"><p>全国统一服务热线:400-163-5599</p></li>
+				  <a  onclick="window.open('http://kefu.qycn.com/vclient/chat/?websiteid=96804&groupid=35559&clienturl=http%3A%2F%2Fwww.duanxin.cm&originPageTitle='+encodeURIComponent(window.document.title)+'&originPageUrl='+encodeURIComponent(document.referrer)+'&originPageLocationUrl='+encodeURIComponent(document.location.href), '_blank', 'toolbar=no,scrollbars=yes,menubar=no,status=no,resizable=yes,location=no')" ><li class="sy_bt3" ><p>在线咨询</p></li></a>
+			  </ul>
+		  </div>
+      </div>
+
+	<!--下载及资费开始-->
+		
+		
+      <div class="zt_qy">
+        <div class="zt_qy1">
+           <!---->   <div class="zt_qy2">
+              <p>请认真看清楚虚拟主机信息在购买</p>
+            </div>
+			
+			
+			
+		{{foreach from=$nproducts item=row key=key}}
+							{{foreach from=$row item=n key=k}}
+         <ul class="zt_qy1_ul">
+           <li >
+              <p class="zt_li1">{{$n.name}}<br />
+                  价格：{{$n.price}}元/{{($n.pay_cycle=='year')? '年' : '月'}}</p>
+              <p class="zt_li2">	{{$n.describe}}
+           </p>
+
+         
+              <a href="?c=nproduct&a=lists&group_id={{$n.group_id}}" class="zt_li3" >立即购买</a>
+			  </li>
+			  
+			  				{{/foreach}}
+						{{/foreach}}
+
+						
+					{{foreach from=$products item=v}}	
+       <li>
+              <p class="zt_li1">{{$v.name|truncate:8:""}}<br />
+                  价格：
+									{{if $v.show_price==1}}
+								{{substr($v.price/100/12,0,6)}}元/月 {{else}}
+								{{$v.price/100}}元/年 {{/if}} </p>
+              <p class="zt_li2">	WEB空间大小: 
+									{{if $v.web_quota}}
+										{{if $v.web_quota > 1024}}
+										{{number_format($v.web_quota/1024,2)}}G 
+										{{else}}
+										{{$v.web_quota}}M {{/if}} 
+									{{else}} 0 {{/if}}
+            </p>
+<p class="zt_li2">数据库大小:
+									{{if $v.db_quota}} {{if $v.db_quota > 1024}}
+									{{number_format($v.db_quota/1024,2)}}G {{else}}
+									{{$v.db_quota}}M {{/if}} {{else}} 0 {{/if}}
+								</p>
+         
+              <a href="?c=host&a=showProductFrom&product_id={{$v.id}}" class="zt_li3" >查看详情</a>
+	
+	</li>
+						{{/foreach}}
+						
+						
+					 <li>
+               <p class="zt_li1">更多优惠套餐<br />
+               请联系商务人员</p>
+		       <p class="zt_li2">服务热线：<br />
+               400-163-5599</p>
+               <p class="zt_li2">企业QQ：<br />
+               1349443473</p>
+
+               <a href="#" class="zt_li3"  >立即咨询</a>
+           </li>	
+						
+         </ul>
+
+       </div>
+      </div>
+
+
+            
+                <div class="clear"> </div>
+
+	
+ 
+      <div class="sy_dt">
+          <div class="sy_dt_one">
+             <p><a href="#"><img src="http://www.duanxin.cm/Public/Home/images/more_03.gif" alt=""></a>动态</p>
+
+             <ul>
+					<li>
+							<a href=/>携全体员工向朋友们致以节</a>
+						</li>
+				          </ul>
+          </div>
+          <div class="sy_dt_two">
+             <p><a href="#"><img src="http://www.duanxin.cm/Public/Home/images/more_03.gif" alt=""></a>解决方案</p>
+ 
+             <ul>
+				   <li><a href=/index.php?s=/News/content/id/131.html>常见问题</a> </li>
+				   
+          </ul>
+          </div>
+		  <div class="sy_dt_three fr">
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		  
+		  
+		  
+		  
+		      <div class="sy_dt_three_top">
+		          <p>联系我们</p>
+			      <img src="http://www.duanxin.cm/Public/Home/images/face_03.gif">
+		      </div>
+
+		      <div class="sy_dt_three_center">		     
+			       <p>全国统一服务热线</p>
+			       <p> 服务热线：<span>400-163-5599</span></p>
+			       <p>营销QQ：<span>1349443473</span></p>
+			       <p>售后服务电话：<span>1500-5515-976</span></p>
+		      </div>
+
+              <div class="sy_dt_three_top">
+		          <h4>IDC平台<br/ >
+			       点击获赠空间</h4>
+				   <a href="/">免费试用</a>
+		      </div>
+		  </div>
+     <div class="clear"> </div>
+		 <!-- <div class="sy_dt_four">
+		      <img src="http://www.duanxin.cm/Public/Home/images/sy_top3_03.jpg">
+		      <div class="sy_dt_five">
+                  <p><a href="/index.php?s=application/index"><img src="http://www.duanxin.cm/Public/Home/images/more_03.gif" alt=""></a>行业应用</p>
+
+                  <ul>
+						<li>
+								<a href=/index.php?s=/News/content/id/151.html>测试</a><span>2016-09-13 11:13</span>
+							</li>
+					                  </ul>
+              </div>-->
+		  </div>
+
+      </div>

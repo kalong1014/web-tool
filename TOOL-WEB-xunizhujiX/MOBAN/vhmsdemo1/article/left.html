@@ -1,0 +1,10 @@
+
+			                <aside class="widget widget_categories">
+											<h2 class="hr-border-title"><span>{{$articletype}}</span></h2>
+                                        <div style="height:28px"></div>		
+                            <ul>
+							{{foreach from=$list item=row}}
+    						<p><a href='?c=article&a=lists&id={{$row.id}}&type={{$row.type}}'>{{$row.title|truncate:18}}</a></p>
+							{{/foreach}}
+                            </ul>
+				         </aside>  

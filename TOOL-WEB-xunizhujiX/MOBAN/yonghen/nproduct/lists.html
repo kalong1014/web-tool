@@ -1,0 +1,91 @@
+{{dispatch c='nproduct'  a='left'}}
+
+		<div id="main">
+            <section class="content-main">
+			<div style="height:10px"></div>
+<div class="fullwidth-section dt-sc-parallax">
+<div class="fullwidth-bg">	  
+<div class="container"> 
+		   
+		   <!-- 循环开始 -->
+		 
+							
+			<!-- 循环结束 -->	
+			
+			
+												<div style="height:35px"></div>
+							<h2 class="hr-border-title"><span>产品列表</span></h2>
+			<!-- 新的模板测试 -->
+            <!-- **Content Main** -->
+					<div class="left-sidebar" id="secondary">
+                        <aside class="widget widget_gallery">
+                            <h3 class="widgettitle"><a data-delay="300" data-animation="bounceIn" class="dt-sc-button  small  alignleft  lightgreen" href="#"><i class="fa fa-globe"></i>&nbsp;  节点信息</a></h3>
+                            <div class="carousel-container">
+                                <ul class="carousel-gallery carousel_items">
+                                    <li>
+							<div style="height:20px"></div>
+                                        <div class="entry-body">
+										{{if $groupinfo.group_info}}
+                                            <p>{{$groupinfo.group_info}}</p>
+											{{/if}}
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+						
+							<div class="dt-sc-hr-invisible-very-small"></div>
+                                  <div class="dt-sc-clear"></div>
+                                    <div class="entry-thumb">
+                                            <a href="#" title="广告图片"><img alt="gallery-thumb13" src="{{$STATIC}}style/2014host/images/gg.png" /> <span></span> </a>
+                                        </div>
+										<div class="dt-sc-hr-invisible-very-small"></div>
+                                  <div class="dt-sc-clear"></div>
+                                        <div class="entry-body">
+                                            <p>翔集铭主要业务包括：</p>
+                                            <p>网站二开源码修改</p>
+                                            <p>网站主机、香港VPS</p>
+                                            <p>服务器安全配置</p>
+											<P>交流Q群67683494<P>
+                                        </div>
+								  <div class="dt-sc-hr-invisible-very-small"></div>
+                                  <div class="dt-sc-clear"></div>
+								  <div class="dt-sc-hr-invisible-very-small"></div>
+                                  <div class="dt-sc-clear"></div>
+                        </aside>
+                     </div>         
+
+                    <!-- **Primary** -->
+                    <div class="with-left-sidebar" id="primary">
+                        <div class="column dt-sc-one-column blog-fullwidth with-sidebar">
+                            <article class="blog-entry single format-image"> 
+							<div style="height:8px"></div>
+		   {{if is_array($products)}}
+		 		{{for $i=0;$i< count($products);$i++}}
+					{{if $i/3==0}}
+					{{/if}}        
+		               <div class="call-out type4">
+                            <div class="dt-sc-three-fourth column first">
+                                <h3 class="center"><font color="#006699">{{$products[$i].name}}</font></h3>
+                            	<h5 class="center">{{$products[$i].describe}}</h5> 
+                            </div>
+                            <div class="dt-sc-one-fourth column">
+                            	<div class="aligncenter"><p class="center"><h5><b>￥{{$products[$i].price}} 元 / {{($groupinfo.pay_cycle=='year') ? '年付' : '月付'}}</b></h5></p><a data-delay="300" data-animation="bounceIn" class="dt-sc-button medium lightgreen" href="?c=product&a=sellForm&product=n_{{$products[$i].id}}"><i class="fa fa-shopping-cart"></i>&nbsp;  现在订购</a></div>
+                            </div>
+                        </div>
+						
+						<div class="dt-sc-hr-invisible-small"></div>
+						{{/for}}
+			{{/if}}  
+                             </article><!-- **Blog Entry Ends** -->
+					</div>   
+					                    
+                    </div> <!-- **Primary Ends** -->
+                    <!-- **Secondary Section** -->    
+<!--框架尾部 -->							
+<!-- 新的模板测试 -->
+
+</div>
+</div>
+</div>
+</section>
+</div>

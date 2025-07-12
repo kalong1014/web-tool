@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{{$setting.web_name.value}}-{{$title}}</title>
+<!-- <link rel="stylesheet" type="text/css" href="{{$STATIC}}{{$styledir}}/style/style.css"> -->
+<link rel="stylesheet" type="text/css" href="/style/artdialog/skins/chrome.css">
+<meta charset="utf-8"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="" name="description"/>
+<meta content="" name="author"/>
+<meta name="keywords" content="">
+<meta name="description" content=""> 
+<script src="{{$STATIC}}style/js/jquery.js" type="text/javascript"></script>
+<script src="{{$STATIC}}style/js/jquery.cycle.all.js" type="text/javascript"></script>
+<script src="/style/artdialog/artDialog.js" type="text/javascript"></script>
+
+<link rel="stylesheet" type="text/css" href="/style/artdialog/skins/chrome.css">
+
+<!-- BEGIN GLOBAL MANDATORY STYLES -->
+<link href="{{$STATIC}}style/2014hostv2/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="{{$STATIC}}style/2014hostv2/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css">
+<link href="{{$STATIC}}style/2014hostv2/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="{{$STATIC}}style/2014hostv2/assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css">
+<link href="{{$STATIC}}style/2014hostv2/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css"/>
+<!-- END GLOBAL MANDATORY STYLES -->
+<!-- BEGIN THEME STYLES -->
+<link href="{{$STATIC}}style/2014hostv2/assets/global/css/components-md.css" id="style_components" rel="stylesheet" type="text/css"/>
+<link href="{{$STATIC}}style/2014hostv2/assets/global/css/plugins.css" rel="stylesheet" type="text/css"/>
+<link href="{{$STATIC}}style/2014hostv2/assets/admin/layout2/css/layout.css" rel="stylesheet" type="text/css"/>
+<link id="style_color" href="{{$STATIC}}style/2014hostv2/assets/admin/layout2/css/themes/grey.css" rel="stylesheet" type="text/css"/>
+<link href="{{$STATIC}}style/2014hostv2/assets/admin/layout2/css/custom.css" rel="stylesheet" type="text/css"/>
+<!-- END THEME STYLES -->
+
+<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+<!-- BEGIN CORE PLUGINS -->
+<!--[if lt IE 9]>
+<script src="{{$STATIC}}style/2014hostv2/assets/global/plugins/respond.min.js"></script>
+<script src="{{$STATIC}}style/2014hostv2/assets/global/plugins/excanvas.min.js"></script> 
+<![endif]-->
+<script src="{{$STATIC}}style/2014hostv2/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+<script src="{{$STATIC}}style/2014hostv2/assets/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>
+<!-- IMPORTANT! Load jquery-ui.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+<script src="{{$STATIC}}style/2014hostv2/assets/global/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+<script src="{{$STATIC}}style/2014hostv2/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="{{$STATIC}}style/2014hostv2/assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+<script src="{{$STATIC}}style/2014hostv2/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+<script src="{{$STATIC}}style/2014hostv2/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+<script src="{{$STATIC}}style/2014hostv2/assets/global/plugins/jquery.cokie.min.js" type="text/javascript"></script>
+<script src="{{$STATIC}}style/2014hostv2/assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+<script src="{{$STATIC}}style/2014hostv2/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+<!-- END CORE PLUGINS -->
+<script src="{{$STATIC}}style/2014hostv2/assets/global/scripts/metronic.js" type="text/javascript"></script>
+<script src="{{$STATIC}}style/2014hostv2/assets/admin/layout2/scripts/layout.js" type="text/javascript"></script>
+<script src="{{$STATIC}}style/2014hostv2/assets/admin/layout2/scripts/demo.js" type="text/javascript"></script>
+<script>
+      jQuery(document).ready(function() {    
+         Metronic.init(); // init metronic core components
+Layout.init(); // init current layout
+Demo.init(); // init demo features
+      });
+   </script>
+<!-- END JAVASCRIPTS -->
+</head>
+<body class="page-header-fixed page-container-bg-solid page-sidebar-closed-hide-logo page-header-fixed-mobile page-footer-fixed1">
+<!--wp-->

@@ -1,0 +1,114 @@
+					</div>
+				</div>
+				<!-- END PAGE CONTENT-->
+			</div>
+		</div>
+		<!-- END CONTENT -->
+</div>
+<!-- END CONTAINER -->
+<!-- BEGIN FOOTER -->
+<div class="page-footer">
+	<div class="page-footer-inner">
+		版权所有  &copy; yonghensq.com 致力于打造新人站长起步平台！ <a href="http://www.2014host.com">鄂IPC备：XXXXX-1号</a>
+	</div>
+	<div class="scroll-to-top">
+		<i class="icon-arrow-up"></i>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+$(function(){
+	$('.head .nav a').mouseover(function(){
+		var nav_li_a = $(this);
+		//var nav_li_index = nav_li_a.parent().index();
+		var nav_a = nav_li_a.offset();
+		$('.head .nav a').removeClass('hover');
+		$('.head .nav li').removeClass('noborder');
+		nav_li_a.addClass('hover');
+		nav_li_a.parent().addClass('noborder');
+		nav_li_a.parent().next().addClass('noborder');
+		$('.nav_bottom_hover').hide();
+		if (this.id != 'mproductgroup' && this.id != 'productgroup') {
+			return ;
+		}
+		$('.nav_bottom_hover.nav_more_div_'+this.id).css({'left':nav_a.left,'top':nav_a.top+40}).attr('nav_li_index',this.id).show();
+	})
+
+	$('.nav_bottom_hover').mouseleave(function(){
+		var nav_li = $(this);
+		$('.head .nav li').eq(nav_li.attr('nav_li_index')).removeClass('noborder').next().removeClass('noborder');
+		$('.head .nav li').eq(nav_li.attr('nav_li_index')).find('a').removeClass('hover');
+		$(this).hide();
+	})
+
+	$('.side_box_switch .title li').mouseover(function(){
+		$(this).parent().find('li').removeClass('index');
+		$(this).addClass('index');
+	})
+	$('.title ul.radio_hover li').mouseover(function(){
+		$(this).parent().find('a').removeClass('hover');
+		$(this).find('a').addClass('hover');
+	})
+	$('.side_box_switch .title li').mouseover(function(){
+
+		$(this).parent().find('li').removeClass('index');
+
+		$(this).addClass('index');
+
+	})
+
+	$('.title ul.radio_hover li').mouseover(function(){
+
+		$(this).parent().find('a').removeClass('hover');
+
+		$(this).find('a').addClass('hover');
+
+	})
+
+
+
+
+
+	//top slide
+
+	$('#banner_slide').cycle({ 
+
+		fx:'curtainY',
+
+	    delay:   -4000 ,
+
+	    slideExpr: 'li',
+
+	    pager:  '#banner_slide_page',
+
+	    pagerAnchorBuilder: function(idx, slide) { 
+
+           			return '<a href="#"></a>';         
+
+            }
+
+	});
+
+
+
+})
+
+function div_list_switch(class_name,class_show_name){
+
+	$(function(){
+
+		$('.'+class_name).hide();
+
+		$('.'+class_show_name).show();
+
+	})
+
+}
+
+</script>
+
+</body>
+
+</html>
+

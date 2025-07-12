@@ -1,0 +1,415 @@
+{{if $ucsynclogin}} {{$ucsynclogin}} {{/if}}
+
+<script language='javascript'>
+
+function piao_key_to()
+
+{
+
+	var p = document.getElementById('piao');
+
+	var pdiv = document.getElementById('piao_div');
+
+	var str = '';
+
+	var fstr = "<p><a href=javascript:close_piao('piao_div','piao')><b>关闭窗口</b></a></p>";
+
+		str += fstr;
+
+		str += "<from action=javascript:; method=post>";
+
+		str += "请输入折抵码:<input name='key' id='key' size='20'><input type='button' onclick='key_to()' value='提交'>";
+
+		str += "</from>";
+
+	var offset = $("#offset").offset();
+
+	pdiv.style.height = '100px';
+
+	pdiv.style.width = '300px';
+
+	pdiv.style.background = '#F5DEB3';
+
+	pdiv.innerHTML = str;
+
+	p.style.height = pdiv.style.height + 30 + 'px';
+
+	p.style.width = pdiv.style.width + 30 + 'px';
+
+	p.style.top  = offset.top-40;
+
+	p.style.left  = offset.left -60;
+
+	p.style.display = 'block';
+
+	
+
+}
+
+function key_to()
+
+{
+
+	var key = document.getElementById('key').value;
+
+	$.ajax({
+
+		type:'post',
+
+		url :'?c=entkey&a=keyToMoney',
+
+		data:'key=' + key,
+
+		dataType:'json',
+
+		success:function(ret) {
+
+			if (ret['code'] != 200) {
+
+				return alert(ret['msg'] ? ret['msg'] :"折底码不能为空");
+
+			}
+
+			alert("折抵成功.请查看账户余额");
+
+			close_piao('piao_div','piao');
+
+		}
+
+	});
+
+}
+
+function create_hash()
+
+{
+
+	$.ajax({
+
+		type:'get',
+
+		url :'?c=user&a=randAgentHash',
+
+		data:null,
+
+		dataType:'json',
+
+		success:function(ret) {
+
+			if (ret['code'] != 200) {
+
+				return alert(ret['msg'] ? ret['msg'] : "生成代理密钥失败");
+
+			}
+
+			window.location.reload();
+
+		}
+
+		
+
+		
+
+		
+
+	});
+
+	
+
+}
+
+</script>
+
+
+
+	<div id='piao' class='piao' style='display: none'><div id='piao_div' class='piao_div overflow'></div></div>
+
+
+
+
+
+
+
+  {{dispatch c='user' a='left'}}
+<link href="{{$STATIC}}style/2014hostv2/assets/admin/pages/css/login.css" rel="stylesheet" type="text/css"/>
+<link href="{{$STATIC}}style/2014hostv2/assets/admin/pages/css/pricing-table.css" rel="stylesheet" type="text/css"/>
+<link href="{{$STATIC}}style/2014hostv2/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css"/>
+<link href="{{$STATIC}}style/2014hostv2/assets/admin/pages/css/profile.css" rel="stylesheet" type="text/css"/>
+<link href="{{$STATIC}}style/2014hostv2/assets/admin/pages/css/tasks.css" rel="stylesheet" type="text/css"/>
+		<!-- BEGIN CONTENT -->
+		<div class="page-content-wrapper">
+			<div class="page-content">
+				<!-- BEGIN PAGE HEADER-->
+				<h3 class="page-title">
+				账户首页 <small>账户基本信息页</small>
+				</h3>
+				<div class="page-bar">
+					<ul class="page-breadcrumb">
+						<li>
+							<i class="fa fa-home"></i>
+							<a href="#">会员中心</a>
+							<i class="fa fa-angle-right"></i>
+						</li>
+						<li>
+                          <a href="#">账户管理</a>
+						</li>
+					</ul>
+				</div>
+				<!-- END PAGE HEADER-->
+				<!-- BEGIN PAGE CONTENT-->
+				<div class="row">
+					<div class="col-md-12">
+						<!-- BEGIN PROFILE SIDEBAR -->
+						<div class="profile-sidebar" style="width:250px;">
+							<!-- PORTLET MAIN -->
+							<div class="portlet light profile-sidebar-portlet">
+								<!-- SIDEBAR USERPIC -->
+								<div class="profile-userpic">
+									<img src="{{$STATIC}}style/2014hostv2/assets/admin/layout2/img/123123.jpg" class="img-responsive" alt="">
+								</div>
+								<!-- END SIDEBAR USERPIC -->
+								<!-- SIDEBAR USER TITLE -->
+								<div class="profile-usertitle">
+									<div class="profile-usertitle-name">
+										 {{$user.username}}
+									</div>
+							             {{if $user.agent_id>0}}
+						     <div class="btn-group pull-center">
+							<button type="button" class="btn btn-circle blue-madison btn-sm" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
+							代理级别：{{$user.agent_name}} <i class="fa fa-angle-down"></i>
+							</button>
+							<ul class="dropdown-menu pull-center" role="menu">
+								<li>
+									<br /><p align="center"><input type='button' value='获取/更改代理密钥' onclick='create_hash()'></p>
+								</li>
+								<li>
+                                    <p align="center">{{$user.agent_hash}}</p>
+								</li>
+							</ul>
+						</div>
+										 {{/if}}
+									<div class="profile-job pull-center">
+									<div class="margin-top-20 profile-desc-link">
+										姓  名：<span class="details">
+										{{$user.name}}</span>
+									</div>
+									<div class="margin-top-20 profile-desc-link">
+										登陆IP：<span class="details">
+										{{$login_ip}}</span>
+									</div>
+									<div class="margin-top-20 profile-desc-link">
+										Email：<span class="details">
+										{{$user.email}}</span>
+									</div>
+									<div class="margin-top-20 profile-desc-link">
+										<b>账户余额：<span class="details">
+										{{$user.money/100}} 元<br />{{if $entkey}}&nbsp;[<a href='javascript:piao_key_to();'>折抵码兑换金额</a>]{{/if}}</span></b>
+									</div>
+									</div>
+								</div>
+								<!-- END SIDEBAR USER TITLE -->
+								<!-- SIDEBAR BUTTONS -->
+								<div class="profile-userbuttons">
+									<a href="?c=money&a=addFrom" class="btn btn-circle btn-danger btn-sm"> 在线充值 </a>
+									<a href="?c=nproduct&a=lists&group_id=1" class="btn btn-circle green-haze btn-sm"> 购买主机 </a>
+								</div>
+								<!-- END SIDEBAR BUTTONS -->
+								<!-- SIDEBAR MENU -->
+								<div class="profile-usermenu">
+									<ul class="nav">
+										<li class="active">
+											<a href="?c=user&a=index">
+											<i class="icon-home"></i>
+											账户首页 </a>
+										</li>
+										<li>
+											<a href="?c=user&a=changeForm">
+											<i class="icon-note"></i>
+											修改资料 </a>
+										</li>
+										<li>
+											<a href="?c=user&a=changePasswordForm">
+											<i class="icon-key"></i>
+											更改密码 </a>
+										</li>
+									</ul>
+								</div>
+								<!-- END MENU -->
+							</div>
+							<!-- END PORTLET MAIN -->
+						</div>
+						<!-- END BEGIN PROFILE SIDEBAR -->
+						
+						<div class="profile-content">
+							<div class="row">
+							<!-- BEGIN PROFILE CONTENT -->
+								<div class="col-md-12">							
+									<div class="panel panel-success">
+							<div class="panel-heading">
+								<div class="caption">
+									<i class="fa fa-cogs"></i> 账户快捷管理
+								</div>
+								<div class="tools">
+									<a href="javascript:;" class="collapse">
+									</a>
+									<a href="javascript:;" class="reload">
+									</a>
+								</div>
+							</div>
+							
+											<!-- 计划套餐开始 -->
+												<div class="panel-body">
+													<a href="?c=user&a=changeForm" class="icon-btn">
+													<p><i class="icon-note"></i></p>
+													<div>
+														 <h6>修改资料</h6>
+													</div>
+													</a>
+													<a href="?c=user&a=changePasswordForm" class="icon-btn">
+													<p><i class="icon-key"></i></p>
+													<div>
+														 <h6>更改密码</h6>
+													</div>
+													</a>
+													<a href="?c=hosting&a=pageHost" class="icon-btn">
+													<p><i class="icon-layers"></i></p>
+													<div>
+														 <h6>主机管理</h6>
+													</div>
+													</a>
+													<a href="?c=nproduct&a=lists&group_id=1" class="icon-btn">
+													<p><i class="fa fa-shopping-cart"></i></p>
+													<div>
+														 <h6>购买产品</h6>
+													</div>
+													</a>
+													<a href="?c=money&a=addFrom" class="icon-btn">
+													<p><i class="fa fa-money"></i></p>
+													<div>
+														 <h6>在线充值</h6>
+													</div>
+													</a>
+													<a href="?c=money&a=moneyin" class="icon-btn">
+													<p><i class="icon-action-redo"></i></p>
+													<div>
+														 <h6>充值记录</h6>
+													</div>
+													</a>
+													<a href="?c=money&a=moneyout" class="icon-btn">
+													<p><i class="icon-action-undo"></i></p>
+													<div>
+														 <h6>消费记录</h6>
+													</div>
+													</a>
+													<a href="?c=question&a=pageByuser" class="icon-btn">
+													<p><i class="icon-bubbles"></i></p>
+													<div>
+														 <h6>在线工单</h6>
+													</div>
+													</a>
+												</div>
+							
+											<!-- 计划套餐结束 -->
+									</div>
+								</div>
+								<!-- END PROFILE CONTENT -->
+								<div class="col-md-6">
+									<!-- BEGIN PORTLET -->
+								  <div class="panel panel-default">
+                                     <div class="panel-heading" style="background-color:#FFFFFF">
+											<div class="caption caption-md">
+												<i class="icon-globe theme-font hide"></i>
+												<span class="caption-subject font-blue-madison bold uppercase"><i class="icon-bell"></i>  <a href="?c=public&a=pagelistnews">新闻公告</a></span>
+											</div>
+									 </div>
+										<div class="panel-body">
+											<!--BEGIN TABS-->
+											<div class="tab-content">
+												<div class="tab-pane active" id="tab_1_1">
+													<div class="scroller" data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2">
+														<ul class="feeds">
+                                                      {{dispatch c='public' a='leftarticle'}}
+														</ul>
+													</div>
+												</div>
+												</div>
+											</div>
+											<!--END TABS-->
+</div>
+									</div>
+									<!-- END PORTLET -->
+									
+								<div class="col-md-6">
+									<!-- BEGIN PORTLET -->
+									<div class="panel panel-default">
+									<div class="panel-heading" style="background-color:#FFFFFF">
+											<div class="caption caption-md">
+												<i class="icon-globe theme-font hide"></i>
+												<span class="caption-subject font-blue-madison bold uppercase"><i class="fa fa-wechat"></i>  <a href="#">在线客服</a></span>
+											</div>
+										</div>
+											<!--BEGIN TABS-->
+									<div class="panel-body">
+									更多常见问题您可以查看我们的 - [帮助中心]
+									<div class="margin-top-20 profile-desc-link">
+										<a href="javascript:;">
+										<span class="details">
+										<i class="fa fa-qq"></i>售前客服：永恒</span></a></div>
+									<div class="margin-top-20 profile-desc-link">
+										<a href="javascript:;">
+										<span class="details">
+										<i class="fa fa-qq"></i>售前客服：万般</span></a></div>
+									<div class="margin-top-20 profile-desc-link">
+										<a href="javascript:;">
+										<span class="details">
+										<i class="fa fa-qq"></i>售后支持：啊豪</span>
+										</a>
+									</div>
+									<div class="margin-top-20 profile-desc-link">
+										<a href="javascript:;">
+										<span class="details">
+										<i class="fa fa-phone-square"></i>130 4424 7253</span>
+										</a>
+									</div>
+									<div class="margin-top-20 profile-desc-link">
+										<a href="javascript:;">
+										<span class="details">
+										<i class="fa fa-envelope"></i>1406615365@qq.com</span>
+										</a>
+									</div>
+											<!--END TABS-->
+								  </div>
+										</div>
+									</div>
+									<!-- END PORTLET -->
+
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- END PAGE CONTENT-->
+			</div>
+		</div>
+		<!-- END CONTENT -->
+
+<script type="text/javascript">
+
+	function show_china(val) {
+		switch (val) {
+		case 1:
+		case 2:
+		case 3:
+			$("#entkey_tr").hide();
+			$("#money_tr").show();
+			break;
+		case 100:
+			$("#entkey_tr").show();
+			$("#money_tr").hide();
+			break;
+		default:
+			break;
+		
+		}
+	}
+</script>

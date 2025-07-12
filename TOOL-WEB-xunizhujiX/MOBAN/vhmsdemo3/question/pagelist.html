@@ -1,0 +1,170 @@
+<style type="text/css">
+<!--
+a:link {
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: none;
+}
+a:active {
+	text-decoration: none;
+}
+-->
+</style>  {{dispatch c='user' a='left'}}
+<link rel="stylesheet" type="text/css" href="{{$STATIC}}style/2014hostv2/assets/global/plugins/select2/select2.css"/>
+<link rel="stylesheet" type="text/css" href="{{$STATIC}}style/2014hostv2/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css"/>
+<link rel="stylesheet" type="text/css" href="{{$STATIC}}style/2014hostv2/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css"/>
+<link href="{{$STATIC}}style/2014hostv2/assets/admin/pages/css/todo.css" rel="stylesheet" type="text/css"/>
+		<!-- BEGIN CONTENT -->
+		<div class="page-content-wrapper">
+			<div class="page-content">
+				<!-- BEGIN PAGE HEADER-->
+				<h3 class="page-title">
+				服务单 <small>在线工单系统</small>
+				</h3>
+				<div class="page-bar">
+					<ul class="page-breadcrumb">
+						<li>
+							<i class="fa fa-home"></i>
+							<a href="#">会员中心</a>
+							<i class="fa fa-angle-right"></i>
+						</li>
+						<li>
+                          <a href="#">服务中心</a>
+						</li>
+					</ul>
+				</div>
+				<!-- END PAGE HEADER-->
+				<!-- BEGIN PAGE CONTENT-->
+				<div class="row">
+                    <div class="col-md-12">
+						<!-- BEGIN TODO CONTENT -->
+						<div class="todo-content">
+							<div class="portlet light">
+								<!-- PROJECT HEAD -->
+								<!-- end PROJECT HEAD -->
+								<div class="portlet-body">
+									<div class="row">
+										<div class="col-md-4 col-sm-3">
+											<div class="scroller" style="max-height: 500px;" data-always-visible="0" data-rail-visible="0" data-handle-color="#dae3e7">
+	                      						<form id="form" action="?c=question&a=add" method='post' class="form-horizontal">
+													<!-- TASK HEAD -->
+													<div class="form">
+														<div class="form-group">
+															<div class="col-md-8 col-sm-8">
+															<span class="todo-username pull-left">新开服务单</span>
+															</div>
+														</div>
+														<!-- END TASK HEAD -->
+														<!-- TASK TITLE -->
+														<div class="form-group">
+															<div class="col-md-12">
+																<input name='title' MaxLength="40" type="text" class="form-control todo-taskbody-tasktitle" placeholder="标题...">
+															</div>
+														</div>
+														<!-- TASK DESC -->
+														<div class="form-group">
+															<div class="col-md-12">
+																<textarea name='body' MaxLength="500" cols='40' class="form-control todo-taskbody-taskdesc" rows="8" placeholder="内容..."></textarea>
+															</div>
+														</div>
+														<!-- END TASK DESC -->
+														<!-- TASK DUE DATE -->
+														<!-- TASK TAGS -->
+														<!-- TASK TAGS -->
+														<div class="form-actions right todo-form-actions">
+															<button class="btn btn-circle btn-sm green-haze">提交服务单</button>
+														</div>
+													</div>
+											  </form>
+											</div>
+										</div>
+										<div class="todo-tasklist-devider">
+										</div>
+										<div class="col-md-8 col-sm-9">
+										<br />
+										<p align="right">
+										{{if $page>1}}
+
+										<a href='?c=question&a=pageByuser&sortname={{$smarty.request.sortname}}&page=0'>首页</a> 
+
+										<a href='?c=question&a=pageByuser&sortname={{$smarty.request.sortname}}&page={{$page-1}}'>上一页</a> 
+
+											{{else}}
+
+											首页 上一页 
+
+											{{/if}}
+
+											{{if $page!=$total_page}} 
+
+											<a href='?c=question&a=pageByuser&sortname={{$smarty.request.sortname}}&page={{$page+1}}'>下一页</a>
+
+											<a href='?c=question&a=pageByuser&sortname={{$smarty.request.sortname}}&page={{$total_page}}'>尾页</a>
+
+											{{else}}下一页 尾页
+
+											{{/if}} 
+
+											{{$page}}/{{$total_page}}&nbsp;
+
+											共计{{$count}}记录&nbsp;&nbsp;
+											</p>
+											<div class="scroller" style="max-height: 500px;" data-always-visible="0" data-rail-visible="0" data-handle-color="#dae3e7">
+												<div class="todo-tasklist">
+												{{foreach from=$list item=row}}
+												{{if $row.status==1}}
+												<a href="?c=question&a=getQuestion&id={{$row.id}}">
+													<div class="todo-tasklist-item todo-tasklist-item-border-green">
+																	<ul class="todo-task-history">
+																		<li>
+																		<div class="todo-task-history-date">
+																			 <i class="fa fa-calendar"></i> {{$row.reply_time}} 
+																		</div>
+																		<div class="todo-task-history-desc">
+																		<span class="label label-success">已回复</span> {{substr($row.title,0)}}
+																		</div>
+																	</li>
+																	</ul>													
+													</div></a><br />
+													{{else}}
+													<a href="?c=question&a=getQuestion&id={{$row.id}}">
+													<div class="todo-tasklist-item todo-tasklist-item-border-red">
+																	<ul class="todo-task-history">
+																		<li>
+																		<div class="todo-task-history-date">
+																			 <i class="fa fa-calendar"></i> {{$row.add_time}} 
+																		</div>
+																		<div class="todo-task-history-desc">
+																		<span class="label label-danger">未回复</span> {{substr($row.title,0)}}
+																		</div>
+																	</li>
+																	</ul>													
+													</div></a><br />
+													{{/if}}{{/foreach}}
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- END TODO CONTENT -->
+					</div>						</div>
+						<!-- END PROFILE CONTENT -->					
+<script src="{{$STATIC}}style/js/jquery.validate.min.js" type="text/javascript"></script>	
+
+<script src="{{$STATIC}}style/js/validate_zh.js" type="text/javascript"></script>		
+
+<script type="text/javascript">
+
+	$(function(){
+
+		 $('#form').validate();
+
+	})
+
+</script>		

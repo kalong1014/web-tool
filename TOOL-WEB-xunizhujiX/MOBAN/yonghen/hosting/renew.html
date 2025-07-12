@@ -1,0 +1,24 @@
+{{include file="user/left.html"}}
+                        <div class="column dt-sc-two-third">
+                            <div class="side-nav-content">
+                        <div class="column dt-sc-one-column blog-fullwidth with-sidebar">
+                                <div class="dt-sc-tabs-frame-content" style="display: block;">
+                                 <p><h3>Servers & 产品续费</h3></p><br />
+							<div class="column dt-sc-two-third first">                           
+							<div class="dt-sc-tabs-container">
+                    <form name='vhostform' action="?c=hosting&a=renew&product_id={{$product.id}}&product_type=n&name={{$name}}" method="post" class="inquiry-form">
+                 <p>控制面板账号：{{$name}}</p>
+				 <p>产品名称：{{$product.name}}</p>
+				 <p>续费价格： <b>￥{{$product.price}} RMB</b></p>
+				 <p class="alignleft"><input type="submit" value="续  费" class="dt-sc-button medium"></p><br />
+                      </form>							
+                                </div>
+                                 </div></div>
+                            </div>
+                     </div> 
+                        </div>                            
+                    </div> <!-- **Primary Ends** -->
+                                        
+                </div> <!-- **Container Ends** --> 
+            </section>  <!-- **Content Main Ends** -->
+</div>

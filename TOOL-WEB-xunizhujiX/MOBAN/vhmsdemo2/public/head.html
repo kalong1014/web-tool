@@ -1,0 +1,76 @@
+{{include file='common/head.html'}}
+		<header class="clearfix">
+			<!-- Static navbar -->
+			<div class="navbar navbar-default navbar-fixed-top">
+				<div class="top-line">
+					<div class="container">
+						<p>
+							<a href="https://yueliangxiefang.taobao.com/" target="_blank"><span><i class="fa fa-comments-o"></i>购买本模板</span></a>
+							<a href="https://yueliangxiefang.taobao.com/" target="_blank"><span><i class="fa fa-qq"></i>购买本模板</span></a>						</p>
+						{{if $role.user}}
+							<ul class="social-icons">
+							<li><a class="facebook" href="?c=user&a=index"><i class="fa fa-user"></i> 欢迎，{{$role.user}}</a></li>
+							<li><a class="facebook" href="#">&nbsp;</a></li>
+							<li><a class="twitter" href="?c=session&a=logout"><i class="fa fa-power-off"></i> 退出登录</a></li>
+							</ul>
+						{{else}}
+						<ul class="social-icons">
+							<li><a class="facebook" href="?c=session&a=loginForm"><i class="fa fa-sign-in"></i> 登录会员区</a></li>
+							<li><a class="facebook" href="#">&nbsp;</a></li>
+							<li><a href="/?c=public&a=register_n" target="_blank" class="twitter"><i class="fa fa-key"></i> 注册账户</a></li>
+						</ul>
+						{{/if}}
+					</div>
+				</div>
+				<div class="container">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="/"><img alt="" src="{{$STATIC}}style/2014hostv4/images/logo1.png"></a>
+					</div>
+					<div class="navbar-collapse collapse">
+						<ul class="nav navbar-nav navbar-right">
+
+							<li><a href="/">首 页</a></li>
+							<li><a href="?c=nproduct&a=lists&group_id=1">免费虚拟主机</a></li>
+							<li><a href="?c=public&a=pagelistnews">新闻公告</a></li>
+							<li><a href="http://www.yonghensq.com" target="_blank">交流论坛</a></li>
+						{{if $role.user}}
+							<li class="drop"><a href="?c=user&a=index">会员管理中心</a>
+								<ul class="drop-down">
+									<li><a href="?c=user&a=index"><i class="fa fa-home"></i>&nbsp; 账户首页</a></li>
+									<li><a href="?c=hosting&a=pageHost"><i class="fa fa-hdd-o"></i>&nbsp; 主机订单管理</a></li>
+									<li class="drop"><a href="#"><i class="fa fa-cogs"></i>&nbsp; 账户管理</a>
+										<ul class="drop-down level3">
+											<li><a href="?c=user&a=changeForm">编辑资料</a></li>
+											<li><a href="?c=public&a=findPasswdFrom" target="_blank">修改密码</a></li>
+										</ul>
+									</li>									
+									<li class="drop"><a href="#"><i class="fa fa-credit-card"></i>&nbsp; 财务管理</a>
+										<ul class="drop-down level3">
+											<li><a href="?c=money&a=addFrom">在线充值</a></li>
+											<li><a href="?c=money&a=moneyin">充值记录</a></li>
+											<li><a href="?c=money&a=moneyout">消费记录</a></li>
+										</ul>
+									</li>	
+									<li class="drop"><a href="?c=question&a=pageByuser"><i class="fa fa-comment-o"></i>&nbsp; 在线工单</a>
+										<ul class="drop-down level3">
+											<li><a href="?c=question&a=pageByuser">我的工单</a></li>
+											<li><a href="?c=question&a=addFrom">提交新工单</a></li>
+										</ul>
+									</li>	
+									<li><a href="?c=session&a=logout"><i class="fa fa-power-off"></i>&nbsp; 退出登录</a></li>
+								</ul>
+							</li>
+						{{else}}
+							<li><a href="?c=user&a=index">会员中心</a></li>
+						{{/if}}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</header>
+		<!-- End Header -->

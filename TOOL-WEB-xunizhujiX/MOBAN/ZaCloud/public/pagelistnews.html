@@ -1,0 +1,7 @@
+
+			{{foreach from=$list item=row}}
+
+			<li><a href="?c=public&a=viewNewsById&id={{$row.id}}">{{$row.title}}  {{$row.add_time}}</a> </li>
+
+			{{/foreach}}
+

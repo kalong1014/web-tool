@@ -1,0 +1,91 @@
+<script type="text/JavaScript">
+<!--
+function MM_jumpMenu(targ,selObj,restore){ //v3.0
+  eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'");
+  if (restore) selObj.selectedIndex=0;
+}
+//-->
+</script>
+<style type="text/css">
+<!--
+.STYLE2 {color: #000000; }
+-->
+</style>
+
+{{dispatch c='user'  a='left'}}
+<script type='text/javascript'>
+	$(document).ready(function() {
+		$.ajax({
+			type : 'get',
+			url : '?c=nproduct&a=getNproducts',
+			data : null,
+			dataType : 'json',
+			success : function(ret) {
+				if (ret['count'] <= 0) {
+					return;
+				}
+				var nps = ret['nproducts'];
+				var count = ret['count'];
+				$(".js_show_product_name").each(function() {
+					var pid = $(this).text();
+					for ( var i in nps) {
+						if (nps[i]['id'] == pid) {
+							$(this).html(nps[i]['name']);
+						}
+					}
+				});
+			}
+		});
+	});
+</script>
+
+                        <div class="column dt-sc-two-third">
+                            <div class="side-nav-content">
+                        <div class="column dt-sc-one-column blog-fullwidth with-sidebar">
+                                  <h3 class="hr-border-title"><span>Servers & 我的产品</span></h3> 
+								<!-- 主体部分开始 --> 
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" id="table_ri">
+			<tr style="border-bottom:solid #999999 1px">
+				<td height="35" align="left" valign="middle" ><span class="STYLE2">管理产品</span></td>
+				<td height="35" align="left" valign="middle"><span class="STYLE2">控制面板账号</span></td>
+				<td height="35" align="left" valign="middle"><span class="STYLE2">产品名称</span></td>
+				<td height="35" align="left" valign="middle"><span class="STYLE2">到期时间</span></td>
+				<td height="35" align="left" valign="middle"><span class="STYLE2">主机状态</span></td>
+			</tr>
+			<tr>
+				<td height="28" align="center" valign="middle" ></td>
+				<td height="28" align="left" valign="middle"></td>
+				<td height="28" align="left" valign="middle"></td>
+				<td height="28" align="left" valign="middle"></td>
+				<td height="28" align="left" valign="middle"></td>
+			</tr>
+			{{foreach from=$list item=row}}
+			<tr>
+				<td width="240" height="45" align="left" valign="top" class="left">
+				<a href="?c=hosting&amp;a=link&amp;name={{$row.name}}" target="_blank"><font color="#0066CC"><i class="fa fa-dashboard"></i> 控制面板</font></a>&nbsp; &nbsp; 
+				<a href="?c=hosting&amp;a=upgradeFrom&amp;name={{$row.name}}"><i class="fa fa-cloud-upload"></i> 升级</a>&nbsp; &nbsp; <a href="?c=hosting&amp;a=renewFrom&amp;name={{$row.name}}"><i class="fa fa-rmb"></i> 续费</a>				</td>
+				<td height="45" align="left" valign="top"><a href='?c=hosting&a=link&name={{$row.name}}' target="_blank"><font color="#006699"><i class="fa  fa-user"></i> {{$row.name}}</font></a></td>
+				<td height="45" align="left" valign="top" class='js_show_product_name'><a href='?c=host&a=showProductFrom&product_id={{$row.product_id}}'>{{$row.product_id}}</a></td>
+				<td height="45" align="left" valign="top"><i class="fa fa-clock-o"></i> {{substr($row.expire_time,0,10)}}</td>
+				<td height="45" align="left" valign="top" title='{{$row.status}}'>{{if $row.status==0}}<font color="#009933"><i class="fa fa-check-circle"></i> 正常</font>{{else}}<font color='red'><i class="fa  fa-times-circle"></i> 暂停</font>{{/if}}				</td>
+			</tr>
+			{{/foreach}}
+		</table>
+								<div class="alignright">
+
+									{{if $page>1}} <a href='{{$action}}&page=0'>首页</a> <a
+
+										href='{{$action}}&page={{$page-1}}'>上一页</a> {{else}} 首页 上一页 {{/if}}
+
+									{{if $page!=$total_page}} <a href='{{$action}}&page={{$page+1}}'>下一页</a>
+
+									<a href='{{$action}}&page={{$total_page}}'>尾页</a> {{else}}下一页 尾页
+
+									{{/if}} {{$page}}/{{$total_page}}&nbsp; 共计{{$count}}记录
+
+								</div>
+						<!-- 主体部分结束 -->      
+                </div> <!-- **Container Ends** --> 
+            </section>  <!-- **Content Main Ends** -->
+</div>
+

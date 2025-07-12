@@ -1,0 +1,190 @@
+{{if $ucsynclogin}} {{$ucsynclogin}} {{/if}}
+
+<script language='javascript'>
+
+function piao_key_to()
+
+{
+
+	var p = document.getElementById('piao');
+
+	var pdiv = document.getElementById('piao_div');
+
+	var str = '';
+
+	var fstr = "<p><a href=javascript:close_piao('piao_div','piao')><b>关闭窗口</b></a></p>";
+
+		str += fstr;
+
+		str += "<from action=javascript:; method=post>";
+
+		str += "请输入折抵码:<input name='key' id='key' size='20'><input type='button' onclick='key_to()' value='提交'>";
+
+		str += "</from>";
+
+	var offset = $("#offset").offset();
+
+	pdiv.style.height = '100px';
+
+	pdiv.style.width = '300px';
+
+	pdiv.style.background = '#F5DEB3';
+
+	pdiv.innerHTML = str;
+
+	p.style.height = pdiv.style.height + 30 + 'px';
+
+	p.style.width = pdiv.style.width + 30 + 'px';
+
+	p.style.top  = offset.top-40;
+
+	p.style.left  = offset.left -60;
+
+	p.style.display = 'block';
+
+	
+
+}
+
+function key_to()
+
+{
+
+	var key = document.getElementById('key').value;
+
+	$.ajax({
+
+		type:'post',
+
+		url :'?c=entkey&a=keyToMoney',
+
+		data:'key=' + key,
+
+		dataType:'json',
+
+		success:function(ret) {
+
+			if (ret['code'] != 200) {
+
+				return alert(ret['msg'] ? ret['msg'] :"折底码不能为空");
+
+			}
+
+			alert("折抵成功.请查看账户余额");
+
+			close_piao('piao_div','piao');
+
+		}
+
+	});
+
+}
+
+function create_hash()
+
+{
+
+	$.ajax({
+
+		type:'get',
+
+		url :'?c=user&a=randAgentHash',
+
+		data:null,
+
+		dataType:'json',
+
+		success:function(ret) {
+
+			if (ret['code'] != 200) {
+
+				return alert(ret['msg'] ? ret['msg'] : "生成代理密钥失败");
+
+			}
+
+			window.location.reload();
+
+		}
+
+		
+
+		
+
+		
+
+	});
+
+	
+
+}
+
+</script>
+
+
+
+	<div id='piao' class='piao' style='display: none'><div id='piao_div' class='piao_div overflow'></div></div>
+		<div id="content">
+			<!-- Page Banner -->
+			<div class="page-banner" style=" background-color:#336C9D;">
+				<div class="container">
+					<h2>账户首页</h2>
+					<ul class="page-tree">
+						<li><a href="/">首页</a></li>
+						<li><a href="?c=user&a=index">会员中心</a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- Page Banner end -->
+		</div>
+		<br />
+	
+  {{dispatch c='user' a='left'}}
+  
+	<div class="col-md-9 blog-side">
+	   <h3><i class="fa fa-cogs"></i> 账户首页</h3><hr />
+							<div class="alert alert-success alert-dismissable">
+								<strong><i class="fa fa-bell" style=" color:#009999;"></i></strong>&nbsp; 免空站改版完成，免空申请重新开放。 <a href="" class="alert-link">
+								申请免费主机请点这里</a>，申请前请仔细阅读我们的 <a href="" class="alert-link">服务条款</a> ！<br /><i class="fa fa-bell" style=" color:#009999;"></i></strong>&nbsp; 第一次登录的新用户请点击 【 <a href="?c=user&a=changeForm" class="alert-link">这里</a> 】 更新您的资料，请务必保证资料的真实性，非常感谢您的支持！
+							</div>
+							
+			<div class="row">
+						<div class="col-md-4">
+							<div class="contact-information">
+								<h3>基本信息</h3>
+								<ul class="contact-information-list">
+									<li><span><i class="fa fa-user"></i>用户名：{{$user.username}}</span></li>
+									<li><span><i class="fa fa-male"></i>姓名：{{$user.name}}</span></li>
+									<li><span><i class="fa fa-qq"></i>QQ号：{{$user.id}}</span></li>
+									<li><span><i class="fa fa-envelope"></i>Email：{{$user.email}}</span></li>
+									<li><span><i class="fa fa-eraser"></i>登录IP：{{$login_ip}}</span></li>
+								</ul>
+							</div>
+						</div>
+						
+			<div class="col-md-4">
+			<h3>财务信息</h3>
+			<p style="font-size:14px; color:#000000">账户余额： <font color="#FF0000">{{$user.money/100}}</font> 元</p><br />
+			<p style="font-size:14px;"><a class="btn btn-success" href="?c=money&a=addFrom">在线充值</a>&nbsp;<a class="btn btn-primary" href="?c=nproduct&a=lists&group_id=1">购买主机</a>&nbsp;<a class="btn btn-warning" href="?c=money&a=moneyout">消费记录</a> </p><br /><br />
+			</div>
+			
+			<div class="col-md-4">
+			<h3>代理级别</h3>
+			{{if $user.agent_id>0}}
+			<p style="font-size:18px; color:#000000"><b>{{$user.agent_name}}</b></p><p>&nbsp;</p>
+			<p><input type='button' value='获取代理密钥' onclick='create_hash()'></p><p>&nbsp;</p>
+			<p style="color:#000000">您的代理hash密钥：{{$user.agent_hash}}</p>
+			</div>
+			{{else}}
+			<p style="font-size:18px; color:#000000"><b>无</b></p>
+			{{/if}}<br />
+		 </div>
+
+				
+	</div>
+  
+  
+  
+  <!-- 必须要加 -->
+  </div></div></div>
+
+<br />

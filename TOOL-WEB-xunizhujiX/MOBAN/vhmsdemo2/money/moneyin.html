@@ -1,0 +1,82 @@
+		<div id="content">
+			<!-- Page Banner -->
+			<div class="page-banner" style=" background-color:#336C9D;">
+				<div class="container">
+					<h2>充值记录</h2>
+					<ul class="page-tree">
+						<li><a href="/">首页</a></li>
+						<li><a href="?c=user&a=index">会员中心</a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- Page Banner end -->
+		</div>
+		<br />
+	
+  {{dispatch c='user' a='left'}}
+  
+	<div class="col-md-9 blog-side">
+	   <h3><i class="fa fa-credit-card"></i> 充值记录</h3>
+							<div class="alert alert-success alert-dismissable">
+								<strong><i class="fa fa-bell"></i></strong>&nbsp; 因系统原因，使用充值卡方式充值，在充值记录内显示错误，显示出来的金额为实际金额除以100。<br />
+								该错误记录并不会影响您的实际金额，您可以在您的账户首页查看您的真实可用余额！使用支付宝支付的充值记录正常！
+							</div>
+							
+	                            <div class="widget footer-widgets tag-widget">
+								 <div class="form-group">
+									<label class="col-sm-3 control-label">充值时间</label>
+									<label class="col-sm-2 control-label">充值金额</label>
+									<label class="col-sm-5 control-label">订单详情</label>
+									<label class="col-sm-2 control-label">充值状态</label>
+								  </div>
+								  </div><hr /><hr />
+								 
+									{{foreach from=$list item=row}}
+									<div class="form-group">
+									<p class="col-sm-3" style="color:#000000;">{{$row.start_time}}</p>
+									<p class="col-sm-2 js_show_product_name" style="color:#000000;">{{$row.money/100}}元</p>
+									<p class="col-sm-5" style="color:#000000;">{{$row.gwid}}</p>
+									<p class="col-sm-2" style="color:#000000;">{{if $row.status==1}}充值成功{{else}}<font color='red'>充值失败</font>{{/if}}</p>
+									</div><p>&nbsp;</p>
+									{{/foreach}}
+									
+	   
+	<br />
+
+		<div class="r_mar_top" align="right" style="font-size:12px;">
+									{{if $page>1}}
+
+									<a href='?c=money&a=moneyin&page=0'>首页</a> 
+
+									<a href='?c=money&a=moneyin&page={{$page-1}}'>上一页</a> 
+
+									{{else}}
+
+									首页 上一页 
+
+									{{/if}}
+
+									{{if $page!=$total_page}} 
+
+									<a href='?c=money&a=moneyin&page={{$page+1}}'>下一页</a>
+
+									<a href='?c=money&a=moneyin&page={{$total_page}}'>尾页</a>
+
+									{{else}}下一页 尾页
+
+									{{/if}} 
+
+									{{$page}}/{{$total_page}}&nbsp;
+
+									共计{{$count}}记录
+		</div>
+								
+							</div>
+
+
+
+  <!-- 必须要加 -->
+  </div></div></div>
+
+<br />	   
+

@@ -1,0 +1,57 @@
+
+<link type="text/css" rel="stylesheet" href="http://www.yc52.cn/template/default/user/css/xinmoban.css"/>
+<script type="text/javascript" src="http://www.yc52.cn/include/js/jquery.js"></script>
+<script type="text/javascript" src="http://www.yc52.cn/include/js/global.js"></script>
+<script type="text/javascript" src="http://www.yc52.cn/include/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="http://www.yc52.cn/include/js/sdmenu.js"></script>
+
+</head>
+<body>
+
+<div class="huiyuan_con clr">
+  <div class="wd1400_neiye">
+    <div class="Left"><div class="top">
+   <dl>
+            <dt class="touxiang fl"><img src="http://www.yc52.cn/data/myimg/img_0.jpg" alt="我的头像" title="w84941"/></dt>
+      <dd class="touxiang_dd1"><span><img src="http://www.yc52.cn/template/default/user/images/icon1.png" /></span><span>&nbsp;用&nbsp;户&nbsp;名：{{$user.username}}</span></dd>
+      <dd><span><img src="http://www.yc52.cn/template/default/user/images/icon2.png" /></span><span>会员等级：{{$user.agent_name}}</span></dd>
+            <dd><span><img src="http://www.yc52.cn/template/default/user/images/icon3.png" /></span><span>账户余额：{{$user.money/100}}</span></dd>
+   </dl>
+</div>
+<script type="text/javascript">
+   var myMenu;
+   window.onload = function() {
+      myMenu = new SDMenu("my_menu");
+      myMenu.init();
+   };
+</script>
+
+<div id="my_menu" class="sdmenu">
+   <div>
+      <h3></h3>
+      <a href="?c=user&a=index">会员中心</a>
+      <a href="?c=money&a=addFrom">账户充值</a>
+      <a href="?c=hosting&a=pageHost">我的订单</a>
+	  	  <a href="?c=question&a=pageByuser">我的服务单	</a>	
+	  <a href="?c=session&a=logout">退出登录 </a>	
+   </div>
+   <div class="collapsed"><h3></h3></div>
+</div>
+
+<div class="contactBox">
+   <div class="table">
+      <div class="table_cell">
+         <img src="http://www.yc52.cn/template/default/user/images/online.png" />
+         <p>遇上问题？马上联系梦影顾问</p>
+         <p class="tel">1000000</p>
+         <p class="qq2">1349443473</p>
+         <p class="ewm"><img src="http://shenidc.cn/112.png" /></p>
+         <p class="sys">扫一扫 加微信</p>
+      </div>
+   </div>
+</div>
+<!--http://www.8c.com.cn/jh.php?bh=&tbh=guozong7758&psdmd5=$psdmd&url=www.5yyc.cn&sj=-->
+<!--http://www.8c.com.cn/jh.php?bh=&tbh=guozong7758&psdmd5=&url=www.5yyc.cn&sj=-->
+<!--http://www.8c.com.cn/jh.php?bh=$_SESSION['user_name']&tbh=guozong7758&psdmd5=$_SESSION['user_pw']&url=www.5yyc.cn&sj=$_SESSION['user_phone'] -->
+         
+		 

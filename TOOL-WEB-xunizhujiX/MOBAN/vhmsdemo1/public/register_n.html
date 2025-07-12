@@ -1,0 +1,163 @@
+<script language='javascript'>
+function check_user()
+{
+	var username  = document.reg.username.value;
+	if (username == "") {
+		alert("用户名不能为空");
+		return ;
+	}
+	var url = '?c=public&a=ajaxCheckUser&username=' + username;
+	$.get(url,function(msg){
+		alert(msg);
+		
+	});
+}
+
+</script>
+<body class="login">
+    <script>
+        var stateNotRequired = true;
+    </script>
+<script type="text/javascript" src="{{$STATIC}}js/statesdropdown_1.js"></script>
+
+<section class="loginform">
+	<div class="row">
+		<div class="logincontainer col-sm-12">			
+			<a class="navbar-brand" href="/index.php" title="NeWorld">51ChinaHost用户注册</a>
+			<div class="portlet">
+			    <form name='reg' action="?c=public&a=register&external=1" method='post' class="using-password-strength" >
+			        			
+			        <div class="form-group">
+			            <label for="email" class="control-label">用户名</label>
+						
+			            <input name='username' size="24" id="email" placeholder="用户名（长度至少3个字母）" class="form-control"  /><input  class="btn" type="button" name="Submit" value="检测用户名" onClick="check_user()">
+			        </div>
+				
+			        <div id="newPassword1" class="form-group has-feedback">
+			            <label for="inputNewPassword1" class="control-label">密码</label>
+			            <input  name='passwd' type='password' size="24" placeholder="密码（长度至少６个字母）" class="form-control" autocomplete="off" />
+			        </div>
+			        <div id="newPassword2" class="form-group has-feedback">
+			            <label for="inputNewPassword2" class="control-label">确认密码</label>
+			            <input name='passwd2' type='password' size="24" class="form-control"  placeholder="重复密码（两次密码必须相同）" autocomplete="off"  />
+			         </div>	
+			        <div class="form-group">
+			            <label for="email" class="control-label">电子邮箱</label>
+						<input type="text" placeholder="电子邮箱" name="email" class="form-control" >
+			        </div>					 
+			        <div class="form-group">
+			            <label for="email" class="control-label">真实姓名</label>
+			            <input name='name' size="24" placeholder="真实姓名" class="form-control" />
+			        </div>
+					<div class="form-group">
+			            <label for="email" class="control-label">身份证号码</label>
+			            <input name='ids' size="24" placeholder="身份证号码"  class="form-control" >
+			        </div>
+		{{if $imgverification}}
+		<div class="form-group">
+			            <label for="email" class="control-label">验证码</label>
+						<img src='?c=public&a=imgInit&action=init'>
+			            <input name='imgnumber' size="8"value="" class="form-control" >
+		</div>		
+		{{/if}}			        	 <div class="form-group text-center">
+			                <label class="checkbox">
+			                	<input name="agree" type="checkbox" value="1" class="accepttos" style="margin-left: 0;position: relative;">
+								我已经阅读并同意该服务条款 <a href="?c=public&a=registerPact" target="_blank">服务条款</a>
+			                </label>
+			            </div>
+			        			
+			        <div class="form-group text-center">
+			            <input class="btn btn-block btn-primary" type="button" onClick="check_register()" value="注册" />
+			        </div>
+			
+			    </form>
+			</div>
+					</div>
+	</div>
+</section>
+
+</section>
+</div>
+<script src="{{$STATIC}}js/bootstrap.min_1.js"></script>
+<script src="{{$STATIC}}js/wow.min_1.js"></script>
+<script src="{{$STATIC}}js/bootstrap-hover.min_1.js"></script>
+<script src="{{$STATIC}}js/bootstrap-select.min_1.js"></script>
+<script src="{{$STATIC}}js/jquery.zclip_1.js"></script>
+<script src="{{$STATIC}}js/bxslider_1.js"></script>
+<script src="{{$STATIC}}js/owl.carousel.min_1.js"></script>
+<script src="{{$STATIC}}js/jquery-ui.min_1.js"></script>
+<script type="text/javascript">
+    var csrfToken = '174cfc49cfe67d12d59e250869659599794baa2c',
+        markdownGuide = 'Markdown Guide',
+        locale = 'en_GB',
+        saved = 'saved',
+        saving = 'autosaving';
+</script>
+<script src="js/whmcs_1.js"></script>
+<script src="js/ajaxmodal_1.js"></script>
+<div class="hide">
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?5362e727c11eda4b1bf3170f9bc21ced";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+</div>
+<div class="modal system-modal fade" id="modalAjax" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content panel panel-primary">
+            <div class="modal-header panel-heading">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title">Title</h4>
+            </div>
+            <div class="modal-body panel-body">
+                Loading...
+            </div>
+            <div class="modal-footer panel-footer">
+                <div class="pull-left loader">
+                    <i class="fa fa-circle-o-notch fa-spin"></i> Loading...
+                </div>
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    Close
+                </button>
+                <button type="button" class="btn btn-primary modal-submit">
+                    Submit
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script language="javascript">
+function show(url) 
+{ 
+	window.open(url,'','height=100,width=250,resize=no,scrollbars=no,toolsbar=no,top=200,left=200');
+}
+function check_register()
+{
+	if(document.reg.username.value.length<3){
+		alert('用户名长度最小为3个字母');
+		return false;
+	}
+	if(document.reg.passwd.value.length<5){
+		alert('密码长度最小要6位');
+		return false;
+	}
+	if(document.reg.passwd.value!=document.reg.passwd2.value){
+		alert('两次密码不对');
+		return false;
+	}
+	if(!document.reg.agree.checked){
+		alert('您还没有同意注册协议');
+		return false;
+	}
+	document.reg.submit();
+}
+</script>

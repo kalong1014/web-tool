@@ -1,0 +1,237 @@
+  {{dispatch c='public' a='head'}}
+<div class="row PageHead" id="pricing">
+<div class="col-md-12">
+<h1>域名服务</h1>
+<h3>请认真看清楚英文域名信息在购买</h3>
+</div>
+</div>
+ <!--域名-->
+<div class="domain">
+<div class="container">
+<div class="row PageHead">
+<div class="col-md-12">
+
+</div>
+</div>
+<div class="row">
+<div class="col-md-8 col-md-offset-2">
+<form action="." method="post">
+<input type="hidden" name="direct" value="true"/>
+<div class="row">
+<div class="col-sm-12 form-group">
+<div class="input-group">
+<input class="form-control" type="text" name="domain" size="20" placeholder="your domain name"/>
+<span class="input-group-btn">
+<select class="btn btn-default" name="ext">
+<option selected>.com</option>
+<option>.net</option>
+<option>.org</option>
+<option>.biz</option>
+<option>.com.au</option>
+<option>.net.au</option>
+<option>.info</option>
+<option>.asia</option>
+<option>.co.nz</option>
+<option>.org.au</option>
+</select>
+</span> </div>
+</div>
+</div>
+<div class="submitbtn">
+<input type="submit" class="btn btn-success btn-lg" value="查询"/>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+ 
+
+
+<div class="clearfix"> </div>
+<!-- Header Ends Here -->	
+
+
+
+<div class="container">
+ 
+<div class="row PageHead" id="pricing">
+<div class="col-md-12">
+<h1>虚拟主机</h1>
+<h3>请认真看清楚虚拟主机信息在购买</h3>
+</div>
+</div>
+{{foreach from=$nproducts item=row key=key}}
+							{{foreach from=$row item=n key=k}}
+<div class="row">
+<div class="col-sm-6 col-md-3 PlanPricing">
+<div class="planName"> <span class="price">{{$n.price}}元</span>
+<h3>{{$n.name}}</h3>
+</div>
+<div class="planFeatures">
+<ul>
+	{{$n.describe}}
+</ul>
+</div>
+<p> <a href="?c=nproduct&a=lists&group_id={{$n.group_id}}" role="button" class="btn btn-success btn-lg">查看更多</a> </p>
+</div>
+
+	{{/foreach}}
+						{{/foreach}}
+									
+						<!--//host_virtual-->
+				<!--host_virtual-->
+					<div class="host host_hire" {{if !$products || $nproducts}}style='display:none'{{/if}}>
+						{{foreach from=$products item=v}}
+						<dl class="index">
+							<dt class="host_ico">
+								<span>{{$v.name|truncate:8:""}}</span>
+								<b>价格：
+									{{if $v.show_price==1}}
+								{{substr($v.price/100/12,0,6)}}元/月 {{else}}
+								{{$v.price/100}}元/年 {{/if}} 
+								</b>
+							</dt>
+							<dd>
+								<p>WEB空间大小: 
+									{{if $v.web_quota}}
+										{{if $v.web_quota > 1024}}
+										{{number_format($v.web_quota/1024,2)}}G 
+										{{else}}
+										{{$v.web_quota}}M {{/if}} 
+									{{else}} 0 {{/if}}
+								</p>
+								<p>数据库大小:
+									{{if $v.db_quota}} {{if $v.db_quota > 1024}}
+									{{number_format($v.db_quota/1024,2)}}G {{else}}
+									{{$v.db_quota}}M {{/if}} {{else}} 0 {{/if}}
+								</p>
+							</dd>
+							<dd>
+								<a href="?c=host&a=showProductFrom&product_id={{$v.id}}" target="_blank" class="host_more">查看详情</a>
+							</dd>
+						</dl>
+						{{/foreach}}
+															
+					</div>
+					<!--//host_virtual-->
+			</div>
+			<!--//wrap_box_info-->
+		</div>	
+		<!--//wrap_box-->				
+</div>
+<!--//wrap_main-->				
+									
+									
+									
+									
+									
+									
+									
+									
+
+<div class="container">
+ 							
+
+<div class="row PageHead">
+<div class="col-md-12">
+<h1>新闻动态</h1>
+<h3></h3>
+</div>
+</div>
+<div class="row ComparePlans">
+<div class="col-md-3 CompareList hidden-sm hidden-xs">
+<div class="planHead1"></div>
+<div class="planFeatures">
+</div>
+</div>
+<div class="col-sm-6 col-md-3 pricing1">
+<div class="planHead2">
+<h3>公告</h3>
+</div>
+<div class="planFeatures">
+<ul class="visible-sm visible-xs">
+
+</ul>
+<ul class="hidden-sm hidden-xs">
+
+							{{foreach $news as $v}}
+
+								{{if $v@index eq 5}}
+
+								{{break}}
+
+								{{/if}}
+
+<li><img src="{{$STATIC}}images/tick.png" alt="tick"> <a href="?c=public&a=viewNewsById&id={{$v.id}}" target="_blank">{{$v.title|truncate:16:""}}</a></li>
+
+	{{/foreach}}
+</ul>
+</div>
+<p><a href="?c=public&a=pagelistnews" role="button" class="btn btn-success btn-lg">查看更多 </a> </p>
+</div>
+<div class="col-sm-6 col-md-3 pricing2">
+<div class="planHead3">
+<h3>动态</h3>
+</div>
+<div class="planFeatures">
+<ul class="visible-sm visible-xs">
+</ul>
+<ul class="hidden-sm hidden-xs">
+
+	{{foreach $news as $v}}
+
+								{{if $v@index eq 5}}
+
+								{{break}}
+
+								{{/if}}
+
+							<li><a href="?c=public&a=viewNewsById&id={{$v.id}}" target="_blank">{{$v.title|truncate:16:""}}</a></li>
+
+							{{/foreach}}
+
+</ul>
+</div>
+<p> <a href="?c=public&a=pagelistnews" role="button" class="btn btn-danger btn-lg">查看更多 </a> </p>
+</div>
+<div class="col-sm-6 col-md-3 col-sm-offset-3 col-md-offset-0 pricing1">
+<!--<div class="planHead2">
+<h3>联系客服</h3>
+</div>
+<div class="planFeatures">
+<ul class="visible-sm visible-xs">
+
+</ul>
+<ul class="hidden-sm hidden-xs">
+<li> <img src="http://pub.idqqimg.com/qconn/site/images/intro/wpa_style_51.gif" alt="tick">售后客服</li>
+<li> <img src="http://pub.idqqimg.com/qconn/site/images/intro/wpa_style_51.gif" alt="tick">售后客服</li>
+<li> <img src="http://pub.idqqimg.com/qconn/site/images/intro/wpa_style_51.gif" alt="tick">售后客服</li>
+<li> <img src="http://pub.idqqimg.com/qconn/site/images/intro/wpa_style_51.gif" alt="tick">技术客服</li>
+<li> <img src="http://pub.idqqimg.com/qconn/site/images/intro/wpa_style_51.gif" alt="tick">技术客服</li>
+
+</ul>
+</div>
+<p> <a href="#" role="button" class="btn btn-success btn-lg">查看更多 </a> </p>-->
+</div>
+</div>
+</div>
+
+<!-- #Testimonials -->
+		<div id="testimonialWrapper">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-2 col-md-offset-1">
+						<div id="testimonialPicture"></div>
+					</div>
+					<div class="col-md-7 col-md-offset-1">
+						<h2>关于我们</h2>
+						<h3>关于我们信息</h3>
+						<a href='javascript:void(0);' onclick="alert('即将上线')">Lorem ipsum - www.shenidc.cn</a>
+					</div
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+		
+		  {{dispatch c='public' a='foot'}}

@@ -1,0 +1,37 @@
+  {{dispatch c='user' a='left'}}
+			<!--wrap_main-->			         		 		 </div>    <div class="rightCon"><h1><span>在线提问</span><span class="line"></span></h1><div class="pages"></div><div class="shuxian"><h3>在线提问:</h3></div>	<table cellspacing="1" cellpadding="0" class="ziliao"><form id="form" action="?c=question&a=add" method='post'>			<p class="tiwen_textarea"><textarea name='body' class="bizhi_textarea" placeholder="输入留言内容" style="width:700px;height:60px;"></textarea></p>		<p><input type="submit" name="dosubmit" style="margin-left:338px;" class="input" value="提 交" /></p></form><script type="text/javascript">$(function(){	$(":submit").click(function(){		if ($(":input[name='info[ask_text]']").val() == '') {			alert('留言内容必须填写！');			return false;		}	})})</script>      </div> 	</div>      </div>
+			<div class="wrap_main wrap_main_noindex">
+					<!--wrap_box-->
+					<div class="wrap_box domain_all">
+						<div class="title">
+								<h2>在线提问</h2>
+						</div>
+						<!--wrap_box_info-->
+						<div class="wrap_box_info form">
+						  <table>
+							 <tr><td colspan="2" class="red"><b>在线提问</b></td></tr>
+							  <tr>
+								<td>提问标题:</td> 
+								<td class="wid3">{{$log.title}}</td>
+								</tr>
+							   <tr>
+								<td>提问内容:</td>
+								<td>{{$log.body}}</td>
+								</tr>
+							  <tr>
+								<td>管理员回复:</td>
+								<td>{{$log.reply}}</td>
+								</tr>
+								{{if $log.reply_time!=""}}
+								 <tr>
+								<td>回复时间:</td>
+								<td>{{$log.reply_time}}</td>
+								</tr>
+								{{/if}}
+							</table>
+						</div>
+						<!--//wrap_box_info-->
+					</div>	
+					<!--//wrap_box-->							
+			</div>
+			<!--//wrap_main-->	

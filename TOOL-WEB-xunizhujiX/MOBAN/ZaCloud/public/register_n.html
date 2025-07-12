@@ -1,0 +1,85 @@
+<script language='javascript'>
+function check_user()
+{
+	var username  = document.reg.username.value;
+	if (username == "") {
+		alert("用户名不能为空");
+		return ;
+	}
+	var url = '?c=public&a=ajaxCheckUser&username=' + username;
+	$.get(url,function(msg){
+		alert(msg);
+		
+	});
+}
+
+</script>
+<div class="customer_center_banner">
+</div>
+    <!-- Login -->
+<section class="login">
+        <div class="row">
+            <div class="col-sm-12 ">
+                <div class="login-form-panel">
+<div class="row">
+
+                        <div class="col-sm-6 col-xs-12 center-block">
+                            <div class="login-form">
+                            <h3>注册会员</h3>
+	<form class="form-horizontal" name='reg' action="?c=public&a=register&external=1" method='post'>
+
+		<input type="text" name='username' size="24" placeholder="用户名（最短3位）"/>
+		<input type="button"  name="Submit" value="检测用户名" onClick="check_user()" >
+		<input name='passwd' type='password' size="24" placeholder="密码（最短6位）"/>
+		<input name='passwd2' type='password' size="24" placeholder="确认密码"/>
+		<input type="text" name='email' size="24" placeholder="电子邮箱"/>
+		{{if $imgverification}}
+		<input type="text" name='imgnumber' size="8" placeholder="验证码"/><img src='?c=public&a=imgInit&action=init'>
+		{{/if}}
+		<input name="agree" type="checkbox" value="1">我已阅读并同意 <a href='?c=public&a=registerPact' target="_blank">注册协议</a> 
+		
+		<input class='reg_input' type="button" onClick="check_register()" value="注册"><input class='reg_input' type='reset' value='重置'> 
+
+	</form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+</section>
+    <!-- End of Login -->
+<script language="javascript">
+reg.username.focus();
+function show(url) 
+{ 
+	window.open(url,'','height=100,width=250,resize=no,scrollbars=no,toolsbar=no,top=200,left=200');
+}
+function check_register()
+{
+	if(document.reg.username.value.length<3){
+		alert('用户名长度最小为3个字母');
+		return false;
+	}
+	if(document.reg.passwd.value.length<5){
+		alert('密码长度最小要6位');
+		return false;
+	}
+	if(document.reg.passwd.value!=document.reg.passwd2.value){
+		alert('两次密码不对');
+		return false;
+	}
+	if(document.reg.email.value==""){
+		alert('电子邮件不能为空');
+		return false;
+	}
+	if(!document.reg.agree.checked){
+		alert('您还没有同意注册协议');
+		return false;
+	}
+	document.reg.submit();
+}
+</script>

@@ -1,0 +1,124 @@
+<script language="javascript">
+function show(url) 
+{ 
+	window.open(url,'','height=100,width=250,resize=no,scrollbars=no,toolsbar=no,top=200,left=200');
+}
+function check_user()
+{
+	show('?c=product&a=check&product_type=vhost&name='+document.reg.name.value);
+}
+function check_register()
+{
+	if(reg.name.value.length<3){
+		alert('用户名长度最小为3个字母');
+		return false;
+	}
+	if(reg.passwd.value.length<5){
+		alert('密码长度最小要6位');
+		return false;
+	}
+	if(reg.passwd.value.length>16){
+		alert('密码长度最长16位');
+		return false;
+	}
+	if(reg.passwd.value!=reg.passwd2.value){
+		alert('两次密码不对');
+		return false;
+	}
+	piao_msg();
+	
+	reg.submit();
+}
+function piao_msg()
+{
+	var content = '正在购买中.请等待.......';
+	var dlog = art.dialog({id:'id22',content:content, icon: 'face-smile',left:'50%',top:'20%',background:'#FF6347'});
+}
+</script>
+
+  <form name='reg' action="?c=product&a=sell&product_id={{$product.id}}&product_type=vhost" method="post">
+
+<b>购买产品</b>
+      	
+      	产品:
+{{$product.name}}
+用户名:
+        	<input name="name" type="text" id="name">
+      	密码:
+        	<input name="passwd" type="password" id="passwd">
+	  	
+	  	确认密码:
+        	<input name="passwd2" type="password" id="passwd2">
+	  	
+	  	购买时间:
+        	<td id="months">
+        	{{if $product.try_on ==1}}
+        	<input type='radio' name='month' onclick='get_price(0);' value='-{{$try_day}}' >试用
+        	{{/if}}
+        	{{if $product.month_flag}}
+       	 	<input type='radio' name='month' onclick='get_price(1);' value='1' checked>1个月
+        	{{/if}}
+            <input type='radio' name='month' onclick='get_price(12);' value='12' {{if !$product.month_flag}}checked{{/if}}>1年
+			<input type='radio' name='month' onclick='get_price(24);' value='24' >2年
+			<input type='radio' name='month' onclick='get_price(36);' value='36'>3年
+	  	
+	  	{{if $product.cdn==0}}
+	  	语言引擎:
+        	{{if $product.cs==0}}
+        	{{$product.subtemplete}}
+        	{{else}}<select name='subtemplete'>
+		    		{{foreach from=$subtempletes item=subtemplete}}
+			    	<option value='{{$subtemplete}}' {{if $subtemplete==$product.subtemplete}}selected{{/if}}>{{$subtemplete}}</option>
+		    		{{/foreach}}
+		    		</select>
+        	{{/if}} 
+	  	
+	  	空间大小:
+        	{{$product.web_quota}}M
+	  	
+	  	数据库大小:
+        	{{$product.db_quota}}M
+	  	{{/if}}
+	  	
+	  	域名绑定个数:
+        	{{if $product.domain==-1}}不限{{else}} {{$product.domain}}个{{/if}}
+	  	
+	  	最大连接数:
+        	{{if $product.max_connect==0}}不限{{else}}{{$product.max_connect}}{{/if}}
+	 	
+	 	流量限制:
+        	{{if $product.flow==0}}不限{{else}}{{$product.flow}}G/月{{/if}}
+	 	 	
+	  	产品说明:
+        	{{$product.describe}}
+	  
+       	产品价格(元):
+       	   	{{if $product.show_price==1}}{{substr($product.price/100/12,0,6)}}元/月{{else}}{{$product.price/100}}元/年{{/if}}
+        
+	    <input type="button" onClick="check_register()" value="确定">
+
+	</div>
+    </form>
+
+  <div id='msg' class='piao_sell_msg' style='display:none'></div>
+<script language="javascript">
+function get_price(month)
+{
+	var p = '{{$product.price/100/12}}' * month;
+	jQuery("#show_name").html("所需金额");
+	var url = '?c=user&a=getUserPrice';
+	jQuery.get(url,function(pp){
+		if (pp != 'error'){
+			if( pp/100 < p) {
+				//jQuery("#show_price").html('<font color=red>金额不够</font>');
+				alert('金额不够');
+			}else{
+				jQuery("#show_price").html(p.toFixed(2)+"元");
+			}
+			
+		}else{
+			jQuery("#show_price").html(p.toFixed(2)+"元");
+		}  
+	});
+}
+ </script>

@@ -1,0 +1,66 @@
+<div class="customer_center_banner">
+</div>
+<div class="client-nav">
+<div class="row">
+    <div class="col-sm-12">
+          <ul id="navul">
+					<li><a href="?c=user&a=index" ><em class="fa fa-home"></em>  客户中心</a></li>
+                    <li class="li-products"><a href="?c=hosting&a=pageHost"><em class="fa fa-server"></em>  我的产品</a></li>
+                    <li class="li-domains"><a href="?c=user&a=changeForm"><em class="fa fa-send"></em> 修改资料</a></li>
+                    <li><a href="?c=user&a=changePasswordForm"><em class="fa fa-money"></em>  修改密码</a></li>
+                    <li><a href="?c=money&a=moneyout" ><em class="fa fa-rmb"></em>  消费记录</a></li>
+                    <li><a href="?c=money&a=moneyin" ><em class="fa fa-calculator"></em>  充值记录</a></li>
+                    <li><a href="?c=question&a=addFrom"><em class="fa fa-external-link"></em>  提交服务单</a></li>
+                    <li class="li-ticket"><a href="?c=question&a=pageByuser" class="cur"><em class="fa fa-comments"></em>  查看服务单</a></li>
+                </ul>
+    </div>
+</div>
+
+</div>
+
+<div class="blog single" style="padding-top: 15px;">
+    <div class="row">
+    		<div class="col-sm-12 member-col-left">
+    
+<div class="page-header">
+    <div class="styled_title"><h1>工单详情</h1></div>
+</div>
+<div class="alert alert-block alert-info">
+
+
+    <h4>提问标题:{{$log.title}}</h4><br />
+
+	<p></p>
+	<h5>提问内容:</h5>
+	<h5>{{$log.body}}</h5>
+
+	<p></p><br />
+	<p color="red">管理员回复:</p><p>{{$log.reply}}</p>
+	<p>{{$log.reply_time}}</p>
+	{{if $log.reply_time!=""}}
+
+		<p>回复时间:
+		{{$log.reply_time}}
+
+	{{/if}}
+
+</div>
+
+
+
+<br>
+
+
+<br>
+<br>
+<br>
+
+
+
+</div>
+
+</div>
+
+</div>
+
+{{include file='common/foot.html'}}

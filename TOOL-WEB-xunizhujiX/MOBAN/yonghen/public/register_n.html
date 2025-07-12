@@ -1,0 +1,184 @@
+<script language='javascript'>
+function check_user()
+{
+	var username  = document.reg.username.value;
+	if (username == "") {
+		alert("用户名不能为空");
+		return ;
+	}
+	var url = '?c=public&a=ajaxCheckUser&username=' + username;
+	$.get(url,function(msg){
+		alert(msg);
+		
+	});
+}
+
+</script>
+<style type='text/css'>
+.public_reg {
+	padding-top:10px;
+}
+.public_reg_img {
+	padding-top:20px;
+}
+.public_reg_info {
+	padding-left:120px;
+	padding-top:20px;
+}
+.public_reg_info div {
+	padding-top:20px;
+	font-size:20;
+}
+.public_reg_info input {
+	height:30px;
+	font-size:20;
+	
+}
+.reg_submit {
+	padding-left:280px;
+}
+.reg_left {
+	float:left;
+	text-align:left;
+	width:120px;
+}
+.reg_center {
+	padding-top:3px;
+}
+.reg_input {
+	background-position:0 -120px;
+	font-weight:bold;
+}
+.STYLE1 {color: #FF0000}
+</style>
+
+
+		<div id="main">
+        	<!-- **Breadcrumb Section** -->
+            <div class="breadcrumb-section">
+                  <div class="container">
+	                   <h1>注 册</h1>
+                      <div class="breadcrumb">
+                      	<a href="/" title="">首页</a> / <span>会员中心</span>
+                      </div>
+                  </div>
+            </div> <!-- **Breadcrumb Section Ends** -->
+            
+            <!-- **Content Main** -->
+            <section class="content-main">    
+
+            	<!-- **Primary** -->
+            	<div class="content-full-width" id="primary"> 
+                    <div class="fullwidth-section dt-sc-parallax">
+                        <div class="fullwidth-bg">	  
+                        	<div class="container">
+                            
+                                <div class="dt-sc-hr-invisible-medium"></div>
+								
+                   				<div class="page_info">
+                                	<h3 class="title center">会员中心 - 注册会员</h3>
+									</br>
+									</br>
+                                	<p class="center title STYLE1"><strong>请注意，注册后会有一封邮件发送至您留下的联系邮箱中</strong></p>
+                                	<p class="center title STYLE1"><strong>如使用QQ邮箱的客户，该邮件可能存在于您的垃圾箱中</strong></p>
+                                	<p class="center title STYLE1"><strong>麻烦到QQ邮箱的垃圾箱中点击上方的“这不是垃圾邮件”按钮</strong></p>
+                                	<p class="center title STYLE1"><strong>否则可能接下来的主机即将到期等其他邮件您将无法及时收到</strong></p>
+                   				</div>
+								
+                                <div class="form-wrapper register">
+	                                 <form  name='reg' action="?c=public&a=register&external=1" method='post'>
+                                        <p>
+                                            <input type="button" name="Submit" value="检测用户名" onClick="check_user()"><input type="text" placeholder="用户名（长度至少3个字母）" name="username" >
+									   </p>
+																																
+                                         <p>
+                                            <input type="password" placeholder="密码（长度至少６个字母）" name="passwd">
+                                        </p>
+                                        
+                                        <p>
+                                            <input type="password" placeholder="重复密码（两次密码必须相同）" name="passwd2">
+                                        </p> 
+										
+										<p>
+                                            <input type="text" placeholder="电子邮箱" name="email">
+                                        </p>
+										
+                                        <p>
+                                            <input type="text" placeholder="真实姓名" name="name">
+                                        </p>
+                                        
+                                        <p>
+                                            <input type="text" placeholder="身份证号码" name="ids">
+                                        </p>
+                                        
+                                 		{{if $imgverification}}
+										<p>
+		                                 <input type="text" placeholder="输入验证码" name='imgnumber' size="8"/><img src='?c=public&a=imgInit&action=init'>
+		                                </p>
+										{{/if}}
+										
+										<p>
+                                          <input name="agree" type="checkbox" value="1">我已阅读并同意<a href='?c=public&a=registerPact' target="_blank">注册协议</a> 
+                                       </p>       
+										                                        	
+                                        <p class="alignleft">
+										<input type="button" class='reg_input' value="注册会员" onClick="check_register()">
+										</p>   
+                                    </form>   
+                                </div>                                
+                                
+                                <div class="dt-sc-hr-invisible-medium"></div>
+                                <div class="dt-sc-clear"></div>
+                                                            
+                            </div>
+                        </div>
+                    </div>         
+                    
+                    <div class="fullwidth-section">
+                        <div class="fullwidth-bg">	  
+                        	<div class="container">  
+                            
+                                <div class="dt-sc-hr-invisible-medium"></div>
+                                <div class="dt-sc-clear"></div>  
+                                                                
+                            </div>
+                        </div>
+                    </div>                                                               	
+
+            	</div><!-- **Primary - End** -->                                                    
+            </section> <!-- **Content Main Ends** -->
+            
+        </div> <!-- **Main Ends** --> 
+</div>
+
+<script language="javascript">
+reg.username.focus();
+function show(url) 
+{ 
+	window.open(url,'','height=100,width=250,resize=no,scrollbars=no,toolsbar=no,top=200,left=200');
+}
+function check_register()
+{
+	if(document.reg.username.value.length<3){
+		alert('用户名长度最小为3个字母');
+		return false;
+	}
+	if(document.reg.passwd.value.length<5){
+		alert('密码长度最小要6位');
+		return false;
+	}
+	if(document.reg.passwd.value!=document.reg.passwd2.value){
+		alert('两次密码不对');
+		return false;
+	}
+	if(document.reg.email.value==""){
+		alert('电子邮件不能为空');
+		return false;
+	}
+	if(!document.reg.agree.checked){
+		alert('您还没有同意注册协议');
+		return false;
+	}
+	document.reg.submit();
+}
+</script>

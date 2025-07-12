@@ -1,0 +1,102 @@
+
+<div class="customer_center_banner">
+</div>
+<div class="blog single" style="padding-top: 15px;">
+    <div class="row">
+    		<div class="col-sm-18 member-col-left">
+    
+<link rel="stylesheet" type="text/css" href="css/style_1.css">
+
+<div id="order-verticalsteps" class="row">
+
+<div class="col-sm-12">
+<div class="maincontent">
+<div class="ordertitle">
+    <h1>产品配置</h1>
+
+<p>您选择的产品/服务有以下配置选项供您选择。</p>
+    </div>
+
+<form name='reg' action="?c=product&a=modBuy&product_id={{$product.id}}&nodename={{$nodename}}" method="post">
+<div class="panel panel-warning">
+  <div class="panel-heading">{{$product.name}}</div>
+   {{$product.describe}} 
+</div>
+	                  				{{if !$msg}}
+		主机面板名:
+        	<input name="name" type="text" id="name">
+      	面板密码:
+        	<input name="passwd" type="password" id="passwd">
+	  	
+	  	确认密码:
+        	<input name="passwd2" type="password" id="passwd2">
+		您的域名：
+			<input type="text" name="domain" size="50" placeholder="可不填，稍后可在控制面板绑定域名">
+
+<p><br />
+
+<i class="fa fa-money"></i>&nbsp;  价格/周期：<font color="#0099CC"><b>{{if $product.noagentprice}}特价:{{/if}}￥{{$product.price}} 元 /  {{($product.pay_cycle=='year') ? '年付' : "月付"}}</b>
+<br /></p>
+{{if $product.noagentprice}}原价:￥{{$product.noagentprice}} 元 /  {{($product.pay_cycle=='year') ? '年付' : "月付"}}{{/if}}
+
+
+
+
+<p align="center"><input type="button" value="立即购买" class="btn btn-success btn-lg" onClick="check_register()"></p>
+							 	{{else}}
+								<p>
+								{{$msg}}</p>
+                                {{/if}}
+</form>
+
+</div>
+</div>
+</div>
+
+<!-- tpl configureproduct.tpl-->
+
+
+
+</div>
+
+</div>
+
+</div>
+
+<script type='text/javascript'>
+	var nodename = '{{$nodename}}';
+
+	var product_id = '{{$product.id}}';
+</script>
+
+<script type='text/javascript' src='{{$STATIC}}js/nproduct.js'></script>
+
+<script type='text/javascript'>
+	var money = '{{$product.price}}';
+	function show_entkey_input() {
+		document.getElementById('key_onclick').style.display = 'none';
+		document.getElementById('key_input').style.display = 'block';
+	}
+	$(document).ready(function() {
+		checkMoney();
+	});
+	function check_entkey() {
+		var key = $.trim($("#key").val());
+		if (!key) {
+			return alert("请输入优惠折抵码");
+		}
+		$.ajax({
+			type : 'post',
+			url : '?c=entkey&a=checkKey',
+			data : 'key=' + key + '&product_id=' + product_id,
+			dataType : 'json',
+			success : function(ret) {
+				if (ret['code'] != 200) {
+					return alert(ret['msg'] ? ret['msg'] : '不可用');
+				}
+				//alert('可用');
+				$("#checkresult").html('<b class=red>*可用</b>');
+			}
+		});
+	}
+</script>

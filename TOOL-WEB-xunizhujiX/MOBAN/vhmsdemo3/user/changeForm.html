@@ -1,0 +1,142 @@
+  {{dispatch c='user' a='left'}}
+<link href="{{$STATIC}}style/2014hostv2/assets/admin/pages/css/login.css" rel="stylesheet" type="text/css"/>
+<link href="{{$STATIC}}style/2014hostv2/assets/admin/pages/css/pricing-table.css" rel="stylesheet" type="text/css"/>
+<link href="{{$STATIC}}style/2014hostv2/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css"/>
+<link href="{{$STATIC}}style/2014hostv2/assets/admin/pages/css/profile.css" rel="stylesheet" type="text/css"/>
+<link href="{{$STATIC}}style/2014hostv2/assets/admin/pages/css/tasks.css" rel="stylesheet" type="text/css"/>
+		<!-- BEGIN CONTENT -->
+		<div class="page-content-wrapper">
+			<div class="page-content">
+				<!-- BEGIN PAGE HEADER-->
+				<h3 class="page-title">
+				修改资料 <small>修改账户资料</small>
+				</h3>
+				<div class="page-bar">
+					<ul class="page-breadcrumb">
+						<li>
+							<i class="fa fa-home"></i>
+							<a href="#">会员中心</a>
+							<i class="fa fa-angle-right"></i>
+						</li>
+						<li>
+                          <a href="#">账户管理</a>
+						</li>
+					</ul>
+				</div>
+				<!-- END PAGE HEADER-->
+				<!-- BEGIN PAGE CONTENT-->
+				<div class="row">
+					<div class="col-md-12">
+						<!-- BEGIN PROFILE SIDEBAR -->
+						<div class="profile-sidebar" style="width:250px;">
+							<!-- PORTLET MAIN -->
+							<div class="portlet light profile-sidebar-portlet">
+								<!-- SIDEBAR USERPIC -->
+								<div class="profile-userpic">
+									<img src="{{$STATIC}}style/2014hostv2/assets/admin/layout2/img/123123.jpg" class="img-responsive" alt="">
+								</div>
+								<!-- END SIDEBAR USERPIC -->
+								<!-- SIDEBAR USER TITLE -->
+								<div class="profile-usertitle">
+									<div class="profile-usertitle-name">
+										 {{$user.username}}
+									</div>
+									<div class="profile-job pull-center">
+									<div class="margin-top-20 profile-desc-link">
+										姓  名：<span class="details">
+										{{$user.name}}</span>
+									</div>
+									<div class="margin-top-20 profile-desc-link">
+										Email：<span class="details">
+										{{$user.email}}</span>
+									</div>
+									<div class="margin-top-20 profile-desc-link">
+										<b>账户余额：<span class="details">
+										{{$user.money/100}} 元<br />{{if $entkey}}&nbsp;[<a href='javascript:piao_key_to();'>折抵码兑换金额</a>]{{/if}}</span></b>
+									</div>
+									</div>
+								</div>
+								<!-- END SIDEBAR USER TITLE -->
+								<!-- SIDEBAR BUTTONS -->
+								<div class="profile-userbuttons">
+									<a href="?c=money&a=addFrom" class="btn btn-circle btn-danger btn-sm"> 在线充值 </a>
+									<a href="?c=nproduct&a=lists&group_id=1" class="btn btn-circle green-haze btn-sm"> 购买主机 </a>
+								</div>
+								<!-- END SIDEBAR BUTTONS -->
+								<!-- SIDEBAR MENU -->
+								<div class="profile-usermenu">
+									<ul class="nav">
+										<li class="active">
+											<a href="?c=user&a=index">
+											<i class="icon-home"></i>
+											账户首页 </a>
+										</li>
+										<li>
+											<a href="?c=user&a=changeForm">
+											<i class="icon-note"></i>
+											修改资料 </a>
+										</li>
+										<li>
+											<a href="?c=user&a=changePasswordForm">
+											<i class="icon-key"></i>
+
+											更改密码 </a>
+										</li>
+									</ul>
+								</div>
+								<!-- END MENU -->
+							</div>
+							<!-- END PORTLET MAIN -->
+						</div>
+						<!-- END BEGIN PROFILE SIDEBAR -->
+						
+						<div class="profile-content">
+							<div class="row">
+							<!-- BEGIN PROFILE CONTENT -->
+								<div class="col-md-12">							
+									<div class="portlet light">
+							<div class="portlet-title">
+								<div class="caption">
+									<i class="icon-note"></i>修改账户 <b>{{$user.username}}</b> 资料
+								</div>
+								<div class="tools">
+									<a href="javascript:;" class="collapse">
+									</a>
+									<a href="javascript:;" class="reload">
+									</a>
+								</div>
+							</div>
+										<!-- 计划套餐开始 -->
+                                         <div class="portlet-body">
+										<div class="tab-pane active" id="tab_1_1">
+   							<form action="?c=user&a=change" method="post">
+														<div class="form-group">
+															<label class="control-label">真实姓名</label>
+															<div class="input-icon"><i class="fa fa-eraser"></i><input class="form-control placeholder-no-fix" type="text" value='{{$user.name}}' name="name"/></div>
+														</div>
+														<div class="form-group">
+															<label class="control-label">身份证号码</label>
+                                                            <div class="input-icon"><i class="fa fa-male"></i><input class="form-control placeholder-no-fix" type="text" value='{{$user.id}}' name="id"/></div>
+														</div>
+														<div class="form-group">
+															<label class="control-label">Email地址</label>
+															<div class="input-icon"><i class="fa fa-envelope"></i><input class="form-control placeholder-no-fix" type="text" value='{{$user.email}}' name="email"/></div>
+														</div>
+														<div class="margiv-top-10">
+															<input type="submit" class="btn green-haze pull-left" value="提交修改">
+														</div>
+							</form><br /><br /></div>
+											<!-- 计划套餐结束 -->
+											</div></div>
+									</div>
+								</div>
+								<!-- END PROFILE CONTENT -->
+									
+						</div>
+					</div>
+				</div>
+				<!-- END PAGE CONTENT-->
+			</div>
+		</div>
+		<!-- END CONTENT -->
+

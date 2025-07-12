@@ -1,0 +1,56 @@
+		<!-- BEGIN SIDEBAR -->
+		<div class="page-sidebar-wrapper">
+			<div class="page-sidebar navbar-collapse collapse">
+				<ul class="page-sidebar-menu page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+					<li class="start ">
+						<a href="?c=user&a=index">
+						<h4><i class="icon-home"></i> 会员中心首页</h4>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+						<h4><i class="icon-layers"></i> 主机分类列表</h4>
+						</a>
+					</li>
+					<li>
+					</li>
+					{{if $nproducts}}
+	               {{foreach from=$groups item=row}}
+					<li class="start ">
+						<a href="?c=nproduct&amp;a=lists&amp;group_id={{$row.group_id}}">
+						<span class="title">{{$row.group_name}}</span>
+						<span class="arrow "></span>
+						</a>
+					  <ul class="sub-menu">
+					  		{{for $j=0;$j< count($nproducts);$j++}}
+
+			{{if $nproducts[$j].group_id==$row.group_id}}
+
+						<li>
+							<a href="?c=product&a=sellForm&product=n_{{$nproducts[$j].id}}">
+							<i class="icon-drawer"></i>
+							{{$nproducts[$j].name}}</a>
+						</li>
+						{{/if}}
+		              {{/for}}
+					  </ul>
+					</li>
+					{{/foreach}}
+                   {{/if}}
+					<li>
+						<a href="?c=public&a=pagelistnews">
+						<h4><i class="icon-bell"></i> 新闻中心</h4>
+						</a>
+					</li>
+					<li>
+						<a href="?c=article&a=lists&type=help">
+						<h4><i class="icon-question"></i> 在线帮助</h4>
+						</a>
+					</li>
+				</ul>
+				<!-- END SIDEBAR MENU -->
+			</div>
+		</div>
+		<!-- END SIDEBAR -->
+
+

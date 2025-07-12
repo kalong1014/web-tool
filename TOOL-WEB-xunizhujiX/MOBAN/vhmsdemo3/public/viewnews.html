@@ -1,0 +1,55 @@
+{{dispatch c=public a='left'}}		
+    <div class="page-content-wrapper">
+			<div class="page-content">
+				<!-- BEGIN PAGE HEADER-->
+				<h3 class="page-title">
+				新闻中心 <small>站点最新公告、优惠活动信息</small>
+				</h3>
+				<div class="page-bar">
+					<ul class="page-breadcrumb">
+						<li>
+							<i class="fa fa-home"></i>
+							<a href="/">首页</a>
+							<i class="fa fa-angle-right"></i>
+						</li>
+						<li>
+                          <a href="#">新闻中心</a>
+						</li>
+					</ul>
+				</div>
+				<!-- END PAGE HEADER-->
+				<!-- BEGIN PAGE CONTENT-->
+						<div class="profile-content">
+							<div class="row">
+							<!-- BEGIN PROFILE CONTENT -->
+								<div class="col-md-12">							
+									<div class="portlet light">
+							<div class="portlet-title">
+								<div class="caption">
+									<i class="icon-bell"></i>新闻详情
+								</div>
+								<div class="tools">
+									<a href="javascript:;" class="collapse">
+									</a>
+									<a href="javascript:;" class="reload">
+									</a>
+								</div>
+							</div>
+										<!-- 计划套餐开始 -->
+                                         <div class="portlet-body">
+										<div class="tab-pane active">
+								<blockquote>
+									<p>
+                                  {{$new.title}}
+									</p>
+									<small>更新时间 : <cite title="Source Title">{{$new.add_time}}</cite></small>
+									<br />
+									<div class="well">
+									{{$new.body}}
+									</div>
+                                  </blockquote>
+									  </div></div>
+							  </div>
+						  </div>
+								<!-- END PROFILE CONTENT -->
+

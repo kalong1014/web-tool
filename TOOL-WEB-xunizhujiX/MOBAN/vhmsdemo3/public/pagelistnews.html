@@ -1,0 +1,79 @@
+{{dispatch c=public a='left'}}		
+    <div class="page-content-wrapper">
+			<div class="page-content">
+				<!-- BEGIN PAGE HEADER-->
+				<h3 class="page-title">
+				新闻中心 <small>站点最新公告、优惠活动信息</small>
+				</h3>
+				<div class="page-bar">
+					<ul class="page-breadcrumb">
+						<li>
+							<i class="fa fa-home"></i>
+							<a href="/">首页</a>
+							<i class="fa fa-angle-right"></i>
+						</li>
+						<li>
+                          <a href="#">新闻中心</a>
+						</li>
+					</ul>
+				</div>
+				<!-- END PAGE HEADER-->
+				<!-- BEGIN PAGE CONTENT-->
+						<div class="profile-content">
+							<div class="row">
+							<!-- BEGIN PROFILE CONTENT -->
+								<div class="col-md-12">							
+									<div class="portlet light">
+							<div class="portlet-title">
+								<div class="caption">
+									<i class="icon-bell"></i>新闻列表
+								</div>
+								<div class="tools">
+									<a href="javascript:;" class="collapse">
+									</a>
+									<a href="javascript:;" class="reload">
+									</a>
+								</div>
+							</div>
+										<!-- 计划套餐开始 -->
+                                         <div class="portlet-body">
+										<div class="tab-pane active">
+										
+								{{foreach from=$list item=row}}
+									<p>
+										 <a href="?c=public&a=viewNewsById&id={{$row.id}}">{{$row.title}}</a> - {{$row.add_time}}
+									</p>
+									{{/foreach}}
+									
+								
+				<br />							<!-- 计划套餐结束 -->
+				{{if $page>1}}
+
+				<a href='?c=public&a=pageListNews&page=0'>首页</a> 
+
+				<a href='?c=public&a=pageListNews&page={{$page-1}}'>上一页</a> 
+
+				{{else}}
+
+				首页 上一页 
+
+				{{/if}}
+
+				{{if $page!=$total_page}} 
+
+				<a href='?c=public&a=pageListNews&page={{$page+1}}'>下一页</a>
+
+				<a href='?c=public&a=pageListNews&page={{$total_page}}'>尾页</a>
+
+				{{else}}下一页 尾页
+
+				{{/if}} 
+
+				{{$page}}/{{$total_page}}&nbsp;
+
+				共计{{$count}}记录
+									  </div></div>
+							  </div>
+						  </div>
+								<!-- END PROFILE CONTENT -->
+

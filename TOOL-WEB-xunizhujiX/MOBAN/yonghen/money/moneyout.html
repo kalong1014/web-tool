@@ -1,0 +1,62 @@
+{{dispatch c='user'  a='left'}}
+
+                        <div class="column dt-sc-two-third">
+                            <div class="side-nav-content">
+                        <div class="column dt-sc-one-column blog-fullwidth with-sidebar">
+                                        <p><h3 class="hr-border-title"><span>Finance & 消费记录</span></h3></p>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" id="table_ri">
+		<tr style="border-bottom:solid #999999 1px">
+		<td height="35" align="left" valign="middle">消费时间</td>	
+		<td height="35" align="left" valign="middle">消费金额(元)</td>
+		<td height="35" align="left" valign="middle">备注</td>
+		</tr>
+			<tr>
+				<td height="20" align="left" valign="middle" ></td>
+				<td height="20" align="left" valign="middle"></td>
+				<td height="20" align="left" valign="middle"></td>
+			</tr>
+			{{foreach from=$list item=row}}
+			<tr>
+			<td height="35" align="left" valign="middle">{{$row.add_time}}</td>
+			<td height="35" align="left" valign="middle">{{$row.money/100}}元</td>
+			<td height="35" align="left" valign="middle">{{$row.mem}}</td>
+			</tr>
+			{{/foreach}}
+  </table>
+	<div class="r_mar_top" align="right" style="height:35px">
+									{{if $page>1}}
+
+									<a href='?c=money&a=moneyout&page=0'>首页</a> 
+
+									<a href='?c=money&a=moneyout&page={{$page-1}}'>上一页</a> 
+
+									{{else}}
+
+									首页 上一页 
+
+									{{/if}}
+
+									{{if $page!=$total_page}} 
+
+									<a href='?c=money&a=moneyout&page={{$page+1}}'>下一页</a>
+
+									<a href='?c=money&a=moneyout&page={{$total_page}}'>尾页</a>
+
+									{{else}}下一页 尾页
+
+									{{/if}} 
+
+									{{$page}}/{{$total_page}}&nbsp;
+
+									共计{{$count}}记录
+	</div>
+                     </div> 
+                        </div>                            
+                    </div> <!-- **Primary Ends** -->
+                                        
+                </div> <!-- **Container Ends** --> 
+            </section>  <!-- **Content Main Ends** -->
+</div>
+
+			<!--wrap_main-->
+

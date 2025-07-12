@@ -1,0 +1,109 @@
+		<div id="main">
+        	<!-- **Breadcrumb Section** -->
+            <div class="breadcrumb-section">
+                  <div class="container">
+	                   <h1>域名注册</h1>
+                      <div class="breadcrumb">
+                      	<a href="/" title="">首页</a> / <span>域名注册</span>
+                      </div>
+                  </div>
+            </div> <!-- **Breadcrumb Section Ends** -->
+
+            <!-- **Content Main** -->
+            <section class="content-main">    
+            	<!-- **Primary** -->
+            	<div class="content-full-width" id="primary"> 
+                    
+                    <div class="fullwidth-section dt-sc-parallax" style="background-image: url();">
+                        <div class="fullwidth-bg">	  
+                        	<div class="container">
+                                <div class="form-wrapper login">
+							
+					<div class="wrap_box">
+						<div class="title">
+								<h2>域名服务</h2>
+								<ul class="radio_hover">
+										<li onmouseover="div_list_switch('domain','domain_en');"><a href="#" class="hover">英文域名</a></li>
+										<!-- <li onmouseover="div_list_switch('domain','domain_zh');"><a href="#">中文域名</a></li> -->
+								</ul>
+						</div>
+						<!--wrap_box_info-->
+						<div class="wrap_box_info">
+							<!--domain_en-->
+							<div class="domain domain_en">
+								<form action="?c=domain&a=index" method="post">
+									<p>
+										<label>www</label><input type="text" class="text" name="name" value="英文域名"  onclick="this.value=''" style="width:260px" />
+										<input type="submit" name="submit" value="查 询" class="submit" />
+									</p>
+									<ul class="domain_list">
+										{{foreach key=key from=$domainextension item=row}} 
+										<li><input name='extension[]' type='checkbox' value='{{$row.extension}}' />{{$row.extension}}</li>
+										{{/foreach}}
+									</ul>
+								</form>
+							</div>
+						</div>
+						<!--//wrap_box_info-->
+					</div>
+					<!--//wrap_box-->	
+
+					{{if $selectresult}}
+					<!--wrap_box-->
+					<div class="wrap_box domain_all">
+						<div class="title">
+								<h2>域名查询</h2>
+						</div>
+						<!--wrap_box_info-->
+						<div class="wrap_box_info">
+							<table>
+								<tr>
+									<th>域名</th><th>状态</th>
+								</tr>
+							{{foreach from=$selectresult item=row}}
+								<tr>
+									<td>{{$row.domain}}</td><td>{{$row.msg}}</td>
+								</tr>
+							{{/foreach}}
+							
+							</table>
+						</div>
+						<!--//wrap_box_info-->
+					</div>
+					<!--//wrap_box-->
+					{{/if}}
+
+					<!--wrap_box-->
+					<div class="wrap_box domain_all">
+						<div class="title">
+								<h2>价格总览</h2>
+						</div>
+						<!--wrap_box_info-->
+						<div class="wrap_box_info">
+							<table>
+								<tr>
+									<th>域名\年限（元）</th><th>最低年限</th><th>注册价格</th><th>续费价格</th>
+								</tr>
+								<tr>
+									<td colspan="7" class="domain_list_title align_left">英文域名</td>
+								</tr>
+								{{foreach from=$domainextension item=row}}
+								<tr>
+									<td class="align_left">{{$row.extension}}</td><td>1 年</td><td>{{($row.reg.oneyear) ? $row.reg.oneyear : 0}} 元 </td><td>{{($row.renew.oneyear) ? $row.renew.oneyear : 0}} 元</td>
+								</tr>
+								{{/foreach}}
+							</table>
+						</div>
+						<!--//wrap_box_info-->
+					</div>	
+                                
+                    </div>         
+                    </div>
+            	</div><!-- **Primary - End** -->                                                    
+            </section> <!-- **Content Main Ends** -->			       	
+        </div> <!-- **Main Ends** -->    
+
+
+
+
+

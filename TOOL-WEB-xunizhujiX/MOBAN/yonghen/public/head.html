@@ -1,0 +1,101 @@
+﻿{{include file='common/head.html'}}
+
+	<!--header-->
+    <link rel="stylesheet" href="{{$STATIC}}style/2014host/css/component.css" type="text/css">
+    <script type="text/javascript" src="{{$STATIC}}style/2014host/js/modernizr-2.6.2.min.js"></script> 	
+    <script type="text/javascript" src="{{$STATIC}}style/2014host/js/jquery.dlmenu.js"></script>
+	<script type="text/javascript" src="{{$STATIC}}style/2014host/js/custom.js"></script>  
+
+<body class="page-template-tpl-fullwidth-php">
+	<!-- **Wrapper** -->
+ 	<div class="wrapper"> 
+    
+    
+    	<!-- **Header Top Bar** -->
+	   	<div id="bbar-wrapper">
+        	<div class="container">
+            	<div class="column dt-sc-one-half first">
+                	<p class="contact"> 客户服务热线 : <span>189-2882-6049</span> </p>
+                </div>
+                
+                <div class="column dt-sc-one-half alignright">
+                	<div class="buttons">
+					{{if $role.user}}
+					{{$role.user}}，您好！ <i class="fa fa-caret-right"></i>
+					<a href='?c=user&a=index'>会员中心 <i class="fa fa-caret-right"></i></a>
+					<a href='?c=session&a=logout'>退出登录 <i class="fa fa-caret-right"></i></a>
+					{{else}}
+					<a href='?c=user&a=index'>登 录 <i class="fa fa-caret-right"></i></a>
+					<a href='?c=public&a=register_n'>注 册 <i class="fa fa-caret-right"></i></a>
+					<a href='?c=public&a=findPasswdFrom'>找回密码 <i class="fa fa-caret-right"></i></a>
+					{{/if}}
+                    </div>
+                </div>
+        	</div>
+	   	</div> <!-- **Header Top Bar Ends** -->
+        
+        <!-- **Header Wrapper** -->
+        <div id="header-wrapper">        
+        	<!-- **Header** -->
+            <header id="header" class="header2">
+                <div class="container">
+                	<!-- **Logo** -->
+                    <div id="logo">
+                        <a href="/" title="首页"> <img src="{{$STATIC}}style/2014host/images/logo.png" alt="logo"> </a>
+                    </div><!-- **Logo Ends** -->
+                    
+                    <!-- **Main-Menu Navigation** -->
+                        <nav id="main-menu">
+                        <div class="main-menuwrapper">
+                            <ul class="dl-menu">
+        
+                                <li><a href="?c=nproduct&a=lists&group_id=2" title="订购云虚拟主机"> 产品服务 </a>
+                                	<ul class="dl-submenu">
+                                        <li> <a href="?c=nproduct&a=lists&group_id=2" title="现在订购"> 虚拟主机产品 </a> </li> 
+<li> <a href="?c=nproduct&a=lists&group_id=9" title="现在体验"> 免费虚拟主机 </a> </li>  
+                                        <!-- <li> <a href="?c=domain&a=index" title="注册域名"> 域名注册 </a> </li> --> 
+                                        <li> <a href="?c=hosting&a=pageHost" title="已购买的产品"> 我的产品 </a> </li> 
+                                    </ul>
+                                </li>
+								
+								<li> <a href="?c=article&a=lists&type=new" title="最新优惠"> 公告 & 优惠 </a>                                    
+                                </li>
+								
+								<li> <a href="?c=article&a=lists&type=help" title="FAQ"> FAQ & 帮助 </a>
+                                	<ul class="dl-submenu">
+                                        <li> <a href="?c=article&a=lists&id=1&type=help" title="如何在线支付"> 常见问题 </a> </li> 
+                                        <li> <a href="?c=article&a=lists&id=2&type=help" title="服务条款"> 服务条款 </a> </li> 
+                                        <li> <a href="?c=article&a=lists&id=3&type=help" title="主机面板快速上手"> 主机面板使用教程 </a> </li>
+                                    </ul>
+                                </li>
+								
+								<li> <a href="#" title=""> 工单 & 客服 </a> 
+                                	<ul class="dl-submenu">
+										<li> <a href="?c=question&a=pageByuser" title="我的工单"> 在线工单 </a> </li>
+                                        <li> <a target=blank href="http://wpa.qq.com/msgrd?v=3&uin=1406615365&site=qq&menu=yes"> 售前客服 </a> </li> 
+                                        <li> <a target=blank href="http://wpa.qq.com/msgrd?v=3&uin=1406615365&site=qq&menu=yes"> 售后客服 </a> </li>
+                                        <li> <a href="#" title="联系电话"> TEL:18928826049 </a> </li> 
+										<li> <a target=blank href="http://wpa.qq.com/msgrd?v=3&uin=1406615365&site=qq&menu=yes"> QQ:1406615365 </a> </li>
+                                    </ul> 
+                                </li>
+								
+								 <li> <a href="?c=article&a=lists&type=about" title="了解我们"> 关于我们 </a> 
+                                	<ul class="dl-submenu">
+                                        <li> <a href="?c=article&a=lists&id=11&type=about" title="公司简介"> 了解我们 </a> </li> 
+                                        <li> <a href="?c=article&a=lists&id=10&type=about" title="全球节点"> 数据中心 </a> </li>
+                                    </ul>
+                                </li>
+								
+                                <li> <a href="?c=user&a=index" title="会员中心"> 会员中心 </a>                                    
+                                </li> 
+                                 <li> <a href="/?c=nproduct&a=lists&group_id=9" title="体验空间"> 免费空间 </a>                                    
+                                </li> 
+								         
+                            </ul>
+	                       </div> <!-- **Main-Menu Navigation Ends** -->                 
+                        <div id="dl-menu" class="dl-menuwrapper"> </div>
+                        </nav>
+                </div>                
+            </header> <!-- **Header Ends** -->
+        </div> <!-- **Header Wrapper Ends** -->        
+

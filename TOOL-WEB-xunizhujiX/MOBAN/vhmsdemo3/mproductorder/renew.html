@@ -1,0 +1,91 @@
+  {{dispatch c='user' a='left'}}
+<link rel="stylesheet" type="text/css" href="{{$STATIC}}style/2014hostv2/assets/global/plugins/select2/select2.css"/>
+<link rel="stylesheet" type="text/css" href="{{$STATIC}}style/2014hostv2/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css"/>
+<link rel="stylesheet" type="text/css" href="{{$STATIC}}style/2014hostv2/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css"/>
+		<!-- BEGIN CONTENT -->
+		<div class="page-content-wrapper">
+			<div class="page-content">
+				<!-- BEGIN PAGE HEADER-->
+				<h3 class="page-title">
+				订单续费 <small>续费您的产品</small>
+				</h3>
+				<div class="page-bar">
+					<ul class="page-breadcrumb">
+						<li>
+							<i class="fa fa-home"></i>
+							<a href="#">会员中心</a>
+							<i class="fa fa-angle-right"></i>
+						</li>
+						<li>
+                          <a href="#">产品管理</a>
+						</li>
+					</ul>
+				</div>
+				<!-- END PAGE HEADER-->
+				<!-- BEGIN PAGE CONTENT-->
+				<div class="row">
+					<div class="col-md-12">
+						<!-- BEGIN PROFILE CONTENT -->
+						<div class="profile-content">
+							<div class="row">
+								<div class="col-md-12">
+						<!-- Begin: life time stats -->
+						<div class="portlet light">
+							<div class="portlet-title">
+								<div class="caption">
+									<i class="icon-basket font-green-sharp"></i>
+									<span class="caption-subject font-green-sharp bold uppercase"> 订单续费</span>
+									<span class="caption-helper">续费产品套餐</span>
+								</div>
+								<div class="actions">
+									<a href="/?c=nproduct&a=lists&group_id=1" class="btn btn-circle btn-default">
+									<i class="fa fa-plus"></i>
+									<span>
+									购买主机产品 </span>
+									</a>
+								</div>
+							</div>
+							<div class="portlet-body">
+								<div class="table-container">
+								<p>
+								<span class="label label-primary">
+								温馨提示：</span>
+								<span>
+								 续费前请确认是不是您需要升级的主机产品，然后再确定升级！</span></p>
+								 <div class="portlet-body flip-scroll">
+							<form name='vhostform' action="?c=mproductorder&a=renewMproductorder&id={{$id}}" method="post">
+									<br /><p>产品名称：<strong>{{$mproductorder.product_name}}</strong></p>
+									<p>续费时间：										
+										{{if $months[0]}}
+
+											<input type='radio' name='month' value='{{$months[0][0]}}' >{{$months[0][1]}}：<font color="#FF0000">{{substr($months[0][2],0,6)}}元</font> &nbsp;
+
+											{{/if}}
+
+											{{for $i=1;$i< 4;$i++}}
+
+											<input type='radio' name='month' value='{{$months[$i][0]}}' {{if $months[$i][0]==12}}checked{{/if}}>
+
+												{{$months[$i][1]}}：<font color="#FF0000">{{substr($months[$i][2],0,6)}}元</font> &nbsp;
+
+											
+
+											{{/for}}
+</p>
+<br />
+									<tr>
+										<td class="td_bgc td_hg" colspan="2" align="center">
+										<input type="submit" value="续 费" class="btn green">  <input type='button' class="btn default" value='返回' onclick='history.go(-1)'>
+										</td>
+									</tr>
+							</form>
+							</div>								</div>
+							</div>
+						</div>
+						<!-- End: life time stats -->
+								</div>
+							</div>
+						</div>
+						<!-- END PROFILE CONTENT -->					
+
+

@@ -1,0 +1,175 @@
+<body class="nowhmcs">
+<header>
+	<div class="wave-wrap">	    <div class="container">
+	    	<nav class="navbar navbar-inverse nav-home">
+	            <!-- Brand and toggle get grouped for better mobile display -->
+	
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse" aria-expanded="false">
+					<label class="ac-gn-menuicon-label">
+						<span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top">
+							<span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span>
+						</span>
+						<span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom">
+							<span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span>
+						</span>
+					</label>
+				</button>
+				
+	            <div class="navbar-header">
+	                <a class="navbar-brand" href="/index.php">{{$setting.web_name.value}}</a>
+	            </div><!-- Collect the nav links, forms, and other content for toggling -->
+	
+	            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse">
+	                <ul class="nav navbar-nav navbar-right">
+	                    <li>
+	                    	<a href="/index.php">首页</a>
+	                    </li>
+	                    <li class="dropdown">
+	                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" role="button" aria-haspopup="true" aria-expanded="false">主机 <span class="caret"></span></a>
+	
+	                        <ul class="dropdown-menu">
+
+	                            <li><a href="?c=nproduct&a=lists&group_id=1"><i class="fa fa-paper-plane"></i>香港PHP主机月付 </a></li>
+	
+	                            <li><a href="?c=nproduct&a=lists&group_id=2"><i class="fa fa-cloud"></i> 香港PHP主机年付 </a></li>
+
+	                        </ul>
+	                    </li>						
+	                    <li>
+	                    	<a href="http://www.52webhl.com">站点博客</a>
+	                    </li>
+	                    <li>
+	                    	<a href="tencent://message/?uin=55836090&Site=52chinahost&Menu=yes">客服支持</a>
+	                    </li>
+						<li><a href="?c=user&a=index" class="btn btn-border">会员中心</a></li>
+					</ul>
+	            </div><!-- /.navbar-collapse -->
+	    	</nav>
+	</div></header>	
+
+
+<section class="dedicated space2x">
+	<div class="container">
+	{{if $groupinfo.group_info}}
+		<h2 class="title-head">{{$groupinfo.group_name}}</h2>
+	{{/if}}	
+		<table class="table">
+		
+			<thead>
+				<tr>
+					<th>主机规格</th>
+				</tr>
+			</thead>
+			<tbody>
+			 	{{if is_array($products)}}
+		 		{{for $i=0;$i< count($products);$i++}}
+					{{if $i/3==0}}
+					{{/if}}		
+				<tr>
+		            <td>{{$products[$i].name}}</td>
+		            <td><br />{{$products[$i].describe}}<br /></td>
+
+		            <td><h5 class="price"><span class="yen">¥</span>{{$products[$i].price}}元<small>/{{($groupinfo.pay_cycle=='year') ? '年' : '月'}}</small></h5></td>
+		            <td><a href="?c=product&a=sellForm&product=n_{{$products[$i].id}}" class="btn btn-success"><i class="fa fa-shopping-cart"></i>立即订购</a>
+		            </td>
+		        </tr>
+				{{/for}}
+			{{/if}}
+								
+		    </tbody>
+
+		</table>
+	
+	</div>
+</section>
+
+
+
+
+
+<footer class="space2x">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-3">
+					<a class="navbar-brand" href="#">{{$setting.web_name.value}}</a>
+					<p>© 2016 52webhl.com  保留所有权利.</p>
+				</div>
+				<div class="col-xs-4 col-sm-2">
+					<h4 class="title-head">关于我们</h4>
+					<ul class="list-unstyled">
+						<li><a href="#">主站</a></li>
+						<li><a href="#">QQ群：创建中</a></li>
+						<li><a href="#">QQ：55836090</a></li>
+					</ul>
+				</div>
+				<div class="col-xs-4 col-sm-2">
+					<h4 class="title-head">产品中心</h4>
+					<ul class="list-unstyled">
+						<li><a href="?c=nproduct&a=lists&group_id=1">香港PHP主机月付</a></li>
+						<li><a href="?c=nproduct&a=lists&group_id=2">香港PHP主机年付</a></li>
+						<li><a href="#">等您定制</a></li>
+					</ul>
+				</div>
+				<div class="col-xs-4 col-sm-2">
+					<h4 class="title-head">相关链接</h4>
+					<ul class="list-unstyled">
+						<li><a href="https://yueliangxiefang.taobao.com/">淘宝店铺</a></li>
+						<li><a href="http://www.52webhl.com">主机博客</a></li>						
+
+					</ul>
+				</div>
+				<div class="col-sm-2 hidden-xs hidden-sm">
+					<h4 class="title-head">客服支持</h4>
+					<ul class="list-unstyled">
+						<li><a href="tencent://message/?uin=55836090&Site=52chinahost&Menu=yes">点击联系客服</a></li>
+						<li><a href="#">7x24小时为您服务</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+
+<script src="{{$STATIC}}js/bootstrap.min.js"></script>
+<script src="{{$STATIC}}js/wow.min.js"></script>
+<script src="{{$STATIC}}js/bootstrap-hover.min.js"></script>
+<script src="{{$STATIC}}js/bootstrap-select.min.js"></script>
+<script src="{{$STATIC}}js/jquery.zclip.js"></script>
+<script src="{{$STATIC}}js/jquery-ui.min.js"></script>
+<script type="text/javascript">
+    var csrfToken = '083bd0a5e8b02ad87bcd76cdade3a15fac47cca8',
+        markdownGuide = 'Markdown Guide',
+        locale = 'en_GB',
+        saved = 'saved',
+        saving = 'autosaving';
+</script>
+<script src="{{$STATIC}}js/whmcs.js"></script>
+<script src="{{$STATIC}}js/ajaxmodal.js"></script>
+
+<div class="modal system-modal fade" id="modalAjax" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content panel panel-primary">
+            <div class="modal-header panel-heading">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title">Title</h4>
+            </div>
+            <div class="modal-body panel-body">
+                Loading...
+            </div>
+            <div class="modal-footer panel-footer">
+                <div class="pull-left loader">
+                    <i class="fa fa-circle-o-notch fa-spin"></i> Loading...
+                </div>
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    Close
+                </button>
+                <button type="button" class="btn btn-primary modal-submit">
+                    Submit
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

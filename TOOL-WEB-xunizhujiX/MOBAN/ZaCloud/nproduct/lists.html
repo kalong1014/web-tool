@@ -1,0 +1,81 @@
+
+<div class="breadcrumbs">
+	<div class="row">
+	</div>
+</div>
+<section class="pricingtables vps">
+	<div class="row">
+		<div class="col-sm-12">
+		{{if $groupinfo.group_info}}
+			<h2>{{$groupinfo.group_info}}</h2>
+		{{/if}}	
+			<p>精心挑选近一年最受用户喜爱路线，确保全网访问高速、稳定！</p>
+		</div>
+	</div> 
+</section>
+<div class="row spacing-70">
+	<div class="col-sm-3">
+		<div class="feature wow zoomIn" data-wow-delay="0.2s"> 
+			<i class="fa fa-book"></i>
+			<h4>全自动备份解决方案</h4>
+			<p>无需懂复杂的Mysql命令，可视化一键备份让你轻松掌控</p>
+		</div>
+	</div>
+	<div class="col-sm-3">
+		<div class="feature wow zoomIn" data-wow-delay="0.4s">
+			<i class="fa fa-check-circle"></i>
+			<h4>完美支持各种Web程序</h4>
+			<p>DZ、WP、DEDECMS等常见网站程序都可以完美支持</p>
+		</div>
+	</div>
+	<div class="col-sm-3">
+		<div class="feature wow zoomIn" data-wow-delay="0.6s"> 
+			<i class="fa fa-rocket"></i><h4>不限速不限流量</h4>
+			<p>传输速度实测可达到1-10M/s，快速访问，提高效率</p>
+		</div>
+	</div>
+	<div class="col-sm-3">
+		<div class="feature wow zoomIn" data-wow-delay="0.8s"> 
+			<i class="fa fa-group"></i>
+			<h4>强大的售后技术支持</h4>
+			<p>发现任何问题均可以登入客户中心提交服务单或联系在线客服</p>
+		</div>
+	</div>
+</div> 
+</section>
+<p><br /></p> 
+<section class="pricingtables vps">
+	<div class="row">
+		<div class="col-sm-12">
+			<h2>虚拟主机套餐</h2>
+			<p>以下套餐基本满足中小站长的需求，如果有更高的需求可联系客服定制</p>
+		</div>
+	</div>
+<div class="row spacing-40">
+		 	{{if is_array($products)}}
+		 		{{for $i=0;$i< count($products);$i++}}
+					{{if $i/3==0}}
+						
+					{{/if}}
+	<div class="col-sm-15 wow zoomIn" data-wow-delay="0.2s">
+		<div class="panel panel-info">
+			<div class="panel-heading"><h3 class="text-center">{{$products[$i].name}}</h3></div>
+			<div class="panel-body text-center"><h4>￥{{$products[$i].price}}</h4><p><span class="per">/{{($groupinfo.pay_cycle=='year') ? '年' : '月'}}</span></p></div>
+			<ul class="text-center">
+{{$products[$i].describe}}
+			</ul>
+			<div class="panel-footer"><a class="btn btn-lg btn-pricetable" href="?c=product&a=sellForm&product=n_{{$products[$i].id}}">立即开通</a></div>
+		</div>
+	</div>
+				{{/for}}
+			{{/if}}
+</div> 
+</section><p></p> 
+<section class="pricingtables vps" style="padding-top:0;background:#Fff">
+<div class="row">
+	<div class="col-sm-12"><h2 style="color:#DE6262"> 
+		<i class="fa fa-heart"></i> <h2>温馨提示</h2>
+		<p>虚拟主机只可以用作正常途径，不可以用作其他非法用途，若发现使用主机内容违反，我司将删除空间，概不退款，并上报公安机关。</p>
+	</div>
+</div> 
+</section>

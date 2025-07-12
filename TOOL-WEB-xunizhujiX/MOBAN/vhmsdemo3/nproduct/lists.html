@@ -1,0 +1,161 @@
+{{*避免变量覆盖 重新赋值*}}
+
+{{$new_products=$products}}
+
+{{dispatch c=nproduct a='left'}}
+<link href="{{$STATIC}}style/2014hostv2/assets/admin/pages/css/login.css" rel="stylesheet" type="text/css"/>
+<link href="{{$STATIC}}style/2014hostv2/assets/admin/pages/css/pricing-table.css" rel="stylesheet" type="text/css"/>
+<link href="{{$STATIC}}style/2014hostv2/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css"/>
+<link href="{{$STATIC}}style/2014hostv2/assets/admin/pages/css/profile.css" rel="stylesheet" type="text/css"/>
+<link href="{{$STATIC}}style/2014hostv2/assets/admin/pages/css/tasks.css" rel="stylesheet" type="text/css"/>
+		<!-- BEGIN CONTENT -->
+		<div class="page-content-wrapper">
+			<div class="page-content">
+				<!-- BEGIN PAGE HEADER-->
+				<h3 class="page-title">
+				产品套餐 <small>虚拟主机产品套餐列表</small>
+				</h3>
+				<div class="page-bar">
+					<ul class="page-breadcrumb">
+						<li>
+							<i class="fa fa-home"></i>
+							<a href="#">主机产品</a>
+							<i class="fa fa-angle-right"></i>
+						</li>
+						<li>
+                          <a href="#">套餐列表</a>
+						</li>
+					</ul>
+				</div>
+				<!-- END PAGE HEADER-->
+				<div class="row">
+				<div class="col-md-12">
+                         <div class="panel">
+										<div class="panel-body">
+				<div class="portlet-body util-btn-margin-bottom-5">
+																	<div class="clearfix">
+																			{{if $nproducts}}
+          {{foreach from=$groups item=row}}
+														<a href="?c=nproduct&amp;a=lists&amp;group_id={{$row.group_id}}" class="btn green">{{$row.group_name}}</a>        
+														  {{/foreach}}
+          {{/if}}
+													</div>
+													</div>
+										</div>
+									</div>				
+				<!-- BEGIN PAGE CONTENT-->
+				<div class="row">
+						<!-- BEGIN PROFILE CONTENT -->
+						<div class="col-md-9">
+							<div class="row">
+								<div class="col-md-12">
+									<div class="portlet light">
+							<div class="portlet-title">
+								<div class="caption">
+									<i class="fa fa-cogs"></i>产品套餐列表
+								</div>
+								<div class="tools">
+									<a href="javascript:;" class="collapse">
+									</a>
+									<a href="javascript:;" class="reload">
+									</a>
+								</div>
+							</div>
+							
+										<div class="portlet-body">
+											<div class="tab-content">
+											<!-- 计划套餐开始 -->
+							<div class="portlet-body">
+								<div class="row margin-bottom-40">
+								<!-- Pricing -->
+		   {{if is_array($products)}}
+		 		{{for $i=0;$i< count($products);$i++}}
+					{{if $i/3==0}}
+					{{/if}}        
+								<div class="col-md-3">
+									<div class="pricing hover-effect">
+										<div class="pricing-head">
+											<h3>{{$products[$i].name}}
+											</h3>
+											<h4><i>￥</i>{{$products[$i].price}}<i> 元</i>
+											<span>
+											 {{($groupinfo.pay_cycle=='year') ? '年付' : '月付'}} </span>
+											</h4>
+										</div>
+										<ul class="pricing-content list-unstyled">
+                                        {{$products[$i].describe}}
+										</ul>
+										<div class="pricing-footer">
+										<br />
+											<a href="?c=product&a=sellForm&product=n_{{$products[$i].id}}" class="btn yellow-crusta">
+											马上订购 <i class="m-icon-swapright m-icon-white"></i>
+											</a>
+										</div>
+									</div>
+								</div>
+						{{/for}}
+			{{/if}}  
+
+				</div>
+			</div>
+											<!-- 计划套餐结束 -->
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- END PROFILE CONTENT -->
+						<!-- BEGIN PROFILE SIDEBAR -->
+						<div class="col-md-3">
+							<!-- PORTLET MAIN -->
+							<div class="portlet light">
+								<div>
+								{{if $groupinfo.group_info}}
+									<h3 class="profile-desc-title profile-stat"><i class="fa fa-globe"></i>&nbsp;节点信息</h3>
+									<div class="margin-top-20 profile-desc-link">
+									<span class="details">{{$groupinfo.group_info}}</span>
+									</div>
+									<br />
+									{{/if}}
+									<h3 class="profile-desc-title profile-stat"><i class="fa fa-wechat"></i>&nbsp;在线客服</h3>
+									<div class="margin-top-20 profile-desc-link">
+										<a href="javascript:;">
+										<span class="details">
+										<i class="fa fa-qq"></i>售前客服：永恒</span>
+										</a>
+									</div>
+									<div class="margin-top-20 profile-desc-link">
+										<a href="javascript:;">
+										<span class="details">
+										<i class="fa fa-qq"></i>售前客服：永恒</span>
+										</a>
+									</div>
+									<div class="margin-top-20 profile-desc-link">
+										<a href="javascript:;">
+										<span class="details">
+										<i class="fa fa-qq"></i>售后支持：阿豪</span>
+										</a>
+									</div>
+									<div class="margin-top-20 profile-desc-link">
+										<a href="javascript:;">
+										<span class="details">
+										<i class="fa fa-phone-square"></i>130 4424 7253</span>
+										</a>
+									</div>
+									<div class="margin-top-20 profile-desc-link">
+										<a href="javascript:;">
+										<span class="details">
+										<i class="fa fa-envelope"></i>1406615365@qq.com</span>
+										</a>
+									</div>
+								</div>
+							</div>
+							<!-- END PORTLET MAIN -->
+						</div>
+						<!-- END BEGIN PROFILE SIDEBAR -->
+				</div>
+				<!-- END PAGE CONTENT-->
+			</div>
+		</div>
+		<!-- END CONTENT -->

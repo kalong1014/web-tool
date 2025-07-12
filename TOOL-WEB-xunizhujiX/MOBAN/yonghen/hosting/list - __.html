@@ -1,0 +1,97 @@
+  {{dispatch c='user' a='left'}}
+                        <div class="column dt-sc-two-third">
+                            <div class="side-nav-content">
+                        <div class="column dt-sc-one-column blog-fullwidth with-sidebar">
+                                  <h3 class="hr-border-title"><span>Servers & 我的产品</span></h3> 
+								<!-- 主体部分开始 --> 
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" id="table_ri">
+			<tr style="border-bottom:solid #999999 1px">
+				<td height="35" align="center" valign="middle" >产品操作台</td>
+				<td height="35" align="center" valign="middle">控制面板账号</td>
+				<td height="35" align="center" valign="middle">产品名称</td>
+				<td height="35" align="center" valign="middle">到期时间</td>
+				<td height="35" align="center" valign="middle">主机状态</td>
+			</tr>
+			<tr>
+				<td height="12" align="center" valign="middle" ></td>
+				<td height="12" align="center" valign="middle"></td>
+				<td height="12" align="center" valign="middle"></td>
+				<td height="12" align="center" valign="middle"></td>
+				<td height="12" align="center" valign="middle"></td>
+			</tr>
+			{{foreach from=$list item=row}}
+			<tr>
+				<td width="130" height="40" align="center" valign="middle" class="left">
+				<input type='checkbox' value="{{$row.name}}" id="{{$row.name}}" onclick='show_hosting_manag(this)'> 操作产品 
+		      </td>
+				<td height="40" align="center" valign="middle"><a href='?c=hosting&a=link&name={{$row.name}}' target="_blank">{{$row.name}}</a></td>
+				<td height="40" align="center" valign="middle" class='js_show_product_name'><a href='?c=host&a=showProductFrom&product_id={{$row.product_id}}'>{{$row.product_id}}</a></td>
+				<td height="40" align="center" valign="middle">{{substr($row.expire_time,0,10)}}</td>
+				<td height="40" align="center" valign="middle" title='{{$row.status}}'>{{if $row.status==0}}正常{{else}}<font color='red'>暂停</font>{{/if}}				</td>
+			</tr>
+			{{/foreach}}
+		</table>
+					
+						<!-- 主体部分结束 -->      
+                </div> <!-- **Container Ends** --> 
+            </section>  <!-- **Content Main Ends** -->
+</div>
+
+
+
+
+<script type='text/javascript'>
+var ddlog = null;
+	function show_hosting_manag(obj)
+	{
+		var name;
+		$(":checkbox").each(function(){
+			if (this == obj) {
+				name = this.value;
+				return ;
+			}
+			$(this).attr('checked',false);
+			
+		});
+		if (obj.checked !='checked' && obj.checked != true) {
+			if (ddlog) {
+				ddlog.close();
+			}
+			return ;
+		}
+		ddlog = null;
+		var offset = $(obj).offset();
+		var html = '<p>[<a	href="?c=hosting&a=upgradeFrom&name='+ name +'">升级</a>]</p><br>';
+			html += '<p>[<a	href="?c=hosting&a=renewFrom&name='+ name +'">续费</a>]</p><br>';
+			html += '<p>[<a	href="?c=hosting&a=link&name='+ name +'" target="_blank">控制面板</a>]</p><br>';
+			html += '<p>[<a href="?c=hosting&a=changePasswdFrom&name='+ name +'">修改密码</a>]</p>';
+		var dlog = art.dialog({id:'id22',content:'',icon: '',top:'30%'});
+		ddlog = dlog;
+		dlog.content(html);
+		dlog.position(offset.left+20,offset.top+12);
+	}
+	$(document).ready(function() {
+		$.ajax({
+			type : 'get',
+			url : '?c=nproduct&a=getNproducts',
+			data : null,
+			dataType : 'json',
+			success : function(ret) {
+				if (ret['count'] <= 0) {
+					return;
+				}
+				var nps = ret['nproducts'];
+				var count = ret['count'];
+				$(".js_show_product_name").each(function() {
+					var pid = $(this).text();
+					for ( var i in nps) {
+						if (nps[i]['id'] == pid) {
+							$(this).html(nps[i]['name']);
+						}
+					}
+				});
+			}
+		});
+	});
+
+</script>

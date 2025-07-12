@@ -1,0 +1,70 @@
+		<div id="content">
+			<!-- Page Banner -->
+			<div class="page-banner" style=" background-color:#336C9D;">
+				<div class="container">
+					<h2>我的工单</h2>
+					<ul class="page-tree">
+						<li><a href="/">首页</a></li>
+						<li><a href="?c=user&a=index">会员中心</a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- Page Banner end -->
+		</div>
+		<br />
+	
+  {{dispatch c='user' a='left'}}
+  
+	<div class="col-md-9 blog-side">
+	   <h3><i class="fa fa-comment-o"></i> 工单列表 <a href="?c=question&a=addFrom" class="btn btn-primary" style="font-size:14px; float:right;">提交新工单</a></h3> <hr />
+							
+								 
+									{{foreach from=$list item=row}}
+									
+									<div class="form-group"><a href='?c=question&a=getQuestion&id={{$row.id}}'>
+									<p class="col-sm-2" style="font-size:14px;">{{if $row.status==1}}<font color="#006600">已回复</font>{{else}} <font color=red>未回复</font>{{/if}}</p>
+									<p class="col-sm-7 js_show_product_name" style="color:#000000;font-size:14px;">{{substr($row.title,0,87)}}</p>
+									<p class="col-sm-3" style="color:#000000;font-size:14px;">{{$row.add_time}}</p></a>
+									</div><p>&nbsp;</p>
+									{{/foreach}}
+									
+	   
+	<br />
+
+		<div class="r_mar_top" align="right" style="font-size:12px;">
+										{{if $page>1}}
+
+										<a href='?c=question&a=pageByuser&sortname={{$smarty.request.sortname}}&page=0'>首页</a> 
+
+										<a href='?c=question&a=pageByuser&sortname={{$smarty.request.sortname}}&page={{$page-1}}'>上一页</a> 
+
+											{{else}}
+
+											首页 上一页 
+
+											{{/if}}
+
+											{{if $page!=$total_page}} 
+
+											<a href='?c=question&a=pageByuser&sortname={{$smarty.request.sortname}}&page={{$page+1}}'>下一页</a>
+
+											<a href='?c=question&a=pageByuser&sortname={{$smarty.request.sortname}}&page={{$total_page}}'>尾页</a>
+
+											{{else}}下一页 尾页
+
+											{{/if}} 
+
+											{{$page}}/{{$total_page}}&nbsp;
+
+											共计{{$count}}记录
+		</div>
+								
+							</div>
+
+
+
+  <!-- 必须要加 -->
+  </div></div></div>
+
+<br />	   
+

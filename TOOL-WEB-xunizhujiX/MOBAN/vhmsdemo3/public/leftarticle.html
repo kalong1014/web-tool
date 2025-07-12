@@ -1,0 +1,25 @@
+				            {{if $news}}
+							{{foreach $news as $n key=key}}
+															<li>
+																<a href="?c=public&a=viewNewsById&id={{$n.id}}" >
+																<div class="col1">
+																	<div class="cont">
+																		<div class="cont-col1">
+																			<div class="label label-sm label-success">
+																				<i class="fa fa-bell-o"></i>
+																			</div>
+																		</div>
+																		<div class="cont-col2">
+																			<div class="desc">
+																				 {{$n.title|truncate:30}}
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																</a>
+															</li>
+							{{/foreach}}
+				            {{/if}}
+				
+
+			

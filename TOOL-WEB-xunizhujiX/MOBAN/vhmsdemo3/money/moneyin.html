@@ -1,0 +1,131 @@
+  {{dispatch c='user' a='left'}}
+<link rel="stylesheet" type="text/css" href="{{$STATIC}}style/2014hostv2/assets/global/plugins/select2/select2.css"/>
+<link rel="stylesheet" type="text/css" href="{{$STATIC}}style/2014hostv2/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css"/>
+<link rel="stylesheet" type="text/css" href="{{$STATIC}}style/2014hostv2/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css"/>
+		<!-- BEGIN CONTENT -->
+		<div class="page-content-wrapper">
+			<div class="page-content">
+				<!-- BEGIN PAGE HEADER-->
+				<h3 class="page-title">
+				充值记录 <small>您的充值记录</small>
+				</h3>
+				<div class="page-bar">
+					<ul class="page-breadcrumb">
+						<li>
+							<i class="fa fa-home"></i>
+							<a href="#">会员中心</a>
+							<i class="fa fa-angle-right"></i>
+						</li>
+						<li>
+                          <a href="#">账户管理</a>
+						</li>
+					</ul>
+				</div>
+				<!-- END PAGE HEADER-->
+				<!-- BEGIN PAGE CONTENT-->
+				<div class="row">
+					<div class="col-md-12">
+						<!-- BEGIN PROFILE CONTENT -->
+						<div class="profile-content">
+							<div class="row">
+								<div class="col-md-12">
+						<!-- Begin: life time stats -->
+						<div class="portlet light">
+							<div class="portlet-title">
+								<div class="caption">
+									<i class="fa fa-money font-green-sharp"></i>
+									<span class="caption-subject font-green-sharp bold uppercase"> 充值记录</span>
+									<span class="caption-helper">您的充值记录</span>
+								</div>
+								<div class="actions">
+									<a href="?c=money&a=addFrom" class="btn btn-circle btn-default">
+									<i class="fa fa-plus"></i>
+									<span>
+									在线充值 </span>
+									</a>
+								</div>
+							</div>
+							<div class="portlet-body">
+								<div class="table-container">
+								<p>
+								<span class="label label-primary">
+								温馨提示：</span>
+								<span>
+								 因系统原因，使用充值卡充值后显示的充值记录不正确，显示出来的为实际金额/100后的数字，但不影响您的实际金额，支付宝在线充值显示正常。实际余额可以在“账户信息”页查看您的可用余额！</span></p>
+								 <div class="portlet-body flip-scroll">
+								<table class="table table-bordered table-striped table-condensed flip-content">
+								<thead class="flip-content">
+								<tr>
+									<th width="20%">
+										 充值时间
+									</th>
+									<th class="numeric">
+										 充值金额
+									</th>
+									<th class="numeric">
+										 支付方式
+									</th>
+									<th class="numeric">
+										 订单号
+									</th>
+									<th class="numeric">
+										 支付状态
+									</th>
+								</tr>
+								</thead>
+								<tbody>
+                              {{foreach from=$list item=row}}
+								<tr>
+									<td>
+										 {{$row.start_time}}
+									</td>
+									<td>{{$row.money/100}}元</td>
+									<td class="numeric">
+									{{if $row.gw==1}}支付宝{{else if $row.gw==2}}网银在线{{else if $row.gw==10}}折抵优惠{{else}}其他{{/if}}
+									</td>
+									<td class="numeric">
+										{{$row.gwid}}
+									</td>
+									<td class="numeric">
+                                    {{if $row.status==1}}支付成功{{else}}<font color='red'>支付失败</font>{{/if}}
+                                   </td>
+								</tr>
+								{{/foreach}}
+								</tbody>
+								</table>
+		<div class="r_mar_top" align="right">
+									{{if $page>1}}
+
+									<a href='?c=money&a=moneyin&page=0'>首页</a> 
+
+									<a href='?c=money&a=moneyin&page={{$page-1}}'>上一页</a> 
+
+									{{else}}
+
+									首页 上一页 
+
+									{{/if}}
+
+									{{if $page!=$total_page}} 
+
+									<a href='?c=money&a=moneyin&page={{$page+1}}'>下一页</a>
+
+									<a href='?c=money&a=moneyin&page={{$total_page}}'>尾页</a>
+
+									{{else}}下一页 尾页
+
+									{{/if}} 
+
+									{{$page}}/{{$total_page}}&nbsp;
+
+									共计{{$count}}记录
+		</div>
+								
+							</div>								</div>
+							</div>
+						</div>
+						<!-- End: life time stats -->
+								</div>
+							</div>
+						</div>
+						<!-- END PROFILE CONTENT -->					

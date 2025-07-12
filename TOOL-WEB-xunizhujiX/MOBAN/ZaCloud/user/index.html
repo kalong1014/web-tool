@@ -1,0 +1,50 @@
+
+ <div class="customer_center_banner">
+</div>
+<div class="client-nav">
+<div class="row">
+    <div class="col-sm-12">
+          <ul id="navul"><li><a href="?c=user&a=index" class="cur"><em class="fa fa-home"></em>  客户中心</a></li>
+                    <li class="li-products"><a href="?c=hosting&a=pageHost"><em class="fa fa-server"></em>  我的产品</a></li>
+                    <li class="li-domains"><a href="?c=user&a=changeForm"><em class="fa fa-send"></em> 修改资料</a></li>
+                    <li><a href="?c=user&a=changePasswordForm"><em class="fa fa-money"></em>  修改密码</a></li>
+                    <li><a href="?c=money&a=moneyout"><em class="fa fa-rmb"></em>  消费记录</a></li>
+                    <li><a href="?c=money&a=moneyin"><em class="fa fa-calculator"></em>  充值记录</a></li>
+                    <li><a href="?c=question&a=addFrom"><em class="fa fa-external-link"></em>  提交服务单</a></li>
+                    <li class="li-ticket"><a href="?c=question&a=pageByuser"><em class="fa fa-comments"></em> 查看服务单</a></li>
+                </ul>
+    </div>
+</div>
+
+</div>
+<div class="blog single" style="padding-top: 15px;">
+    <div class="row">
+ <div class="col-sm-12 member-col-right">
+<div class="member_info">
+
+            
+        <div class="avatar"><img src="http://q1.qlogo.cn/g?b=qq&amp;s=100&amp;t=1426434187&amp;nk={{$user.email}}"><span>尊敬的{{$user.username}}，欢迎您！<em></em></span><i >IP Address: {{$login_ip}}</i>
+
+
+            
+                                
+                <div class="invo_info">账户余额：<strong>￥{{$user.money/100}} 元</strong></div>
+                <div class="quicklink"><a href="?c=user&a=changeForm"><em class="fa fa-pencil-square-o"></em>  修改资料</a>&nbsp;&nbsp;&nbsp;
+				<a href="?c=money&a=addFrom"><em class="fa fa-money"></em> 账户充值</a>
+               &nbsp;&nbsp;&nbsp;<a href="?c=session&a=logout"><em class="fa fa-sign-out"></em> 安全退出</a></div></div>
+            </div>
+             <div class="new_notice">
+<div class="styled_title"><h1>最新公告</h1></div>
+<ul>
+{{dispatch c='public'  a='pagelistnews'}}
+</ul>
+</div>
+            
+    </div>   		
+
+</div>
+
+</div>
+
+
+                      

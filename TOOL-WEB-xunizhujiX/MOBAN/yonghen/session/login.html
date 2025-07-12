@@ -1,0 +1,61 @@
+<SCRIPT language='javascript'>
+function check_submit() 
+{
+	var username = jQuery("#user").val();
+	var passwd = jQuery("#pw").val();
+	if (username == "" || passwd == "") {
+		return alert("账号密码不能为空");
+	}
+	document.getElementById('from').submit();
+}
+</SCRIPT>
+
+		<div id="main">
+        	<!-- **Breadcrumb Section** -->
+            <div class="breadcrumb-section">
+                  <div class="container">
+	                   <h1>登 录</h1>
+                      <div class="breadcrumb">
+                      	<a href="/" title="">首页</a> / <span>会员中心</span>
+                      </div>
+                  </div>
+            </div> <!-- **Breadcrumb Section Ends** -->
+
+            <!-- **Content Main** -->
+            <section class="content-main">    
+            	<!-- **Primary** -->
+            	<div class="content-full-width" id="primary"> 
+                    
+                    <div class="fullwidth-section dt-sc-parallax" style="background-image: url();">
+                        <div class="fullwidth-bg">	  
+                        	<div class="container">
+                            
+                                <div class="dt-sc-hr-invisible-medium">
+								</div>
+								
+                   				<div class="page_info">
+                                	<h3 class="title center">会员中心 - 会员登录区</h3>
+                                </div>
+								
+                                <div class="form-wrapper login">
+															<div class="dt-sc-tabs-container">
+                                    <div id="ajax_contact_msg"></div>
+                                    <form name="form2" class="inquiry-form" action="?c=session&a=login" method="post" id='from'>
+										<input type="text" name="username" placeholder="用户名" id='user'>
+										<input type="password" name="passwd" placeholder="密 码" id='pw'>
+                                        <input type="button" onclick='check_submit();' value="登 录" class="dt-sc-button medium">
+                                    </form>                                                                              
+                                </div>
+
+                                </div>                                
+                                
+                    </div>         
+                    
+            	</div><!-- **Primary - End** -->                                                    
+            </section> <!-- **Content Main Ends** -->			       	
+        </div> <!-- **Main Ends** -->    
+
+<script language='javascript'>
+form2.username.focus();
+
+</script>

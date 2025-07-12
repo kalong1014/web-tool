@@ -1,0 +1,57 @@
+{{dispatch c='user'  a='left'}}
+
+                        <div class="column dt-sc-two-third">
+                            <div class="side-nav-content">
+                        <div class="column dt-sc-one-column blog-fullwidth with-sidebar">
+                                        <p><h3 class="hr-border-title"><span>Finance & 充值记录</span></h3></p>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" id="table_ri">
+		<tr style="border-bottom:solid #999999 1px">
+			<td height="35" align="left" valign="middle">充值时间</td>
+			<td height="35" align="left" valign="middle">充值金额</td>
+			<td height="35" align="left" valign="middle">支付方式</td>
+			<td height="35" align="left" valign="middle">订单号</td>
+			<td height="35" align="left" valign="middle">支付状态</td>	
+		</tr>
+			<tr>
+				<td height="20" align="left" valign="middle" ></td>
+				<td height="20" align="left" valign="middle"></td>
+				<td height="20" align="left" valign="middle"></td>
+				<td height="20" align="left" valign="middle"></td>
+				<td height="20" align="left" valign="middle"></td>
+				<td height="20" align="left" valign="middle"></td>
+			</tr>
+			{{foreach from=$list item=row}}
+		<tr>
+			<td height="35" align="left" valign="middle">{{$row.start_time}}</td>
+			<td height="35" align="left" valign="middle">{{$row.money/100}} 元</td>
+			<td height="35" align="left" valign="middle">{{if $row.gw==1}}支付宝{{else if $row.gw==2}}网银在线{{else if $row.gw==10}}折抵优惠{{else}}其他{{/if}}</td>
+			<td height="35" align="left" valign="middle">{{$row.gwid}}</td>
+			<td height="35" align="left" valign="middle">{{if $row.status==1}}充值成功{{else}}<font color='red'>充值失败</font>{{/if}}</td>
+		</tr>
+			{{/foreach}}
+	  </table>
+	<div class="r_mar_top" align="right" style="height:35px">
+		{{if $page>1}}
+		<a href='?c=money&a=moneyin&page=0'>首页</a> 
+		<a href='?c=money&a=moneyin&page={{$page-1}}'>上一页</a> 
+		{{else}}
+		首页 上一页 
+		{{/if}}
+		{{if $page!=$total_page}} 
+		<a href='?c=money&a=moneyin&page={{$page+1}}'>下一页</a>
+		<a href='?c=money&a=moneyin&page={{$total_page}}'>尾页</a>
+		{{else}}下一页 尾页
+		{{/if}} 
+		{{$page}}/{{$total_page}}&nbsp;
+		共计{{$count}}记录
+	</div>
+                     </div> 
+                        </div>                            
+                    </div> <!-- **Primary Ends** -->
+                                        
+                </div> <!-- **Container Ends** --> 
+            </section>  <!-- **Content Main Ends** -->
+</div>
+
+
+

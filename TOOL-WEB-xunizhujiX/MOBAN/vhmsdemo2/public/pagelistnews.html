@@ -1,0 +1,49 @@
+		<div id="content">
+			<!-- Page Banner -->
+			<div class="page-banner" style=" background-color:#336C9D;">
+				<div class="container">
+					<h2>新闻中心</h2>
+					<ul class="page-tree">
+						<li><a href="/">首页</a></li>
+						<li><a href="?c=public&a=pagelistnews">新闻公告</a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- Page Banner end -->
+		</div>
+		<br />
+		
+		<div class="page-wrapper">
+	<div class="container">
+	<h3>公告信息</h3><hr />
+	{{foreach from=$list item=row}}
+		<div class="row">
+	        <div class="col-sm-9">
+<h5><a href="?c=public&a=viewNewsById&id={{$row.id}}">{{$row.title}}</a></h5>
+	        </div>
+	        <!-- .col-4 -->
+	        <div class="col-sm-3">
+<h5 align="right"><small>{{$row.add_time}}</small></h5>
+	        </div>
+	        <!-- .col-4 -->
+		</div><p>&nbsp;</p>
+		{{/foreach}}
+		
+<nav>
+  <ul class="pager">
+  {{if $page>1}}
+    <li style="float:left;"><a href="?c=public&a=pageListNews&page={{$page-1}}"><span aria-hidden="true">&larr;</span><font size="-2"> 上一页</font></a></li>
+	{{else}}
+	<li style="float:left;"><a><font color="#999999"><span aria-hidden="true">&larr;</span></font><font color="#999999" size="-2"> 上一页</font></a></li>
+	{{/if}}
+	{{if $page!=$total_page}}
+    <li style="float:right;"><a href="?c=public&a=pageListNews&page={{$page+1}}"><font size="-2">下一页 </font><span aria-hidden="true">&rarr;</span></a></li>
+	{{else}}
+	<li style="float:right;"><a><font color="#999999" size="-2">下一页 </font><font color="#999999"><span aria-hidden="true">&rarr;</span></font></a></li>
+	{{/if}}
+  </ul>
+</nav>
+	</div>	
+	<br />
+	</div><br />
+

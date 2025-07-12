@@ -1,0 +1,38 @@
+<!-- Additional Stylesheets -->
+<style type="text/css">
+<!--
+.STYLE1 {color: #FFFFFF}
+-->
+</style>
+    
+
+<div id="main">
+        	<!-- **Breadcrumb Section** -->
+            <div class="breadcrumb-section">
+                  <div class="container">
+	                   <h1>购物车</h1>
+                      <div class="breadcrumb">
+                      	<a href="/" title="">首页</a> / <span>产品服务</span>
+                      </div>
+                  </div>
+            </div> <!-- **Breadcrumb Section Ends** -->
+		
+			            <!-- **Content Main** -->
+            	<!-- **Primary** -->
+				<div class="fullwidth-section dt-sc-parallax">
+                        	<div class="container">
+						<div style="height:45px"></div>
+								<!-- 主体表格开始 -->
+                        <div class="aligncenter call-out">
+						<p>
+		{{if $nproducts}}
+          {{foreach from=$groups item=row}}
+          <a href='?c=nproduct&amp;a=lists&amp;group_id={{$row.group_id}}' class="dt-sc-button  medium  ocean"><i class="fa  fa-database"></i>&nbsp;  {{$row.group_name}}</a>&nbsp; 
+          {{/foreach}}
+          {{/if}}
+						</p>
+                         </div>
+                                <!-- 主体表格结束 -->
+                            </div>
+  </div>
+</div>

@@ -1,0 +1,83 @@
+
+ <div class="customer_center_banner">
+</div>
+<div class="client-nav">
+<div class="row">
+    <div class="col-sm-12">
+          <ul id="navul">
+					<li><a href="?c=user&a=index" ><em class="fa fa-home"></em>  客户中心</a></li>
+                    <li class="li-products"><a href="?c=hosting&a=pageHost"><em class="fa fa-server"></em>  我的产品</a></li>
+                    <li class="li-domains"><a href="?c=user&a=changeForm" class="cur"><em class="fa fa-send"></em> 修改资料</a></li>
+                    <li><a href="?c=user&a=changePasswordForm"><em class="fa fa-money"></em>  修改密码</a></li>
+                    <li><a href="?c=money&a=moneyout"><em class="fa fa-rmb"></em>  消费记录</a></li>
+                    <li><a href="?c=money&a=moneyin"><em class="fa fa-calculator"></em>  充值记录</a></li>
+                    <li><a href="?c=question&a=addFrom"><em class="fa fa-external-link"></em>  提交服务单</a></li>
+                    <li class="li-ticket"><a href="?c=question&a=pageByuser"><em class="fa fa-comments"></em>  查看服务单</a></li>
+                </ul>
+    </div>
+</div>
+
+</div>
+<div class="blog single" style="padding-top: 15px;">
+    <div class="row">
+    		<div class="col-sm-12 member-col-left">
+    
+
+<div class="page-header">
+    <div class="styled_title"><h1>我的资料</h1></div>
+</div>
+<script type="text/javascript" src="includes/jscript/statesdropdown.js"></script>
+
+<div>
+    
+</div>
+<div class="clear"></div>
+
+
+<form class="form-horizontal" action="?c=user&a=change" method="post">
+
+<fieldset class="control-group">
+	<div class="control-group">
+        <label class="control-label" for="firstname">用户名： </label>
+        <div class="controls">
+            <input type="text" name="username" value="{{$user.username}}" readonly> &nbsp;&nbsp;<font color="#ef6f66">用户名不可修改。</font>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="phonenumber">真实姓名：</label>
+        <div class="controls">
+            <input type="text" name='name' value='{{$user.name}}' > &nbsp;&nbsp;
+        </div>
+    </div>
+    	
+ <div class="control-group">
+        <label class="control-label" for="email">电子邮件：</label>
+        <div class="controls">
+            <input type="text" name='email' value='{{$user.email}}'> &nbsp;&nbsp;<font color="#ef6f66">请填写真实邮箱，用于发送提醒邮件。</font>
+        </div>
+        </div>
+
+
+ <div class="control-group">
+        <label class="control-label" for="address1">身份证号：</label>
+        <div class="controls">
+            <input type="text" name='id' value='{{$user.id}}'> &nbsp;&nbsp;
+    </div>
+</div>
+</fieldset>
+
+<div class="form-actions">
+    <input class="btn btn-success" input type="submit" value="保存修改">
+    <input class="btn" type="reset" value="取消">
+</div>
+
+</form>
+
+
+
+</div>
+
+</div>
+</div>
+
+

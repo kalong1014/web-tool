@@ -1,0 +1,136 @@
+  {{dispatch c='user' a='left'}}
+<link rel="stylesheet" type="text/css" href="{{$STATIC}}style/2014hostv2/assets/global/plugins/select2/select2.css"/>
+<link rel="stylesheet" type="text/css" href="{{$STATIC}}style/2014hostv2/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css"/>
+<link rel="stylesheet" type="text/css" href="{{$STATIC}}style/2014hostv2/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css"/>
+		<!-- BEGIN CONTENT -->
+		<div class="page-content-wrapper">
+			<div class="page-content">
+				<!-- BEGIN PAGE HEADER-->
+				<h3 class="page-title">
+				订单列表 <small>已购买的产品列表，在这里可以管理您已购买的产品。</small>
+				</h3>
+				<div class="page-bar">
+					<ul class="page-breadcrumb">
+						<li>
+							<i class="fa fa-home"></i>
+							<a href="#">会员中心</a>
+							<i class="fa fa-angle-right"></i>
+						</li>
+						<li>
+                          <a href="#">产品管理</a>
+						</li>
+					</ul>
+				</div>
+				<!-- END PAGE HEADER-->
+				<!-- BEGIN PAGE CONTENT-->
+				<div class="row">
+					<div class="col-md-12">
+						<!-- BEGIN PROFILE CONTENT -->
+						<div class="profile-content">
+							<div class="row">
+								<div class="col-md-12">
+						<!-- Begin: life time stats -->
+						<div class="portlet light">
+							<div class="portlet-title">
+								<div class="caption">
+									<i class="icon-basket font-green-sharp"></i>
+									<span class="caption-subject font-green-sharp bold uppercase"> 订单列表</span>
+									<span class="caption-helper">管理您已购买的产品</span>
+								</div>
+								<div class="actions">
+									<a href="#" class="btn btn-circle btn-default">
+									<i class="fa fa-plus"></i>
+									<span>
+									购买产品 </span>
+									</a>
+								</div>
+							</div>
+							<div class="portlet-body">
+								<div class="table-container">
+								<p>
+								<span class="label label-primary">
+								温馨提示：</span>
+								<span>
+								 如果手机版访问，可以触摸表格内容框进行左右滑动来查看管理您购买的多个产品！</span></p>
+								 <div class="portlet-body flip-scroll">
+								<table class="table table-bordered table-striped table-condensed flip-content">
+								<thead class="flip-content">
+								<tr>
+									<th width="20%">
+										 # ID
+									</th>
+									<th class="numeric">
+										 产品名称
+									</th>
+									<th class="numeric">
+										 开通时间
+									</th>
+									<th class="numeric">
+										 到期时间
+									</th>
+									<th class="numeric">
+										 订单状态
+									</th>
+									<th class="numeric">
+										 管理产品
+									</th>
+								</tr>
+								</thead>
+								<tbody>
+                               {{foreach from=$list item=row}}
+								<tr>
+									<td>
+										 {{$row.id}}
+									</td>
+									<td>{{$row.product_name}}</td>
+									<td class="numeric">
+									{{$row.create_time}}
+									</td>
+									<td class="numeric">
+										{{$row.expire_time}}
+									</td>
+									<td class="numeric">
+										{{if $row.status==0}}<font color='red'><i class="fa  fa-times-circle"></i> 等待拨付</font>{{else}}<font color="#009933"><i class="fa fa-check-circle"></i> 订单已拨付</font>{{/if}}	
+									</td>
+									<td class="numeric">
+[<a href="?c=mproductorder&a=showMproductorder&id={{$row.id}}" >订单详情</a>]		[<a href="?c=mproductorder&a=renewMproductorderFrom&id={{$row.id}}" >续费</a>]			                </td>
+								</tr>
+								{{/foreach}}
+								</tbody>
+								</table>
+		<div class="r_mar_top" align="right">
+								{{if $page>1}}
+
+								<a href='?c=mproductorder&a=pageListMyMproductorder&refer={{$refer}}&order={{$order}}&&page=0'>首页</a> 
+
+								<a href='?c=mproductorder&a=pageListMyMproductorder&refer={{$refer}}&order={{$order}}&page={{$page-1}}'>上一页</a> 
+
+								{{else}}
+
+								首页 上一页 
+
+								{{/if}}
+
+								{{if $page!=$total_page}} 
+
+								<a href='?c=mproductorder&a=pageListMyMproductorder&refer={{$refer}}&order={{$order}}&page={{$page+1}}'>下一页</a>
+
+								<a href='?c=mproductorder&a=pageListMyMproductorder&refer={{$refer}}&order={{$order}}&page={{$total_page}}'>尾页</a>
+
+								{{else}}下一页 尾页
+
+								{{/if}} 
+
+								{{$page}}/{{$total_page}}&nbsp;
+
+								共计{{$count}}记录
+		</div>
+								
+							</div>								</div>
+							</div>
+						</div>
+						<!-- End: life time stats -->
+								</div>
+							</div>
+						</div>
+						<!-- END PROFILE CONTENT -->					

@@ -1,0 +1,201 @@
+{{include file='common/head.html'}}
+<!-- BEGIN HEADER -->
+<div class="page-header navbar navbar-fixed-top">
+	<!-- BEGIN HEADER INNER -->
+	<div class="page-header-inner">
+		<!-- BEGIN LOGO -->
+		<div class="page-logo">
+			<a href="/">
+			<font color="#FFFFFF"><h3>yonghensq.com</h3></font>
+			</a>
+		</div>
+		<!-- END LOGO -->
+		<!-- 手机版导航按钮 -->
+		<a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+		</a>
+		<!-- END RESPONSIVE MENU TOGGLER -->
+				<!-- BEGIN PAGE TOP -->
+		<div class="page-top">
+		<!-- BEGIN 顶部导航下拉菜单按钮 -->
+		<div class="page-actions">
+			<div class="btn-group">
+				<a href="javascript:;" type="button" class="btn btn-circle green-haze dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+				<i class="fa fa-shopping-cart"></i>&nbsp;<span class="hidden-sm hidden-xs">购买主机&nbsp;</span>&nbsp;<i class="fa fa-angle-down"></i>
+				</a>
+				<ul class="dropdown-menu" role="menu">
+                    {{dispatch c=host a='left'}}
+					<li class="divider">
+					</li>
+					<li>
+						<a href="javascript:;">
+						<font color="#CC9900"><i class="icon-ban"></i> 日本节点 </font><span class="badge badge-roundless badge-warning">筹备中</span></a>
+					</li>
+					<li>
+						<a href="?c=nproduct&a=lists&group_id=4">
+						<font color="#DD4E55"><i class="icon-close"></i> 美国免空-西雅图 </font><span class="badge badge-roundless badge-danger">停机维护</span></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- END 顶部导航下拉菜单按钮 -->
+			<!-- BEGIN TOP NAVIGATION MENU -->
+			<div class="top-menu">
+				<ul class="nav navbar-nav pull-right">
+					<!-- BEGIN 客服 -->
+					<li class="dropdown dropdown-extended dropdown-tasks" id="header_task_bar">
+						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+						<i class="icon-earphones-alt"></i>
+						</a>
+						<ul class="dropdown-menu">
+							<li class="external">
+								<h3><span class="bold">在线客服</span> - [ <a href="?c=article&a=lists&type=help">在线帮助</a> ]</h3>
+							</li>
+							<li>
+								<ul class="dropdown-menu-list scroller" style="height: 250px;" data-handle-color="#637283">
+									<li>
+										<a href="javascript:;">
+										<span class="details">
+										<i class="fa fa-qq"></i>&nbsp;&nbsp;售前客服：永恒</span>
+										</a>
+									</li>
+									<li>
+										<a href="javascript:;">
+										<span class="details">
+										<i class="fa fa-qq"></i>&nbsp;&nbsp;售前客服：永恒</span>
+										</a>
+									</li>
+									<li>
+										<a href="javascript:;">
+										<span class="details">
+										<i class="fa fa-qq"></i>&nbsp;&nbsp;售后支持：阿豪</span>
+										</a>
+									</li>
+									<li>
+										<a href="javascript:;">
+										<span class="details">
+										<i class="fa fa-phone-square"></i>&nbsp;&nbsp;130 4424 7253</span>
+										</a>
+									</li>
+									<li>
+										<a href="javascript:;">
+										<span class="details">
+										<i class="fa fa-envelope"></i>&nbsp;&nbsp;1406615365@qq.com</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<!-- END 客服 -->
+                 {{if $role.user}}
+					<!-- BEGIN 用户登录信息 -->
+					<!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+					<li class="dropdown dropdown-user">
+						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+						<img alt="" class="img-circle" src="{{$STATIC}}style/2014hostv2/assets/admin/layout2/img/avatar.png"/>
+						<span class="username">
+						{{$role.user}} </span>
+						<i class="fa fa-angle-down"></i>
+						</a>
+						<ul class="dropdown-menu dropdown-menu-default">
+							<li>
+								<a href="?c=user&a=index">
+								<i class="icon-user"></i> 会员中心 </a>
+							</li>
+							<li>
+								<a href="?c=user&a=changeForm">
+								<i class="icon-note"></i> 编辑资料 </a>
+							</li>
+							<li>
+								<a href="?c=user&a=changePasswordForm">
+								<i class="icon-key"></i> 修改密码 </a>
+							</li>
+							<li>
+								<a href="?c=hosting&a=pageHost">
+								<i class="icon-basket-loaded"></i> 我的订单
+								</a>
+							</li>
+							<li>
+								<a href="?c=question&a=pageByuser">
+								<i class="icon-speech"></i> 我的服务单
+								</a>
+							</li>
+							<li>
+								<a href="?c=money&a=addFrom">
+								<i class="icon-credit-card"></i> <font color="#00CCCC">账户充值</font>
+								</a>
+							</li>
+							<li class="divider">
+							</li>
+							<li>
+								<a href="?c=session&a=logout">
+								<i class="icon-logout"></i> 退出登录 </a>
+							</li>
+						</ul>
+					</li>
+					<!-- END 用户登录信息 -->
+		{{else}}
+					<!-- BEGIN 用户登录信息 -->
+					<!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+					<li class="dropdown dropdown-user">
+						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+						<img alt="" class="img-circle" src="{{$STATIC}}style/2014hostv2/assets/admin/layout2/img/avatar.png"/>
+						<span class="username">
+						登录/注册 </span>
+						<i class="fa fa-angle-down"></i>
+						</a>
+						<ul class="dropdown-menu dropdown-menu-default">
+							<li>
+							<table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <th scope="row">
+						<form action="?c=session&a=login&refer=web" name="top_login" method="post" class="login-form">
+					<br>
+            <div class="form-group">
+			<div class="input-icon">
+				<i class="fa fa-user"></i>
+				<input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="用户名" name="username"/>
+		      </div></div>
+            <div class="form-group">
+			<div class="input-icon">
+				<i class="fa fa-lock"></i>
+				<input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="密 码" name="passwd"/>
+				</div></div>
+		<div class="form-actions">
+                    <button type="submit" class="btn green-haze btn-block pull-left">登 录  <i class="m-icon-swapright m-icon-white"></i></button>
+				</div>
+						</form>
+</th>
+  </tr>
+</table>
+<div style="height:8px"></div>
+					</li>
+							<li class="divider">
+							</li>
+							<li>
+								<a href="?c=public&a=register_n">
+								<i class="icon-lock-open"></i> 注册账户 </a>
+							</li>
+							<li>
+								<a href="?c=public&a=findPasswdFrom">
+								<i class="icon-key"></i> 找回密码 </a>
+							</li>
+						</ul>
+					</li>
+					<!-- END 用户登录信息 -->				{{/if}}
+				</ul>
+			</div>
+			<!-- END TOP NAVIGATION MENU -->
+		</div>
+		<!-- END PAGE TOP -->
+
+	</div>
+	<!-- END HEADER INNER -->
+</div>
+<!-- END HEADER -->
+<div class="clearfix">
+</div>
+
+<!-- BEGIN CONTAINER -->
+<div class="page-container">
+

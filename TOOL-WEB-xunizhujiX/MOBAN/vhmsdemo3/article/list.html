@@ -1,0 +1,51 @@
+{{dispatch c=public a='left'}}
+    <div class="page-content-wrapper">
+			<div class="page-content">
+				<!-- BEGIN PAGE HEADER-->
+				<h3 class="page-title">
+				在线帮助中心 <small>控制面板、常见问题等在线解答</small>
+				</h3>
+				<div class="page-bar">
+					<ul class="page-breadcrumb">
+						<li>
+							<i class="fa fa-home"></i>
+							<a href="/">首页</a>
+							<i class="fa fa-angle-right"></i>
+						</li>
+						<li>
+                          <a href="#">在线帮助</a>
+						</li>
+					</ul>
+				</div>
+				<!-- END PAGE HEADER-->
+				<!-- BEGIN PAGE CONTENT-->
+						<div class="profile-content">
+							<div class="row">
+							<!-- BEGIN PROFILE CONTENT -->
+								<div class="col-md-12">							
+									<div class="portlet light">
+                                         <div class="portlet-body">
+										<div class="tab-pane active">
+										<!-- 计划套餐开始 -->
+								<div class="row">
+									<div class="col-md-3 col-sm-12">
+										<!-- BEGIN DRAGGABLE EVENTS PORTLET-->
+								{{dispatch c=article a='left'}}
+									</div>
+									<div class="col-md-9 col-sm-12">
+								<blockquote>
+									<p>
+                                  {{$row.title}}
+									</p>
+									<small>更新时间 : <cite title="Source Title">{{$row.createtime}}</cite></small>
+									<br />
+									<h5>{{$row.body}}</h5>
+                                  </blockquote>
+								
+										<!-- 计划套餐结束 -->
+									  </div></div>
+							  </div>
+						  </div>
+								<!-- END PROFILE CONTENT -->
+
+

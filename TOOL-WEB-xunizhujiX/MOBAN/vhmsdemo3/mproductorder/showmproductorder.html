@@ -1,0 +1,107 @@
+  {{dispatch c='user' a='left'}}
+<link rel="stylesheet" type="text/css" href="{{$STATIC}}style/2014hostv2/assets/global/plugins/select2/select2.css"/>
+<link rel="stylesheet" type="text/css" href="{{$STATIC}}style/2014hostv2/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css"/>
+<link rel="stylesheet" type="text/css" href="{{$STATIC}}style/2014hostv2/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css"/>
+		<!-- BEGIN CONTENT -->
+		<div class="page-content-wrapper">
+			<div class="page-content">
+				<!-- BEGIN PAGE HEADER-->
+				<h3 class="page-title">
+				订单详情 <small>查看您的订单信息</small>
+				</h3>
+				<div class="page-bar">
+					<ul class="page-breadcrumb">
+						<li>
+							<i class="fa fa-home"></i>
+							<a href="#">会员中心</a>
+							<i class="fa fa-angle-right"></i>
+						</li>
+						<li>
+                          <a href="#">产品管理</a>
+						</li>
+					</ul>
+				</div>
+				<!-- END PAGE HEADER-->
+				<!-- BEGIN PAGE CONTENT-->
+				<div class="row">
+					<div class="col-md-12">
+						<!-- BEGIN PROFILE CONTENT -->
+						<div class="profile-content">
+							<div class="row">
+								<div class="col-md-12">
+						<!-- Begin: life time stats -->
+						<div class="portlet light">
+							<div class="portlet-title">
+								<div class="caption">
+									<i class="icon-basket font-green-sharp"></i>
+									<span class="caption-subject font-green-sharp bold uppercase"> 订单详情</span>
+									<span class="caption-helper">查看订单信息</span>
+								</div>
+								<div class="actions">
+									<a href="/?c=nproduct&a=lists&group_id=1" class="btn btn-circle btn-default">
+									<i class="fa fa-plus"></i>
+									<span>
+									购买主机产品 </span>
+									</a>
+								</div>
+							</div>
+							<div class="portlet-body">
+								<div class="table-container">
+								 <div class="portlet-body flip-scroll">
+							<form name='vhostform' action="">
+									<br /><p>产品名称：{{$mproductorder.product_name}}</p>
+									<p>我的附注：{{$mproductorder.client_msg}}</p>
+									{{if $mproductorder.admin_msg}}
+									<p>
+										产品管理信息：{{$mproductorder.admin_msg}}
+									</p>
+									{{/if}}
+									{{if $mproductorder.create_time}}
+									<p>
+										提交时间：{{$mproductorder.create_time}}
+									</p>
+									{{/if}}
+									{{if $mproductorder.expire_time}}
+									<p>
+										到期时间：{{$mproductorder.expire_time}}
+									</p>
+									{{/if}}
+									<p>
+										订单状态：{{if $mproductorder.status==0}}申请中{{else}}已拔付{{/if}}
+									</p>
+<br />
+									<tr>
+										<td class="td_bgc td_hg" colspan="2" align="center">
+										<input type='button' class="btn default" value='返回' onclick='javascript:go_to()'>
+										</td>
+									</tr>
+							</form>
+							</div>								</div>
+							</div>
+						</div>
+						<!-- End: life time stats -->
+								</div>
+							</div>
+						</div>
+						<!-- END PROFILE CONTENT -->					
+
+									
+
+<script language='javascript'>
+
+function go_to()
+
+{
+
+	var url = '?c=mproductorder&a=pageListMyMproductorder';
+
+	window.location = url;
+
+}
+
+
+
+</script>
+
+
+

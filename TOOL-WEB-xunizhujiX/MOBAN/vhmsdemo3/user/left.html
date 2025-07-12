@@ -1,0 +1,104 @@
+		<!-- BEGIN SIDEBAR -->
+		<div class="page-sidebar-wrapper">
+			<div class="page-sidebar navbar-collapse collapse">
+				<ul class="page-sidebar-menu page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+					<li class="start ">
+						<a href="?c=user&a=index">
+						<h4><i class="icon-settings"></i> 账户管理</h4>
+						<span class="arrow "></span>
+						</a>
+					   <ul class="sub-menu">
+						<li>
+							<a href="?c=user&a=index">
+							<i class="icon-user"></i>
+							账户首页</a>
+						</li>
+						<li>
+							<a href="?c=user&a=changeForm">
+							<i class="icon-note"></i>
+							修改资料</a>
+						</li>
+						<li>
+							<a href="?c=user&a=changePasswordForm">
+							<i class="icon-key"></i>
+							更改密码</a>
+						</li>
+					  </ul>
+					</li>
+					<li>
+						<a href="?c=hosting&a=pageHost">
+						<h4><i class="icon-layers"></i> 我的产品</h4>
+						<span class="arrow "></span>
+						</a>
+					   <ul class="sub-menu">
+						<li>
+							<a href="?c=hosting&a=pageHost">
+							<i class="icon-drawer"></i>
+							虚拟主机管理</a>
+						</li>
+						<!-- 
+						<li>
+							<a href="?c=domains&a=pageList">
+							<i class="icon-globe"></i>
+							域名管理</a>
+						</li>  
+						-->
+						{{if $group}}
+						{{for $i=0;$i< count($group);$i++}}
+						<li>
+							<a href="{{$group[$i][1]}}">
+							<i class="icon-puzzle"></i>
+							{{$group[$i][0]}}</a>
+						</li>
+						{{/for}} 
+						{{/if}}
+						<li>
+							<a href="?c=nproduct&a=lists&group_id=1">
+							<i class="icon-basket"></i>
+							购买主机产品</a>
+						</li>
+					  </ul>
+					</li>
+					<li>
+						<a href="#">
+						<h4><i class="icon-wallet"></i> 财务管理</h4>
+						<span class="arrow "></span>
+						</a>
+					   <ul class="sub-menu">
+						<li>
+							<a href="?c=money&a=addFrom">
+							<i class="icon-credit-card"></i>
+							在线充值</a>
+						</li>
+						<li>
+							<a href="?c=money&a=moneyin">
+							<i class="icon-action-redo"></i>
+							充值记录</a>
+						</li>
+						<li>
+							<a href="?c=money&a=moneyout">
+							<i class="icon-action-undo"></i>
+							消费记录</a>
+						</li>
+					  </ul>
+					</li>
+					<li>
+						<a href="?c=question&a=pageByuser">
+						<h4><i class="icon-bubbles"></i> 服 务 单</h4>
+						</a>
+					</li>
+					<li>
+						<a href="?c=public&a=pagelistnews">
+						<h4><i class="icon-bell"></i> 新闻中心</h4>
+						</a>
+					</li>
+					<li>
+						<a href="?c=article&a=lists&type=help">
+						<h4><i class="icon-question"></i> 在线帮助</h4>
+						</a>
+					</li>
+				</ul>
+				<!-- END SIDEBAR MENU -->
+			</div>
+		</div>
+		<!-- END SIDEBAR -->

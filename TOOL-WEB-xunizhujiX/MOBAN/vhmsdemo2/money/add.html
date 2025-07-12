@@ -1,0 +1,91 @@
+		<div id="content">
+			<!-- Page Banner -->
+			<div class="page-banner" style=" background-color:#336C9D;">
+				<div class="container">
+					<h2>账户充值</h2>
+					<ul class="page-tree">
+						<li><a href="/">首页</a></li>
+						<li><a href="?c=user&a=index">会员中心</a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- Page Banner end -->
+		</div>
+		<br />
+	
+  {{dispatch c='user' a='left'}}
+  
+	<div class="col-md-9 blog-side">
+	   <h3><i class="fa fa-credit-card"></i> 在线充值</h3><hr />
+	   
+		<div class="container">
+			<div class="row">
+
+							<form name='frm' action="?c=money&a=add" method="post" class="form-horizontal">
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-2 control-label">选择支付方式：</label>
+									<div class="col-sm-5">
+										{{if !$setting.alipay_close}}
+										<input type="radio" name="gw"  value="1" checked="checked"	onclick='show_china(1)' /> 
+										支付宝
+										{{/if}}
+										{{if !$setting.china_close}}
+										<input type="radio" name="gw"  	value="2" checked="checked" onclick='show_china(2)' /> 
+										在线网银
+										{{/if}}
+										{{if !$setting.tenpay_close}}
+										<input type="radio" name="gw"  	value="3" checked="checked" onclick='show_china(3)' /> 财付通
+										{{/if}}
+										<input type="radio" name="gw"  	value="100"  onclick='show_china(100)' /> 
+										充值卡
+								  </div></div>
+								<div class="form-group" id="money_tr">
+									<label for="inputEmail3" class="col-sm-2 control-label">金额（元）：</label>
+									<div class="col-sm-5"> <input name='money' size="24" placeholder="请输入充值金额" class="form-control"/> </div>
+										</div>
+								<div class="form-group" id="entkey_tr" style="display:none">
+									<label for="inputEmail3" class="col-sm-2 control-label">充值卡号：</label>
+									<div class="col-sm-5"> <input name='ent_key' size="24" placeholder="请输入充值卡号"  class="form-control"/> </div>
+										</div>
+										<br />
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-2 control-label"></label>
+									<div class="col-sm-1">
+									<input type="submit" value="确 定" class="btn btn-success" />
+									</div>
+										</div>
+							</form>
+
+
+			</div>
+			</div>
+	   
+	   
+	   
+  <!-- 必须要加 -->
+  </div></div></div>
+
+<br />	   
+
+
+
+<script type="text/javascript">
+
+	function show_china(val) {
+		switch (val) {
+		case 1:
+		case 2:
+		case 3:
+			$("#entkey_tr").hide();
+			$("#money_tr").show();
+			break;
+		case 100:
+			$("#entkey_tr").show();
+			$("#money_tr").hide();
+			break;
+		default:
+			break;
+		
+		}
+	}
+</script>

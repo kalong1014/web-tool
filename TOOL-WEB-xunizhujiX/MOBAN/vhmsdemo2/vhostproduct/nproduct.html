@@ -1,0 +1,140 @@
+		<div id="content">
+			<!-- Page Banner -->
+			<div class="page-banner" style=" background-color:#336C9D;">
+				<div class="container">
+					<h2>购物车</h2>
+					<ul class="page-tree">
+						<li><a href="/">首页</a></li>
+						<li><a href="?c=nproduct&a=lists&group_id=1">购物车</a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- Page Banner end -->
+		</div>
+		<br />
+
+
+		<div class="container">
+			<div class="row">
+			<!-- 新的模板测试 -->
+            <!-- **Content Main** -->
+                    <!-- **Primary** -->
+	<form name='reg' action="?c=product&a=modBuy&product_id={{$product.id}}&nodename={{$nodename}}" method="post" class="form-horizontal">
+                <div class="col-md-4">
+                                <h3 class="hr-border-title"><span><i class="fa fa-hdd-o"> </i>&nbsp; 产品详情</span></h3>
+								<hr />
+								<h4><font color="#006699"><b>{{$product.name}}</b></font></h4> <br />
+								<h5>{{$product.describe}}</h5><br />
+								</div>
+								
+								<div class="col-md-8">
+                                <h3 class="hr-border-title"><span><i class="fa fa-edit"> </i>&nbsp; 配置账户</span></h3><hr />
+							<p><font color="#000000">注意事项：这里配置的是FTP[主机控制面板]账户，非您的会员中心账户，请注意区分开来！</font><br /><font color="#000000">强烈建议：<b>控制面板密码</b>与<b>会员中心账户密码</b>不要使用同一个密码。 </font><font color="#FF0000">FTP账户同控制面板登录账户！</font></p><p>&nbsp;</p><p>&nbsp;</p>
+	                  				{{if !$msg}}
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-2 control-label">FTP用户名：</label>
+									<div class="col-sm-5">
+<input type="text" class="form-control" name="name" placeholder="" id="name"></div>
+<div class="col-sm-1">
+<input type="button" class="btn btn-primary" name="Submit" value="检测用户名" onClick="check_name()">									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-2 control-label">FTP密码：</label>
+									<div class="col-sm-5">
+										<input type="password" class="form-control" name="passwd" id="passwd" placeholder=""></div></div>
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-2 control-label">确认密码：</label>
+									<div class="col-sm-5">										
+										<input type="password" class="form-control" name="passwd2" id="passwd2" placeholder=""></div></div>
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-2 control-label">绑定域名：</label>
+									<div class="col-sm-5">										
+										<input type="text" class="form-control" name="domain" placeholder=""></div></div>
+								<br /><br />
+                                <h3 class="hr-border-title"><span><i class="fa fa-shopping-cart"> </i>&nbsp; 购买结算</span></h3><hr />
+								<h5><i class="fa fa-money"></i>&nbsp;价格/周期：<font color="#0099CC"><b>{{if $product.noagentprice}}特价：{{/if}}{{$product.price}}元/{{($product.pay_cycle=='year') ? '年付' : "月付"}}</b>&nbsp; &nbsp; &nbsp; 
+					               <strong style='text-decoration: line-through'>
+					                {{if $product.noagentprice}}原价：{{$product.noagentprice}}元/{{($product.pay_cycle=='year') ? '年付' : "月付"}}{{/if}}</strong></font></h5><br />
+                                        {{if $entkey}}
+						<h4><div id='key_input' style='display: none'>
+
+								<span id='checkresult'><input type='button' value='检测优惠码' class="submit" onclick='check_entkey()'></span><input name="ent_key" id='key' placeholder="请输入优惠码" size=32 type="text"> 
+
+							</div>
+							<div id='key_onclick'>
+								<a href='javascript:show_entkey_input();'><font color="red"><b><i class="fa fa-bolt"> </i>&nbsp; 我有优惠码，现在使用</font></b></a>
+							</div></h4>
+					        {{/if}}<br />
+                             <p class="alignleft" >
+							 <input type="button" value="确定购买" class="btn btn-success" onClick="check_register()">
+							 </p>
+							 	{{else}}
+								<p>
+								{{$msg}}</p>
+                                {{/if}}
+                            </div>
+                       
+						
+	</form>
+
+<!--框架尾部 -->							
+<!-- 新的模板测试 -->
+</div></div><br /><br />
+
+
+
+<script type='text/javascript'>
+	var nodename = '{{$nodename}}';
+
+	var product_id = '{{$product.id}}';
+</script>
+
+<script type='text/javascript' src='{{$STATIC}}js/nproduct.js'></script>
+
+<script type='text/javascript'>
+	var money = '{{$product.price}}';
+	function show_entkey_input() {
+		document.getElementById('key_onclick').style.display = 'none';
+		document.getElementById('key_input').style.display = 'block';
+	}
+	function checkMoney() {
+		$.ajax({
+			url : '?c=hosting&a=checkMoney&money=' + money,
+			dataType : 'json',
+			success : function(ret) {
+				if (ret['code'] != 200) {
+					art.dialog({
+						id : 'id22',
+						content : '<b class=red>余额不足'+money+'元,请充值后再继续本次操作</b>',
+						time : 4,
+						title : "提示",
+						icon : 'warning'
+					});
+
+				}
+			}
+		})
+	}
+	$(document).ready(function() {
+		checkMoney();
+	});
+	function check_entkey() {
+		var key = $.trim($("#key").val());
+		if (!key) {
+			return alert("请输入优惠折抵码");
+		}
+		$.ajax({
+			type : 'post',
+			url : '?c=entkey&a=checkKey',
+			data : 'key=' + key + '&product_id=' + product_id,
+			dataType : 'json',
+			success : function(ret) {
+				if (ret['code'] != 200) {
+					return alert(ret['msg'] ? ret['msg'] : '不可用');
+				}
+				//alert('可用');
+				$("#checkresult").html('<b class=red>*可用</b>');
+			}
+		});
+	}
+</script>
