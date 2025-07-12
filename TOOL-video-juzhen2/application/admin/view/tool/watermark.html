@@ -1,0 +1,63 @@
+{include file="public/header" /}
+
+<body class="gray-bg">
+<link rel="stylesheet" href="/static/admin/layui/css/layui.css" media="all">
+<div class="wrapper layui-card-body wrapper-content">
+    <div class="admin-con">
+        <div class="block-box">
+            <style>
+                .watermark-input{width:60%;margin:50px auto;position: relative;}
+                .link-tu{display: none;position: absolute;left: 0;bottom: 70px;}
+                .what-link:hover + .link-tu{display:block;}
+                .shuiyin_url{float: left;width: 80%;margin-bottom: 0;text-align: inherit;display: inline-block;border: 1px solid #3e4040;margin-right: 10px;padding-left: 5px;height: 35px;background:#3e4040}
+            </style>
+            <div class="col-12" style="text-align:center">
+                <img src="/static/admin/images/watermark.png" width="150px" class="m-b-md">
+                <h2>去水印小工具</h2>
+            </div>
+            <div class="col-12">
+                <div class="block">
+                    <div class="watermark-input">
+                        <h4 class="what-link fa-1x m-b-md font13">如何获取视频链接？</h4>
+                        <img src="/static/admin/images/copy-link.png" width="300px" class="link-tu">
+                    
+                        <input placeholder="请输入抖音视频链接，支持抖音网页版链接" class="shuiyin_url" type="text" value="" name="y_url">
+                        <button id="" class="btn btn-success submit">一件去水印</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ </div> 
+  {include file="public/footer" /}
+ <script type="text/javascript">
+        $(".submit").click(function(){
+             layer.load(3)
+            var url = $('input[name="y_url"]').val();
+            $.ajax({
+            type: "POST",
+            url: "/admin/tool/watermark_url",
+            data: {
+                url:url
+            },
+            success: function(data){
+                layer.closeAll('loading');
+                if(data.code == 1) {
+                    layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+                    window.location.href="/admin/tool/videolist";
+                }else{
+                     layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+                }
+            },
+            error:function() {
+                layer.closeAll('loading');
+                layer.alert('添加错误')
+
+            }
+        });
+        })
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+<view class="box-notice" style="padding-bottom: {{safeAreaHeight}}rpx;" wx:if="{{showNotice&&notice.content}}">
+    <view class="pannel">
+        <view class="bg">
+            <image src="/images/bg_notice.jpg"></image>
+        </view>
+        <view class="main">
+            <view class="title">系统通知</view>
+            <view class="content">
+                <towxml content="{{notice.content}}"></towxml>
+            </view>
+            <view class="footer">
+                <button bindtap="doClose" class="btn btn-refuse">知道了</button>
+                <button bindtap="toNotice" class="btn btn-agree">查看详情</button>
+            </view>
+        </view>
+    </view>
+</view>

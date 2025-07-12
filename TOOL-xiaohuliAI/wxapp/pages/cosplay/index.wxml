@@ -1,0 +1,31 @@
+<navbar text="角色模拟"></navbar>
+<scroll-view bindrefresherpulling="getAllRoles" class="page" refresherEnabled="{{true}}" refresherTriggered="{{refreshing}}" scrollWithAnimation="{{true}}" scrollX="{{false}}" scrollY="{{true}}" style="bottom: {{safeAreaHeight+110}}rpx; top: {{navBarHeight}}px;">
+    <view wx:for="{{allRoles}}" wx:for-item="group">
+        <view class="group" wx:if="{{group.roles&&group.roles.length>0}}">
+            <view class="type-title">
+                <text>{{group.title}}</text>
+            </view>
+            <view class="role-list">
+                <view bindtap="toCosplayChat" class="role-item" data-id="{{item.id}}" wx:for="{{group.roles}}">
+                    <view class="thumb">
+                        <image src="{{item.thumb||'/images/cosplay/default.png'}}"></image>
+                    </view>
+                    <view style="width: 200rpx;">
+                        <view class="title" style="{{item.title.length>=6?'font-size: 28rpx; line-height: 32rpx;':''}}">{{item.title}}</view>
+                        <view class="ops">
+                            <view class="op-item" style="padding-right: 20rpx;">
+                                <image class="icon" src="/images/cosplay/ic_views.png"></image> {{item.views}} </view>
+                            <view class="op-item">
+                                <image class="icon" src="/images/cosplay/ic_usages.png"></image> {{item.usages}} </view>
+                        </view>
+                    </view>
+                </view>
+                <view style="clear: both"></view>
+            </view>
+        </view>
+    </view>
+    <view class="empty" wx:if="{{!allRoles||allRoles.length==0}}">
+        <image src="/images/nodata.png"></image>
+    </view>
+    <view class="nomore" wx:else>没有更多了~</view>
+</scroll-view>

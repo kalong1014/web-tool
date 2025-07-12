@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{$site.name|htmlentities}</title>
+    <link rel="stylesheet" type="text/css" href="/storeadmin2/dp/css/liMarquee.css">
+    <link rel="stylesheet" href="/storeadmin2/dp/css/main.css">
+    <link rel="stylesheet" href="/storeadmin2/dp/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/storeadmin2/dp/css/style2.0.css">
+</head>
+<body>
+<canvas class="rain"></canvas>
+
+<style type="text/css">
+/* 定义滚动条样式 */
+    ::-webkit-scrollbar {width: 8px;height: 8px;}
+    ::-webkit-scrollbar-track {box-shadow: inset 0 0 0px rgba(240, 240, 240, 0.5);border-radius: 10px;background-color: #000;}
+    ::-webkit-scrollbar-thumb {border-radius: 10px;box-shadow: inset 0 0 0px rgba(240, 240, 240, 0.5);background-color: rgba(240, 240, 240, 0.5);}
+    .data_c_2{width:96%;margin:0 auto;margin-bottom: 30px;}
+    .antd-pro-pages-dashboard-styles-link_title{font-weight:700;font-size:16px;margin-bottom:12px;}
+    .antd-pro-pages-dashboard-styles-link_cate{margin-bottom:10px;}
+    .antd-pro-pages-dashboard-styles-link_cate .antd-pro-pages-dashboard-styles-link_tab{display:flex;align-items:center;}
+    .antd-pro-pages-dashboard-styles-link_cate .antd-pro-pages-dashboard-styles-link_tab>div:first-child{width:66px;background:#696969;height:20px;text-align:center;line-height:20px;border-radius:3px;font-size:12px;margin-right:10px;}
+    .antd-pro-pages-dashboard-styles-link_cate .antd-pro-pages-dashboard-styles-link_tab>div:nth-child(2){flex:2 1;display:flex;flex-wrap:wrap;}
+    .antd-pro-pages-dashboard-styles-link_cate .antd-pro-pages-dashboard-styles-link_tab>div:nth-child(2)>div{min-width:110px;cursor:pointer;width:12%;height:50px;text-align:left;line-height:50px;margin-left:62px;}
+    .antd-pro-pages-dashboard-styles-link_cate .antd-pro-pages-dashboard-styles-link_tab>div:nth-child(2)>div>img{width:24px;height:24px;margin-right:5px;}
+    .antd-pro-pages-dashboard-styles-new_tag{position:absolute;width:34px;height:16px;background:#ff7800;border-radius:3px;border-bottom-left-radius:0;display:flex;justify-content:center;align-items:center;color:#fff;top:7px;font-size:12px;}
+    .data_c_2{background:#3a3a3e;padding:20px;border-radius:3px;}
+    .antd-pro-pages-dashboard-styles-link_tab a span,.antd-pro-pages-dashboard-styles-link_list a span{color:#fff;margin-left:5px;}
+    .antd-pro-pages-dashboard-styles-link_cate{margin-left:30px;}
+    .data_left{background: #3a3a3e;border-radius: 3px;padding: 15px;height: 4rem;overflow-y: scroll;}
+    .data_right{}
+    .data_right li{display: inline-block;width: 32%;background: #3a3a3e;margin-bottom: 0.05rem;margin-left: 0.009rem;height: 1.3rem;border-radius: 3px;}
+    .data_right li a{display: block;width: 100%;height: 100%;}
+    .data_right li a img{display: block;width: 0.3rem;margin: 0 auto;padding-top: 0.38rem}
+    .data_right li a p{text-align: center;margin-top: 0.1rem;font-size: 0.14rem;color: #cdcfcf;}
+    .data_left a{color: #fff;display: block;line-height: 30px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+    .data_left span{color: #cdcfcf;margin-right: 5px;}
+    .data_left::-webkit-scrollbar {width: 5px;height: 5px;}
+    .data_left::-webkit-scrollbar-track {box-shadow: inset 0 0 0px rgba(240, 240, 240, 0.5);border-radius: 10px;background-color: #000;}
+    .data_left::-webkit-scrollbar-thumb {border-radius: 10px;box-shadow: inset 0 0 0px rgba(240, 240, 240, 0.5);background-color: rgba(240, 240, 240, 0.5);}
+
+    .data_content_task{margin-bottom: 1.85rem;display: block;clear: both;margin-top: 0.2rem;}
+    .data_content_task .data_info .info_1{margin-right: 0.96%;height: 1.5rem;text-align: center;line-height: 0.3rem;
+    background: linear-gradient(180deg,rgb(234 166 56),rgb(62 50 50));
+    border-radius: 4px;
+    border: 1px solid #424245;
+    width: 13.45%;
+    flex-shrink: 0; 
+    flex-grow: 0;color: #fff;padding-top: 0.1rem;font-size: 0.18rem;padding-left: 0.15rem;}
+    .data_content_task .data_info .text_1 .count{width: 50%;}
+    .data_content_task .info_1_title{margin-bottom: 0.2rem;font-size: 0.2rem;text-align: left;}
+    .data_content_task .data_info .text_1 .conuts{font-size: 0.24rem;font-weight: bold;margin-bottom: 0.1rem;}
+</style>
+
+<!--内容-->
+<section id="data_content" style="padding: 0 0.38rem;box-sizing: border-box;">
+
+    <div class="data_info">
+
+        <a href="index?jump_url=store_price&menu_url=store_price&addtime={$today_bt}" target="_blank">
+            <div class="info_1 fl">
+                <div class="text_1">
+                    <div class="fl">
+                        <div class="fl count">
+                            <p>今日消耗</p>
+                            <p class="conuts" id="run_task">{$today_price} <span style="font-size: 0.15rem">点</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a href="index?jump_url=store_price&menu_url=store_price" target="_blank">
+            <div class="info_1  fl">
+                <div class="text_1">
+                    <div class="fl">
+                        <div class="fl count">
+                            <p>历史总消耗</p>
+                            <p class="conuts" id="run_task">{$all_price} <span style="font-size: 0.15rem">点</span></p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </a>
+        <a href="index?jump_url=store_pay&menu_url=store_pay" target="_blank">
+            <div class="info_1  fl">
+                <div class="text_1">
+                    <div class="fl">
+                        <div class="fl count">
+                            <p>历史总充值</p>
+                            <p class="conuts" id="run_task">{$all_pay} <span style="font-size: 0.15rem">点</span></p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </a>
+        <a href="index?jump_url=tuiguang_user&menu_url=tuiguang_user" target="_blank">
+            <div class="info_1  fl">
+                <div class="text_1">
+                    <div class="fl">
+                        <div class="fl count">
+                            <p>管理账号数</p>
+                            <p class="conuts" id="run_task">{$user_count} <span style="font-size: 0.15rem">个</span></p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </a>
+        <a href="index?jump_url=profile&menu_url=profile" target="_blank">
+            <div class="info_1 info_1_last fl">
+                <div class="text_1">
+                    <div class="fl">
+                        <div class="fl count">
+                            <p>余额</p>
+                            <p class="conuts" id="run_task">{$store_info['price']} <span style="font-size: 0.15rem">点</span></p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </a>
+    </div>
+
+
+    <div class="data_content">
+        <!--左边-->
+        <div class="data_left fl">
+            {if $news}
+                {foreach $news as $k=>$v}
+                    <a href="/zixun_{$v['id']}.html" target="_blank"><span>[{$v['addtime']}]</span>{$v['title']}</a>
+                {/foreach}
+            {/if}
+            
+        </div>
+        <!--中间-->
+        <div class="data_c fl" style="margin-top: -0.3rem;">
+            <div class="total">
+        
+                <canvas class="dashed"></canvas>
+                <div class="sphere">
+                    <div class="sphere-bg"></div>
+                    <div class="sum" style="background: url({$admin_avatar}) no-repeat center;background-size: 70%;">
+                        <!-- <span>{$site.name|htmlentities}</span> -->
+                        <p id="days"></p>
+                    </div>
+                </div>
+                <div class="cicle3"></div>
+                <div class="cicle4"></div>
+                <div class="cicle5"></div>
+                <div class="cicle6"></div>
+                <div class="cicle7"></div>
+                <a href="index?jump_url=qiye_user&menu_url=qiye_user" target="_blank">
+                    <div class="cicle8">
+                        <span id="jin">{$user_count}</span>
+                        <p>管理账号</p>
+                    </div>
+                </a>
+                <a href="index?jump_url=card&menu_url=card" target="_blank">
+                    <div class="cicle9">
+                        <span id="lv">{$card_count}</span>
+                        <p>引流外链</p>
+                    </div>
+                </a>
+                <a href="index?jump_url=rank&menu_url=rank" target="_blank">
+                    <div class="cicle10">
+                        <span id="wan">{$rank_count}</span>
+                        <p>排名任务</p>
+                    </div>
+                </a>
+                <a href="index?jump_url=tuiguang_task&menu_url=tuiguang_task" target="_blank">
+                    <div class="cicle11">
+                        <span id="zan">{$video_count}</span>
+                        <p>发布视频</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+                
+
+        <!--右边-->
+        <div class="data_right fr">
+            <ul>
+                <li>
+                    <a href="/zixun_28.html" target="_blank">
+                        <img src="/static/image/icon/pay.png">    
+                        <p>收费标准</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/zixun_29.html" target="_blank">
+                        <img src="/static/image/icon/gognju.png">    
+                        <p>敏感词</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/zixun_26.html" target="_blank">
+                        <img src="/static/image/icon/notice.png">    
+                        <p>发布视频规范</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/zixun2.html" target="_blank">
+                        <img src="/static/image/icon/notice.png">    
+                        <p>使用文档</p>
+                    </a>
+                </li>
+                
+                <li>
+                    <a {if $store_info['seo_status']}href="index?jump_url=now_rank&menu_url=now_rank"{else}onclick="alert('联系上级开通');"{/if} target="_blank">
+                        <img src="/static/image/icon/seo.png">    
+                        <p>排名查询</p>
+                    </a>
+                </li>
+                
+                <li>
+                    <a {if $store_info['shucai_status']}href="index?jump_url=video_download&menu_url=video_download"{else}onclick="alert('联系上级开通');"{/if} target="_blank">
+                        <img src="/static/image/icon/shuiyin.png">    
+                        <p>去水印</p>
+                    </a>
+                </li>
+                
+                
+                <li>
+                    <a {if $store_info['card_status']}href="index?jump_url=card&menu_url=card"{else}onclick="alert('联系上级开通');"{/if} target="_blank">
+                        <img src="/static/image/icon/lianjie.png">    
+                        <p>全网引流外链</p>
+                    </a>
+                </li>
+                
+                <li>
+                    <a {if $store_info['qiye_status']}href="index?jump_url=qiye_intention&menu_url=qiye_intention"{else}onclick="alert('联系上级开通');"{/if} target="_blank">
+                        <img src="/static/image/icon/kehu.png">    
+                        <p>意向客户</p>
+                    </a>
+                </li>
+                
+                <li>
+                    <a {if $store_info['jianji_status']}href="index?jump_url=make_video&menu_url=make_video"{else}onclick="alert('联系上级开通');"{/if} target="_blank">
+                        <img src="/static/image/icon/video.png">    
+                        <p>智能云剪辑</p>
+                    </a>
+                </li>                
+                
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!--内容-->
+<section  class="data_content_task" style="padding: 0 0.38rem;box-sizing: border-box;">
+
+    <div class="data_info">
+        {if $store_info['jianji_status']}
+        <a href="index?jump_url=tuiguang_video&menu_url=tuiguang_video" target="_blank">
+            <div class="info_1 fl">
+                <p class="info_1_title">剪辑视频</p>
+                <div class="text_1">
+                    <div class="fl count">
+                        <p class="conuts" id="run_task">{$jianji_count} </p>
+                        <p>已用</p>
+                    </div>
+                    <div class="fl count">
+                        <p class="conuts" id="run_task">{if $store_info['jianji_count']=="-1"}不限{else}{$store_info['jianji_count']}{/if} </p>
+                        <p>剩余</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+        {/if}
+        {if $store_info['juzhen_status']}
+        <a href="index?jump_url=tuiguang_task&menu_url=tuiguang_task" target="_blank">
+            <div class="info_1 fl" style="    background: linear-gradient(rgb(108 108 255 / 66%),rgb(62 50 50));">
+                <p class="info_1_title">矩阵发布</p>
+                <div class="text_1">
+                    <div class="fl count">
+                        <p class="conuts" id="run_task">{$juzhen_count} </p>
+                        <p>已用</p>
+                    </div>
+                    <div class="fl count">
+                        <p class="conuts" id="run_task">{if $store_info['juzhen_count']=="-1"}不限{else}{$store_info['juzhen_count']}{/if} </p>
+                        <p>剩余</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+        {/if}
+        {if $store_info['card_status']}
+        <a href="index?jump_url=card&menu_url=card" target="_blank">
+            <div class="info_1 fl" style="background: linear-gradient(180deg,rgb(30 124 185),rgb(62 50 50));">
+                <p class="info_1_title">引流外链</p>
+                <div class="text_1">
+                    <div class="fl count">
+                        <p class="conuts" id="run_task">{$card_count} </p>
+                        <p>已用</p>
+                    </div>
+                    <div class="fl count">
+                        <p class="conuts" id="run_task">{if $store_info['card_count']=="-1"}不限{else}{$store_info['card_count']}{/if} </p>
+                        <p>剩余</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+        {/if}
+
+        {if $store_info['qiye_status']}
+        <a href="index?jump_url=qiye_user&menu_url=qiye_user" target="_blank">
+            <div class="info_1 fl" style="background: linear-gradient(180deg,rgb(220 95 82),rgb(62 50 50));">
+                <p class="info_1_title">企业号授权</p>
+                <div class="text_1">
+                    <div class="fl count">
+                        <p class="conuts" id="run_task">{$qiye_count} </p>
+                        <p>已用</p>
+                    </div>
+                    <div class="fl count">
+                        <p class="conuts" id="run_task">{if $store_info['qiye_count']=="-1"}不限{else}{$store_info['qiye_count']}{/if} </p>
+                        <p>剩余</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+        {/if}
+
+        {if $store_info['juzhen_status']}
+        <a href="index?jump_url=tuiguang_user&menu_url=tuiguang_user" target="_blank">
+            <div class="info_1 fl" style="background: linear-gradient(180deg,rgb(30 185 155),rgb(62 50 50));">
+                <p class="info_1_title">普通抖音授权</p>
+                <div class="text_1">
+                    <div class="fl count">
+                        <p class="conuts" id="run_task">{$dy_count} </p>
+                        <p>已用</p>
+                    </div>
+                    <div class="fl count">
+                        <p class="conuts" id="run_task">{if $store_info['dy_count']=="-1"}不限{else}{$store_info['dy_count']}{/if} </p>
+                        <p>剩余</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <a href="index?jump_url=tuiguang_comment&menu_url=tuiguang_comment" target="_blank">
+            <div class="info_1 fl" style="background: linear-gradient(180deg,rgb(41 132 224),rgb(62 50 50));">
+                <p class="info_1_title">视频数据</p>
+                <div class="text_1">
+                    <div class="fl count">
+                        <p class="conuts" id="run_task">{$like_count} </p>
+                        <p>点赞</p>
+                    </div>
+                    <div class="fl count">
+                        <p class="conuts" id="run_task">{$view_count} </p>
+                        <p>播放</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a href="index?jump_url=tuiguang_task&menu_url=tuiguang_task" target="_blank">
+            <div class="info_1 fl" style="margin-right: 0;background: linear-gradient(180deg,rgb(214 92 216 / 62%),rgb(62 50 50));">
+                <p class="info_1_title">视频意向</p>
+                <div class="text_1">
+                    <div class="fl count">
+                        <p class="conuts" id="run_task">{$total_share} </p>
+                        <p>转发</p>
+                    </div>
+                    <div class="fl count">
+                        <p class="conuts" id="run_task">{$comment_count} </p>
+                        <p>评论</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+        {/if}
+
+
+    </div>
+</section>
+
+
+ <div class="data_c_2 public" style="clear: both;">
+        <div class="ant-collapse-content ant-collapse-content-active" style="">
+              <div class="ant-collapse-content-box">
+                <div>
+                  <div class="antd-pro-pages-dashboard-styles-link_title">内容创作</div>
+                  <div class="antd-pro-pages-dashboard-styles-link_cate">
+                    <div class="antd-pro-pages-dashboard-styles-link_tab">
+                      <div>热门工具</div>
+                      <div>
+                        <div style="position: relative">
+                            <a href="index?jump_url=video_download&menu_url=video_download" target="_blank">
+                              <img src="/assets/img/icon/weike.png"
+                                alt=""
+                                width="30" style="background: #fff;border-radius: 50%;"/><span>视频去水印</span><span
+                                class="antd-pro-pages-dashboard-styles-new_tag"
+                                style="left: 85px"
+                                >NEW</span>
+                            </a>
+                        </div>
+
+                      </div>
+                    </div>
+                    <div class="antd-pro-pages-dashboard-styles-link_tab">
+                      <div>视频剪辑</div>
+                      <div>
+                        <div style="position: relative">
+                            <a href="https://lv.ulikecam.com/?_s=1&keyword=PRex" target="_blank">
+                              <img
+                                src="/assets/img/icon/jianying.png"
+                                alt=""
+                                width="30"
+                              /><span>剪映</span>
+                            </a>
+                        </div>
+                        <div style="position: relative">
+                            <a href="https://cc.oceanengine.com/creative-factory/video-editor" target="_blank">
+                                  <img
+                                    src="/assets/img/icon/juliang_chuangyi.png"
+                                    alt=""
+                                    width="30"
+                                  /><span>视频编辑器</span>
+                            </a>
+                        </div>
+                        
+                        <div style="position: relative">
+                            <a href="http://kuai.360.cn/home.html" target="_blank">
+                          <img
+                            src="/assets/img/icon/kuaijianji.png"
+                            alt=""
+                            width="30"
+                          /><span>快剪辑</span>
+                          </a>
+                        </div>
+                        <div style="position: relative">
+                            <a href="https://miao.wondershare.cn/" target="_blank">
+                          <img
+                            src="/assets/img/icon/miaoyin.png"
+                            alt=""
+                            width="30"
+                          /><span>喵影工厂</span>
+                          </a>
+                        </div>
+          
+                      </div>
+                    </div>
+                    <div class="antd-pro-pages-dashboard-styles-link_tab">
+                      <div>图片制作</div>
+                      <div>
+                        <div style="position: relative">
+                            <a href="https://www.chuangkit.com/" target="_blank">
+                          <img
+                            src="/assets/img/icon/chuangketie.png"
+                            alt=""
+                            width="30"
+                          /><span>创客贴</span>
+                          </a>
+                        </div>
+                        <div style="position: relative">
+                            <a href="https://cc.oceanengine.com/creative-factory/tuling/11" target="_blank">
+                          <img
+                            src="/assets/img/icon/juliang_chuangyi.png"
+                            alt=""
+                            width="30"
+                          /><span>智能抠图</span>
+                          </a>
+                        </div>
+    
+                      </div>
+                    </div>
+                    <div class="antd-pro-pages-dashboard-styles-link_tab">
+                      <div>灵感来源</div>
+                      <div>
+                        <div style="position: relative">
+                            <a href="https://s.weibo.com/top/summary?cate=realtimehot" target="_blank">
+                          <img
+                            src="/assets/img/icon/weibo.png"
+                            alt=""
+                            width="30"
+                          /><span>微博热搜</span>
+                          </a>
+                        </div>
+                        <div style="position: relative">
+                            <a href="https://cc.oceanengine.com/inspiration/creative-radar/video" target="_blank">
+                          <img
+                            src="/assets/img/icon/juliang_chuangyi.png"
+                            alt=""
+                            width="30"
+                          /><span>创意灵感</span>
+                          </a>
+                        </div>
+                        
+                        <div style="position: relative">
+                            <a href="https://top.baidu.com/board" target="_blank">
+                          <img
+                            src="/assets/img/icon/baidu.png"
+                            alt=""
+                            width="30"
+                          /><span>百度热搜</span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="antd-pro-pages-dashboard-styles-link_tab">
+                      <div>文案素材</div>
+                      <div>
+                        <div style="position: relative">
+                            <a href="https://cc.oceanengine.com/creative-factory/miaobi" target="_blank">
+                          <img
+                            src="/assets/img/icon/juliang_chuangyi.png"
+                            alt=""
+                            width="30"
+                          /><span>标题推荐</span>
+                          </a>
+                        </div>
+                        <div style="position: relative">
+                            <a href="https://www.meihua.info/" target="_blank">
+                          <img
+                            src="/assets/img/icon/meihua.png"
+                            alt=""
+                            width="30"
+                          /><span>梅花文案</span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="antd-pro-pages-dashboard-styles-link_tab">
+                      <div>音乐素材</div>
+                      <div>
+                        <div style="position: relative">
+                            <a href="https://music.163.com/" target="_blank">
+                          <img
+                            src="/assets/img/icon/wangyiyun.png"
+                            alt=""
+                            width="30"
+                          /><span>网易云音乐</span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="antd-pro-pages-dashboard-styles-link_tab">
+                      <div>实用工具</div>
+                      <div>
+                        <div style="position: relative">
+                            <a href="https://cc.oceanengine.com/creative-factory/subtitle" target="_blank">
+                          <img
+                            src="/assets/img/icon/juliang_chuangyi.png"
+                            alt=""
+                            width="30"
+                          /><span>语音识别文字</span>
+                          </a>
+                        </div>
+                        <div style="position: relative">
+                            <a href="https://cc.oceanengine.com/creative-factory/ai-dubbing" target="_blank">
+                          <img
+                            src="/assets/img/icon/juliang_chuangyi.png"
+                            alt=""
+                            width="30"
+                          /><span>AI配音</span>
+                          </a>
+                        </div>
+                        <div style="position: relative">
+                            <a href="https://www.apowersoft.cn/free-online-screen-recorder" target="_blank">
+                          <img
+                            src="/assets/img/icon/luping.png"
+                            alt=""
+                            width="30"
+                          /><span>在线录屏</span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div class="antd-pro-pages-dashboard-styles-link_title">运营变现</div>
+                  <div class="antd-pro-pages-dashboard-styles-link_cate">
+                    <div class="antd-pro-pages-dashboard-styles-link_tab">
+                      <div>基础内容</div>
+                      <div>
+                        <div style="position: relative">
+                            <a href="https://www.douyin.com/business/#live" target="_blank">
+                          <img
+                            src="/assets/img/icon/douyin.png"
+                            alt=""
+                            width="30"
+                          /><span>抖音直播电脑版</span>
+                          </a>
+                        </div>
+                        <div style="position: relative">
+                            <a href="https://creator.douyin.com/" target="_blank">
+                          <img
+                            src="/assets/img/icon/douyin.png"
+                            alt=""
+                            width="30"
+                          /><span>抖音创作服务平台</span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="antd-pro-pages-dashboard-styles-link_tab">
+                      <div>广告投放</div>
+                      <div>
+                        <div style="position: relative">
+                            <a href="https://qianchuan.jinritemai.com/" target="_blank">
+                          <img
+                            src="/assets/img/icon/qianchuan.png"
+                            alt=""
+                            width="30"
+                          /><span>巨量千川</span>
+                          </a>
+                        </div>
+                        <div style="position: relative">
+                            <a href="https://www.xingtu.cn/" target="_blank">
+                          <img
+                            src="/assets/img/icon/juliang.png"
+                            alt=""
+                            width="30"
+                          /><span>巨量星图</span>
+                          </a>
+                        </div>
+                        <div style="position: relative">
+                            <a href="https://www.oceanengine.com/" target="_blank">
+                          <img
+                            src="/assets/img/icon/juliang.png"
+                            alt=""
+                            width="30"
+                          /><span>巨量引擎</span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="antd-pro-pages-dashboard-styles-link_tab">
+                      <div>电商带货</div>
+                      <div>
+                        <div style="position: relative">
+                            <a href="https://fxg.jinritemai.com/" target="_blank">
+                          <img
+                            src="/assets/img/icon/doudain.png"
+                            alt=""
+                            width="30"
+                          /><span>抖音电商</span>
+                          </a>
+                        </div>
+                        <div style="position: relative">
+                            <a href="https://school.jinritemai.com/doudian/web/?from=shop_rules" target="_blank">
+                          <img
+                            src="/assets/img/icon/dianshang.png"
+                            alt=""
+                            width="30"
+                          /><span>电商大学</span>
+                          </a>
+                        </div>
+                        <div style="position: relative">
+                            <a href="https://pub.alimama.com/" target="_blank">
+                          <img
+                            src="/assets/img/icon/tb_lianmeng.png"
+                            alt=""
+                            width="30"
+                          /><span>淘宝联盟</span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div class="antd-pro-pages-dashboard-styles-link_title">认证服务</div>
+                  <div class="antd-pro-pages-dashboard-styles-link_cate">
+                  <div class="antd-pro-pages-dashboard-styles-link_tab">
+                    <div>抖音认证</div>
+                    <div>
+                    <div style="position: relative">
+                            <a href="https://renzheng.douyin.com/site/home" target="_blank">
+                      <img
+                        src="/assets/img/icon/dy_qiye.png"
+                        alt=""
+                        width="30"
+                      /><span>企业号</span>
+                      </a>
+                    </div>
+                    <div style="position: relative">
+                            <a href="https://musician.douyin.com/" target="_blank">
+                      <img
+                        src="/assets/img/icon/juliang_chuangyi.png"
+                        alt=""
+                        width="30"
+                      /><span>音乐人认证</span>
+                      </a>
+                    </div>
+                    <div style="position: relative">
+                            <a href="https://www.douyin.com/platform/effect" target="_blank">
+                      <img
+                        src="/assets/img/icon/juliang_chuangyi.png"
+                        alt=""
+                        width="30"
+                      /><span>抖音特效师</span>
+                      </a>
+                    </div>
+                    <div style="position: relative">
+                            <a href="https://www.douyin.com/mcn/" target="_blank">
+                      <img
+                        src="/assets/img/icon/mcn.png"
+                        alt=""
+                        width="30"
+                      /><span>MCN认证</span>
+                      </a>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+              </div>
+            </div>
+
+            </div>
+        </div>
+        </div>
+
+<script type="text/javascript" src="/storeadmin2/dp/js/jquery-1.8.0.min.js"></script>
+<script src="/storeadmin2/dp/js/script.js"></script>
+<script src="/storeadmin2/dp/js/rem.js"></script>
+<!-- <script src="/storeadmin2/dp/js/echarts.min.js"></script> -->
+<!-- <script src="/storeadmin2/dp/js/echart.js"></script> -->
+<!--<script type="text/javascript" src="js/com.js"></script>-->
+<!-- <script src="/storeadmin2/dp/js/main.js"></script> -->
+<!-- <script src="/storeadmin2/dp/js/index.js"></script> -->
+<script type="text/javascript" src="/storeadmin2/dp/js/echarts-auto-tooltip.js"></script>
+<script type="text/javascript" src="/storeadmin2/dp/js/jquery.liMarquee.js"></script>
+<script>
+    $(function () {
+        $('.myscroll').liMarquee({
+            direction: 'up'
+        })
+    })
+</script>
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+    "navigationStyle": "custom",
+    "usingComponents": {
+        "foxTabs": "/components/foxTabs/foxTabs",
+        "cosplayMsgList": "/components/cosplayMsgList/cosplayMsgList",
+        "speeching": "/components/speeching/speeching",
+        "player": "/components/player/player",
+        "navbar": "/components/navbar/navbar"
+    }
+}

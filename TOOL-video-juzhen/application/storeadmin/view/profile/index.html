@@ -1,0 +1,241 @@
+<style type="text/css"> 
+    .table {table-layout:fixed;} 
+    .table td{text-overflow:ellipsis; overflow:hidden; white-space:nowrap; }
+    .douyin_follow_content{text-align: center;font-size: 16px;font-family: "微软雅黑";padding-bottom: 50px;}
+    .douyin_form{width: 800px;margin: 0 auto;}
+    .douyin_login{margin: 20px auto;width: 150px;line-height: 25px;display: block;}
+    .douyin_status{margin-top: 20px;color: #999;}
+    .douyin_follow_list{width: 700px;margin:0 auto;display: block;}
+    .douyin_follow_list h2{margin-top: 50px;margin-bottom: 20px;font-weight: bold;color: #18bc9c;}
+    .douyin_follow_list ul{border-bottom:1px solid #ccc;padding: 0px;}
+    .douyin_follow_list ul li{list-style: none;display: inline-block;width: 30%;text-align: center;padding: 10px 0px;color: #888;}
+    .douyin_follow_list_head{border-top:1px solid #ccc;}
+    .douyin_follow_list_head li{font-weight: bold;color: #000!important;}
+    .delete_cookie{cursor: pointer;width: 60px;line-height: 30px;background: #ccc;text-align: center;display: inline-block;border-radius: 5px;color: #fff;}
+    .form-group {margin-bottom: 10px;margin-top: 10px;text-align: right;display: block;height: 40px;line-height: 40px;}
+    .form-group label{    font-weight: normal;margin-top: 5px;}
+    .douyin_follow_notice{width: 800px;margin: 0 auto;}
+    .douyin_follow_notice p{color:#999;text-align: left;line-height: 25px;}
+    .get_qrcode{display: block;width: 80px;margin: 0 auto;}
+    .douyin_form input{height: 40px;line-height: 40px;margin-top: 10px;}
+    .get_code_btn{padding:0px;line-height: 40px;background: #18bc9c;color: #fff;margin-top: 10px;text-align: center;cursor: pointer;}
+    .douyin_form input{border-radius: 5px;}
+</style>
+<div class="panel panel-default panel-intro">
+    {:build_heading()}
+
+    <div class="panel-body">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="one">
+                <div class="widget-body no-padding">
+                    <div id="toolbar" class="toolbar">
+                        
+                    </div>
+                    <form id="update-form" role="form" data-toggle="validator" method="POST" action="/storeadmin/profile">
+                        <div class="douyin_follow_content">
+
+                            <div class="douyin_form">
+                                <div class="form-group">
+                                    <label class="control-label col-xs-12 col-sm-3">账号昵称 :</label>
+                                    <div class="col-xs-12 col-sm-8" style="padding:0px;">
+                                        <input id="c-store_name" data-rule="required" class="form-control" name="row[store_name]" type="text" value="{$store.store_name}" placeholder="请输入账号昵称" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-xs-12 col-sm-3">登陆密码 :</label>
+                                    <div class="col-xs-12 col-sm-8" style="padding:0px;">
+                                        <input id="c-password" class="form-control" name="row[new_password]" type="text" value="" placeholder="******（留空则不修改）" >
+                                    </div>
+                                </div>
+
+                                {if $auth_url}
+
+                                <div class="form-group" style="padding-top: 15px">
+                                    <label class="control-label col-xs-12 col-sm-3">微信通知 :</label>
+                                    <div class="col-xs-12 col-sm-8" style="padding:0px;">
+                                        <span style="float:left;line-height: 50px;margin-right: 10px;">{$store['nickname']}</span>
+                                        <span onclick='get_qrcode("{$auth_url}")'class="bind_weixin" style="padding-left: 0px;float:left;background: #666666;color: #fff;padding: 3px 20px;border-radius: 5px;border: 0px;cursor: pointer;">扫码绑定 <img src="/img/weixin.png" style="height: 30px;width:30px;display: inline-block;text-align: center;">   </span>
+                                        {if $store['nickname']}
+                                            <span class="test_weixin" style="float:left;margin-left: 20px;font-size: 14px;color: #34e63b;line-height: 50px;cursor: pointer;">测试推送</span>
+                                            <span class="unbind_weixin" style="float:left;margin-left: 20px;font-size: 14px;color: #4d9cea;line-height: 50px;cursor: pointer;">解除绑定</span>
+                                        {/if}
+                                        <p style="clear: both;text-align: left;margin-top: 15px;font-size: 14px;color: orange;height: 25px;">如需接收通知，请先关注微信公众号：【{$wechat_name}】</p>
+
+
+                                    </div>
+                                    
+                                </div>
+                                {/if}
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-xs-12 col-sm-3">代理ip配置:</label>
+                                    <div class="col-xs-12 col-sm-8" style="padding:0px;">
+                                        <div class="radio" style="text-align:left;margin-top: 0px;font-size: 14px;">
+                                            <label>
+                                                <input type="radio"  class="open_ip" name="row[open_ip]"  {if $store['open_ip']==1}checked{/if} value="1">共享代理IP( 5分钟版 )
+                                            </label>
+                                            <label>
+                                                <input type="radio"  class="open_ip" name="row[open_ip]"  {if $store['open_ip']!=1}checked{/if} value="0">自定义代理IP
+                                            </label>
+                                            
+                                        </div>
+                                        <div style="color:#999;display:block;margin-top: -20px;text-align: left;font-size: 12px;">共享代理ip可以将视频属地定位到具体城市，同时减少sms短信验证出现; </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group open_ip_1" style="clear:both;{if $store['open_ip']!=1}display: none;{/if}">
+                                    <label class="control-label col-xs-12 col-sm-3">ip城市 :</label>
+                                    <div class="col-xs-12 col-sm-3 "  style="padding:0px;margin-top: 5px;">
+                                        <select class="form-control" name="row[city_code]" data-live-search="true" style="height: 40px;border-radius: 5px;font-size: 14px;">
+                                            <option value="0" {if $store['city_code']==0}selected{/if}>选择城市</option>
+                                            {if $citys}
+                                                {foreach $citys as $k=>$v}
+                                                    <option value="{$v['code']}" {if $store['city_code']==$v['code']}selected{/if}>{$v['prov']} - {$v['city']}</option>
+                                                {/foreach}
+                                            {/if}
+                                        </select>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-5 "  style="padding:0px;margin-top: 5px;text-align: left;margin-left: 10px;">
+                                        <span style="font-size:14px;color: #ccc">剩余共享ip次数：<span style="font-size:18px;color: orange;font-weight: bold;">{$store.ip_count}次</span> , 联系上级充值</span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group open_ip_0" {if $store['open_ip']==1}style="display: none;"{/if}>
+                                    <label class="control-label col-xs-12 col-sm-3">代理ip链接 :</label>
+                                    <div class="col-xs-12 col-sm-8" style="padding:0px;">
+                                        <input id="c-price" name="row[proxy_url]" placeholder="http://api.shenlongip.com/ip?key=igc1231eog43w&pattern=txt&count=1" class="form-control"  type="text" value="{$store.proxy_url}"  >  
+                                        <div style="margin-top: -5px;font-size: 12px;color: #999;text-align: left;">根据教程文档，生成指定省份的代理ip链接</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group open_ip_0" {if $store['open_ip']==1}style="display: none;"{/if}>
+                                    <label class="control-label col-xs-12 col-sm-3">神龙ip用户名 :</label>
+                                    <div class="col-xs-12 col-sm-8" style="padding:0px;">
+                                        <input id="c-price" name="row[proxy_username]" placeholder="填写登录的用户名" class="form-control"  type="text" value="{$store.proxy_username}"  >  
+                                    </div>
+                                </div>
+
+                                <div class="form-group open_ip_0" {if $store['open_ip']==1}style="display: none;"{/if}>
+                                    <label class="control-label col-xs-12 col-sm-3">包量分钟 :</label>
+                                    <div class="col-xs-12 col-sm-8" style="padding:0px;">
+                                        <select name="row[proxy_time]" class="form-control"    style="margin-top: 10px;height: 40px;border-radius: 5px;" >
+                                            <option value="3" {if $store.proxy_time==3 || $store.proxy_time==0}selected{/if}>3 分钟</option>
+                                            <option value="5" {if $store.proxy_time==5}selected{/if}>5 分钟</option>
+                                            <option value="10" {if $store.proxy_time==10}selected{/if}>10 分钟</option>
+                                            <option value="15" {if $store.proxy_time==15}selected{/if}>15 分钟</option>
+                                            <option value="30" {if $store.proxy_time==30}selected{/if}>30 分钟</option>
+                                        </select>
+                                        <div style="margin-top: -5px;font-size: 12px;color: #999;text-align: left;">根据自己购买的套餐时间选择，请正确选择，否则将影响正常发布</div>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-xs-12 col-sm-3">剩余点数 :</label>
+                                    <div class="col-xs-12 col-sm-8" style="padding:0px;">
+                                        <input id="c-price" data-rule="required" class="form-control" style="background: #666;"  type="text" value="{$store.price}" disabled readonly="readonly" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-xs-12 col-sm-3">AI创作字数 :</label>
+                                    <div class="col-xs-12 col-sm-8" style="padding:0px;">
+                                        <input id="c-ai_chat_count" data-rule="required" class="form-control" style="background: #666;"  type="text" value="{$store.ai_chat_count}" disabled readonly="readonly" >
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-xs-12 col-sm-3">到期时间 :</label>
+                                    <div class="col-xs-12 col-sm-8" style="padding:0px;">
+                                        <input id="c-out_date" data-rule="required" class="form-control" style="background: #666;" type="text" value="{$store.out_date}" disabled readonly="readonly" >
+                                    </div>
+                                </div>
+
+                                <div class="form-group" style="margin-top:20px">
+                                    <label class="control-label col-xs-12 col-sm-3">实名认证 :</label>
+                                    <div class="col-xs-12 col-sm-8" style="padding:0px;text-align: left;line-height: 50px;">
+                                        {if @$store_realname['status']==1}
+                                            <span style="color: #ccc;">实名审核中</span>
+                                        {elseif @$store_realname['status']==2}
+                                            <span style="color: #34e63b;">已实名 （{if $store_realname['realname_type']==2}企业{else}个人{/if}）</span>
+                                        {elseif @$store_realname['status']==3}
+                                            <span style="color: red;">实名失败：{$store_realname['reason']}</span>
+                                        {else}
+                                            <span style="color: #ccc;">未实名</span>
+                                        {/if}
+                                        <a href="/storeadmin/index?jump_url=realname&menu_url=realname" target="_blank" style="margin-left: 20px;">实名入口</a>
+                                    </div>
+                                </div>
+ 
+                                
+                                <button type="submit" class="btn btn-success" style="width:200px;line-height:30px;margin-top:20px;font-size: 18px;">修改</button>
+
+                            </div>
+
+                            
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src='/storeadmin2/libs/jquery/dist/jquery.min.js?v=123123'></script>
+<script type="text/javascript" src="/storeadmin2/js/jquery.qrcode.min.js"></script>
+
+<style type="text/css">
+    .qrcode-popul{position: fixed;top: 0;left: 0;width: 100%;height: 100%;background: rgba(0,0,0,.6);z-index: 9999;}
+    .qrcode-populBox{width: 400px;border: 2px solid #fff;margin: 10% auto 0;background: #fff;position: relative;height: 400px;}
+    .qrcode-populBox h6{    text-align: center;height: 50px;width: 95%;margin: 0 auto;line-height: 50px;font-size: 18px;color: #007cc3;border-bottom: 1px solid #e8e8e8;}
+    .qrcode-populText{padding: 30px 20px;line-height: 23px;font-size: 14px;}
+    .closeQrcode{    position: absolute;top: 5px;right: 5px;font-size: 30px;color: #c3c3c3;font-weight: 700;cursor: pointer;}
+    .qrcode-img{    display: block;width: 260px;height: 260px;margin: 0 auto;padding: 30px 0;}
+    .erweima-main p{text-align: center;font-size: 16px;padding: 3px;}
+    #doctor_name{color: #007cc3;font-size: 18px;font-weight: 600;}
+</style>
+<!-- <div id="qrcode" ></div> -->
+<div class="qrcode-popul" style="display: none;">
+    <div class="qrcode-populBox">
+        <h6 class="qrcode-title">微信扫码绑定</h6>
+        <div class="erweima-main">
+            <p style="height: 50px; line-height: 50px; display: none;" class="qrcode-default-img">正在加载二维码...</p>
+            <div id="qrcode" class="qrcode-img"></div>
+        </div>
+        <span class="closeQrcode">×</span>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $('.open_ip').change(function() {
+        if (this.value == 1) {
+            $('.open_ip_1').show();
+            $('.open_ip_0').hide();
+        }else  {
+            $('.open_ip_0').show();
+            $('.open_ip_1').hide();
+        }
+    });
+$(function(){
+    $('.closeQrcode').click(function(){
+        $('.qrcode-popul').hide();
+    });
+});
+
+$('.unbind_weixin').click(function(){
+    if(confirm("解绑后将收不到系统通知，确认解绑微信么？")) {
+        $.get('/storeadmin/profile/unbind_weixin',{},function(data){
+            alert(data.msg);
+            location.reload();
+        },'json');
+    }
+});
+
+$('.test_weixin').click(function(){
+    $.get('/storeadmin/profile/test_weixin',{},function(data){
+        alert(data.msg);
+        location.reload();
+    },'json');
+});
+</script>

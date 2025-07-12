@@ -1,0 +1,140 @@
+<div class="panel panel-default panel-intro">
+
+    <div class="panel-body">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="one">
+                <div class="widget-body " style="padding-top: 20px;">
+
+                    <form id="edit-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">网站名称:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-name"  class="form-control" name="row[name]" type="text" value="{$agent_config.name|htmlentities}">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">网站logo（200*50px）:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <div class="input-group">
+                                    <input id="c-website_logo" class="form-control" size="50" name="row[website_logo]" type="text" value="{$agent_config.website_logo|htmlentities}">
+                                    <div class="input-group-addon no-border no-padding">
+                                        <span><button type="button" id="faupload-website_logo" class="btn btn-danger faupload" data-input-id="c-website_logo" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false" data-preview-id="p-website_logo"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                                        <span><button type="button" id="fachoose-website_logo" class="btn btn-primary fachoose" data-input-id="c-website_logo" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                                    </div>
+                                    <span class="msg-box n-right" for="c-website_logo"></span>
+                                </div>
+                                <ul class="row list-inline faupload-preview" id="p-website_logo"></ul>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">一句话简介:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-website_desc"  class="form-control" name="row[website_desc]" type="text" value="{$agent_config.website_desc|htmlentities}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">公司全称:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-website_company"  class="form-control" name="row[website_company]" type="text" value="{$agent_config.website_company|htmlentities}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">公司简称:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-website_company_desc" data-rule="required" class="form-control" name="row[website_company_desc]" type="text" value="{$agent_config.website_company_desc|htmlentities}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">公司地址:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-website_company_address" class="form-control" data-use-current="true" name="row[website_company_address]" type="text" value="{$agent_config.website_company_address|htmlentities}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">客服邮箱:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-website_email" data-rule="required" class="form-control" name="row[website_email]" type="text" value="{$agent_config.website_email|htmlentities}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">客服qq:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-website_qq"  class="form-control" name="row[website_qq]" type="text" value="{$agent_config.website_qq|htmlentities}">
+                            </div>
+                        </div>
+  
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">客服微信（100*100px）:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <div class="input-group">
+                                    <input id="c-website_wechat" class="form-control" size="50" name="row[website_wechat]" type="text" value="{$agent_config.website_wechat|htmlentities}">
+                                    <div class="input-group-addon no-border no-padding">
+                                        <span><button type="button" id="faupload-website_wechat" class="btn btn-danger faupload" data-input-id="c-website_wechat" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false" data-preview-id="p-website_wechat"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                                        <span><button type="button" id="fachoose-website_wechat" class="btn btn-primary fachoose" data-input-id="c-website_wechat" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                                    </div>
+                                    <span class="msg-box n-right" for="c-website_wechat"></span>
+                                </div>
+                                <ul class="row list-inline faupload-preview" id="p-website_wechat"></ul>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">首页大背景（1980*1080px）:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <div class="input-group">
+                                    <input id="c-website_bg" class="form-control" size="50" name="row[website_bg]" type="text" value="{$agent_config.website_bg|htmlentities}">
+                                    <div class="input-group-addon no-border no-padding">
+                                        <span><button type="button" id="faupload-website_bg" class="btn btn-danger faupload" data-input-id="c-website_bg" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false" data-preview-id="p-website_bg"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                                        <span><button type="button" id="fachoose-website_bg" class="btn btn-primary fachoose" data-input-id="c-website_bg" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                                    </div>
+                                    <span class="msg-box n-right" for="c-website_bg"></span>
+                                </div>
+                                <ul class="row list-inline faupload-preview" id="p-website_bg"></ul>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">客户数:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-website_kehu"  class="form-control" name="row[website_kehu]" type="number" value="{$agent_config.website_kehu|htmlentities}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">TDK-title:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-website_tdk_title"  class="form-control" name="row[website_tdk_title]" type="text" value="{$agent_config.website_tdk_title|htmlentities}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">TDK-keyword:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-website_tdk_keyword"  class="form-control" name="row[website_tdk_keyword]" type="text" value="{$agent_config.website_tdk_keyword|htmlentities}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">TDK-desc:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-website_tdk_desc"  class="form-control" name="row[website_tdk_desc]" type="text" value="{$agent_config.website_tdk_desc|htmlentities}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">备案号:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-beian"  class="form-control" name="row[beian]" type="text" value="{$agent_config.beian|htmlentities}">
+                            </div>
+                        </div>
+                        
+                       
+                        <div class="form-group layer-footer">
+                            <label class="control-label col-xs-12 col-sm-2"></label>
+                            <div class="col-xs-12 col-sm-8">
+                                <button type="submit" class="btn btn-success btn-embossed ">{:__('OK')}</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

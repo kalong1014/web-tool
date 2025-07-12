@@ -1,0 +1,120 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:88:"D:\php\xp\phpstudy_pro\WWW\chigua.cc\public/../application/index\view\index\content.html";i:1722091565;}*/ ?>
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="referrer" content="always">
+    <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848">
+    <link rel="stylesheet" href="/qt/merge.css">
+    <style>
+        video{
+
+            width:100%;
+            height:100%;
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="app">
+
+
+    <!--Safari分享微信卡片-->
+    <meta property="og:title" content="聊天记录">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="img/1.gif">
+    <title>聊天记录</title>
+    <div class="view">
+
+        <!--创建时间-->
+        <p class="merge_create_time"> —— <?php echo $row['addtime']; ?> —— </p>
+
+        <!--头像、昵称-->
+        <div class="avatar_nickname">
+            <div class="avatar">
+                <img src="/qt/cg.gif" />
+            </div>
+
+
+            <div class="nickname">瓜</div>
+        </div>
+
+        <!--渲染-->
+        <div class="merge_content">
+            <p><?php echo $row['title']; ?></p><br>
+           <?php echo $content; ?>
+    </div>
+</div>
+
+<!-- 预览图像的容器 -->
+<div id="overlay"></div>
+<img id="preview" src="" alt="Preview Image">
+
+</body>
+
+<script>
+
+    // 获取所有img标签
+    var images = document.querySelectorAll('img');
+
+    // 为每个img标签添加事件监听器
+    images.forEach(function (img) {
+        img.addEventListener('click', function () {
+            // 获取预览容器和遮罩层
+            var preview = document.getElementById('preview');
+            var overlay = document.getElementById('overlay');
+
+            // 设置预览图像的src属性
+            preview.src = img.src;
+
+            // 显示预览和遮罩层
+            preview.style.display = 'block';
+            overlay.style.display = 'block';
+
+            // 点击遮罩层或预览图像时隐藏预览和遮罩层
+            overlay.onclick = preview.onclick = function () {
+                preview.style.display = 'none';
+                overlay.style.display = 'none';
+            };
+        });
+    });
+
+    function one () {
+        var video, output;
+        output = document.getElementById("output");
+        var canvas = document.createElement('canvas')
+        var img = document.createElement("img");
+        video = document.getElementById('video1')
+        video.setAttribute('crossOrigin', 'anonymous')
+        canvas.width = video.clientWidth
+        canvas.height = video.clientHeight
+        video.onloadeddata = (() => {
+            canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height)
+            var dataURL = canvas.toDataURL('image/png')
+            img.src = dataURL;
+            img.width = 400;
+            img.height = 300;
+            output.appendChild(img);
+            video.setAttribute("poster",dataURL);
+        })
+    }
+    one()
+
+
+</script>
+</html>
+<style>
+    .t1{
+        display: flex; /* 使用flex布局 */
+        justify-content: center; /* 水平居中 */
+    }
+</style>
+

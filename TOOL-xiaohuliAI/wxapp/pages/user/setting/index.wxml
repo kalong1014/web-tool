@@ -1,0 +1,30 @@
+<navbar text="设置"></navbar>
+<view class="page" style="bottom: {{safeAreaHeight+110}}rpx; top: {{navBarHeight}}px;">
+    <view class="form">
+        <view bindtap="uploadAvatar" class="a-item" style="border-top: none;">
+            <view class="label">头像</view>
+            <view class="value">
+                <image class="avatar" src="{{avatar||'/images/avatar.jpg'}}"></image>
+                <image class="arrow" src="/images/ic_arrow_r.png"></image>
+            </view>
+        </view>
+        <view bindtap="toEditNickname" class="a-item">
+            <view class="label">昵称</view>
+            <view class="value">
+                <text>{{nickname||'无昵称'}}</text>
+                <image class="arrow" src="/images/ic_arrow_r.png"></image>
+            </view>
+        </view>
+        <view bindtap="toBindPhone" class="a-item">
+            <view class="label">手机账号</view>
+            <view class="value">
+                <text class="text-primary" wx:if="{{phone}}">{{phone}}</text>
+                <text class="text-danger" wx:else>未绑定</text>
+                <image class="arrow" src="/images/ic_arrow_r.png"></image>
+            </view>
+        </view>
+    </view>
+    <view class="logout">
+        <button bindtap="doLogout" class="btn-logout text-danger">退出登录</button>
+    </view>
+</view>

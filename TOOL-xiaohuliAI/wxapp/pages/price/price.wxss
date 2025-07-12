@@ -1,0 +1,73 @@
+page {
+    background: #f7f7f7;
+    box-sizing: border-box;
+}
+
+.panel {
+    background: #fff;
+    border-radius: 20rpx;
+    padding: 30rpx;
+}
+
+.title {
+    color: #aaa;
+    font-size: 32rpx;
+    margin-bottom: 30rpx;
+    text-align: center;
+}
+
+.content {
+    color: #666;
+    line-height: 1.6;
+}
+
+.func-title {
+    background: #f8f8f8;
+    border: 1px solid #ededed;
+    font-weight: 700;
+    height: 76rpx;
+    line-height: 72rpx;
+    padding: 0 20rpx;
+}
+
+.func-title,.table {
+    box-sizing: border-box;
+    font-size: 26rpx;
+    width: 690rpx;
+}
+
+.table {
+    border-left: 1px solid #ededed;
+    display: table;
+    margin-bottom: 30rpx;
+}
+
+.table .tr {
+    align-items: flex-start;
+    display: flex;
+    height: 80rpx;
+}
+
+.table .label {
+    background: #f8f8f8;
+    min-width: 120rpx;
+    width: 120rpx;
+}
+
+.table .label,.table .value {
+    border-bottom: 1px solid #ededed;
+    border-right: 1px solid #ededed;
+    box-sizing: border-box;
+    height: 100%;
+    padding: 20rpx;
+}
+
+.table .value {
+    background: #fff;
+    width: 568rpx;
+}
+
+.table .value .weight {
+    color: #03b9bd;
+    font-weight: 700;
+}

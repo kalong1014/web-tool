@@ -1,0 +1,8 @@
+{
+    "component": true,
+    "usingComponents": {
+        "prompt": "/components/draw/prompt",
+        "foxRadio": "/components/foxRadio/foxRadio",
+        "navbar": "/components/navbar/navbar"
+    }
+}

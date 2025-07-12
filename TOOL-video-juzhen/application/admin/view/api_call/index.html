@@ -1,0 +1,103 @@
+<style type="text/css"> 
+    .rank_title{width: 100%;text-align: center;font-weight: bold;font-size: 30px;letter-spacing: 3px;margin-top: 30px;}
+    .rank_content{width: 60%;margin: 0 auto;}
+    .rank_input input,.rank_input select{width: 150px;height: 40px;border-radius: 5px;padding-left: 20px;border: 1px solid #ccc;font-size: 16px;color: #333;margin-right: 20px;}
+    .rank_input button{width: 13%;margin-left: 0.5%;height:40px;border-radius: 5px;border: 0px;font-size: 16px;background: #ccc;}
+    .select_btn{background: #f39c12 !important;color: #fff;}
+    .rank_table ul li{display: inline-block;line-height: 50px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+    .rank_table {margin-top: 0px;font-size: 16px;text-align: center;}
+    .width_30{width: 30%;}
+    .width_20{width: 15%;}
+    .rank_ul_head{border-bottom: 1px solid #eee;color: #888;}
+    .rank_ul_body{margin: 30px 0;}
+    .rank_ul_body a{color: orange;border-radius: 5px;line-height: 35px;text-align: center;display: inline-block;width: 100px;}
+    .rank_beizhu{width: 100%;text-align: center;color: #666;margin-bottom: 30px;font-size: 16px;}
+    .rank_beizhu span{font-weight: bold;color: orange;font-size: 20px;}
+    .rank_input input{margin-bottom: 20px;}
+</style>
+<div class="panel panel-default panel-intro">
+    {:build_heading()}
+
+    <div class="panel-body">
+        <div id="myTabContent" class="tab-content">
+            <p class="rank_title">实时接口调用明细(最新调用)</p>
+            <div class="rank_beizhu">
+                D音接口剩余： <span class="visit_num" style="margin-right:20px">0</span> 
+                共享IP剩余： <span class="ip_count" style="margin-right:20px">0</span> 
+                实名次数剩余： <span class="log_count" >0</span> 
+            </div>
+            <div class="rank_content">
+                <div class="rank_input">
+                    开始时间：<input type="date" class="start_time" style="width: 180px;"> 
+                    结束时间：<input type="date" class="end_time" style="width: 180px;" > 
+                    <input type="text" class="store_id" placeholder="商户id"  style="width: 100px;">
+                    <input type="text" class="agent_id" placeholder="代理id"  style="width: 100px;"> 
+                    <select class="type">
+                        <option value="">全部类型</option>
+                        <option value="1">普通号授权</option>
+                        <option value="2">矩阵发布</option>
+                        <option value="3">获取评论</option>
+                        <option value="4">评论回复</option>
+                        <option value="5">企业号授权</option>
+                        <option value="6">企业号意向客户</option>
+                        <option value="8">矩阵更新数据</option>
+                    </select>
+                    <button class="select_btn submit_btn">查询</button>
+                </div>
+                <div class="rank_table">
+                    <ul class="rank_ul_head">
+                        <li class="width_30">调用类型</li>
+                        <li class="width_20">商户ID</li>
+                        <li class="width_30">调用时间</li>
+                        <li class="width_20">消耗次数</li>
+                    </ul>
+                    <ul class="rank_ul_body">
+                        暂无数据
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src='/storeadmin2/libs/jquery/dist/jquery.min.js?v=162913148'></script>
+<script type="text/javascript" src="/storeadmin2/libs/fastadmin-layer/dist/layer.js?v=1651412847"></script>
+
+<script type="text/javascript">
+    get_call();
+    $('.submit_btn').click(function(){
+        get_call();
+    });
+
+    function get_call(){
+        var loading = layer.load(0, {shade: false,time: 30*1000});
+        $(this).attr('disabled','true');
+        $('.submit_btn').removeClass('select_btn');
+
+        $.post('api_call/get_call',{type:$('.type').val(),start_time:$('.start_time').val(),end_time:$('.end_time').val(),store_id:$('.store_id').val(),agent_id:$('.agent_id').val()},function(data){  
+            $('.submit_btn').addClass('select_btn');
+            $('.select_btn').removeAttr('disabled','true');
+            layer.close(loading);  
+            if(data==""){
+                html = '暂无数据';
+            }else{
+                $('.visit_num').html(data.visit_num);
+                $('.log_count').html(data.realname_count);
+                $('.ip_count').html(data.ip_count);
+                list = data['list'];
+                if(list.length > 0){
+                    html = '';
+                    for(var i=0;i < list.length;i++){
+                        html += '<li class="width_30">'+list[i]['type_name']+'</li>\
+                            <li class="width_20"><a href="store?id='+list[i]['store_id']+'&ref=addtabs" target="_blank">'+list[i]['store_id']+'</a></li>\
+                            <li class="width_30">'+list[i]['addtime']+'</li>\
+                            <li class="width_20">'+list[i]['visit_num']+'</li>';
+                    }
+                }else{
+                    html = '暂无数据';
+                }
+            }
+            $('.rank_ul_body').html(html);
+        },'json');
+    }
+
+</script>

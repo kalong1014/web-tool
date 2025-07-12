@@ -1,0 +1,177 @@
+.picker-main {
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.picker-main .tabs {
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    height: 88rpx;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.picker-main .lists {
+    bottom: 0;
+    height: auto;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 94rpx;
+    width: 100%;
+}
+
+.picker-main .scate-list {
+    background: #f3f3f4;
+    bottom: 140rpx;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 180rpx;
+}
+
+.picker-main .scate-list .item {
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    float: left;
+    font-size: 24rpx;
+    line-height: 1.2;
+    overflow: hidden;
+    padding: 30rpx 16rpx;
+    position: relative;
+    text-align: center;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.picker-main .scate-list .item.active {
+    background: #fff;
+    color: #04babe;
+}
+
+.picker-main .scate-list .item .count {
+    background: #f56c6c;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 12px;
+    height: 16px;
+    line-height: 16px;
+    margin-left: 10px;
+    position: absolute;
+    right: 10rpx;
+    text-align: center;
+    top: 28rpx;
+    width: 16px;
+}
+
+.picker-main .words-list {
+    background: #fff;
+    bottom: 140rpx;
+    box-sizing: border-box;
+    left: 180rpx;
+    padding: 12rpx;
+    position: absolute;
+    top: 0;
+    width: 580rpx;
+}
+
+.picker-main .words-list .item {
+    align-items: center;
+    background: #f3f3f4;
+    border: 1px solid #fff;
+    border-radius: 8rpx;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: flex;
+    float: left;
+    font-size: 24rpx;
+    height: 98rpx;
+    justify-content: center;
+    line-height: 1.2;
+    margin: 6rpx;
+    overflow: hidden;
+    padding: 6rpx 10rpx;
+    text-align: center;
+    width: 172rpx;
+    word-break: all;
+}
+
+.picker-main .words-list .item.active {
+    background: #d1f2f3;
+    border: 1px solid #04babe;
+    color: #04babe;
+}
+
+.picker-main .empty {
+    border-radius: 20rpx;
+    margin: 120rpx 60rpx 0;
+    padding: 80rpx 0 100rpx;
+    text-align: center;
+}
+
+.picker-main .empty image {
+    height: 200rpx;
+    width: 200rpx;
+}
+
+.picker-main .picker-footer {
+    background: #f3f3f4;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+}
+
+.picker-main .picker-footer .words-picked {
+    padding-top: 20px;
+    width: 100%;
+}
+
+.picker-main .picker-footer .words-picked .item {
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.picker-main .picker-footer .footer {
+    align-items: center;
+    display: flex;
+    height: 140rpx;
+    justify-content: center;
+}
+
+.picker-main .picker-footer .footer .btn {
+    align-items: center;
+    border: none!important;
+    border-radius: 10rpx;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: flex;
+    font-size: 28rpx;
+    height: 72rpx;
+    justify-content: center;
+    line-height: 72rpx;
+    margin: 0 20rpx;
+}
+
+.picker-main .picker-footer .footer .btn:active {
+    opacity: .6;
+}
+
+.picker-main .picker-footer .footer .btn-default {
+    background: #fff!important;
+    color: #444!important;
+}
+
+.picker-main .picker-footer .footer .btn-primary {
+    background: #04babe!important;
+    color: #fff!important;
+}
+
+.picker-main .picker-footer .footer .btn-primary-plain {
+    background: #d1f2f3!important;
+    color: #04babe!important;
+}

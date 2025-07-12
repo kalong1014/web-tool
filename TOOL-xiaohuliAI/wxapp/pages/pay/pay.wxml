@@ -1,0 +1,82 @@
+<navbar text="开通会员"></navbar>
+<scroll-view class="page" scrollWithAnimation="{{true}}" scrollX="{{false}}" scrollY="{{true}}" style="bottom: {{safeAreaHeight+256}}rpx; top: {{navBarHeight}}px;">
+    <view class="box-user">
+        <view class="userinfo">
+            <view class="avatar">
+                <image src="/images/avatar.jpg" wx:if="{{!userinfo.avatar}}"></image>
+                <image src="{{userinfo.avatar}}" wx:else></image>
+            </view>
+            <view class="info">
+                <view class="nickname">{{userinfo.nickname||'未设置昵称'}}</view>
+                <view class="vip">
+                    <image src="/images/user/ic_vip.png"></image>
+                    <text wx:if="{{userinfo.vip_expire_time}}">{{userinfo.vip_expire_time}} 到期</text>
+                    <text wx:else>未开通会员</text>
+                </view>
+            </view>
+        </view>
+        <view class="wallet">
+            <view class="num">{{userinfo.balance_point}}</view>
+            <view class="label">{{point_title}}余额</view>
+        </view>
+    </view>
+    <view class="box-pay">
+        <view class="tabs">
+            <view bindtap="changeType" class="tab-item {{type=='vip'?'active':''}}" data-type="vip">
+                <image class="icon" src="/images/user/ic_vip.png"></image>
+                <text>开通会员</text>
+            </view>
+            <view bindtap="changeType" class="tab-item {{type=='point'?'active':''}}" data-type="point">
+                <text>充值{{point_title}}</text>
+            </view>
+        </view>
+        <view class="box" wx:if="{{goodsList&&goodsList.length>0}}">
+            <view class="box-title">
+                <view class="line"></view>
+                <text wx:if="{{type=='vip'}}">会员套餐</text>
+                <text wx:else>充值套餐</text>
+            </view>
+            <view class="goods-list">
+                <view bindtap="chooseGoods" class="goods {{index==activeIndex?'active':''}}" data-index="{{index}}" wx:for="{{goodsList}}">
+                    <view class="hint" wx:if="{{item.hint}}">{{item.hint}}</view>
+                    <view class="title">
+                        <text class="num">{{item.num}}</text>
+                        <text class="unit" wx:if="{{type=='vip'}}">个月</text>
+                        <text class="unit" wx:if="{{type=='point'}}">{{point_title}}</text>
+                    </view>
+                    <view class="price">特价<text>{{item.price/100}}</text>元</view>
+                    <view class="market_price" wx:if="{{item.market_price>0}}">原价{{item.market_price/100}}元</view>
+                </view>
+                <view style="clear: both;"></view>
+            </view>
+        </view>
+        <view class="box" style="padding-top: 0;" wx:if="{{goodsList&&goodsList[activeIndex]&&goodsList[activeIndex].desc&&goodsList[activeIndex].desc.length>0}}">
+            <view class="box-title">
+                <view class="line"></view>
+                <text wx:if="{{type=='vip'}}">会员特权</text>
+                <text wx:else>套餐介绍</text>
+            </view>
+            <view class="desc-list">
+                <view class="desc-item" wx:for="{{goodsList[activeIndex].desc}}">
+                    <view class="icon">
+                        <image src="/images/ic_checked.png"></image>
+                    </view>
+                    <view class="text">{{item}}</view>
+                </view>
+                <view style="clear: both;"></view>
+            </view>
+        </view>
+    </view>
+</scroll-view>
+<view class="paynow" style="bottom: {{safeAreaHeight}}rpx;">
+    <button bindtap="doPay" class="btn-pay" disabled="{{activeIndex==-1||paying}}">立即支付</button>
+    <view class="agreement">
+        <label>
+            <checkbox-group bindchange="agreeChange" style="display: flex; align-items: center;">
+                <checkbox checked="{{is_agree}}" class="check" color="#04BABE" value="{{true}}"></checkbox>已阅读并同意 </checkbox-group>
+        </label>
+        <view>
+            <text bindtap="toDoc" data-type="service">《服务协议》</text>
+        </view>
+    </view>
+</view>

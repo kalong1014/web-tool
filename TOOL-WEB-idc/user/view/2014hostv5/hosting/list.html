@@ -1,0 +1,202 @@
+{{dispatch c='public'  a='head'}}
+<script type='text/javascript'>
+	$(document).ready(function() {
+		$.ajax({
+			type : 'get',
+			url : '?c=nproduct&a=getNproducts',
+			data : null,
+			dataType : 'json',
+			success : function(ret) {
+				if (ret['count'] <= 0) {
+					return;
+				}
+				var nps = ret['nproducts'];
+				var count = ret['count'];
+				$(".js_show_product_name").each(function() {
+					var pid = $(this).text();
+					for ( var i in nps) {
+						if (nps[i]['id'] == pid) {
+							$(this).html(nps[i]['name']);
+						}
+					}
+				});
+			}
+		});
+	});
+</script>
+            <main id="main-container">
+                <!-- Page Header -->
+                <div class="content bg-gray-lighter">
+                    <div class="row items-push">
+                        <div class="col-sm-8">
+                            <h1 class="page-heading">
+                                主机列表&nbsp; <small>虚拟主机订单列表</small>
+                            </h1>
+                        </div>
+                        <div class="col-sm-4 text-right hidden-xs">
+                            <ol class="breadcrumb push-10-t">
+                                <li><a class="link-effect" href="?c=user&a=index">账户首页</a></li>
+								<li>主机列表</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content content-boxed">
+				
+                            <div class="block">
+                                <div class="block-header">
+                                    <ul class="block-options">
+                                        <li>
+                                            <button type="button" data-toggle="block-option" data-action="fullscreen_toggle"></button>
+                                        </li>
+                                        <li>
+                                            <button type="button" data-toggle="block-option" data-action="content_toggle"></button>
+                                        </li>                                    </ul>
+                                    </ul>
+                                    <h3 class="block-title"> 我的虚拟主机</h3>
+                                </div>
+                                <div class="block-content bg-gray-lighter">
+                                    <!-- Slick slider (.js-slider class is initialized in App() -> uiHelperSlick()) -->
+                                    <!-- For more info and examples you can check out http://kenwheeler.github.io/slick/ -->
+                                    <div style="height:10px;"></div>
+									<div class="row items-push">
+                                        <div class="col-xs-5 text-left">
+                                            <div class="text-muted"><small><i class="fa fa-jsfiddle"></i>&nbsp;虚拟主机：</small><span class="font-w600 text-center" style="font-size:18px; color: #000000;"><b>{{$count}}</b></span><small> 台</small></div>
+                                        </div>
+                                        <div class="col-xs-7 text-right">
+									{{if $page>1}}<a href='{{$action}}&page=0'><i class="fa fa-angle-double-left" style="font-size:20px;"></i></a>&nbsp;&nbsp;&nbsp;<a href='{{$action}}&page={{$page-1}}'><i class="fa fa-angle-left" style="font-size:20px;"></i></a>{{else}}<i class="fa fa-angle-double-left" style="font-size:20px;"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-angle-left" style="font-size:20px;"></i>{{/if}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size:16px; color:#000000;"><b>{{$page}}</b></span><span style="font-size:16px;"> / <b>{{$total_page}}</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{if $page!=$total_page}}<a href='{{$action}}&page={{$page+1}}'><i class="fa fa-angle-right" style="font-size:20px;"></i></a>&nbsp;&nbsp;&nbsp;<a href='{{$action}}&page={{$total_page}}'><i class="fa fa-angle-double-right" style="font-size:20px;"></i></a>{{else}}<i class="fa fa-angle-right" style="font-size:20px;"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-angle-double-right" style="font-size:20px;"></i>{{/if}} 
+										</div>
+                                    </div>
+									<div style="height:10px;"></div>
+                                    <!-- END Slick slider -->
+                                </div>
+                                <div class="block-content">
+
+                              <p>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th style="color: #B3B3B3;">FTP用户名</th>
+                                        <th style="color:#B3B3B3;">产品</th>
+                                        <th class="hidden-xs hidden-sm" style="color:#B3B3B3;">注册时间</th>
+                                        <th class="hidden-xs hidden-sm" style="color:#B3B3B3;">到期时间</th>
+                                        <th style="color:#B3B3B3;">状态</th>
+										<th style="color:#B3B3B3;"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+								{{if $count<1}}
+                                    <tr>
+                                        <td></td>
+                                        <td class="js_show_product_name"></td>
+                                        <td class="hidden-xs hidden-sm"></td>
+                                        <td class="hidden-xs hidden-sm"></td>
+                                        <td class="hidden-xs hidden-sm"></td>
+                                        <td class="hidden-xs hidden-sm"></td>
+                                    </tr>
+									</tbody>
+									</table>
+									<p class="text-center" style="font-size:16px;">您目前没有已购买的主机产品&nbsp; - &nbsp;<a href='?c=nproduct&a=lists&group_id=1' style="color:#0066FF;"><b>购买虚拟主机</b></a>&nbsp; NOW!</p>
+								{{else}}
+								{{foreach from=$list item=row}}
+                                    <tr>
+                                        <td><a href='?c=hosting&a=link&name={{$row.name}}' target="_blank"><b>{{$row.name}}</b></a></td>
+                                        <td class="js_show_product_name" style="color: #333333;"><a href='?c=host&a=showProductFrom&product_id={{$row.product_id}}'>{{$row.product_id}}</a></td>
+                                        <td class="hidden-xs hidden-sm" style="color: #333333;">{{substr($row.create_time,0,10)}}</td>
+                                        <td class="hidden-xs hidden-sm" style="color: #333333;">{{substr($row.expire_time,0,10)}}</td>
+                                        <td valign="middle" style="font-size:16px;">
+										{{if $row.status==0}}<font class="label label-success">正 常</font>{{else}}<font class="label label-danger">暂 停</font>{{/if}}
+                                        </td>
+                                        <td>
+                                            <div class="btn-group">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="font-size:20px;color:#0066FF;">
+                             <i class="fa fa-cogs"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li>
+                                    <a tabindex="-1" href='?c=hosting&a=link&name={{$row.name}}' target="_blank">
+                                        <i class="fa fa-dashboard pull-right"></i>控制面板
+                                    </a>
+                                </li>
+                                <li>
+                                    <a tabindex="-1" href="?c=hosting&a=upgradeFrom&name={{$row.name}}">
+                                        <i class="fa fa-upload pull-right"></i>升 级
+                                    </a>
+                                </li>
+                                <li>
+                                    <a tabindex="-1" href="?c=hosting&a=renewFrom&name={{$row.name}}">
+                                        <i class="fa fa-cny pull-right"></i>续 费
+                                    </a> 
+                                </li>
+                            </ul>
+                                            </div>
+										</td>
+                                    </tr>
+									{{/foreach}}
+									{{/if}}
+                                </tbody>
+                            </table><br /><br />&nbsp;
+								</p>
+							
+                                </div>
+                            </div>
+
+				</div>
+
+</main>
+<script type='text/javascript'>
+var ddlog = null;
+	function show_hosting_manag(obj)
+	{
+		var name;
+		$(":checkbox").each(function(){
+			if (this == obj) {
+				name = this.value;
+				return ;
+			}
+			$(this).attr('checked',false);
+			
+		});
+		if (obj.checked !='checked' && obj.checked != true) {
+			if (ddlog) {
+				ddlog.close();
+			}
+			return ;
+		}
+		ddlog = null;
+		var offset = $(obj).offset();
+		var html = '<p>[<a	href="?c=hosting&a=upgradeFrom&name='+ name +'">升级</a>]</p><br>';
+			html += '<p>[<a	href="?c=hosting&a=renewFrom&name='+ name +'">续费</a>]</p><br>';
+			html += '<p>[<a	href="?c=hosting&a=link&name='+ name +'" target="_blank">控制面板</a>]</p><br>';
+			html += '<p>[<a href="?c=hosting&a=changePasswdFrom&name='+ name +'">修改密码</a>]</p>';
+		var dlog = art.dialog({id:'id22',content:'',icon: '',top:'30%'});
+		ddlog = dlog;
+		dlog.content(html);
+		dlog.position(offset.left+20,offset.top+12);
+	}
+	$(document).ready(function() {
+		$.ajax({
+			type : 'get',
+			url : '?c=nproduct&a=getNproducts',
+			data : null,
+			dataType : 'json',
+			success : function(ret) {
+				if (ret['count'] <= 0) {
+					return;
+				}
+				var nps = ret['nproducts'];
+				var count = ret['count'];
+				$(".js_show_product_name").each(function() {
+					var pid = $(this).text();
+					for ( var i in nps) {
+						if (nps[i]['id'] == pid) {
+							$(this).html(nps[i]['name']);
+						}
+					}
+				});
+			}
+		});
+	});
+
+</script>

@@ -1,0 +1,22 @@
+<view class="welcome">
+    <view style="height: 20rpx"></view>
+    <view class="row row-ai">
+        <view class="message">
+            <view class="avatar">
+                <image src="{{aiAvatar}}"></image>
+            </view>
+            <view class="text markdown-body" style="padding: 30rpx 50rpx;">
+                <view class="title" wx:if="{{welcomeTitle}}">{{welcomeTitle}}</view>
+                <view class="desc" wx:if="{{welcomeDesc}}">
+                    <text>{{welcomeDesc}}</text>
+                </view>
+                <view class="tips" wx:if="{{welcomeTips.length>0}}">
+                    <view bindtap="setMessage" class="tips-item" data-text="{{item}}" wx:if="{{item}}" wx:for="{{welcomeTips}}">
+                        <image class="icon" src="/images/ic_chat_list.png"></image>
+                        <text>{{item}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

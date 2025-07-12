@@ -1,0 +1,18 @@
+var includes = (function(array, searchElement) {
+    return (array.indexOf(searchElement) !== -1)
+});
+var pickedCount = (function(wordsPicked, type, id) {
+    var count = 0;
+    if (wordsPicked) {
+        for (var i = 0; i < wordsPicked.length; i++) {
+            if (wordsPicked[((nt_0 = (i), null == nt_0 ? undefined : 'number' === typeof nt_0 ? nt_0 : "" + nt_0))][((nt_0 = (type), null == nt_0 ? undefined : 'number' === typeof nt_0 ? nt_0 : "" + nt_0))] === id) {
+                count++
+            }
+        }
+    };
+    return (count)
+});
+module.exports = ({
+    includes: includes,
+    pickedCount: pickedCount,
+});

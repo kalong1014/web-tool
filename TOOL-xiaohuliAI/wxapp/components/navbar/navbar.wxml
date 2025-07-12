@@ -1,0 +1,11 @@
+<view>
+    <view style="height: {{navBarHeight}}" wx:if="{{fixed}}"></view>
+    <view class="navbar  {{showbg?'':'nobg'}}" style="height: {{navBarHeight}}; padding-top: {{statusBarHeight}}; position: {{fixed?'fixed':'absolute'}}">
+        <view class="capsule" wx:if="{{back||home}}">
+            <view bindtap="toBack" wx:if="{{back}}">
+                <image src="/images/ic_back.png"></image>
+            </view>
+        </view>
+        <view class="title">{{text}}</view>
+    </view>
+</view>

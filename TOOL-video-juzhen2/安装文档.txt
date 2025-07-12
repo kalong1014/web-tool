@@ -1,0 +1,35 @@
+﻿MySQL 5.6 PHP 7.2  Apache  数据库名称 juzhen 
+
+Nginx环境切换伪静态
+
+1、解压安装包到项目根目录，找到application/database.php  更换自己的数据库密码
+
+2、阿里云现有的配置不要动 其他按照文档进行添加
+
+3、项目访问目录：public
+
+4、域名强制加：https
+
+宝塔计划任务
+
+1、https://域名/admin/Cloud/mass_task   视频发布任务  每一分钟执行一次
+
+2、https://域名/admin/cloud/submit   关键词结果查询  每天执行一次 
+
+3、https://域名/admin/Cloud/day_K  循环任务 ，每天执行一次
+
+4、https://域名/admin/Cloudacc/accesstoken  快手授权 （每天5：00执行）
+
+5、抖音动态续期：https://域名/admin/userinfolist/uset_d
+H5分享回调添加 抖音开放平台（Webhooks）添加（如遇添加不上，请联系官方客服）
+
+1、https://域名/index/index/get_chat   
+
+2、企业号回调地址
+https://您的域名/index/chat/get_chat
+
+
+
+
+
+收藏起来避免找不到

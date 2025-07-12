@@ -1,0 +1,74 @@
+.page {
+    bottom: 110rpx;
+    overflow: hidden;
+    right: 0;
+}
+
+.page,.search {
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.search {
+    box-sizing: border-box;
+    padding: 16rpx 30rpx 10rpx;
+}
+
+.search .ic_search {
+    height: 32rpx;
+    left: 56rpx;
+    position: absolute;
+    top: 38rpx;
+    width: 32rpx;
+}
+
+.search .ic_clear {
+    align-items: center;
+    display: flex;
+    height: 72rpx;
+    justify-content: center;
+    position: absolute;
+    right: 44rpx;
+    top: 16rpx;
+    width: 72rpx;
+}
+
+.search .ic_clear image {
+    height: 32rpx;
+    width: 32rpx;
+}
+
+.search input {
+    background: #fff;
+    border-radius: 44rpx;
+    box-sizing: border-box;
+    color: #1f1f1f;
+    font-size: 26rpx;
+    height: 72rpx;
+    line-height: 72rpx;
+    padding-left: 68rpx;
+    padding-right: 80rpx;
+    width: 100%;
+}
+
+.tabs {
+    box-sizing: border-box;
+    height: 88rpx;
+    padding-left: 12rpx;
+    top: 100rpx;
+}
+
+.lists,.tabs {
+    left: 0;
+    position: absolute;
+    width: 100%;
+}
+
+.lists {
+    bottom: 0;
+    height: auto;
+    right: 0;
+    top: 188rpx;
+}

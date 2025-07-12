@@ -1,0 +1,12 @@
+{
+    "navigationStyle": "custom",
+    "usingComponents": {
+        "towxml": "/towxml/towxml",
+        "imageComponent": "/components/message/image",
+        "popup": "/components/popup/popup",
+        "drawMj": "/components/draw/mj",
+        "drawOpenai": "/components/draw/openai",
+        "drawYijian": "/components/draw/yijian",
+        "navbar": "/components/navbar/navbar"
+    }
+}

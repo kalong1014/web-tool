@@ -1,0 +1,14 @@
+<view class="popup" wx:if="{{isOpen}}">
+    <view bindtap="close" class="masker {{maskShow?'show':''}}"></view>
+    <view class="container" style="{{'bottom: '+(mainShow?bottom+safeAreaHeight:'-1000')+'rpx; height:'+height+';'}}">
+        <view class="header">
+            <view class="title">{{title}}</view>
+            <view bindtap="close" class="close" wx:if="{{showClose}}">
+                <image src="/images/ic_close.png"></image>
+            </view>
+        </view>
+        <view class="main">
+            <slot></slot>
+        </view>
+    </view>
+</view>

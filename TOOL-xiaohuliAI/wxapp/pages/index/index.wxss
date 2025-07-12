@@ -1,0 +1,201 @@
+.page {
+    bottom: 0;
+    overflow: hidden;
+    right: 0;
+}
+
+.page,.tabs {
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.tabs {
+    height: 88rpx;
+}
+
+.lists {
+    bottom: 140rpx;
+    height: auto;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 88rpx;
+    width: 100%;
+}
+
+.gold .box-input .input textarea {
+    border-color: #ffa41a;
+}
+
+.box-input {
+    background: #fff;
+    border-top: 1px solid #eee;
+    bottom: 0;
+    box-sizing: border-box;
+    left: 0;
+    padding: 30rpx;
+    position: absolute;
+    width: 100%;
+}
+
+.box-input,.box-input .tools {
+    align-items: flex-end;
+    display: flex;
+    justify-content: space-between;
+}
+
+.box-input .tools .btn-tool {
+    align-items: center;
+    background: none;
+    background: #fff;
+    border: 4rpx solid #dae0e0;
+    border-radius: 40rpx;
+    display: flex;
+    height: 80rpx;
+    justify-content: center;
+    margin-right: 20rpx;
+    padding: 0;
+    width: 80rpx;
+}
+
+.box-input .tools .btn-tool image {
+    height: 48rpx;
+    width: 48rpx;
+}
+
+.box-input .input {
+    align-items: flex-end;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    width: 600rpx;
+}
+
+.box-input .input textarea {
+    font-size: 28rpx;
+    line-height: 40rpx;
+    max-height: 800rpx;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 20rpx 10rpx 20rpx 24rpx;
+    width: 500rpx;
+}
+
+.box-input .input .input-audio,.box-input .input textarea {
+    background: #f6ffff;
+    border: 4rpx solid #04babe;
+    border-radius: 40rpx;
+    color: #4c4d52;
+}
+
+.box-input .input .input-audio {
+    box-sizing: border-box;
+    height: 80rpx;
+    line-height: 80rpx;
+    text-align: center;
+    width: 100%;
+}
+
+.box-input .input .btn-send {
+    align-items: center;
+    background: none;
+    border: none;
+    display: flex;
+    height: 80rpx;
+    justify-content: center;
+    margin-left: 20rpx;
+    padding: 0;
+    width: 80rpx;
+    z-index: 9;
+}
+
+.box-input .input .btn-send::after {
+    display: none;
+}
+
+.box-input .input .btn-send image {
+    width: 100%;
+}
+
+.no-speech .input {
+    margin-left: 0;
+    width: 690rpx;
+}
+
+.no-speech .input textarea {
+    width: 590rpx;
+}
+
+.empty {
+    background: #fff;
+    border-radius: 20rpx;
+    margin: 200rpx 60rpx 0;
+    padding: 80rpx 0 100rpx;
+    text-align: center;
+}
+
+.empty image {
+    height: 266rpx;
+    margin-bottom: 40rpx;
+    width: 404rpx;
+}
+
+.empty .tip {
+    color: #444;
+    font-size: 32rpx;
+    letter-spacing: 2rpx;
+    line-height: 40rpx;
+    width: 100%;
+}
+
+.btn-finish {
+    background: #39b54a;
+    border: none;
+    border-radius: 48rpx;
+    box-shadow: 0 0 20rpx rgba(0,235,79,.1);
+    color: #fff;
+    font-size: 30rpx;
+    height: 80rpx;
+    letter-spacing: 4rpx;
+    line-height: 80rpx;
+    margin: 240rpx auto 0 20%;
+    outline: none;
+    text-align: center;
+    width: 60%;
+}
+
+.banner-ad {
+    border-top: 2rpx solid #ddd;
+    height: 120rpx;
+    width: 100%;
+}
+
+.content {
+    background: #fff;
+    bottom: 110rpx;
+    box-sizing: border-box;
+    left: 0;
+    overflow: hidden;
+    overflow-y: scroll;
+    padding: 20rpx;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.content view {
+    color: #444;
+    font-size: 28rpx;
+    line-height: 1.5;
+    margin: 10rpx 0;
+    word-break: break-all;
+}
+
+.content image {
+    width: 100%;
+}

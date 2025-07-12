@@ -1,0 +1,648 @@
+{include file="public/header" /}
+
+<style>
+	video{
+object-fit:inherit;
+width: 100px;
+height: 100px;
+}
+.yulan{
+	    -webkit-text-size-adjust: 100%;
+    color: #333;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    width: 100%;
+}
+#newli{
+	    -webkit-text-size-adjust: 100%;
+    color: #333;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    display: flex;
+    flex-wrap: wrap;
+}
+#newli >li{
+	margin-top: 20px;
+	margin-left: 40px;
+	width: 16.666%;
+}
+/*.lise{
+
+	    -webkit-text-size-adjust: 100%;
+    color: #333;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    list-style: none;
+    margin-bottom: 24px;
+    margin-right: 20px;
+    float: left;
+    width: 200px;
+    height: 200px;
+  
+}*/
+.neiro{
+	    -webkit-text-size-adjust: 100%;
+    color: #333;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    list-style: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    height: 267px;
+    width: 100%;
+    background: #161823;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+.neiro video{
+    height: 100%!important;
+    width: 100%;
+}
+.type{
+	    -webkit-text-size-adjust: 100%;
+    color: #333;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    list-style: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    position: absolute;
+    left: 12px;
+    top: 12px;
+}
+.typename{
+	    -webkit-text-size-adjust: 100%;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    list-style: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    margin: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    padding: 1px 4px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 22px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    background: rgba(0,0,0,0.2);
+    border: 1px solid rgba(0,0,0,0.1);
+}
+.caozuo {
+	    -webkit-text-size-adjust: 100%;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    list-style: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    margin: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    padding: 1px 4px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 22px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    background: rgba(0,0,0,0.2);
+    border: 1px solid rgba(0,0,0,0.1);
+}
+.layui-unselect {
+	    -webkit-text-size-adjust: 100%;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    list-style: none;
+    color: #fff;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-user-select: none;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    cursor: pointer;
+    font-size: 0;
+    transition: .1s linear;
+    box-sizing: border-box;
+    height: auto!important;
+    line-height: normal!important;
+    min-width: 18px;
+    min-height: 18px;
+    border: none!important;
+    margin-right: 0;
+    padding-left: 28px;
+    padding-right: 0;
+    background: 0 0;
+}
+.layui-icon{
+    -webkit-text-size-adjust: 100%;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    list-style: none;
+    font-weight: 600;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    cursor: pointer;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    font-family: layui-icon!important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    vertical-align: middle;
+    position: absolute;
+    top: 0;
+    color: #fff;
+    text-align: center;
+    right: auto;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    border: 1px solid #d2d2d2;
+    font-size: 12px;
+    border-radius: 2px;
+    background-color: #fff;
+    transition: .1s linear;
+}
+.titles{
+	    -webkit-text-size-adjust: 100%;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    list-style: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    margin-top: 12px;
+    height: 22px;
+    max-width: 200px;
+    font-weight: 500;
+    line-height: 22px;
+    font-size: 16px;
+    color: #13161a;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.texts{
+	    -webkit-text-size-adjust: 100%;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    list-style: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    margin-top: 4px;
+    font-size: 12px;
+    line-height: 20px;
+    color: #747e8c;
+    cursor: default;
+}
+.layui-form{
+	    -webkit-text-size-adjust: 100%;
+    color: #333;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+li{
+  list-style: none;
+}
+</style>
+<body class="gray-bg">
+    <div class="header-box">
+        <div class="pl25">
+            <h3 class="fs22 font-weight-500 c333">素材管理</h3>
+            <p class="fs14 c666">创建混剪任务时在此选择混剪的素材</p>
+        </div>
+    </div>
+    
+    
+<div class="wrapper wrapper-content animated fadeInRight">
+  
+    <div class="ibox float-e-margins">
+        <div class="ibox-title" style="border-left: 4px solid red;">
+            <!--<p>1.</p>-->
+            <!--<p>2.</p>-->
+            <p style="margin-bottom:0">1.选择足够多的素材，生成的视频才更加细腻！</p>
+             <!-- <a href="{:url('add_sucai')}"><button class="btn btn-outline btn-primary" type="button">素材上传</button></a>  -->
+             <!-- <form method="post" action="{:url('add_sucai')}" enctype="multipart/form-data">
+             	 <input type="file"  name="img" value="选择">
+             	 <input type="submit"  value="上传">
+             </form> -->
+             
+        </div>
+        
+        <div class="row">
+            <div class="col-sm-12 m-t-md m-l-md">  
+            <form name="admin_list_sea" class="form-search" id="uploadForm"  method="post"  enctype="multipart/form-data" action="{:url('guanli')}">
+                <div class="input-group" style="display:flex"> 
+                    <span style="line-height:35px;font-size:14px">选择预剪素材分类：&nbsp;&nbsp;</span>
+                    <select name="fluid" id="sucai_yunid" class="form-control m-b" style="width:200px;">
+                        {foreach name="fl" item="v"}
+                        <option value="{$v.id}">{$v.uname}</option>
+                        {/foreach}
+                    </select>  
+                     <input type="submit" name="" id="" value="确定选择" class="btn btn-success" />
+                </div>
+                 <input type="hidden" name="yunid" value="{$id}">
+               
+            </form> 
+               
+                <!--<div  class="col-sm-2" style="width: 100px;margin-left: 40px;">-->
+                <!--    <div class="input-group" >  -->
+                <!--        <a href="javascript:xuanze();"><button class="btn btn-outline btn-primary" type="button">素材库选择</button></a> -->
+                <!--    </div>-->
+                <!--</div> -->
+                <!--<div  class="col-sm-2" style="width: 300px;margin-left: 40px;">-->
+                <!--    <div class="input-group" >  -->
+                <!--       <span onclick="tupian()">图片</span>&nbsp;&nbsp;-->
+                <!--       <span>视频</span>&nbsp;&nbsp;-->
+                <!--       <span>音乐</span>&nbsp;&nbsp;-->
+                <!--    </div>-->
+                <!--</div>                       -->
+                </div>
+            </div>
+            
+       <div style="width: 100%;height: 40px;margin-top: 10px;float: left;display: none;" id="zhida_sucai">
+        <form name="admin_list_sea" class="form-search" id="uploadForm"  method="post"  enctype="multipart/form-data">
+            <input type="file" name="file" id="file" style="display:none">
+            <img src="" style="width:150px;height:200px" id="img">
+          <span style="width:150px;height:100px;display:none" id="span"></span>
+        <input type="button" name="" class="btn btn-primary"  id="zhida_shangchuan"  value="上传">
+          
+      </form>
+       </div>
+         <div class="yulan" style="" >
+
+                <ul id="newli" class="sucai-page" >
+                    
+                    {foreach name="arrays" item="values"}
+                     {if $values.mediaBasicInfo.title=="图片"}
+                    <li  style=" list-style: none; " class="lise">
+                       
+                        <div class="neiro" style="border:2px solid #ff7752">
+                           <img src="{$values.mediaBasicInfo.inputURL}" style="width:100%;height:100%">                           
+                           <div class="type">
+                               <div class="typename">
+                                  {$values.mediaBasicInfo.title}                               
+                                </div>
+                           </div>
+                           <div class="caozuo ">
+                               <input lay-skin="primary" type="checkbox" checked=“checked”  name="1sucai" value="{$values.mediaBasicInfo.mediaId}"><div class="layui-unselect layui-form-checkbox" lay-skin="primary"></div><span onclick="zhida_deltss('{$values.mediaBasicInfo.mediaId}','1')">删除</span>
+                          </div>
+                           
+                        </div>
+
+
+                      <!--   <div class="titles">{$values.mediaBasicInfo.title}  </div> -->
+                        <div class="texts" >上传于{$values.mediaBasicInfo.createTime}</div>
+                    </li> 
+                    {elseif $values.mediaBasicInfo.title=="声音"}
+                     <li style=" list-style:none; " class="lise">
+                        
+                        <div class="neiro" style="border:2px solid #ff7752">
+                           <audio src="{$values.mediaBasicInfo.inputURL}" controls="controls">Your browser does not support the audio element.</audio>                           <div class="type">
+                               <div class="typename">
+                                  {$values.mediaBasicInfo.title}                                   </div>
+                           </div>
+                           <div class="caozuo ">
+                               <input lay-skin="primary" type="checkbox" checked=“checked” name="1sucai" value="{$values.mediaBasicInfo.mediaId}"><div class="layui-unselect layui-form-checkbox" lay-skin="primary"><!-- <i class="layui-icon layui-icon-ok"></i> --></div><span onclick="zhida_deltss('{$values.mediaBasicInfo.mediaId}','2')">删除</span>
+                          </div>
+                           
+                        </div>
+                      <!--   <div class="titles">追梦赤子心.mp3.mp3</div> -->
+                        <div class="texts" >上传于{$values.mediaBasicInfo.createTime}</div>
+                    </li> 
+                                                
+                    
+                        {else /}
+                              
+                        <li style=" list-style: none;" class="lise">
+                        
+                        <div class="neiro" style="border:2px solid #ff7752">
+                           <video controls="">
+                               <source src="{$values.mediaBasicInfo.inputURL}" type="video/mp4">
+                            </video>                           
+                            <div class="type">
+                               <div class="typename">
+                                    {$values.mediaBasicInfo.title}                                       
+                                </div>
+                           </div>
+                           <div class="caozuo ">
+                               <input lay-skin="primary" type="checkbox" checked=“checked” name="1sucai" value="{$values.mediaBasicInfo.mediaId}" ><div class="layui-unselect layui-form-checkbox" lay-skin="primary"><!-- <i class="layui-icon layui-icon-ok"></i> --></div><span onclick="zhida_deltss('{$values.mediaBasicInfo.mediaId}','3')">删除</span>
+                          </div>
+                           
+                        </div>
+                        <!-- <div class="titles">d0116fc31a12301ecab23a1885278ad0.mp4</div> -->
+                            <div class="texts" >上传于{$values.mediaBasicInfo.createTime}</div>
+                    </li> 
+                                 
+                                       
+                                        
+                                             {/if}
+                    {/foreach}       
+      
+                                                 
+                                    </ul>
+
+            </div>
+            <div class="yulan" style="display: none;margin-top:5%" id="xuanze">
+                <div style="width:100%;text-align:center">
+                    <button class="btn btn-success" style="" onclick="xuanzhong()">选择预剪素材</button>
+                </div>
+                
+                    
+                <ul id="newli">
+                    
+                    {foreach name="array" item="value"}
+                     {if $value.mediaBasicInfo.title=="图片"}
+                    <li  style=" list-style: none; " class="lise">
+                       
+                        <div class="neiro">
+                           <img src="{$value.mediaBasicInfo.inputURL}" style="width:100%;height:100%">      
+                           <div class="type">
+                               <div class="typename">
+                                  {$value.mediaBasicInfo.title}                               
+                                </div>
+                           </div>
+                           <div class="caozuo ">
+                               <input lay-skin="primary" type="checkbox" name="sucai" value="{$value.mediaBasicInfo.mediaId}"><div class="layui-unselect layui-form-checkbox" lay-skin="primary"><!-- <i class="layui-icon layui-icon-ok"></i> --></div><span onclick="zhida_delts('{$value.mediaBasicInfo.mediaId}','{$value.mediaBasicInfo.inputURL}')">删除</span>
+                          </div>
+                           
+                        </div>
+
+
+                      <!--   <div class="titles">{$value.mediaBasicInfo.title}  </div> -->
+                        <div class="texts" >上传于{$value.mediaBasicInfo.createTime}</div>
+                    </li>
+                    {elseif $value.mediaBasicInfo.title=="声音"}
+                     <li style=" list-style:none; " class="lise">
+                        
+                        <div class="neiro">
+                           <audio src="{$value.mediaBasicInfo.inputURL}" controls="controls">Your browser does not support the audio element.</audio>                           <div class="type">
+                               <div class="typename">
+                                  {$value.mediaBasicInfo.title}                                   </div>
+                           </div>
+                           <div class="caozuo ">
+                               <input lay-skin="primary" type="checkbox" name="sucai" value="{$value.mediaBasicInfo.mediaId}"><div class="layui-unselect layui-form-checkbox" lay-skin="primary"></div><span onclick="zhida_delts('{$value.mediaBasicInfo.mediaId}','{$value.mediaBasicInfo.inputURL}')">删除</span>
+                          </div>
+                           
+                        </div>
+                   
+                        <div class="texts" >上传于{$value.mediaBasicInfo.createTime}</div>
+                    </li> 
+                                                
+                    
+                        {else /}
+                              
+                        <li style=" list-style: none;" class="lise">
+                        
+                        <div class="neiro">
+                           <video controls=""><source src="{$value.mediaBasicInfo.inputURL}" type="video/mp4"></video>                           <div class="type">
+                               <div class="typename">
+                                    {$value.mediaBasicInfo.title}                                       </div>
+                           </div>
+                           <div class="caozuo ">
+                            <input lay-skin="primary" type="checkbox" name="sucai" value="{$value.mediaBasicInfo.mediaId}" ><div class="layui-unselect layui-form-checkbox" lay-skin="primary"></div><span onclick="zhida_deltss('{$value.mediaBasicInfo.mediaId}','{$value.mediaBasicInfo.inputURL}')">删除</span>
+                          </div>
+                           
+                        </div>
+                      
+                            <div class="texts" >上传于{$value.mediaBasicInfo.createTime}</div>
+                    </li> 
+                                 
+                                       
+                                        
+                                             {/if}
+                    {/foreach}       
+                                    </ul>
+            <div style="text-align:center;margin:5% 0;">
+            {$page?$page:''}
+            </div>
+            </div>
+           
+        </div>
+    </div>
+</div>
+
+</div>
+<!-- <input type="file" id="file"/> -->
+<!-- <img src="" id="img" style="width:100px;height: 100px;" /> -->
+<!-- <p id="text"></p> -->
+
+<!-- <input id="imgFileId" type="file" onchange="showImage();" style="display: none;" /> -->
+<!-- <div><img alt="show" id="showImgId" src="C:\fakepath\123.jpg" /></div> -->
+{include file="public/footer" /}
+
+<script type="text/javascript">
+  $(function(){
+       $('#xuanze').css('display',"block");
+     yunid = '';
+  sid = '';
+  $('input[name="1sucai"]:checked').each(function(){ 
+     yunid = $(this).val(); 
+    $('input[name="sucai"]').each(function(){ 
+       var value = $(this).val(); //这里的value就是每一个input的value值~
+         if(value ==yunid ){
+            
+         // $(this).attr("checked","checked");
+         }
+     });
+
+     // yunid += $(this).val()+','; 
+
+  });
+  })
+  function addsucai(){
+   
+    document.getElementById('file').click();
+
+   }
+    document.querySelector('#file').onchange = function (){
+          let filevalue = $('input[name="file"]').val();
+  
+          //     let fileType = getFileType(filevalue);
+          //     alert(fileType)
+      if(this.files.length){
+        let file = this.files[0];
+        let reader = new FileReader();
+        //新建 FileReader 对象
+        reader.onload = function(){
+          // 当 FileReader 读取文件时候，读取的结果会放在 FileReader.result 属性中
+            //获取最后一个.的位置
+            var index= filevalue.lastIndexOf(".");
+            //获取后缀
+            var ext = filevalue.substr(index+1);
+            if(ext =='jpg'){
+                 document.querySelector('#img').src = this.result;
+          $("#zhida_sucai").css('display','block');
+          $(".yulan").css('margin-top','160px');
+            }else{
+                $("#span").html(filevalue);
+                $("#zhida_sucai").css('display','block');
+             $(".yulan").css('margin-top','160px'); 
+             $("#img").css('display','none');
+             $("#span").css('display','block');
+            }
+         
+         // document.querySelector('#text').innerHTML = this.result;
+        };
+        // 设置以什么方式读取文件，这里以base64方式
+        reader.readAsDataURL(file);
+       }
+    }
+        $("#zhida_shangchuan").click(function(){
+                $("#zhida_shangchuan").val('上传中');
+                  //云剪辑id
+                id = $("input[name=yunid]").val();
+          var formData = new FormData($('#uploadForm')[0]); 
+
+                 $.ajax({ 
+                type: 'post', 
+                url: "{:url('zhidashangchuan')}?id="+id, //上传文件的请求路径必须是绝对路劲
+               data:formData,
+                cache: false, 
+                processData: false, 
+                contentType: false, 
+            }).success(function (data) { 
+                
+                if(data.code==1){
+                    layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+                     $("#zhida_shangchuan").val('上传');
+                     setInterval(function(){
+                    location.reload();
+                    },1000)
+                }else{
+                    layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+                    $("#zhida_shangchuan").val('上传');
+                    setInterval(function(){
+                location.reload();
+             },1000)
+                }
+                       
+                   
+           }).error(function () { 
+            //alert(data);
+                alert("上传失败"); 
+                }); 
+        })
+
+        function zhida_deltss(yunid,type){
+                  
+          id = $("input[name=yunid]").val();
+            $.post('{:url("yundel")}',
+                {id:id,yunid:yunid,type:type},
+             function(data){
+              
+                   
+                if(data.code==1){
+                  
+                    layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+                   
+                    setInterval(function(){
+                      location.reload();
+                    },1000);
+                    return false;
+                }else{
+                    
+                    layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+                     setInterval(function(){
+                      location.reload();
+                    },1000);
+                    return false;
+                    }         
+        
+            });
+        }
+//选择素材库显示
+function xuanze(){
+  $('#xuanze').css('display',"block");
+}
+//确定选择
+function xuanzhong(){
+     yunid = '';
+        id = $("input[name=yunid]").val();
+        
+         $('input[name="sucai"]:checked').each(function(){ 
+           
+            yunid +=  $(this).val() +',';
+              
+    });
+     yunids = '';
+    $('input[name="1sucai"]:checked').each(function(){ 
+        //yunids = $(this).val(); 
+    // $('input[name="sucai"]').each(function(){ 
+    //   var value = $(this).val(); //这里的value就是每一个input的value值~
+    //      if(value ==yunid ){
+            
+    //      // $(this).attr("checked","checked");
+    //      }
+    //  });
+
+      yunids += $(this).val()+','; 
+
+  });
+  yunid = yunid+yunids;
+
+     
+
+    //   console.log(yunidv);
+    //  $('input[name="1sucai"]:checked').each(function(){ 
+    //   yunids += $(this).val()+',';
+
+    // });
+    //     alert(yunids);
+   
+    $.post('{:url("querenxuanze")}',
+                {id:id,yunid:yunid},
+             function(data){
+                
+                if(data.code==1){
+                  
+                    layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+                   
+                    setInterval(function(){
+                     window.location.href="{:url('admin/video/videolist')}";
+                    },1000);
+                    return false;
+                }else{
+                    
+                    layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+                     setInterval(function(){
+                      location.reload();
+                    },1000);
+                    return false;
+                    }         
+        
+     });
+  
+}
+
+
+ 
+</script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<view>
+    <view class="setting-row">
+        <view class="label">
+            <text>✳ 选择类型</text>
+        </view>
+        <view class="values" style="padding-bottom: 0;">
+            <view class="options">
+                <view bindtap="switchGroup" class="option-item {{group_name===item.GroupName?'active':''}}" data-name="{{item.GroupName}}" style="width: 180rpx; height: 100rpx;" wx:for="{{settings.styleDetails}}">
+                    <image alt="{{item.GroupName}}" src="{{item.ShowImage}}"></image>
+                    <text>{{item.GroupName}}</text>
+                </view>
+                <view style="clear:both;"></view>
+            </view>
+        </view>
+    </view>
+    <view class="setting-row" style="padding-right: 0;">
+        <view class="label">
+            <text>✳ 选择风格</text>
+        </view>
+        <view class="values" style="padding-bottom: 0;">
+            <view class="options">
+                <view bindtap="switchEngine" class="option-item {{options.engine===item.engine&&options.style===item.value?'active':''}}" data-engine="{{item.engine}}" data-value="{{item.value}}" title="{{item.text}}" wx:for="{{styles}}">
+                    <image :alt="item.text" src="{{item.poster}}"></image>
+                    <text>{{item.text}}</text>
+                </view>
+                <view style="clear:both;"></view>
+            </view>
+        </view>
+    </view>
+    <view class="setting-row" style="padding-right: 0;" wx:if="{{subStyles&&subStyles.length>0}}">
+        <view class="label">
+            <text>✳ 选择模式</text>
+        </view>
+        <view class="values" style="padding-bottom: 0;">
+            <view class="options">
+                <view bindtap="switchSubStyle" class="option-item {{options.sub_style===item.value?'active':''}}" data-value="{{item.value}}" title="{{item.text}}" wx:for="{{subStyles}}">
+                    <image alt="{{item.text}}" src="{{item.poster}}"></image>
+                    <text>{{item.text}}</text>
+                </view>
+                <view style="clear:both;"></view>
+            </view>
+        </view>
+    </view>
+    <view class="setting-row">
+        <view class="label">
+            <text>✳ 画面描述</text>
+        </view>
+        <view class="values">
+            <prompt id="prompt" type="yijian"></prompt>
+        </view>
+    </view>
+    <view class="setting-row">
+        <view class="label">
+            <text>✳ 画布比例</text>
+            <view bindtap="showHelp" class="help" data-text="指定生成图像的宽高比">
+                <image src="/images/ic_help.png"></image>
+            </view>
+        </view>
+        <view class="values">
+            <view class="size-list">
+                <view bindtap="switchSize" class="size-item {{options.size===0?'active':''}}" data-value="{{0}}">
+                    <view class="size-block" style="width: 64rpx; height: 48rpx;"></view>
+                    <text>4:3</text>
+                </view>
+                <view bindtap="switchSize" class="size-item {{options.size===1?'active':''}}" data-value="{{1}}">
+                    <view class="size-block" style="width: 48rpx; height: 36rpx;"></view>
+                    <text>3:4</text>
+                </view>
+                <view bindtap="switchSize" class="size-item {{options.size===2?'active':''}}" data-value="{{2}}">
+                    <view class="size-block" style="width: 64rpx; height: 64rpx;"></view>
+                    <text>1:1</text>
+                </view>
+                <view bindtap="switchSize" class="size-item {{options.size===3?'active':''}}" data-value="{{3}}">
+                    <view class="size-block" style="width: 64rpx; height: 36rpx;"></view>
+                    <text>16:9</text>
+                </view>
+                <view bindtap="switchSize" class="size-item {{options.size===4?'active':''}}" data-value="{{4}}">
+                    <view class="size-block" style="width: 36rpx; height: 48rpx;"></view>
+                    <text>9:16</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="setting-row">
+        <view class="label">
+            <text>✳ 参考图</text>
+            <view bindtap="showHelp" class="help" data-text="参考图尺寸限1000x1000像素以内">
+                <image src="/images/ic_help.png"></image>
+            </view>
+        </view>
+        <view class="values">
+            <view class="uploader">
+                <foxUpload bind:afterRead="uploadAfterRead" bind:delete="uploadDelete" height="120rpx" imageList="{{imageList}}" max="{{1}}" name="image" width="120rpx"></foxUpload>
+            </view>
+        </view>
+    </view>
+</view>

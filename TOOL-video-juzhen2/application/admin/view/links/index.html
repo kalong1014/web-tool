@@ -1,0 +1,89 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- jieshu -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>友情链接</h5>
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始-->           
+            <div class="row">
+                <div class="col-sm-12">   
+                <div  class="col-sm-2" style="width: 100px">
+                    <div class="input-group" >  
+                        <a href="{:url('links_add')}"><button class="btn btn-outline btn-primary" type="button">添加链接</button></a> 
+                    </div>
+                </div>                                            
+                                        
+                </div>
+            </div>
+            <!--搜索框结束-->
+            <div class="hr-line-dashed"></div>
+
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th>名称</th>
+                                <th>图片</th>
+                                <th>URL</th>
+                                <th>排序</th>
+                                <th>创建时间</th>
+                                <th>状态</th>
+                               
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                      
+                        
+
+                            <tr class = "long-td" >
+                                <td>百度</td>
+                                <td>图片</td>
+                                <td>www.baidu.com</td>
+                                <td>0</td>
+                                <td>2019-12-03 21:55:24</td>
+                                <td>
+                                    <a href="javascript:;" onclick="role_state({{d[i].id}});">
+                                                    <div id="zt{{d[i].id}}"><span class="label label-info">开启</span></div>
+                                    </a>
+                                                
+                                </td>
+                                <td>
+                                    
+                                     <a href="{:url('links_edit')}"  class="btn btn-primary btn-xs">
+                                                <i class="fa fa-paste"></i> 编辑</a>&nbsp;&nbsp;
+                                            <a href="javascript:;" onclick="roleDel({{d[i].id}})" class="btn btn-danger btn-xs">
+                                                <i class="fa fa-trash-o"></i> 删除</a> 
+                                </td>
+                            
+                               
+                            </tr>
+                          
+                        
+                        <tbody id="article_list"></tbody>
+                    </table>
+                    <div id="AjaxPage" style=" text-align: right;"></div>
+                    <div id="allpage" style=" text-align: right;"></div>
+                </div>
+            </div>
+           <!-- kaishi -->
+        </div>
+    </div>
+</div>
+<!-- kaishi -->
+</div>
+
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+   
+   
+
+
+</script>
+</body>
+</html>

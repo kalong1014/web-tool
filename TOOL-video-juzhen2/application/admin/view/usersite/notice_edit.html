@@ -1,0 +1,81 @@
+{include file="public/header" /}
+<style>
+    .form-control{
+        width: 300px;
+    }
+    .sel{
+       
+        width: 100%;
+        margin-left: -10px;
+        margin-bottom: 15px;
+    }
+
+</style>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>编辑公告</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="form_basic.html#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" name="edit_rule" id="edit_rule" method="post" action="{:url('key_add_list')}">
+                        
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">会员组</label>
+                            <div class="input-group col-sm-4">
+                                <input id="title" type="text" class="form-control" name="title" required="" aria-required="true" value="">
+                            </div>
+                            
+                        </div>
+                       
+                         <div class="form-group">
+                            <label class="col-sm-3 control-label">标题</label>
+                            <div class="input-group col-sm-4">
+                                <input id="title" type="text" class="form-control" name="title" required="" aria-required="true" value="">
+                            </div>
+                            
+                        </div>
+                       
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">状态</label>
+                            <div class="input-group col-sm-4">
+                                <input id="title" type="text" class="form-control" name="title" required="" aria-required="true" value="">
+                            </div>
+                            
+                        </div>
+                        
+                       
+                                              
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> 保存</button>&nbsp;&nbsp;&nbsp;
+                                <a class="btn btn-danger" href="javascript:history.go(-1);"><i class="fa fa-close"></i> 返回</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{include file="public/footer" /}
+<script type="text/javascript">
+
+
+</script>
+</body>
+</html>

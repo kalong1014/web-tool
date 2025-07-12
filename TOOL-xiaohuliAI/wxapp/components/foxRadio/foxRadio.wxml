@@ -1,0 +1,3 @@
+<view class="radio-group">
+    <text bindtap="onChange" class="radio-item {{checked===item.value?'active':''}}" data-value="{{item.value}}" wx:for="{{lists}}">{{item.title}}</text>
+</view>

@@ -1,0 +1,161 @@
+<style type="text/css"> 
+    .content-all{border: 1px solid #545454;display: flex;clear: both;border-radius: 5px;}
+    .content-left{width: 450px;background: #2b2b2e;height: 730px;overflow-y: scroll;float: left;}
+    .content-right{width: 70%;background: #2b2b2e;height: 730px;float: left;}
+    .message_user{height: 80px;border-top: 1px solid #545454;border-bottom: 1px solid #545454;cursor: pointer;}
+    .message_user_list .active{background: #424244;}
+    .content-left h2,.content-right-title{font-size: 16px;text-align: center;line-height: 50px;margin: 0px;display: block;}
+    .content-right-content{height: 500px;overflow-y: scroll;padding: 20px;}
+    .content-right-send{border: 1px solid #545454;height: 150px;width: 100%;background: #2b2b2e;padding: 10px;}
+    .message_user_img{float: left;width: 80px;}
+    .message_user_img img{width: 50px;height: 50px;border-radius: 50%;display: inline-block;margin-top: 15px;margin-left: 10px;}
+    .message_user_content{float: left;width: 200px;}
+    .message_user_content h3{font-size: 18px;overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;width: 150px;}
+    .message_user_content p{color: #999;    overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+    .message_user_time{float: right;width: 80px;line-height: 80px;font-size: 14px;color: #999;}
+
+    .message{position:relative;display:flex;color:#fff;width:100%;margin:5px 0}
+    .message p{position:relative;right:0;text-align:right;max-width:65%;padding:12px;background:#484848;border-radius:10px;font-size:.9em}
+    .message p::before{content:'';position:absolute;top:0;right:-12px;width:20px;height:20px;background:linear-gradient(135deg,#484848 0,#484848 50%,transparent 50%,transparent)}
+    .frnd_message img{width:50px;height:50px;margin-right:20px}
+    .my_message img{margin-left:20px;width:50px;height:50px}
+    .message p span{display:block;margin-top:5px;font-size:.85em;opacity:.5}
+    .my_message{justify-content:flex-end}
+    .frnd_message{justify-content:flex-start}
+    .frnd_message p{background:#484848;text-align:left}
+    .message.frnd_message p::before{content:'';position:absolute;top:0;left:-12px;width:20px;height:20px;background:linear-gradient(225deg,#484848 0,#484848 50%,transparent 50%,transparent)}
+    .content-right-title a{cursor: pointer;}
+</style>
+<div class="panel panel-default panel-intro">
+    {:build_heading()}
+
+    <div class="panel-body">
+        <div class="content-all">
+            <div  class="content-left">
+                <h2>联系人</h2>
+                <div class="message_user_list">
+                    {if $users}
+                        {foreach $users as $u_k=>$u_v}
+                            <div class="message_user {if $u_k==0}active{/if} message_user_{$u_k}" data-id="{$u_v['qiye_intention_id']}" data-nickname="{$u_v['nickname']}" data-qu_nickname="{$u_v['qu_nickname']}">
+                                <div class="message_user_img">
+                                    <img src="{$u_v['avatar']}">
+                                </div>
+                                <div class="message_user_content">
+                                    <h3>{$u_v['nickname']}</h3>
+                                    <p>{$u_v['content']}</p>
+                                </div>
+                                <div class="message_user_time">
+                                    <span>{$u_v['addtime']}</span>
+                                </div>
+                            </div>
+                        {/foreach}
+                    {/if}
+                </div>
+            </div>
+            <div  class="content-right">
+                <h2 class="content-right-title">聊天记录</h2>
+                <div  class="content-right-content" id="content-right-content">
+                    
+                    
+                </div>
+                <textarea class="content-right-send" placeholder="回车enter发送消息，消息不超过50个字"></textarea>
+                <p style="padding-left:10px;padding-top: 2px;">消息规则：1、消息24小时未回复即不可回复，只能前往抖音APP回复；2、在用户未发送下一条消息前，48 小时 内可向用户发送 6 条消息；3、最新规则以抖音 app 内发送消息为准</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" name="qiye_intention_id" class="qiye_intention_id" value="">
+<input type="hidden" name="open_id" class="open_id" value="">
+<input type="hidden" name="openid" class="openid" value="">
+
+<script type="text/javascript" src='/storeadmin2/libs/jquery/dist/jquery.min.js?v=162913148'></script>
+
+<script type="text/javascript">
+    function onGetMessage()//在有新消息发送完的地方调用一下这个方法就可以了
+    {
+        var divscll = document.getElementById('content-right-content');//装消息的div
+        divscll.scrollTop = divscll.scrollHeight;
+    }
+    
+
+    $('.message_user').click(function(){
+        qiye_intention_id = $(this).attr('data-id');
+        $('.qiye_intention_id').val(qiye_intention_id);
+        nickname = $(this).attr('data-nickname');
+        qu_nickname = $(this).attr('data-qu_nickname');
+        $('.message_user').removeClass('active');
+        $(this).addClass('active');
+        $('.content-right-title').html(nickname+' - '+qu_nickname+' 聊天记录'+' <a onclick="hudong('+qiye_intention_id+')">【互动记录】</a>');
+        $.post('/storeadmin/qiye_message/get_message',{qiye_intention_id:qiye_intention_id},function(data){
+            html = '';
+            if(data.code == 1){
+                html = '<p style="font-size:16px;text-align:center;margin-top:200px;">'+data.msg+'<p>';
+            }else{
+                data = data.data;
+                for (var i = 0; i < data.length; i++) {
+                    if(data[i]['type']==2){
+                        html += '<div class="message my_message">\
+                                    <p>'+data[i]['content']+'<br><span>'+data[i]['addtime']+'</span></p>\
+                                    <img src="'+data[i]['qu_head']+'">\
+                                </div>';
+                    }else{
+                        type_class = 'frnd_message';
+                        html += '<div class="message frnd_message">\
+                                    <img src="'+data[i]['avatar']+'">\
+                                    <p>'+data[i]['content']+'<br><span>'+data[i]['addtime']+'</span></p>\
+                                </div>';
+                    }
+                    
+                }
+            }
+
+            $('.content-right-content').html(html);
+            onGetMessage();
+        },'json');
+    });
+
+    $('.message_user_0').click();
+
+    $(function(){
+        $(".content-right-send").keydown(function(){
+            if(event.keyCode == "13"){
+                qiye_intention_id = $('.qiye_intention_id').val();
+                content = $('.content-right-send').val();
+                $.post('/storeadmin/qiye_message/send_message',{qiye_intention_id:qiye_intention_id,content:content},function(data){
+                    html = '';
+                    
+                    if(data.code != 1){
+                        location.reload();
+                    }else{
+                        alert(data.msg);
+                    }
+                },'json');
+                return;
+            }
+        });
+    });
+
+    function hudong(qiye_intention_id){
+        layer.open({
+            type: 2, //1:自定义内容 2:iframe
+            title: '互动记录', //不显示标题
+            closeBtn: 1, //不显示关闭按钮
+            shadeClose: true, //点击外部遮罩自动关闭提示框
+            skin: 'yourclass', //弹出框样式
+            area: ['800px', '600px'],
+            content: '/storeadmin/qiye_message/hudong?qiye_intention_id='+qiye_intention_id
+        });
+    }
+
+    setInterval(function(){
+        content = $('.content-right-send').val();
+        if(content=='' || content==null){
+            location.reload();
+        }
+    },10000);
+
+</script>
+

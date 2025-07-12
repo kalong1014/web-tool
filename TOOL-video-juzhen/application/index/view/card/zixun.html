@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<title>资讯</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+	<script src="/assets/js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript">
+        var html = document.getElementsByTagName("html")[0];
+        function getFontSize(){
+        var width=document.documentElement.clientWidth
+        ||document.body.clientWidth+"px";
+        var fontSize=(100/375)*width;
+        if(width>=375){
+        fontSize="100";
+        }
+        return fontSize;
+        }
+        html.style.fontSize=getFontSize()+"px";
+        window.onresize=function(){
+        setTimeout(function(){
+        html.style.fontSize=getFontSize()+"px";
+        },100)
+        };
+    </script>
+    <style type="text/css">
+        @charset "utf-8";*{margin:0;padding:0}
+        img{display:block;border:none}
+        em,i{font-style:normal}
+        blockquote,body,dd,div,dl,dt,fieldset,font,form,h1,h2,h3,h4,h5,h6,input,li,ol,p,pre,td,textarea,th,ul{margin:0;padding:0;font-family:"微软雅黑"}
+        table{border-collapse:collapse;border-spacing:0}
+        h1,h2,h3,h4,h5,h6{font-weight:400;font-size:100%}
+        dd,dl,dt,li,ol,ul{list-style:none}
+        button,checkbox,form,input,radio,select,textarea{vertical-align:top}
+        a{color:#000;text-decoration:none}
+        a:link,a:visited{text-decoration:none}
+        a:hover{color:#cd0200;text-decoration:underline}
+        button,input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:none}
+
+
+        body{margin: 0 auto;display: block;font-size: 0.16rem;font-family:"微软雅黑";max-width: 7.5rem;}
+        .zixun_contain li{border-bottom: 1px solid #eee;padding: 10px 10px;}
+        .zixun_title{font-weight: bold;font-size: 16px;line-height: 40px;}
+        .zixun_content{color: #777;}
+    </style>
+</head>
+<body>
+    <div class="contain">
+        <ul class="zixun_contain">
+            {foreach $zixun as $k =>$v}
+            <a href="/index/card/zixun_info?id={$v['id']}">
+            <li>
+                <h2 class="zixun_title">{$v['title']}</h2>
+                <div class="zixun_content">
+                    {$v['content']}<span style="color:#2196F3;">【详情】</span>
+                </div>
+            </li>
+            </a>
+            {/foreach}
+        </ul>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<view>
+    <view class="writing" wx:if="{{item.state===0}}">
+        <drawLoading color="#04BABE" title="排队中，请稍候..."></drawLoading>
+    </view>
+    <view wx:elif="{{item.state===1}}">
+        <view class="item {{item.response.length>1?'item4':'item1'}}">
+            <image bindtap="previewImage" class="image" data-image="{{image}}" mode="widthFix" src="{{image}}" wx:for="{{item.response}}" wx:for-item="image"></image>
+        </view>
+    </view>
+    <view class="writing fail" wx:elif="{{item.state===2}}">
+        <view class="errmsg">
+            <image src="/images/ic_fail.png"></image>
+            <text style="max-width: 400rpx;">生成失败: {{item.errmsg}} </text>
+        </view>
+        <view>
+            <text bindtap="retry" class="btn-retry" data-id="{{item.draw_id}}">重新生成</text>
+        </view>
+    </view>
+    <view class="writing" wx:elif="{{item.state===3}}">
+        <view wx:if="{{item.response&&item.response[0]}}">
+            <view class="item1">
+                <image class="image" mode="widthFix" src="{{item.response[0]}}"></image>
+            </view>
+            <drawLoading color="#04BABE" title="生成中，预计需要1-3分钟左右"></drawLoading>
+        </view>
+        <view wx:else>
+            <drawLoading color="#04BABE" title="生成中，预计需要1-3分钟左右"></drawLoading>
+        </view>
+    </view>
+</view>

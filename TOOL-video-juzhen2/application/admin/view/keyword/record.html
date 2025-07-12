@@ -1,0 +1,358 @@
+{include file="public/header" /}
+<style>
+    .form-control{
+        width: 300px;
+     
+
+    }
+    .sel{
+       
+        width: 100%;
+        margin-left: -10px;
+        margin-bottom: 15px;
+
+    }
+  
+.calendar {
+    width: 280px;
+    height: 330px;
+}
+.calendar-modal {
+    display: none;
+    position: absolute;
+    background: #fdfdfd;
+    border: 1px solid #e8e8e8;
+    box-shadow: 1px 2px 3px #ddd
+}
+.calendar-inner {
+    position: relative;
+    z-index: 1;
+    -webkit-perspective: 1000;
+    -moz-perspective: 1000;
+    -ms-perspective: 1000;
+    perspective: 1000;
+    -ms-transform: perspective(1000px);
+    -moz-transform: perspective(1000px);
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+}
+.calendar-views {
+    transform-style: preserve-3d;
+}
+.calendar .view {
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    *overflow: hidden;
+    -webkit-transition: .6s;
+    transition: .6s;
+}
+.calendar-d .view-month,
+.calendar-m .view-date {
+    transform: rotateY(180deg);
+    visibility: hidden;
+    z-index: 1;
+}
+.calendar-d .view-date,
+.calendar-m .view-month {
+    transform: rotateY(0deg);
+    visibility: visible;
+    z-index: 2;
+}
+.calendar-ct,
+.calendar-hd,
+.calendar-views .week,
+.calendar-views .days {
+    overflow: hidden;
+}
+.calendar-views {
+    width: 100%;
+}
+.calendar .view,
+.calendar-display,
+.calendar-arrow .prev,
+.calendar .date-items li {
+    float: left;
+}
+.calendar-arrow,
+.calendar-arrow .next {
+    float: right;
+}
+.calendar-hd {
+    padding: 10px 0;
+    height: 30px;
+    line-height: 30px;
+}
+.calendar-display {
+    font-size: 28px;
+    text-indent: 10px;
+}
+.view-month .calendar-hd {
+    padding: 10px;
+}
+.calendar-arrow,
+.calendar-display {
+    color: #ddd;
+}
+.calendar li[disabled] {
+    color: #bbb;
+}
+.calendar li.old[disabled],
+.calendar li.new[disabled] {
+    color: #eee;
+}
+.calendar-display .m,
+.calendar-views .week,
+.calendar-views .days .old,
+.calendar-views .days .new,
+.calendar-display:hover,
+.calendar-arrow span:hover {
+    color: #888;
+}
+
+.calendar-arrow span,
+.calendar-views .days li[data-calendar-day],
+.calendar-views .view-month li[data-calendar-month] {
+    cursor: pointer;
+} 
+.calendar li[disabled] {
+    cursor: not-allowed;
+}
+
+.calendar-arrow {
+    width: 50px;
+    margin-right: 10px;
+}
+.calendar-arrow span {
+    font: 500 26px sans-serif;
+}
+
+.calendar ol li {
+    position: relative;
+    float: left;
+    text-align: center;
+    border-radius: 50%;
+}
+.calendar .week li,
+.calendar .days li {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+}
+.calendar .month-items li {
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+}
+.calendar .days li[data-calendar-day]:hover,
+.calendar .view-month li[data-calendar-month]:hover {
+    background: #eee; 
+}
+.calendar .calendar-views .now {
+    color: #fff;
+    background: #FF808E!important;  
+}
+.calendar .calendar-views .selected {
+    color: #FF808E;
+    background: #CDE9D9!important; 
+}
+.calendar .calendar-views .dot {
+    position: absolute;
+    left: 50%;
+    bottom: 4px;
+    margin-left: -2px; 
+    width: 4px;
+    height: 4px;
+    background: #FF808E;
+    border-radius: 50%;
+}
+.calendar-views .now .dot {
+    background: #fff;
+}
+
+.calendar .date-items {
+    width: 300%;
+    margin-left: -100%;
+}
+
+.calendar-label {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    padding: 5px 10px;
+    line-height: 22px;
+    color: #fff;
+    background: #000;
+    border-radius: 3px;
+    opacity: .7;
+    filter: alpha(opacity=70);
+}
+.calendar-label i {
+    display: none;
+    position: absolute;
+    left: 50%;
+    bottom: -12px;
+    width: 0;
+    height: 0;
+    margin-left: -3px;
+    border: 6px solid transparent;
+    border-top-color: #000;
+}
+html {
+    font: 500 14px 'roboto';
+    color: #333;
+    background-color: #fafafa;
+}
+a {
+    text-decoration: none;
+}
+ul, ol, li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+#demo {
+    width: 300px;
+    margin: 150px auto;
+}
+p {
+    margin: 0;
+}
+
+</style>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>补录排名</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="form_basic.html#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" name="edit_rule" id="edit_rule" method="post" action="{:url('record_edit')}">
+                        <input type="hidden" name="id" value="{$list.id}">
+                        <input type="hidden" name="username" value="{$list.username}">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">补录关键词</label>
+                            <div class="input-group col-sm-4">
+                                <input id="title" type="text" class="form-control" name="website_ci" required="" aria-required="true" value="{$list.website_ci}" readonly = "readonly">
+                            </div>
+                            
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">网站域名</label>
+                            <div class="input-group col-sm-4">
+                                <input id="title" type="text" class="form-control" name="website_url" required="" aria-required="true" value="{$list.website_url}" readonly = "readonly">
+                            </div>
+                            
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">价格</label>
+                            <div class="input-group col-sm-4">
+                                <input id="title" type="text" class="form-control" name="website_money" required="" aria-required="true" value="{$list.website_money}" readonly = "readonly">
+                            </div>
+                            
+                        </div>
+                        <div class="sel">
+                            <label class="col-sm-3 control-label">补录搜索引擎</label>
+                            <div class="input-group col-sm-4">
+                                 <select name="website_pc" id="" class="form-control"  readonly = "readonly">
+                                    <!-- <option value="{$list.website_pc}">{$list.website_pc}</option> -->
+                                    {if $list.website_pc == 'bd_pc'}
+                                    <option value="bd_pc">百度pc</option>
+                                    {elseif $list.website_pc == 'bd_yd'}
+                                    <option value="bd_yd">百度移动端</option>
+                                     {elseif $list.website_pc == '360_pc'}
+                                    <option value="360_pc">360pc</option>
+                                    {elseif $list.website_pc == '360_yd'}
+                                    <option value="360_yd">360移动端</option>
+                                    {elseif $list.website_pc == 'sg_pc'}
+                                    <option value="sg_pc">搜狗pc</option>
+                                    {elseif $list.website_pc == 'sg_yd'}
+                                    <option value="sg_yd">搜狗移动端</option>
+                                    {elseif $list.website_pc == 'sm_pc'}
+                                    <option value="sm_pc">神马</option>
+                                    {else /}
+                                    {/if}
+                                   <!--  <option value="bd_pc">百度pc</option>
+                                    <option value="bd_yd">百度移动端</option>
+                                    <option value="360_pc">360pc</option>
+                                    <option value="360_yd">360移动端</option>
+                                    <option value="sg_pc">搜狗pc</option>
+                                    <option value="sg_yd">搜狗移动端</option>
+                                    <option value="sm_pc">神马</option> -->
+                                   
+                                </select>
+                            </div>
+                        </div>
+                           <div class="form-group">
+                            <label class="col-sm-3 control-label">排名</label>
+                            <div class="input-group col-sm-4">
+                                <input id="title" type="text" class="form-control" name="website_pai" required="" aria-required="true" value="">
+                            </div>
+                            
+                        </div>
+
+                      
+                        
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">补录关时间</label>
+                           
+                                 <input type="text" id="dt" name="website_time" class="form-control" >
+                                 <div id="ddd" ></div>
+                            
+                            
+                        </div>
+                        
+
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> 保存</button>&nbsp;&nbsp;&nbsp;
+                                <a class="btn btn-danger" href="javascript:history.go(-1);"><i class="fa fa-close"></i> 返回</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+ 
+{include file="public/footer" /}
+<script src="/static/admin/js/jquery.js"></script> 
+<script src="/static/admin/js/calendar.js"></script> 
+
+<script type="text/javascript">
+    $('#ddd').calendar({
+        trigger: '#dt',
+        zIndex: 999,
+        format: 'yyyy-mm-dd',
+        onSelected: function (view, date, data) {
+            console.log('event: onSelected')
+        },
+        onClose: function (view, date, data) {
+            console.log('event: onClose')
+            console.log('view:' + view)
+            console.log('date:' + date)
+            console.log('data:' + (data || 'None'));
+        }
+    });
+    
+</script>
+</body>
+</html>

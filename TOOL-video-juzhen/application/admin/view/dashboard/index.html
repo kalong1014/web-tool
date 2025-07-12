@@ -1,0 +1,303 @@
+<style type="text/css">
+    .sm-st{background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #888), color-stop(1, #656667)) !important;;padding:20px;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;margin-bottom:20px;-webkit-box-shadow:0 1px 0 rgba(0,0,0,.05);box-shadow:0 1px 0 rgba(0,0,0,.05);color: #fff;text-align: center;}
+    .sm-st-icon{width:60px;height:60px;display:inline-block;line-height:60px;text-align:center;font-size:30px;background:#eee;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;float:left;margin-right:10px;color:#fff}
+    .sm-st-info{font-size:16px;padding-top:2px}
+    .sm-st-info span{display:block;font-size:24px;font-weight:600}
+    .orange{background:#fa8564!important}
+    .tar{background:#45cf95!important}
+    .sm-st .green{background:#86ba41!important}
+    .pink{background:#ac75f0!important}
+    .yellow-b{background:#fdd752!important}
+    .stat-elem{background-color:#fff;padding:18px;border-radius:40px}
+    .stat-info{text-align:center;background-color:#fff;border-radius:5px;margin-top:-5px;padding:8px;-webkit-box-shadow:0 1px 0 rgba(0,0,0,.05);box-shadow:0 1px 0 rgba(0,0,0,.05);font-style:italic}
+    .stat-icon{text-align:center;margin-bottom:5px}
+    .stats .stat-icon{color:#eee;display:inline-block;font-size:26px;text-align:center;vertical-align:middle;width:50px;float:left}
+    .stat{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:inline-block}
+    .stat .value{font-size:20px;line-height:24px;overflow:hidden;text-overflow:ellipsis;font-weight:500}
+    .progress-bar-green, .progress-bar-success{background: #eee;}
+    .stat{color: #eee;}
+    .stat .name{overflow:hidden;text-overflow:ellipsis}
+    .stat.lg .value{font-size:26px;line-height:28px}
+    .stat.lg .name{font-size:16px}
+    .stat-col .progress{height:2px}
+    .stat-col .progress-bar{line-height:2px;height:2px}
+    .item{padding:30px 0}
+    #statistics .panel{min-height:150px}
+    #statistics .panel h5{font-size:13px}
+    a{cursor: pointer;}
+    .user_pay_img_div{background: rgb(0 0 0 / 65%);;width: 300px;height: 300px;margin-top: 150px;position: absolute;z-index: 999999;margin-left: 600px;display: none;}
+    .user_pay_img{display: block;width: 200px;height: 200px;margin: 0 auto;margin-top: 50px;}
+    .colse_img{float: right;margin-top: -20px;background: #eee;text-align: center;line-height: 40px;color: #000;display: inline-block;width: 40px;border-radius: 50%;margin-right: -20px;cursor: pointer;font-size: 20px;font-weight: bold;}
+    .user_pay_img_div p {text-align: center;font-size: 18px;color: #fff;line-height: 50px;}
+    .bg-blue-gradient{background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #18bc9c), color-stop(1, #009074)) !important;}
+    .bg-aqua-gradient{background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #a39fe2), color-stop(1, #574edc)) !important;}
+    .bg-purple-gradient{background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #ca9035), color-stop(1, #a26400)) !important;}
+    .bg-green-gradient{background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #969696), color-stop(1, #656565)) !important;}
+
+    .panel{background: #2b2b2e;}
+    body{background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #222), color-stop(1, #333)) !important;}
+    .panel-body h5{font-size: 20px!important; }
+</style>
+
+<div style="color:red;margin-bottom: 20px;margin-left: 15px;font-size: 16px;">公告：本产品贴牌代理不可低于3000元、一二级代理不低于1000元、商户不可低于100元 ，否则一经发现取消更新维护权限，严重者将不限于取消软件授权，请大家自觉维护好市场价格。</div>
+
+<div style="margin-bottom: 10px;">
+    <a href="update" target="_blank" style="color:#fff;background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #a39fe2), color-stop(1, #574edc)) !important;;display:inline-block;width:150px;height:35px;line-height:35px;text-align:center;margin-left:15px;border-radius:5px;" py="dlgl" pinyin="update"  title="检查更新"> <span>检查更新</span> <span class="pull-right-container"> </span></a> 
+    <a href="/storeadmin" target="_blank" style="color:#fff;background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #18bc9c), color-stop(1, #009074)) !important;display:inline-block;width:150px;height:35px;line-height:35px;text-align:center;margin-left:15px;border-radius:5px;" py="dlgl" pinyin="update"  title="商家电脑端入口"> <span>商家入口</span> <span class="pull-right-container"> </span></a> 
+
+    <a href="/agentadmin" target="_blank" style="color:#fff;;display:inline-block;width:150px;height:35px;line-height:35px;text-align:center;background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #969696), color-stop(1, #656565)) !important;margin-left:15px;border-radius:5px;" py="dlgl" pinyin="update" title="代理端入口"> <span>代理入口</span> <span class="pull-right-container"> </span></a>
+
+    <a href="api_call" target="_blank" style="color:#fff;;display:inline-block;width:150px;height:35px;line-height:35px;text-align:center;background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #ca9035), color-stop(1, #656565)) !important;margin-left:15px;border-radius:5px;" py="dlgl" pinyin="update" title="接口调用"> <span>接口调用明细</span> <span class="pull-right-container"> </span></a>
+
+</div>
+
+<div class="panel panel-default panel-intro">
+        
+    <div class="panel-body">
+        <div class="user_pay_img_div">
+            <span class="colse_img">X</span>
+            <img src="" class="user_pay_img">
+            <p>支付完之后请刷新页面</p>
+        </div>
+
+
+        <h1 style="text-align:center;margin-bottom:50px;font-weight:bold;font-family:'微软雅黑';color:#eee;">{$site.name|mb_substr=0,8,'utf-8'|mb_strtoupper='utf-8'|htmlentities} - 管理后台</h1>
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="one">
+
+                <div class="row">
+                    <div class="col-sm-2 ">
+                        <div class="sm-st clearfix">
+                            <div class="sm-st-info">
+                                <span>{$store_count}</span>
+                                商家数
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 ">
+                        <div class="sm-st clearfix">
+                            <div class="sm-st-info">
+                                <span>{$agent_one_count}</span>
+                                一级代理
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 ">
+                        <div class="sm-st clearfix">
+                            <div class="sm-st-info">
+                                <span>{$agent_sub_count}</span>
+                                二级代理
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div id="echart" class="btn-refresh" style="height:200px;width:100%;"></div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card sameheight-item stats">
+                            <div class="card-block">
+                                <div class="row row-sm stats-container">
+                                    <div class="col-xs-6 stat-col">
+                                        <div class="stat-icon"><i class="fa fa-rocket"></i></div>
+                                        <div class="stat">
+                                            <div class="value"> {$today_store_count}</div>
+                                            <div class="name"> 今日商家</div>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-success" style="width: 30%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 stat-col">
+                                        <div class="stat-icon"><i class="fa fa-vcard"></i></div>
+                                        <div class="stat">
+                                            <div class="value"> {$today_agent_one}</div>
+                                            <div class="name"> 今日一级代理</div>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-success" style="width: 25%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6  stat-col">
+                                        <div class="stat-icon"><i class="fa fa-calendar"></i></div>
+                                        <div class="stat">
+                                            <div class="value"> {$today_agent_sub}</div>
+                                            <div class="name">今日二级代理</div>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-success" style="width: 25%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 stat-col">
+                                        <div class="stat-icon"><i class="fa fa-calendar-plus-o"></i></div>
+                                        <div class="stat">
+                                            <div class="value"> {$today_store_pay}</div>
+                                            <div class="name"> 今日充值</div>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-success" style="width: 25%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6  stat-col">
+                                        <div class="stat-icon"><i class="fa fa-user-circle"></i></div>
+                                        <div class="stat">
+                                            <div class="value"> {$agent_commission}</div>
+                                            <div class="name"> 今日分佣</div>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-success" style="width: 25%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6  stat-col">
+                                        <div class="stat-icon"><i class="fa fa-user-circle-o"></i></div>
+                                        <div class="stat">
+                                            <div class="value"> {$thirty_pay}元</div>
+                                            <div class="name"> 30天内充值</div>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-success" style="width: 25%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top:15px;" id="statistics">
+
+                    <div class="col-lg-12">
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <div class="panel bg-blue-gradient no-border">
+                            <div class="panel-body">
+                                <div class="panel-title">
+                                    <span class="label label-primary pull-right">{:__('Real time')}</span>
+                                    <h5>引流外链</h5>
+                                </div>
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h1 class="no-margins">{$card_count}</h1>
+                                            <div class="font-bold"><i class="fa fa-magic"></i>
+                                                <small>创建全网引流外链数</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <div class="panel bg-aqua-gradient no-border">
+                            <div class="panel-body">
+                                <div class="ibox-title">
+                                    <span class="label label-primary pull-right">{:__('Real time')}</span>
+                                    <h5>账号授权</h5>
+                                </div>
+                                <div class="ibox-content">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h1 class="no-margins">{$auth_count}</h1>
+                                            <div class="font-bold"><i class="fa fa-database"></i>
+                                                <small>企业号+普通号授权数</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6 col-md-3">
+                        <div class="panel bg-purple-gradient no-border">
+                            <div class="panel-body">
+                                <div class="ibox-title">
+                                    <span class="label label-primary pull-right">{:__('Real time')}</span>
+                                    <h5>矩阵视频数</h5>
+                                </div>
+                                <div class="ibox-content">
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h1 class="no-margins">{$tuiguang_task}</h1>
+                                            <div class="font-bold"><i class="fa fa-files-o"></i>
+                                                <small>矩阵视频任务数</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <div class="panel bg-green-gradient no-border">
+                            <div class="panel-body">
+                                <div class="ibox-title">
+                                    <span class="label label-primary pull-right">{:__('Real time')}</span>
+                                    <h5>剪辑任务</h5>
+                                </div>
+                                <div class="ibox-content">
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h1 class="no-margins">{$make_video}</h1>
+                                            <div class="font-bold"><i class="fa fa-picture-o"></i>
+                                                <small>智能云剪辑任务数</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                </div>
+            </div>
+            <div style="color:#fff;line-height: 30px;font-size: 16px;">
+                <h2>【版权说明】</h2>
+                <p>1、购买者可将授权后的产品用于任意「符合国家法律法规」的应用平台，禁止用于黄赌毒等危害国家安全与稳定的网站。</p>
+                <p>2、购买主体购买后可用于开发商业项目，购买主体不可将源码分享第三方，否则我们有权利收回产品授权及更新权限，并根据事态轻重追究相应法律责任。</p>
+                <p>3、购买者务必尊重知识产权，严格保证不恶意传播产品源码、不得直接对授权的产品本身进行二次转售或倒卖、开源，无论有意或无意，我们有权利收回产品授权及更新权限，并根据事态轻重追究相应法律责任。</p>
+                <p>4、购买者不可将售后群文档及资料分享给第三方，否则我们有权利收回产品授权及更新权限，并根据事态轻重追究相应法律责任。</p>
+                <p>5、购买者购买项目不可以用来构建存在竞争性质的产品并直接对外销售否则我们有权利收回产品授权及更新权限，并根据事态轻重追究相应法律责任。</p>
+                <p>6、购买者购买项目中的源码（包含全部源码、及部分源码片段）不可以用于任何形式的开源项目，否则我们有权利收回产品授权及更新权限，并根据事态轻重追究相应法律责任。</p>
+                <p>7、欢迎举报盗版程序，一经确认，我们将封禁盗版售卖授权程序，同时发起法务起诉，所得金额除法务需要费用，其余均返利于举报人。</p>
+            </div>
+            <div class="tab-pane fade" id="two">
+                <div class="row">
+                    <div class="col-xs-12">
+                        {:__('Custom zone')}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript" src="/storeadmin2/libs/jquery/dist/jquery.min.js?v=1629984200"></script>
+<script type="text/javascript">
+    $('.user_pay_btn').click(function(){
+        $.post('dashboard/user_pay',{},function(data){
+            if(data == ''){
+                alert('获取支付信息失败，请刷新重试');
+            }else{
+                if(data.indexOf("错误消息") != -1){
+                    alert(data);return;
+                }
+                $('.user_pay_img_div').show();
+                $('.user_pay_img').attr('src',data);
+            }
+        });
+    });
+
+    $('.colse_img').click(function(){
+        $('.user_pay_img_div').hide();
+    });
+</script>

@@ -1,0 +1,207 @@
+{include file="public/header" /}
+<style type="text/css" media="all">
+    .form-group{
+        width: 100%;
+        height: 30px;
+        margin-top:20px;
+      
+    }
+    .btn-primary{
+        margin-left:0;
+        width: 300px;
+    }
+        .control-label{
+            width: 150px;
+            height: 35px;
+            line-height: 35px;
+            font-weight: normal;
+            text-align: right;
+            margin-right: 10px;
+        }
+</style>
+<body class="gray-bg">
+<link rel="stylesheet" href="/static/admin/layui/css/layui.css" media="all">
+<div class="wrapper layui-card-body wrapper-content">
+    <div class="admin-con">
+        <div class="block-box">
+            <div class="col-12">
+                <div class="block">
+        
+                    <h5 style="font-size:14px;margin-bottom:0">抖音接口：  <button class="btn btn-success" onclick="qiehuan()" style="font-size:13px">点击切换接口</button></h5>
+            
+                    <form class="form-inline font13" method="post" action="{:url('xitong')}">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">{if $list.api==2}抖音接口Key(借权) :{else/}抖音接口Key :{/if}</label>
+                            <div class="input-group col-sm-4">
+                                <input id="title" type="text" class="form-control" name="clientkey" value="{$list['clientkey']}"  >
+                            </div>
+                        </div>
+                
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">{if $list.api==2}抖音接口Secret(借权) :{else/}抖音接口Secret :{/if}</label>
+                            <div class="input-group col-sm-4">
+                                <input id="title" type="text" class="form-control" name="clientsecret" value="{$list['clientsecret']}" >
+                            </div>
+                        </div>  
+                  
+                        <div class="hr-line-dashed" style="color:#000">
+                            <!--.........................................................-->
+                        </div>
+                  
+                        <h5 style="font-size:14px;margin-bottom:0">阿里云接口：</h5> 
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">阿里云KeyId :</label>
+                            <div class="input-group col-sm-4">
+                                <input id="title" type="text" class="form-control" name="alykeyId" value="{$list['alykeyId']}" >
+                            </div>
+                        </div>
+                
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">阿里云KeySecret :</label>
+                            <div class="input-group col-sm-4">
+                                <input id="title" type="text" class="form-control" name="alykeysecret" value="{$list['alykeysecret']}" >
+                            </div>
+                        </div> 
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">阿里云Buket地址 :</label>
+                            <div class="input-group col-sm-4">
+                                <input id="title" type="text" class="form-control" name="alybuket" value="{$list['alybuket']}" >
+                            </div>
+                        </div> 
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">阿里云Buket名称 :</label>
+                            <div class="input-group col-sm-4">
+                                <input id="title" type="text" class="form-control" name="alybuketname" value="{$list['alybuketname']}"  >
+                            </div>
+                        </div> 
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">混剪接入区域标识 :</label>
+                            <div class="input-group col-sm-4">
+                                <input id="title" type="text" class="form-control" name="biaoshi" value="{$list['biaoshi']}" >
+                            </div>
+                        </div> 
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">混剪Endpoint :</label>
+                            <div class="input-group col-sm-4">
+                                <input id="title" type="text" class="form-control" name="endpoint" value="{$list['endpoint']}" >
+                            </div>
+                        </div> 
+                        <div class="hr-line-dashed"></div>
+                    
+                    
+                        <h5 style="font-size:14px;margin-bottom:0">快手接口：</h5> 
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">快手appId :</label>
+                            <div class="input-group col-sm-4">
+                                <input id="title" type="text" class="form-control" name="appid" value="{$list['appid']}" >
+                            </div>
+                        </div>
+                
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">快手appSecret :</label>
+                            <div class="input-group col-sm-4">
+                                <input id="title" type="text" class="form-control" name="appsecret" value="{$list['appsecret']}" >
+                            </div>
+                        </div> 
+                        <div class="hr-line-dashed"></div>
+                        <h5 style="font-size:14px;margin-bottom:0">去水印接口：</h5> 
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">接口key :</label>
+                            <div class="input-group col-sm-4">
+                                <input id="title" type="text" class="form-control" name="key_api" value="{$list['key_api']}" >
+                            </div>
+                        </div>
+                
+                        <div class="hr-line-dashed"></div>
+                        <h5 style="font-size:14px;margin-bottom:0">SEO排名接口：</h5> 
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">排名appId :</label>
+                            <div class="input-group col-sm-4">
+                                <input id="title" type="text" class="form-control" name="gjcappid" value="{$list['gjcappid']}" >
+                            </div>
+                        </div>
+                
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">排名appkey :</label>
+                            <div class="input-group col-sm-4">
+                                <input id="title" type="text" class="form-control" name="gjckey" value="{$list['gjckey']}" >
+                            </div>
+                        </div> 
+                        <div class="hr-line-dashed"></div>
+           
+                  
+                        <button type="submit" class="btn btn-primary m-t-md">保存</button> 
+                
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- kaishi -->
+<!--切换接口开始-->
+<div class="modal fade" id="add" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog" style="width:50%">
+            <div class="modal-content" style="width:100%;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">切换接口</h4>                  
+                </div>
+                <div class="add-renwu m-l-md m-r-md">
+                    <input type="hidden" name="api" id="" value="{$list.api}" />
+                    <input type="hidden" name="apiid" id="" value="{$list.id}" />
+                    <div class="m-t-md" style="font-size:14px;line-height:2">
+                        <b>注意事项：</b><br>
+                            1、切换接口可能导致之前授权的账号权限异常，必须将之前授权的账号重新授权。<br>
+                            2、正在执行的视频发布任务会导致发送失败，请删除当前任务，新建发布任务。<br>
+                            3、建议选好接口方式之后非必要不更换。
+                               
+                    </div>
+                    <div class="form-group m-t-md" style="text-align: center;">
+                        <botton class="btn btn-primary"  id='zhida_baocun' onclick="sub()" >
+                            确认切换接口
+                        </botton>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+<!--结束-->
+
+
+{include file="public/footer" /}
+<script type="text/javascript" charset="utf-8">
+    function qiehuan(){
+        //layer.msg("操作成功",{icon:1,time:1500,shade: 0.1,});
+       $("#add").modal('show');
+    }
+    
+    function sub(){
+       
+         apiid =     $("input[name='apiid']").val();
+         api =     $("input[name='api']").val();
+        
+    $.post('{:url("apiqh")}',
+     {apiid:apiid,api:api},
+    function(data){
+        if(data.code==1){
+            layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+             setInterval(function(){
+                location.reload();
+             },1000)
+            return false;
+        }else{
+            layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+             setInterval(function(){
+                location.reload();
+             },1000)
+            return false;
+        }         
+        
+    });
+}
+</script>
+
+</html>

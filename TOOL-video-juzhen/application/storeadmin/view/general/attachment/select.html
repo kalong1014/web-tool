@@ -1,0 +1,41 @@
+{if !$Think.get.mimetype}
+<style>
+    #one .commonsearch-table{
+        padding-top:15px!important;
+    }
+</style>
+{/if}
+<div class="panel panel-default panel-intro">
+    {if !$Think.get.mimetype}
+    <div class="panel-heading">
+        {:build_heading(null,FALSE)}
+        <ul class="nav nav-tabs" data-field="mimetype">
+            <li class="active"><a href="#t-all" data-value="" data-toggle="tab">{:__('All')}</a></li>
+            {foreach name="mimetypeList" item="vo"}
+            <li><a href="#t-{$key}" data-value="{$key}" data-toggle="tab">{$vo}</a></li>
+            {/foreach}
+        </ul>
+    </div>
+    {/if}
+
+    <div class="panel-body no-padding">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="one">
+                <div class="widget-body no-padding">
+                    <div id="toolbar" class="toolbar">
+                        {:build_toolbar('refresh')}
+                        <span><button type="button" id="faupload-image" class="btn btn-success faupload" data-mimetype="jpg,png,bmp,jpeg,gif,zip,rar,xls,xlsx,wav,mp4,mp3,pdf,MP3,MP4,MOV" data-multiple="true"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                        {if request()->get('multiple') == 'true'}
+                        <a class="btn btn-danger btn-choose-multi"><i class="fa fa-check"></i> {:__('Choose')}</a>
+                        {/if}
+                        <a href="javascript:;" class="btn btn-danger btn-del btn-disabled disabled " title="{:__('Delete')}" ><i class="fa fa-trash"></i> {:__('Delete')}</a>
+                    </div>
+                    <table id="table" class="table table-bordered table-hover" width="100%">
+
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

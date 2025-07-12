@@ -1,0 +1,50 @@
+								<li>
+                                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-layers"></i><span class="sidebar-mini-hide">产品管理</span></a>
+                                    <ul>
+                                        <li>
+                                            <a href="?c=hosting&a=pageHost">虚拟主机</a>
+                                        </li>
+                                        <li>
+                                            <a href="?c=domains&a=pageList">域名列表</a>
+                                        </li>
+                                {{if $group}}
+						        {{for $i=0;$i< count($group);$i++}}
+                                        <li>
+                                            <a href="{{$group[$i][1]}}">{{$group[$i][0]}}</a>
+                                        </li>
+								{{/for}}
+								{{/if}}
+                                    </ul>
+                                </li>
+                                <li class="nav-main-heading"><span class="sidebar-mini-hide">财务管理</span></li>
+                                <li><a href="?c=money&a=addFrom"><i class="si si-wallet"></i><span class="sidebar-mini-hide">在线充值</span></a></li>
+                                <li>
+                                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-wallet"></i><span class="sidebar-mini-hide">账单详细</span></a>
+                                    <ul>
+                                        <li>
+                                            <a href="?c=money&a=moneyin">充值记录</a>
+                                        </li>
+                                        <li>
+                                            <a href="?c=money&a=moneyout">消费记录</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-main-heading"><span class="sidebar-mini-hide">服务支持</span></li>
+                                <li>
+                                    <a href="?c=question&a=pageByuser"><i class="si si-speech"></i><span class="sidebar-mini-hide">在线服务单</span></a>
+                                </li>
+                                <li>
+                                    <a href="?c=article&a=lists&type=help"><i class="si si-question"></i><span class="sidebar-mini-hide">帮助文档</span></a>
+                                </li>
+                                <li class="nav-main-heading"><span class="sidebar-mini-hide">账户管理</span></li>
+                                <li>
+                                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-user"></i><span class="sidebar-mini-hide">账户管理</span></a>
+                                    <ul>
+                                        <li>
+                                            <a href="?c=user&a=changeForm">修改资料</a>
+                                        </li>
+                                        <li>
+                                            <a href="?c=user&a=changePasswordForm">更改密码</a>
+                                        </li>
+                                    </ul>
+                                </li>

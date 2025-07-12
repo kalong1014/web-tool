@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<title>{if $type_id==2}系统教程{else}资讯公告{/if}-{$website_config['website_tdk_title']}</title>
+    <meta name="description" content="{$website_config['website_tdk_desc']}">
+    <meta name="keywords" content="{$website_config['website_tdk_keyword']}">
+	<link href="static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="static/css/font-awesome.css" rel="stylesheet">
+	<link href="static/css/animate.css" rel="stylesheet">
+	<link href="static/css/bootsnav.css" rel="stylesheet">
+    <link href="static/css/swiper.min.css" rel="stylesheet">
+	<link href="static/css/style.css" rel="stylesheet">
+    <script src="static/js/jquery-1.10.1.js"></script>
+    <script src="static/js/prefixfree.min.js"></script>
+	<script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/bootsnav.js"></script>
+    <script src="static/js/swiper.min.js"></script>
+    <script src="static/js/swiper.animate1.0.2.min.js"></script>
+    <script src="static/js/public.js"></script>
+    <script src="static/js/wow.min.js"></script>
+    <script>
+    var wow = new WOW({
+        boxClass: 'wow',
+        animateClass: 'animated',
+        offset: 0,
+        mobile: false,
+        live: true
+    });
+    wow.init();
+    </script>
+	<!--[if lt IE 9]>
+	  <script src="js/html5shiv.min.js"></script>
+	  <script src="js/respond.min.js"></script>
+	<![endif]-->    
+    <script>
+    	function scro(){
+			if($(document).scrollTop()>50){$(".headerBg").addClass("active");}else{$(".headerBg").removeClass("active");}
+		}
+		scro();
+		$(window).scroll(function(){
+			scro();
+		})
+    </script>
+
+    <style type="text/css">
+        .mainBg .container{padding: 0 20px 20px 20px;border: 1px solid #ccc;border-radius: 5px;margin-top: 20px;}
+        .container li{font-size: 18px;line-height: 60px;list-style: none;border-bottom: 1px solid #ece7e7;height: 60px;}
+        .zixun_time{float: right;font-size: 14px;font-weight: bold;}
+        .zixun_time a{margin-left: 10px;}
+        .zixun_title_a{overflow: hidden;white-space: nowrap;text-overflow: ellipsis;width: 60%;display: inline-block;}
+        .ul_head{margin-top: 20px;}
+        .ul_head a{border: 1px solid #337ab7;padding: 5px 10px;text-align: center;font-size: 18px;margin-right: 20px;border-radius: 20px;}
+        .ul_head_active,.ul_head a:hover{background: #337ab7;color: #fff;}
+    </style>
+</head>
+<body>
+{include file="index/head"}
+<div class="clearfix"></div>
+<div class="bannerN">
+	<div class="imgFull"><img src="static/picture/f003f2a3c034c511.jpg" class="img-responsive"></div>
+    <h2 class="banH2 wow fadeInUp">{if $type_id==2}系统教程{else}资讯公告{/if}</h2>
+</div>
+
+
+<div class="mainBg">
+    
+    <div class="container">
+        <ul class="ul_head">
+            <a href="/zixun.html" {if $type_id==0}class="ul_head_active"{/if}>全部</a>
+            <a href="/zixun2.html" {if $type_id==2}class="ul_head_active"{/if}>系统教程</a>
+        </ul>
+
+    	<ul>
+            {if count($news)>0}
+                {foreach $news as $k=>$v}
+                    <li>
+                        <a href="/zixun_{$v.id}.html" class="zixun_title_a" target="_blank">{$v.title}</a>
+                        <span class="zixun_time">{$v.addtime} <a href="/zixun_{$v.id}.html" target="_blank">详情</a> </span>
+                    </li> 
+                {/foreach} 
+            {else}
+                <div style="text-align:center;color: #666;font-size: 22px;">暂无内容</div>
+            {/if}  
+        </ul>
+
+        {$page}
+    </div>    
+</div>
+{include file="index/foot"}
+<!-- <script type="text/javascript">document.oncontextmenu = function() {return false;};document.onkeydown = function() {var e = window.event || arguments[0];if (e.keyCode == 123) {return false;} else if ((e.ctrlKey) && (e.shiftKey) && (e.keyCode == 73)) {return false;} else if ((e.shiftKey) && (e.keyCode == 121)) {return false;}else if(event.ctrlKey && window.event.keyCode==85){return false;}};</script> -->
+</body>
+</html>

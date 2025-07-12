@@ -1,0 +1,343 @@
+<!-- //菜鸟乐园：https://www.zhclash.org/  https://www.cainiaoly.com/
+//菜鸟乐园：互联网站长综合交流论坛，生活分享趣事平台，收集各路教程，主题插件，网站源码，主机测评，域名行情，原创开发等内容！
+//持续更新中，欢迎关注！
+//站点招收常驻欢迎来玩！ -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>菜鸟工具箱 - 关于我们</title>
+    <meta name="description" content="菜鸟工具箱 - 实用工具集合，提高工作效率">
+    <meta name="keywords" content="菜鸟工具箱,菜鸟在线工具,菜鸟实用工具">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* 复用相同的基础样式 */
+        :root {
+            --primary: #10B981;
+            --primary-dark: #059669;
+            --secondary: #6B7280;
+            --success: #059669;
+            --background: #F9FAFB;
+            --surface: #FFFFFF;
+            --border: #E5E7EB;
+            --text: #1F2937;
+            --text-secondary: #6B7280;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            background-color: var(--background);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+        }
+
+        /* 导航栏样式 */
+        .navbar {
+            background: var(--surface);
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* LOGO样式 */
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .logo-text {
+            background: linear-gradient(135deg, #10B981, #059669);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            margin-left: 0.5rem;
+        }
+
+        .logo-icon {
+            font-size: 1.8rem;
+            color: #10B981;
+            margin-right: 0.5rem;
+        }
+
+        .nav-logo:hover .logo-text {
+            background: linear-gradient(135deg, #059669, #10B981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        /* 头部区域 */
+        .header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 16px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* 更新日志内容区域 */
+        .changelog-content {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .version-item {
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .version-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .version-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .version-number {
+            color: var(--primary);
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .version-date {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .version-tag {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .change-list {
+            margin-left: 1rem;
+            padding-left: 2rem;
+            border-left: 2px solid var(--border);
+        }
+
+        .change-category {
+            margin-bottom: 1.5rem;
+        }
+
+        .change-category:last-child {
+            margin-bottom: 0;
+        }
+
+        .category-title {
+            color: var(--text);
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .change-item {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .change-item:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.7rem;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--primary);
+        }
+
+        /* 页脚 */
+        .footer {
+            padding: 3rem 0 2rem;
+            margin-top: 2rem;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .header {
+                padding: 2rem 1rem;
+                margin-bottom: 2rem;
+            }
+            .header h1 { font-size: 2rem; }
+            .nav-content { padding: 0 1rem; }
+            .nav-links { gap: 1rem; }
+            .changelog-content { padding: 1.5rem; }
+            .change-list { margin-left: 0; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="index.php" class="nav-logo">
+                <span class="logo-icon">🏰</span>
+                <span class="logo-text">菜鸟工具箱</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.php">首页</a>
+                <a href="changelog.html" class="active">关于我们</a>
+                <a href="https://www.zhclash.org/">菜鸟乐园</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="header">
+            <h1>关于我们</h1>
+            <p class="subtitle">记录每一次的改进与优化</p>
+        </header>
+
+        <div class="changelog-content">
+            <div class="version-item">
+                <div class="version-header">
+                    <span class="version-number">v1.0.0</span>
+                    <span class="version-date">2025-4-27</span>
+                    <span class="version-tag">第一版本</span>
+                </div>
+                <div class="change-list">
+                    <div class="change-category">
+                        <div class="category-title">🚀 新增功能</div>
+                        <div class="change-item">以本站为准</div>
+                    </div>
+                    <div class="change-category">
+                        <div class="category-title">🛠️ 功能优化</div>
+                        <div class="change-item">以本站为准</div>
+                    </div>
+                    <div class="change-category">
+                        <div class="category-title">🐛 使用工具</div>
+                        <div class="change-item">全部以接口接入，不储存任何信息</div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="index.php">首页</a>
+                    <a href="gywm.html">关于我们</a>
+                    <a href="https://www.zhclash.org/">菜鸟乐园</a>
+                </div>
+
+                <div class="copyright">
+                    <p>Copyright © 2025 菜鸟工具箱</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html> 

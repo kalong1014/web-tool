@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<title>{$info['title']}-{$website_config['name']}</title>
+    <meta name="description" content="{$info['title']}">
+    <meta name="keywords" content="{$info['title']}">
+	<link href="static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="static/css/font-awesome.css" rel="stylesheet">
+	<link href="static/css/animate.css" rel="stylesheet">
+	<link href="static/css/bootsnav.css" rel="stylesheet">
+    <link href="static/css/swiper.min.css" rel="stylesheet">
+	<link href="static/css/style.css" rel="stylesheet">
+    <script src="static/js/jquery-1.10.1.js"></script>
+    <script src="static/js/prefixfree.min.js"></script>
+	<script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/bootsnav.js"></script>
+    <script src="static/js/swiper.min.js"></script>
+    <script src="static/js/swiper.animate1.0.2.min.js"></script>
+    <script src="static/js/public.js"></script>
+    <script src="static/js/wow.min.js"></script>
+    <script>
+    var wow = new WOW({
+        boxClass: 'wow',
+        animateClass: 'animated',
+        offset: 0,
+        mobile: false,
+        live: true
+    });
+    wow.init();
+    </script>
+	<!--[if lt IE 9]>
+	  <script src="js/html5shiv.min.js"></script>
+	  <script src="js/respond.min.js"></script>
+	<![endif]-->    
+    <script>
+    	function scro(){
+			if($(document).scrollTop()>50){$(".headerBg").addClass("active");}else{$(".headerBg").removeClass("active");}
+		}
+		scro();
+		$(window).scroll(function(){
+			scro();
+		})
+    </script>
+
+    <style type="text/css">
+        .mainBg .container{padding: 50px;}
+        .mainBg .container h1{text-align: center;color: #000;font-weight: bold;}
+        .info_time{text-align: center;line-height: 50px;}
+        table td{border: 1px solid #cacaca;line-height: 50px;}
+        table td h2{line-height: 50px;color: #000;font-size: 20px;}
+        strong font,strong span{color: #333;font-size: 18px;}
+        table {text-align: center;display: block;margin: 0 auto;width: 720px;}
+    </style>
+</head>
+<body>
+{include file="index/head"}
+<div class="clearfix"></div>
+<div class="bannerN">
+	<div class="imgFull"><img src="static/picture/f003f2a3c034c511.jpg" class="img-responsive"></div>
+    <h2 class="banH2 wow fadeInUp">资讯公告</h2>
+</div>
+<div class="mainBg">
+    <div class="container">
+    	<h1>{$info['title']}</h1>
+        <p class="info_time">
+            <span>{$info['addtime']}</span>
+        </p>
+        <div class="info_content">
+            
+<table>
+    <tbody>
+        <tr class="firstRow">
+            <td valign="top" rowspan="1" colspan="3" style="">
+                <h2>
+                    商户项目收费
+                </h2>
+            </td>
+        </tr>
+        <tr>
+            <td width="59" valign="top" style=" text-align: center;">
+                <p style="">
+                    <strong style="text-align: center; "><span style="font-family: 宋体;">序号</span></strong>
+                </p>
+            </td>
+            <td width="171" valign="top" style=" text-align: center;">
+                <p style="">
+                    <strong style="text-align: center; "><span style="font-family: 宋体;">项目</span></strong>
+                </p>
+            </td>
+            <td width="490" valign="top" style=" text-align: center;">
+                <p style="">
+                    <strong style="text-align: center; "><span style="font-family: 宋体; font-size: 14px;"><font face="宋体">收费明细</font></span></strong>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td width="59" valign="top" style=" text-align: center;">
+                <p style="">
+                    1
+                </p>
+            </td>
+            <td width="171" valign="top" style=" text-align: center;">
+                <p style="">
+                    <span style="font-family: 宋体; font-size: 14px; text-align: center;">视频矩阵</span>
+                </p>
+            </td>
+            <td width="490" valign="top" style=" text-align: center;">
+                <p style="">
+                    <font face="Calibri">{if $agent_config['juzhen_money']>=0}{$agent_config['juzhen_money']}{else}{$config['juzhen_money']}{/if}</font><font face="宋体">点</font><font face="Calibri">/</font><font face="宋体">账号</font><font face="Calibri">/</font><font face="宋体">每个视频</font>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td width="59" valign="top" style=" text-align: center;">
+                <p style="">
+                    2
+                </p>
+            </td>
+            <td width="171" valign="top" style=" text-align: center;">
+                <p style="">
+                    <span style="font-family: 宋体; font-size: 14px; text-align: center;">查排名</span>
+                </p>
+            </td>
+            <td width="490" valign="top" style=" text-align: center;">
+                <p style="">
+                    <font face="Calibri">{if $agent_config['seo_money']>=0}{$agent_config['seo_money']}{else}{$config['seo_money']}{/if}</font><font face="宋体">点</font><font face="Calibri">/</font><font face="宋体">每个词</font><font face="Calibri">/</font><font face="宋体">每博主</font>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td width="59" valign="top" style=" text-align: center;">
+                <p style="">
+                    3
+                </p>
+            </td>
+            <td width="171" valign="top" style=" text-align: center;">
+                <p style="">
+                    <span style="font-family: 宋体; font-size: 14px; text-align: center;">引流外链</span>
+                </p>
+            </td>
+            <td width="490" valign="top" style="">
+                <p style="margin-top: 0px; margin-bottom: 0px; padding: 0px;  text-align: center; ">
+                    <span style="font-family: 宋体; font-size: 14px;"><font face="Calibri">{if $agent_config['card_money']>=0}{$agent_config['card_money']}{else}{$config['card_money']}{/if}</font><font face="宋体">点</font><font face="Calibri">/</font><font face="宋体">每次访问</font></span>
+                </p>
+                <p style="margin-top: 0px; margin-bottom: 0px; padding: 0px;  text-align: center; ">
+                    <span style="font-family: 宋体; font-size: 14px;"><font face="宋体">（自带防刷功能，短时间屏蔽访问频繁的</font><font face="Calibri">ip</font><font face="宋体">段）</font></span>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td width="59" valign="top" style=" text-align: center;">
+                <p style="">
+                    4
+                </p>
+            </td>
+            <td width="171" valign="top" style=" text-align: center;">
+                <p style="">
+                    <span style="font-family: 宋体; font-size: 14px; text-align: center;">无水印下载</span>
+                </p>
+            </td>
+            <td width="490" valign="top" style=" text-align: center;">
+                <p style="">
+                    <font face="Calibri">{if $agent_config['shuiyin_money']>=0}{$agent_config['shuiyin_money']}{else}{$config['shuiyin_money']}{/if}</font><font face="宋体">点</font><font face="Calibri">/</font><font face="宋体">个</font>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td valign="top" colspan="1" rowspan="1" style=" text-align: center;" width="59">
+                <p style="">
+                    5
+                </p>
+            </td>
+            <td valign="top" colspan="1" rowspan="1" style=" text-align: center;" width="171">
+                <p style="">
+                    <span style="font-family: 宋体; font-size: 14px; text-align: center;">剪辑视频</span>
+                </p>
+            </td>
+            <td valign="top" colspan="1" rowspan="1" style=" text-align: center;" width="250">
+                <p style="">
+                    <font face="Calibri">{if $agent_config['jianji_money']>=0}{$agent_config['jianji_money']}{else}{$config['jianji_money']}{/if}</font><font face="宋体">点</font><font face="Calibri">/</font><font face="宋体">每个视频</font>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td width="59" valign="top" style=" text-align: center;">
+                <p style="">
+                    6
+                </p>
+            </td>
+            <td width="171" valign="top" style=" text-align: center;">
+                <p style="">
+                    <span style="font-family: 宋体; font-size: 14px; text-align: center;">企业号运维天数</span>
+                </p>
+            </td>
+            <td width="490" valign="top" style=" text-align: center;">
+                <p style="">
+                    <font face="Calibri">{if $agent_config['qiye_money']>=0}{$agent_config['qiye_money']}{else}{$config['qiye_money']}{/if}</font><font face="宋体">点</font><font face="Calibri">/</font><font face="宋体">每天</font>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td width="59" valign="top" style=" text-align: center;">
+                <p style="">
+                    7
+                </p>
+            </td>
+            <td width="171" valign="top" style=" text-align: center;">
+                <p style="">
+                    <span style="font-family: 宋体; font-size: 14px; text-align: center;">排名达标前10</span>
+                </p>
+            </td>
+            <td width="490" valign="top" style=" text-align: center;">
+                <p style="">
+                    <font face="Calibri">{if $agent_config['paiming10_money']>=0}{$agent_config['paiming10_money']}{else}{$config['paiming10_money']}{/if}</font><font face="宋体">点/词</font><font face="Calibri">/</font><font face="宋体">每天</font>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td width="59" valign="top" style=" text-align: center;">
+                <p style="">
+                    8
+                </p>
+            </td>
+            <td width="171" valign="top" style=" text-align: center;">
+                <p style="">
+                    <span style="font-family: 宋体; font-size: 14px; text-align: center;">排名达标前20</span>
+                </p>
+            </td>
+            <td width="490" valign="top" style=" text-align: center;">
+                <p style="">
+                    <font face="Calibri">{if $agent_config['paiming20_money']>=0}{$agent_config['paiming20_money']}{else}{$config['paiming20_money']}{/if}</font><font face="宋体">点/词</font><font face="Calibri">/</font><font face="宋体">每天</font>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td width="59" valign="top" style=" text-align: center;">
+                <p style="">
+                    9
+                </p>
+            </td>
+            <td width="171" valign="top" style=" text-align: center;">
+                <p style="">
+                    <span style="font-family: 宋体; font-size: 14px; text-align: center;">评论回复</span>
+                </p>
+            </td>
+            <td width="490" valign="top" style=" text-align: center;">
+                <p style="">
+                    <font face="Calibri">{if $agent_config['comment_money']>=0}{$agent_config['comment_money']}{else}{$config['comment_money']}{/if}</font><font face="宋体">点/条</font>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td width="59" valign="top" style=" text-align: center;">
+                <p style="">
+                    10
+                </p>
+            </td>
+            <td width="171" valign="top" style=" text-align: center;">
+                <p style="">
+                    <span style="font-family: 宋体; font-size: 14px; text-align: center;">私信回复</span>
+                </p>
+            </td>
+            <td width="490" valign="top" style=" text-align: center;">
+                <p style="">
+                    <font face="Calibri">{if $agent_config['im_money']>=0}{$agent_config['im_money']}{else}{$config['im_money']}{/if}</font><font face="宋体">点/条</font>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td width="59" valign="top" style=" text-align: center;">
+                <p style="">
+                    11
+                </p>
+            </td>
+            <td width="171" valign="top" style=" text-align: center;">
+                <p style="">
+                    <span style="font-family: 宋体; font-size: 14px; text-align: center;">防封抖链</span>
+                </p>
+            </td>
+            <td width="490" valign="top" style=" text-align: center;">
+                <p style="">
+                    <font face="Calibri">{if $agent_config['link_money']>=0}{$agent_config['link_money']}{else}{$config['link_money']}{/if}</font><font face="宋体">点/条</font>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td width="59" valign="top" style=" text-align: center;">
+                <p style="">
+                    12
+                </p>
+            </td>
+            <td width="171" valign="top" style=" text-align: center;">
+                <p style="">
+                    <span style="font-family: 宋体; font-size: 14px; text-align: center;">抖音外卖&探店</span>
+                </p>
+            </td>
+            <td width="490" valign="top" style=" text-align: center;">
+                <p style="">
+                    <font face="Calibri">{if $agent_config['tandian_money']>=0}{$agent_config['tandian_money']}{else}{$config['tandian_money']}{/if}</font><font face="宋体">点/条</font>
+                </p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+        </div>
+    </div>    
+</div>
+{include file="index/foot"}
+
+</body>
+</html>

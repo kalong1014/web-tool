@@ -1,0 +1,17 @@
+array (
+  'event' => 'authorize',
+  'client_key' => 'awyvxpzitab07ouh',
+  'from_user_id' => '_000K1hRj5JoA8J6cFRmHMqRkT9Zay4y3ovS',
+  'content' => 
+  array (
+    'scopes' => 
+    array (
+      0 => 'user_info',
+      1 => 'video.data',
+      2 => 'video.list',
+      3 => 'item.comment',
+    ),
+  ),
+  'log_id' => '20230109145257172018000004259BEC8',
+  'event_id' => '',
+)

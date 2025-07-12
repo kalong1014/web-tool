@@ -1,0 +1,31 @@
+<view class="welcome">
+    <view class="tips">
+        <view class="column">
+            <view class="header">
+                <image src="/images/welcome/ic_write.png"></image>
+                <view class="tit">AI 创作</view>
+            </view>
+            <view class="list">
+                <view bindtap="quickMessage" class="item" data-text="{{item}}" wx:for="{{list1}}">{{item}} →</view>
+            </view>
+        </view>
+        <view class="column">
+            <view class="header">
+                <image src="/images/welcome/ic_question.png"></image>
+                <view class="tit">有趣的提问</view>
+            </view>
+            <view class="list">
+                <view bindtap="quickMessage" class="item" data-text="{{item}}" wx:for="{{list2}}">{{item}} →</view>
+            </view>
+        </view>
+        <view class="column">
+            <view class="header">
+                <image src="/images/welcome/ic_baike.png"></image>
+                <view class="tit">AI 百科</view>
+            </view>
+            <view class="list">
+                <view bindtap="quickMessage" class="item" data-text="{{item}}" wx:for="{{list3}}">{{item}} →</view>
+            </view>
+        </view>
+    </view>
+</view>

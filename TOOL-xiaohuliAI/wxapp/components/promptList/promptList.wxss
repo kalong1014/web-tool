@@ -1,0 +1,92 @@
+.prompt-list {
+    box-sizing: border-box;
+    height: 100%;
+    padding: 10rpx 0 0 24rpx;
+    width: 100%;
+}
+
+.prompt-item {
+    background: #fff;
+    border-radius: 14rpx;
+    float: left;
+    font-family: 微软雅黑;
+    height: 220rpx;
+    margin: 20rpx 20rpx 0 0;
+    overflow: hidden;
+    padding: 20rpx 30rpx;
+    position: relative;
+    width: 280rpx;
+}
+
+.prompt-item:active {
+    background: #f2f2f2;
+}
+
+.prompt-item .title {
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    align-items: flex-start;
+    display: -webkit-box;
+    display: flex;
+    font-size: 28rpx;
+    font-weight: 700;
+    line-height: 44rpx;
+    overflow: hidden;
+}
+
+.prompt-item .title .icon {
+    height: 32rpx;
+    margin: 4rpx 10rpx 0 0;
+    min-width: 32rpx;
+    width: 32rpx;
+}
+
+.prompt-item .desc {
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    color: #888;
+    display: -webkit-box;
+    font-size: 24rpx;
+    height: 108rpx;
+    line-height: 36rpx;
+    margin-top: 10rpx;
+    overflow: hidden;
+}
+
+.prompt-item .ops {
+    align-items: center;
+    bottom: 0;
+    box-sizing: border-box;
+    display: flex;
+    height: 80rpx;
+    justify-content: space-between;
+    left: 0;
+    padding: 10rpx 30rpx;
+    position: absolute;
+    width: 100%;
+}
+
+.prompt-item .ops .op-item {
+    align-items: center;
+    color: #8e8ea0;
+    display: flex;
+    font-size: 24rpx;
+}
+
+.prompt-item .ops .op-item .icon {
+    height: 32rpx;
+    margin-right: 4rpx;
+    width: 32rpx;
+}
+
+.empty {
+    border-radius: 20rpx;
+    margin: 120rpx 60rpx 0;
+    padding: 80rpx 0 100rpx;
+    text-align: center;
+}
+
+.empty image {
+    height: 240rpx;
+    width: 240rpx;
+}

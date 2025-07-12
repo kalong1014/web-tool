@@ -1,0 +1,34 @@
+<view class="page">
+    <view class="form">
+        <view class="form-item">
+            <view class="label" style="margin-top: 20rpx;">反馈类型</view>
+            <view class="value" style="height: 60rpx;">
+                <radio-group bindchange="typeChange">
+                    <label>
+                        <radio checked="{{type==='故障'}}" class="blue sm" color="#04babe" value="故障"></radio>
+                        <text>故障</text>
+                    </label>
+                    <label>
+                        <radio checked="{{type==='建议'}}" class="blue sm" color="#04babe" value="建议"></radio>
+                        <text>建议</text>
+                    </label>
+                </radio-group>
+            </view>
+        </view>
+        <view class="form-item">
+            <view class="label">反馈内容</view>
+            <view class="value">
+                <textarea model:value="{{content}}" placeholder="请填写您的反馈内容"></textarea>
+            </view>
+        </view>
+        <view class="form-item">
+            <view class="label">联系方式</view>
+            <view class="value">
+                <input class="input" maxlength="11" model:value="{{phone}}" type="text"></input>
+            </view>
+        </view>
+        <view class="form-item">
+            <button bindtap="doSubmit" class="btn-submit">立即提交</button>
+        </view>
+    </view>
+</view>

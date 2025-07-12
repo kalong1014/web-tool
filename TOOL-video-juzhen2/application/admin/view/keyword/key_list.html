@@ -1,0 +1,388 @@
+  {include file="public/header" /}
+<style>
+    .for{
+        width: 100%;
+        height: 30px;
+        margin-top: 20px;
+
+    }
+    .blues{
+        margin-left: 5px;
+        background: #43ced0;
+        color: #fff;
+        border-radius: 5px;
+    }
+    .for > button:hover{
+        color: #fff;
+        /*background: #43ced0;*/
+
+
+    }
+    .col-sm-12 > form > input{
+        width: 200px;
+        float: left;
+        margin-left: 20px;
+        border: 1px  solid #ccc;
+        border-radius: 20px;
+    }
+     .col-sm-12 > form > select{
+        width: 200px;
+        float: left;
+        margin-right: 10px;
+        margin-left: 20px;
+        border: 1px  solid #ccc;
+        border-radius: 20px;
+    }
+    .col-sm-12 > form > button{
+        width: 100px;
+        height: 34px;
+        font-size: 17px;
+        text-align: center;
+        border-radius: 20px;
+        line-height: 17px;
+
+    }
+    .reds{
+        background: #ed5565;
+        color: #fff;
+        border-radius: 5px;
+    }
+
+
+</style> 
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- jieshu -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>关键词列表</h5>
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始-->           
+            <div class="row">
+                <div class="col-sm-12">                                     
+                    <form name="admin_list_sea" class="form-search" method="post" action="{:url('key_list')}">
+                       
+                                
+                                <input type="text"  class="form-control" name="website_url" value="" placeholder="输入网站域名搜索"  />   
+                                <input type="text"  class="form-control" name="website_ci" value="" placeholder="输入网站关键词搜索" />   
+                                <input type="text"  class="form-control" name="username" value="" placeholder="输入用户名" />  
+                                <select name="website_pc" id="" class="form-control" >
+                                    <option value="">请选择搜索引擎</option>
+                                    <option value="bd_pc">百度pc</option>
+                                    <option value="bd_yd">百度移动端</option>
+                                    <option value="360_pc">360pc</option>
+                                    <option value="360_yd">360移动端</option>
+                                    <option value="sg_pc">搜狗pc</option>
+                                    <option value="sg_yd">搜狗移动端</option>
+                                    <option value="sm_pc">神马</option>
+                                </select>
+                                 <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button>    
+                    </form>                       
+                </div>
+            </div>
+           
+            <!--搜索框结束-->
+<div class="for">
+<!--  <button class="btn  btn-xs reds" href="javascript:;" id="export"><i class="fa  fa-trash"></i>删除</button>
+
+ <button class="btn btn-xs blues" href="javascript:;" id=""><i class="fa  fa-edit"></i>导出</button>
+ <button class="btn btn-xs blues" href="javascript:;" id=""><i class="fa fa-edit"></i>批量导入</button>
+ <button class="btn btn-xs blues" href="javascript:;" id=""><i class="fa fa-download"></i>下载模板</button> -->
+ <a class="btn btn-xs blues" href="{:url('key_list')}?website_status= 0" id=""><i class="fa fa-font-awesome"></i>待审核任务</a>
+
+ <a class="btn btn-xs reds" href="{:url('key_list')}?website_statu= 0" id=""><i class="fa   fa-font-awesome-edit"></i>审核不通过任务</a>
+
+ <a class="btn btn-xs blues" href="{:url('key_list')}?website_stat= 1" id=""><i class="fa fa-pause-circle"></i>申请停止优化的任务</a>
+
+ <a class="btn btn-xs  reds" href="{:url('key_list')}?website_she= 0" id=""><i class="fa fa-pause-circle"></i>已停止优化的任务</a>
+
+ <a class="btn btn-xs blues" href="{:url('key_list')}?website_stat= 2" id=""><i class="fa fa-pause-circle"></i>拒绝停止优化的任务</a>
+ <a class="btn btn-xs  reds" href="{:url('key_list')}?website_bao= 1" id=""><i class="fa fa-edit"></i>申请报错的任务</a>
+ <a class="btn btn-xs blues" href="{:url('key_list')}?website_bao= 2" id=""><i class="fa fa-check"></i>已处理报错的任务</a>
+ </div>
+  <div class="hr-line-dashed"></div>
+            <div class="example-wrap">
+                <div class="example">
+                     <form id="export-form" method="post" action="{:url('del_index')}">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                               <!--   <th><input class="i-checks checkbox check-all" checked="chedked" type="checkbox"></th> -->
+                                <th>关键词</th>
+                                <th>域名</th>
+                                <th>搜索引擎</th>
+                                <th>所属用户</th>
+                                <th>价格</th>
+                               
+                                <th>排名更新时间</th>
+                                <th>排名<i class="fa fa-long-arrow-down"></i><i class="fa fa-long-arrow-up"></i></th>
+                                <th>达标天数<i class="fa fa-long-arrow-down"></i><i class="fa fa-long-arrow-up"></i></th>
+                                <!-- <th>排名截图</th> -->
+                                <th>审核状态</th>
+                                <th>优化状态</th>
+                                <th>操作</th>
+                            </tr>
+                            
+                        </thead>
+                           {foreach name="list" item="vo"}
+                         <tr class="long-tr input" style="text-align:center">
+                            <!--  <td><input class="ids i-checks" checked="chedked" type="checkbox" name="ids" value="{$vo.id}"></td> -->
+                               <td>{$vo.website_ci}</td>
+                               <td>{$vo.website_url}</td>
+                               {if $vo.website_pc == 'bd_pc'}
+                                 <td>百度PC</td>
+                               {elseif $vo.website_pc == 'bd_yd'}
+                               <td>百度移动</td>
+                               {elseif $vo.website_pc == '360_pc'}
+                               <td>360PC</td>
+                               {elseif $vo.website_pc == '360_yd'}
+                               <td>360移动</td>
+                               {elseif $vo.website_pc == 'sg_pc'}
+                               <td>搜狗PC</td>
+                               {elseif $vo.website_pc == 'sg_yd'}
+                               <td>搜狗移动</td>
+                               {elseif $vo.website_pc == 'sm_pc'}
+                               <td>神马搜索</td>
+                               {else /}
+                               {/if}
+                             
+                               <td>{$vo.username}</td>
+                               <td>{$vo.website_money}</td>
+                               
+                               <td>{$vo.website_time}</td>
+                               <td>第{$vo.website_pai}名</td>
+                               <td>{$vo.website_num}天
+                                  
+                               </td>
+                              <!--  <td>{$vo.website_img}</td> -->
+                               <td>
+                     {if $vo.website_status == 1}
+                              {if $autha.auth == 1}
+
+                                <a href="{:url('key_editshen')}?id={$vo.id}" >
+                                  <div id=""><span class="label label-info">审核中</span></div>
+                                </a>
+                               {elseif $autha.auth == 2}
+
+                                <a href="{:url('key_editshen')}?id={$vo.id}" >
+                                  <div id=""><span class="label label-info">审核中</span></div>
+                                </a>
+                                {else /}
+                                <a href="javascript:;" >
+                                  <div id=""><span class="label label-info">审核中</span></div>
+                                </a>
+                              {/if}
+                      {elseif $vo.website_status == 2}
+                              {if $autha.auth == 1}
+                              <a class="red" href="{:url('key_editshen')}?id={$vo.id}" >
+                              <div id=""><span class="label label-info">代理已审核</span></div>
+                            </a>
+                              {else /}
+                              <a class="red" href="javascript:;" >
+                              <div id=""><span class="label label-info">代理已审核</span></div>
+                             </a>
+                              {/if}
+                            
+
+                      {elseif $vo.website_status == 3}
+
+                            <a class="red" href="javascript:;" >
+                              <div id=""><span class="label label-info">审核通过</span></div>
+                            </a>
+                       {else /}
+
+                              <a class="red" href="{:url('key_editshen')}?id={$vo.id}" >
+                                    <div id=""><span class="label label-danger">未通过</span></div>
+                                </a>
+                       {/if}
+                                   
+                               </td>
+                                 <td> 
+
+                                   {if $vo.website_she=='1'}
+                                         {if $autha.auth == 1}
+                                           <a href="javascript:;" onclick="website_da({$vo.id});">
+                                            <div id=""><span class="label label-info">优化中</span></div>
+                                                </a>
+                                        {elseif $autha.auth == 2}
+                                         <a href="javascript:;" onclick="website_da({$vo.id});" >
+                                            <div id=""><span class="label label-info">优化中</span></div>
+                                                </a>
+                                         {else /}
+                                          <a href="javascript:;" >
+                                            <div id=""><span class="label label-info">优化中</span></div>
+                                                </a>
+                                         {/if}
+                                  
+
+
+                                    {else /}
+                                       {if $autha.auth == 1}
+                                            <a class="red" href="javascript:;" onclick="website_da({$vo.id});">
+                                                <div id=""><span class="label label-danger">未优化</span></div>
+                                            </a>
+                                        {elseif $autha.auth == 2}
+                                          <a class="red" href="javascript:;" onclick="website_da({$vo.id});">
+                                                <div id=""><span class="label label-danger">未优化</span></div>
+                                            </a>
+                                         {else /}
+                                           <a class="red" href="javascript:;" >
+                                                <div id=""><span class="label label-danger">未优化</span></div>
+                                            </a>
+                                         {/if}
+
+                                   
+                                    {/if}
+                                  
+                                </td>
+                            <td> 
+                               {if $auth== '1'}
+                                {if $vo.website_bao =='1'}
+                                 <a href="{:url('apply')}?id={$vo.id}"  class="btn btn-danger btn-xs">
+                                                   有申请报错</a>&nbsp;
+                                {else /}
+                                 <a href="{:url('apply')}?id={$vo.id}"  class="btn btn-primary btn-xs">
+                                                   申请报错</a>&nbsp;
+                                {/if}
+                                {if $vo.website_stat ==1}
+                                <a href="{:url('apply_sto')}?id={$vo.id}"  class="btn btn-danger btn-xs">
+                                   有申请停止</a>
+                                {else / }
+                                {/if}
+                              <a href="{:url('admin/finance/index')}"  class="btn btn-primary btn-xs">
+                                                消费记录</a>&nbsp;
+                              <a href="{:url('admin/keyword/key_history')}?website_url={$vo.website_url}&&ci={$vo.website_ci}"  class="btn btn-primary btn-xs">
+                                                 历史排名</a>&nbsp;
+                              <a href="{:url('record')}?id={$vo.id}"  class="btn btn-primary btn-xs">
+                                              补录排名</a>&nbsp;
+                              <a href="{:url('edit_words')}?id={$vo.id}"  class="btn btn-primary btn-xs">
+                                                 修改关键词</a>&nbsp;
+                              <a href="javascript:;"  class="btn btn-danger btn-xs">
+                                                删除</a> 
+                                {elseif $auth =='14' }
+                                    {if $vo.website_bao =='1'}
+                                 <a href="{:url('apply')}?id={$vo.id}"  class="btn btn-danger btn-xs">
+                                                有申请报错</a> 
+                                  {else /}
+                                 <a href="{:url('apply')}?id={$vo.id}"  class="btn btn-primary btn-xs">
+                                                   申请报错</a>&nbsp;
+
+                                {/if}
+                                 {if $vo.website_stat ==1}
+                                <a href="{:url('apply_sto')}?id={$vo.id}"  class="btn btn-danger btn-xs">
+                                   有申请停止</a>
+                                {else / }
+                                {/if}
+                                 <a href="{:url('admin/keyword/key_history')}?website_url={$vo.website_url}&&ci={$vo.website_ci}"  class="btn btn-primary btn-xs">
+                                                 历史排名</a>&nbsp;
+                              <a href="{:url('admin/finance/index')}"  class="btn btn-primary btn-xs">
+                                                消费记录</a>&nbsp;
+                                                 <a href="{:url('record')}?id={$vo.id}"  class="btn btn-primary btn-xs">
+                                              补录排名</a>&nbsp;
+                                {else /}
+                                {if $vo.website_bao =='1'}
+                                  <a href="javascript:;"  class="btn btn-primary btn-xs">
+                                                   已申请报错</a>
+                                   <a href="{:url('apply_sto')}?id={$vo.id}"  class="btn btn-primary btn-xs">
+                                   申请停止</a>
+                              <a href="{:url('admin/finance/index')}"  class="btn btn-primary btn-xs">
+                                                消费记录</a>&nbsp;
+<!--                               <a href="{:url('admin/keyword/key_history')}"  class="btn btn-primary btn-xs">
+                                                 历史排名</a>&nbsp; -->
+                                                 <a href="{:url('admin/keyword/key_history')}?website_url={$vo.website_url}&&ci={$vo.website_ci}"  class="btn btn-primary btn-xs">
+                                                 历史排名</a>&nbsp;
+                                {else /}
+                                <a href="{:url('apply')}?id={$vo.id}"  class="btn btn-primary btn-xs">
+                                                   申请报错</a>
+                                 <a href="{:url('apply_sto')}?id={$vo.id}"  class="btn btn-primary btn-xs">
+                                   申请停止</a>
+                              <a href="{:url('admin/finance/index')}"  class="btn btn-primary btn-xs">
+                                                消费记录</a>&nbsp;
+                              <a href="{:url('admin/keyword/key_history')}?website_url={$vo.website_url}&&ci={$vo.website_ci}"  class="btn btn-primary btn-xs">
+                                                 历史排名</a>&nbsp;
+                                {/if}
+                                
+                                {/if}
+                              
+                            </td>
+                               
+                            </tr>
+                           {/foreach}
+                        <tbody id="article_list"></tbody>
+                    </table>
+                    </form>
+                    <div id="AjaxPage" style=" text-align: right;"></div>
+                    <div id="allpage" style=" text-align: right;">{$page}</div>
+                </div>
+              
+                   <a href="{:url('key_list')}?ye= 10"><span class="label label-info">10</span></a>
+                  <a href="{:url('key_list')}?ye=20"> <span class="label label-info">20</span></a>
+                 <a href="{:url('key_list')}?ye=50">  <span class="label label-info">50</span></a>
+                 <a href="{:url('key_list')}?ye=100">  <span class="label label-info">100</span></a>
+            </div>
+           <!-- kaishi -->
+        </div>
+    </div>
+</div>
+<!-- kaishi -->
+
+
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+$('.check-all').on('ifChecked', function (event) {
+    $('input[name="ids[]"]').iCheck('check');
+});
+$('.check-all').on('ifUnchecked', function (event) {
+    $('input[name="ids[]"]').iCheck('uncheck');
+});
+$("#export").click(function(){
+    
+			    	var $checked = $('.input input[type="checkbox"]:checked');
+			    
+					if($checked.length == 0){toast.warning('请选择批量操作数据!');return false;}
+					
+					if(confirm('您确认删除这些关键词吗?')){
+						var chk_value =[];
+			
+						$('input[name="ids"]:checked').each(function(){
+							chk_value.push($(this).val());
+						});
+					
+						$.post("{:url('del_index')}",{id:chk_value},function(data){
+							if(data == 1){toast.success('关键词删除成功，关键词查询日志也被删除!');history.go(0);}
+			            },"json");
+					}
+				}); 
+
+function website_da(id){
+
+    $.post('{:url("keyword_da")}',
+    {id:id},
+    function(data){
+         
+        if(data.code==1){
+           
+            //var a='<span class="label label-danger">禁用</span>'
+            //$('#kaiqi').html(a);
+            //layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+             window.location.reload();
+            return false;
+        }else{
+           
+            //var b='<span class="label label-info">开启</span>'
+            //$('#jin').html(b);
+            //layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+             window.location.reload();
+            return false;
+        }         
+        
+    });
+    return false;
+}
+
+</script>
+</body>
+</html>

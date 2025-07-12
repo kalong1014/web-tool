@@ -1,0 +1,178 @@
+{include file="public/header" /}
+
+<body class="gray-bg">
+<link rel="stylesheet" href="/static/admin/layui/css/layui.css" media="all">
+<div class="wrapper layui-card-body wrapper-content">
+    <div class="admin-con">
+        <div class="block-box">
+            <!--企业号列表-->
+            <div class="col-12">
+                <div class="block">
+                    <table class="layui-hide" id="table-page" lay-filter="table-page"></table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+{include file="public/footer" /}
+<script src="/static/admin/layui/layui.js"></script>
+<script type="text/html" id="toolbar">
+    <div class="layui-btn-group">
+        <button class="layui-btn layui-btn-sm" lay-event="delete">批量删除</button>
+    </div>
+</script>
+<script>
+    layui.define(['table','form','upload'],function (exports) {
+        var table = layui.table;
+        var form = layui.form
+        var upload = layui.upload
+        //基本实例
+        var tableInit = table.render({
+            elem: '#table-page'//绑定容器
+            ,url: '/admin/huoke/keyword_list'
+            ,page: true
+            ,limit:10
+            ,toolbar: "#toolbar"
+            ,title:'关键词列表'
+            ,defaultToolbar: []
+            ,autoSort:false
+            ,parseData: function(res){ //res 即为原始返回的数据
+                console.log(res)
+                return {
+                    "code": res.code, //解析接口状态
+                    "msg": res.msg, //解析提示文本
+                    "count": res.data.count, //解析数据长度
+                    "data": res.data.list //解析数据列表
+                };
+            }
+            ,response: {
+                statusCode: 1 //规定成功的状态码，默认：0
+            }
+            ,cellMinWidth:100
+            ,cols: [[ //在表头设置对应的字段
+                {minWidth:10, type: 'checkbox'}
+                ,{field: 'keyword', title: '关键词'}
+                ,{field: 'video_link', title: '主页链接'}
+                ,{field: 'type', title: '类型',templet:function (d) {
+                        let [color, name] = ['', '']
+                        switch (d.type)
+                        {
+                            case 1:
+                                color = 'green';
+                                name  = '主词';
+                                break;
+                            case 2:
+                                color = 'grey';
+                                name  = '头词+主词';
+                                break;
+                            case 3:
+                                color = 'yellow';
+                                name  = '主词+尾词';
+                                break;
+                            case 4:
+                                color = 'blue';
+                                name  = '头词+主词+尾词';
+                                break;
+                            default :
+                                color = 'blue';
+                                name  = '关键词';
+                                break;
+
+                        }
+                        return '<span style="color:'+color+'">'+name+'</span>';
+                    }}
+                ,{field: 'price', title: '价格(天)', }
+                // ,{field: 'status', title: '状态',templet:function (d) {
+                //         if(d.status==1){
+                //             return '优化中';
+                //         }
+                //         return '已删除';
+                //     }}
+                ,{field: 'create_date', title: '创建日期', sort: true}
+                // ,{field: 'update_date', title: '更新时间', sort: true}
+                // ,{title:'操作', align:'center', toolbar: '#action'}
+            ]]
+        });
+
+        function delete_api(data) {
+            layer.confirm("您真的要删除吗？",function (index) {
+                layer.close(index);
+                var ids = [];
+                if(data instanceof Array){
+                    layui.each(data,function (k,item) {
+                        ids.push(item.id);
+                    });
+                }else{
+                    ids = [data];
+                }
+                var load_index = layer.load(2);
+                $.post("keywords_delete",{ids:ids})
+                    .success(function (response) {
+                        if(response.code){
+                            layer.alert(response.msg)
+                            setTimeout(function () {
+                                tableInit.reload();
+                            },1000);
+                        }else{
+                            layer.alert(response.msg)
+                        }
+                    })
+                    .complete(function () {
+                        layer.close(load_index);
+                    });
+            });
+        }
+
+        //监听工具条
+        table.on('tool(table-page)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+            var data = obj.data; //获得当前行数据
+            var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+            var tr = obj.tr; //获得当前行 tr 的 DOM 对象（如果有的话）
+
+            if(layEvent === 'del'){ //删除
+                delete_api(data.id);
+            } else if(layEvent === 'LAYTABLE_TIPS'){
+                layer.alert('Hi，头部工具栏扩展的右侧图标。');
+            }
+        });
+        //监听事件
+        table.on('toolbar(table-page)', function(obj){
+            var checkStatus = table.checkStatus(obj.config.id);
+            switch(obj.event){
+                case 'refresh_data':
+                    refresh_data(checkStatus.data);
+                    break;
+                case 'refresh_reply':
+                    refresh_reply(checkStatus.data);
+                    break;
+                case 'refresh_customer':
+                    refresh_customer(checkStatus.data);
+                    break;
+                case 'delete':
+                    delete_api(checkStatus.data);
+                    break;
+            }
+        });
+
+        table.on('sort(table-page)', function(obj){
+            console.log(obj)
+            table.reload('table-page', {
+                initSort: obj //记录初始排序
+                , where: {
+                    field: obj.field //排序字段
+                    , order: obj.type //排序方式
+                }
+            });
+        });
+        form.on('submit(search-btn)',function (data) {
+            table.reload('table-page', {
+                where: data.field
+            });
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

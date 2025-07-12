@@ -1,0 +1,30 @@
+<scroll-view bindscroll="onScroll" class="prompt-list" scrollTop="{{scrollTop}}" scrollWithAnimation="{{true}}" scrollX="{{false}}" scrollY="{{true}}">
+    <view class="lists" wx:if="{{promptList&&promptList.length>0}}">
+        <view class="prompt-item" wx:for="{{promptList}}">
+            <view bindtap="toWriteChat" data-id="{{item.id}}">
+                <view class="title">
+                    <image class="icon" src="{{item.thumb}}" wx:if="{{item.thumb}}"></image>
+                    <text>{{item.title}}</text>
+                </view>
+                <view class="desc">{{item.desc}}</view>
+            </view>
+            <view class="ops">
+                <view class="op-item">
+                    <image class="icon" src="/images/write/ic_views.png"></image> {{item.views}} </view>
+                <view class="op-item">
+                    <image class="icon" src="/images/write/ic_usages.png"></image> {{item.usages}} </view>
+                <view catchtap="doVote" class="op-item" data-id="{{item.id}}">
+                    <image class="icon" src="/images/write/ic_vote_active.png" wx:if="{{item.isVote==1}}"></image>
+                    <image class="icon" src="/images/write/ic_vote.png" wx:else></image>
+                </view>
+            </view>
+        </view>
+        <view style="clear: both;"></view>
+    </view>
+    <view class="empty" wx:else>
+        <image src="/images/nodata.png"></image>
+    </view>
+    <view style="padding: 40rpx 0 50rpx 0;width: 100%;" wx:if="{{promptList&&promptCount>pagesize}}">
+        <pages bind:change="pageChange" count="{{promptCount}}" page="{{page}}" pagesize="{{pagesize}}"></pages>
+    </view>
+</scroll-view>

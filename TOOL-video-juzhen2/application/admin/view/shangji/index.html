@@ -1,0 +1,413 @@
+{include file="public/header" /}
+<script src="/static/admin/rl/jquery.min.js"></script>
+<script src="/static/admin/rl/plugins/moment.min.js"></script>
+<script src="/static/admin/rl/datepicker.all.js"></script>
+<link rel="stylesheet" href="/static/admin/rl/css/datepicker.css">
+<style>
+
+    .top1{
+        width:100%;
+        height: 40px;
+       
+        float: left;
+        margin-left: 0px;
+        margin-top: 0px;
+        margin-bottom: 100px;
+      
+
+    }
+    .topleft{
+        width: 23%;
+        height: 40px;
+        float: left;
+        
+    }
+    .topright{
+        width:65%;
+        height: 40px;
+        float: left;
+        
+    }
+    .topright > form > input{
+        width: 200px;
+        float: left;
+    }
+    #zhida_addci{
+    	width: 100px;
+    	float: left;
+    	
+    }
+    .ibox-title{
+    	width: 100%;
+    	height: 60px;
+    	
+    }
+
+</style>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight" style="padding-top:0px;">
+    <!-- jieshu -->
+    <div class="ibox float-e-margins">
+      
+            <!-- <h3 style="margin-top:5px;color: #66B3FF;float: left;width: 150px;">商机线索</h3> -->
+        
+        <div class="top1">
+            
+                 <div class="col-sm-40 topright" style="width: 100%;">   
+                                                                
+                    <form name="admin_list_sea" class="form-search" method="post" action="{:url('index')}">
+
+                        <input type="text"  class="form-control" name="ci" value="" placeholder="视频标题"  autocomplete="off" />
+                         <input type="text"  class="form-control" name="ci" value="" placeholder="发布人"  autocomplete="off" />
+ <input type="text"  class="form-control" name="ci" value="" placeholder="留言内容"  autocomplete="off" />
+                        <select name="url_pc" id="" class="form-control" style="width:150px;float:left;margin-left:15px">
+                            <option value="0">关键词</option>
+                            <option value="0">关键词</option>
+                            <option value="0">关键词</option>
+                           
+                        </select>
+                        <select name="url_pc" id="" class="form-control" style="width:150px;float:left;margin-left:15px">
+                            <option value="0">线索词</option>
+                            <option value="0">线索词</option>
+                            <option value="0">线索词</option> 
+                           
+                        </select>
+                        <select name="url_pc" id="" class="form-control" style="width:150px;float:left;margin-left:15px">
+                            <option value="0">计划</option>
+                            <option value="1c">正常</option>
+                            <option value="2">关闭</option>
+                            <option value="3">已删除</option>
+                           
+                        </select>
+                        <select name="url_pc" id="" class="form-control" style="width:150px;float:left;margin-left:15px">
+                            <option value="0">状态</option>
+                            <option value="0">线索词</option>
+                            <option value="0">线索词</option> 
+                           
+                        </select>
+<div style="width:30%;float:left;margin-top:10px;">
+	<span style="width:80px;float:left;display: block;height: 33px;font-size: 16px;text-align: center;line-height: 33px;border-radius: 8px;">点赞数:</span>
+	<input type="text"  class="form-control" name="ci" value="" placeholder=""  autocomplete="off" style="width:120px;float:left;" />
+	<span style="width:10px;float:left;display: block;height: 33px;font-size: 16px;text-align: center;line-height: 33px;border-radius: 8px;margin-left: 5px;">-</span>
+<input type="text"  class="form-control" name="ci" value="" placeholder=""  autocomplete="off" style="width:120px;float:left;margin-left: 5px;" />
+	
+</div>
+<div style="width:30%;float:left;margin-top:10px;">
+	<span style="width:80px;float:left;display: block;height: 33px;font-size: 16px;text-align: center;line-height: 33px;border-radius: 8px;">评论数:</span>
+	<input type="text"  class="form-control" name="ci" value="" placeholder=""  autocomplete="off" style="width:120px;float:left;" />
+	<span style="width:10px;float:left;display: block;height: 33px;font-size: 16px;text-align: center;line-height: 33px;border-radius: 8px;margin-left: 5px;">-</span>
+<input type="text"  class="form-control" name="ci" value="" placeholder=""  autocomplete="off" style="width:120px;float:left;margin-left: 5px;" />
+	
+</div>
+<div style="width:30%;float:left;margin-top:10px;">
+	<span style="width:80px;float:left;display: block;height: 33px;font-size: 16px;text-align: center;line-height: 33px;border-radius: 8px;">分享数:</span>
+	<input type="text"  class="form-control" name="ci" value="" placeholder=""  autocomplete="off" style="width:120px;float:left;" />
+	<span style="width:10px;float:left;display: block;height: 33px;font-size: 16px;text-align: center;line-height: 33px;border-radius: 8px;margin-left: 5px;">-</span>
+<input type="text"  class="form-control" name="ci" value="" placeholder=""  autocomplete="off" style="width:120px;float:left;margin-left: 5px;" />
+	
+</div>
+<div style="width:45%;float:left;margin-top:10px;margin-left: 10px;">
+	<span style="width:80px;float:left;display: block;height: 33px;font-size: 16px;text-align: center;line-height: 33px;border-radius: 8px;">推送时间:</span>
+	<div class="c-datepicker-date-editor  J-datepicker-range-day mt10">
+				          <i class="c-datepicker-range__icon kxiconfont icon-clock"></i>
+				          <input placeholder="开始日期" name="" class="c-datepicker-data-input only-date" value="">
+				          <span class="c-datepicker-range-separator">-</span>
+				          <input placeholder="结束日期" name="" class="c-datepicker-data-input only-date" value="">
+				        </div>
+	
+</div>
+<div style="width:30%;float:left;margin-top:10px;margin-left:-30px;">
+	<span style="width:80px;float:left;display: block;height: 33px;font-size: 16px;text-align: center;line-height: 33px;border-radius: 8px;">评论时间:</span>
+	<div class="c-datepicker-date-editor  J-datepicker-range-day mt10">
+				          <i class="c-datepicker-range__icon kxiconfont icon-clock"></i>
+				          <input placeholder="开始日期" name="" class="c-datepicker-data-input only-date" value="">
+				          <span class="c-datepicker-range-separator">-</span>
+				          <input placeholder="结束日期" name="" class="c-datepicker-data-input only-date" value="">
+				        </div>
+	
+</div>
+			<div style="float: left;width: 180px;margin-top: 10px;">
+                  <button type="submit" class="btn btn-primary" style="width:120px" ><i class="fa fa-search"></i> 搜索</button> 
+     	</div>
+                             </div>
+                        
+        
+                    </form> 
+                                         
+                </div>
+
+               
+			  	
+       
+      </div>
+      	<div style="width: 100%;height: 40px;float: left;">
+      		
+      		 <a href="javascript:;" class="btn btn-danger">
+               <i class="fa fa-trash-o"></i> 重置</a>
+               <span style="width:150px;font-size: 15px;margin-left: 30px;">剩余扫码数量:<span style="color:red">1234</span></span>
+              <span style="width:150px;font-size: 15px;margin-left: 30px;">线索总数量:<span style="color:red">1234</span></span>
+      	</div>
+      	
+        <div class="ibox-content" >
+          
+
+  
+            <div class="example-wrap" style="">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                            	 <th>ID</th>
+                                <th>关键词</th>
+                                <th>线索词</th>
+                                <th>视频标题</th>
+                                <th>视频作者</th>
+                                <th>点赞数</th>
+                                <th>评论数</th>
+                                <th>分项数</th>
+                                <th>留言内容</th>
+                                <th>留言用户</th>
+                                <th>留言时间</th>
+                                <th>状态</th>
+                                <th>推送时间</th>
+                                <th>二维码</th>
+                               
+                               
+                              
+                            </tr>
+                            
+                        </thead>
+                        
+                        <tbody id="article_list">
+                        	
+                        	 <tr  style="text-align: center;">
+                                <td>1</td>
+                                <td>哪里</td>
+                                <td>什么</td>
+                                <td>很多老铁还不太了解短视频获客，这是视频聊聊短视频获客是怎么回事#短视频 #短视频...</td>
+                                <td>__拓客管理系统</td>
+                                <td>24</td>
+                                <td>65</td>
+                                <td>78</td>
+                                <td>你买燕郊了吗</td>
+                                <td>龙腾虎跃</td>
+                                <td>2022-01-11 00:58</td>
+                               
+                                <td>
+                                	<a class="label label-info" href="javascript:;">已联系</a>
+                                </td>
+                                <td>2022-03-01 14:43</td>
+                                <td>
+                                	<a href="javascript:;" data-toggle="modal" data-target="#myModal">扫码联系</a>
+                                </td>
+                                
+                              
+                             </tr>
+                        </tbody>
+                    </table>
+                    <div id="AjaxPage" style=" text-align: right;"></div>
+                    <div id="allpage" style=" text-align: right;"></div>
+                </div>
+              
+                
+            </div>
+           <!-- kaishi -->
+        </div>
+    </div>
+</div>
+<!-- kaishi -->
+<!-- 模态框开始 -->
+ <div class="modal  fade" id="myModal" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h3 class="modal-title">扫码联系</h3>                  
+                </div>
+                <div style="width:100%;height:400px;">
+                	
+  <img src="https://p3.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813_99736853358d4bf4bef90868085fe2f7.jpeg?from=4010531038" style="width:260px;height:260px;margin-top: 20px;margin-left: 25%;">
+  <p style="font-size:20px;margin-left: 35%;margin-top: 15px;">扫码私信联系</p>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+<!-- 模态框结束 -->
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+     $(function(){
+        var DATAPICKERAPI = {
+          // 默认input显示当前月,自己获取后填充
+          activeMonthRange: function () {
+            return {
+              begin: moment().set({ 'date': 1, 'hour': 0, 'minute': 0, 'second': 0 }).format('YYYY-MM-DD HH:mm:ss'),
+              end: moment().set({ 'hour': 23, 'minute': 59, 'second': 59 }).format('YYYY-MM-DD HH:mm:ss')
+            }
+          },
+          shortcutMonth: function () {
+            // 当月
+            var nowDay = moment().get('date');
+            var prevMonthFirstDay = moment().subtract(1, 'months').set({ 'date': 1 });
+            var prevMonthDay = moment().diff(prevMonthFirstDay, 'days');
+            return {
+              now: '-' + nowDay + ',0',
+              prev: '-' + prevMonthDay + ',-' + nowDay
+            }
+          },
+          // 注意为函数：快捷选项option:只能同一个月份内的
+          rangeMonthShortcutOption1: function () {
+            var result = DATAPICKERAPI.shortcutMonth();
+            return [{
+              name: '昨天',
+              day: '-1,-1',
+              time: '00:00:00,23:59:59'
+            }, {
+              name: '这一月',
+              day: result.now,
+              time: '00:00:00,'
+            }, {
+              name: '上一月',
+              day: result.prev,
+              time: '00:00:00,23:59:59'
+            }];
+          },
+          // 快捷选项option
+          rangeShortcutOption1: [{
+            name: '最近一周',
+            day: '-7,0'
+          }, {
+            name: '最近一个月',
+            day: '-30,0'
+          }, {
+            name: '最近三个月',
+            day: '-90, 0'
+          }],
+          singleShortcutOptions1: [{
+            name: '今天',
+            day: '0'
+          }, {
+            name: '昨天',
+            day: '-1',
+            time: '00:00:00'
+          }, {
+            name: '一周前',
+            day: '-7'
+          }]
+        };
+          //十分秒年月日单个
+          $('.J-datepicker').datePicker({
+            hasShortcut:true,
+            min:'2018-01-01 04:00:00',
+            max:'2019-04-29 20:59:59',
+            shortcutOptions:[{
+              name: '今天',
+              day: '0'
+            }, {
+              name: '昨天',
+              day: '-1',
+              time: '00:00:00'
+            }, {
+              name: '一周前',
+              day: '-7'
+            }],
+            hide:function(){
+              console.info(this)
+            }
+          });
+          
+          //年月日单个
+          $('.J-datepicker-day').datePicker({
+            hasShortcut: true,
+            format:'YYYY-MM-DD',
+            shortcutOptions: [{
+              name: '今天',
+              day: '0'
+            }, {
+              name: '昨天',
+              day: '-1'
+            }, {
+              name: '一周前',
+              day: '-7'
+            }]
+          });
+          
+          //年月日范围
+          $('.J-datepicker-range-day').datePicker({
+            hasShortcut: true,
+            format: 'YYYY-MM-DD',
+            isRange: true,
+            shortcutOptions: DATAPICKERAPI.rangeShortcutOption1
+          });
+
+          //十分年月日单个
+          $('.J-datepickerTime-single').datePicker({
+            format: 'YYYY-MM-DD HH:mm'
+          });
+          
+          //十分年月日范围
+          $('.J-datepickerTime-range').datePicker({
+            format: 'YYYY-MM-DD HH:mm',
+            isRange: true
+          });
+          
+          //十分秒年月日范围，包含最大最小值
+          $('.J-datepicker-range').datePicker({
+            hasShortcut: true,
+            min: '2018-01-01 06:00:00',
+            max: '2019-04-29 20:59:59',
+            isRange: true,
+            shortcutOptions: [{
+              name: '昨天',
+              day: '-1,-1',
+              time: '00:00:00,23:59:59'
+            },{
+              name: '最近一周',
+              day: '-7,0',
+              time:'00:00:00,'
+            }, {
+              name: '最近一个月',
+              day: '-30,0',
+              time: '00:00:00,'
+            }, {
+              name: '最近三个月',
+              day: '-90, 0',
+              time: '00:00:00,'
+            }]
+          });
+          //十分秒年月日范围，限制只能选择同一月，比如2018-10-01到2018-10-30
+          $('.J-datepicker-range-betweenMonth').datePicker({
+            isRange: true,
+            between:'month',
+            hasShortcut: true,
+            shortcutOptions: DATAPICKERAPI.rangeMonthShortcutOption1()
+          });
+          
+          //十分秒年月日范围，限制开始结束相隔天数小于30天
+          $('.J-datepicker-range-between30').datePicker({
+            isRange: true,
+            between: 30
+          });
+          
+          //年月单个
+          $('.J-yearMonthPicker-single').datePicker({
+            format: 'YYYY-MM',
+            min: '2018-01',
+            max: '2019-04'
+          });
+          
+          //选择年
+          $('.J-yearPicker-single').datePicker({
+            format: 'YYYY',
+            min: '2018',
+            max: '2020'
+          });
+          
+          
+      });
+</script>
+</body>
+</html>

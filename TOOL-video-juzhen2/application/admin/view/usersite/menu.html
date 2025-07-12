@@ -1,0 +1,68 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<link rel="stylesheet" href="/static/admin/layui/css/layui.css" media="all">
+<div class="wrapper layui-card-body wrapper-content">
+    <div class="admin-con">
+        <div class="block-box">
+            <div class="col-12">
+                <a href="{:url('usersite_add')}"><button class="btn btn-outline btn-primary" type="button">添加菜单</button></a> 
+            </div>                                            
+                                        
+            <div class="col-12">
+                <div class="block">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                               
+                                <th>名称</th>
+                                <th>URL</th>
+                                <th>添加时间</th>
+                                
+                               
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                      
+                        
+                            {foreach name="list" item="vo"}
+                            <tr class = "long-td" >
+                               
+                                <td>{$vo.menu}</td>
+                                <td>{$vo.url}</td>
+                                <td>{$vo.addtime}</td>
+                               
+                              
+                                <td>
+                                    
+                                     <a href="{:url('usersite_edit')}?id={$vo.id}" class="btn btn-primary btn-xs">
+                                                <i class="fa fa-paste"></i> 编辑</a>&nbsp;&nbsp;
+                                            <a href="{:url('delete')}?id={$vo.id}"  class="btn btn-danger btn-xs">
+                                                <i class="fa fa-trash-o"></i> 删除</a> 
+                                </td>
+                            
+                               
+                            </tr>
+                            {/foreach}
+                          
+                        
+                        <tbody id="article_list"></tbody>
+                    </table>
+                    <div id="AjaxPage" style=" text-align: right;"></div>
+                    <div id="allpage" style=" text-align: right;"></div>
+                </div>
+            </div>
+           <!-- kaishi -->
+        </div>
+    </div>
+</div>
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+   
+   
+
+
+</script>
+</body>
+</html>

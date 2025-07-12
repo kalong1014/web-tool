@@ -1,0 +1,50 @@
+<navbar text="登录"></navbar>
+<view class="page">
+    <view class="bg-header">
+        <image src="/images/login/bg_header.png"></image>
+    </view>
+    <view class="container" style="top: {{navBarHeight}}px; bottom: {{safeAreaHeight}}rpx;">
+        <view class="title">欢迎登录</view>
+        <view class="btn-group" wx:if="{{loginType==='wechat'}}">
+            <button bindtap="wxLogin" class="btn" wx:if="{{login_wechat}}">
+                <image class="icon" src="/images/login/ic_wechat.png"></image>
+                <text>微信授权登录</text>
+            </button>
+            <button bindtap="switchToPhone" class="btn btn-phone" wx:if="{{login_phone}}">
+                <text>手机号登录</text>
+            </button>
+        </view>
+        <view class="form" wx:if="{{loginType==='phone'}}">
+            <view class="form-item">
+                <image class="icon" src="/images/login/ic_phone.png"></image>
+                <input :value="phone" class="input" maxlength="11" model:value="{{phone}}" placeholder="手机号" type="text"></input>
+            </view>
+            <view class="form-item">
+                <image class="icon" src="/images/login/ic_pwd.png"></image>
+                <input :value="password" class="input" maxlength="20" model:value="{{password}}" placeholder="登录密码" type="text" wx:if="{{pwdShow}}"></input>
+                <input :value="password" class="input" maxlength="20" model:value="{{password}}" placeholder="登录密码" type="password" wx:else></input>
+                <image bindtap="hidePwd" class="icon eye" src="/images/login/ic_eye.png" wx:if="{{pwdShow}}"></image>
+                <image bindtap="showPwd" class="icon eye" src="/images/login/ic_eye_open.png" wx:else></image>
+            </view>
+            <view class="form-item" style="margin-bottom: 40rpx;">
+                <button bindtap="doLogin" class="btn btn-submit">确定登录</button>
+            </view>
+            <view class="form-item" style="justify-content: space-between; color: #04babe; padding:0 36rpx;font-size: 28rpx;">
+                <text bindtap="toReg">注册账号</text>
+                <text bindtap="toReset">找回密码</text>
+            </view>
+        </view>
+        <view class="agreement">
+            <label>
+                <checkbox-group bindchange="agreeChange" style="display: flex; align-items: center;">
+                    <checkbox checked="{{is_agree}}" class="check" color="#04BABE" value="{{true}}"></checkbox>已阅读并同意 </checkbox-group>
+            </label>
+            <view>
+                <text bindtap="toDoc" data-type="service">《服务协议》</text>
+            </view>
+        </view>
+    </view>
+    <view class="bg-footer">
+        <image src="/images/login/bg_footer.png"></image>
+    </view>
+</view>

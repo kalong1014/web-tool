@@ -1,0 +1,97 @@
+.box-privacy {
+    bottom: 110rpx;
+    font-family: 微软雅黑;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 99;
+}
+
+.box-privacy .mask {
+    background: rgba(0,0,0,.6);
+    height: 100%;
+    right: 0;
+    top: 0;
+    z-index: 1;
+}
+
+.box-privacy .mask,.box-privacy .pannel {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+}
+
+.box-privacy .pannel {
+    background-color: #fff;
+    border-top-left-radius: 30rpx;
+    border-top-right-radius: 30rpx;
+    overflow: hidden;
+    z-index: 2;
+}
+
+.box-privacy .title {
+    box-sizing: border-box;
+    font-size: 36rpx;
+    font-weight: 700;
+    padding: 80rpx 60rpx 0;
+    width: 100%;
+}
+
+.box-privacy .btn-close {
+    align-items: center;
+    display: flex;
+    height: 80rpx;
+    justify-content: center;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 80rpx;
+}
+
+.box-privacy .btn-close image {
+    height: 48rpx;
+    width: 48rpx;
+}
+
+.box-privacy .content {
+    color: #333;
+    font-size: 32rpx;
+    line-height: 48rpx;
+    padding: 30rpx 60rpx;
+}
+
+.box-privacy .btn-link {
+    color: #1d8ccc;
+}
+
+.box-privacy .footer {
+    margin: 20rpx 0 60rpx;
+    text-align: center;
+}
+
+.box-privacy .btn {
+    border-radius: 16rpx;
+    display: inline-block;
+    font-size: 32rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    margin: 0 30rpx;
+    width: 240rpx;
+}
+
+.box-privacy .btn:active {
+    opacity: .6;
+}
+
+.btn-agree {
+    background-color: #05c160;
+    color: #fff;
+}
+
+.btn-refuse {
+    background-color: #f2f2f2;
+    color: #05c160;
+}

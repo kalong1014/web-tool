@@ -1,0 +1,6 @@
+<view class="action-sheet" wx:if="{{isOpen}}">
+    <view bindtap="close" class="masker {{maskShow?'show':''}}"></view>
+    <view class="lists" style="{{'bottom: '+(listShow?bottom+safeAreaHeight:'-400')+'rpx;'}}">
+        <view bindtap="onSelect" class="item" data-action="{{item.action}}" data-index="{{index}}" wx:for="{{actions}}"> {{item.title}} </view>
+    </view>
+</view>

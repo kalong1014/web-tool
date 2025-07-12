@@ -1,0 +1,337 @@
+{include file="public/header" /}
+
+<style>
+    video{
+        object-fit:inherit;
+        width: 100px;
+        height: 100px;
+    }
+    .yulan{
+        -webkit-text-size-adjust: 100%;
+        color: #333;
+        font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        width: 100%;
+    }
+    #newli{
+        -webkit-text-size-adjust: 100%;
+        color: #333;
+        font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        display: flex;
+        flex-wrap: wrap;
+    }
+    #newli >li{
+        margin-top: 20px;
+        margin-left: 2%;
+    }
+    .neiro{
+        -webkit-text-size-adjust: 100%;
+        color: #333;
+        font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+        list-style: none;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        height: 267px;
+        width: 100%;
+        background: #161823;
+        border-radius: 6px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        position: relative;
+    }
+    .neiro img{
+        width: 100%;
+    }
+    .type{
+        -webkit-text-size-adjust: 100%;
+        color: #333;
+        font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+        list-style: none;
+        cursor: pointer;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        position: absolute;
+        left: 12px;
+        top: 12px;
+    }
+    .typename{
+        -webkit-text-size-adjust: 100%;
+        font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+        list-style: none;
+        cursor: pointer;
+        box-sizing: border-box;
+        margin: 0;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        padding: 1px 4px;
+        color: #fff;
+        font-weight: 600;
+        font-size: 13px;
+        line-height: 22px;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        background: rgba(0,0,0,0.2);
+        border: 1px solid rgba(0,0,0,0.1);
+    }
+    .caozuo {
+        -webkit-text-size-adjust: 100%;
+        font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+        list-style: none;
+        cursor: pointer;
+        box-sizing: border-box;
+        margin: 0;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        position: absolute;
+        right: 12px;
+        top: 12px;
+        padding: 1px 4px;
+        color: #fff;
+        font-weight: 600;
+        font-size: 13px;
+        line-height: 22px;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        background: rgba(0,0,0,0.2);
+        border: 1px solid rgba(0,0,0,0.1);
+    }
+    .layui-unselect {
+        -webkit-text-size-adjust: 100%;
+        font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+        list-style: none;
+        color: #fff;
+        font-weight: 600;
+        margin: 0;
+        padding: 0;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        -webkit-user-select: none;
+        display: inline-block;
+        vertical-align: middle;
+        position: relative;
+        cursor: pointer;
+        font-size: 0;
+        transition: .1s linear;
+        box-sizing: border-box;
+        height: auto!important;
+        line-height: normal!important;
+        min-width: 18px;
+        min-height: 18px;
+        border: none!important;
+        margin-right: 0;
+        padding-left: 28px;
+        padding-right: 0;
+        background: 0 0;
+    }
+    .layui-icon{
+        -webkit-text-size-adjust: 100%;
+        font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+        list-style: none;
+        font-weight: 600;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        cursor: pointer;
+        box-sizing: border-box;
+        -webkit-user-select: none;
+        font-family: layui-icon!important;
+        font-style: normal;
+        -webkit-font-smoothing: antialiased;
+        display: inline-block;
+        vertical-align: middle;
+        position: absolute;
+        top: 0;
+        color: #fff;
+        text-align: center;
+        right: auto;
+        left: 0;
+        width: 16px;
+        height: 16px;
+        line-height: 16px;
+        border: 1px solid #d2d2d2;
+        font-size: 12px;
+        border-radius: 2px;
+        background-color: #fff;
+        transition: .1s linear;
+    }
+    .titles{
+        -webkit-text-size-adjust: 100%;
+        font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+        list-style: none;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        margin-top: 12px;
+        height: 22px;
+        max-width: 200px;
+        font-weight: 500;
+        line-height: 22px;
+        font-size: 16px;
+        color: #13161a;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        cursor: pointer;
+    }
+    .texts{
+        -webkit-text-size-adjust: 100%;
+        font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+        list-style: none;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        margin-top: 4px;
+        font-size: 12px;
+        line-height: 20px;
+        color: #747e8c;
+        cursor: default;
+    }
+    .layui-form{
+        -webkit-text-size-adjust: 100%;
+        color: #333;
+        font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+    }
+    li{
+        list-style: none;
+    }
+    li.lise{
+        width: 17.6%;
+    }
+
+</style>
+<body class="gray-bg">
+<link rel="stylesheet" href="/static/admin/layui/css/layui.css" media="all">
+    
+<div class="wrapper layui-card-body wrapper-content">
+    <div class="admin-con">
+        <div class="block-box">
+            <div class="col-12">
+                <div class="block font13 font8c95b0">
+                   
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="block">
+                    <div class="col-12">
+                        <button type="button" id="selects" class="btn btn-primary">全选</button>
+                        <button type="button" id="deletes" class="btn btn-primary">删除</button>
+                    </div>
+                    <div style="width: 100%;height: 40px;margin-top: 10px;float: left;display: none;" id="zhida_sucai">
+                    </div>
+                    <div class="yulan" style="">
+                <ul id="newli">
+                    {foreach name="list" item="value"}
+                    <li style=" list-style: none;" class="lise">
+                        <div class="neiro">
+                            <video  style="height:100%!important;width: 100%;" controls="controls"><source src="{$value.url}" type="video/mp4">
+                            </video>
+                            
+                            <div class="caozuo ">
+                                <input lay-skin="primary" type="checkbox" name="sucai" value="" data-id="{$value.id}"  >
+                                <div class="layui-unselect layui-form-checkbox" lay-skin="primary">
+    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="texts" >上传于{$value.addtime|date='Y-m-d H:i:s',###}</div>
+                    </li>
+                    {/foreach}
+                </ul>
+                <div class="sucai-page">
+                   
+                </div>
+            </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+    $("#selects").click(function() {
+        $('input[name="sucai"]').attr('checked','checked')
+    })
+    $("#deletes").click(function() {
+        //layer.load(3)
+        var delete_ids=new Array();
+        $('input[name="sucai"]:checked').each(function(){
+            delete_ids.push({id: $(this).attr('data-id')});//向数组中添加元素
+        });
+        $.ajax({
+            type: "POST",
+            url: "/admin/tool/video_del",
+            data: {id:delete_ids},
+            success: function(data){
+                layer.closeAll('loading');
+                layer.msg(data,{icon:1,time:3500,shade: 0.1,});
+                setInterval(function(){
+                    location.reload();
+                },1000);
+                return false;
+            },
+            error:function() {
+                layer.closeAll('loading');
+                layer.alert('删除失败')
+
+            }
+        });
+        console.log(delete_ids)
+    })
+    function addsucai(){
+
+        document.getElementById('file').click();
+
+    }
+    document.querySelector('#file').onchange = function (){
+
+        $("#file").css('display','block');
+        $("#xuan").css('display','block');
+        $("#shangchuan").css('display','block');
+
+
+    }
+
+    function zhida_deltss(id,ossid){
+        $.post('{:url("zhida_deltss")}',
+            {id:id,ossid:ossid},
+            function(data){
+                if(data.code==1){
+                    layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+                    setInterval(function(){
+                        location.reload();
+                    },1000);
+                    return false;
+                }else{
+
+                    layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+                    setInterval(function(){
+                        location.reload();
+                    },1000);
+                    return false;
+                }
+
+            });
+    }
+
+</script>
+</body>
+</html>

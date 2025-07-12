@@ -1,0 +1,27 @@
+<style type="text/css"> 
+    .qrcode_img{width: 100%;}
+    .qrcode_hb,.qrcode_dy{width: 100%;}
+    .qrcode_img_div,.qrcode_dy_div{width: 45%;margin-left: 5%;float: left;}
+    .qrcode_hb_div{width: 80%;margin-left: 10%;float: left;margin-top: 20px;}
+    .qrcode_hb_div a,.qrcode_img_div a,.qrcode_dy_div a{display: block;text-align: center;color: #fff;background-color: #46a2e0;width: 100px;line-height: 35px;text-align: center;border-radius: 5px;margin: 0 auto;margin-top: 20px;}
+</style>
+<div class="panel panel-default panel-intro">
+
+    <div class="panel-body">
+        
+        <div class="qrcode_img_div">
+            <img src="{$qrcode}" class="qrcode_img">
+            <a href="{$qrcode}" download target="_blank">下载</a>
+        </div>
+        <div class="qrcode_dy_div">
+            <img src="{$qrcode_dy}" class="qrcode_dy">
+            <a href="{$qrcode_dy}" download target="_blank">下载</a>
+        </div>
+        {if $haibao}
+        <div class="qrcode_hb_div">
+            <img src="{$haibao}" class="qrcode_hb">
+            <a href="{$haibao}" download target="_blank">下载</a>
+        </div>
+        {/if}
+    </div>
+</div>

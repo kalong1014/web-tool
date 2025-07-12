@@ -1,0 +1,134 @@
+{include file="public/header" /}
+<style>
+    .example-wrap{
+        width: 100%;
+        border: 1px solid #fff;
+        margin-top: 20px;
+        background: #fff;
+        height: 1000px;
+    }
+    .example-img{
+        width: 20%;
+        border: 1px solid #fff;
+        float: left;
+        margin-right: 10px;
+        background: #fff;
+        margin-top: 20px;
+        margin-left: 20px;
+    }
+    .example-img > img{
+        width: 200px;
+    }
+   .example-sap{
+   
+    text-align: center;
+    margin-top: 20px;
+   }
+   .example-sap1{
+    text-align: center;
+    width: 20%;
+    font-size: 15px;
+  
+
+   }
+   .radio-inline{
+    margin-top: -8px;
+    margin-left: 5px;
+   }
+   .tijiao{
+    width: 100%;
+   float: left;
+   margin-top: 50px;
+   margin-left: 40%;
+   }
+   .tijiao > button{
+    width: 100px;
+   }
+  
+
+</style>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- jieshu -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>模板管理</h5>
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始-->           
+            <div class="row">
+                <div class="col-sm-12">   
+                <div  class="col-sm-2" style="width: 100px">
+                    <div class="input-group" >  
+                        <a href="{:url('')}"><button class="btn btn-outline btn-primary" type="button">添加模板</button></a> 
+                    </div>
+                </div>                                            
+                                        
+                </div>
+            </div>
+            <!--搜索框结束-->
+           
+  <form class="form-inline">
+            <div class="example-wrap">
+                <div class="example-img">
+                      <img alt="image" class="" src="__IMG__/profile_small.jpg"/>
+                            <div class="example-sap">
+                                <span class="example-sap1">模板1  </span>
+                           <label class="radio-inline">
+          <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 
+                            </label>
+                            </div>
+                </div>
+                 <div class="example-img">
+                     <img alt="image" class="" src="__IMG__/profile_small.jpg"/>
+                        <div class="example-sap">
+                                <span class="example-sap1">模板2 </span>
+                           <label class="radio-inline">
+  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 
+</label>
+                            </div>
+                </div>
+                 <div class="example-img">
+                    <img alt="image" class="" src="__IMG__/profile_small.jpg"/>
+                      <div class="example-sap">
+                                <span class="example-sap1">模板3  </span>
+                           <label class="radio-inline">
+  <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 
+</label>
+                            </div>
+                </div>
+                 <div class="example-img">
+                      <img alt="image" class="" src="__IMG__/profile_small.jpg"/>
+                      <div class="example-sap">
+                                <span class="example-sap1">模板4 </span>
+                            <label class="radio-inline">
+  <input type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option4"> 
+</label>
+                            </div>
+                </div>
+                <div class="tijiao">
+                       <button type="submit" class="btn btn-primary">确认</button> 
+                </div>
+         
+                
+            </div>
+
+        </form>
+           <!-- kaishi -->
+        </div>
+    </div>
+</div>
+<!-- kaishi -->
+</div>
+
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+   
+   
+
+
+</script>
+</body>
+</html>

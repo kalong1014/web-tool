@@ -1,0 +1,233 @@
+{include file="public/header" /}
+
+<body class="gray-bg">
+<link rel="stylesheet" href="/static/admin/layui/css/layui.css" media="all">
+<div class="wrapper layui-card-body wrapper-content">
+    <div class="admin-con">
+        <div class="block-box">
+            
+            <div class="col-12">
+                <div class="block">
+                    
+                    <form name="admin_list_sea" class="form-search"  method="post"  action="{:url('liebiao')}">
+
+                        <div class="col-sm-12 m-b-md" style="padding:0;text-align:center;">
+                            <div style="display:inline-flex">
+                            
+                            
+                            <input type="text" id="dy_nickname" class="form-control" name="dy_nickname" value="" autocomplete="off" placeholder="请输入抖音昵称搜索">
+                            <button type="submit" class="btn btn-primary" style="border-top-left-radius:0;border-bottom-left-radius:0;height:35px"><i class="fa fa-search"></i> 搜索</button> 
+
+                            
+                          </div>
+
+                        </div>
+                    </form>  
+                
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th style="width:10%">任务ID</th>
+                                <th style="width:10%">抖音昵称</th>
+                                <th style="width:25%;">主页链接</th>
+                                <th style="width:10%">关键词</th>
+                                <th style="width:10%">当前排名</th>
+                                <th style="width:15%">添加时间</th>
+                                <th style="width:10%">状态</th>
+                                <th style="width:10%">操作</th>
+                               
+                            </tr>
+                        </thead>
+                        <tbody id="article_list">
+                             {foreach name="list" item="value"}
+                             <tr>
+                                                               
+                                <td style="width:10%">{$value.id}</td> 
+                                 <td style="width:10%" >{$value.dy_nickname}</td>   
+                                 <td style="width:25%;word-wrap:break-word;">{$value.web_url}</td>   
+                                <td style="width:10%">{$value.keywords}</td>                                 
+                                                             
+                                <td style="width:10%">
+                                    {if $value.paiming==0}
+                                    >100
+                                    {else /}
+                                    {$value.paiming}
+                                    {/if}
+                                </td>                                 
+                                <td style="width:15%">{$value.addtime|date='Y-m-d H:i:s',###}</td>                                 
+                                <td style="width:10%">
+                                    {if $value.status==1}
+                                    每日查询一次
+                                    {else /}
+                                    已停止
+                                    {/if}
+                                </td>                                 
+                                  <td style="width:10%">
+                                      {if $value.status==1}
+                                   <a href="javascript:deltinhzhi({$value.id})" onclick="" class="btn btn-primary btn-xs" style="background-color:#ca0f20">
+                                           停止</a>   
+                                    {else /}
+                                    <a href="javascript:kaiqihzhi({$value.id})" onclick="" class="btn btn-success btn-xs" style="background-color:#51f33e">
+                                           开启</a>   
+                                    {/if}
+                                         
+                                      <a href="javascript:del({$value.id})" onclick="" class="btn btn-primary btn-xs">
+                                            删除</a>   
+                                  </td>                          
+                            </tr>
+                               {/foreach}    
+                            
+                        </tbody>
+                    </table>
+                    <div id="AjaxPage" style=" text-align: right;">{$page}</div>
+                    <div id="allpage" style=" text-align: right;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--添加等级分类开始-->
+    <div class="modal  fade" id="myModal" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h3 class="modal-title">添加分类</h3>                  
+                </div>
+                <form class="form-horizontal" name="add_rule" id="add_rule" method="post" action="{:url('')}">
+                    <div class="ibox-content">
+                          
+                             <div class="form-group">
+                                <label class="col-sm-3 control-label">选择分类级别</label>
+                                <select name="sattus" id="" class="form-control" style="width:200px;float:left">
+                                    <option value="1">A级分类</option>
+                                    <option value="2">B级分类</option>
+                                    <option value="3">C级分类</option>
+                                </select>
+                            </div>                   
+                           
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">填写关键词</label>
+                                <div class="col-sm-8">
+
+                                    <input type="number" name="fzpai" id="name" placeholder="填写关键词" class="form-control"/>
+                                </div>
+                            </div>  
+                        </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> 保存</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i> 关闭</button>                    
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<!--添加等级分类结束-->
+<!--编辑分类开始-->
+    <div class="modal  fade" id="bianji" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h3 class="modal-title">回复客户</h3>                  
+                </div>
+                <form class="form-horizontal" name="add_rule" id="add_rule" method="post" action="{:url('')}">
+                    <div class="ibox-content">
+                          
+                                             
+                           
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">填写关键词</label>
+                                <div class="col-sm-8">
+
+                                    <input type="number" name="fzpai" id="name" placeholder="填写关键词" class="form-control"/>
+                                </div>
+                            </div>  
+                        </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>立即回复</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i> 关闭</button>                    
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<!--编辑分类结束-->
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+
+
+/**
+ * 删除
+*/
+function del(id){
+    layer.confirm('确认删除当前关键词吗?', {icon: 3, title:'提示'}, function(index){
+      $.post('{:url("gjcdel")}',{id:id},function(data){
+         if(data.code==1){
+             layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+             setInterval(function(){
+                  location.reload();
+                },1000)
+         }else{
+             layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+         }
+      })
+        
+
+        layer.close(index);
+    })
+}
+
+/*停止关键词*/
+function deltinhzhi(id){
+    layer.confirm('确认停止当前关键词吗?', {icon: 3, title:'提示'}, function(index){
+      $.post('{:url("deltinhzhi")}',{id:id},function(data){
+         if(data.code==1){
+             layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+             setInterval(function(){
+                  location.reload();
+                },1000)
+         }else{
+             layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+         }
+      })
+        
+
+        layer.close(index);
+    })
+}
+/*开启关键词*/
+function kaiqihzhi(id){
+    layer.confirm('确认开启当前关键词吗?', {icon: 3, title:'提示'}, function(index){
+      $.post('{:url("kaiqici")}',{id:id},function(data){
+         if(data.code==1){
+             layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+             setInterval(function(){
+                  location.reload();
+                },1000)
+         }else{
+             layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+         }
+      })
+        
+
+        layer.close(index);
+    })
+}
+
+/**
+ * 添加分类
+*/
+ function addfenlei(){
+    $('#myModal').modal('show');
+}
+/**
+ * 编辑
+*/
+ 
+ 
+</script>
+</body>
+</html>

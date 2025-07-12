@@ -1,0 +1,38 @@
+<style type="text/css">
+    .weike-spin-nested-loading{position:relative}
+    .weike-spin-container{position:relative;transition:opacity .3s}
+    .weike-card{border-radius:5px}
+    .weike-card-bordered{border:1px solid #5a5a5a;padding:20px}
+    .weike-card{box-sizing:border-box;margin:0;font-size:14px;font-variant:tabular-nums;line-height:1.5715;list-style:none;font-feature-settings:"tnum","tnum";position:relative;border-radius:2px}
+    .weike-timeline{box-sizing:border-box;font-size:14px;font-variant:tabular-nums;line-height:1.5715;font-feature-settings:"tnum","tnum";margin:0;padding:0;list-style:none}
+    .weike-timeline-item{position:relative;margin:0;padding-bottom:20px;font-size:14px;list-style:none}
+    .weike-timeline-item-tail{position:absolute;top:10px;left:4px;height:calc(100% - 10px);border-left:2px solid #007bd6}
+    .weike-timeline-item-head-blue{color:#007bd6;border-color:#007bd6}
+    .weike-timeline-item-head{position:absolute;width:10px;height:10px;background-color:#007bd6;border:2px solid transparent;border-radius:100px}
+    .weike-timeline-item-content{position:relative;top:-7.001px;margin:0 0 0 26px;word-break:break-word}
+    .weike-typography-secondary{color:#909090!important}
+    .weike-typography{color:var(--text-color);overflow-wrap:break-word}
+</style>
+
+<div class="weike-space-item">
+    <div class="weike-spin-nested-loading">
+        <div class="weike-spin-container">
+            <div class="weike-card weike-card-bordered">
+                <div class="weike-card-body" >
+                    <ul class="weike-timeline weike-timeline-left">
+                        {if $actions}
+                            {foreach $actions as  $k=>$v}
+                                <li class="weike-timeline-item weike-timeline-item-left"><div class="weike-timeline-item-tail"></div><div class="weike-timeline-item-head weike-timeline-item-head-blue"></div><div class="weike-timeline-item-content"><span class="weike-typography weike-typography-secondary">{$v['addtime']}</span> <span class="weike-typography">{$v['action_type_name']}: <span class="weike-typography weike-typography-secondary"><div style="display: inline-block;">{if $v['action_type']==1}{$v['content']}{/if}</div></span></span></div>
+                                </li>
+                            {/foreach}
+                        {/if}
+
+                        <li class="weike-timeline-item weike-timeline-item-left" style="padding-bottom:0px;">
+                            <div class="weike-timeline-item-tail"></div><div class="weike-timeline-item-head weike-timeline-item-head-blue"></div><div class="weike-timeline-item-content"><span class="weike-typography">暂无更多互动记录 <span class="weike-typography weike-typography-secondary"></span></span></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

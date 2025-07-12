@@ -1,0 +1,94 @@
+<block wx:for="{{nodes.children}}" wx:for-index="i" wx:key="i">
+    <block wx:if="{{item.tag===undefined}}">{{item.text}}</block>
+    <block wx:if="{{item.tag==='view'}}">
+        <view catch:tap="_tap" class="{{item.attrs.class}}" data="{{item.attrs.data}}" data-data="{{item}}" id="{{item.attrs.id}}" style="{{item.attrs.style}}" wx:if="{{item.rely}}">
+            <decode nodes="{{item}}" wx:if="{{item.children}}"></decode>
+        </view>
+        <view class="h2w__viewParent" wx:else>
+            <view catch:tap="_tap" class="{{item.attrs.class}}" data="{{item.attrs.data}}" data-data="{{item}}" id="{{item.attrs.id}}" style="{{item.attrs.style}}">
+                <decode nodes="{{item}}" wx:if="{{item.children}}"></decode>
+            </view>
+        </view>
+    </block>
+    <view class="h2w__videoParent" wx:if="{{item.tag==='video'}}">
+        <video catch:tap="_tap" class="{{item.attrs.class}}" data="{{item.attrs.data}}" data-data="{{item}}" id="{{item.attrs.id}}" poster="{{item.attrs.poster}}" src="{{item.attrs.src}}" style="{{item.attrs.style}}">
+            <decode nodes="{{item}}" wx:if="{{item.children}}"></decode>
+        </video>
+    </view>
+    <view class="h2w__textParent" wx:if="{{item.tag==='text'}}">
+        <text catch:tap="_tap" class="{{item.attrs.class}}" data="{{item.attrs.data}}" data-data="{{item}}" id="{{item.attrs.id}}" style="{{item.attrs.style}}">
+            <decode nodes="{{item}}" wx:if="{{item.children}}"></decode>
+        </text>
+    </view>
+    <view class="h2w__imageParent" wx:if="{{item.tag==='image'}}">
+        <image catch:tap="_tap" class="{{item.attrs.class}}" data="{{item.attrs.data}}" data-data="{{item}}" id="{{item.attrs.id}}" lazyLoad="{{item.attr['lazy-load']}}" mode="{{item.attrs.mode?item.attrs.mode:'widthFix'}}" src="{{item.attrs.src}}" style="{{item.attrs.style}}">
+            <decode nodes="{{item}}" wx:if="{{item.children}}"></decode>
+        </image>
+    </view>
+    <view class="h2w__navigatorParent" wx:if="{{item.tag==='navigator'}}">
+        <navigator catch:tap="linkto" class="{{item.attrs.class}}" data="{{item.attrs.data}}" data-data="{{item}}" id="{{item.attrs.id}}" style="{{item.attrs.style}}" url="{{item.attrs.href}}">
+            <decode nodes="{{item}}" wx:if="{{item.children}}"></decode>
+        </navigator>
+    </view>
+    <view class="h2w__swiperParent" wx:if="{{item.tag==='swiper'}}">
+        <swiper catch:tap="_tap" class="{{item.attrs.class}}" data="{{item.attrs.data}}" data-data="{{item}}" id="{{item.attrs.id}}" style="{{item.attrs.style}}">
+            <decode nodes="{{item}}" wx:if="{{item.children}}"></decode>
+        </swiper>
+    </view>
+    <view class="h2w__swiper-itemParent" wx:if="{{item.tag==='swiper-item'}}">
+        <swiper-item catch:tap="_tap" class="{{item.attrs.class}}" data="{{item.attrs.data}}" data-data="{{item}}" id="{{item.attrs.id}}" style="{{item.attrs.style}}">
+            <decode nodes="{{item}}" wx:if="{{item.children}}"></decode>
+        </swiper-item>
+    </view>
+    <view class="h2w__blockParent" wx:if="{{item.tag==='block'}}">
+        <decode nodes="{{item}}" wx:if="{{item.children}}"></decode>
+    </view>
+    <view class="h2w__formParent" wx:if="{{item.tag==='form'}}">
+        <form catch:tap="_tap" class="{{item.attrs.class}}" data="{{item.attrs.data}}" data-data="{{item}}" id="{{item.attrs.id}}" style="{{item.attrs.style}}">
+            <decode nodes="{{item}}" wx:if="{{item.children}}"></decode>
+        </form>
+    </view>
+    <view class="h2w__inputParent" wx:if="{{item.tag==='input'}}">
+        <input catch:tap="_tap" class="{{item.attrs.class}}" data="{{item.attrs.data}}" data-data="{{item}}" id="{{item.attrs.id}}" style="{{item.attrs.style}}">
+            <decode nodes="{{item}}" wx:if="{{item.children}}"></decode>
+        </input>
+    </view>
+    <view class="h2w__textareaParent" wx:if="{{item.tag==='textarea'}}">
+        <textarea catch:tap="_tap" class="{{item.attrs.class}}" data="{{item.attrs.data}}" data-data="{{item}}" id="{{item.attrs.id}}" style="{{item.attrs.style}}">
+            <decode nodes="{{item}}" wx:if="{{item.children}}"></decode>
+        </textarea>
+    </view>
+    <view class="h2w__buttonParent" wx:if="{{item.tag==='button'}}">
+        <button catch:tap="_tap" class="{{item.attrs.class}}" data="{{item.attrs.data}}" data-data="{{item}}" id="{{item.attrs.id}}" style="{{item.attrs.style}}">
+            <decode nodes="{{item}}" wx:if="{{item.children}}"></decode>
+        </button>
+    </view>
+    <view class="h2w__checkbox-groupParent" wx:if="{{item.tag==='checkbox-group'}}">
+        <checkbox-group bindchange="{{item.attrs.bindchange}}" catch:change="_change" catch:tap="_tap" class="{{item.attrs.class}}" data="{{item.attrs.data}}" data-data="{{item}}" id="{{item.attrs.id}}" style="{{item.attrs.style}}">
+            <decode nodes="{{item}}" wx:if="{{item.children}}"></decode>
+        </checkbox-group>
+    </view>
+    <view class="h2w__checkboxParent" wx:if="{{item.tag==='checkbox'}}">
+        <checkbox catch:tap="_tap" checked="{{item.attrs.checked}}" class="{{item.attrs.class}}" data="{{item.attrs.data}}" data-data="{{item}}" id="{{item.attrs.id}}" style="{{item.attrs.style}}" value="{{item.attrs.value}}">
+            <decode nodes="{{item}}" wx:if="{{item.children}}"></decode>
+        </checkbox>
+    </view>
+    <view class="h2w__radio-groupParent" wx:if="{{item.tag==='radio-group'}}">
+        <radio-group catch:tap="_tap" class="{{item.attrs.class}}" data="{{item.attrs.data}}" data-data="{{item}}" id="{{item.attrs.id}}" style="{{item.attrs.style}}">
+            <decode nodes="{{item}}" wx:if="{{item.children}}"></decode>
+        </radio-group>
+    </view>
+    <view class="h2w__radioParent" wx:if="{{item.tag==='radio'}}">
+        <radio catch:tap="_tap" checked="{{item.attrs.checked}}" class="{{item.attrs.class}}" data="{{item.attrs.data}}" data-data="{{item}}" id="{{item.attrs.id}}" style="{{item.attrs.style}}">
+            <decode nodes="{{item}}" wx:if="{{item.children}}"></decode>
+        </radio>
+    </view>
+    <view class="h2w__rich-textParent" wx:if="{{item.tag==='rich-text'}}">
+        <rich-text catch:tap="_tap" class="{{item.attrs.class}}" data="{{item.attrs.data}}" data-data="{{item}}" nodes="{{item.children}}" style="{{item.attrs.style}}">
+            <decode nodes="{{item}}" wx:if="{{item.children}}"></decode>
+        </rich-text>
+    </view>
+    <latex catch:tap="_tap" data="{{item}}" data-data="{{item}}" wx:if="{{item.tag==='latex'}}"></latex>
+    <table catch:tap="_tap" data="{{item}}" data-data="{{item}}" wx:if="{{item.tag==='table'}}"></table>
+    <img catch:tap="_tap" data="{{item}}" data-data="{{item}}" wx:if="{{item.tag==='img'}}"></img>
+</block>

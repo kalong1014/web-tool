@@ -1,0 +1,72 @@
+<style type="text/css">
+ #add-form{margin-top: 20px;}
+ .form-group{margin-top: 20px;}
+</style>
+<div class="panel panel-default panel-intro">
+
+    <div class="panel-body">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="one">
+                <div class="widget-body " style="padding-top: 20px;">
+
+                    <form id="edit-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">简要说明:</label>
+                            <div class="col-xs-12 col-sm-5">
+                                <input id="c-title" data-rule="required" class="form-control" name="row[title]" type="text" value="" placeholder="请说明问题类型">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">详情:</label>
+                            <div class="col-xs-12 col-sm-5">
+                                <textarea id="c-content" data-rule="required" class="form-control " rows="7" name="row[content]" cols="20" placeholder="请详细说明反馈的问题"></textarea>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">反馈图片:</label>
+                            <div class="col-xs-12 col-sm-5">
+                                <div class="input-group">
+                                    <input id="c-images" class="form-control" size="50" name="row[images]" type="text" value="" >
+                                    <div class="input-group-addon no-border no-padding">
+                                        <span><button type="button" id="faupload-images" class="btn btn-danger faupload" data-input-id="c-images" data-mimetype="video/webm,video/mp4,video/ogg,image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="true" data-preview-id="p-images"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                                    </div>
+                                    <span class="msg-box n-right" for="c-images"></span>
+                                </div>
+                                <ul class="row list-inline faupload-preview" id="p-images"></ul>
+                                <span style="color:#999;display:block;">视频格式支持：MP4、ogg、WebM ; 图片格式支持：jpg、png、jpeg</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="display:none">
+                            <label class="control-label col-xs-12 col-sm-2">手机号码（选填）:</label>
+                            <div class="col-xs-12 col-sm-5">
+                                <input id="c-phone" class="form-control" name="row[phone]" type="text" value="" placeholder="请输入手机号码">
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="display:none">
+                            <label class="control-label col-xs-12 col-sm-2">QQ（选填）:</label>
+                            <div class="col-xs-12 col-sm-5">
+                                <input id="c-qq" class="form-control" name="row[qq]" type="text" value="" placeholder="请输入QQ号码">
+                            </div>  
+                        </div>
+
+
+                        <div class="form-group layer-footer">
+                            <label class="control-label col-xs-12 col-sm-2"></label>
+                            <div class="col-xs-12 col-sm-5">
+                                <button type="submit" class="btn btn-success btn-embossed "  >{:__('OK')}</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

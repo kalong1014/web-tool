@@ -1,0 +1,203 @@
+
+ {include file="public/header" /}
+
+
+<style>
+    .btn-danger, .btn-success, .btn-info{
+        color: #ff7752;
+    }
+    .fff{
+        color: #fff;
+    }
+</style>
+<body class="gray-bg">
+<link rel="stylesheet" href="/static/admin/layui/css/layui.css" media="all">
+    
+<div class="wrapper layui-card-body wrapper-content">
+    <div class="admin-con">
+        <div class="block-box">
+            <div class="col-12">
+                <div class="block font13 font8c95b0">
+                    <p>第一步：点击左侧 创建混剪。</p>
+                    <p>第二步：找到刚创建的混剪任务，点击 混剪库 查看混剪好的视频。</p>
+                    <p style="margin:0">第三步：生成视频需要一定时间，请稍等。</p>
+                </div>
+            </div>
+        
+            <div class="col-12">
+                <button class="btn btn-success fff" onclick="shuxin()">刷 新</button>
+            </div>
+            
+            <div class="col-12">
+                <div class="block font13">
+                    <table class="table table-striped table-bordered bootstrap-datatable datatable">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>混剪库名称</th>
+                  <!--<th>绑定账号</th>-->
+                  <!--<th>图片</th>-->
+                  <!--<th>视频</th>-->
+                  <!--<th>音乐</th>-->
+                  <th>生成视频数量</th>
+                  <!--<th>发布</th>-->
+                 
+                  <th>创建时间</th>
+                  <th>查看</th>
+                  <th>删除</th>
+                </tr>
+              </thead>   
+              <tbody>
+              {foreach name="list" item="vo"}
+               <tr>
+                <td>{$vo.id}</td>
+                <td class="center">{$vo.yun_name}</td>
+                <!--<td class="center">{$vo.yun_uid}</td>-->
+                <!--<td class="center">{$vo.yun_img}</td>-->
+                <!--<td class="center">{$vo.yun_video}</td>-->
+                <!--<td class="center">{$vo.yun_voice}</td>-->
+                <td class="center">{$vo.yun_num}</td>
+                <!--<td class="center">{$vo.yun_fabu}</td>-->
+
+                 <td class="center">{$vo.yun_addtime|date='Y-m-d H:i:s',###}</td>
+                <td class="center">
+                  <!--<a class=" btn-success btn" href="javascript:jianji({$vo.id},{$vo.yun_num})" style="background:#3e4040">-->
+                  <!--  生成视频-->
+                  <!--</a>-->
+                  <!--  <a class="btn btn-info" href="{:url('guanli')}?id={$vo.id}" style="background:#3e4040">-->
+                  <!-- 素材管理-->
+                  <!--</a>-->
+                  <!--<a class="btn btn-danger" href="{:url('peizhi')}?id={$vo.id}" style="background:#3e4040">-->
+                  <!--  配置-->
+                   
+                  <!--</a>-->
+                  {if $vo.jianjiid ==''}
+                  <a class="btn" href="javascript:;" style="background:#3e4040">
+                    混剪库
+                   
+                  </a>
+                  {else}
+                  <a class="btn btn-danger" href="{:url('hunjianku')}?id={$vo.id}" style="background:#3e4040">
+                    混剪库
+                   
+                  </a>
+                  {/if}
+                </td>
+                <td> <a class="btn btn-danger" href="javascript:del({$vo.id})" style="background:#3e4040">
+                    删除
+                   
+                  </a></td>
+                 
+              </tr>
+              {/foreach}
+             
+              </tbody>
+            </table>
+                
+                    <div style="width:100%;text-align:center">
+                      {$page}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{include file="public/footer" /}
+    <!--选择分类开始-->
+      <div class="modal fade" id="add" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title"></h4>                  
+                </div>
+                
+                <div class="zhida_san_hao" style="" id="zhida_san_hao">
+			            <div class="m-t-md m-b-md" id="zhida_zhanghao" style="padding:0 20px;">
+                			<!--<p class="zhida_k" style="background:#fff;color:#000">账号列表</p>-->
+                			<div class="" style="width：100%;overflow:auto;">
+                                <select name="sucai_yunid" id="sucai_yunid" class="form-control m-b" style="width:200px;float:left">
+                              
+                               
+                            </select>  
+                            </div>
+                        </div>
+                        
+    					<div class="form-group" style="text-align:center">
+                            <div class="col-col-sm-offset-3">
+                                <button type="button" class="close btn btn-outline btn-primary" data-dismiss="modal" style="opacity:1;float:initial;font-size: initial;font-weight: normal;padding:6px 12px;line-height: inherit;">确认选择</button>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--选择分类结束-->
+   <input type="hidden" name="jinbi" value="{$jinbi}">
+
+<script type="text/javascript">
+
+  function jianji(id,num){
+
+      jinbi = $('input[name="jinbi"]').val();
+      jinbi = num * jinbi
+      
+  layer.confirm('确认生成？将消耗您'+jinbi+'个积分?', {icon: 3, title:'提示'}, function(index){
+          $.post('{:url("jianji")}',
+                {id:id},
+             function(data){ 
+                if(data.code==1){
+                    //发布成功
+                    layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+                    setInterval(function(){
+                        window.location.href="{:url('admin/video/videolist')}";
+                    },1000)
+                    return false;
+                }else{
+                    //发布失败
+                    layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+                    return false;
+                    }         
+        
+            }); 
+    })
+
+   
+  }
+  function del(id){
+     $.post('{:url("quanxian")}',
+       {},
+      function(data){
+          if(data.code==1){
+           layer.confirm('您确定要删除，如有任务正在使用肯能会发布不成功', {icon: 3, title:'提示'}, function(index){
+                $.post('{:url("del_liedui")}',{id:id},function(data){
+                   if(data.code==1){
+                      layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+                        setInterval(function(){
+                          location.reload();
+                        },1000)
+                   }else{
+                    layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+                      setInterval(function(){
+                          location.reload();
+                        },1000)
+                   }
+                })
+            })
+          }else{
+               layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+                      
+          }
+     });
+     
+  }
+  
+  function shuxin(){
+       location.reload();
+  }
+</script>
+  
+</body>
+</html>

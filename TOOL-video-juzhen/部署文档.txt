@@ -1,0 +1,22 @@
+部署文档:
+Nginx    1.20以上
+Mysql    5.6以上
+php      7.2   安装sg11扩展   禁用exec函数
+
+数据库配置:
+/www/wwwroot/weike/application/database.php
+
+
+/etc/hosts添加:
+
+172.21.157.235	iZbp1fcz2jdp8o6f1yaccbZ	iZbp1fcz2jdp8o6f1yaccbZ
+
+
+添加网站目录:
+/www/wwwroot/weike/
+
+网站运行目录:
+/public
+
+伪静态:
+thinkphp

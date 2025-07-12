@@ -1,0 +1,3 @@
+								    {{foreach $groups as $v}}
+                                    <a class="btn btn-lg btn-success push-5-r push-10 {{if !empty($groupinfo) && $groupinfo.group_id==$v.group_id}}active{{/if}}" href="?c=nproduct&a=lists&group_id={{$v['group_id']}}">{{if !empty($groupinfo) && $groupinfo.group_id==$v.group_id}}<i class="fa fa-check-circle"></i>&nbsp; {{else}}{{/if}}{{$v.group_name}}</a>
+									{{/foreach}}

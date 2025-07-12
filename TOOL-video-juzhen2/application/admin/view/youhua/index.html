@@ -1,0 +1,215 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- jieshu -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>关键词列表</h5>
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始-->           
+            <div class="row">
+                <div class="col-sm-12">   
+                                                       
+                    <form name="admin_list_sea" class="form-search" method="post" action="{:url('index')}">
+                       
+                          
+                                <input type="text"  class="form-control" name="wzym" value="" placeholder="输入网站域名搜索" style="width:200px;float:left" />   
+                                <input type="text"  class="form-control" name="wzgjc" value="" placeholder="输入网站关键词搜索" style="width:200px;float:left"/>   
+                                <input type="text"  class="form-control" name="yhm" value="" placeholder="输入用户名" style="width:200px;float:left"/>   
+                                <select name="" id="" class="form-control" style="width:200px;float:left">
+                                    <option>请选择搜索引擎</option>
+                                    <option value="bd">百度</option>
+                                    <option value="bdydd">百度移动端</option>
+                                    <option value="360">360</option>
+                                    <option value="360yd">360移动端</option>
+                                    <option value="sg">搜狗</option>
+                                    <option value="sgydd">搜狗移动端</option>
+                                    <option value="sm">神马</option>
+                                </select>
+                               
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button> 
+                              
+                         
+                        
+                    </form>                         
+                </div>
+            </div>
+           
+            <!--搜索框结束-->
+           
+ <button class="btn  btn-xs  label-danger batch_btn_update1 " href="javascript:;" id="export"><i class="fa  fa-trash"></i>删除</button>
+ <button class="btn btn-xs batch_btn_update label-primary " href="javascript:;" id="export"><i class="fa  fa-edit"></i>批量编辑</button>
+ <button class="btn btn-xs export label-inverse " href="javascript:;" id="export"><i class="fa  fa-edit"></i>导出</button>
+ <button class="btn btn-xs label-success " href="javascript:;" id="export"><i class="fa fa-edit"></i>批量导入</button>
+ <button class="btn btn-xs label-info" href="javascript:;" id="export"><i class="fa fa-download"></i>下载模板</button>
+ <button class="btn btn-xs label-warning" href="javascript:;" id="export"><i class="fa fa-font-awesome"></i>待审核任务</button>
+ <button class="btn btn-xs label-danger" href="javascript:;" id="export"><i class="fa   fa-font-awesome-edit"></i>审核不通过任务</button>
+ <button class="btn btn-xs label-warning" href="javascript:;" id="export"><i class="fa fa-pause-circle"></i>申请停止优化的任务</button>
+ <button class="btn btn-xs label-danger" href="javascript:;" id="export"><i class="fa fa-pause-circle"></i>已停止优化的任务</button>
+ <button class="btn btn-xs label-danger" href="javascript:;" id="export"><i class="fa fa-pause-circle"></i>拒绝停止优化的任务</button>
+ <button class="btn btn-xs label-warning" href="javascript:;" id="export"><i class="fa fa-edit"></i>申请报错的任务</button>
+ <button class="btn btn-xs label-success" href="javascript:;" id="export"><i class="fa fa-check"></i>已处理报错的任务</button>
+  <div class="hr-line-dashed"></div>
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th>关键词</th>
+                                <th>所属域名</th>
+                                <th>搜索引擎</th>
+                                <th>所属用户</th>
+                                <th>客户价格</th>
+                                <th>代理利润</th>
+                                <th>平台利润</th>
+                                <th>排名更新时间</th>
+                                <th>排名<i class="fa fa-long-arrow-down"></i><i class="fa fa-long-arrow-up"></i></th>
+                                <th>达标天数<i class="fa fa-long-arrow-down"></i><i class="fa fa-long-arrow-up"></i></th>
+                                <th>排名截图</th>
+                                <th>审核状态</th>
+                                <th>优化状态</th>
+                                <th>操作</th>
+                            </tr>
+                            
+                        </thead>
+                         <tr class="long-tr">
+                                <th>关键词</th>
+                                <th>所属域名</th>
+                                <th>搜索引擎</th>
+                                <th>所属用户</th>
+                                <th>客户价格</th>
+                                <th>代理利润</th>
+                                <th>平台利润</th>
+                                <th>排名更新时间</th>
+                                <th>排名</th>
+                                <th>达标天数</th>
+                                <th>排名截图</th>
+                                <th>审核状态</th>
+                                <th>优化状态</th>
+                                <th>操作</th>
+                            </tr>
+                          
+                        <tbody id="article_list"></tbody>
+                    </table>
+                    <div id="AjaxPage" style=" text-align: right;"></div>
+                    <div id="allpage" style=" text-align: right;"></div>
+                </div>
+              
+                  <a href="#"><span class="label label-info">10</span></a>
+                  <a href="#"> <span class="label label-info">20</span></a>
+                 <a href="#">  <span class="label label-info">50</span></a>
+                 <a href="#">  <span class="label label-info">100</span></a>
+            </div>
+           <!-- kaishi -->
+        </div>
+    </div>
+</div>
+<!-- kaishi -->
+
+
+<!-- 加载动画 -->
+<div class="spiner-example">
+    <div class="sk-spinner sk-spinner-three-bounce">
+        <div class="sk-bounce1"></div>
+        <div class="sk-bounce2"></div>
+        <div class="sk-bounce3"></div>
+    </div>
+</div>
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+   
+  
+    function Ajaxpage(curr){
+        var key=$('#key').val();
+        $.getJSON('{:url("User/index")}', {
+            page: curr || 1,key:key
+        }, function(data){      //data是后台返回过来的JSON数据
+            $(".spiner-example").css('display','none'); //数据加载完关闭动画 
+            if(data==''){
+                $("#article_list").html('<td colspan="20" style="padding-top:10px;padding-bottom:10px;font-size:16px;text-align:center">暂无数据</td>');
+            }else{
+                article_list(data); //模板赋值
+                laypage({
+                    cont: $('#AjaxPage'),//容器。值支持id名、原生dom对象，jquery对象,
+                    pages:'',//总页数
+                    skip: true,//是否开启跳页
+                    skin: '#1AB5B7',//分页组件颜色
+                    curr: curr || 1,
+                    groups: 3,//连续显示分页数
+                    jump: function(obj, first){
+
+                        if(!first){
+                            Ajaxpage(obj.curr)
+                        }
+                        $('#allpage').html('第'+ obj.curr +'页，共'+ obj.pages +'页');
+                    }
+                });
+            }
+        });
+    }
+
+    Ajaxpage();
+
+function article_list(list){
+
+    var tpl = document.getElementById('arlist').innerHTML;
+    laytpl(tpl).render(list, function(html){
+        document.getElementById('article_list').innerHTML = html;
+    });
+}
+
+
+
+function userEdit(id){
+
+    location.href = './userEdit/id/'+id+'.html';
+}
+
+
+
+function userDel(id){
+    layer.confirm('确认删除此管理员?', {icon: 3, title:'提示'}, function(index){
+        //do something
+        $.getJSON('./userDel', {'id' : id}, function(res){
+            if(res.code == 1){
+                layer.msg(res.msg,{icon:1,time:1500});
+                Ajaxpage(1,5)
+            }else{
+                layer.msg(res.msg,{icon:0,time:1500});
+            }
+        });
+
+        layer.close(index);
+    })
+
+}
+
+
+function user_state(val){
+    $.post('{:url("user_state")}',
+    {id:val},
+    function(data){
+         
+        if(data.code==1){
+            var a='<span class="label label-danger">禁用</span>'
+            $('#zt'+val).html(a);
+            layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+            return false;
+        }else{
+            var b='<span class="label label-info">开启</span>'
+            $('#zt'+val).html(b);
+            layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+            return false;
+        }         
+        
+    });
+    return false;
+}
+
+
+</script>
+</body>
+</html>

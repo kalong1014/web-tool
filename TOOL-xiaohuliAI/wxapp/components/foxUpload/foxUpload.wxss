@@ -1,0 +1,43 @@
+.uploader,.uploader .image {
+    background: #fff;
+    position: relative;
+}
+
+.uploader .image {
+    align-items: center;
+    border: 1px dotted #ccc;
+    border-radius: 10rpx;
+    box-sizing: border-box;
+    display: flex;
+    float: left;
+    justify-content: center;
+    margin-bottom: 20rpx;
+    margin-right: 20rpx;
+}
+
+.uploader .image image {
+    border-radius: 10rpx;
+    height: 100%;
+    width: 100%;
+}
+
+.uploader .image:last-child {
+    margin-right: 0;
+}
+
+.uploader .btn-upload image {
+    height: 40%;
+    width: 40%;
+}
+
+.uploader .btn-upload:active {
+    background: #f2f2f2;
+}
+
+.uploader .image .delete {
+    height: 32rpx;
+    position: absolute;
+    right: -12rpx;
+    top: -12rpx;
+    width: 32rpx;
+}

@@ -1,0 +1,9 @@
+{
+    "component": true,
+    "usingComponents": {
+        "popup": "/components/popup/popup",
+        "actionSheet": "/components/actionSheet/actionSheet",
+        "wordsPicker": "/components/draw/wordsPicker",
+        "navbar": "/components/navbar/navbar"
+    }
+}

@@ -1,0 +1,202 @@
+{include file="public/header" /}
+<style>
+        .col-sm-12 > form > input{
+        width: 200px;
+        float: left;
+        margin-left: 20px;
+        border: 1px  solid #ccc;
+        border-radius: 20px;
+    }
+     .col-sm-12 > form > select{
+        width: 200px;
+        float: left;
+        margin-right: 10px;
+        margin-left: 20px;
+        border: 1px  solid #ccc;
+        border-radius: 20px;
+    }
+    .col-sm-12 > form > button{
+        width: 100px;
+        height: 34px;
+        font-size: 17px;
+        text-align: center;
+        border-radius: 20px;
+        line-height: 17px;
+
+    }
+
+
+</style>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- jieshu -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>关键词历史排名</h5>
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始-->           
+             <div class="row">
+                <div class="col-sm-12">                                     
+                    <form name="admin_list_sea" class="form-search" method="post" action="{:url('key_history')}">
+                       
+                          
+                                <input type="text"  class="form-control" name="url" value="" placeholder="输入网站域名搜索"  />   
+                                <input type="text"  class="form-control" name="second" value="" placeholder="输入网站关键词搜索" />   
+                                <input type="text"  class="form-control" name="username" value="" placeholder="输入用户名" />   
+                                <select name="engine" id="" class="form-control" >
+                                  
+                                    <option value="bd_pc">百度</option>
+                                    <option value="bd_yd">百度移动端</option>
+                                    <option value="360_pc">360</option>
+                                    <option value="360_yd">360移动端</option>
+                                    <option value="sg_pc">搜狗</option>
+                                    <option value="sg_yd">搜狗移动端</option>
+                                    <option value="sm_pc">神马</option>
+                                </select>
+                                 <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button>    
+                    </form>                       
+                </div>
+            </div>
+            <!--搜索框结束-->
+           
+
+  <div class="hr-line-dashed"></div>
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th>用户名</th>
+                                  <th>搜索引擎</th>
+                                <th>关键词</th>
+                                <th>排名</th>
+                                <th>金额</th>
+                                <th>域名</th>
+                                <!-- <th>代理利润</th>
+                                <th>平台利润</th> -->
+                                <th>日期</th>
+                                
+                                 {if $auth.auth ==1}
+                                <th>备注信息</th>
+                                {else /}
+                                {/if}
+                               <!--  <th>历史查询</th> -->
+                              
+                            </tr>
+                            
+                        </thead>
+                         {foreach name="list" item="vo"}
+                         <tr class="long-tr" style="text-align:center">
+                             <td>{$vo.username}</td>
+                              {if $vo.engine == 'bd_pc'}
+                                 <td>百度PC</td>
+                               {elseif $vo.engine == 'bd_yd'}
+                               <td>百度移动</td>
+                               {elseif $vo.engine == '360_pc'}
+                               <td>360PC</td>
+                               {elseif $vo.engine == '360_yd'}
+                               <td>360移动</td>
+                               {elseif $vo.engine == 'sg_pc'}
+                               <td>搜狗PC</td>
+                               {elseif $vo.engine == 'sg_yd'}
+                               <td>搜狗移动</td>
+                               {elseif $vo.engine == 'sm_pc'}
+                               <td>神马搜索</td>
+                               {else /}
+                               {/if}
+                               <!--  <td>{$vo.engine}</td> -->
+                                <td>{$vo.second}</td>
+                                <td>{$vo.pai}</td>
+                                <td>{$vo.money}</td>
+                                <td>{$vo.url}</td>
+                                <td>{$vo.time}</td>
+                               {if $auth.auth ==1}
+                                 <td>{$vo.count}</td>
+                                {else /}
+                                {/if}
+                               <!--  <td>图片</td> -->
+                                <!-- <td class="btn btn-primary"><a href="{:url('admin/keyword/key_history')}?id={$vo.id}">历史查询</a></td> -->
+                                <!--  <td class="btn btn-primary"><a href="{:url('index')}?id={$vo.id}">历史查询</a></td> -->
+                             
+                            </tr>
+                             {/foreach}
+                        <tbody id="article_list"></tbody>
+                    </table>
+                    <div id="AjaxPage" style=" text-align: right;"></div>
+                    <div id="allpage" style=" text-align: right;"></div>
+                </div>
+              
+                
+            </div>
+           <!-- kaishi -->
+        </div>
+    </div>
+</div>
+<!-- kaishi -->
+
+
+
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+   
+
+function article_list(list){
+
+    var tpl = document.getElementById('arlist').innerHTML;
+    laytpl(tpl).render(list, function(html){
+        document.getElementById('article_list').innerHTML = html;
+    });
+}
+
+ 
+function userEdit(id){
+
+    location.href = './userEdit/id/'+id+'.html';
+}
+
+
+function userDel(id){
+    layer.confirm('确认删除此管理员?', {icon: 3, title:'提示'}, function(index){
+        //do something
+        $.getJSON('./userDel', {'id' : id}, function(res){
+            if(res.code == 1){
+                layer.msg(res.msg,{icon:1,time:1500});
+                Ajaxpage(1,5)
+            }else{
+                layer.msg(res.msg,{icon:0,time:1500});
+            }
+        });
+
+        layer.close(index);
+    })
+
+}
+
+function user_state(val){
+    $.post('{:url("user_state")}',
+    {id:val},
+    function(data){
+         
+        if(data.code==1){
+            var a='<span class="label label-danger">禁用</span>'
+            $('#zt'+val).html(a);
+            layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+            return false;
+        }else{
+            var b='<span class="label label-info">开启</span>'
+            $('#zt'+val).html(b);
+            layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+            return false;
+        }         
+        
+    });
+    return false;
+}
+
+
+</script>
+</body>
+</html>

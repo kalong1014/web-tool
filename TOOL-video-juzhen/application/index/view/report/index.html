@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<title>数据报表</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+	<script src="/assets/js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript">
+        var html = document.getElementsByTagName("html")[0];
+        function getFontSize(){
+        var width=document.documentElement.clientWidth
+        ||document.body.clientWidth+"px";
+        var fontSize=(100/375)*width;
+        if(width>=375){
+        fontSize="100";
+        }
+        return fontSize;
+        }
+        html.style.fontSize=getFontSize()+"px";
+        window.onresize=function(){
+        setTimeout(function(){
+        html.style.fontSize=getFontSize()+"px";
+        },100)
+        };
+    </script>
+    <style type="text/css">
+        @charset "utf-8";*{margin:0;padding:0}
+        img{display:block;border:none}
+        em,i{font-style:normal}
+        blockquote,body,dd,div,dl,dt,fieldset,font,form,h1,h2,h3,h4,h5,h6,input,li,ol,p,pre,td,textarea,th,ul{margin:0;padding:0;font-family:"微软雅黑"}
+        table{border-collapse:collapse;border-spacing:0}
+        h1,h2,h3,h4,h5,h6{font-weight:400;font-size:100%}
+        dd,dl,dt,li,ol,ul{list-style:none}
+        button,checkbox,form,input,radio,select,textarea{vertical-align:top}
+        a{color:#000;text-decoration:none}
+        a:link,a:visited{text-decoration:none}
+        a:hover{color:#cd0200;text-decoration:underline}
+        button,input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:none}
+
+
+        body{margin: 0 auto;display: block;font-size: 0.16rem;font-family:"微软雅黑";max-width: 7.5rem;}
+        .contain{}
+        .header{height: 0.5rem;background: #2196F3;color: #fff;text-align: center;line-height: 0.5rem;}
+        .tongji_content{margin-top: 0.1rem;}
+        .tongji_content li{display: inline-block;width: 24.5%;margin-left: 2%;background: #d1f0ff;height: 0.7rem;border-radius: 5px;color: #006998;padding: 0.1rem;line-height: 0.32rem;font-size: 0.14rem;}
+        .tongji_content_span{font-size: 0.2rem;font-weight: bold;margin-right: 0.05rem;display: inline-block;}
+        .content_table{margin-top: 0.1rem;padding: 0.1rem;color: #444;}
+        .content_table li,.content_table_body li{display: inline-block;width: 22%;margin-left: 2%;line-height: 0.31rem;text-align: center;}
+        .content_table_head{color: #ccc;border-bottom: 1px solid #f7f7f7;text-align: center;}
+        .content_table_body{border-bottom: 1px solid #f7f7f7;padding-left: 0.1rem;color: #555;}
+        .content_table_body1{text-align: left !important;font-size: 0.12rem!important;}
+        .content_table_body li{overflow: hidden;white-space: nowrap;text-overflow: ellipsis;font-size: 0.14rem;}
+        .content_table_body a{padding: 0.05rem 0.08rem;background: #2196F3;color: #fff;font-size: 0.12rem;border: 0px;border-radius: 5px;}
+        .content_table_head1,.content_table_body1{width: 34%!important;}
+        .content_table_head2,.content_table_body2{width: 10%!important;}
+        .more_btn{text-align: center;margin-top: 0.2rem;color: #2196F3;border: 0px;background: #fff;display: block;width: 100%;margin-bottom: 0.2rem;}
+
+        .content_table_head_rank,.content_table_head_time{cursor: pointer;color: #2196F3;}
+    </style>
+</head>
+<body>
+    <div class="contain">
+        <div class="header">
+            排名数据报表
+        </div>
+        <ul class="tongji_content">
+            <li>
+                <p>发布视频</p>
+                <p><span class="tongji_content_span">{$video_count}</span>条</p>
+            </li>
+            <li>
+                <p>历史排名词</p>
+                <p><span class="tongji_content_span">{$rand_count}</span>个</p>
+            </li>
+            <li>
+                <p>关键词</p>
+                <p><span class="tongji_content_span">{$keyword_count}</span>个</p>
+            </li>
+        </ul>
+        <ul class="content_table">
+            <li class="content_table_head content_table_head1" style="text-align: left !important;">总关键词</li>
+            <li class="content_table_head content_table_head2 content_table_head_rank">排名</li>
+            <li class="content_table_head content_table_head_time">最后达标</li>
+            <li class="content_table_head">达标视频</li>
+        </ul>
+        <div class="content">
+            
+  
+        </div>
+
+        <a class="more_btn">加载更多</a>
+    </div>
+
+    <input type="hidden" name="page" class="page" value="1">
+    <input type="hidden" name="name" class="name" value="{$name}">
+    <input type="hidden" name="rank_order" class="rank_order" value="1">
+    <input type="hidden" name="time_order" class="time_order" value="0">
+</body>
+<script type="text/javascript">
+    var name = "{$name}";
+    rank_data(1,name,$('.rank_order').val(),$('.time_order').val());
+
+    $('.content_table_head_time').click(function(){
+        $('.content').html('');
+        $('.page').val(1);
+        $('.time_order').val(1);
+        $('.rank_order').val(0);
+        rank_data($('.page').val(),$('.name').val(),$('.rank_order').val(),$('.time_order').val());
+    });
+
+    $('.content_table_head_rank').click(function(){
+        $('.content').html('');
+        $('.page').val(1);
+        $('.time_order').val(0);
+        $('.rank_order').val(1);
+        rank_data($('.page').val(),$('.name').val(),$('.rank_order').val(),$('.time_order').val());
+    });
+
+    $('.more_btn').click(function(){
+        rank_data($('.page').val(),$('.name').val(),$('.rank_order').val(),$('.time_order').val());
+    });
+    function rank_data(page,name,rank_order,time_order){
+        $.post('/index/report/rank_data/?name='+name,{page:page,rank_order:$('.rank_order').val(),time_order:$('.time_order').val()},function(data){
+            html = '';
+            if(data.code==1){
+                $('.content').append("<p style='text-align:center;margin-top:0.2rem;margin-bottom:0.2rem;;font-size:0.14rem;'>暂无更多排名数据</p>");
+                $('.more_btn').hide();
+            }else{
+                data = data.data;
+                for (var i =0; i < data.length; i++) {
+                    content_table_body3 = '--';
+                    if(data[i]['share_url']!='' && data[i]['share_url']!=null && data[i]['share_url']!="null"){
+                        content_table_body3 = '<a href="'+data[i]['share_url']+'">查看</a>';
+                    }
+                    html += '<ul class="content_table_body">\
+                            <li class="content_table_body1">'+data[i]['merge_keyword']+'</li>\
+                            <li  class="content_table_body2">'+data[i]['rank_num']+'</li>\
+                            <li  class="content_table_body3">'+data[i]['uptime']+'</li>\
+                            <li  class="content_table_body3">'+content_table_body3+'</li>\
+                        </ul>';
+                }
+                $('.content').append(html);
+            }
+            $('.page').val(Number(page)+1);
+        },'json');
+    }
+</script>
+</html>

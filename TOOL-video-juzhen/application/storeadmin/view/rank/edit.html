@@ -1,0 +1,153 @@
+<div class="panel panel-default panel-intro">
+
+    <div class="panel-body">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="one">
+                <div class="widget-body no-padding">
+                    <div id="toolbar" class="toolbar">
+                        <a href="javascript:;" onclick="location.reload()"  class="btn btn-primary btn-refresh" title="{:__('Refresh')}" ><i class="fa fa-refresh"></i> </a>
+                        <a href="javascript:history.back(-1)" class="btn btn-success btn-add "  >返回</a>                        
+                    </div>
+                    
+
+                    <form id="edit-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">任务名:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-title" data-rule="required" class="form-control" disabled type="text" value="{$row.title|htmlentities}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">采集源:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-url" data-rule="required" class="form-control" disabled type="text" value="{$row.url|htmlentities}">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">评论筛选关键词:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <textarea id="c-keywords" class="form-control "  data-rule="required" rows="3" name="row[keywords]" cols="20">{$row.keywords|htmlentities}</textarea>
+                                <p style="margin-top:5px;color:#888;">多个关键词，请用逗号隔开，如：怎么，哪里，地址，在哪儿，购买，我想要，联系，电话，地址，厂家，价格，多少钱，合作，喜欢，有兴趣，采购，怎么卖，怎么买，哪里买</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">评论屏蔽关键词(选填):</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <textarea id="c-no_keywords" class="form-control "  rows="3" name="row[no_keywords]" cols="20">{$row.no_keywords|htmlentities}</textarea>
+                                <p style="margin-top:5px;color:#888;">多个关键词，请用逗号隔开，如：假的，联系我，我有，不要</p>
+                            </div>
+                        </div>
+                        <div class="form-group" {if $row.mode!=3}style="display:none"{/if}>
+                            <label class="control-label col-xs-12 col-sm-2">视频标题再筛选(选填):</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <textarea id="c-video_keyword" class="form-control "   rows="3" name="row[video_keyword]" cols="20">{$row.video_keyword|htmlentities}</textarea>
+                                <p style="margin-top:5px;color:#888;">（该功能慎用，设置不正确可能会导致采集不到视频）在采集源搜索出来的视频再做一次筛选，可设置多个关键词，用逗号隔开，比如： 二手车，北京二手车，车子</p>
+                            </div>
+                        </div>
+                        {if $row.max_price>0}
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">最大点数消耗:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <div class="radio">
+                                    {$row.max_price|htmlentities} 点
+                                </div>
+                            </div>
+                        </div>
+                        {/if}
+                        {if $row.mode==3 || $row.mode==4}
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">搜索排序:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <div class="radio">
+
+                                    {if $row.sort_type==0}
+                                        默认排序
+                                    {elseif $row.sort_type==1}
+                                        最多点赞
+                                    {elseif $row.sort_type==2}
+                                        最新发布
+                                    {/if}
+                                </div>
+                            </div>
+                        </div>
+                        {/if}
+                        {if $row.mode==3}
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">发布时间:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <div class="radio">
+                                        {if $row.publish_time==0}
+                                            默认排序
+                                        {elseif $row.publish_time==1}
+                                            一天内
+                                        {elseif $row.publish_time==3}
+                                            3天内
+                                        {elseif $row.publish_time==15}
+                                            15天内
+                                        {elseif $row.publish_time==30}
+                                            一个月内
+                                        {elseif $row.publish_time==7}
+                                            一周内
+                                        {elseif $row.publish_time==182}
+                                            半年内
+                                        {/if}
+                                </div>
+                            </div>
+                        </div>
+                        {/if}
+                        {if $row.timing >0}
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">定时监控频率:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <div class="radio" style="font-size: 16px;">
+                                    每
+                                    <b>{$row.timing}</b>
+                                    天运行一次
+                                </div>
+                                <p style="margin-top:5px;color:#888;">默认为0，不开启自动监控 </p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">最长监控天数:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <div class="radio" style="font-size: 16px;">
+                                    持续监控
+                                    <b>{$row.day_count}</b>
+                                    天后停止 【停止时间：{$row['end_time']}】
+                                </div>
+                                <p style="margin-top:5px;color:#888;">默认为0，不开启自动监控</p>
+                            </div>
+                        </div>
+                        {/if}
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">任务状态:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="row[status]" {if $row.status==0}checked{/if}  value="0">暂停采集
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="row[status]" {if $row.status==1}checked{/if} value="1">运行中
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="row[status]"{if $row.status==2}checked{/if}  value="2">完成
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group layer-footer">
+                            <label class="control-label col-xs-12 col-sm-2"></label>
+                            <div class="col-xs-12 col-sm-8">
+                                <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

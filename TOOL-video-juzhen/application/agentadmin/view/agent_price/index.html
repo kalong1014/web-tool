@@ -1,0 +1,112 @@
+<style type="text/css">
+    .form_p{margin: 0px;margin-top:5px;color:#888;display: block;}
+</style>
+<div class="panel panel-default panel-intro">
+
+    <div class="panel-body">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="one">
+                <div class="widget-body " style="padding-top: 20px;">
+
+                    <form id="edit-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">企业号费用/天:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-qiye_money"  class="form-control" name="row[qiye_money]" type="text" value="{$agent_config.qiye_money|htmlentities}" data-rule="range({$site['qiye_money']}~100)">
+                                <p class="form_p">0表示不收费</p>
+                            </div>
+                            
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">去水印费用/条:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-shuiyin_money"  class="form-control" name="row[shuiyin_money]" type="text" value="{$agent_config.shuiyin_money|htmlentities}" data-rule="range({$site['shuiyin_money']}~100)">
+                                <p class="form_p">0表示不收费</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">引流外链费用/次:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-card_money"  class="form-control" name="row[card_money]" type="text" value="{$agent_config.card_money|htmlentities}" data-rule="range({$site['card_money']}~100)">
+                                <p class="form_p">0表示不收费</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">视频矩阵费用/条:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-juzhen_money"  class="form-control" name="row[juzhen_money]" type="text" value="{$agent_config.juzhen_money|htmlentities}" data-rule="range({$site['juzhen_money']}~100)">
+                                <p class="form_p">0表示不收费</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">剪辑费用/个视频:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-jianji_money"  class="form-control" name="row[jianji_money]" type="text" value="{$agent_config.jianji_money|htmlentities}" {if !$agent['aliyun_bucket']}data-rule="range({$site['jianji_money']}~100)"{else}data-rule="range(0~100)"{/if}>
+                                <p class="form_p">0表示不收费</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">排名查询费用/博主/每词:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-seo_money"  class="form-control" name="row[seo_money]" type="text" value="{$agent_config.seo_money|htmlentities}" data-rule="range({$site['seo_money']}~100)">
+                                <p class="form_p">0表示不收费</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">排名前10费用/每词/每天:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-paiming10_money"  class="form-control" name="row[paiming10_money]" type="text" value="{$agent_config.paiming10_money|htmlentities}" data-rule="range({$site['paiming10_money']}~100)">
+                                <p class="form_p">0表示不收费</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">排名前20费用/每词/每天:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-paiming20_money"  class="form-control" name="row[paiming20_money]" type="text" value="{$agent_config.paiming20_money|htmlentities}" data-rule="range({$site['paiming20_money']}~100)">
+                                <p class="form_p">0表示不收费</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">矩阵视频评论回复/条:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-comment_money"  class="form-control" name="row[comment_money]" type="text" value="{$agent_config.comment_money|htmlentities}" data-rule="range({$site['comment_money']}~100)">
+                                <p class="form_p">0表示不收费</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">防封抖链/条:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-link_money"  class="form-control" name="row[link_money]" type="text" value="{$agent_config.link_money|htmlentities}" data-rule="range({$site['link_money']}~300)">
+                                <p class="form_p">0表示不收费</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">发私信/条:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-im_money"  class="form-control" name="row[im_money]" type="text" value="{$agent_config.im_money|htmlentities}" data-rule="range({$site['im_money']}~300)">
+                                <p class="form_p">0表示不收费</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">探店码/条视频:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-tandian_money"  class="form-control" name="row[tandian_money]" type="text" value="{$agent_config.tandian_money|htmlentities}" data-rule="range({$site['tandian_money']}~300)">
+                                <p class="form_p">0表示不收费</p>
+                            </div>
+                        </div>
+
+                       
+                        <div class="form-group layer-footer">
+                            <label class="control-label col-xs-12 col-sm-2"></label>
+                            <div class="col-xs-12 col-sm-8">
+                                <button type="submit" class="btn btn-success btn-embossed ">{:__('OK')}</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

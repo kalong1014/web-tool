@@ -1,0 +1,143 @@
+.box-speeching {
+    align-items: center;
+    background: rgba(0,0,0,.6);
+    bottom: 110rpx;
+    display: flex;
+    justify-content: center;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 99;
+}
+
+.box-speeching .timer {
+    background: #04babe;
+    border-radius: 20rpx;
+    box-sizing: border-box;
+    color: #fff;
+    height: 188rpx;
+    overflow: hidden;
+    padding: 30rpx 0;
+    text-align: center;
+    transition: all .1s;
+    width: 520rpx;
+    z-index: 2;
+}
+
+.box-speeching .timer.warning {
+    background: #e63803;
+}
+
+.box-speeching .timer .time {
+    font-size: 36rpx;
+    font-weight: 700;
+    letter-spacing: 4rpx;
+}
+
+.btn-audio-press {
+    align-items: center;
+    background: none;
+    box-shadow: none;
+    color: #444;
+    display: flex;
+    font-size: 28rpx;
+    height: 72rpx;
+    justify-content: center;
+    line-height: 72rpx;
+}
+
+.box-speeching .input {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+}
+
+.box-speeching .input .tips {
+    bottom: 220rpx;
+    color: #fff;
+    left: 0;
+    letter-spacing: 2rpx;
+    line-height: 64rpx;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+
+.box-speeching .input .btn-record {
+    background: linear-gradient(0deg,#fff 50%,#ddd);
+    border-radius: 50%/200rpx;
+    bottom: -200rpx;
+    height: 400rpx;
+    left: -15%;
+    position: absolute;
+    width: 130%;
+}
+
+.box-speeching .input .btn-record image {
+    height: 64rpx;
+    left: 50%;
+    margin-left: -32rpx;
+    position: absolute;
+    top: 48rpx;
+    width: 64rpx;
+}
+
+.wave {
+    align-items: center;
+    display: flex;
+    height: 48rpx;
+    justify-content: space-between;
+    margin: 20rpx auto 0;
+    text-align: center;
+    width: 342rpx;
+}
+
+.wave .line {
+    background-color: #f7f7f8;
+    border-radius: 4rpx;
+    display: inline-block;
+    height: 36rpx;
+    margin: 0 4rpx;
+    width: 4rpx;
+}
+
+@keyframes jump {
+    0% {
+        transform: scale(1,1);
+    }
+
+    100% {
+        transform: scale(1,.2);
+    }
+}
+
+.wave .line0 {
+    animation: jump .5s linear 1.6s infinite alternate;
+}
+
+.wave .line1 {
+    animation: jump .5s linear 1.4s infinite alternate;
+}
+
+.wave .line2 {
+    animation: jump .5s linear 1.2s infinite alternate;
+}
+
+.wave .line3 {
+    animation: jump .5s linear 1s infinite alternate;
+}
+
+.wave .line4 {
+    animation: jump .5s linear .8s infinite alternate;
+}
+
+.wave .line5 {
+    animation: jump .5s linear .6s infinite alternate;
+}
+
+.wave .line6 {
+    animation: jump .4s linear infinite alternate;
+}

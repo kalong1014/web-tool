@@ -1,0 +1,232 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" class="no-focus">
+<head>
+<title>{{$setting.web_name.value}}-{{$title}}虚拟空间主机、秒赞空间-专业虚拟主机提供商</title>
+<!-- <link rel="stylesheet" type="text/css" href="{{$STATIC}}{{$styledir}}/style/style.css"> -->
+<link rel="stylesheet" type="text/css" href="/style/artdialog/skins/chrome.css">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0">
+<script src="{{$STATIC}}style/js/jquery.js" type="text/javascript"></script>
+<script src="{{$STATIC}}style/js/jquery.cycle.all.js" type="text/javascript"></script>
+<script src="/style/artdialog/artDialog.js" type="text/javascript"></script>
+
+<!-- 添加的CSS JS -->
+        <link rel="stylesheet" href="{{$STATIC}}style/assets/js/plugins/slick/slick.min.css">
+        <link rel="stylesheet" href="{{$STATIC}}style/assets/js/plugins/slick/slick-theme.min.css">
+		<link rel="stylesheet" id="css-main" href="{{$STATIC}}style/assets/css/oneui.css">
+		
+        <!-- Page Plugins -->
+
+</head>
+<body>
+        <div id="page-container" class="sidebar-l sidebar-o side-scroll header-navbar-fixed">
+            <!-- Sidebar -->
+            <nav id="sidebar">
+                <!-- Sidebar Scroll Container -->
+                <div id="sidebar-scroll">
+                    <!-- Sidebar Content -->
+                    <!-- Adding .sidebar-mini-hide to an element will hide it when the sidebar is in mini mode -->
+                    <div class="sidebar-content">
+                        <!-- Side Header -->
+                        <div class="side-header side-content bg-white-op">
+                            <!-- Layout API, functionality initialized in App() -> uiLayoutApi() -->
+                            <button class="btn btn-link text-gray pull-right hidden-md hidden-lg" type="button" data-toggle="layout" data-action="sidebar_close">
+                                <i class="fa fa-times"></i>
+                            </button>
+                            <!-- Themes functionality initialized in App() -> uiHandleTheme() -->
+                            <div class="btn-group pull-right">
+                                <button class="btn btn-link text-gray dropdown-toggle" data-toggle="dropdown" type="button">
+                                    <i class="si si-earphones-alt"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-right font-s13 sidebar-mini-hide">
+                                    <li>
+                                        <a href="http://wpa.qq.com/msgrd?v=3&uin=46067395&site=qq&menu=yes" target="_blank" tabindex="-1" data-toggle="theme">
+                                           <i class="fa fa-qq text-flat"></i> <span class="font-w600">客服：ZERO</span>                                        </a>                                    </li>
+                                    <li>
+                                        <a href="http://wpa.qq.com/msgrd?v=3&uin=46067395&site=qq&menu=yes" target="_blank" tabindex="-1" data-toggle="theme">
+                                            <i class="fa fa-qq text-flat"></i> <span class="font-w600">客服：ZERI</span>                                        </a>                                    </li>
+                                    <li>
+                                        <a href="http://wpa.qq.com/msgrd?v=3&uin=46067395&site=qq&menu=yes" target="_blank" tabindex="-1" data-toggle="theme">
+                                            <i class="fa fa-comments-o text-amethyst"></i> <span class="font-w600">主机交流QQ群</span>                                        </a>                                    </li>
+                                </ul>
+                            </div>
+                            <a class="h5 text-white" href="/">
+                                <i class="fa fa-circle-o-notch text-primary"></i> <span class="h4 font-w600 sidebar-mini-hide">85云主机</span>
+                            </a>
+                        </div>
+                        <!-- END Side Header -->
+
+                        <!-- Side Content -->
+                        <div class="side-content">
+                            <ul class="nav-main">
+								{{if $role.user}}
+                                <li>
+                                    <a href="?c=user&a=index"><i class="si si-speedometer"></i><span class="sidebar-mini-hide">账户首页</span></a>
+                                </li>
+								<li class="nav-main-heading"><span class="sidebar-mini-hide">产品服务</span></li>
+                                <li>
+                                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-basket"></i><span class="sidebar-mini-hide">购买主机</span></a>
+									<ul>
+									{{dispatch c=host a='left'}}
+									</ul>
+                                </li>
+								{{dispatch c='user' a='left'}}
+                                <li>
+                                    <a href="?c=session&a=logout"><i class="si si-logout"></i><span class="sidebar-mini-hide">退出登录</span></a>
+                                </li>
+								{{else}}
+                                <li>
+                                    <a href="/"><i class="si si-home"></i><span class="sidebar-mini-hide">首页</span></a>
+                                </li>
+                                <li>
+                                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-layers"></i><span class="sidebar-mini-hide">虚拟主机</span></a>
+									<ul>
+									{{dispatch c=host a='left'}}
+									</ul>
+                                </li>
+								{{if $domainreg_stop!=1}}
+                                <li>
+                                    <a href="?c=domain&a=index"><i class="si si-globe"></i><span class="sidebar-mini-hide">域名注册</span></a>
+                                </li>
+								{{/if}}
+                                <li>
+                                    <a href="?c=public&a=pagelistnews"><i class="si si-bell"></i><span class="sidebar-mini-hide">新闻公告</span></a>
+                                </li>
+                                <li>
+                                    <a href="?c=article&a=lists&type=help"><i class="si si-question"></i><span class="sidebar-mini-hide">帮助文档</span></a>
+                                </li>
+                                <li class="nav-main-heading"><span class="sidebar-mini-hide">会员中心</span></li>
+                                <li>
+                                    <a href="?c=user&a=index"><i class="si si-login"></i><span class="sidebar-mini-hide">登 录</span></a>
+                                </li>
+                                <li>
+                                    <a href="?c=public&a=register_n"><i class="si si-user-follow"></i><span class="sidebar-mini-hide">注 册</span></a>
+                                </li>
+                                <li>
+                                    <a href="?c=public&a=findPasswdFrom"><i class="si si-key"></i><span class="sidebar-mini-hide">密码找回</span></a>
+                                </li>
+								{{/if}}
+                            </ul>
+                        </div>
+                        <!-- END Side Content -->
+                    </div>
+                    <!-- Sidebar Content -->
+                </div>
+                <!-- END Sidebar Scroll Container -->
+            </nav>
+            <!-- END Sidebar -->
+
+            <!-- Header -->
+            <header id="header-navbar" class="content-mini content-mini-full">
+                <!-- Header Navigation Right -->
+                <ul class="nav-header pull-right">
+                    <li>
+                        <div class="btn-group">
+						{{if $role.user}}
+                            <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
+                                欢迎，{{$role.user}} &nbsp; <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li>
+                                    <a tabindex="-1" href="?c=user&a=index">
+                                        <i class="si si-home pull-right"></i>账户首页
+                                    </a>
+                                </li>
+                                <li>
+                                    <a tabindex="-1" href="?c=hosting&a=pageHost">
+                                        <i class="si si-layers pull-right"></i>主机管理
+                                    </a>
+                                </li>
+                                <li>
+                                    <a tabindex="-1" href="?c=money&a=addFrom">
+                                        <i class="si si-wallet pull-right"></i>在线充值
+                                    </a>
+                                </li>
+                                <li>
+                                    <a tabindex="-1" href="?c=question&a=pageByuser">
+                                        <i class="si si-speech pull-right"></i>工单管理
+                                    </a>
+                                </li>
+                                <li>
+                                    <a tabindex="-1" href="?c=user&a=changeForm">
+                                        <i class="si si-user pull-right"></i>修改资料
+                                    </a>
+                                </li>
+                                <li>
+                                    <a tabindex="-1" href="?c=user&a=changePasswordForm">
+                                        <i class="si si-lock pull-right"></i>更改密码
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a tabindex="-1" href="?c=session&a=logout">
+                                        <i class="si si-logout pull-right"></i>退出登录
+                                    </a>
+                                </li>
+                            </ul>
+                            {{else}}
+                            <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
+                                会员中心 &nbsp; <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li>
+                                    <a tabindex="-1" href="?c=user&a=index">
+                                        <i class="si si-login pull-right"></i>登 录
+                                    </a>
+                                </li>
+                                <li>
+                                    <a tabindex="-1" href="?c=public&a=register_n">
+                                        <i class="si si-user-follow pull-right"></i>注 册
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a tabindex="-1" href="?c=public&a=findPasswdFrom">
+                                        <i class="si si-key pull-right"></i>找回密码
+                                    </a>
+                                </li>
+                            </ul>
+							{{/if}}
+                        </div>
+                    </li>
+                </ul>
+                <!-- END Header Navigation Right -->
+
+                <!-- Header Navigation Left -->
+                <ul class="nav-header pull-left">
+                    <li class="hidden-md hidden-lg">
+                        <!-- Layout API, functionality initialized in App() -> uiLayoutApi() -->
+                        <button class="btn btn-default" data-toggle="layout" data-action="sidebar_toggle" type="button">
+                            <i class="fa fa-navicon"></i>
+                        </button>
+                    </li>
+                    <li class="hidden-xs hidden-sm">
+                        <!-- Layout API, functionality initialized in App() -> uiLayoutApi() -->
+                        <button class="btn btn-default" data-toggle="layout" data-action="sidebar_mini_toggle" type="button">
+                            <i class="fa fa-ellipsis-v"></i>
+                        </button>
+                    </li>
+					{{if $role.user}}
+                    <li>
+                        <!-- Opens the Apps modal found at the bottom of the page, before including JS code -->
+                        <a href="?c=public&a=pagelistnews">
+						<button class="btn btn-default pull-right"  type="button">
+                            <i class="si si-bell"></i>
+                        </button></a>
+                    </li>
+					{{else}}
+					{{/if}}
+                    <li class="js-header-search header-search">
+                        <form class="form-horizontal">
+                            <div class="form-material form-material-primary input-group remove-margin-t remove-margin-b">
+                                <input class="form-control" type="text" placeholder="Search..">
+                                <span class="input-group-addon"><i class="si si-magnifier"></i></span>
+                            </div>
+                        </form>
+                    </li>
+                </ul>
+                <!-- END Header Navigation Left -->
+            </header>
+            <!-- END Header -->

@@ -1,0 +1,503 @@
+{include file="public/header" /}
+<style>
+    <style>
+	video{
+object-fit:inherit;
+width: 100px;
+height: 100px;
+}
+.yulan{
+	    -webkit-text-size-adjust: 100%;
+    color: #333;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    width: 100%;
+}
+#newli{
+	    -webkit-text-size-adjust: 100%;
+    color: #333;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    display: flex;
+    flex-wrap: wrap;
+}
+#newli >li{
+	margin-top: 20px;
+	margin-left: 2%;
+	width: 17.6%;
+    border: 1px solid #f5f5f5;
+}
+/*.lise{
+
+	    -webkit-text-size-adjust: 100%;
+    color: #333;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    list-style: none;
+    margin-bottom: 24px;
+    margin-right: 20px;
+    float: left;
+    width: 200px;
+    height: 200px;
+  
+}*/
+.neiro{
+	    -webkit-text-size-adjust: 100%;
+    color: #333;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    list-style: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    height: 267px;
+    width: 100%;
+    background: #161823;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+.type{
+	    -webkit-text-size-adjust: 100%;
+    color: #333;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    list-style: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    position: absolute;
+    left: 12px;
+    top: 12px;
+}
+.typename{
+	    -webkit-text-size-adjust: 100%;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    list-style: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    margin: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    padding: 1px 4px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 22px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    background: rgba(0,0,0,0.2);
+    border: 1px solid rgba(0,0,0,0.1);
+}
+.caozuo {
+	    -webkit-text-size-adjust: 100%;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    list-style: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    margin: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    padding: 1px 4px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 22px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    background: rgba(0,0,0,0.2);
+    border: 1px solid rgba(0,0,0,0.1);
+}
+.layui-unselect {
+	    -webkit-text-size-adjust: 100%;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    list-style: none;
+    color: #fff;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-user-select: none;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    cursor: pointer;
+    font-size: 0;
+    transition: .1s linear;
+    box-sizing: border-box;
+    height: auto!important;
+    line-height: normal!important;
+    min-width: 18px;
+    min-height: 18px;
+    border: none!important;
+    margin-right: 0;
+    padding-left: 28px;
+    padding-right: 0;
+    background: 0 0;
+}
+.layui-icon{
+    -webkit-text-size-adjust: 100%;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    list-style: none;
+    font-weight: 600;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    cursor: pointer;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    font-family: layui-icon!important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    vertical-align: middle;
+    position: absolute;
+    top: 0;
+    color: #fff;
+    text-align: center;
+    right: auto;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    border: 1px solid #d2d2d2;
+    font-size: 12px;
+    border-radius: 2px;
+    background-color: #fff;
+    transition: .1s linear;
+}
+.titles{
+	    -webkit-text-size-adjust: 100%;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    list-style: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    margin-top: 12px;
+    height: 22px;
+    max-width: 200px;
+    font-weight: 500;
+    line-height: 22px;
+    font-size: 16px;
+    color: #13161a;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.texts{
+	    -webkit-text-size-adjust: 100%;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    list-style: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    margin-top: 4px;
+    font-size: 12px;
+    line-height: 20px;
+    color: #747e8c;
+    cursor: default;
+}
+.layui-form{
+	    -webkit-text-size-adjust: 100%;
+    color: #333;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+li{
+  list-style: none;
+}
+</style>
+<body class="gray-bg">
+    <!-- start: Header -->
+    <div class="header-box">
+        <div class="pl25">
+            <h3 class="fs22 font-weight-500 c333">视频库</h3>
+            <p class="fs14 c666">根据官方返回数据所展示得视频列表</p>
+        </div>
+    </div>
+    <!-- start: Header -->
+    
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title" style="border-left: 4px solid red;color:#ff7752">
+                    <p>1.可以添加多个标题,视频发布时随机填写！</p>
+                    <p>2.如需插入话题，请以"#"开头,以空格结尾！</p>
+                    <p>3.西瓜、头条标题最多30个字符,不可为空！</p>
+                    <p>视频说明：</p>
+                    <p>1.为了更好的观看体验，推荐上传16:9，分辨率为720p（1280x720）及以上的竖版视频。</p>
+                    <p>2.支持常用视频格式，推荐使用 mp4 、webm。</p>
+                    <p>3.视频文件大小不超过58M，时长在15分钟以内。</p>
+                    <p>4.带品牌logo或品牌水印的视频，会命中抖音的审核逻辑，有比较大的概率导致分享视频推荐降权处理/分享视频下架处理/分享账号被封禁处理。</p>
+                    <p>5.视频审核逻辑与端上一致。</p>
+                    <p style="margin:0">6.上传素材，请等待提示上传成功后再关闭页面！</p>
+                </div> 
+                
+                <!--<div class="ibox-title" style="border-left: 4px solid red;width: 45%;float: left;height: 243px;">-->
+                <!--    <h5><span style="color:red;">【{$list.type}】</span><span style="color:blue;">【{$list.nickname}】</span>&nbsp;&nbsp;素材中心</h5>-->
+                <!--</div>-->
+                
+                <!--<div class="ibox-title" style="border-left: 4px solid blue;float: left;width: 45%;">-->
+                <!--           <p style="font-weight: bold;">视频说明</p>-->
+
+            
+                <!--</div>-->
+                 <form  id="uploadForm" class="form-search" method="post"  enctype="multipart/form-data">
+                <div class="ibox-content" style="margin-top:20px">
+                        <div class="form-group" style="width:100%;display: flex;">
+                            <label class="" style="line-height: 35px;font-size:14px">发布标题：</label>
+                            <div class="input-group" style="">
+                                {if empty($ku['title'])}
+                                     <input id="username" type="text" class="form-control" name="title" autocomplete="off" placeholder="请输入标题" value="" > 
+                                {else /}
+                                 <input id="username" type="text" class="form-control" name="title" autocomplete="off" placeholder="请输入标题" value="{$ku.title}" > 
+                                {/if}
+                            
+                                <span style="color:#9e9b9b">多个标题示例:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,12,23,34,44 </span>
+                            </div>
+
+                        </div>
+                   
+                        
+                        <div class="form-group" style="display:flex">
+                            <div  style="position: relative;left: 0px;top: 0;">
+                                <input type="button" name="" class="btn btn-primary" onclick="upload()" value="选择视频">
+                            </div>
+                            
+                            <input type="hidden" name="id" id="user_id" value="{$list.id}">
+                            <input type="file" name="file" id="file" style="margin:0 2% 0 -4.4%;height: 35px;line-height: 35px;border: 1px solid #e5e6e7;" >
+                            
+                            <input type="button" name="" class="btn btn-primary"  id="uploads"  value="上传视频">
+                        </div>
+                        
+                        
+                        <!--<div  style=" width:120px;position: relative;left: 320px;top: -70px;">-->
+                        <!--    <input type="button" name="" class="btn btn-primary"  id="uploads"  value="上传视频">-->
+
+                        <!--</div>-->
+                        
+                    {foreach name="ku['video']" item="vo" key="k" }
+                       
+                    <div style="margin-top: 20px;margin-left: 2%;width: 17.6%;border: 1px solid #f5f5f5;float: left;" class="neirong">
+
+                         <video style="height: 267px!important;width: 100%;" controls="">
+                            <source src="/uploads/images/{$vo.url}" >
+                        </video>                           
+                        <div class="caozuo">
+                            <input type="hidden" name="url" value="{$vo.url}">
+                            <input lay-skin="primary" type="checkbox" checked name="video_id[]" value="{$vo.id}" style="zoom:180%;float:left;">
+                            <span onclick="deltss({$k},{$vo.id})" class="btn btn-danger btn-sm" style="margin-left: 10px;margin-top: 6px;font-size: 10px;width: 60px;height: 23px;float: left;text-align: center;line-height: 13px;">删除</span>
+                        </div>
+                           
+                    </div>
+                     {/foreach}
+                     
+                     
+                     {if $list.type =='快手'}
+                      <div style="width: 100%;height: 30px;float: left;margin-top: 60px;" id="zhida_img">
+                     {else /}
+                        <div style="width: 100%;height: 30px;float: left;margin-top: 60px;display: none;" id="zhida_img">
+                      
+                     {/if}
+                            <input type="file" name="file_img" id="file_img" style="margin-left: 10px;" >
+                             
+                            <div  style=" width:120px;position: relative;left: 0px;top: -30px;">
+                                <input type="button" name="" class="btn btn-primary" onclick="upload_img()" value="选择图片">
+                            </div>
+                             <div  style=" width:120px;position: relative;
+                                    left: 320px;
+                                    top: -70px;">
+                                <input type="button" name="" class="btn btn-primary"  id="uploads_img"  value="上传图片">
+
+                            </div>
+                        </div>
+                        {foreach name="ku['img']" item="vo"  key="k"}
+                       
+                        <div style="width: 200px;height: 120px;margin-left: 10px;float: left;margin-top: 300px;" class="neirong">
+
+                            <div style="">
+                                <img src="/uploads/images/{$vo.img}" style="width:150px;height:150px;">
+                            </div>                      
+                            <div class="caozuo">
+                                <input type="hidden" name="img" value="{$vo.img}">
+                                <input lay-skin="primary" type="checkbox" checked name="img_id[]" value="{$vo.id}" style="zoom:180%;float:left;">
+                                <span onclick="deltss_img({$k},{$vo.id})" class="btn btn-danger btn-sm" style="margin-left: 10px;margin-top: 6px;font-size: 10px;width: 60px;height: 23px;float: left;text-align: center;line-height: 13px;">删除</span>
+                            </div>
+                           
+                        </div>
+                     {/foreach}
+                       </form>
+                    </div>
+                    
+                </div>
+                
+                   
+            </div>
+
+        </div>
+    </div>
+</div>
+{include file="public/footer" /}
+<script type="text/javascript">
+    function upload(){
+        document.getElementById('file').click();
+       
+    }
+               $("#uploads").click(function () { 
+               var formData = new FormData($('#uploadForm')[0]); 
+                $.ajax({ 
+                type: 'post', 
+                url: "{:url('shipin_up')}", //上传文件的请求路径必须是绝对路劲
+               data:formData,
+                cache: false, 
+                processData: false, 
+                contentType: false, 
+            }).success(function (data) { 
+                       
+                    if(data.code==1){
+                        layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+                        setInterval(function(){
+                location.reload();
+             },1000)
+
+                        return false;
+                    }else{
+                         layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+                       setInterval(function(){
+                location.reload();
+             },1000)
+
+                        return false;
+                    }
+           }).error(function () { 
+            //alert(data);
+                alert("上传失败"); 
+       }); 
+    }); 
+//图片上传
+ function upload_img(){
+        document.getElementById('file_img').click();
+       
+    }
+               $("#uploads_img").click(function () { 
+               var formData = new FormData($('#uploadForm')[0]); 
+                $.ajax({ 
+                type: 'post', 
+                url: "{:url('shipin_up_img')}", //上传文件的请求路径必须是绝对路劲
+               data:formData,
+                cache: false, 
+                processData: false, 
+                contentType: false, 
+            }).success(function (data) { 
+                       
+                    if(data.code==1){
+                        layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+                       setInterval(function(){
+                location.reload();
+             },1000)
+
+                        return false;
+                    }else{
+                         layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+                       setInterval(function(){
+                location.reload();
+             },1000)
+
+                        return false;
+                    }
+           }).error(function () { 
+            //alert(data);
+                alert("上传失败"); 
+       }); 
+    }); 
+
+
+
+
+//删除视频 传递删除id
+function deltss(id,uid){
+
+    //账号id
+    userid = $("#user_id").val();
+   
+    $.post('{:url("shipin_videoid")}',
+    {videoid:id,userid:userid},
+    function(data){
+         
+        if(data.code==1){
+           
+            layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+           setInterval(function(){
+                location.reload();
+             },1000)
+            return false;
+        }else{
+           
+            layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+            setInterval(function(){
+                location.reload();
+             },1000)
+            return false;
+        }         
+        
+    });
+}
+//删除图片 传递删除id
+function deltss_img(id,uid){
+
+    //账号id
+    userid = $("#user_id").val();
+   
+    $.post('{:url("shipin_videoid_img")}',
+    {videoid:id,userid:userid},
+    function(data){
+         
+        if(data.code==1){
+           
+            layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+            setInterval(function(){
+                location.reload();
+             },1000)
+            return false;
+        }else{
+           
+            layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+            setInterval(function(){
+                location.reload();
+             },1000)
+            return false;
+        }         
+        
+    });
+}
+
+
+
+
+
+</script>
+
+</body>
+</html>

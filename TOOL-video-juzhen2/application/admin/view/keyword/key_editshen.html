@@ -1,0 +1,104 @@
+{include file="public/header" /}
+<style>
+    .form-control{
+        width: 300px;
+     
+
+    }
+    .sel{
+       
+        width: 100%;
+        margin-left: -10px;
+        margin-top: 20px;
+
+    }
+
+
+</style>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>关键词审核</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="form_basic.html#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" name="edit_rule" id="edit_rule" method="post" action="{:url('apply_edit_d')}">
+                        <input type="hidden" name="id" value="{$list.id}">
+                       
+                        {if $autha.auth ==1}
+                        <div class="sel">
+                            <label class="col-sm-3 control-label">管理员审核：</label>
+                            <div class="input-group col-sm-4">
+                                 <select name="website_status" id="" class="form-control" >
+                                    <option value="3">通过</option>
+                                     <option value="0">不通过</option>
+                                   
+                                </select>
+                            </div>
+                        </div>
+                        {elseif $autha.auth == 2}
+                        <div class="sel">
+                            <label class="col-sm-3 control-label">代理员审核：</label>
+                            <div class="input-group col-sm-4">
+                                 <select name="website_status" id="" class="form-control" >
+                                    <option value="2">通过</option>
+                                     <option value="0">不通过</option>
+                                   
+                                </select>
+                            </div>
+                        </div>
+                        {else /}
+
+                        {/if}
+                        
+
+                        <div class="sel">
+                           <div class="form-group">
+                            <label class="col-sm-3 control-label">不通过原因：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="title" type="text" class="form-control" name="website_t"  value="{$list.website_t}">
+                            </div>
+                            
+                            </div>
+                      
+                         </div>
+                        
+                            {if $autha.auth ==1 || $autha.auth==2}
+                            <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> 保存</button>&nbsp;&nbsp;&nbsp;
+                                <a class="btn btn-danger" href="javascript:history.go(-1);"><i class="fa fa-close"></i> 返回</a>
+                            </div>
+                        </div>
+                            {else /}
+                                    <a class="btn btn-danger" href="javascript:history.go(-1);"><i class="fa fa-close"></i> 返回</a>
+                            {/if}
+                     
+                        
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{include file="public/footer" /}
+<script type="text/javascript">
+
+
+</script>
+</body>
+</html>

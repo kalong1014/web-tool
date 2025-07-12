@@ -1,0 +1,118 @@
+<style type="text/css">
+    #jiexi_btn {
+    background: #000;
+    color: #fff;
+    width: 100px;display: inline-block;height: 35px;border-radius: 5px;line-height: 35px;text-align: center;font-size: 16px;cursor: pointer;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.recomm_keyword,.no_recomm_keyword,.all_keyword{background: #3ca793;padding: 5px ;margin-bottom: 10px;margin-right: 10px;color: #fff;display: inline-block;cursor: pointer;}
+ .delete_keyword{margin-left: 5px;color: #ccc;}
+</style>
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">优惠券名:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-coupon_name" data-rule="required" class="form-control" name="row[coupon_name]" type="text" value="{$row.coupon_name|htmlentities}" placeholder="随意取一个名字吧">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">类型:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="radio">
+                <label>
+                    <input type="radio"   name="row[type]"  {if $row.type==1}checked{/if} value="1"> <span >满减券</span> 
+                </label>
+                <label>
+                    <input type="radio"  name="row[type]" {if $row.type==2}checked{/if} value="2"> <span >折扣券</span> 
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group" style="margin-top: 20px;">
+        <label class="control-label col-xs-12 col-sm-2">减金额/折扣:</label>
+        <div class="col-xs-12 col-sm-3">
+            <input id="c-price" data-rule="required" class="form-control" name="row[price]" type="text" value="{$row.price|htmlentities}" placeholder="0">
+            <p style="margin-top:5px;color:#888;">满减券减10元，填10；</p>
+            <p style="margin-top:-5px;color:#888;">折扣券8折，填8；</p>
+        </div>
+        
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">满足金额:</label>
+        <div class="col-xs-12 col-sm-3">
+            <input id="c-reach_price" data-rule="" class="form-control" name="row[reach_price]" type="number" value="{$row.reach_price|htmlentities}" placeholder="0">
+        </div>
+    </div>
+
+    <div class="form-group" >
+        <label class="control-label col-xs-12 col-sm-2">到期类型:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="radio">
+                <label>
+                    <input type="radio"   name="row[time_type]" class="time_type" {if $row.time_type==1}checked{/if}  value="1"> <span >固定时间</span> 
+                </label>
+                <label>
+                    <input type="radio"  name="row[time_type]" class="time_type" {if $row.time_type==2}checked{/if} value="2"> <span >领取到期天数</span> 
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group time_type_1" style="margin-top: 20px;{if $row.time_type==2}display: none{/if}">
+        <label class="control-label col-xs-12 col-sm-2">固定时间:</label>
+        <div class="col-xs-12 col-sm-3">
+            <input id="c-start_time" data-rule="" class="form-control" name="row[start_time]" type="date" value="{$row.start_time|htmlentities}" placeholder="起始时间">
+        </div>
+        <label class="control-label col-xs-12 col-sm-1" style="text-align: center;">至</label>
+        <div class="col-xs-12 col-sm-3">
+            <input id="c-end_time" data-rule="" class="form-control" name="row[end_time]" type="date" value="{$row.end_time|htmlentities}" placeholder="结束时间">
+        </div>
+    </div>
+
+    <div class="form-group time_type_2" style="margin-top: 20px;{if $row.time_type==1}display: none{/if}">
+        <label class="control-label col-xs-12 col-sm-2">到期天数:</label>
+        <div class="col-xs-12 col-sm-3">
+            <input id="c-limit" data-rule="" class="form-control" name="row[valid_day]" type="number" value="{$row.valid_day|htmlentities}" placeholder="0">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">发券数:</label>
+        <div class="col-xs-12 col-sm-3">
+            <input id="c-limit" data-rule="required" class="form-control" name="row[limit]" type="number" value="{$row.limit|htmlentities}" placeholder="0">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-3 col-sm-2">规则:</label>
+        <div class="col-xs-12 col-sm-8  ">
+            <textarea id="c-use_rule"  class="form-control " rows="5" name="row[use_rule]" cols="30" placeholder="优惠券规则说明" >{$row.use_rule|htmlentities}</textarea>
+        </div>
+    </div>
+
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed "  >{:__('OK')}</button>
+        </div>
+    </div>
+
+</form>
+<script type="text/javascript" src='/storeadmin2/libs/jquery/dist/jquery.min.js?v=162913148'></script>
+
+<input type="hidden" name="is_jiexi" class="is_jiexi" value="0">
+<script type="text/javascript">
+    $('.time_type').change(function(){
+        if($(this).val()==1){
+            $('.time_type_1').show();
+            $('.time_type_2').hide();
+        }else{
+            $('.time_type_1').hide();
+            $('.time_type_2').show();
+        }
+    });
+</script>

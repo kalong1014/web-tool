@@ -1,0 +1,262 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+  
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>升级版本列表</h5>
+        </div>
+        <div class="ibox-content">
+         
+            <div class="row">
+                <div class="col-sm-12">   
+                <div  class="col-sm-2" style="width: 100px">
+                    <div class="input-group" >  
+                        <a href="javascript:addbanben()"><button class="btn btn-outline btn-primary" type="button" >添加版本</button></a> 
+                    </div>
+                </div>                                            
+                                         
+                </div>
+            </div>
+         
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th>版本号</th>
+                                <th>版本日期</th>
+                                <th>内容</th>
+                                <th>操作</th>
+                               
+                            </tr>
+                        </thead>
+                {foreach name ="list" item="vo"}
+                 <tr class="long-tr" style="text-align:center">
+                       <td>{$vo.banbenhao}</td>
+                             <td>{$vo.banbentime}</td>
+                           <td>  <textarea name=""  rows="5" cols='60'>{$vo.banbencount}</textarea></td>
+                           <td> 
+                           <a href="javascript:;" onclick="userEdit({$vo.id})" class="btn btn-primary btn-xs">
+                                            <i class="fa fa-paste"></i> 编辑</a>&nbsp;&nbsp;<a href="javascript:;" onclick="userDel({$vo.id})" class="btn btn-danger btn-xs">
+                                            <i class="fa fa-trash-o"></i> 删除</a></td>
+                             </tr>
+                {/foreach}    
+                        <script id="arlist" type="text/html">
+                            
+                        </script>
+                        <tbody id="article_list"></tbody>
+                    </table>
+                    
+                  
+                </div>
+            </div>
+           <!-- kaishi -->
+        </div>
+    </div>
+</div>
+<!-- kaishi -->
+
+
+<!-- 充值开始 -->
+ <div class="modal  fade" id="fenzu_xuan" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog" style="margin-left: 42px;">
+            <div class="modal-content" style="width:1200px;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">添加版本</h4>                  
+                </div>
+               <form class="form-horizontal" name="userAdd"  method="post" action=""  >
+
+                <div class="form-group" style="margin-top: 20px;">
+                            <label class="col-sm-3 control-label">版本号：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="" type="text" class="form-control" name="banbenhao" >
+                               
+                            </div>
+                            <label class="col-sm-3 control-label">版本日期：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="" type="date" class="form-control" name="banbentime" >
+                               
+                            </div>
+                               <label class="col-sm-3 control-label">版本内容：</label>
+                               <textarea name="banbencount" id="banbencount" rows="10" cols='60'></textarea>
+                               
+                </div>
+                    <input type="hidden" name="id" value="">
+                <div class="form-group">
+                    <div class="col-sm-4 col-sm-offset-3">
+                        <button class="btn btn-primary" type="button" onclick="cz()" > 确认</button>&nbsp;&nbsp;&nbsp;
+                       
+                    </div>
+                </div>
+                 </form>
+            </div>
+        </div>
+    </div>
+<!-- 充值结束 -->
+<!-- 充值开始 -->
+ <div class="modal  fade" id="edit" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog" style="margin-left: 42px;">
+            <div class="modal-content" style="width:1200px;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">添加版本</h4>                  
+                </div>
+               <form class="form-horizontal"   method="post" action=""  >
+
+                <div class="form-group" style="margin-top: 20px;">
+                            <label class="col-sm-3 control-label">版本号：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="banbenhao" type="text" class="form-control" name="" value="" >
+                               
+                            </div>
+                            <label class="col-sm-3 control-label">版本日期：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="banbentime" type="date" class="form-control" name=""  value="">
+                               
+                            </div>
+                               <label class="col-sm-3 control-label">版本内容：</label>
+                               <textarea name="" id="ban" rows="10" cols='60'></textarea>
+                               
+                </div>
+                   <input type="hidden" name="banbenid" id="" value="" />
+                <div class="form-group">
+                    <div class="col-sm-4 col-sm-offset-3">
+                        <button class="btn btn-primary" type="button" onclick="baocun()" > 确认</button>&nbsp;&nbsp;&nbsp;
+                       
+                    </div>
+                </div>
+                 </form>
+            </div>
+        </div>
+    </div>
+{include file="public/footer" /}
+
+<script type="text/javascript">
+/**
+ * 添加版本
+*/
+
+function addbanben(){
+     $('#fenzu_xuan').modal('show');
+}
+
+function cz(){
+  
+   banbenhao = $('input[name="banbenhao"]').val();
+   banbentime = $('input[name="banbentime"]').val();
+   banbencount = $("#banbencount").val()
+  
+   if(banbenhao == ''){
+        layer.msg('版本号数据不能为空',{icon:2,time:2000,shade: 0.1,});
+        return false;
+   }
+   if(banbentime == ''){
+        layer.msg('请添加版本日期',{icon:2,time:2000,shade: 0.1,});
+        return false;
+   }
+   if(banbencount == ''){
+        layer.msg('请添加版本内容',{icon:2,time:2000,shade: 0.1,});
+        return false;
+   }
+    
+        $.post('{:url("up_log")}',
+            {banbenhao:banbenhao,banbentime:banbentime,banbencount,banbencount},
+            function(data){  
+                if(data.code==1){
+                     layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+                    layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+                              setInterval(function(){
+                              location.reload();
+                            },2000);
+                }else{
+                    layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+                    // window.location.reload();
+                }
+             
+            });
+}
+
+function userDel(id){
+    layer.confirm('您确定要删除此条数据吗?', {icon: 3, title:'提示'}, function(index){
+        //do something
+        $.post('{:url("del")}',
+            {id:id},
+            function(data){  
+                if(data.code==1){
+                     layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+                              setInterval(function(){
+                              location.reload();
+                            },2000);
+                }else{
+                    layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+                    // window.location.reload();
+                }
+             
+            });
+
+        layer.close(index);
+    })
+
+}
+
+function userEdit(id){
+         $.post('{:url("userEdit")}',
+            {id:id},
+            function(data){ 
+               // console.log(data.banbencount);
+               $("#edit").modal('show')
+               $("#banbenhao").val(data.banbenhao);
+               $("#banbentime").val(data.banbentime);
+               $("#ban").html(data.banbencount);
+                id = $('input[name="banbenid"]').val(data.id);
+
+            });
+}
+
+/*编辑保存*/
+function baocun(){
+    
+           banbenhao = $("#banbenhao").val();
+            banbentime =    $("#banbentime").val();
+           ban =$("#ban").val();
+            id = $('input[name="banbenid"]').val();
+          
+  if(banbenhao == ''){
+        layer.msg('版本号数据不能为空',{icon:2,time:2000,shade: 0.1,});
+        return false;
+  }
+  if(banbentime == ''){
+        layer.msg('请添加版本日期',{icon:2,time:2000,shade: 0.1,});
+        return false;
+  }
+  if(banbencount == ''){
+        layer.msg('请添加版本内容',{icon:2,time:2000,shade: 0.1,});
+        return false;
+  }
+         $.post('{:url("up_edit")}',
+            {id:id,banbenhao:banbenhao,banbentime:banbentime,ban,ban},
+            function(data){  
+                if(data.code==1){
+                        layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+                              setInterval(function(){
+                              location.reload();
+                            },2000);
+                }else{
+                    layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+                    // window.location.reload();
+                }
+             
+            });
+}
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

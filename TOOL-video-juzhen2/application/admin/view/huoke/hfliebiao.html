@@ -1,0 +1,179 @@
+{include file="public/header" /}
+
+<body class="gray-bg">
+<link rel="stylesheet" href="/static/admin/layui/css/layui.css" media="all">
+
+<div class="wrapper layui-card-body wrapper-content">
+    <div class="admin-con">
+        <div class="block-box">
+            <div class="col-12">
+                <div class="block">
+        
+                    <form name="admin_list_sea" class="form-search" method="get" >
+            <div class="m-t-md" style="padding:0;text-align:center;">
+                <div style="display:inline-flex;line-height: 35px;justify-content:center;font-size: 14px;">
+                   
+                
+                    <select name="status" id="" class="form-control" style="width:20%;margin:0 5px 0 10px">
+                        <option value="">回复状态</option>
+                        <option value="2">已回复</option>
+                        <option value="1">未回复</option>
+                    </select>
+                    
+                    <input type="text" id="key" class="form-control" name="content" value="" autocomplete="off" placeholder="评论内容" style="display: block;width: 20%" />
+                    <input type="text" id="key" class="form-control" name="title" value="" autocomplete="off" placeholder="视频标题" style="display: block;width: 20%;margin:0 5px" />
+                    <input type="text" id="key" class="form-control" name="uname" value="" autocomplete="off" placeholder="用户名称" style="display: block;width: 20%" />
+                    
+                    <button type="submit" class="btn btn-primary" style="height:35px;width: 150px;margin:0 10px"><i class="fa fa-search"></i> 搜&nbsp;&nbsp;&nbsp;索</button> 
+                    <!--<button type="button" onclick="shuaxin()" class="btn btn-primary">刷新评论</button>-->
+                </div>
+
+            </div>
+            
+        </form> 
+            
+                    <div class="example m-t-md">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr class="long-tr">
+                                    <th>用户名称</th>
+                                    <th>视频简介</th>
+                                    <th>用评论内容</th>
+                                    <th>评论时间</th>
+                                    <th>点赞数</th>
+                                    <th>评论数</th>
+                                    <th>状态</th>
+                                   
+                                    <th>回复</th>
+                                    <th>操作</th>
+                                   
+                                </tr>
+                            </thead>
+                            
+                            <tbody id="article_list">
+                                {foreach name="list" item="value"}
+                                 <tr>
+                                    <td style="width:10%">{$value.uname}</td>   
+                                    <td style="width:15%"><a href="{$value.url}" target="view_window">{$value.title}</a></td>                                 
+                                    <td style="width:15%">{$value.content}</td>                                 
+                                    <td style="width:10%">{$value.create_time||date='Y-m-d H:i:s',###}</td>                                 
+                                    <td style="width:6%">{$value.digg_count}</td>                                 
+                                    <td style="width:6%">{$value.reply_comment_total}</td>                                 
+                                    <td style="width:10%">
+                                    {if $value.status==1}
+                                    未回复
+                                    {else /}
+                                    已回复
+                                    {/if}
+                                    </td>                                 
+                                                               
+                                    <td style="width:20%">{$value.huifu}</td>                                 
+                                    <td style="width:15%">
+                                    <a href="javascript:;" data-toggle="modal" data-target="#bianji" class="btn btn-primary btn-xs" onclick="bianji({$value.id})">
+                                               回复</a>
+                                    </td>
+                                                                 
+                                                            
+                                </tr>
+                                  {/foreach}      
+                            </tbody>
+                        </table>
+                        <div id="AjaxPage" style=" text-align: right;"></div>
+                        <div id="allpage" style=" text-align: right;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--回复客户-->
+    <div class="modal  fade" id="bianji" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">回复客户</h4>                  
+                </div>
+                <form class="form-horizontal" name="add_rule" id="add_rule" method="post" action="">
+                    <div class="ibox-content">
+                          
+                        <div class="form-group m-t-md">
+                                <label class="col-sm-3 control-label font13">填写回复词语：</label>
+                                <div class="col-sm-8">
+
+                                    <input type="text" name="contents"  placeholder="填写回复词语" class="form-control font12"/>
+                                </div>
+                        </div>  
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="hfpl()"><i class="fa fa-save"></i>立即回复</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i> 关闭</button>                    
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" name="hid" id="" value="" />
+<!--回复客户结束-->
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+/*刷新评论*/
+function shuaxin(){
+    $.post('{:url("shuaxin")}',{},function(data){
+        
+         if(data.code==1){
+             layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+             
+              setInterval(function(){
+                          location.reload();
+                        },1000)
+         }else{
+             layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+              setInterval(function(){
+                          location.reload();
+                        },1000)
+         }
+      }) 
+}
+
+function bianji(id){
+  $("input[name='hid']").val(id);
+}
+/*回复评论*/
+function hfpl(){
+    id = $("input[name='hid']").val();
+    content = $("input[name='contents']").val();
+    if(content==''){
+        return  layer.msg("请填写回复词语",{icon:2,time:1500,shade: 0.1,});
+    }
+     $.post('{:url("hfpl")}',{id:id,content:content,type:1},function(data){
+         if(data.code==1){
+             layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+              setInterval(function(){
+                          location.reload();
+                        },1000)
+         }else{
+             layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+              setInterval(function(){
+                          location.reload();
+                        },1000)
+         }
+      }) 
+}
+/**
+ * 添加分类
+*/
+ function addfenlei(){
+    $('#myModal').modal('show');
+}
+/**
+ * 编辑
+*/
+ 
+ 
+</script>
+</body>
+</html>

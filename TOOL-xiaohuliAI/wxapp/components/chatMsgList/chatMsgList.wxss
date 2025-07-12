@@ -1,0 +1,225 @@
+.msg-list {
+    bottom: 132rpx;
+    box-sizing: border-box;
+    height: 100%;
+    left: 0;
+    overflow: hidden;
+    top: 0;
+    width: 100%;
+}
+
+.message {
+    border-top: 2rpx solid #eee;
+    display: flex;
+    justify-content: flex-start;
+    padding: 40rpx;
+}
+
+.message:last-child {
+    border-bottom: 0;
+}
+
+.message .text {
+    color: #343541;
+    font-size: 32rpx;
+    line-height: 52rpx;
+    overflow: hidden;
+    padding: 4rpx 0;
+    width: 572rpx;
+    word-break: break-all;
+}
+
+.message .text span {
+    display: inline;
+}
+
+.message .avatar {
+    align-items: center;
+    background: none;
+    border-radius: 8rpx;
+    color: #fff;
+    display: flex;
+    font-size: 28rpx;
+    justify-content: center;
+    margin-right: 30rpx;
+    margin-top: 4rpx;
+    overflow: hidden;
+}
+
+.message .avatar,.message .avatar image,.message .avatar img {
+    height: 58rpx;
+    width: 58rpx;
+}
+
+.model-text .row-user {
+    background: #fff;
+}
+
+.model-audio .message {
+    border: none;
+    padding: 20rpx;
+}
+
+.model-audio .message .text {
+    border-radius: 30rpx;
+    box-sizing: border-box;
+    display: block;
+    max-width: 610rpx;
+    padding: 20rpx 40rpx;
+    width: auto;
+}
+
+.model-audio .row-user .message {
+    display: block;
+    float: right;
+    padding: 20rpx 8rpx 20rpx 0;
+    position: relative;
+    width: 100%;
+}
+
+.model-audio .row-user .message .avatar {
+    margin-right: 0;
+    position: absolute;
+    right: 20rpx;
+    top: 24rpx;
+}
+
+.model-audio .row-user .message .text {
+    background-color: #86e4e0;
+    border-top-right-radius: 4rpx;
+    float: right;
+    margin-right: 80rpx;
+}
+
+.model-audio .row-user .message .text .h2w-light {
+    color: #fff!important;
+}
+
+.model-audio .row-ai .message .text {
+    background: hsla(0,0%,100%,.8);
+    border-top-left-radius: 4rpx;
+    color: #666;
+    float: right;
+}
+
+.tools {
+    justify-content: space-between;
+    margin-bottom: 8rpx;
+    margin-top: 16rpx;
+}
+
+.tools,.tools .btn {
+    align-items: center;
+    display: flex;
+}
+
+.tools .btn {
+    color: #04babe;
+    float: left;
+    font-size: 32rpx;
+    margin-right: 10rpx;
+}
+
+.tools .btn:active {
+    opacity: .6;
+}
+
+.tools .btn .icon {
+    height: 32rpx;
+    margin-right: 6rpx;
+    width: 32rpx;
+}
+
+.player {
+    align-items: center;
+    border-radius: 10rpx;
+    box-sizing: border-box;
+    display: flex;
+    height: 88rpx;
+    justify-content: space-between;
+    margin-bottom: 20rpx;
+    padding: 0 24rpx;
+    width: 360rpx;
+}
+
+.player:active {
+    opacity: .6;
+}
+
+.player image {
+    height: 48rpx;
+    margin-right: 20rpx;
+    width: 48rpx;
+}
+
+.player .nowave,.player .wave {
+    align-items: center;
+    display: flex;
+    height: 36rpx;
+    justify-content: space-between;
+    position: relative;
+    text-align: center;
+    width: 188rpx;
+}
+
+.player .nowave .line,.player .wave .line {
+    background: #04babe;
+    border-radius: 4rpx;
+    display: inline-block;
+    height: 24rpx;
+    margin: 0 4rpx;
+    width: 4rpx;
+}
+
+@keyframes jump {
+    0% {
+        transform: scale(1,1);
+    }
+
+    100% {
+        transform: scale(1,.2);
+    }
+}
+
+.player .wave .line0 {
+    animation: jump .5s linear 1.6s infinite alternate;
+}
+
+.player .wave .line1 {
+    animation: jump .5s linear 1.4s infinite alternate;
+}
+
+.player .wave .line2 {
+    animation: jump .5s linear 1.2s infinite alternate;
+}
+
+.player .wave .line3 {
+    animation: jump .5s linear 1s infinite alternate;
+}
+
+.player .wave .line4 {
+    animation: jump .5s linear .8s infinite alternate;
+}
+
+.player .wave .line5 {
+    animation: jump .5s linear .6s infinite alternate;
+}
+
+.player .wave .line6 {
+    animation: jump .4s linear infinite alternate;
+}
+
+.player .time {
+    color: #04babe;
+    font-size: 28rpx;
+}
+
+.row-ai .player {
+    background: #f0f2f4;
+    float: left;
+}
+
+.row-user .player {
+    background: #ddefed;
+    float: right;
+}

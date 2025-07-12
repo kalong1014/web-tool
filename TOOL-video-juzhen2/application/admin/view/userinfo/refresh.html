@@ -1,0 +1,213 @@
+{include file="public/header" /}
+<style type="text/css">
+    .div {
+        width:98%;
+        height:500px;
+        margin:-150px auto;
+        /* background:#ccc;*/
+        position: fixed;
+        /*position: inherit;*/
+        display: none;
+
+    }
+    #animation {
+        -webkit-animation:fadeInRight 2s .2s ease both;
+        -moz-animation:fadeInRight 2s .2s ease both;
+    }
+    @-webkit-keyframes fadeInRight {
+        0% {
+            opacity:0;
+            -webkit-transform:translateX(20px)
+        }
+        100% {
+            opacity:1;
+            -webkit-transform:translateX(0)
+        }
+    }
+    @-moz-keyframes fadeInRight {
+        0% {
+            opacity:0;
+            -moz-transform:translateX(20px)
+        }
+        100% {
+            opacity:1;
+            -moz-transform:translateX(0)
+        }
+    }
+
+</style>
+<body class="gray-bg">
+<link rel="stylesheet" href="/static/admin/layui/css/layui.css" media="all">
+    
+<div class="wrapper layui-card-body wrapper-content">
+    <div class="admin-con">
+        <div class="block-box">
+            <div class="col-12">
+                <div class="block font13 font8c95b0">
+                    刷新视频：每个账号的每次查询需间隔一个小时!<br>
+                    刷新评论：仅支持获取《抖音平台》的评论数据!
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="block">  
+                        <div  class="col-12 m-t-md">
+                            <a href="javascript:selects();" id="" ><button class="btn btn-outline btn-primary" type="button">全选</button></a>
+                            <a href="javascript:no_selects();" id="" ><button class="btn btn-outline btn-primary" type="button">全不选</button></a>
+                       
+                            <a href="javascript:re_video();" id="" ><button class="btn btn-outline btn-primary" type="button">刷新视频</button></a>
+                            <a href="javascript:re_comment();" id="" ><button class="btn btn-outline btn-primary" type="button">刷新评论</button></a>
+
+                        </div>
+                    
+                <div class="liebiao">
+                <div  class="neirong">
+                    <div class="neironghead">
+                        <div class="neirong1">
+                            <div class="neirong3" style="width:10%;">
+                                选择
+                            </div>
+                            <div class="img_data" style="width:10%;">
+                                平台
+                            </div>
+                            <div class="img_data" style="width:20%;">
+                                头像
+                            </div>
+                            <div class="peo_data" style="width:20%;">
+                                达人昵称
+                            </div>
+                            <div class="neirong3" style="width:20%;">
+                                上次刷新视频
+                            </div>
+                            <div class="neirong3" style="width:20%;">
+                                上次刷新评论
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {foreach name="list" item="vo"}
+                <div  class="neirong">
+                    <div class="neirong1">
+                        <div class="neirong3" style="width:10%;">
+                            <input class="checkbox_ck" type="checkbox" name="uid" data-id="{$vo.id}" >
+                        </div>
+                        <div class="img_data" style="width:10%;">
+                            <div class="topp">
+                                {if $vo.type=='1'}
+                                <!--<span class="type">抖音</span>-->
+                                <img class="type" src="__IMG__/dou.jpg">
+                                {elseif  $vo.type=='2'}
+                                <!--<span class="type">西瓜</span>-->
+                                <img class="type" src="__IMG__/xig.png">
+                                {elseif  $vo.type=='3'}
+                                <!--<span class="type">头条</span>-->
+                                <img class="type" src="__IMG__/tout.png">
+                                {else /}
+                                <!--<span class="type">快手</span>-->
+                                <img class="type" src="__IMG__/kuais.png">
+                                {/if}
+                            </div>
+                        </div>
+                        <div class="img_data" style="width:20%;">
+                            <img src="{$vo.avatar}">
+                        </div>
+                        <div class="peo_data" style="width:20%;">
+                            <div class="name">{$vo.nickname}</div>
+                        </div>
+                        <div class="neirong3" style="width:20%;">
+                            <p class="p1">{$vo.re_video_time}</p>
+                        </div>
+                        <div class="neirong3" style="width:20%;">
+                            <p class="p1">{$vo.re_comment_time}</p>
+                        </div>
+                    </div>
+                </div>
+                {/foreach}
+                <div class="col-12" style="text-align:center">
+                    {$page}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="public/footer" /}
+<script type="text/javascript">
+
+    //全选
+    function selects()
+    {
+        $('.checkbox_ck').prop('checked',true);
+    }
+    //全不选
+    function no_selects()
+    {
+        $('.checkbox_ck').prop('checked',false);
+    }
+
+    //刷新视频
+    function re_video() {
+        layer.load(3)
+        var re_uids=new Array();
+        $('input[name="uid"]:checked').each(function(){
+            re_uids.push($(this).attr('data-id'));//向数组中添加元素
+        });
+        if(re_uids==''){
+           layer.alert('请选择账号');
+           setInterval(function(){
+                location.reload();
+            },1000);
+           return false; 
+        }
+        $.ajax({
+            type: "POST",
+            url: "/admin/userinfo/gengxin_uids",
+            data: {re_uids:re_uids},
+            success: function(data){
+                layer.closeAll('loading');
+                layer.msg(data,{icon:1,time:1500,shade: 0.1,});
+                setInterval(function(){
+                    location.reload();
+                },1000);
+            },
+            error:function() {
+                layer.closeAll('loading');
+                layer.alert('刷新失败')
+            }
+        });
+    }
+
+    function re_comment() {
+
+        layer.load(3)
+
+        var re_uids=new Array();
+        $('input[name="uid"]:checked').each(function(){
+            re_uids.push($(this).attr('data-id'));//向数组中添加元素
+        });
+        if(re_uids==''){
+           layer.alert('请选择账号');
+            setInterval(function(){
+                    location.reload();
+                },1000);
+           
+           return false; 
+        }
+        $.ajax({
+            type: "POST",
+            url: "/admin/huoke/shuaxin_uids",
+            data: {re_uids:re_uids},
+            success: function(data){
+                layer.closeAll('loading');
+                layer.msg(data,{icon:1,time:1500,shade: 0.1,});
+                setInterval(function(){
+                    location.reload();
+                },1000);
+            },
+            error:function() {
+                layer.closeAll('loading');
+                layer.alert('刷新失败')
+            }
+        });
+    }
+</script>
+</body>
+</html>

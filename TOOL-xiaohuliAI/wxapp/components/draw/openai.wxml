@@ -1,0 +1,34 @@
+<view>
+    <view class="setting-row">
+        <view class="label">
+            <text>✳ 画面描述</text>
+        </view>
+        <view class="values">
+            <prompt id="prompt" type="openai"></prompt>
+        </view>
+    </view>
+    <view class="setting-row">
+        <view class="label">
+            <text>✳ 尺寸</text>
+        </view>
+        <view class="values">
+            <foxRadio bind:change="onRadioChange" checked="{{options.size}}" lists="{{[ {title:'1024x1024',value:'1024x1024'},{title:'1024x1792',value:'1024x1792'},{title:'1792x1024',value:'1792x1024'} ]}}" name="size"></foxRadio>
+        </view>
+    </view>
+    <view class="setting-row">
+        <view class="label">
+            <text>✳ 质量</text>
+        </view>
+        <view class="values">
+            <foxRadio bind:change="onRadioChange" checked="{{options.quality}}" lists="{{[ {title:'标准',value:'standard'},{title:'高清',value:'hd'} ]}}" name="quality"></foxRadio>
+        </view>
+    </view>
+    <view class="setting-row">
+        <view class="label">
+            <text>✳ 风格</text>
+        </view>
+        <view class="values">
+            <foxRadio bind:change="onRadioChange" checked="{{options.style}}" lists="{{[ {title:'自然',value:'natural'},{title:'鲜艳',value:'vivid'} ]}}" name="style"></foxRadio>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,169 @@
+{{*避免变量覆盖 重新赋值*}}
+
+{{$new_products=$products}}
+{{dispatch c='public'  a='head'}}
+            <main id="main-container">
+                <!-- Page Header -->
+                <div class="content bg-gray-lighter">
+                    <div class="row items-push">
+                        <div class="col-sm-8">
+                            <h1 class="page-heading">
+                                产品升级&nbsp; <small>升级虚拟主机产品套餐</small>
+                            </h1>
+                        </div>
+                        <div class="col-sm-4 text-right hidden-xs">
+                            <ol class="breadcrumb push-10-t">
+                                <li><a class="link-effect" href="?c=user&a=index">账户首页</a></li>
+								<li>产品升级</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content content-boxed">
+				
+                            <div class="block">
+                                <div class="block-header">
+                                    <ul class="block-options">
+                                        <li>
+                                            <button type="button" data-toggle="block-option" data-action="fullscreen_toggle"></button>
+                                        </li>
+                                        <li>
+                                            <button type="button" data-toggle="block-option" data-action="content_toggle"></button>
+                                        </li>                                    </ul>
+                                    </ul>
+                                    <h3 class="block-title"> 产品升级</h3>
+                                </div>
+                                <div class="block-content bg-gray-lighter">
+                                    <!-- Slick slider (.js-slider class is initialized in App() -> uiHelperSlick()) -->
+                                    <!-- For more info and examples you can check out http://kenwheeler.github.io/slick/ -->
+                                    <div style="height:10px;"></div>
+									<div class="row items-push">
+                                        <div class="col-xs-12 text-left">
+                                            <div class="text-muted">
+											<span style="font-size:14px; color:#666666;">* 升级主机前请确认账户余额足够升级费用，升级费用按当前至到期之间的时间计算费用。</span>
+											</div>
+                                        </div>
+                                    </div>
+									<div style="height:10px;"></div>
+                                    <!-- END Slick slider -->
+                                </div>
+                                <div class="block-content">
+								<div style="height:30px;"></div>
+                                    <form class="form-horizontal" action="?c=product&a=upgrade&name={{$name}}&product_type=n" method="post">
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-2 control-label">选择主机套餐：</label>
+									<div class="col-sm-3">
+									<select name='product_id' onChange='show_product()' id='product' class="form-control">
+									{{foreach from=$new_products item=product}}
+									<option value='{{$product.id}}'>{{$product.name}}</option>
+									{{/foreach}}
+									</select>
+								  </div>
+								</div>
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-2 control-label">升级费用：</label>
+									<label for="inputEmail3" class="col-sm-5 control-label"><div id='price' style="font-size:16px; color:#FF0000;" class="text-left"></div></div>
+										</label>
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-2 control-label"></label>
+									<div class="col-sm-5">
+                                                <button class="btn btn-success"  data-toggle="block-option" data-action="refresh_toggle" data-action-mode="demo" type="submit"><i class="fa fa-upload push-5-r"></i> 升级主机</button> &nbsp; <a class="btn btn-default" href="?c=hosting&a=pageHost"><i class="fa fa-chevron-left push-5-r"></i> 返 回</a>
+									</div>
+										</div>
+                                    </form><div style="height:30px;"></div>
+												
+                                </div>
+                            </div>
+
+				</div>
+			
+
+<script language="javascript">
+
+var name = '{{$name}}';
+function show_product()
+{
+	var p_id = $("#product").val();
+	$.ajax({
+		type:'get',
+		url :'?c=nproduct&a=getById',
+		data:'id=' + p_id,
+		dataType:'json',
+		success:function(ret) {
+			if (ret['code'] != 200) {
+				return alert(ret['msg'] ? ret['msg'] : "获取数据错误");
+			}
+			var p = ret['product'];
+			var str = '';
+			var j = 0;
+			for (var i in p) {
+				
+				if (p[i]['value']) {
+					str += '<div class=\'product_div\'><span class=\'span1\'>'+ p[i]['key'] + ':</span><span class=span2>';
+					if (p[i]['value'] == 'on'){
+						str += "是";	
+					}else {
+						str += p[i]['value'];
+						if (p[i]['description']){
+							str +=  "&nbsp;" + p[i]['description'];
+						}
+					}
+					str +=  '</span></div>';
+					j++;
+					if (j%2==0) {
+						//str += '<br/>';
+					}
+				}
+			}
+			$("#product_info").html(str);
+			show_price();
+		}
+	});
+	
+	
+}
+function show_price()
+{
+	if (name == '') {
+		return alert("获取数据错误");
+	}
+	var p_id = $("#product").val();
+	$.ajax({
+		type:'get',
+		url :'?c=nproduct&a=getUpgradePrice',
+		data:'name=' + name + '&id=' + p_id,
+		dataType:'json',
+		success:function(ret){
+			if (ret['code'] != 200) {
+				return alert("获取升级价格错误");
+			}
+			$("#price").html(ret['price']+ " 元");
+		}
+	});
+	
+}
+
+</script>
+<style type='text/css'>
+.span1{
+	
+	width:50%;
+}
+.product_info {
+	width:100%;
+}
+.span2{
+	width:50%;
+}
+.product_div{
+	float:left;
+	width:50%;
+
+}
+</style>
+<script language='javascript'>
+show_product();
+</script>			
+
+</main>

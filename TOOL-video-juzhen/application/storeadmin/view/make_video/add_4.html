@@ -1,0 +1,852 @@
+<style type="text/css">
+    .recomm_keyword,.no_recomm_keyword{background: #3ca793;padding: 5px ;margin-bottom: 10px;margin-right: 10px;color: #fff;display: inline-block;cursor: pointer;}
+     .delete_keyword{margin-left: 5px;color: #ccc;}
+     .radio label{margin-bottom: 5px;}
+     .jianji_type {display: inline-block;border: 1px solid #fff;padding: 8px 20px;border-radius: 3px;cursor: pointer;}
+     .jianji_type_active,.jianji_type:hover{background: #6f6f6f;}
+     .nr-menu-item-group-title {padding: 0;background: #4c4c4c!important;height: 1px;width: 80%;margin: 10px auto;margin-bottom: 20px;}
+     .red{color: red;margin-right: 5px;font-size: 16px;vertical-align: middle;}
+     .subtitle_font_eg{font-size: 24px;font-weight: initial;letter-spacing: 2px;color: #000;}
+
+
+     .tab-box-div{display:none;}
+     .tab{padding: 1% 5%;}
+    /* 让第一个框显示出来 */
+    .tab-box {padding-top: 25px;clear: both;}
+    .checkIteam{padding-right: 10px;display:inline-block;}
+    .tab-box-div-one{display:block;}
+    /* 改变选项卡选中时候的样式 */
+    .change{color:#70ccf6;border-bottom: 1px solid #1890ff;}
+    #tab-lab{width:25%;display:block;float:left;line-height:22px;border-radius:5px 5px 0px 0px;text-align:center;display:inline-block;line-height: 50px;cursor: pointer;font-size: 20px;}
+    #tab-lab:hover{color:#70ccf6;}
+    #tab-lab span{width: 30px;height: 30px;background: #1890ff;color: #fff;border-radius: 50%;text-align: center;display: inline-block;line-height: 30px;vertical-align: middle;margin-right: 5px;font-size: 16px;}
+    .add_form_view{width: 30%;float: left;}
+    .add_form_tab{width: 68%;float: right;}
+    .add_form_view_content{width: 80%;height: 640px;background: #3e3e3e;margin-top: 30px;margin-left: 50px;border: 5px solid #000;border-radius: 20px;}
+    .add_form_view_top{width: 100%;height: 210px;background: #000;margin-top: 10px;;color: #fff;font-size: 30px;text-align: center;border-radius: 5px;}
+    .add_form_view_main{width: 100%;height: 210px;background: #000;}
+    .add_form_view_foot{width: 100%;height: 200px;background: #000;color: #fff;font-size: 30px;text-align: center;border-radius: 5px;}
+    .muban_li,.muban_li_bottom{width: 100px;float: left;margin-right: 20px;margin-bottom: 10px;}
+    .muban_li img,.muban_li_bottom img{width: 100%;border-radius: 5px;}
+
+    .select_diy{border: 1px solid #a0a0a0;}
+    .select_diy .option{font-size: 18px !important;min-height: 34px !important;;}
+    .form-control {height: 40px;line-height: 40px;}
+    .nice-validator select{padding: 0px;padding-left:10px ;}
+    .top_muban_div{border: 1px solid #676767;border-radius: 5px;padding: 20px;}
+    .bottom_muban_div{border: 1px solid #676767;border-radius: 5px;padding: 20px;margin-top: 20px;}
+
+    .input-group .input-group-addon{    background-color: #2b2b2e;}
+
+    .subtitle_font_top,.subtitle_font_bottom{font-size: 18px;}
+    .subtitle_font_top option,.subtitle_font_bottom option{line-height: 50px;height: 50px;display: inline-block;font-size: 20px;}
+</style>
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+    <div class="add_form_view">
+        <div class="add_form_view_content">
+            <input type="hidden" name="muban[top_bg]" class="top_bg" id="c-top_diy_img" value="{$muban && $muban.top_bg ? $muban.top_bg : 'https://yofan.oss-cn-shanghai.aliyuncs.com/img/muban1.png'}">
+            <input type="hidden" name="muban[bottom_bg]" class="bottom_bg" id="c-bottom_diy_img" value="{$muban && $muban.bottom_bg ? $muban.bottom_bg : 'https://yofan.oss-cn-shanghai.aliyuncs.com/img/muban1.png'}">
+            <div class="add_form_view_top" style="background: url('{$muban && $muban.top_bg ? $muban.top_bg : 'https://yofan.oss-cn-shanghai.aliyuncs.com/img/muban1.png'}') no-repeat;">
+                <p class="subtitle_font_eg subtitle_top_show" style="color: {$muban ? $muban.subtitle_color_top : '#fff'};font-family: {$muban ? $muban.subtitle_font_top : ''};-webkit-text-stroke:1px {$muban ? $muban.subtitle_outline_color_top : '#eaeaea'};top: 40%;position:relative;">
+                    {$muban ? $muban.subtitle_top : '二手车无中间商赚差价'}
+                </p>
+            </div>
+            <div class="add_form_view_main">
+                <img src="https://yofan.oss-cn-shanghai.aliyuncs.com/img/yanshi.png" style="height:208px;width: 100%;">
+            </div>
+            <div class="add_form_view_foot add_form_view_bottom" style="background: url('{$muban && $muban.bottom_bg ? $muban.bottom_bg : 'https://yofan.oss-cn-shanghai.aliyuncs.com/img/muban1.png'}') no-repeat ;">
+                <p style="color: {$muban ? $muban.subtitle_color_bottom : '#fff'};font-family: {$muban ? $muban.subtitle_font_bottom : ''};-webkit-text-stroke:1px {$muban ? $muban.subtitle_outline_color_bottom : '#eaeaea'};top: 10%;position:relative;" class="subtitle_bottom_show subtitle_font_eg_bottom">{$muban ? $muban.subtitle_bottom : '二手车直卖网'}</p>
+            </div>
+        </div>
+    </div>
+    <div class="tab add_form_tab">
+        <div class="tab-menu" style="text-align:center;">
+              <lable id="tab-lab" class="change" name="doctype" value="0" onclick=mymouse(0)><span>1</span>镜头 & 音乐</lable>
+              <lable id="tab-lab" name="doctype" value="1" onclick=mymouse(1)><span>2</span>模板选择</lable>
+              <lable id="tab-lab" name="doctype" value="2" onclick=mymouse(2)><span>3</span>口播字幕</lable>
+              <lable id="tab-lab" name="doctype" value="3" onclick=mymouse(3)><span>4</span>数量 & 效果</lable>
+        </div>
+
+        <div class="nr-menu-item-group-title" style="clear: both;width: 100%;margin-top: 20px;margin-bottom: 10px;"></div>
+
+        <div class="tab-box">
+            <!-- 第1个tab -->
+          <div class="tab-box-div tab-box-div-one">
+                <div class="form-group" >
+                    <label class="control-label col-xs-12 col-sm-2"><span class="red">*</span>任务名称:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <input id="c-title" data-rule="required" class="form-control" name="row[title]" maxlength='20' type="text" value="{$row ? $row.title : ''}" placeholder="随意取一个名字吧">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-xs-12 col-sm-2">视频配音BGM:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <div class="input-group">
+                            <input id="c-bg_audio" class="form-control" size="50" name="row[bg_audio]" readonly="readonly" type="text" value="{$row ? $row.bg_audio : ''}">
+                            <div class="input-group-addon no-border no-padding">
+                                <span><button type="button" id="faupload-bg_audio" class="btn btn-danger faupload" data-input-id="c-bg_audio" data-mimetype="audio/mpeg,audio/ogg,audio/wav,audio/mp3" data-multiple="true" data-preview-id="p-bg_audio"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                                <span><button type="button" id="fachoose-bg_audio" class="btn btn-primary fachoose" data-input-id="c-bg_audio" data-mimetype="audio/mpeg,audio/ogg,audio/wav,audio/mp3" data-multiple="true"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                            </div>
+                            <span class="msg-box n-right" for="c-bg_audio"></span>
+                        </div>
+                        <ul class="row list-inline faupload-preview" id="p-bg_audio"></ul>
+                        <p style="margin-top:5px;color:#888;">音乐格式支持：MP3、ogg、wav</p>
+                    </div>
+                </div>
+                <div class="form-group jianji_type_content">
+                    <label class="control-label col-xs-12 col-sm-2">BGM音量:</label>
+                    <div class="col-xs-12 col-sm-5">
+                        <input id="range" type="range" min="1" max="10" value="{$row ? $row.bg_volume : 10}" name="row[bg_volume]" onchange="change()" style="display:inline-block;width: 90%;">
+                        <span id="value" style="display:inline-block;font-size: 16px;">{$row ? $row.bg_volume : 10}</span>
+                        <p style="margin-top:5px;color:#888;">默认10为原始音量，需要调节低音量请调节</p>
+                    </div>
+                </div>
+
+                <div class="nr-menu-item-group-title"></div>
+
+                <style type="text/css">
+                    .scene{background: #383838;padding: 20px 0 1px 0;border-radius: 5px;}
+                    .add_scene{width: 100px;line-height: 35px;border-radius: 5px;margin: 10px auto;background: #f34f68;color: #fff;text-align: center;cursor: pointer;}
+                    .scene_block{margin-bottom: 20px;border-bottom: 1px solid #565656;}
+                    .input-group-addon{width: unset;}
+                </style>
+                <div class="scene">
+                    {if $scene}
+                        {foreach $scene as $s_k=>$s_v}
+                            <div class="scene{$s_k+1} scene_block" >
+                                <div class="form-group">
+                                    <label class="control-label col-xs-12 col-sm-2"><span class="red">*</span>镜头{$s_k+1}配置:</label>
+                                    <div class="col-xs-12 col-sm-2">
+                                        <input id="c-scene{$s_k+1}_start"  class="form-control" name="scene[scene{$s_k+1}_start]" type="number" value="{$scene ? $s_v.start : ''}" placeholder="0(秒)">
+                                    </div>
+                                    <div class="col-xs-12 col-sm-1">
+                                        <label class="control-label">至</label>
+                                    </div>
+                                    
+                                    <div class="col-xs-12 col-sm-2">
+                                        <input id="c-scene{$s_k+1}_end" class="form-control" name="scene[scene{$s_k+1}_end]" onchange="change_value({$s_k+1})" maxlength='20' type="number" value="{$scene ? $s_v.end : ''}" placeholder="2(秒)">
+                                    </div>
+                                    <div class="col-xs-12 col-sm-4">
+                                        <input id="c-scene{$s_k+1}_subtitle" class="form-control" name="scene[scene{$s_k+1}_subtitle]"  type="text" value="{$scene ? $s_v.subtitle : ''}" placeholder="旁白，10个字预计2.5秒">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-xs-12 col-sm-2"><span class="red">*</span>镜头{$s_k+1}素材:</label>
+                                    <div class="col-xs-12 col-sm-8">
+                                        <div class="input-group">
+                                            <input id="c-scene{$s_k+1}" class="form-control" size="50" name="scene[scene{$s_k+1}]" type="hidden" readonly="readonly" value="{$scene ? $s_v.video : ''}" >
+                                            <div class="input-group-addon no-border no-padding">
+                                                <span><button type="button" id="faupload-scene{$s_k+1}" class="btn btn-danger faupload" data-input-id="c-scene{$s_k+1}" data-mimetype="video/webm,video/mp4,MOV,video/ogg,image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="true" data-preview-id="p-scene{$s_k+1}"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                                                <span><button type="button" id="fachoose-scene{$s_k+1}" class="btn btn-primary fachoose" data-input-id="c-scene{$s_k+1}" data-mimetype="video/webm,video/mp4,MOV,video/ogg" data-multiple="true"> {:__('Choose')}视频</button></span>
+                                            </div>
+                                            <span class="msg-box n-right" for="c-scene{$s_k+1}"></span>
+                                            <p style="margin-top:10px;color:#888;margin-left:10px;">素材大小：1280 * 720 px</p>
+                                        </div>
+                                        <ul class="row list-inline faupload-preview" id="p-scene{$s_k+1}"></ul>
+                                    </div>
+                                </div>
+                            </div>
+                        {/foreach}                  
+                    {/if}
+                </div>  
+
+                <div class="add_scene" id="add_scene">添加镜头+</div>
+
+                <div class="form-group jianji_type_content" style="margin-top:30px;">
+                    <label class="control-label col-xs-12 col-sm-2">镜头原声音量:</label>
+                    <div class="col-xs-12 col-sm-5">
+                        <input id="range_video_volume" type="range" min="0" max="10" value="{$row ? $row.video_volume : 0}" name="row[video_volume]" onchange="change_video_volume()" style="display:inline-block;width: 90%;">
+                        <span id="value_video_volume" style="display:inline-block;font-size: 16px;">{$row ? $row.video_volume : 0}</span>
+                        <p style="margin-top:5px;color:#888;">默认0为关闭原声，需要调节低音量请调节</p>
+                    </div>
+                </div>
+          </div>
+
+          <div class="tab-box-div">
+                <div class="top_muban_div">
+                    <div class="form-group">
+                        <label class="control-label col-xs-12 col-sm-2">上模板:</label>
+                        <div class="col-xs-12 col-sm-10">
+                            <div class="muban_li">
+                                <img src="https://yofan.oss-cn-shanghai.aliyuncs.com/img/muban1.png" >
+                            </div>
+                            <div class="muban_li">
+                                <img src="https://yofan.oss-cn-shanghai.aliyuncs.com/img/muban2.png" >
+                            </div>
+                            <div class="muban_li">
+                                <img src="https://yofan.oss-cn-shanghai.aliyuncs.com/img/muban3.png" >
+                            </div>
+                            <div class="muban_li">
+                                <img src="https://yofan.oss-cn-shanghai.aliyuncs.com/img/muban4.png" >
+                            </div>
+                            <div class="muban_li">
+                                <img src="https://yofan.oss-cn-shanghai.aliyuncs.com/img/muban5.png" >
+                            </div>
+                            <div class="muban_li">
+                                <img src="https://yofan.oss-cn-shanghai.aliyuncs.com/img/muban6.png" >
+                            </div>
+                            <div class="col-xs-12 col-sm-8">
+                                <div class="input-group">
+                                    <div class="input-group-addon no-border no-padding">
+                                        <span><button type="button" style="height:58px;margin-left: -15px;background: #4CAF50;" id="faupload-top_diy_img" class="btn btn-danger faupload" data-input-id="c-top_diy_img" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false" data-preview-id="p-top_diy_img"><i class="fa fa-upload"></i> 自定义{:__('Upload')}</button></span>
+                                        <span><button type="button" style="height:58px;margin-left: 15px;" id="fachoose-top_diy_img" class="btn btn-primary fachoose" data-input-id="c-top_diy_img" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false"> {:__('Choose')}图片</button></span>
+
+                                        <span style="margin-top:10px;color:#888;margin-left:10px;">素材大小：1280 * 720 px</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group jianji_type_content">
+                        <label class="control-label col-xs-12 col-sm-2">上模板横幅:</label>
+                        <div class="col-xs-12 col-sm-3  ">
+                            <input id="c-subtitle"  class="form-control" name="muban[subtitle_top]"  type="text" value="{$muban ? $muban.subtitle_top : '二手车无中间商赚差价'}" placeholder="请输入上模板横幅">
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            <select  class="form-control subtitle_font_top"  name="muban[subtitle_font_top]">
+                                <option  value="">默认字体</option>
+                                <option  style="font-family:bdt;" value="bdt" {if $muban && $muban['subtitle_font_top']=='bdt'}selected{/if}>模板字体1</option>
+                                <option  style="font-family:mmdt;" value="mmdt" {if $muban && $muban['subtitle_font_top']=='mmdt'}selected{/if}>模板字体2</option>
+                                <option  style="font-family:mqrtt;" value="mqrtt" {if $muban && $muban['subtitle_font_top']=='mqrtt'}selected{/if}>模板字体3</option>
+                                <option  style="font-family:zgzh;" value="zgzh" {if $muban && $muban['subtitle_font_top']=='zgzh'}selected{/if}>模板字体4</option>
+                                <option  style="font-family:xklt;" value="xklt" {if $muban && $muban['subtitle_font_top']=='xklt'}selected{/if}>模板字体5</option>
+                                <option  style="font-family:fzxft;" value="fzxft" {if $muban && $muban['subtitle_font_top']=='fzxft'}selected{/if}>模板字体6</option>
+                                <option  style="font-family:jyh;" value="jyh" {if $muban && $muban['subtitle_font_top']=='jyh'}selected{/if}>模板字体7</option>
+                                <option  style="font-family:zkcjh;" value="zkcjh" {if $muban && $muban['subtitle_font_top']=='zkcjh'}selected{/if}>模板字体8</option>
+                                <option  style="font-family:xyh;" value="xyh" {if $muban && $muban['subtitle_font_top']=='xyh'}selected{/if}>模板字体9</option>
+                                <option  style="font-family:lmzyt;" value="lmzyt" {if $muban && $muban['subtitle_font_top']=='lmzyt'}selected{/if}>模板字体10</option>
+                                <option  style="font-family:jjcjh;" value="jjcjh" {if $muban && $muban['subtitle_font_top']=='jjcjh'}selected{/if}>模板字体11</option>
+                                <option  style="font-family:yqllt;" value="yqllt" {if $muban && $muban['subtitle_font_top']=='yqllt'}selected{/if}>模板字体12</option>
+                                <option  style="font-family:fyh;" value="fyh" {if $muban && $muban['subtitle_font_top']=='fyh'}selected{/if}>模板字体13</option>
+                                <option  style="font-family:xbl;" value="xbl" {if $muban && $muban['subtitle_font_top']=='xbl'}selected{/if}>模板字体14</option>
+                                <option  style="font-family:yrh;" value="yrh" {if $muban && $muban['subtitle_font_top']=='yrh'}selected{/if}>模板字体15</option>
+                                <option  style="font-family:flh;" value="flh" {if $muban && $muban['subtitle_font_top']=='flh'}selected{/if}>模板字体16</option>
+                                <option  style="font-family:yycsh;" value="yycsh" {if $muban && $muban['subtitle_font_top']=='yycs'}selected{/if}>模板字体17</option>
+                                <option  style="font-family:xylht;" value="xylht" {if $muban && $muban['subtitle_font_top']=='xylht'}selected{/if}>模板字体18</option>
+                                <option  style="font-family:dlt;" value="dlt" {if $muban && $muban['subtitle_font_top']=='dlt'}selected{/if}>模板字体19</option>
+                            </select>
+
+                        </div>
+                        <div class="col-xs-12 col-sm-1" >
+                            <input type="color" name="muban[subtitle_color_top]" class="subtitle_color_top" style="height: 40px;" value="{$muban && $muban.subtitle_color_top ? $muban.subtitle_color_top : '#ffffff'}">
+                        </div>
+                        <div class="col-xs-12 col-sm-2" >
+                            <select  class="form-control alignment_top" name="muban[alignment_top]" >
+                                <option value="10" {if ($muban && $muban.alignment_top==10) }selected{/if}>距顶部10%</option>
+                                <option value="15" {if (($muban && $muban.alignment_top==15) || !$muban || $muban.alignment_top==0)}selected{/if}>距顶部15%</option>
+                                <option value="20" {if ($muban && $muban.alignment_top==20)}selected{/if}>距顶部20%</option>
+                                <option value="25" {if ($muban && $muban.alignment_top==25)}selected{/if}>距顶部25%</option>
+                                <option value="30" {if ($muban && $muban.alignment_top==30)}selected{/if}>距顶部30%</option>
+                                <option value="35" {if ($muban && $muban.alignment_top==35)}selected{/if}>距顶部35%</option>
+                                <option value="40" {if ($muban && $muban.alignment_top==40)}selected{/if}>距顶部40%</option>
+                                <option value="45" {if ($muban && $muban.alignment_top==45)}selected{/if}>距顶部45%</option>
+                                <option value="50" {if ($muban && $muban.alignment_top==50)}selected{/if}>距顶部50%</option>
+                                <option value="55" {if ($muban && $muban.alignment_top==55)}selected{/if}>距顶部55%</option>
+                                <option value="60" {if ($muban && $muban.alignment_top==60)}selected{/if}>距顶部60%</option>
+                                <option value="65" {if ($muban && $muban.alignment_top==65)}selected{/if}>距顶部65%</option>
+                                <option value="70" {if ($muban && $muban.alignment_top==70)}selected{/if}>距顶部70%</option>
+                                <option value="75" {if ($muban && $muban.alignment_top==75)}selected{/if}>距顶部75%</option>
+                                <option value="80" {if ($muban && $muban.alignment_top==80)}selected{/if}>距顶部80%</option>
+                                <option value="85" {if ($muban && $muban.alignment_top==85)}selected{/if}>距顶部85%</option>
+                                <option value="90" {if ($muban && $muban.alignment_top==90)}selected{/if}>距顶部90%</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-12 col-sm-2" >
+                            <input id="c-subtitle_site_top" data-rule="range(70~120)" class="form-control" name="muban[subtitle_site_top]"  type="number" value="{$muban ? $muban.subtitle_site_top : '90'}" placeholder="字体大小,建议：100">
+                        </div>
+
+                    </div>
+
+                    <div class="form-group jianji_type_content">
+                        <div class="col-xs-12 col-sm-2" >
+                        </div>
+                        <div class="col-xs-12 col-sm-8" >
+                            <p style="margin-top:-5px;color:#888;">分别对应：横幅描述、横幅样式、字体颜色、横幅距离顶部位置、字体大小</p>
+                            <p style="margin-top:-5px;color:#83f104;">换行请用 /r/n 间隔开，默认每10个字自动换行</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group jianji_type_content">
+                        <label class="control-label col-xs-12 col-sm-2">描边/描边颜色</label>
+                        <div class="col-xs-12 col-sm-6" >
+                            <select  class="form-control" name="muban[subtitle_outline_top]">
+                                <option value="0" {if ($muban && $muban.subtitle_outline_top==0)}selected{/if}>无描边</option>
+                                <option value="1" {if ($muban && $muban.subtitle_outline_top==1)}selected{/if}>1像素</option>
+                                <option value="2" {if ($muban && $muban.subtitle_outline_top==2)}selected{/if}>2像素</option>
+                                <option value="3" {if ($muban && $muban.subtitle_outline_top==3)}selected{/if}>3像素</option>
+                                <option value="4" {if ($muban && $muban.subtitle_outline_top==4)}selected{/if}>4像素</option>
+                                <option value="5" {if ($muban && $muban.subtitle_outline_top==5)}selected{/if}>5像素</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-12 col-sm-1" >
+                            <input type="color" name="muban[subtitle_outline_color_top]" class="subtitle_outline_color_top" style="height: 40px;" value="{$muban ? $muban.subtitle_outline_color_top : ''}">
+                        </div>
+                        
+                    </div>
+                </div>
+                <!-- ---------------------------------------------- -->
+                <div class="bottom_muban_div">
+                    <div class="form-group">
+                        <label class="control-label col-xs-12 col-sm-2">下模板:</label>
+                        <div class="col-xs-12 col-sm-10">
+                            <div class="muban_li_bottom">
+                                <img src="https://yofan.oss-cn-shanghai.aliyuncs.com/img/muban1.png" >
+                            </div>
+                            <div class="muban_li_bottom">
+                                <img src="https://yofan.oss-cn-shanghai.aliyuncs.com/img/muban2.png" >
+                            </div>
+                            <div class="muban_li_bottom">
+                                <img src="https://yofan.oss-cn-shanghai.aliyuncs.com/img/muban3.png" >
+                            </div>
+                            <div class="muban_li_bottom">
+                                <img src="https://yofan.oss-cn-shanghai.aliyuncs.com/img/muban4.png" >
+                            </div>
+                            <div class="muban_li_bottom">
+                                <img src="https://yofan.oss-cn-shanghai.aliyuncs.com/img/muban5.png" >
+                            </div>
+                            <div class="muban_li_bottom">
+                                <img src="https://yofan.oss-cn-shanghai.aliyuncs.com/img/muban6.png" >
+                            </div>
+                            <div class="col-xs-12 col-sm-8">
+                                <div class="input-group">
+                                    <div class="input-group-addon no-border no-padding">
+                                        <span><button style="height:58px;margin-left: -15px;background: #4CAF50;" type="button" id="faupload-bottom_diy_img" class="btn btn-danger faupload" data-input-id="c-bottom_diy_img" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false" data-preview-id="p-bottom_diy_img"><i class="fa fa-upload"></i> 自定义{:__('Upload')}</button></span>
+                                        <span><button type="button" style="height:58px;margin-left: 15px;" id="fachoose-bottom_diy_img" class="btn btn-primary fachoose" data-input-id="c-bottom_diy_img" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false"> {:__('Choose')}图片</button></span>
+                                        <span style="margin-top:10px;color:#888;margin-left:10px;">素材大小：1280 * 720 px</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group jianji_type_content">
+                        <label class="control-label col-xs-12 col-sm-2">下模板横幅:</label>
+                        <div class="col-xs-12 col-sm-3  ">
+                            <input id="c-subtitle_bottom"  class="form-control" name="muban[subtitle_bottom]"  type="text" value="{$muban ? $muban.subtitle_bottom : '二手车直卖网'}" placeholder="下模板横幅文字">
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            <select  class="form-control subtitle_font_bottom"  name="muban[subtitle_font_bottom]">
+                                <option  value="">默认字体</option>
+                                <option  style="font-family:bdt;" value="bdt" {if $muban && $muban['subtitle_font_bottom']=='bdt'}selected{/if}>模板字体1</option>
+                                <option  style="font-family:mmdt;" value="mmdt" {if $muban && $muban['subtitle_font_bottom']=='mmdt'}selected{/if}>模板字体2</option>
+                                <option  style="font-family:mqrtt;" value="mqrtt" {if $muban && $muban['subtitle_font_bottom']=='mqrtt'}selected{/if}>模板字体3</option>
+                                <option  style="font-family:zgzh;" value="zgzh" {if $muban && $muban['subtitle_font_bottom']=='zgzh'}selected{/if}>模板字体4</option>
+                                <option  style="font-family:xklt;" value="xklt" {if $muban && $muban['subtitle_font_bottom']=='xklt'}selected{/if}>模板字体5</option>
+                                <option  style="font-family:fzxft;" value="fzxft" {if $muban && $muban['subtitle_font_bottom']=='fzxft'}selected{/if}>模板字体6</option>
+                                <option  style="font-family:jyh;" value="jyh" {if $muban && $muban['subtitle_font_bottom']=='jyh'}selected{/if}>模板字体7</option>
+                                <option  style="font-family:zkcjh;" value="zkcjh" {if $muban && $muban['subtitle_font_bottom']=='zkcjh'}selected{/if}>模板字体8</option>
+                                <option  style="font-family:xyh;" value="xyh" {if $muban && $muban['subtitle_font_bottom']=='xyh'}selected{/if}>模板字体9</option>
+                                <option  style="font-family:lmzyt;" value="lmzyt" {if $muban && $muban['subtitle_font_bottom']=='lmzyt'}selected{/if}>模板字体10</option>
+                                <option  style="font-family:jjcjh;" value="jjcjh" {if $muban && $muban['subtitle_font_bottom']=='jjcjh'}selected{/if}>模板字体11</option>
+                                <option  style="font-family:yqllt;" value="yqllt" {if $muban && $muban['subtitle_font_bottom']=='yqllt'}selected{/if}>模板字体12</option>
+                                <option  style="font-family:fyh;" value="fyh" {if $muban && $muban['subtitle_font_bottom']=='fyh'}selected{/if}>模板字体13</option>
+                                <option  style="font-family:xbl;" value="xbl" {if $muban && $muban['subtitle_font_bottom']=='xbl'}selected{/if}>模板字体14</option>
+                                <option  style="font-family:yrh;" value="yrh" {if $muban && $muban['subtitle_font_bottom']=='yrh'}selected{/if}>模板字体15</option>
+                                <option  style="font-family:flh;" value="flh" {if $muban && $muban['subtitle_font_bottom']=='flh'}selected{/if}>模板字体16</option>
+                                <option  style="font-family:yycsh;" value="yycsh" {if $muban && $muban['subtitle_font_bottom']=='yycs'}selected{/if}>模板字体17</option>
+                                <option  style="font-family:xylht;" value="xylht" {if $muban && $muban['subtitle_font_bottom']=='xylht'}selected{/if}>模板字体18</option>
+                                <option  style="font-family:dlt;" value="dlt" {if $muban && $muban['subtitle_font_bottom']=='dlt'}selected{/if}>模板字体19</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-12 col-sm-1" >
+                            <input type="color" name="muban[subtitle_color_bottom]" class="subtitle_color_bottom" style="height: 40px;" value="{$muban && $muban.subtitle_color_bottom ? $muban.subtitle_color_bottom : '#ffffff'}">
+                        </div>
+                        <div class="col-xs-12 col-sm-2" >
+                            <select  class="form-control alignment_bottom" name="muban[alignment_bottom]" >
+                                <option value="10" {if ($muban && $muban.alignment_bottom==10) }selected{/if}>距顶部10%</option>
+                                <option value="15" {if ($muban && $muban.alignment_bottom==15)}selected{/if}>距顶部15%</option>
+                                <option value="20" {if ($muban && $muban.alignment_bottom==20)}selected{/if}>距顶部20%</option>
+                                <option value="25" {if ($muban && $muban.alignment_bottom==25)}selected{/if}>距顶部25%</option>
+                                <option value="30" {if ($muban && $muban.alignment_bottom==30)}selected{/if}>距顶部30%</option>
+                                <option value="35" {if ($muban && $muban.alignment_bottom==35)}selected{/if}>距顶部35%</option>
+                                <option value="40" {if ($muban && $muban.alignment_bottom==40)}selected{/if}>距顶部40%</option>
+                                <option value="45" {if ($muban && $muban.alignment_bottom==45)}selected{/if}>距顶部45%</option>
+                                <option value="50" {if ($muban && $muban.alignment_bottom==50)}selected{/if}>距顶部50%</option>
+                                <option value="55" {if ($muban && $muban.alignment_bottom==55)}selected{/if}>距顶部55%</option>
+                                <option value="60" {if ($muban && $muban.alignment_bottom==60)}selected{/if}>距顶部60%</option>
+                                <option value="65" {if ($muban && $muban.alignment_bottom==65)}selected{/if}>距顶部65%</option>
+                                <option value="70" {if (($muban && $muban.alignment_bottom==70) || !$muban || $muban.alignment_bottom==0)}selected{/if}>距顶部70%</option>
+                                <option value="75" {if ($muban && $muban.alignment_bottom==75)}selected{/if}>距顶部75%</option>
+                                <option value="80" {if ($muban && $muban.alignment_bottom==80)}selected{/if}>距顶部80%</option>
+                                <option value="85" {if ($muban && $muban.alignment_bottom==85)}selected{/if}>距顶部85%</option>
+                                <option value="90" {if ($muban && $muban.alignment_bottom==90)}selected{/if}>距顶部90%</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-12 col-sm-2" >
+                            <input id="c-subtitle_site_bottom" data-rule="range(70~120)" class="form-control" name="muban[subtitle_site_bottom]"  type="number" value="{$muban ? $muban.subtitle_site_bottom : '90'}" placeholder="字体大小,建议：100">
+                        </div>
+
+                    </div>
+
+                    <div class="form-group jianji_type_content">
+                        <div class="col-xs-12 col-sm-2" >
+                        </div>
+                        <div class="col-xs-12 col-sm-8" >
+                            <p style="margin-top:-5px;color:#888;">分别对应：横幅描述、横幅样式、字体颜色、横幅距离顶部位置、字体大小</p>
+                            <p style="margin-top:-5px;color:#83f104;">换行请用 /r/n 间隔开，默认每10个字自动换行</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group jianji_type_content">
+                        <label class="control-label col-xs-12 col-sm-2">描边/描边颜色</label>
+                        <div class="col-xs-12 col-sm-6" >
+                            <select  class="form-control" name="muban[subtitle_outline_bottom]">
+                                <option value="0" {if ($muban && $muban.subtitle_outline_bottom==0)}selected{/if}>无描边</option>
+                                <option value="1" {if ($muban && $muban.subtitle_outline_bottom==1)}selected{/if}>1像素</option>
+                                <option value="2" {if ($muban && $muban.subtitle_outline_bottom==2)}selected{/if}>2像素</option>
+                                <option value="3" {if ($muban && $muban.subtitle_outline_bottom==3)}selected{/if}>3像素</option>
+                                <option value="4" {if ($muban && $muban.subtitle_outline_bottom==4)}selected{/if}>4像素</option>
+                                <option value="5" {if ($muban && $muban.subtitle_outline_bottom==5)}selected{/if}>5像素</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-12 col-sm-1" >
+                            <input type="color" name="muban[subtitle_outline_color_bottom]" class="subtitle_outline_color_bottom" style="height: 40px;" value="{$muban ? $muban.subtitle_outline_color_bottom : ''}">
+                        </div>
+                        
+                    </div>
+                </div>
+          </div>    
+
+          <!-- 第二个tab -->
+          <div class="tab-box-div">
+                
+
+
+                <!-- <div class="nr-menu-item-group-title jianji_type_content"></div> -->
+
+                <!-- <div class="form-group jianji_type_content">
+                    <label class="control-label col-xs-12 col-sm-2">字幕颜色:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <label>
+                            <input type="radio" name="row[sound_type]" {if ($row && $row.sound_type=='white_grad')}checked{/if} value="white_grad"> 
+                            <img src="https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/4238045461/p406887.png" />
+                        </label>
+                    </div>
+                </div> -->
+
+                <div class="form-group jianji_type_content">
+                    <label class="control-label col-xs-12 col-sm-2">字幕显示:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <div class="radio">
+                            <label >
+                                <input type="radio" name="row[open_subtitle]"  {if ($row && $row.open_subtitle==1) || !$row}checked{/if} value="1">开启
+                            </label>
+                            <label>
+                                <input type="radio" name="row[open_subtitle]" {if ($row && $row.open_subtitle==0)}checked{/if} value="0">关闭
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group jianji_type_content">
+                    <label class="control-label col-xs-12 col-sm-2">解说语速:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <div class="radio">
+                            <label >
+                                <input type="radio" name="row[speed]"  {if ($row && $row.speed==1.0) || !$row}checked{/if} value="1">正常
+                            </label>
+                            <label >
+                                <input type="radio" name="row[speed]"  {if ($row && $row.speed==1.2)}checked{/if} value="1.2">1.2倍速
+                            </label>
+                            <label >
+                                <input type="radio" name="row[speed]"  {if ($row && $row.speed==1.3)}checked{/if} value="1.3">1.3倍速
+                            </label>
+                            <label >
+                                <input type="radio" name="row[speed]"  {if ($row && $row.speed==1.5)}checked{/if} value="1.5">1.5倍速
+                            </label>
+                            <label >
+                                <input type="radio" name="row[speed]"  {if ($row && $row.speed==2)}checked{/if} value="2">2倍速
+                            </label>
+                        </div>
+                        <p style="color:#999">常规语速：10个字需要2.5秒（不含逗号）</p>
+                    </div>
+
+                </div>
+
+
+                <div class="form-group jianji_type_content">
+                    <label class="control-label col-xs-12 col-sm-2">字幕大小/颜色:</label>
+                    <div class="col-xs-12 col-sm-6" >
+                        <input id="c-sound_text_size" data-rule="range(45~80)" class="form-control" name="row[sound_text_size]"  type="number" value="{$row && $row.sound_text_size ? $row.sound_text_size : 55}" placeholder="字体大小,建议：55">
+                    </div>
+                    <div class="col-xs-12 col-sm-2" >
+                        <input type="color" name="row[sound_text_color]" class="sound_text_color" style="height: 33px;" value="{$row && $row.sound_text_color ? $row.sound_text_color : '#ffffff'}">
+                    </div>
+                </div>
+                <div class="form-group jianji_type_content">
+                    <label class="control-label col-xs-12 col-sm-2">描边大小/颜色:</label>
+                    <div class="col-xs-12 col-sm-6" >
+                        <input id="c-sound_text_outline" data-rule="range(1~5)" class="form-control" name="row[sound_text_outline]"  type="number" value="{$row && $row.sound_text_outline ? $row.sound_text_outline : 3}" placeholder="字体大小,建议：3">
+                    </div>
+                    <div class="col-xs-12 col-sm-2" >
+                        <input type="color" name="row[sound_text_outline_color]" class="sound_text_outline_color" style="height: 33px;" value="{$row && $row.sound_text_outline_color ? $row.sound_text_outline_color : '#000000'}">
+                    </div>
+                </div>
+
+                <div class="form-group jianji_type_content">
+                    <label class="control-label col-xs-12 col-sm-2">位置(距离顶部百分比):</label>
+                    <div class="col-xs-12 col-sm-6" >
+                        <select  class="form-control" name="row[subtitle_alignment]">
+                            <option value="0"  {if ($row && $row.subtitle_alignment==0)}selected{/if}>随机(顶部/居中/底部)</option>
+                            <option value="10" {if ($row && $row.subtitle_alignment==10)}selected{/if}>10%</option>
+                            <option value="15" {if ($row && $row.subtitle_alignment==15)}selected{/if}>15%</option>
+                            <option value="20" {if ($row && $row.subtitle_alignment==20)}selected{/if}>20%</option>
+                            <option value="25" {if ($row && $row.subtitle_alignment==25)}selected{/if}>25%</option>
+                            <option value="30" {if ($row && $row.subtitle_alignment==30)}selected{/if}>30%</option>
+                            <option value="35" {if ($row && $row.subtitle_alignment==35)}selected{/if}>35%</option>
+                            <option value="40" {if ($row && $row.subtitle_alignment==40)}selected{/if}>40%</option>
+                            <option value="45" {if ($row && $row.subtitle_alignment==45)}selected{/if}>45%</option>
+                            <option value="50" {if ($row && $row.subtitle_alignment==50)}selected{/if}>50%</option>
+                            <option value="55" {if ($row && $row.subtitle_alignment==55)}selected{/if}>55%</option>
+                            <option value="60" {if ($row && $row.subtitle_alignment==60)}selected{/if}>60%</option>
+                            <option value="65" {if ($row && $row.subtitle_alignment==65)}selected{/if}>65%</option>
+                            <option value="70" {if ($row && $row.subtitle_alignment==70)}selected{/if}>70%</option>
+                            <option value="75" {if ($row && $row.subtitle_alignment==75)}selected{/if}>75%</option>
+                            <option value="80" {if (($row && $row.subtitle_alignment==80) || !$row)}selected{/if}>80%</option>
+                            <option value="85" {if ($row && $row.subtitle_alignment==85)}selected{/if}>85%</option>
+                            <option value="90" {if ($row && $row.subtitle_alignment==90)}selected{/if}>90%</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group jianji_type_content">
+                    <label class="control-label col-xs-12 col-sm-2">解说语音包:</label>
+                    <div class="col-xs-12 col-sm-10">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="row[sound_type]" {if ($row && $row.sound_type=='aiyue') || !$row}checked{/if} value="aiyue">艾悦 
+                                <a href="https://ice-pub-media.myalicdn.com/smart/tts-audio/aiyue.MP3?spm=a2c4g.11186623.0.0.e3ef30b1koMnqv&file=aiyue.MP3" target="_blank">[温柔女]</a>
+                            </label>
+                            <label>
+                                <input type="radio" name="row[sound_type]" {if ($row && $row.sound_type=='zhitian')}checked{/if} value="zhitian">知甜 
+                                <a href="https://ice-pub-media.myalicdn.com/smart/tts-audio/zhitian.MP3?spm=a2c4g.11186623.0.0.e3ef30b1koMnqv&file=zhitian.MP3" target="_blank">[甜美女]</a>
+                            </label>
+                            <label>
+                                <input type="radio" name="row[sound_type]" {if ($row && $row.sound_type=='xiaoyun')}checked{/if} value="xiaoyun">小云 
+                                <a href="https://ice-pub-media.myalicdn.com/smart/tts-audio/xiaoyun.MP3?spm=a2c4g.11186623.0.0.e3ef30b1koMnqv&file=xiaoyun.MP3" target="_blank">[标准女]</a>
+                            </label>
+                            <label>
+                                <input type="radio" name="row[sound_type]" {if ($row && $row.sound_type=='ruoxi')}checked{/if} value="ruoxi">若兮 
+                                <a href="https://ice-pub-media.myalicdn.com/smart/tts-audio/ruoxi.MP3?spm=a2c4g.11186623.0.0.e3ef30b1koMnqv&file=ruoxi.MP3" target="_blank">[标准女]</a>
+                            </label>
+                            <label>
+                                <input type="radio" name="row[sound_type]" {if ($row && $row.sound_type=='jiajia')}checked{/if} value="jiajia">佳佳 
+                                <a href="https://ice-pub-media.myalicdn.com/smart/tts-audio/jiajia.MP3?spm=a2c4g.11186623.0.0.e3ef30b1koMnqv&file=jiajia.MP3" target="_blank">[粤语女]</a>
+                            </label>
+                            <label>
+                                <input type="radio" name="row[sound_type]" {if ($row && $row.sound_type=='aiwei')}checked{/if} value="aiwei">艾薇 
+                                <a href="https://ice-pub-media.myalicdn.com/smart/tts-audio/aiwei.MP3?spm=a2c4g.11186623.0.0.e3ef30b1koMnqv&file=aiwei.MP3" target="_blank">[萝莉女]</a>
+                            </label>
+                            <label>
+                                <input type="radio" name="row[sound_type]" {if ($row && $row.sound_type=='zhiqing')}checked{/if} value="zhiqing">知青 
+                                <a href="https://ice-pub-media.myalicdn.com/smart/tts-audio/zhiqing.MP3?spm=a2c4g.11186623.0.0.e3ef30b1koMnqv&file=zhiqing.MP3" target="_blank">[台湾女]</a>
+                            </label>
+
+                            <label>
+                                <input type="radio" name="row[sound_type]"  {if ($row && $row.sound_type=='aida')}checked{/if} value="aida">艾达 
+                                <a href="https://ice-pub-media.myalicdn.com/smart/tts-audio/aida.MP3?spm=a2c4g.11186623.0.0.e3ef30b1koMnqv&file=aida.MP3" target="_blank">[标准男]</a>
+                            </label>
+                            <label>
+                                <input type="radio" name="row[sound_type]" {if ($row && $row.sound_type=='aishuo')}checked{/if} value="aishuo">艾硕 
+                                <a href="https://ice-pub-media.myalicdn.com/smart/tts-audio/aishuo.MP3?spm=a2c4g.11186623.0.0.e3ef30b1koMnqv&file=aishuo.MP3" target="_blank">[自然男]</a>
+                            </label>
+                            <label>
+                                <input type="radio" name="row[sound_type]" {if ($row && $row.sound_type=='xiaoze')}checked{/if} value="xiaoze">小泽 
+                                <a href="https://ice-pub-media.myalicdn.com/smart/tts-audio/xiaoze.MP3?spm=a2c4g.11186623.0.0.e3ef30b1koMnqv&file=xiaoze.MP3" target="_blank">[湖南男]</a>
+                            </label>
+                            <label>
+                                <input type="radio" name="row[sound_type]" {if ($row && $row.sound_type=='kenny')}checked{/if} value="kenny">Kenny 
+                                <a href="https://ice-pub-media.myalicdn.com/smart/tts-audio/kenny.MP3?spm=a2c4g.11186623.0.0.e3ef30b1koMnqv&file=kenny.MP3" target="_blank">[沉稳男]</a>
+                            </label>
+                            <label>
+                                <input type="radio" name="row[sound_type]" {if ($row && $row.sound_type=='jielidou')}checked{/if} value="jielidou">杰力豆 
+                                <a href="https://ice-pub-media.myalicdn.com/smart/tts-audio/jielidou.MP3?spm=a2c4g.11186623.0.0.e3ef30b1koMnqv&file=jielidou.MP3" target="_blank">[童声男]</a>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+          </div>
+
+
+          <!-- 第3个tab -->
+        <div class="tab-box-div">
+            <div class="form-group ">
+                <label class="control-label col-xs-12 col-sm-2"><span class="red">*</span>视频尺寸:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <div class="radio">
+                        <label >
+                            <input type="radio" name="row[view_size]"  {if ($row && $row.view_size==1) || !$row}checked{/if} value="1">手机竖屏版
+                        </label>
+                        <label>
+                            <input type="radio" name="row[view_size]" {if ($row && $row.view_size==2)}checked{/if} value="2">电脑横屏版
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <input type="hidden" name="row[type]" value="4">
+
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-2"><span class="red">*</span>剪辑视频数:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input id="c-video_count" data-rule="required;range(1~100)" class="form-control" name="row[video_count]" type="number" maxlength="2" value="{$row ? $row.video_count : 1}" placeholder="剪辑视频数">
+                </div>
+            </div>
+
+            <div class="nr-menu-item-group-title jianji_type_content"></div>
+
+            <div class="form-group jianji_type_content">
+                <label class="control-label col-xs-12 col-sm-2">随机转场:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="row[transition_open]" {if ($row && $row.transition_open==1) || !$row}checked{/if} value="1">开启
+                        </label>
+                        <label>
+                            <input type="radio" name="row[transition_open]" {if ($row && $row.transition_open==0)}checked{/if} value="0">关闭
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group jianji_type_content">
+                <label class="control-label col-xs-12 col-sm-2">随机滤镜:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="row[filter_open]" {if ($row && $row.filter_open==1)}checked{/if} value="1">开启
+                        </label>
+                        <label>
+                            <input type="radio" name="row[filter_open]" {if ($row && $row.filter_open==0) || !$row}checked{/if} value="0">关闭
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-2">画面贴纸:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="row[sticker_open]" checked value="1">开启
+                        </label>
+                        <label>
+                            <input type="radio" name="row[sticker_open]"  value="0">关闭
+                        </label>
+                    </div>
+                </div>
+            </div> -->
+            <div class="form-group jianji_type_content">
+                <label class="control-label col-xs-12 col-sm-2">随机画面特效:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="row[stars_open]" {if ($row && $row.stars_open==1)}checked{/if} value="1">开启
+                        </label>
+                        <label>
+                            <input type="radio" name="row[stars_open]" {if ($row && $row.stars_open==0) || !$row}checked{/if} value="0">关闭
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed " >{:__('OK')}</button>
+        </div>
+    </div>
+
+</form>
+
+<script type="text/javascript" src='/storeadmin2/libs/jquery/dist/jquery.min.js?v=162913148'></script>
+<script type='text/javascript'>
+
+function change() {
+  var value = document.getElementById('range').value ;
+  document.getElementById('value').innerHTML = value;
+}
+
+function change_video_volume(){
+    var value = document.getElementById('range_video_volume').value ;
+    document.getElementById('value_video_volume').innerHTML = value;
+}
+
+// 位置
+// $('.alignment_top').change(function(){
+//     loca = $(this).val();
+//     $('.subtitle_font_eg').css('top',loca+'%');
+// });
+// $('.alignment_bottom').change(function(){
+//     loca = $(this).val();
+//     $('.subtitle_font_eg_bottom').css('top',loca+'%');
+// });
+
+// 大小
+$('#c-subtitle_site_top').change(function(){
+    size = $(this).val();
+    size = size/3;
+    $('.subtitle_font_eg').css('font-size',size+'px');
+});
+$('#c-subtitle_site_bottom').change(function(){
+    size = $(this).val();
+    size = size/3;
+    $('.subtitle_font_eg_bottom').css('font-size',size+'px');
+});
+
+$('.jianji_type').click(function(){
+    $('.jianji_type').removeClass('jianji_type_active');
+    $(this).addClass('jianji_type_active');
+
+    id = $(this).attr('data-id');
+    if(id == 1){
+        $('.jianji_type_content').hide();
+    }else{
+        $('.jianji_type_content').show();
+    }
+});
+
+// 字体
+$('.subtitle_font_top').change(function(){
+    font = $('.subtitle_font_top').val();
+    $('.subtitle_font_eg').css('font-family',font);
+    $('.subtitle_font_top').css('font-family',font);
+});
+$('.subtitle_font_bottom').change(function(){
+    font = $('.subtitle_font_bottom').val();
+    $('.subtitle_font_eg_bottom').css('font-family',font);
+    $('.subtitle_font_bottom').css('font-family',font);
+});
+
+
+// 上模板颜色
+$('.subtitle_color_top').change(function(){
+    $('.subtitle_font_eg').css('color',this.value);
+});
+$('.subtitle_outline_color_top').change(function(){
+    $('.subtitle_font_eg').css('-webkit-text-stroke','1px '+this.value);
+});
+
+$('.subtitle_color_bottom').change(function(){
+    $('.subtitle_font_eg_bottom').css('color',this.value);
+});
+$('.subtitle_outline_color_bottom').change(function(){
+    $('.subtitle_font_eg_bottom').css('-webkit-text-stroke','1px '+this.value);
+});
+
+ 
+function mymouse(_index){
+    //让内容框的第 _index 个显示出来，其他的被隐藏
+    $(".tab-box>div").eq(_index).show(100).siblings().hide(150);
+    //改变选中时候的选项框的样式，移除其他几个选项的样式
+    $(".tab-menu>lable").eq(_index).addClass("change").siblings().removeClass("change");
+    $(".tab-menu>lable").eq(_index).attr("checked","checked").siblings().removeAttr("checked");
+    // var _checkinde = $("lable[checked='checked']").attr("value");
+    // return _checkinde;
+}
+
+var now_scene = {$scene_count};
+
+// 镜头添加
+$(function(){
+    $('.add_scene').click(function(){
+        now_scene = now_scene + 1
+        scene_block_add = '';
+        if(now_scene > 3){
+            scene_block_add = 'scene_block_add';
+        }
+        html = '<div class="scene'+now_scene+' scene_block '+scene_block_add+'">\
+                    <div class="form-group">\
+                        <label class="control-label col-xs-12 col-sm-2"><span class="red">*</span>镜头'+now_scene+'配置:</label>\
+                        <div class="col-xs-12 col-sm-2">\
+                            <input id="c-scene'+now_scene+'_start"  class="form-control" name="scene[scene'+now_scene+'_start]" type="number"  placeholder="0(秒)">\
+                        </div>\
+                        <div class="col-xs-12 col-sm-1">\
+                            <label class="control-label">至</label>\
+                        </div>\
+                        <div class="col-xs-12 col-sm-2">\
+                            <input id="c-scene'+now_scene+'_end" class="form-control" onchange="change_value('+now_scene+')" name="scene[scene'+now_scene+'_end]"  type="number"  placeholder="2(秒)">\
+                        </div>\
+                        <div class="col-xs-12 col-sm-4">\
+                            <input id="c-scene'+now_scene+'_subtitle" class="form-control" name="scene[scene'+now_scene+'_subtitle]"  type="text" placeholder="镜头'+now_scene+'旁白,10个字预计2.5秒">\
+                        </div>\
+                    </div>\
+                    <div class="form-group">\
+                        <label class="control-label col-xs-12 col-sm-2"><span class="red">*</span>镜头'+now_scene+'素材:</label>\
+                        <div class="col-xs-12 col-sm-8">\
+                            <div class="input-group">\
+                                <input id="c-scene'+now_scene+'" class="form-control" size="50" name="scene[scene'+now_scene+']" type="hidden" readonly="readonly" >\
+                                <div class="input-group-addon no-border no-padding">\
+                                    <span><button type="button" id="faupload-scene'+now_scene+'" class="btn btn-danger faupload" data-input-id="c-scene'+now_scene+'" data-mimetype="video/webm,video/mp4,video/ogg,image/gif,image/jpeg,image/png,image/jpg,image/bmp,MOV" data-multiple="true" data-preview-id="p-scene'+now_scene+'"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>\
+                                    <span><button type="button" id="fachoose-scene'+now_scene+'" class="btn btn-primary fachoose" data-input-id="c-scene'+now_scene+'" data-mimetype="video/webm,video/mp4,video/ogg" data-multiple="true"> {:__('Choose')}视频</button></span>\
+                                </div>\
+                                <span class="msg-box n-right" for="c-scene'+now_scene+'"></span>\
+                                <p style="margin-top:10px;color:#888;margin-left:10px;">素材大小：1280 * 720 px</p>\
+                            </div>\
+                            <ul class="row list-inline faupload-preview" id="p-scene'+now_scene+'"></ul>\
+                        </div>\
+                    </div>\
+                </div>';
+        $('.scene').append(html);
+        if(now_scene > 14){
+            $('.add_scene').hide();
+        }
+    });
+    if(now_scene == 0){
+        $('.add_scene').click();
+        $('.add_scene').click();
+        $('.add_scene').click();
+    }
+    
+});
+
+function change_value(id){
+    next_id = id + 1;
+    end = $('#c-scene'+id+'_end').val();
+    start = $('#c-scene'+id+'_start').val();
+    value = $('#c-scene'+id+'_subtitle').val();
+    miao_count = (end - start + 0.2) * 4;
+    $('#c-scene'+id+'_subtitle').val(value.slice(0,miao_count));
+    $('#c-scene'+id+'_subtitle').attr('oninput','if(value.length>'+miao_count+')value=value.slice(0,'+miao_count+')');
+    $('#c-scene'+next_id+'_start').val(parseInt(end)+0.1);
+}
+
+$('.muban_li img').click(function(){
+    src = $(this).attr('src');
+    $('.add_form_view_top').css('background',"url('"+src+"')");
+    $('.top_bg').val(src);
+});
+
+$('.muban_li_bottom img').click(function(){
+    src = $(this).attr('src');
+    $('.add_form_view_bottom').css('background',"url('"+src+"')");
+    $('.bottom_bg').val(src);
+});
+
+setInterval(function(){
+    src = $('.top_bg').val();
+    if(src!=""){
+        $('.add_form_view_top').css('background',"url('"+src+"') no-repeat ");
+        $('.add_form_view_top').css('background-size',"100% 210px");
+    }
+
+    b_src = $('.bottom_bg').val();
+    if(b_src!=""){
+        $('.add_form_view_bottom').css('background',"url('"+b_src+"') no-repeat ");
+        $('.add_form_view_bottom').css('background-size',"100% 210px");
+    }
+
+    subtitle_top = $('#c-subtitle').val();
+    subtitle_bottom = $('#c-subtitle_bottom').val();
+
+    subtitle_top = subtitle_top.replace('/r/n','<br>');
+    subtitle_bottom = subtitle_bottom.replace('/r/n','<br>');
+
+    $('.subtitle_top_show').html(subtitle_top);
+    $('.subtitle_bottom_show').html(subtitle_bottom);
+},1000);
+
+
+</script>

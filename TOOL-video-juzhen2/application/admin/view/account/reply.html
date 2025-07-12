@@ -1,0 +1,197 @@
+{include file="public/header" /}
+
+<body class="gray-bg">
+<link rel="stylesheet" href="/static/admin/layui/css/layui.css" media="all">
+<div class="wrapper layui-card-body wrapper-content">
+    <div class="admin-con">
+        <div class="block-box">
+            <!--企业号列表-->
+            <div class="col-12">
+                <div class="block">
+                    <table class="layui-hide" id="table-page" lay-filter="table-page"></table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+{include file="public/footer" /}
+<script src="/static/admin/layui/layui.js"></script>
+<script type="text/html" id="action">
+    <div class="layui-btn-group">
+        <a  class="btn btn-primary btn-xs" lay-event="replycon">
+            回复</a>
+    </div>
+</script>
+<script>
+    layui.define(['table','form','upload'],function (exports) {
+        var table = layui.table;
+        var form = layui.form
+        var upload = layui.upload
+        //基本实例
+        var tableInit = table.render({
+            elem: '#table-page'//绑定容器
+            ,url: '/admin/account/reply_list'
+            ,page: true
+            ,limit:10
+            ,toolbar: "#toolbar"
+            ,title:'客户线索'
+            ,defaultToolbar: []
+            ,autoSort:false
+            ,parseData: function(res){ //res 即为原始返回的数据
+                console.log(res)
+                return {
+                    "code": res.code, //解析接口状态
+                    "msg": res.msg, //解析提示文本
+                    "count": res.data.count, //解析数据长度
+                    "data": res.data.list //解析数据列表
+                };
+            }
+            ,response: {
+                statusCode: 1 //规定成功的状态码，默认：0
+            }
+            ,cellMinWidth:100
+            ,cols: [[ //在表头设置对应的字段
+                {field: 'account_title', title: '帐号昵称'}
+                ,{field: 'video_title', title: '视频简介',templet:function (d) {
+                        return '<a href="'+d.video_url+'" style="color:#4952ec" target="_blank">'+d.video_title+'</a>';
+                    }}
+                ,{field: 'content', title: '评论内容'}
+                ,{field: 'digg_count', title: '点赞数', }
+                ,{field: 'reply_comment_total', title: '回复数'}
+                ,{field: 'status', title: '状态',templet:function (d) {
+                        switch (d.status)
+                        {
+                            case 1:
+                                color = 'green';
+                                name  = '已回复';
+                                break;
+                            default:
+                                color = 'red';
+                                name  = '未回复';
+                                break;
+                        }
+                        return '<span style="color:'+color+'">'+name+'</span>';
+                    }}
+                ,{field: 'update_date', title: '刷新时间', sort: true}
+                ,{field: 'create_date', title: '评论时间', sort: true}
+                ,{field: 'reply_content', title: '回复内容'}
+                ,{title:'操作', align:'center', toolbar: '#action'}
+            ]]
+        });
+
+        function open_reply(id,title) {
+            if(!id) {
+                layer.msg('请刷新页面重试')
+                return false;
+            }
+            layer.prompt({
+              title:title,
+            },function(val, index){
+                console.log('得到了'+val);
+                if(!val || val.length<=0) {
+                    layer.msg('请输入回复内容')
+                    return false;
+                }
+                var reply_content = val
+                var load_index = layer.load(2);
+                $.post("edit_reply",{reply_content:reply_content,id:id})
+                    .success(function (response) {
+                        layer.close(index);
+                        if(response.code){
+                            layer.alert(response.msg)
+                            setTimeout(function () {
+                                tableInit.reload();
+                            },1000);
+                        }else{
+                            layer.alert(response.msg)
+                        }
+                    })
+                    .complete(function () {
+                        layer.close(index);
+                        layer.close(load_index);
+                    });
+            });
+        }
+
+        function delete_api(data) {
+            layer.confirm("您真的要解绑账号吗？",function (index) {
+                layer.close(index);
+                var ids = [];
+                if(data instanceof Array){
+                    layui.each(data,function (k,item) {
+                        ids.push(item.id);
+                    });
+                }else{
+                    ids = [data];
+                }
+                var load_index = layer.load(2);
+                $.post("delete",{ids:ids})
+                    .success(function (response) {
+                        if(response.code){
+                            layer.alert(response.msg)
+                            setTimeout(function () {
+                                tableInit.reload();
+                            },1000);
+                        }else{
+                            layer.alert(response.msg)
+                        }
+                    })
+                    .complete(function () {
+                        layer.close(load_index);
+                    });
+            });
+        }
+
+        //监听工具条
+        table.on('tool(table-page)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+            var data = obj.data; //获得当前行数据
+            var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+            var tr = obj.tr; //获得当前行 tr 的 DOM 对象（如果有的话）
+
+            if(layEvent === 'replycon'){ //删除
+                open_reply(data.id,data.content);
+            } else if(layEvent === 'LAYTABLE_TIPS'){
+                layer.alert('Hi，头部工具栏扩展的右侧图标。');
+            }
+        });
+        //监听事件
+        table.on('toolbar(table-page)', function(obj){
+            var checkStatus = table.checkStatus(obj.config.id);
+            switch(obj.event){
+                case 'refresh_data':
+                    refresh_data(checkStatus.data);
+                    break;
+                case 'refresh_reply':
+                    refresh_reply(checkStatus.data);
+                    break;
+                case 'refresh_customer':
+                    refresh_customer(checkStatus.data);
+                    break;
+                case 'delete':
+                    delete_api(checkStatus.data);
+                    break;
+            }
+        });
+
+        table.on('sort(table-page)', function(obj){
+            console.log(obj)
+            table.reload('table-page', {
+                initSort: obj //记录初始排序
+                , where: {
+                    field: obj.field //排序字段
+                    , order: obj.type //排序方式
+                }
+            });
+        });
+        form.on('submit(search-btn)',function (data) {
+            table.reload('table-page', {
+                where: data.field
+            });
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

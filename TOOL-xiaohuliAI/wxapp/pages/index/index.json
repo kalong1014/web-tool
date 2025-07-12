@@ -1,0 +1,12 @@
+{
+    "navigationStyle": "custom",
+    "usingComponents": {
+        "foxTabs": "/components/foxTabs/foxTabs",
+        "chatMsgList": "/components/chatMsgList/chatMsgList",
+        "speeching": "/components/speeching/speeching",
+        "privacy": "/components/privacy/privacy",
+        "notice": "/components/notice/notice",
+        "player": "/components/player/player",
+        "navbar": "/components/navbar/navbar"
+    }
+}

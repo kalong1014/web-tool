@@ -1,0 +1,238 @@
+<style type="text/css">
+    #jiexi_btn {
+    background: #000;
+    color: #fff;
+    width: 100px;display: inline-block;height: 35px;border-radius: 5px;line-height: 35px;text-align: center;font-size: 16px;cursor: pointer;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.recomm_keyword,.no_recomm_keyword,.all_keyword{background: #3ca793;padding: 5px ;margin-bottom: 10px;margin-right: 10px;color: #fff;display: inline-block;cursor: pointer;}
+ .delete_keyword{margin-left: 5px;color: #ccc;}
+ .sp_input{background: unset;}
+ .panel-default > .panel-heading {color: #333333;background-color: #29292c;border-color: #ddd;}
+ .type2{display: none;}
+</style>
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">活动任务名:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-activity_name" data-rule="required" class="form-control" name="row[activity_name]" type="text" value="{$title}" placeholder="随意取一个名字吧">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">活动主标题:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-title" data-rule="required" class="form-control" name="row[title]" type="text" value="" placeholder="请输入活动主标题；显示在活动页面的标题，此标题与抖音发送视频标题无关">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">类型:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="radio">
+                <label>
+                    <input type="radio"  name="row[type]" checked value="2"> <span title="">抖音外卖</span> 
+                </label>
+                <label>
+                    <input type="radio"   name="row[type]"   value="1"> <span >探店</span> 
+                </label>
+                
+            </div>
+            <p style="margin-top:0px;color:#888;">抖音外卖以H5链接推广、探店以海报推广为主</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">发送流程:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="radio">
+                <label>
+                    <input type="radio"  name="row[open_luodi]" checked value="1"> <span title="">通过落地页</span> 
+                </label>
+                <label>
+                    <input type="radio"   name="row[open_luodi]"   value="0"> <span >直接转发</span> 
+                </label>
+                
+            </div>
+            <p style="margin-top:0px;color:#888;">通过落地页需要输入手机号码，直接转发则扫码一键打开抖音发布视频</p>
+        </div>
+    </div>
+
+    {if $open_tandian_data==1}
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">视频播放数据:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="radio">
+                <label>
+                    <input type="radio"   name="row[open_data]" checked  value="0"> <span >不获取</span> 
+                </label>
+                <label>
+                    <input type="radio"  name="row[open_data]"  value="1"> <span title="">获取数据</span> 
+                </label>
+            </div>
+            <p style="margin-top:0px;color:#888;">开启获取视频数据，会增加用户授权的步骤</p>
+        </div>
+    </div>
+    {/if}
+    
+    <div class="form-group">
+        <label class="control-label col-xs-3 col-sm-2">视频描述:</label>
+        <div class="col-xs-12 col-sm-5  ">
+            <textarea id="c-video_text"  class="form-control " rows="5" name="row[video_text]" cols="30" placeholder="请输入简单描述，可为空，每行一句描述" ></textarea>
+            <p style="color:#888;margin-top: 5px;">注：每行一个描述，随机取，建议每行30个字左右</p>
+        </div>
+        <div class="col-xs-12 col-sm-4">
+             <input id="c-video_text_keyword"  data-multiple="true" data-source="merge_keyword/index" data-field="merge_keyword"  class="form-control selectpage" data-params='{"custom[status]":"1","custom[store_id]":{$store_id}}'  name="row[video_text_keyword]" type="text" value="" placeholder="选择2-5个关键词">
+             <div style="color:#ccc;margin-top: 5px;">用于排名，如未添加关键词，请先<a href="/storeadmin/index?jump_url=store_keyword&menu_url=store_keyword" target="_blank">添加关键词</a></div>
+        </div>
+    </div>
+
+    <div style="width: 80%;height:1px;background: #505050;margin: 20px auto;"></div>
+    
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">手动上传视频:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group">
+                <input id="c-tuiguang_video_list" class="form-control" size="50" name="row[tuiguang_video_list]" readonly="readonly" type="text" value="{$row ? $row.tuiguang_video_list : ''}" >
+                <div class="input-group-addon no-border no-padding">
+                    <span><button type="button" id="faupload-tuiguang_video_list" class="btn btn-danger faupload" data-input-id="c-tuiguang_video_list" data-mimetype="video/webm,video/mp4,MOV,video/ogg,image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="true" data-preview-id="p-tuiguang_video_list"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                    <span><button type="button" id="fachoose-tuiguang_video_list" class="btn btn-primary fachoose" data-input-id="c-tuiguang_video_list" data-mimetype="video/webm,video/mp4,video/ogg,MOV" data-multiple="true"> {:__('Choose')}视频</button></span>
+                </div>
+                <span class="msg-box n-right" for="c-tuiguang_video_list"></span>
+            </div>
+            <ul class="row list-inline faupload-preview" id="p-tuiguang_video_list"></ul>
+            <span style="color:#999;display:block;margin-top: 5px;">视频格式支持：MP4、ogg、WebM、MOV ; </span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">剪辑任务视频:</label>
+        <div class="col-xs-12 col-sm-8">
+             <input id="c-make_video_list"  data-multiple="true" data-source="make_video/index" data-field="title"  class="form-control selectpage" data-params='{"custom[status]":"3","custom[store_id]":{$store_id}}'  name="row[make_video_ids]" type="text" value="" placeholder="选择剪辑任务">
+             <p style="margin-top:5px;color:#888;">与手动上传视频二选一，或者两者搭配使用 </p>
+        </div>
+    </div>
+
+    <div style="width: 80%;height:1px;background: #505050;margin: 20px auto;"></div>
+
+    <div class="form-group" >
+        <label class="control-label col-xs-12 col-sm-2">挂载类型:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="radio">
+                <label>
+                    <input type="radio"  class="type" name="type" checked value="1">POI地址挂载
+                </label>
+                <label>
+                    <input type="radio"  class="type" name="type"  value="2">小程序挂载
+                </label>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="form-group type1" >
+        <label class="control-label col-xs-12 col-sm-2">挂载poi地址:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-poi_address"  class="form-control" name="row[poi_address]" type="text" value="" placeholder="例如：https://v.douyin.com/8RE9Xe5/  此功能强烈建议使用，可使视频得到更大曝光度">
+            <p style="margin-top:5px;color:#888;">从抖音app搜索栏搜索地点，获取地址分享链接，例如：https://v.douyin.com/6fPmnhp/（抖音22.2.0版本以上支持）</p>
+        </div>
+    </div>
+
+    <div class="form-group type2" >
+        <label class="control-label col-xs-12 col-sm-2">抖音小程序id:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-micro_app_id"  class="form-control" name="micro[micro_app_id]" type="text" value="" placeholder="例如：ttef91b112671b152ba">
+        </div>
+    </div>
+    <div class="form-group type2" >
+        <label class="control-label col-xs-12 col-sm-2">抖音小程序名称:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-micro_app_title" class="form-control" name="micro[micro_app_title]" type="text" value="" placeholder="小程序标题">
+        </div>
+    </div>
+
+    <div class="form-group type2">
+        <label class="control-label col-xs-12 col-sm-2">抖音小程序路径:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-micro_app_url" class="form-control" name="micro[micro_app_url]" type="text" value="" placeholder="例如：page/index/index">
+            <p style="margin-top:5px;color:#888;">操作文档中获取，例如：page/index/index </p>
+        </div>
+    </div>
+
+    <div style="width: 80%;height:1px;background: #505050;margin: 20px auto;"></div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">优惠券:</label>
+        <div class="col-xs-12 col-sm-8">
+             <input id="c-make_video_list"  data-source="business_coupon/index" data-field="coupon_name"  class="form-control selectpage" data-params='{"custom[status]":"1","custom[store_id]":{$store_id}}'  name="row[coupon_id]" type="text" value="" placeholder="选择优惠券">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">发券数:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-limit" data-rule="required" class="form-control" name="row[limit]" type="number" value="0" placeholder="0">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">视频去重:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="radio">
+                <label>
+                    <input type="radio"   name="row[is_repeat]"   value="1"> <span title="选择去重时，视频全部发送完毕任务即结束；">去重</span> 
+                </label>
+                <label>
+                    <input type="radio"  name="row[is_repeat]" checked value="2"> <span title="选择允许重复视频时，会按视频最少发送次数的视频优先发送；">允许发重复视频</span> 
+                </label>
+            </div>
+            <p style="margin-top:0px;color:#888;">选择允许重复视频时，会按视频最少发送次数的视频优先发送；</p>
+        </div>
+    </div>
+    <div class="form-group type1">
+        <label class="control-label col-xs-12 col-sm-2">宣传海报:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group">
+                <input id="c-huodong_img" class="form-control"  name="row[huodong_img]" type="text" value="">
+                <div class="input-group-addon no-border no-padding">
+                    <span><button type="button" id="faupload-huodong_img" class="btn btn-danger faupload" data-input-id="c-huodong_img" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false" data-preview-id="p-huodong_img"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                    <span><button type="button" id="fachoose-huodong_img" class="btn btn-primary fachoose" data-input-id="c-huodong_img" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmpg" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                </div>
+                <span class="msg-box n-right" for="c-huodong_img"></span>
+            </div>
+            <ul class="row list-inline faupload-preview" id="p-huodong_img"></ul>
+            <p style="margin-top:5px;color:#888;">格式支持：jpeg/png/jpg/bmp,大小500*800px</p>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label class="control-label col-xs-3 col-sm-2">简介:</label>
+        <div class="col-xs-12 col-sm-8">
+            <textarea id="c-content" class="form-control editor summernote" name="row[content]" cols="30" rows="10"></textarea>
+        </div>
+    </div>
+
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed "  >{:__('OK')}</button>
+        </div>
+    </div>
+
+</form>
+<script type="text/javascript" src='/storeadmin2/libs/jquery/dist/jquery.min.js?v=162913148'></script>
+
+<input type="hidden" name="is_jiexi" class="is_jiexi" value="0">
+<script type="text/javascript">
+    $('.type').change(function() {
+        if (this.value == 1) {
+            $('.type1').show();
+            $('.type2').hide();
+        }else if (this.value == 2) {
+            $('.type2').show();
+            $('.type1').hide();
+        }
+    });
+
+</script>

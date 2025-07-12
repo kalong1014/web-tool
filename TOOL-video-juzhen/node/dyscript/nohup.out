@@ -1,0 +1,13 @@
+ * Serving Flask app 'main' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+/usr/local/lib/python3.6/site-packages/OpenSSL/_util.py:6: CryptographyDeprecationWarning: Python 3.6 is no longer supported by the Python core team. Therefore, support for it is deprecated in cryptography. The next release of cryptography will remove support for Python 3.6.
+  from cryptography.hazmat.bindings.openssl.binding import Binding
+ * Running on http://127.0.0.1:9000/ (Press CTRL+C to quit)
+ * Restarting with stat
+/usr/local/lib/python3.6/site-packages/OpenSSL/_util.py:6: CryptographyDeprecationWarning: Python 3.6 is no longer supported by the Python core team. Therefore, support for it is deprecated in cryptography. The next release of cryptography will remove support for Python 3.6.
+  from cryptography.hazmat.bindings.openssl.binding import Binding
+ * Debugger is active!
+ * Debugger PIN: 675-394-728

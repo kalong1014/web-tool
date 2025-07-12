@@ -1,0 +1,80 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="modal-dialog" style="width:100%">
+    <div class="modal-content" style="width:100%;padding-bottom:20px">
+        <div class="modal-header">
+            <h4 class="modal-title">编辑字段</h4>
+        </div>
+        <form class="form-horizontal" id="tool_cate_data"   action=""  method="post">
+            <input type="hidden" id="form_id" name="id" value="{$info.id}">
+            <div class="form-group" style="margin-top: 20px;">
+                <label class="col-sm-3 control-label">字段名称：</label>
+                <div class="input-group col-sm-7">
+                    <input type="text" class="form-control" name="title" value="{$info.title|default=''}" placeholder="字段名称" >
+                </div>
+            </div>
+            <div class="form-group" style="margin-top: 20px;">
+                <label class="col-sm-3 control-label">类型：</label>
+                <div class="input-group col-sm-7">
+                    <label><input name="type" type="radio" value="1" {eq name="$info.type" value="1"}checked {/eq}/>文本 </label>
+                    <label><input name="type" type="radio" value="2"{eq name="$info.type" value="2"}checked {/eq} />文件 </label>
+                    <label><input name="type" type="radio" value="3"{eq name="$info.type" value="3"}checked {/eq} />时间 </label>
+                </div>
+            </div>
+            <div class="form-group" style="margin-top: 20px;">
+                <label class="col-sm-3 control-label">排序(数字越小越靠前)：</label>
+                <div class="input-group col-sm-7">
+                    <input type="text" class="form-control" name="sort" value="{$info.sort|default='0'}" placeholder="排序" >
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-7 col-sm-offset-3">
+                    <button class="btn btn-primary" type="button" onclick="confirm()" > 确认</button>&nbsp;&nbsp;&nbsp;
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="public/footer" /}
+<script>
+    function check_valid(key) {
+        switch (key) {
+            case ("title"):
+                return '字段名称不能为空';
+                break;
+            default:
+                return '字段名称不能为空';
+                break;
+        }
+    }
+
+    //提交
+    function confirm() {
+        var load_index = layer.load(2);
+        var formData = $('#tool_cate_data').serializeArray();
+        $.each(formData, function(i, field){
+            if(!field.value || field.value<=0) {
+                console.log(field.name+'---'+field.value)
+                var msg = check_valid(field.name)
+                layer.alert(msg)
+                return false;
+            }
+        });
+        $.ajax({
+            type: "POST",
+            url: "/admin/tool/pedit",
+            data: formData,
+            success: function(data){
+                layer.closeAll('loading');
+                parent.location.reload();
+            },
+            error:function() {
+                layer.closeAll('loading');
+                layer.alert('添加失败')
+            }
+        });
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<title>联系我们-{$website_config['website_tdk_title']}</title>
+    <meta name="description" content="{$website_config['website_tdk_desc']}">
+    <meta name="keywords" content="{$website_config['website_tdk_keyword']}">
+	<link href="static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="static/css/font-awesome.css" rel="stylesheet">
+	<link href="static/css/animate.css" rel="stylesheet">
+    <link href="static/css/swiper.min.css" rel="stylesheet">
+	<link href="static/css/style.css" rel="stylesheet">
+    <script src="static/js/jquery-1.10.1.js"></script>
+    <script src="static/js/prefixfree.min.js"></script>
+	<script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/swiper.min.js"></script>
+    <script src="static/js/swiper.animate1.0.2.min.js"></script>
+    <script src="static/js/public.js"></script>
+    <script src="static/js/wow.min.js"></script>
+    <script>
+    var wow = new WOW({
+        boxClass: 'wow',
+        animateClass: 'animated',
+        offset: 0,
+        mobile: false,
+        live: true
+    });
+    wow.init();
+    </script>
+	<!--[if lt IE 9]>
+	  <script src="js/html5shiv.min.js"></script>
+	  <script src="js/respond.min.js"></script>
+	<![endif]-->    
+    <script>
+    	function scro(){
+			if($(document).scrollTop()>50){$(".headerBg").addClass("active");}else{$(".headerBg").removeClass("active");}
+		}
+		scro();
+		$(window).scroll(function(){
+			scro();
+		})
+    </script>
+</head>
+<body>
+{include file="index/head"}
+<div class="clearfix"></div>
+<div class="bannerN">
+	<div class="imgFull"><img src="static/picture/d01c4025a23c0c22.jpg" class="img-responsive"></div>
+    <h2 class="banH2 wow fadeInUp">联系我们</h2>
+</div>
+<div class="mainBg">    
+    <div class="container">
+    	<div class="contact">
+        	<div class="row">
+            	<div class="col-xs-12 col-sm-12 col-md-6 wow fadeInLeft">
+                	<div class="contactWay">
+                    	<h3>{$website_config['website_company']}</h3>
+                        <p>地址：{$website_config['website_company_address']}</p>
+                        <p>客服邮箱：{$website_config['website_email']}</p>
+                        
+                        
+                    </div>
+                </div>
+            	<div class="col-xs-12 col-sm-12 col-md-6 wow fadeInRight">
+                	<ul class="contactShare list-unstyled list-inline">
+                    	<li>
+                        	<a class="conShIco" href="http://wpa.qq.com/msgrd?v=3&uin={$website_config['website_qq']}&site=qq&menu=yes" target="_blank">
+                                <i class="fa fa-qq"></i>
+                                <p>QQ客服</p>
+                            </a>
+                        </li>
+                    	<li>
+                        	<a class="conShIco" href="javascript:;">
+                                <i class="fa fa-weixin"></i>
+                                <p>微信客服</p>
+                            </a>
+                            <div class="conWx"><img src="{$website_config['website_wechat']}" class="img-responsive"></div>
+                        </li>
+ 
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="contact_map" id="dituContent"></div> -->
+
+</div>
+{include file="index/foot"}
+</body>
+</html>

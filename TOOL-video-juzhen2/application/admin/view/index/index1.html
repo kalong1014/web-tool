@@ -1,0 +1,407 @@
+{include file="public/header"/}
+<style data-for="result" id="css_result" type="text/css">
+ .layui-col-xs4{
+      color: #666;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    line-height: 24px;
+    margin: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    list-style: none;
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    float: left;
+    width: 33.33333333%; 
+    padding: 5px;
+ }   
+ .layadmin-backlog-body{
+      font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    line-height: 24px;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    list-style: none;
+    text-decoration: none;
+    display: block;
+    padding: 10px 15px;
+    background-color: #f8f8f8;
+    color: #999;
+    border-radius: 2px;
+    -webkit-transition: all .3s;
+ }
+ .hsas{
+       font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    line-height: 24px;
+    list-style: none;
+    color: #999;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    padding-bottom: 10px;
+    font-size: 12px;
+ }
+ .pasd{
+      font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    line-height: 24px;
+    list-style: none;
+    color: #999;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+ }
+ .nade{
+      font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    line-height: 24px;
+    list-style: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    font-style: normal;
+    font-size: 30px;
+    font-weight: 300;
+    color: #009688;
+ }
+ .layuiadmin-span-color{
+     font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    line-height: 24px;
+    list-style: none;
+    color: #999;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    font-size: 14px;
+    position: absolute;
+    right: 15px;
+ }
+ .lia{
+         color: #666;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    line-height: 24px;
+    margin: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    list-style: none;
+    position: relative;
+    padding: 10px 0;
+    border-bottom: 1px solid #EEE;
+ }
+ .hs{
+         color: #666;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    line-height: 24px;
+    list-style: none;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    font-size: 100%;
+ }
+ .pa{
+         color: #666;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    line-height: 24px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    padding-bottom: 10px;
+ }
+ .sap{
+         font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    line-height: 24px;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    list-style: none;
+    color: #999;
+ }
+ .layuiadmin-reply{
+         font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    list-style: none;
+    text-decoration: none;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    outline: 0;
+    -webkit-appearance: none;
+    -webkit-transition: all .3s;
+    box-sizing: border-box;
+    background-color: #009688;
+    color: #fff;
+    white-space: nowrap;
+    text-align: center;
+    border: none;
+    border-radius: 2px;
+    height: 22px;
+    line-height: 22px;
+    padding: 0 5px;
+    font-size: 12px;
+    cursor: pointer;
+    display: none;
+    position: absolute;
+    right: 0;
+    bottom: 12px;
+ }
+    
+    
+</style>
+<body class="gray-bg">
+<div class="wrapper wrapper-content">
+   <!--  <div class="alert alert-danger alert-dismissable">
+        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+        <div>尊敬的管理员<span id="weather"></span></div>
+    </div> -->
+
+    <div class="row-head">
+        <span class="big">抖音视频实时数据</span>
+        <span>基于中网智达数据统计，非全量数据，仅供参考</span>
+    </div>
+    
+    <div class="row row-list">
+        <div class="col-sm-3">
+            <div class="ibox ededed float-e-margins">
+                <div class="ibox-title">
+                   
+                    <!--<span class="label label-success pull-right">总</span>-->
+                    <h5>视频总条数<img src="__IMG__/81bb.png" class="index-what"></h5>
+                </div>
+                <div class="ibox-content">
+
+                    <h1 class="no-margins">{$all_count}</h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="ibox ededed float-e-margins">
+                <div class="ibox-title">
+                   
+                    <!-- <span class="label label-success pull-right">总</span> -->
+                    <h5>视频总播放量<img src="__IMG__/81bb.png" class="index-what"></h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins">{$view_count}</h1>
+                 
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="ibox ededed float-e-margins">
+                <div class="ibox-title">
+                  
+                    <!-- <span class="label label-success pull-right">总</span> -->
+                    <h5>视频总点赞量<img src="__IMG__/81bb.png" class="index-what"></h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins">{$like_count}</h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="ibox ededed float-e-margins">
+                <div class="ibox-title">
+                    <a href="#question">
+                       
+                    </a>
+                  
+                    <!-- <span class="label label-success pull-right">总</span> -->
+                    <h5>视频总评论量<img src="__IMG__/81bb.png" class="index-what"></h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins">{$comment_count}</h1>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- kaishi  -->
+   {if $user.jibie==0 || $user.jibie==1}
+    <div class="row-head">
+        <span class="big">代理数据全览</span>
+        <span>基于中网智达数据统计，全量数据</span>
+    </div>
+    <div class="row row-rem">
+        <div class="col-sm-8">
+            <ul class=chart>
+                <li>
+                    
+                    <div class="total"><p class="percent" style="height:{$zong.yiji}%;"><span>{$zong.yiji}</span></p></div>
+                    <p class="chartp">一级代理</p>
+                </li>
+                <li>
+                    <div class="total"><p class="percent" style="height:{$zong.reji}%;"><span>{$zong.reji}</span></p></div>
+                    <p class="chartp">二级代理</p>
+                </li>
+                <li>
+                    <div class="total"><p class="percent" style="height:{$zong.hy}%;"><span>{$zong.hy}</span></p></div>
+                    <p class="chartp">会员</p>
+                </li>
+            </ul>
+        </div>
+        <div class="col-sm-4">
+            <div class="rem-add">
+                <div class="rem-add-title">
+                    <h5>今日新增总人数</h5>
+                </div>
+                <div class="rem-add-content">
+                    <h1 class="no-margins">{$zong.day?$zong.day:'0'}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+   {else}
+   {/if}
+    <!-- jieshu -->
+ 
+<!--任务概览-->
+
+<!--任务概览结束-->
+<!--任务公告-->
+<div class="layui-col-sm12 layui-col-md2" style="    color: #666;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    margin: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    float: left;
+    width: 100%;
+    padding: 7.5px;" id="banquanxinxi">
+        <div class="layui-card" style="    color: #666;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    border-radius: 2px;
+    background-color: #fff;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
+    margin-bottom: 0;">
+            <div class="layui-card-header" style="    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    margin: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    height: 42px;
+    line-height: 42px;
+    padding: 0 15px;
+    border-bottom: 1px solid #f6f6f6;
+    color: #333;
+    border-radius: 2px 2px 0 0;
+    font-size: 14px;
+    position: relative;">系统公告&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="xtgg"></span></div>
+            <div class="layui-card-body" style="    color: #666;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    margin: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    position: relative;
+    padding: 10px 15px;
+    line-height: 24px;">
+              <ul class="layuiadmin-card-status layuiadmin-home2-usernote" style="padding:0;    color: #666;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    line-height: 24px;
+    margin: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    padding: 0;" id="notice">  
+  <li class="lia"> <h4 style=" "> 系统名称: <span class="sap" style=" font-weight: 400;" id="xt"></span></h4> </li>
+
+  <li class="lia">
+   <h4  style="width: 40%; float: left;">
+    当前版本: 
+    <span class="sap" style=" font-weight: 400;" id="bt">
+    
+    </span>
+    </h4>
+     <!--<h4 style=""> 检查版本: <a href="{:url('uplade/index')}" id="banben"><span class="sap" style="color: blue;">立即检查</span></a></h4> -->
+     {if  $user.jibie==1 ||  $user.jibie==2 ||  $user.jibie==3 }
+   <h4 style=""  >  &nbsp;</h4>
+     {else}
+      <h4 style="" id="gengxin"> 检查版本: </h4> 
+     {/if}
+    </li>
+    
+   <li class="lia"> <h4 > 技术团队: <span class="sap" id="jstd"></span></h4> </li>
+    <li class="lia"> <h4 > 联系方式: <span class="sap" id="lxfs"></span></h4>   </li>
+    <!-- <li class="lia"> <h4 > 检查版本: <a href="{:url('uplade/index')}"><span class="sap">立即检查</span></a></h4>   </li> -->
+    <!-- <li class="lia"> <h4 > 检查版本: <a href="javascript:;" onclick="alert('当前是最新版本')"><span class="sap">立即检查</span></a></h4>   </li> -->
+    {if  $user.jibie==1 ||  $user.jibie==2 ||  $user.jibie==3 }
+   
+     {else}
+      <li class="lia"> <h4 > 升级日志: <a href="{:url('user/upgrade_log')}" class="sap" target="_blank" style="color: blue; cursor: pointer;">点击查看</a></h4>   </li>
+      {/if}
+              </ul>
+            </div>
+        </div>
+    </div>
+
+<input type="hidden" name="jiebie_id"  value="{$user.jibie}" />
+<div style="width:100%;height:20px; text-align:center" id="dibubanquanxinxi">
+    <p style="  margin-left:30px;">{$management.dibu}</p>
+</div>
+
+{include file="public/footer" /}
+<script src="/static/admin/js/jquery.leoweather.min.js"></script>
+
+<script type="text/javascript">
+$(function(){
+   
+      ht =  "<a href='javascript:;' style='color:#ccc'>"
+      +'当前是最新版本'
+      +"</a>";
+      jibie = $("input[name='jiebie_id']").val();
+      
+    if(jibie!=0  ){
+        $("#banquanxinxi").css('display','none');
+        $("#dibubanquanxinxi").css('display','none');
+    }else{
+       
+        $.post('{:url("uplade/index")}',
+                {type:1},
+             function(data){
+               
+                if(data.code==1){
+                     html = 
+                      "<a href='javascript:shengj()'>"
+                    +"<img src='__IMG__/shengji.png'>"
+                      +'立即升级'
+                     
+                      +"</a>"
+                   
+                  $("#gengxin").append(html);
+                }else{
+                   
+                  $("#gengxin").append(data.msg);
+                    
+                    }         
+            });
+    //获取版权信息
+     $.post('{:url("cloud/bat")}',
+                {type:1},
+             function(data){
+              
+              $("#xt").html(data.xtmc);
+              $("#bt").html(data.bat);
+              $("#jstd").html(data.jstd);
+              ht = "QQ:"+data.qq+ '&nbsp;&nbsp;'+'电话:'+data.phone
+              $("#lxfs").html(ht);
+              $("#xtgg").html(data.xtgg);
+            });
+    }
+    
+    
+});
+   
+    function shengj(){
+                 layer.confirm('请确认备份好数据了吗?', {icon: 3, title:'提示'}, function(index){
+                     $("#gengxin").html('');
+                      $("#gengxin").append("<span style='color:red'>系统升级中，请不要关闭此页面，以免升级失败</span>");
+                    $.post('{:url("uplade/index")}',
+                        {type:2},
+                     function(data){
+                        if(data.code==1){
+                          
+                            layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+                            window.reload()
+                        }else{
+                          
+                            layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+                            }         
+                    });
+                 layer.close(index);
+                })
+       
+        }
+    
+</script>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<div class="panel panel-default panel-intro">
+
+    <div class="panel-body">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="one">
+                <div class="widget-body no-padding">
+                    <div id="toolbar" class="toolbar">
+                        <a href="javascript:;" onclick="location.reload()"  class="btn btn-primary btn-refresh" title="{:__('Refresh')}" ><i class="fa fa-refresh"></i> </a>
+                        <!-- <a href="javascript:history.back(-1)" class="btn btn-success btn-add "  >返回</a>                         -->
+                    </div>
+                    
+
+                    <form id="edit-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">评论内容:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <textarea id="c-content"  class="form-control " rows="7" cols="20" readonly="readonly" disabled="disabled" style="background:#5a5a5a">{$row.content}</textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">回复内容:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <textarea id="c-reply_content" data-rule="required" class="form-control " rows="7" name="row[reply_content]" cols="20" placeholder="建议30个字之内"></textarea>
+                                <p style="margin-top:5px;color:#888;">建议30个字之内</p>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group layer-footer">
+                            <label class="control-label col-xs-12 col-sm-2"></label>
+                            <div class="col-xs-12 col-sm-8">
+                                <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src='/storeadmin2/libs/jquery/dist/jquery.min.js?v=162913148'></script>
+

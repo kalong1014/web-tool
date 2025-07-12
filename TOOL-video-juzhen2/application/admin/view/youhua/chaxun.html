@@ -1,0 +1,74 @@
+{include file="public/header" /}
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- jieshu -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>接口列表</h5>
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始-->           
+            <div class="row">
+                <div class="col-sm-12">   
+                                                        
+                    <form name="admin_list_sea" class="form-search" method="post" action="{:url('chaxun')}">
+                        <span style="width:100px;float:left">站长工具接口中心:</span> 
+                      <!--  <input type="text"  class="form-control" name="name" value="" placeholder="" style="width:200px;float:left"  disabled="tuue"/> -->
+                    <input type="text"  class="form-control" name="key" value="{$getname.key}" placeholder="请输入您的key值" style="width:300px;float:left" />   
+                            <select name="status" id="" class="form-control" style="width:200px;float:left">
+                                        {switch name="getname.status"}
+                                            {case value="1"} <option value="1">是</option>{/case}
+                                            {case value="-1"} <option value="1">否</option>{/case}
+                                            {default /} <option>请选择</option>
+                                        {/switch}
+                                 
+                                </select>
+                                <div style="width:100%;">
+                                    
+                               
+                                <!--<span style="width:100px;float:left">5118接口中心:</span> -->
+                      <!--  <input type="text"  class="form-control" name="name" value="" placeholder="" style="width:200px;float:left"  disabled="tuue"/> -->
+                    <input type="text"  class="form-control" name="8key" value="{$getname.8key}" placeholder="请输入您的key值" style="width:300px;float:left" />   
+                            <select name="8status" id="" class="form-control" style="width:200px;float:left">
+                                        {switch name="getname.8status"}
+                                            {case value="1"} <option value="1">是</option>{/case}
+                                            {case value="-1"} <option value="1">否</option>{/case}
+                                            {default /} <option>请选择</option>
+                                        {/switch}
+                                   
+                                 
+                                </select>
+                    </div>
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 保存</button> 
+
+                    </form>                         
+                </div>
+            </div>
+           
+            <!--搜索框结束-->
+
+  
+         
+        </div>
+    </div>
+</div>
+<!-- kaishi -->
+
+
+<<!-- 加载 -->
+<div class="spiner-example">
+    <div class="sk-spinner sk-spinner-three-bounce">
+        <div class="sk-bounce1"></div>
+        <div class="sk-bounce2"></div>
+        <div class="sk-bounce3"></div>
+    </div>
+</div>
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+   
+   
+</script>
+
+</html>

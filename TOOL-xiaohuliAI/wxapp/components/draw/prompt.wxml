@@ -1,0 +1,38 @@
+<view class="setting-item box-prompt">
+    <view class="words-cate" wx:if="{{wordsCate.length>0}}">
+        <view bindtap="showWordsPicker" class="item" data-id="{{item.id}}" data-index="{{index}}" wx:for="{{wordsCate}}">
+            <text>{{item.title}}</text>
+            <text class="count" wx:if="{{tools.pickedCount(wordsPicked,'pcate',item.id)>0}}">{{tools.pickedCount(wordsPicked,'pcate',item.id)}}</text>
+        </view>
+        <view style="clear: both;"></view>
+    </view>
+    <view class="words-input">
+        <textarea autoHeight="{{true}}" cursorSpacing="0" maxlength="3000" model:value="{{wordInput}}" placeholder="输入自定义画面描述" style="min-height: 140rpx;" type="text"></textarea>
+        <button plain bindtap="addToPicked" class="btn btn-primary-plain btn-add" size="small" type="primary">↓ 添加到描述</button>
+    </view>
+    <view class="words-list" wx:if="{{wordsPicked&&wordsPicked.length>0}}">
+        <view bindtap="onWordsClick" class="item" data-index="{{index}}" wx:for="{{wordsPicked}}">
+            <text class="weight" title="{{'比重: '+item.weight}}" wx:if="{{type==='mj'}}">{{item.weight}}</text>
+            <text style="max-width: 420rpx;white-space: nowrap;overflow: hidden;">{{item.text}}</text>
+            <text style="margin-left: 8rpx;" wx:if="{{item.text.length>15}}">...</text>
+        </view>
+        <view style="clear: both;"></view>
+    </view>
+    <popup height="500rpx" id="wordWeightPopup" title="调整比重">
+        <view class="popup-weight">
+            <text class="alert-info">说明：比重取值范围1-20，默认1</text>
+            <view style="padding: 30px 10px 20px 15px;">
+                <slider activeColor="#04BABE" bindchange="onWeightChange" blockSize="20" max="20" min="1" showValue="{{true}}" value="{{activeWord.weight}}"></slider>
+            </view>
+            <view class="footer">
+                <button bindtap="closeWordWeight" class="btn btn-default">取 消</button>
+                <button bindtap="setWordWeight" class="btn btn-primary">确 定</button>
+            </view>
+        </view>
+    </popup>
+    <actionSheet actions="{{actions}}" bind:select="actionSelect" data="{{activeWordIndex}}" id="actionSheet"></actionSheet>
+    <popup id="wordsPickerPopup" title="选取关键词">
+        <wordsPicker bind:close="closeWordsPicker" bind:getWordsList="getWordsList" bind:picker="setWords" bind:setWords="setWords" cates="{{wordsCate}}" pcateIndex="{{wordsPickerActivePcateIndex}}" picked="{{wordsPicked}}"></wordsPicker>
+    </popup>
+</view>
+<wxs module="tools" src="../../utils/tools.wxs" />

@@ -1,0 +1,33 @@
+<style type="text/css">
+    .recomm_keyword,.no_recomm_keyword{background: #3ca793;padding: 5px ;margin-bottom: 10px;margin-right: 10px;color: #fff;display: inline-block;cursor: pointer;}
+ .delete_keyword{margin-left: 5px;color: #ccc;}
+ .radio label{margin-bottom: 20px;vertical-align: top;}
+ .title_video{width: 80px;overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;display: block;}
+</style>
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">链接名:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-title"  class="form-control"  data-rule="required" maxlength="10" name="row[title]" type="text" value="" placeholder="请输入链接名，建议2-10个字">
+        </div>
+    </div>
+
+    <div class="form-group type2" >
+        <label class="control-label col-xs-12 col-sm-2">跳转链接:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-h5_url"  class="form-control" name="row[h5_url]" type="text" value="" placeholder="请输入跳转链接">
+        </div>
+    </div>
+
+
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed " >{:__('OK')}</button>
+        </div>
+    </div>
+
+</form>
+

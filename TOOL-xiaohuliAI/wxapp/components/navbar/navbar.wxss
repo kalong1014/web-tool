@@ -1,0 +1,67 @@
+.navbar {
+    align-items: center;
+    background: none;
+    box-sizing: border-box;
+    display: flex;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 4;
+}
+
+.title-container {
+    align-items: center;
+    height: 88rpx;
+    position: relative;
+}
+
+.capsule {
+    align-items: center;
+    display: flex;
+    height: 64rpx;
+    margin-left: 10rpx;
+    z-index: 99;
+}
+
+.capsule>view {
+    border-radius: 8rpx;
+    height: 64rpx;
+    position: relative;
+    width: 64rpx;
+}
+
+.capsule>view:active {
+    background: rgba(0,0,0,.1);
+}
+
+.capsule image {
+    height: 100%;
+    width: 100%;
+}
+
+.title {
+    box-sizing: border-box;
+    color: #1b1c1c;
+    font-family: 微软雅黑;
+    font-size: 36rpx;
+    overflow: hidden;
+    padding: 0 180rpx;
+    position: absolute;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    z-index: 98;
+}
+
+.navbar_zy {
+    background-color: #fff;
+    position: fixed;
+    width: 100vw;
+    z-index: 4;
+}
+
+.navbar_zy .title {
+    color: #333;
+}

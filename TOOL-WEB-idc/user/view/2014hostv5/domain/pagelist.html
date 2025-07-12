@@ -1,0 +1,100 @@
+{{dispatch c='public'  a='head'}}
+            <main id="main-container">
+                <!-- Page Header -->
+                <div class="content bg-gray-lighter">
+                    <div class="row items-push">
+                        <div class="col-sm-8">
+                            <h1 class="page-heading">
+                                域名管理&nbsp; <small>管理已注册的域名</small>
+                            </h1>
+                        </div>
+                        <div class="col-sm-4 text-right hidden-xs">
+                            <ol class="breadcrumb push-10-t">
+                                <li><a class="link-effect" href="?c=user&a=index">账户首页</a></li>
+								<li>域名管理</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content content-boxed">
+				
+                            <div class="block">
+                                <div class="block-header">
+                                    <ul class="block-options">
+                                        <li>
+                                            <button type="button" data-toggle="block-option" data-action="fullscreen_toggle"></button>
+                                        </li>
+                                        <li>
+                                            <button type="button" data-toggle="block-option" data-action="content_toggle"></button>
+                                        </li>                                    </ul>
+                                    </ul>
+                                    <h3 class="block-title"> 域名列表</h3>
+                                </div>
+                                <div class="block-content bg-gray-lighter">
+                                    <!-- Slick slider (.js-slider class is initialized in App() -> uiHelperSlick()) -->
+                                    <!-- For more info and examples you can check out http://kenwheeler.github.io/slick/ -->
+                                    <div style="height:10px;"></div>
+									<div class="row items-push">
+                                        <div class="col-xs-5 text-left">
+                                            <div class="text-muted"><small><i class="fa fa-dribbble"></i>&nbsp;注册域名：</small><span class="font-w600 text-center" style="font-size:18px; color: #000000;"><b>{{$count}}</b></span><small> 个</small></div>
+                                        </div>
+                                        <div class="col-xs-7 text-right">
+									{{if $page>1}}<a href='{{$action}}&page=0'><i class="fa fa-angle-double-left" style="font-size:20px;"></i></a>&nbsp;&nbsp;&nbsp;<a href='{{$action}}&page={{$page-1}}'><i class="fa fa-angle-left" style="font-size:20px;"></i></a>{{else}}<i class="fa fa-angle-double-left" style="font-size:20px;"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-angle-left" style="font-size:20px;"></i>{{/if}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size:16px; color:#000000;"><b>{{$page}}</b></span><span style="font-size:16px;"> / <b>{{$total_page}}</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{if $page!=$total_page}}<a href='{{$action}}&page={{$page+1}}'><i class="fa fa-angle-right" style="font-size:20px;"></i></a>&nbsp;&nbsp;&nbsp;<a href='{{$action}}&page={{$total_page}}'><i class="fa fa-angle-double-right" style="font-size:20px;"></i></a>{{else}}<i class="fa fa-angle-right" style="font-size:20px;"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-angle-double-right" style="font-size:20px;"></i>{{/if}} 
+										</div>
+                                    </div>
+									<div style="height:10px;"></div>
+                                    <!-- END Slick slider -->
+                                </div>
+                                <div class="block-content">
+								<table class="table">
+                                <thead>
+									<tr>
+										<th>操作</td>
+										<th>域名</td>
+										<th>注册时间</td>
+										<th>过期时间</td>
+										<th>状态</td>
+									</tr>
+								</thead>
+								<tbody>
+								{{if $count<1}}
+                                    <tr>
+                                        <td></td>
+                                        <td class="js_show_product_name"></td>
+                                        <td class="hidden-xs hidden-sm"></td>
+                                        <td class="hidden-xs hidden-sm"></td>
+                                        <td class="hidden-xs hidden-sm"></td>
+                                        <td class="hidden-xs hidden-sm"></td>
+                                    </tr>
+									</tbody>
+									</table>
+									<p class="text-center" style="font-size:16px;">没有找到已注册的域名&nbsp; - &nbsp;<a href='?c=domain&a=index' style="color:#0066FF;"><b>注册新域名</b></a>&nbsp; NOW!</p>
+								{{else}}
+									{{foreach from=$list item=row}}
+									<tr>
+										<td class="right"> 
+										[<a	href="?c=domains&a=renewFrom&id={{$row.id}}">续费</a>] 
+										[<a	href="?c=domains&a=editNameServerFrom&id={{$row.id}}">修改域名服务器</a>]
+										[<a href='?c=domains&a=getDomainDns&id={{$row.id}}'>查看DNS</a>]
+										[<a href='?c=domains&a=editContactDetailsFrom&id={{$row.id}}'>修改所有人信息</a>]
+										</td>
+										<td>{{$row.domain}}</td>
+										<td>{{substr($row.add_time,0,10)}}</td>
+										<td>{{substr($row.expire_time,0,10)}}</td>
+										<td title='{{$row.status}}'>{{if $row.status==0}}正常{{else}}<font
+											color='red'>暂停</font>{{/if}}
+										</td>
+									</tr>
+									{{/foreach}}
+									{{/if}}
+									</tbody>
+								</table><br /><br />&nbsp;
+			
+			
+			
+                                </div>
+                            </div>
+
+				</div>
+</main>

@@ -1,0 +1,31 @@
+<navbar text=""></navbar>
+<view class="page">
+    <view class="bg-header">
+        <image src="/images/login/bg_header.png"></image>
+    </view>
+    <view class="container" style="top: {{navBarHeight}}px; bottom: {{safeAreaHeight}}rpx;">
+        <view class="title">绑定手机号</view>
+        <view class="form">
+            <view class="form-item">
+                <image class="icon" src="/images/login/ic_phone.png"></image>
+                <input :value="phone" class="input" maxlength="11" model:value="{{phone}}" placeholder="手机号" type="text"></input>
+            </view>
+            <view class="form-item">
+                <image class="icon" src="/images/login/ic_code.png"></image>
+                <input class="input" maxlength="6" model:value="{{code}}" placeholder="短信验证码" type="text"></input>
+                <view bindtap="doSendSms" class="sendcode" disabled="{{sendSmsCountdown>0}}" size="small" type="text">{{sendSmsCountdown>0?sendSmsCountdown+'s 后可重发':'发送验证码'}}</view>
+            </view>
+            <view class="form-item">
+                <image class="icon" src="/images/login/ic_pwd.png"></image>
+                <input class="input" maxlength="20" model:value="{{password}}" placeholder="设置登录密码" type="text" wx:if="{{pwdShow}}"></input>
+                <input class="input" maxlength="20" model:value="{{password}}" placeholder="设置登录密码" type="password" wx:else></input>
+                <image bindtap="hidePwd" class="icon eye" src="/images/login/ic_eye.png" wx:if="{{pwdShow}}"></image>
+                <image bindtap="showPwd" class="icon eye" src="/images/login/ic_eye_open.png" wx:else></image>
+            </view>
+            <view class="form-item">
+                <button bindtap="doSubmit" class="btn btn-submit">确定提交</button>
+            </view>
+        </view>
+    </view>
+    <sendsms bind:close="sendSmsClose" bind:success="sendSmsSuccess" phone="{{phone}}" sitecode="{{sitecode}}" type="bind" wx:if="{{sendSmsShow}}"></sendsms>
+</view>

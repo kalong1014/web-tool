@@ -1,0 +1,97 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="modal-dialog" style="width:100%">
+    <div class="modal-content" style="width:100%;padding-bottom:20px">
+        <div class="modal-header">
+            <h4 class="modal-title">编辑服务</h4>
+        </div>
+        <form class="form-horizontal" id="tool_cate_data"   action=""  method="post">
+            <input type="hidden" id="form_id" name="id" value="{$info.id}">
+            <div class="form-group" style="margin-top: 20px;">
+                <label class="col-sm-3 control-label">服务名称：</label>
+                <div class="input-group col-sm-7">
+                    <input type="text" class="form-control" name="title" value="{$info.title|default=''}" placeholder="服务名称" >
+                </div>
+            </div>
+            <div class="form-group" style="margin-top: 20px;">
+                <label class="col-sm-5 control-label">注意事项：</label>
+                <div class="input-group col-sm-5">
+                    <textarea name="desc" cols="30" rows="10">{$info.desc|default=''}</textarea>
+                </div>
+            </div>
+            <div class="form-group" style="margin-top: 20px;">
+                <label class="col-sm-5 control-label">邀请码：</label>
+                <div class="input-group col-sm-5">
+                    <input type="text" class="form-control" name="code" value="{$info.code|default=''}" >
+                </div>
+            </div>
+            <div class="form-group" style="margin-top: 20px;">
+                <label class="col-sm-3 control-label">状态：</label>
+                <div class="input-group col-sm-7">
+                    <label><input name="status" type="radio" value="1" {eq name="$info.status" value="1"}checked {/eq}/>正常 </label>
+                    <label><input name="status" type="radio" value="2"{eq name="$info.status" value="2"}checked {/eq} />关闭 </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-7 col-sm-offset-3">
+                    <button class="btn btn-primary" type="button" onclick="confirm()" > 确认</button>&nbsp;&nbsp;&nbsp;
+
+                </div>
+            </div>
+        </form>
+</div>
+</div>
+{include file="public/footer" /}
+<script>
+    function check_valid(key) {
+        switch (key) {
+            case ("title"):
+                return '服务名称不能为空';
+                break;
+            case ("desc"):
+                return '服务介绍不能为空';
+                break;
+            case ("code"):
+                return '邀请码不能为空';
+                break;
+            default:
+                return '服务名称不能为空';
+                break;
+        }
+    }
+
+    //提交
+    function confirm() {
+        var load_index = layer.load(2);
+        var formData = $('#tool_cate_data').serializeArray();
+        var error = 0;
+        $.each(formData, function(i, field){
+            if(!field.value || field.value<=0) {
+                console.log(field.name+'---'+field.value)
+                var msg = check_valid(field.name)
+                layer.alert(msg)
+                error += 1;
+                return false;
+            }
+        });
+        if(error) {
+            layer.closeAll('loading');
+            return false;
+        }
+        $.ajax({
+            type: "POST",
+            url: "/admin/tool/edit",
+            data: formData,
+            success: function(data){
+                layer.closeAll('loading');
+                parent.location.reload();
+            },
+            error:function() {
+                layer.closeAll('loading');
+                layer.alert('添加失败')
+            }
+        });
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+
+
+
+						<ul class="list list-simple-mini font-s13">
+						{{foreach from=$list item=row}}
+						<li><a href='?c=article&a=lists&id={{$row.id}}&type={{$row.type}}'>{{$row.title|truncate:24}}</a></li>
+						{{/foreach}}
+						</ul>
+			

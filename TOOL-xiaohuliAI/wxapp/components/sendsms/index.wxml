@@ -1,0 +1,16 @@
+<view class="modal">
+    <view bindtap="doCancel" class="mask"></view>
+    <view class="main">
+        <view class="body">
+            <view class="title">输入验证码</view>
+            <view class="form-item">
+                <input class="input" maxlength="6" model:value="{{code}}" placeholder="验证码" type="text"></input>
+                <image bindtap="getCaptcha" class="captcha" src="{{captcha}}"></image>
+            </view>
+        </view>
+        <view class="footer">
+            <button bindtap="doCancel" class="btn btn-cancel">取消</button>
+            <button bindtap="doSubmit" class="btn btn-submit">确定</button>
+        </view>
+    </view>
+</view>

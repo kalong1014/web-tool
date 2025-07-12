@@ -1,0 +1,86 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- jieshu -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>自定义菜单</h5>
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始-->           
+            <div class="row">
+                <div class="col-sm-12">   
+                <div  class="col-sm-2" style="width: 100px">
+                    <div class="input-group" >  
+                        <a href="{:url('inteface_add')}"><button class="btn btn-outline btn-primary" type="button">添加菜单</button></a> 
+                    </div>
+                </div>                                            
+                                        
+                </div>
+            </div>
+            <!--搜索框结束-->
+            <div class="hr-line-dashed"></div>
+
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th>菜单名称</th>
+                                <th>内容</th>
+                                <th>添加时间</th>
+                                <th>状态</th>
+                               
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                      
+                        
+
+                            <tr class = "long-td" >
+                                <td>订阅</td>
+                                <td>内容</td>
+                                <td>2019-12-03 21:55:24</td>
+                               
+                                <td>
+                                    <a href="javascript:;" onclick="role_state({{d[i].id}});">
+                                                    <div id="zt{{d[i].id}}"><span class="label label-info">开启</span></div>
+                                    </a>
+                                                
+                                </td>
+                                <td>
+                                    
+                                     <a href="{:url('inteface_edit')}"  class="btn btn-primary btn-xs">
+                                                <i class="fa fa-paste"></i> 编辑</a>&nbsp;&nbsp;
+                                            <a href="javascript:;"  class="btn btn-danger btn-xs">
+                                                <i class="fa fa-trash-o"></i> 删除</a> 
+                                </td>
+                            
+                               
+                            </tr>
+                          
+                        
+                        <tbody id="article_list"></tbody>
+                    </table>
+                    <div id="AjaxPage" style=" text-align: right;"></div>
+                    <div id="allpage" style=" text-align: right;"></div>
+                </div>
+            </div>
+           <!-- kaishi -->
+        </div>
+    </div>
+</div>
+<!-- kaishi -->
+</div>
+
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+   
+   
+
+
+</script>
+</body>
+</html>

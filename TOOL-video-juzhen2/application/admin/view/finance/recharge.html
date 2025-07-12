@@ -1,0 +1,57 @@
+{include file="public/header" /}
+<style>
+    .form-control{
+        width: 200px;
+    }
+</style>
+<body class="gray-bg">
+<link rel="stylesheet" href="/static/admin/layui/css/layui.css" media="all">
+<div class="wrapper layui-card-body wrapper-content">
+    <div class="admin-con">
+        <div class="block-box">    
+            <div class="col-12">
+                <div class="block">                                                
+                    <form name="admin_list_sea" class="form-search m-b-md" method="post" action="{:url('')}">
+                        <input id="" type="text" class="form-control" name="username"  placeholder="用户名" style="float:left">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button>
+                        
+                    </form>                         
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th>用户</th>
+                                <th>记录信息</th>
+                                <th>记录时间</th>
+                                <th>操作</th>
+                            </tr>
+                            
+                        </thead>
+                        {foreach name="list" item="vo"}
+                         <tr class="long-tr" style="text-align:center">
+                                <td>{$vo.username}</td>
+                                <td>{$vo.text}</td>
+                                <td>{$vo.time|default=time()|date='Y-m-d:H-i-s',###}</td>
+                               
+                                 <td>{$vo.ip}</td>
+                            </tr>
+                           {/foreach}
+                        <tbody id="article_list"></tbody>
+                    </table>
+                    <div id="AjaxPage" style=" text-align: right;"></div>
+                    <div id="allpage" style=" text-align: right;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+ 
+
+</script>
+</body>
+</html>

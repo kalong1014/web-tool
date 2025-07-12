@@ -1,0 +1,79 @@
+{{dispatch c='public'  a='head'}}
+            <main id="main-container">
+                <!-- Page Header -->
+                <div class="content bg-gray-lighter">
+                    <div class="row items-push">
+                        <div class="col-sm-8">
+                            <h1 class="page-heading">
+                                修改资料&nbsp; <small>修改账户个人资料</small>
+                            </h1>
+                        </div>
+                        <div class="col-sm-4 text-right hidden-xs">
+                            <ol class="breadcrumb push-10-t">
+                                <li><a class="link-effect" href="?c=user&a=index">账户首页</a></li>
+								<li>修改资料</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <div class="content content-boxed">
+				
+                            <div class="block">
+                                <div class="block-header">
+                                    <ul class="block-options">
+                                        <li>
+                                            <button type="button" data-toggle="block-option" data-action="fullscreen_toggle"></button>
+                                        </li>
+                                        <li>
+                                            <button type="button" data-toggle="block-option" data-action="content_toggle"></button>
+                                        </li>                                    </ul>
+                                    </ul>
+                                    <h3 class="block-title"> 修改 {{$user.username}} 资料</h3>
+                                </div>
+                                <div class="block-content bg-gray-lighter">
+                                    <!-- Slick slider (.js-slider class is initialized in App() -> uiHelperSlick()) -->
+                                    <!-- For more info and examples you can check out http://kenwheeler.github.io/slick/ -->
+                                    <div style="height:10px;"></div>
+									<div class="row items-push">
+                                        <div class="col-xs-12 text-left">
+                                            <div class="text-muted">
+											<span style="font-size:14px; color:#666666;">* 请保证资料的真实性，以便我们能及时联系到您。</span>
+											</div>
+                                        </div>
+                                    </div>
+									<div style="height:10px;"></div>
+                                    <!-- END Slick slider -->
+                                </div>
+                                <div class="block-content">
+								<div style="height:30px;"></div>
+
+
+							<form action="?c=user&a=change" method="post" class="form-horizontal">
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-2 control-label">姓名：</label>
+									<div class="col-sm-5"> <input name='name' value='{{$user.name}}' class="form-control"/> </div>
+								</div>
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-2 control-label">联系QQ：</label>
+									<div class="col-sm-5"> <input name='id' value='{{$user.id}}' class="form-control"/> </div>
+								</div>
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-2 control-label">Email：</label>
+									<div class="col-sm-5"> <input name='email' value='{{$user.email}}' class="form-control"/> </div>
+								</div>
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-2 control-label"></label>
+									<div class="col-sm-1">
+									<input type="submit" value="修 改" class="btn btn-primary"  data-toggle="block-option" data-action="refresh_toggle" data-action-mode="demo" />
+									</div>
+										</div>
+							</form>
+
+							<div style="height:30px;"></div>
+			
+			
+                                </div>
+                            </div>
+
+				</div>
+</main>	

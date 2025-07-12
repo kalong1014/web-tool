@@ -1,0 +1,108 @@
+.welcome .message {
+    display: flex;
+    justify-content: flex-start;
+    padding: 40rpx 30rpx;
+}
+
+.welcome .message:last-child {
+    border-bottom: 0;
+}
+
+.welcome .message .text {
+    background-color: #fff;
+    border-radius: 4rpx 30rpx 30rpx 30rpx;
+    color: #1c1b1b;
+    overflow: hidden;
+    padding: 30rpx;
+    width: 500rpx;
+}
+
+.welcome .message .text span {
+    display: inline;
+}
+
+.welcome .message .avatar {
+    align-items: center;
+    background: none;
+    border-radius: 4rpx;
+    color: #fff;
+    display: flex;
+    font-size: 28rpx;
+    height: 58rpx;
+    justify-content: center;
+    margin-right: 24rpx;
+    margin-top: 6rpx;
+    overflow: hidden;
+    width: 58rpx;
+}
+
+.welcome .message .avatar image,.welcome .message .avatar img {
+    height: 100%;
+    width: 100%;
+}
+
+.welcome .markdown-body view {
+    display: block;
+}
+
+.welcome .title {
+    color: #1b1c1c;
+    font-size: 36rpx;
+    font-weight: 600;
+    letter-spacing: 2rpx;
+    line-height: 64rpx;
+    transition: color .1s ease-in-out;
+}
+
+.welcome .desc,.welcome .title {
+    float: left;
+    width: 100%;
+    word-break: break-all;
+}
+
+.welcome .desc {
+    font-size: 26rpx;
+    line-height: 44rpx;
+    margin: 10rpx 0!important;
+}
+
+.welcome .tips {
+    float: left;
+    padding: 0 0 20rpx;
+    width: 100%;
+}
+
+.welcome .tips li,.welcome .tips ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.welcome .tips .tips-item {
+    align-items: flex-start;
+    background: #f0fafa;
+    border-radius: 40rpx;
+    display: flex;
+    margin-top: 24rpx;
+    overflow: hidden;
+    padding: 16rpx 30rpx 20rpx;
+    transition: background .1s ease-in-out;
+}
+
+.welcome .tips .tips-item .icon {
+    height: 26rpx;
+    margin-right: 16rpx;
+    margin-top: 4px;
+    min-width: 26rpx;
+    width: 26rpx;
+}
+
+.welcome .tips .tips-item text {
+    color: #1b1c1c;
+    font-size: 26rpx;
+    line-height: 40rpx;
+}
+
+.welcome .tips .tips-item:active {
+    background: #f2f2f2;
+}

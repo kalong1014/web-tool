@@ -1,0 +1,264 @@
+<!-- 左侧菜单栏 -->
+<section class="sidebar" style="border-right: 1px solid #232323;">
+    <!-- 管理员信息 -->
+    <!-- <div class="user-panel hidden-xs" style="height: 60px;">
+        <div class="pull-left image">
+           <img src="{$admin_avatar|cdnurl|htmlentities}" class="img-circle" />
+        </div>
+        <div class="pull-left info" style="padding:0px;text-align: left;    margin-top: 5px;left: 65px;">
+            <p>{$store_name|htmlentities}</p>
+            <i class="fa fa-circle text-success"></i> 到期:{$out_date}
+        </div>
+    </div> -->
+
+    <!-- 菜单搜索 -->
+ <!--    <form action="" method="get" class="sidebar-form" onsubmit="return false;">
+        <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="{:__('Search menu')}">
+            <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+            </span>
+            <div class="menuresult list-group sidebar-form hide">
+            </div>
+        </div>
+    </form> -->
+
+    <!-- 移动端一级菜单 -->
+    <div class="mobilenav visible-xs">
+
+    </div>
+    <style type="text/css">
+    .skin-black-green .treeview-menu > li > a{color: #fff ;font-size: 16px;font-family: "微软雅黑";}
+    .treeview-menu li span{padding-left:30px;}
+    .treeview-menu{display: none;}
+    .skin-black-green .sidebar-menu > li > a{color: #fff;font-family: "微软雅黑";}
+    .skin-black-green .treeview-menu > li:hover,.skin-black-green .treeview-menu > li.active > a {background-color: #2b2b2e;color: #f39c12;}
+    .skin-black-green .sidebar-menu > li:hover,.skin-black-green .sidebar-menu > li.active > a {color: #f39c12;background: #2b2b2e;border-left-color: #18bc9c;}
+    .skin-black-green .sidebar-menu > li > a:hover{background-color: #2b2b2e;color: #f39c12;}
+    .sidebar-menu .treeview-menu > li > a {padding: 10px 5px 10px 15px;display: block;font-size: 14px;}
+    .sidebar-menu .treeview-menu > li > a:hover{color: #f39c12;}
+    a{cursor: pointer;}
+    .sidebar-menu > li{font-size: 16px;}
+
+
+    .skin-black-green .user-panel > .info, .skin-black-green .user-panel > .info > a{color: #000;}
+    .nr-menu-item-group-title:empty {padding: 0;background: #4c4c4c!important;height: 1px;margin: var(--nr-menu-item-group-title-empty-mg,12px 16px);}
+        
+        
+    </style>
+    <!--如果想始终显示子菜单,则给ul加上show-submenu类即可,当multiplenav开启的情况下默认为展开-->
+    <ul class="sidebar-menu {if $Think.config.fastadmin.multiplenav}show-submenu{/if}" style="margin-top:20px;">
+        <li {if $menu_url==''}class="active"{/if}><a class="classq" href="/storeadmin/index" py="kzt" pinyin="kongzhitai" title="工作台">
+            <i class="fa fa-windows fa-fw"></i> 工作台
+        </a> </li>
+
+        <li {if $menu_url=='user_daping'}class="active"{/if}><a class="classq" href="/storeadmin/user_daping" target="_blank" py="kzt" pinyin="kongzhitai" title="数据大屏">
+            <i class="fa fa-line-chart fa-fw"></i> 数据大屏
+        </a> </li>
+
+        
+
+        <div class="nr-menu-item-group-title"></div>
+
+        {if $store_info['shucai_status']}
+        <li  class="treeview-menu-sucai" ><a class="classq" ><i class="fa fa-folder fa-fw"></i> AI素材库 <i style="float:right" class="fa fa-angle-left"></i></a> </li>
+            <ul class="treeview-menu menu-open treeview-menu-sucai-content" {if in_array($menu_url,["video_download"])}style="display: block;"{/if}>
+                <li  {if $menu_url=='video_download'}class="active"{/if}><a class="classq" href="/storeadmin/index?jump_url=video_download&menu_url=video_download"  py="cdgz" pinyin="caidanguize"><span >视频去水印</span> </a> </li>
+
+                <!-- <li ><a class="classq"   py="cdgz" pinyin="caidanguize"><span style="color:#666">热门视频[待开放]</span> </a> </li>
+                <li ><a class="classq"  py="cdgz" pinyin="caidanguize"><span style="color:#666">热门音乐[待开放]</span> </a> </li>
+                <li ><a class="classq"  py="cdgz" pinyin="caidanguize"><span style="color:#666">热门话题[待开放]</span> </a> </li> -->
+            </ul>
+        {/if}
+
+        <li  class="treeview-menu-ai_chat" ><a class="classq" ><i class="fa fa-folder fa-fw"></i> AI智能文案 <i style="float:right" class="fa fa-angle-left"></i></a> </li>
+            <ul class="treeview-menu menu-open treeview-menu-ai_chat-content" {if in_array($menu_url,["ai_chat"])}style="display: block;"{/if}>
+                <li  {if $menu_url=='ai_chat'}class="active"{/if}><a class="classq" href="/storeadmin/index?jump_url=ai_chat&menu_url=ai_chat"  py="cdgz" pinyin="caidanguize"><span >AI创作文案</span> </a> </li>
+
+                <!-- <li ><a class="classq"   py="cdgz" pinyin="caidanguize"><span style="color:#666">热门视频[待开放]</span> </a> </li>
+                <li ><a class="classq"  py="cdgz" pinyin="caidanguize"><span style="color:#666">热门音乐[待开放]</span> </a> </li>
+                <li ><a class="classq"  py="cdgz" pinyin="caidanguize"><span style="color:#666">热门话题[待开放]</span> </a> </li> -->
+            </ul>
+
+        <!-- <li  class="treeview-menu-huoke"><a class="classq" ><i class="fa fa-bar-chart-o fa-fw"></i> 精准查找 <i style="float:right" class="fa fa-angle-left"></i></a> </li>
+            <ul class="treeview-menu menu-open treeview-menu-huoke-content" {if in_array($menu_url,["tuiguang_task","tuiguang_user"])}style="display: block;"{/if}>
+                <li  {if $menu_url=='tuiguang_task'}class="active"{/if}><a class="classq" href="/storeadmin/index?jump_url=tuiguang_task&menu_url=tuiguang_task"  py="cdgz" pinyin="caidanguize"><span>找爆品</span> </a> </li>
+                <li  {if $menu_url=='make_video'}class="active"{/if}><a class="classq" href="/storeadmin/index?jump_url=make_video&menu_url=make_video"  py="cdgz" pinyin="caidanguize"><span>找达人</span> </a> </li>
+                <li  {if $menu_url=='tuiguang_video'}class="active"{/if}><a class="classq" href="/storeadmin/index?jump_url=tuiguang_video&menu_url=tuiguang_video"  py="cdgz" pinyin="caidanguize"><span>找视频</span> </a> </li>
+            </ul>
+
+        
+
+        
+
+        <li  class="treeview-menu-linggan"><a class="classq" ><i class="fa fa-bar-chart-o fa-fw"></i> 创作灵感 <i style="float:right" class="fa fa-angle-left"></i></a> </li>
+            <ul class="treeview-menu menu-open treeview-menu-linggan-content" {if in_array($menu_url,["tuiguang_task","tuiguang_user"])}style="display: block;"{/if}>
+                <li  {if $menu_url=='tuiguang_task'}class="active"{/if}><a class="classq" href="/storeadmin/index?jump_url=tuiguang_task&menu_url=tuiguang_task"  py="cdgz" pinyin="caidanguize"><span>热门词</span> </a> </li>
+                <li  {if $menu_url=='make_video'}class="active"{/if}><a class="classq" href="/storeadmin/index?jump_url=make_video&menu_url=make_video"  py="cdgz" pinyin="caidanguize"><span>热门视频</span> </a> </li>
+                <li  {if $menu_url=='tuiguang_video'}class="active"{/if}><a class="classq" href="/storeadmin/index?jump_url=tuiguang_video&menu_url=tuiguang_video"  py="cdgz" pinyin="caidanguize"><span>热门话题</span> </a> </li>
+            </ul>
+
+        <li  class="treeview-menu-xuexi"><a class="classq" ><i class="fa fa-bar-chart-o fa-fw"></i> 能量站 <i style="float:right" class="fa fa-angle-left"></i></a> </li>
+            <ul class="treeview-menu menu-open treeview-menu-xuexi-content" {if in_array($menu_url,["tuiguang_task","tuiguang_user"])}style="display: block;"{/if}>
+                <li  {if $menu_url=='tuiguang_task'}class="active"{/if}><a class="classq" href="/storeadmin/index?jump_url=tuiguang_task&menu_url=tuiguang_task"  py="cdgz" pinyin="caidanguize"><span>运营学院</span> </a> </li>
+            </ul> -->
+        <li  class="treeview-menu-video"><a class="classq" ><i class="fa fa-film fa-fw"></i> 视频剪辑 <i style="float:right" class="fa fa-angle-left"></i></a> </li>
+            <ul class="treeview-menu menu-open treeview-menu-video-content" {if in_array($menu_url,["make_video_1","tuiguang_video","tuiguang_video_group"])}style="display: block;"{/if}>
+                {if $store_info['jianji_status']}
+                    <li  {if $menu_url=='make_video_1'}class="active"{/if}><a class="classq" href="/storeadmin/index?jump_url=make_video&menu_url=make_video_1&type=1"  py="cdgz" pinyin="caidanguize"><span>极速混剪</span> </a> </li>
+                    <li  {if $menu_url=='make_video_2'}class="active"{/if}><a class="classq" href="/storeadmin/index?jump_url=make_video&menu_url=make_video_2&type=2"  py="cdgz" pinyin="caidanguize"><span>高级混剪</span> </a> </li>
+                    <li  {if $menu_url=='make_video_3'}class="active"{/if}><a class="classq" href="/storeadmin/index?jump_url=make_video&menu_url=make_video_3&type=3"  py="cdgz" pinyin="caidanguize"><span>多镜头剪辑</span> </a> </li>
+                    <li  {if $menu_url=='make_video_4'}class="active"{/if}><a class="classq" href="/storeadmin/index?jump_url=make_video&menu_url=make_video_4&type=4"  py="cdgz" pinyin="caidanguize"><span>模板云剪</span> </a> </li>
+                {/if}
+                <li  {if $menu_url=='tuiguang_video'}class="active"{/if}><a class="classq" href="/storeadmin/index?jump_url=tuiguang_video&menu_url=tuiguang_video"  py="cdgz" pinyin="caidanguize"><span>视频库</span> </a> </li>
+                <li  {if $menu_url=='tuiguang_video_group'}class="active"{/if}><a class="classq" href="/storeadmin/index?jump_url=tuiguang_video_group&menu_url=tuiguang_video_group"  py="cdgz" pinyin="caidanguize"><span>视频分组</span> </a> </li>
+            </ul>
+
+        <div class="nr-menu-item-group-title"></div>
+        
+
+        {if $store_info['qiye_status']}
+        <li  class="treeview-menu-qiye"><a class="classq" ><i class="fa fa-cloud fa-fw"></i> 企业号运营 <i style="float:right" class="fa fa-angle-left"></i></a> </li>
+            <ul class="treeview-menu menu-open treeview-menu-qiye-content" {if in_array($menu_url,["qiye_user","qiye_intention","qiye_daping","qiye_card","qiye_reply"])}style="display: block;"{/if}>
+                <li {if $menu_url=='qiye_user' || $menu_url=="qiye_daping"}class="active"{/if}><a href="/storeadmin/index?jump_url=qiye_user&menu_url=qiye_user"  py="dlgl" pinyin="dailiguanli" title="企业号授权"><span>企业号授权</span> </a> </li>
+                <li  {if $menu_url=='qiye_intention'}class="active"{/if}><a class="classq" href="/storeadmin/index?jump_url=qiye_intention&menu_url=qiye_intention"  py="cdgz" pinyin="caidanguize"><span>管理意向客户</span> </a> </li>
+
+                <!-- <li  {if $menu_url=='qiye_autosend'}class="active"{/if}><a class="classq"  py="cdgz" pinyin="caidanguize"><span style="color:#666">询盘客户提醒[待开放]</span> </a> </li> -->
+                <li  {if $menu_url=='qiye_message'}class="active"{/if}><a class="classq" href="/storeadmin/index?jump_url=qiye_message&menu_url=qiye_message" py="cdgz" pinyin="caidanguize"><span>私信互动</span> </a> </li>
+                
+            </ul>
+        {/if}
+            
+
+        {if $store_info['juzhen_status']}
+        <li  class="treeview-menu-tuiguang-user"><a class="classq" ><img src="/static/image/icon/kehu.png" style="width: 20px;margin-top: -2px;"> 矩阵号授权 <i style="float:right" class="fa fa-angle-left"></i></a>  </li>
+            <ul class="treeview-menu menu-open treeview-menu-tuiguang-user-content" {if in_array($menu_url,["tuiguang_user","tuiguang_user_group"])}style="display: block;"{/if}>
+                <li {if $menu_url=='tuiguang_user'}class="active"{/if}><a href="/storeadmin/index?jump_url=tuiguang_user&menu_url=tuiguang_user"  py="dlgl" pinyin="dailiguanli" title="账号授权"><span>账号授权</span> </a> </li>
+                <li  {if $menu_url=='tuiguang_user_group'}class="active"{/if}><a class="classq" href="/storeadmin/index?jump_url=tuiguang_user_group&menu_url=tuiguang_user_group"  py="cdgz" pinyin="caidanguize"><span>账号分组</span> </a> </li>
+            </ul>
+        <li  class="treeview-menu-tuiguang"><a class="classq" ><img src="/static/image/icon/video.png" style="width: 20px;"> 矩阵管理  <small class="label  bg-red">热门</small> <i style="float:right" class="fa fa-angle-left"></i></a>  </li>
+            <ul class="treeview-menu menu-open treeview-menu-tuiguang-content" {if in_array($menu_url,["tuiguang_task","tuiguang_task_auto","tuiguang_comment"])}style="display: block;"{/if}>
+                <li  {if $menu_url=='tuiguang_task'}class="active"{/if}><a class="classq" href="/storeadmin/index?jump_url=tuiguang_task&menu_url=tuiguang_task"  py="cdgz" pinyin="caidanguize"><span>矩阵发布列表</span> </a> </li>
+                <li  {if $menu_url=='tuiguang_task_auto'}class="active"{/if}><a class="classq" href="/storeadmin/index?jump_url=tuiguang_task_auto&menu_url=tuiguang_task_auto"  py="cdgz" pinyin="caidanguize"><span>智能运营任务</span> </a> </li>
+                <li  {if $menu_url=='tuiguang_comment'}class="active"{/if}><a class="classq" href="/storeadmin/index?jump_url=tuiguang_comment&menu_url=tuiguang_comment"  py="cdgz" pinyin="caidanguize"><span>评论管理</span> </a> </li>
+                <!-- <li  {if $menu_url=='tuiguang_keyword'}class="active"{/if}><a class="classq" href="/storeadmin/index?jump_url=tuiguang_keyword&menu_url=tuiguang_keyword"  py="cdgz" pinyin="caidanguize"><span>智能回复设置</span> </a> </li> -->
+            </ul>
+        {/if}
+
+        {if $store_info['tandian_status']}
+        <li  class="treeview-menu-tandian"><a class="classq" ><img src="/static/image/icon/store.png" style="width: 20px;margin-top: -2px;"> DY外卖 & 探店 <i style="float:right" class="fa fa-angle-left"></i></a>  </li>
+            <ul class="treeview-menu menu-open treeview-menu-tandian-content" {if in_array($menu_url,["activity","activity_user","business_coupon","business_admin","activity_index"])}style="display: block;"{/if}>
+                <!-- <li {if $menu_url=='activity_index'}class="active"{/if}><a href="/storeadmin/index?jump_url=activity_index&menu_url=activity_index"  py="dlgl" pinyin="dailiguanli" title="数据看板"><span>数据看板</span> </a> </li> -->
+                <li {if $menu_url=='activity'}class="active"{/if}><a href="/storeadmin/index?jump_url=activity&menu_url=activity"  py="dlgl" pinyin="dailiguanli" title="活动列表"><span>活动列表</span> </a> </li>
+                <li  {if $menu_url=='activity_user'}class="active"{/if}><a class="classq" href="/storeadmin/index?jump_url=activity_user&menu_url=activity_user&status=2"  py="cdgz" pinyin="caidanguize"><span>客户发布列表</span> </a> </li>
+                <li {if $menu_url=='business_coupon'}class="active"{/if}><a href="/storeadmin/index?jump_url=business_coupon&menu_url=business_coupon"  py="dlgl" pinyin="dailiguanli" title="优惠券"><span>优惠券</span> </a> </li>
+                <!-- <li {if $menu_url=='business_admin'}class="active"{/if}><a href="/storeadmin/index?jump_url=business_admin&menu_url=business_admin"  py="dlgl" pinyin="dailiguanli" title="核销管理员"><span>核销管理员</span> </a> </li> -->
+            </ul>
+        {/if}
+
+        <li  {if $menu_url=='tuiguang_keyword'}class="active"{/if}><a class="classq" href="/storeadmin/index?jump_url=tuiguang_keyword&menu_url=tuiguang_keyword"  py="cdgz" pinyin="caidanguize"><span> <i class="fa fa-envelope fa-fw"></i> 智能回复设置</span> </a> </li>
+
+    
+        <!-- <li  class="treeview-menu-doujia"><a class="classq" ><img src="/static/image/icon/hot.png" style="width: 20px;"> 视频上热门 <i style="float:right" class="fa fa-angle-left"></i></a> </li>
+            <ul class="treeview-menu menu-open treeview-menu-doujia-content" {if in_array($menu_url,["store_doujia"])}style="display: block;"{/if}>
+                <li  ><a class="classq btn-addtabs" href="/storeadmin/store_doujia/add"  py="cdgz" pinyin="caidanguize"><span>发布投放</span> </a> </li>
+                <li  {if $menu_url=='store_doujia'}class="active"{/if}><a class="classq" href="/storeadmin/index?jump_url=store_doujia&menu_url=store_doujia"  py="cdgz" pinyin="caidanguize"><span>投放订单</span> </a> </li>
+            </ul> -->
+
+
+        <div class="nr-menu-item-group-title"></div>
+
+        {if $store_info['card_status']}
+        <li  class="treeview-menu-yinliu"><a class="classq" ><i class="fa fa-paper-plane fa-fw"></i> 引流工具 <i style="float:right" class="fa fa-angle-left"></i></a> </li>
+            <ul class="treeview-menu menu-open treeview-menu-yinliu-content" {if in_array($menu_url,["card"])}style="display: block;"{/if}>
+                <!-- <li  {if $menu_url=='tuiguang_task'}class="active"{/if}><a class="classq" href="/storeadmin/index?jump_url=tuiguang_task&menu_url=tuiguang_task"  py="cdgz" pinyin="caidanguize"><span>评论区@用户</span> </a> </li>
+                <li  {if $menu_url=='tuiguang_task'}class="active"{/if}><a class="classq" href="/storeadmin/index?jump_url=tuiguang_task&menu_url=tuiguang_task"  py="cdgz" pinyin="caidanguize"><span>账号配置</span> </a> </li> -->
+                <li  {if $menu_url=='card'}class="active"{/if}><a class="classq" href="/storeadmin/index?jump_url=card&menu_url=card"  py="cdgz" pinyin="caidanguize"><span>全网引流外链</span> </a> </li>
+                <!-- <li  {if $menu_url=='dy_link'}class="active"{/if}><a class="classq" href="/storeadmin/index?jump_url=dy_link&menu_url=dy_link"  py="cdgz" pinyin="caidanguize"><span>防封抖链</span> </a> </li> -->
+            </ul>
+        {/if}
+
+        {if $store_info['seo_status']}
+        <li  class="treeview-menu-seo"><a class="classq" ><img src="/static/image/icon/seo.png" style="width: 20px;"> 排名 <i style="float:right" class="fa fa-angle-left"></i></a> </li>
+            <ul class="treeview-menu menu-open treeview-menu-seo-content" {if in_array($menu_url,["now_rank","rank","rank_task","video_rank"])}style="display: block;"{/if}> 
+                <li {if $menu_url=='now_rank'}class="active"{/if}><a href="/storeadmin/index?jump_url=now_rank&menu_url=now_rank"  py="dlgl" pinyin="dailiguanli" title="D音排名"><span>实时排名</span> </a> </li>
+                <li {if $menu_url=='rank'}class="active"{/if}><a href="/storeadmin/index?jump_url=rank&menu_url=rank"  py="dlgl" pinyin="dailiguanli" title="D音排名"><span>博主排名查询</span> </a> </li>
+                <li {if $menu_url=='rank_task'}class="active"{/if}><a href="/storeadmin/index?jump_url=rank_task&menu_url=rank_task"  py="dlgl" pinyin="dailiguanli" title="排名汇总"><span>博主查询结果</span> </a> </li>
+                <li {if $menu_url=='video_rank'}class="active"{/if}><a href="/storeadmin/index?jump_url=video_rank&menu_url=video_rank&rank_status=1"  py="dlgl" pinyin="dailiguanli" title="矩阵视频排名"><span>矩阵排名明细</span> </a> </li>
+
+                <!-- <li ><a class="classq"  py="cdgz" pinyin="caidanguize"><span style="color:#666">视频优化[待开放]</span> </a> </li> -->
+            </ul>
+        {/if}
+
+        <li class="treeview-menu-keyword"><a class="classq"   py="dlgl" pinyin="dailiguanli" title="关键词管理"><i class="fa fa-file-text fa-fw"></i> <span>关键词管理</span> <i style="float:right" class="fa fa-angle-left"></i></a> </li>
+            <ul class="treeview-menu menu-open treeview-menu-keyword-content" {if in_array($menu_url,["store_keyword","merge_keyword"])}style="display: block;"{/if}> 
+                <li {if $menu_url=='store_keyword'}class="active"{/if}><a href="/storeadmin/index?jump_url=store_keyword&menu_url=store_keyword"  py="dlgl" pinyin="dailiguanli" title="关键词设置"><span>关键词设置</span> </a> </li>
+                <li {if $menu_url=='merge_keyword'}class="active"{/if}><a href="/storeadmin/index?jump_url=merge_keyword&menu_url=merge_keyword"  py="dlgl" pinyin="dailiguanli" title="关键词词库"><span>关键词词库</span> </a> </li>
+                <li {if $menu_url=='merge_keyword_group'}class="active"{/if}><a href="/storeadmin/index?jump_url=merge_keyword_group&menu_url=merge_keyword_group"  py="dlgl" pinyin="dailiguanli" title="关键词分组"><span>关键词分组</span> </a> </li>
+
+            </ul>
+
+
+        
+            
+
+        <div class="nr-menu-item-group-title"></div>
+
+        <li {if $menu_url=='store_pay'}class="active"{/if}><a class="classq" href="/storeadmin/index?jump_url=store_pay&menu_url=store_pay"  py="dlgl" pinyin="dailiguanli" title="充值记录"><i class="fa fa-yen fa-fw"></i> <span>充值记录</span> </a> </li>
+
+        <li {if $menu_url=='store_price'}class="active"{/if}><a class="classq" href="/storeadmin/index?jump_url=store_price&menu_url=store_price"  py="dlgl" pinyin="dailiguanli" title="消费明细"><i class="fa fa-money fa-fw"></i> <span>消费明细</span> </a> </li>
+
+        <li {if $menu_url=='profile'}class="active"{/if}><a class="classq" href="/storeadmin/index?jump_url=profile&menu_url=profile"  py="dlgl" pinyin="dailiguanli" title="个人信息"><i class="fa fa-user fa-fw"></i> <span>个人信息</span> </a> </li>
+
+
+        <!-- <li {if $menu_url=='feedback'}class="active"{/if}><a class="classq" href="/storeadmin/index?jump_url=feedback&menu_url=feedback"  py="dlgl" pinyin="dailiguanli" title="bug反馈/意见收集"><i class="fa fa-frown-o fa-fw"></i> <span>BUG反馈</span> </a> </li> -->
+
+    </ul>
+</section>
+<script type="text/javascript" src="/storeadmin2/libs/jquery/dist/jquery.min.js?v=1629984200"></script>
+<script type="text/javascript">
+
+    $('.treeview-menu-huoke').click(function(){
+        $(".treeview-menu-huoke-content").slideToggle(300);
+    });
+    $('.treeview-menu-ai_chat').click(function(){
+        $(".treeview-menu-ai_chat-content").slideToggle(300);
+    });
+    $('.treeview-menu-sucai').click(function(){
+        $(".treeview-menu-sucai-content").slideToggle(300);
+    });
+    $('.treeview-menu-qiye').click(function(){
+        $(".treeview-menu-qiye-content").slideToggle(300);
+    });
+    $('.treeview-menu-linggan').click(function(){
+        $(".treeview-menu-linggan-content").slideToggle(300);
+    });
+    $('.treeview-menu-xuexi').click(function(){
+        $(".treeview-menu-xuexi-content").slideToggle(300);
+    });
+    $('.treeview-menu-yinliu').click(function(){
+        $(".treeview-menu-yinliu-content").slideToggle(300);
+    });
+    $('.treeview-menu-tuiguang').click(function(){
+        $(".treeview-menu-tuiguang-content").slideToggle(300);
+    });
+    $('.treeview-menu-tuiguang-user').click(function(){
+        $(".treeview-menu-tuiguang-user-content").slideToggle(300);
+    });
+    $('.treeview-menu-seo').click(function(){
+        $(".treeview-menu-seo-content").slideToggle(300);
+    });
+    $('.treeview-menu-video').click(function(){
+        $(".treeview-menu-video-content").slideToggle(300);
+    });
+    $('.treeview-menu-keyword').click(function(){
+        $(".treeview-menu-keyword-content").slideToggle(300);
+    });
+    $('.treeview-menu-doujia').click(function(){
+        $(".treeview-menu-doujia-content").slideToggle(300);
+    });
+    $('.treeview-menu-tandian').click(function(){
+        $(".treeview-menu-tandian-content").slideToggle(300);
+    });
+</script>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
+
+
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="/static/admin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+     <link href="/static/admin/chengshi/RegionalChoice.css" rel="stylesheet">
+    <link href="/static/admin/css/font/iconfont.css" rel="stylesheet">
+    <link href="/static/admin/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="/static/admin/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="/static/admin/css/animate.min.css" rel="stylesheet">
+    <link href="/static/admin/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="/static/admin/css/plugins/switchery/switchery.css" rel="stylesheet">
+    <link href="/static/admin/css/style.min.css?v=4.1.0" rel="stylesheet">
+    <link href="/static/admin/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="__CSS__/select2.css" rel="stylesheet">
+    <link href="__CSS__/toastr.min.css" rel="stylesheet">
+    <link href="__CSS__/bootstrap-switch/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
+    <script src="/static/admin/js/jquery.min.js?v=2.1.4"></script>
+    <script src="/static/admin/js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="/static/admin/js/content.min.js?v=1.0.0"></script>
+    <script src="/static/admin/js/plugins/chosen/chosen.jquery.js"></script>
+    <script src="/static/admin/js/plugins/iCheck/icheck.min.js"></script>
+    <script src="/static/admin/js/plugins/layer/laydate/laydate.js"></script>
+    <script src="/static/admin/js/plugins/sweetalert/sweetalert.min.js"></script>
+    <script src="/static/admin/js/plugins/switchery/switchery.js"></script><!--IOS开关样式-->
+    <script src="/static/admin/js/jquery.form.js"></script>
+    <script src="/static/admin/js/layer/layer.js"></script>
+    <script src="/static/admin/js/laypage/laypage.js"></script>
+    <script src="/static/admin/js/laytpl/laytpl.js"></script>
+    <script src="/static/admin/js/select2.full.js"></script>
+    <script src="/static/admin/js/select2.js"></script>
+    <script src="/static/admin/js/i18n/es.js"></script>
+    <script src="/static/admin/js/i18n/zh-CN.js"></script>
+    <script src="__JS__/bootstrap-switch.js"></script>
+    <script src="__JS__/toastr.min.js"></script>
+    <script src="/static/admin/dreammsg/lib/dream-msg.min.js"></script>
+    <style type="text/css">
+    .long-tr th{
+        text-align: center
+    }
+    .long-td td{
+        text-align: center
+    }
+    </style>
+</head>
+<body>
+
+<div class="form-group">
+    <label class="col-sm-2 control-label">选择视频来源：</label>
+    <div class="input-group col-sm-6">
+        <label class="radio-inline">
+        <input type="radio" name="source" id="source" value="2" checked style="margin-top:3px"> 本地素材库
+        </label>
+        <label class="radio-inline">
+        <input type="radio" name="source" id="source" value="1" style="margin-top:3px"> 混剪库
+        </label>
+    </div>
+</div>
+<div class="yulan" style="margin-top:60px;">
+    <ul id="newli">
+        <li style=" list-style: none;" class="lise">
+            <div class="neiro" id="spku-yulan">
+            <video  style="height:200px!important;width: 100%;" controls="controls"><source id="imageId" src="{$bdsp.mediaIds}" type="video/mp4">
+                </video>
+            </div>
+        </li>
+    </ul>
+        <input type="hidden" name="spid" id="" value="{$bdsp.id}" />
+        <input type="button" name="" id="next"  value="切换视频 " style="margin-top:3px"> 
+</div>
+ 
+<input type="button" name="" id="share"  value="分享视频 " style="margin-top:3px"> 
+
+<script type="text/javascript" charset="utf-8">
+$('#share').click(function(){
+    var src=document.getElementById("imageId");
+    
+     window.location.href="https://ceoem.sddianfeng.cn/admin/cloud/share?src="+src.src;
+//   $.ajax({
+//     type: "POST",
+//     url: "/admin/cloud/share",
+//     data: {},
+//     success: function(data){
+//         layer.closeAll('loading');
+        
+//     },
+//     error:function() {
+//         layer.closeAll('loading');
+//         layer.alert('分享失败')
+//     }
+// });
+    
+  
+})
+$("#next").click(function(){
+  id =  $('input[name="spid"]').val();
+  $.ajax({
+        type: "POST",
+        url: "/admin/userinfo/gengxin_next",
+        data: {id:id},
+        success: function(data){
+            layer.closeAll('loading');
+            $("#spku-yulan").html('');
+          
+            
+             html = " <video  style='height:100px!important;width: 100px;' controls='controls'>"
+                        +"<source id='imageId' src='"+data.mediaIds+"' type='video/mp4'>"
+                        +"</video>"
+                         $("#spku-yulan").append(html);
+                          $('input[name="spid"]').val('');
+                          console.log(data.id)
+                         $('input[name="spid"]').val(data.id);
+        },
+        error:function() {
+            layer.closeAll('loading');
+            layer.alert('刷新失败')
+        }
+    });
+})
+
+$("#poi").click(function(){
+    poi = $("input[name='poiadd']").val();
+    $.post('{:url("Userinfo/poihuoqu")}',
+            {poi:poi},
+        function(data){   
+            if(data.code==1){
+               $("input[name='poigz']").val(data.msg);
+                return false;
+            }else{
+                //发布失败
+                layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+                return false;
+                }         
+    
+            });
+})
+</script>
+</body>
+
+

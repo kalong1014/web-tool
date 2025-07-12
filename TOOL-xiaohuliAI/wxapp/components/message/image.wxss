@@ -1,0 +1,58 @@
+.item {
+    border: 1px solid #f6f6f6;
+    border-radius: 30rpx;
+    overflow: hidden;
+}
+
+.item .image {
+    background: #f3f9f9;
+    box-sizing: border-box;
+    float: left;
+    width: 100%;
+}
+
+.item4 .image {
+    width: 50%;
+}
+
+.writing {
+    align-items: center;
+    background: #f3f9f9;
+    border-radius: 20rpx;
+    display: flex;
+    height: 532rpx;
+    justify-content: center;
+    width: 532rpx;
+}
+
+.fail {
+    flex-direction: column;
+}
+
+.fail .errmsg {
+    align-items: flex-start;
+    color: #666;
+    display: flex;
+    font-size: 28rpx;
+    line-height: 42rpx;
+    max-height: 210rpx;
+    overflow: hidden;
+    padding: 30rpx 0;
+}
+
+.fail .errmsg image {
+    height: 32rpx;
+    margin-right: 10rpx;
+    position: relative;
+    top: 4rpx;
+    width: 32rpx;
+}
+
+.fail .btn-retry {
+    background: #fff;
+    border-radius: 10rpx;
+    color: #666;
+    font-size: 24rpx;
+    margin-top: 20rpx;
+    padding: 10rpx 24rpx;
+}

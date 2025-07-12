@@ -1,0 +1,7 @@
+{
+    "component": true,
+    "usingComponents": {
+        "drawLoading": "/components/message/drawLoading",
+        "navbar": "/components/navbar/navbar"
+    }
+}

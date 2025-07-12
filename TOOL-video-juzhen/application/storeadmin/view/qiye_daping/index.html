@@ -1,0 +1,335 @@
+<style type="text/css"> 
+    .panel{background: #2b2b2e;font-family: Microsoft YaHei,PingFang SC,Arial,sans-serif;}
+    .user_info{width: 100%;height: 130px;background: #333;font-size: 16px;letter-spacing: 1px;border-radius: 5px;}
+    .user_info_left{width: 50%;float: left;padding: 20px;font-weight: bold;}
+    .user_info_right{float: right;width: 45%;}
+    .user_info_left_img{float: left;width: 100px;}
+    .user_info_left_img img{width: 80px;height: 80px;border-radius: 50%;}
+    .user_info_left_name p{margin-top: 15px;}
+    .user_info_right_data{float: left;margin-left: 20px;width: 19%;text-align: center;font-weight: bold;}
+    .user_info_right{padding: 30px;}
+    .xunpan_list{width: 100%;background: #333;margin-top: 15px;height: auto;padding-bottom: 20px;}
+    .video_list,.fensi_list{width: 49.5%;background: #333;float: left;height: auto;padding-bottom: 20px;;margin-top: 15px;border-radius: 5px;}
+    .fensi_list{margin-left: 1%;}
+    .list_title{width: 100%;border-bottom: 1px solid #444;line-height: 50px;padding-left: 20px;}
+    table {border: 1px solid #444;width: 100%;text-align: center;width: 98%;margin-left: 1%;margin-top: 20px;}
+    table th,table td{width: 12%;text-align: center;line-height: 40px;border: 1px solid #444;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+    table img{width: 60px;border-radius: 50%;padding: 10px;}
+    tbody p{width: 100%;padding: 20px;text-align: center;}
+    tbody{text-align: center;}
+    .pagination span{display: inline-block;line-height: 35px;float: left;margin-right: 20px;}
+    .pagination a{cursor: pointer;}
+    .video_list_url{overflow: hidden;white-space: nowrap;text-overflow: ellipsis;width: 100%;max-width: 200px;display: inline-block;text-align: center;}
+    .video_list_desc{overflow: hidden;white-space: nowrap;text-overflow: ellipsis;width: 100%;max-width: 100px;display: inline-block;text-align: center;border: 0;}
+    .shoudong_update{font-weight: initial;font-size: 12px;margin-left: 20px;color: #999;}
+    .shoudong_update_btn{background: unset;color: #46a2e0;border: 0px;font-size: 14px;font-weight: bold;}
+</style>
+<div class="panel panel-default panel-intro">
+    {:build_heading()}
+
+    <div class="panel-body">
+        <div id="myTabContent" class="tab-content">
+            <div class="user_info">
+                <div class="user_info_left">
+                    <div class="user_info_left_img">
+                        <img src="{$info['head']}">
+                    </div>
+                    <div class="user_info_left_name">
+                        <h2 style="margin-top:10px;">{$info['nickname']}</h2>
+                        <p>
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMCAyMGM1LjUyMyAwIDEwLTQuNDc3IDEwLTEwUzE1LjUyMyAwIDEwIDAgMCA0LjQ3NyAwIDEwczQuNDc3IDEwIDEwIDEwWiIgZmlsbD0idXJsKCNhKSIvPjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNOC4xMTggMTIuMjg2YTEuMjUyIDEuMjUyIDAgMCAwIDAgMS43NjdjLjQ4Ni40ODYgMS4yOC40ODYgMS43NjYgMEwxNS40IDguNTM3YTEuMjQ3IDEuMjQ3IDAgMCAwLS44ODMtMi4xM2MtLjMyIDAtLjY0LjEyMS0uODg0LjM2NGwtNS41MTUgNS41MTVaIiBmaWxsPSJ1cmwoI2IpIi8+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMS42NSAxMi4yODdhMS4yNTMgMS4yNTMgMCAwIDEtMS43NjYgMGwtLjg4My0uODg0TDYuMzY3IDguNzdhMS4yNTMgMS4yNTMgMCAwIDAtMS43NjYgMCAxLjI1MiAxLjI1MiAwIDAgMCAwIDEuNzY2bDMuNTE3IDMuNTE4Yy40ODYuNDg2IDEuMjguNDg2IDEuNzY2IDBsMS43NjYtMS43NjdaIiBmaWxsPSIjZmZmIi8+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJhIiB4MT0iLTEzLjIyMSIgeTE9Ii01LjY0MSIgeDI9Ii04LjE2MSIgeTI9IjQwLjgiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBzdG9wLWNvbG9yPSIjMUJBOUZGIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMjBBQkVDIi8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9ImIiIHgxPSIxMi42ODkiIHkxPSIzLjg2NSIgeDI9IjYuODg0IiB5Mj0iOS4zODEiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZmIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjRUNFREVEIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PC9zdmc+" style="margin-right: 10px;width: 20px;height: 20px;margin-top: -5px;">{if $info['company']}{$info['company']}{else}****{/if} 
+                            <span class="shoudong_update">如长时间未更新或信息错误：请点击<button class="shoudong_update_btn">【手动绑定】</button>     </span>
+                        <p> 
+                    </div>
+                </div>
+                <div class="user_info_right">
+                    <!-- <div class="user_info_right_data">
+                        <p style="font-size:20px;">{$info['digg_count']}</p>
+                        <p>获赞</p>
+                    </div> -->
+                    <div class="user_info_right_data">
+                        <p style="font-size:20px;">{$info['fensi_count']}</p>
+                        <p>粉丝</p>
+                    </div>
+                    <div class="user_info_right_data">
+                        <p style="font-size:20px;">{$info['video_count']}</p>
+                        <p>视频</p>
+                    </div>
+                    <div class="user_info_right_data">
+                        <p style="font-size:20px;">{$xunpan_count}</p>
+                        <p>意向客户</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="xunpan_list">
+                <div class="list_title">账号询盘获客（近期数据）</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>昵称</th>
+                            <th>头像</th>
+                            <th>意向度</th>
+                            <th>性别</th>
+                            <th>城市</th>
+                            <th>手机</th>
+                            <th>微信</th>
+                            <th>互动时间</th>
+                        </tr>
+                    </thead>
+                    <tbody class="xunpan_tbody">
+
+                    </tbody>
+                </table>
+                <ul class="pagination">
+                    <span>共{$xunpan_count}条数据</span>
+                    <li class=""><a class="xunpan_pre">上一页</a></li>
+                    <li><a class="xunpan_next">下一页</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="video_list">
+                    <div class="list_title">视频列表（近期数据）</div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>视频简介</th>
+                                <th>视频链接</th>
+                                <th>赞/评/播/享</th>
+                                <th>时间</th>
+                            </tr>
+                        </thead>
+                        <tbody class="video_tbody">
+
+                        </tbody>
+                    </table>
+                    <ul class="pagination">
+                        <span>共{$video_count}条数据</span>
+                        <li class=""><a class="video_pre">上一页</a></li>
+                        <li><a class="video_next">下一页</a></li>
+                    </ul>
+                </div>
+                <div class="fensi_list">
+                    <div class="list_title">粉丝列表（近期数据）</div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>昵称</th>
+                                <th>头像</th>
+                                <th>城市/性别</th>
+                                <th>时间</th>
+                            </tr>
+                        </thead>
+                        <tbody class="fensi_tbody">
+
+                        </tbody>
+                    </table>
+                    <ul class="pagination">
+                        <span>共{$fensi_count}条数据</span>
+                        <li class=""><a class="fensi_pre">上一页</a></li>
+                        <li><a class="fensi_next">下一页</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+
+<input type="hidden" class="xunpan_page" value="1">
+<input type="hidden" class="video_page" value="1">
+<input type="hidden" class="fensi_page" value="1">
+
+<script type="text/javascript" src='/storeadmin2/libs/jquery/dist/jquery.min.js?v=162913148'></script>
+<script type="text/javascript" src="/storeadmin2/libs/fastadmin-layer/dist/layer.js?v=1651412847"></script>
+<script type="text/javascript" >
+    xunpan_list(1);
+    $('.xunpan_pre').click(function(){
+        this_page = $('.xunpan_page').val();
+        xunpan_list(parseInt(this_page)-1);
+    });
+    $('.xunpan_next').click(function(){
+        this_page = $('.xunpan_page').val();
+        xunpan_list(parseInt(this_page)+1);
+    });
+    function xunpan_list(xunpang_page){
+        if(xunpang_page > 1){
+            var loading = layer.load(0, {shade: false,time: 30*1000});
+        }else{
+            var loading = null;
+        }
+        $.post('qiye_daping/get_xunpan',{id:{$id},xunpang_page:xunpang_page},function(data){  
+            $('.xunpan_page').val(xunpang_page);
+            layer.close(loading);  
+            if(data.code==1){
+                alert(data.msg);
+            }else{
+                data = data.data;
+                html = '';
+                if(data.length > 0){
+                    
+                    for(var i=0;i < data.length;i++){
+                        html += '<tr>\
+                                    <td>'+data[i]['nickname']+'</td>\
+                                    <td><img src="'+data[i]['avatar']+'"></td>\
+                                    <td>'+data[i]['leads_level']+'</td>\
+                                    <td>'+data[i]['gender']+'</td>\
+                                    <td>'+data[i]['city']+'</td>\
+                                    <td>'+data[i]['telephone']+'</td>\
+                                    <td>'+data[i]['wechat']+'</td>\
+                                    <td>'+data[i]['addtime']+'</td>\
+                                </tr>';
+                    }
+                    
+                }
+                if(data.length < 10){
+                    $('.xunpan_next').hide();
+                }else{
+                    $('.xunpan_next').show();
+                }
+                if(xunpang_page == 1){
+                    $('.xunpan_pre').hide();
+                }else{
+                    $('.xunpan_pre').show();
+                }
+                
+                $('.xunpan_tbody').html(html);
+            }
+        },'json');
+    };
+
+
+    // 视频
+    video_list(1);
+    $('.video_pre').click(function(){
+        this_page = $('.video_page').val();
+        video_list(parseInt(this_page)-1);
+    });
+    $('.video_next').click(function(){
+        this_page = $('.video_page').val();
+        video_list(parseInt(this_page)+1);
+    });
+    function video_list(videog_page){
+        if(videog_page > 1){
+            var loading = layer.load(0, {shade: false,time: 30*1000});
+        }else{
+            var loading = null;
+        }
+        $.post('qiye_daping/get_video',{id:{$id},video_page:videog_page},function(data){  
+            $('.video_page').val(videog_page);
+            layer.close(loading);  
+            if(data.code==1){
+                alert(data.msg);
+            }else{
+                data = data.data;
+                html = '';
+                if(data.length > 0){
+                    
+                    for(var i=0;i < data.length;i++){
+                        html += '<tr>\
+                                    <td class="video_list_desc">'+data[i]['desc']+'</td>\
+                                    <td> <a target="_blank" class="video_list_url" href="'+data[i]['url']+'">'+data[i]['url']+'</a></td>\
+                                    <td>'+data[i]['digg_count']+' / '+data[i]['comment_count']+' / '+data[i]['play_count']+' / '+data[i]['share_count']+'</td>\
+                                    <td>'+data[i]['addtime']+'</td>\
+                                </tr>';
+                    }
+                    
+                }
+                if(data.length < 10){
+                    $('.video_next').hide();
+                }else{
+                    $('.video_next').show();
+                }
+                if(videog_page == 1){
+                    $('.video_pre').hide();
+                }else{
+                    $('.video_pre').show();
+                }
+                
+                $('.video_tbody').html(html);
+            }
+        },'json');
+    };
+
+    // 粉丝
+    fensi_list(1);
+    $('.fensi_pre').click(function(){
+        this_page = $('.fensi_page').val();
+        fensi_list(parseInt(this_page)-1);
+    });
+    $('.fensi_next').click(function(){
+        this_page = $('.fensi_page').val();
+        fensi_list(parseInt(this_page)+1);
+    });
+    function fensi_list(fensig_page){
+        if(fensig_page > 1){
+            var loading = layer.load(0, {shade: false,time: 30*1000});
+        }else{
+            var loading = null;
+        }
+        $.post('qiye_daping/get_fensi',{id:{$id},fensig_page:fensig_page},function(data){  
+            $('.fensi_page').val(fensig_page);
+            layer.close(loading);  
+            if(data.code==1){
+                alert(data.msg);
+            }else{
+                data = data.data;
+                html = '';
+                if(data.length > 0){
+                    
+                    for(var i=0;i < data.length;i++){
+                        gender = '未知性别'
+                        if(data[i]['gender']==1){
+                            gender='男';
+                        }else if(data[i]['gender']==2){
+                            gender='女';
+                        }
+                        html += '<tr>\
+                                    <td>'+data[i]['nickname']+'</td>\
+                                    <td><img src="'+data[i]['head']+'"></td>\
+                                    <td>'+data[i]['city']+'  '+gender+'</td>\
+                                    <td>'+data[i]['addtime']+'</td>\
+                                </tr>';
+                    }
+                    
+                }
+                if(data.length < 10){
+                    $('.fensi_next').hide();
+                }else{
+                    $('.fensi_next').show();
+                }
+                if(fensig_page == 1){
+                    $('.fensi_pre').hide();
+                }else{
+                    $('.fensi_pre').show();
+                }
+                
+                $('.fensi_tbody').html(html);
+            }
+        },'json');
+    };
+
+    $('.shoudong_update_btn').click(function(){
+        Layer.open({
+                    title: '绑定账号',
+                    content:'<div id="mydiv" style="margin-left:10px;margin-top:10px;color:#333">\
+                                <textarea id="txtReason" style="width:280px;height:100px;resize:none;border-radius:3px;border-color:#333;" >{if $info["sec_uid"]}https://www.douyin.com/user/{$info["sec_uid"]}{/if}</textarea>\
+                                <p style="color:#999;font-size:12px;">请输入电脑企业号主页链接,如：https://www.douyin.com/user/MS4wLjABAAAAgq8cb7cn9ByhZbmx-XQDdRTvFzmJeBBXOUO4QflP96M</p>\
+                            </div>',
+                    btn: ['绑定',__('Cancel')],
+                    yes: function (index,layero) {
+                        var txtReason = $('#txtReason').val();
+                        Fast.api.ajax({
+                            url: "qiye_daping/update_qiye",
+                            type: "post",
+                            data: {sec_uid_url: txtReason,id:{$id}},
+                        }, function () {
+                            Layer.close(index);
+                        });
+                    },success: function (layero, index) {
+                    }
+                });
+    });
+</script>

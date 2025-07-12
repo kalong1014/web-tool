@@ -1,0 +1,213 @@
+{include file="public/header" /}
+
+<body class="gray-bg">
+<link rel="stylesheet" href="/static/admin/layui/css/layui.css" media="all">
+<div class="wrapper layui-card-body wrapper-content">
+    <style>
+        .choose-cityfission{width: 100%;height: 50px;display:flex;text-align:center;}
+        .choose-cityfission dt{min-width: 100px;line-height:50px;border:1px solid #5a5858;cursor: pointer;margin-right:5px;padding:0 10px;font-weight:100}
+        .choose-cityfission-btn.act{background: #888888;}
+        /*.cityfission-con{border:1px solid #5a5858;}*/
+        .cityfission-22, .cityfission-33{display: none;}
+        
+    </style>
+    <div class="admin-con">
+        <div class="block-box">
+            <div class="col-12">
+                <div class="block">
+                    <form name="khsearch" class="form-search" method="get" action="publish">
+                        <div class="col-sm-12 m-b-md" style="padding:0;text-align:center;">
+                                    <div style="display:inline-flex">
+                                        <select name="status"  class="form-control" style="">
+                                            <option value="">任务状态</option>
+                                            <option value="1">已发送</option>
+                                            <option value="2">发送失败/未发送</option>
+                                        </select>
+                                        <input type="text" id="key" class="form-control" name="phone" value="" autocomplete="off" placeholder="请输入用户手机号" style="display: block;width: 80%;margin:0 10px" />
+                                        <input type="text" id="key" class="form-control" name="title" value="" autocomplete="off" placeholder="请输入活动名称" style="display: block;width: 80%" />
+                                        <button type="submit" class="btn btn-primary" style="border-top-left-radius:0;border-bottom-left-radius:0;height:35px"><i class="fa fa-search"></i> 搜索</button> 
+                                    </div>
+                        </div>
+                    </form> 
+                    <div class="cityfission-11">
+                        <div class="example">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr class="long-tr">
+                                        <th>活动ID</th>
+                                        <th>活动名称</th>
+                                        <th>用户手机号</th>
+                                        <th>状态</th>
+                                        <!--<th>视频链接</th>-->
+                                        <th>发布时间</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                
+                                <tbody id="article_list">
+                                    {foreach name='list' item='vo'}
+                                        <tr>
+                                            <td>{$vo.id}</td>                                 
+                                            <td>{$vo.title}</td>                                 
+                                            <td>{$vo.phone}</td>
+                                            {if $vo.status==1}
+                                            <td style="color:#1ab394">已发送</td>
+                                            {else /}
+                                            <td style="color:#b572c1">未发送</td> 
+                                            {/if}
+                                            <!--<td>http:www.baidu.com</td>                                 -->
+                                            <td>{$vo.create_time|date='Y-m-d H:i:s',###}</td>                                 
+                                            <td>
+                                            <a href="javascript:;"  class="btn btn-primary btn-xs" onclick="del({$vo.id})">
+                                                       删除</a>
+                                            </td>                           
+                                        </tr>
+                                    {/foreach}
+                                    <!--<tr>-->
+                                    <!--    <td>1</td>                                 -->
+                                    <!--    <td>活动_2022</td>                                 -->
+                                    <!--    <td>12345678901</td>                                 -->
+                                    <!--    <td style="color:#b572c1">未发送</td>                                 -->
+                                    <!--    <td>http:www.baidu.com</td>                                 -->
+                                    <!--    <td>2022-08-30</td>                                 -->
+                                    <!--    <td>-->
+                                    <!--        <a href="javascript:;"  class="btn btn-primary btn-xs" onclick="del()">-->
+                                    <!--               删除</a>-->
+                                    <!--    </td>                           -->
+                                    <!--</tr>-->
+                                </tbody>
+                            </table>
+                            
+                        </div>
+                    </div>
+                    <div class="cityfission-22">
+                        <div class="example">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr class="long-tr">
+                                        <th>活动ID</th>
+                                        <th>活动名称</th>
+                                        <th>用户手机号</th>
+                                        <th>状态</th>
+                                        <th>视频链接</th>
+                                        <th>发布时间</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                
+                                <tbody id="article_list">
+        
+                                    <tr>
+                                        <td>1</td>                                 
+                                        <td>活动_2022</td>                                 
+                                        <td>12345678901</td>                                 
+                                        <td style="color:#1ab394">已发送</td>                                 
+                                        <td>http:www.baidu.com</td>                                 
+                                        <td>2022-08-30</td>                                 
+                                        <td>
+                                            <a href="javascript:;"  class="btn btn-primary btn-xs" onclick="del()">
+                                                   删除</a>
+                                        </td>                           
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                        </div>
+                    </div>
+                    <div class="cityfission-33">
+                        <div class="example">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr class="long-tr">
+                                        <th>活动ID</th>
+                                        <th>活动名称</th>
+                                        <th>用户手机号</th>
+                                        <th>状态</th>
+                                        <th>视频链接</th>
+                                        <th>发布时间</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                
+                                <tbody id="article_list">
+                                    
+                                    <tr>
+                                        <td>1</td>                                 
+                                        <td>活动_2022</td>                                 
+                                        <td>12345678901</td>                                 
+                                        <td style="color:#b572c1">未发送</td>                                 
+                                        <td>http:www.baidu.com</td>                                 
+                                        <td>2022-08-30</td>                                 
+                                        <td>
+                                            <a href="javascript:;"  class="btn btn-primary btn-xs" onclick="del()">
+                                                   删除</a>
+                                        </td>                           
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>    
+
+{include file="public/footer" /}
+<script type="text/javascript">
+    // 添加
+    function add(){
+          $('#add').modal('show');
+    }
+    
+    
+    $(document).ready(function(){
+        $(".cityfission-1").click(function(){
+            $(".cityfission-1").addClass("act");
+            $(".cityfission-2").removeClass("act");
+            $(".cityfission-3").removeClass("act");
+            $(".cityfission-11").show();
+            $(".cityfission-22").hide();
+            $(".cityfission-33").hide();
+        });
+        $(".cityfission-2").click(function(){
+            $(".cityfission-2").addClass("act");
+            $(".cityfission-1").removeClass("act");
+            $(".cityfission-3").removeClass("act");
+            $(".cityfission-11").hide();
+            $(".cityfission-22").show();
+            $(".cityfission-33").hide();
+        });
+        $(".cityfission-3").click(function(){
+            $(".cityfission-3").addClass("act");
+            $(".cityfission-2").removeClass("act");
+            $(".cityfission-1").removeClass("act");
+            $(".cityfission-11").hide();
+            $(".cityfission-22").hide();
+            $(".cityfission-33").show();
+        });
+    });
+    //删除
+    function del(id){
+        layer.confirm('您确定要删除当前记录?', {icon: 3, title:'提示'}, function(index){
+            $.getJSON('./del_active', {'id' : id}, function(res){
+                if(res.code == 1){
+                    layer.msg(res.msg,{icon:1,time:1500});
+                    setInterval(function(){
+                        location.reload();    
+                    },1000)
+                }else{
+                    layer.msg(res.msg,{icon:0,time:1500});
+                    setInterval(function(){
+                        location.reload();
+                    },1000)
+                }
+            });
+            layer.close(index);
+        })
+    }
+
+</script>
+</body>
+</html>

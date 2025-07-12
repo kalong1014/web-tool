@@ -1,0 +1,668 @@
+<style type="text/css">
+    .recomm_keyword,.no_recomm_keyword{background: #3ca793;padding: 5px ;margin-bottom: 10px;margin-right: 10px;color: #fff;display: inline-block;cursor: pointer;}
+     .delete_keyword{margin-left: 5px;color: #ccc;}
+     .radio label{margin-bottom: 5px;}
+     .jianji_type {display: inline-block;border: 1px solid #fff;padding: 8px 20px;border-radius: 3px;cursor: pointer;}
+     .jianji_type_active,.jianji_type:hover{background: #6f6f6f;}
+     .nr-menu-item-group-title {padding: 0;background: #4c4c4c!important;height: 1px;width: 80%;margin: 10px auto;margin-bottom: 20px;}
+     .red{color: red;margin-right: 5px;font-size: 16px;vertical-align: middle;}
+     .subtitle_font_eg{font-size: 24px;font-weight: initial;letter-spacing: 2px;color: #000;}
+
+
+     .tab-box-div{display:none;}
+     .tab{padding: 1% 5%;}
+    /* 让第一个框显示出来 */
+    .tab-box {padding-top: 25px;clear: both;}
+    .checkIteam{padding-right: 10px;display:inline-block;}
+    .tab-box-div-one{display:block;}
+    /* 改变选项卡选中时候的样式 */
+    .change{color:#70ccf6;border-bottom: 1px solid #1890ff;}
+    #tab-lab{width:33%;display:block;float:left;line-height:22px;border-radius:5px 5px 0px 0px;text-align:center;display:inline-block;line-height: 50px;cursor: pointer;font-size: 20px;}
+    #tab-lab:hover{color:#70ccf6;}
+    #tab-lab span{width: 30px;height: 30px;background: #1890ff;color: #fff;border-radius: 50%;text-align: center;display: inline-block;line-height: 30px;vertical-align: middle;margin-right: 5px;font-size: 16px;}
+</style>
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="tab">
+        <div class="tab-menu" style="text-align:center;">
+              <lable id="tab-lab" class="change" name="doctype" value="0" onclick=mymouse(0)><span>1</span>视频素材 & 音乐</lable>
+              <lable id="tab-lab" name="doctype" value="1" onclick=mymouse(1)><span>2</span>横幅 & 口播字幕</lable>
+              <lable id="tab-lab" name="doctype" value="2" onclick=mymouse(2)><span>3</span>时长 & 效果</lable>
+        </div>
+
+        <div class="nr-menu-item-group-title" style="clear: both;width: 100%;margin-top: 20px;margin-bottom: 10px;"></div>
+
+        <div class="tab-box">
+            <!-- 第1个tab -->
+          <div class="tab-box-div tab-box-div-one">
+                <div class="form-group" >
+                    <label class="control-label col-xs-12 col-sm-2"><span class="red">*</span>任务名称:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <input id="c-title" data-rule="required" class="form-control" name="row[title]" maxlength='20' type="text" value="{$row ? $row.title : ''}" placeholder="随意取一个名字吧">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-xs-12 col-sm-2">视频配音BGM:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <div class="input-group">
+                            <input id="c-bg_audio" class="form-control" size="50" name="row[bg_audio]" type="text" readonly="readonly" value="{$row ? $row.bg_audio : ''}">
+                            <div class="input-group-addon no-border no-padding">
+                                <span><button type="button" id="faupload-bg_audio" class="btn btn-danger faupload" data-input-id="c-bg_audio" data-mimetype="audio/mpeg,audio/ogg,audio/wav,audio/mp3" data-multiple="true" data-preview-id="p-bg_audio"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                                <span><button type="button" id="fachoose-bg_audio" class="btn btn-primary fachoose" data-input-id="c-bg_audio" data-mimetype="audio/mpeg,audio/ogg,audio/wav,audio/mp3" data-multiple="true"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                            </div>
+                            <span class="msg-box n-right" for="c-bg_audio"></span>
+                        </div>
+                        <ul class="row list-inline faupload-preview" id="p-bg_audio"></ul>
+                        <p style="margin-top:5px;color:#888;">音乐格式支持：MP3、ogg、wav</p>
+                    </div>
+                </div>
+                <div class="form-group jianji_type_content">
+                    <label class="control-label col-xs-12 col-sm-2">BGM音量:</label>
+                    <div class="col-xs-12 col-sm-5">
+                        <input id="range" type="range" min="1" max="10" value="{$row ? $row.bg_volume : 10}" name="row[bg_volume]" onchange="change()" style="display:inline-block;width: 90%;">
+                        <span id="value" style="display:inline-block;font-size: 16px;">{$row ? $row.bg_volume : 10}</span>
+                        <p style="margin-top:5px;color:#888;">默认10为原始音量，需要调节低音量请调节</p>
+                    </div>
+                </div>
+
+                <div class="nr-menu-item-group-title"></div>
+
+                <div class="form-group jianji_type_content">
+                    <label class="control-label col-xs-12 col-sm-2">视频片头:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <div class="input-group">
+                            <input id="c-start_video" class="form-control" size="50" name="row[start_video]" type="text" readonly="readonly" value="{$row ? $row.start_video : ''}" >
+                            <div class="input-group-addon no-border no-padding">
+                                <span><button type="button" id="faupload-start_video" class="btn btn-danger faupload" data-input-id="c-start_video" data-mimetype="video/webm,video/mp4,video/ogg,MOV" data-multiple="true" data-preview-id="p-start_video"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                                <span><button type="button" id="fachoose-start_video" class="btn btn-primary fachoose" data-input-id="c-start_video" data-mimetype="video/webm,video/mp4,video/ogg,MOV" data-multiple="true"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                            </div>
+                            <span class="msg-box n-right" for="c-start_video"></span>
+                        </div>
+                        <ul class="row list-inline faupload-preview" id="p-start_video"></ul>
+                        <span style="margin-top:5px;display:block;">视频时长在5-20秒最佳</span>
+                        <span style="color:#999;display:block;">视频格式支持：MP4、ogg、WebM、mov ; </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-xs-12 col-sm-2"><span class="red">*</span>视频随机素材:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <div class="input-group">
+                            <input id="c-video1" class="form-control" size="50" name="row[video1]" type="text" readonly="readonly" value="{$row ? $row.video1 : ''}" data-rule="required">
+                            <div class="input-group-addon no-border no-padding">
+                                <span><button type="button" id="faupload-video1" class="btn btn-danger faupload" data-input-id="c-video1" data-mimetype="video/webm,video/mp4,MOV,video/ogg,image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="true" data-preview-id="p-video1"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                                <span><button type="button" id="fachoose-video1" class="btn btn-primary fachoose" data-input-id="c-video1" data-mimetype="video/webm,video/mp4,MOV,video/ogg" data-multiple="true"> {:__('Choose')}视频</button></span>
+                                <span><button type="button" id="fachoose-video1" class="btn btn-primary fachoose" data-input-id="c-video1" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmpg" data-multiple="true">{:__('Choose')}图片</button></span>
+                            </div>
+                            <span class="msg-box n-right" for="c-video1"></span>
+                        </div>
+                        <ul class="row list-inline faupload-preview" id="p-video1"></ul>
+                        <span style="margin-top:5px;display:block;">可上传多个视频与图片随机混剪，每个视频时长应该在5秒以上</span>
+                        <span style="color:#999;display:block;">视频格式支持：MP4、ogg、WebM、mov ; 图片格式支持：jpg、png、jpeg</span>
+                    </div>
+                </div>
+
+
+                <div class="form-group jianji_type_content">
+                    <label class="control-label col-xs-12 col-sm-2">视频片尾:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <div class="input-group">
+                            <input id="c-end_video" class="form-control" size="50" name="row[end_video]" type="text" readonly="readonly" value="{$row ? $row.end_video : ''}">
+                            <div class="input-group-addon no-border no-padding">
+                                <span><button type="button" id="faupload-end_video" class="btn btn-danger faupload" data-input-id="c-end_video" data-mimetype="video/webm,video/mp4,MOV,video/ogg" data-multiple="true" data-preview-id="p-end_video"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                                <span><button type="button" id="fachoose-end_video" class="btn btn-primary fachoose" data-input-id="c-end_video" data-mimetype="video/webm,video/mp4,MOV,video/ogg" data-multiple="true"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                            </div>
+                            <span class="msg-box n-right" for="c-end_video"></span>
+                        </div>
+                        <ul class="row list-inline faupload-preview" id="p-end_video"></ul>
+                        <span style="margin-top:5px;display:block;">视频时长在5-20秒最佳</span>
+                        <span style="color:#999;display:block;">视频格式支持：MP4、ogg、WebM、mov ; </span>
+                    </div>
+                </div>
+
+                <div class="form-group jianji_type_content">
+                    <label class="control-label col-xs-12 col-sm-2">视频原声音量:</label>
+                    <div class="col-xs-12 col-sm-5">
+                        <input id="range_video_volume" type="range" min="0" max="10" value="{$row ? $row.video_volume : 0}" name="row[video_volume]" onchange="change_video_volume()" style="display:inline-block;width: 90%;">
+                        <span id="value_video_volume" style="display:inline-block;font-size: 16px;">{$row ? $row.video_volume : 0}</span>
+                        <p style="margin-top:5px;color:#888;">默认0为关闭原声，需要调节低音量请调节</p>
+                    </div>
+                </div>
+          </div>
+
+          <!-- 第二个tab -->
+          <div class="tab-box-div">
+                <div class="form-group jianji_type_content">
+                    <label class="control-label col-xs-12 col-sm-2">字幕横幅:</label>
+                    <div class="col-xs-12 col-sm-10">
+                        <!-- <input id="c-subtitle"  class="form-control" name="row[subtitle]" type="text"  maxlength='20' value="{$row ? $row.subtitle : ''}" placeholder="请输入全程字幕，建议10-20个字"> -->
+                        <textarea id="c-subtitle" class="form-control " rows="5" name="row[subtitle]" cols="20" placeholder="通过换行，输入多段随机横幅，每段在20个字内">{$row ? $row.subtitle : ''}</textarea>
+                        <p style="margin-top:5px;color:#888;">* 每行一段横幅，换行增加新的随机横幅，系统随机取一段，每段在20-30个字左右</p>
+                        <p style="margin-top:0px;color:#888;">* 如需要每段横幅换行展示，请用逗号隔开，最多换行展示4行</p>
+                        <p style="margin-top:0px;color:#888;">例如：厂家直销，全国有货源 （此案例用逗号隔开，会展示两行文字）</p>
+                    </div>
+                </div>
+                <div class="form-group jianji_type_content">
+                    <label class="control-label col-xs-12 col-sm-2">字体/颜色:</label>
+                    <div class="col-xs-12 col-sm-6">
+                        <select class="form-control select_subtitle" name="row[subtitle_font]">
+                            <option value="微软雅黑" {if ($row && ($row.subtitle_font=='' || $row.subtitle_font=='微软雅黑'))}selected{/if}>微软雅黑</option>
+                            <option value="bdt" {if ($row && $row.subtitle_font=='bdt')}selected{/if}>布丁体</option>
+                            <option value="mmdt" {if ($row && $row.subtitle_font=='mmdt')}selected{/if}>萌体</option>
+                            <option value="mqrtt" {if ($row && $row.subtitle_font=='mqrtt')}selected{/if}>软糖体</option>
+                            <option value="zgzh" {if ($row && $row.subtitle_font=='zgzh')}selected{/if}>中字体</option>
+                            <option value="xklt" {if ($row && $row.subtitle_font=='xklt')}selected{/if}>恐龙体</option>
+                            <option value="fzxft" {if ($row && $row.subtitle_font=='fzxft')}selected{/if}>先锋体</option>
+                            <option value="jyh" {if ($row && $row.subtitle_font=='jyh')}selected{/if}>简雅黑</option>
+                            <option value="zkcjh" {if ($row && $row.subtitle_font=='zkcjh')}selected{/if}>超级黑体</option>
+                            <option value="xyh" {if ($row && $row.subtitle_font=='xyh')}selected{/if}>心愿体</option>
+                            <option value="lmzyt" {if ($row && $row.subtitle_font=='lmzyt')}selected{/if}>综艺体</option>
+                            <option value="jjcjh" {if ($row && $row.subtitle_font=='jjcjh')}selected{/if}>机甲黑</option>
+                            <option value="yqllt" {if ($row && $row.subtitle_font=='yqllt')}selected{/if}>元气体</option>
+                            <option value="fyh" {if ($row && $row.subtitle_font=='fyh')}selected{/if}>方悦黑</option>
+                            <option value="xbl" {if ($row && $row.subtitle_font=='xbl')}selected{/if}>小白体</option>
+                            <option value="yrh" {if ($row && $row.subtitle_font=='yrh')}selected{/if}>艺人体</option>
+                            <option value="flh" {if ($row && $row.subtitle_font=='flh')}selected{/if}>风铃体</option>
+                            <option value="yycsh" {if ($row && $row.subtitle_font=='yycsh')}selected{/if}>创世黑体</option>
+                            <option value="xylht" {if ($row && $row.subtitle_font=='xylht')}selected{/if}>星阳体</option>
+                            <option value="dlt" {if ($row && $row.subtitle_font=='dlt')}selected{/if}>斗罗体</option>
+                        </select>                        
+                    </div>
+                    <div class="col-xs-12 col-sm-1" >
+                        <input type="color" name="row[subtitle_color]" class="subtitle_color" style="height: 40px;" value="{$row ? $row.subtitle_color : '#ffffff'}">
+                    </div>
+                </div>
+                <div class="form-group jianji_type_content">
+                    <label class="control-label col-xs-12 col-sm-2">描边/描边颜色</label>
+                    <div class="col-xs-12 col-sm-6" >
+                        <select  class="form-control" name="row[subtitle_outline]">
+                            <option value="0" {if ($row && $row.subtitle_outline==0)}selected{/if}>无描边</option>
+                            <option value="1" {if ($row && $row.subtitle_outline==1)}selected{/if}>1像素</option>
+                            <option value="2" {if ($row && $row.subtitle_outline==2)}selected{/if}>2像素</option>
+                            <option value="3" {if ($row && $row.subtitle_outline==3)}selected{/if}>3像素</option>
+                            <option value="4" {if ($row && $row.subtitle_outline==4)}selected{/if}>4像素</option>
+                            <option value="5" {if ($row && $row.subtitle_outline==5)}selected{/if}>5像素</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-12 col-sm-1" >
+                        <input type="color" name="row[subtitle_outline_color]" class="subtitle_outline_color" style="height: 33px;" value="{$row ? $row.subtitle_outline_color : ''}">
+                    </div>
+                    
+                </div>
+                <div class="form-group jianji_type_content">
+                    <label class="control-label col-xs-12 col-sm-2" style="color: #999;">预览：</label>
+                    <div class="col-xs-12 col-sm-7" style="background:#fff;margin-left: 2%;">
+                        <label class="subtitle_font_eg" style="color: {$row ? $row.subtitle_color : ''};font-family: {$row ? $row.subtitle_font : ''};-webkit-text-stroke:1px {$row ? $row.subtitle_outline_color : '#eaeaea'};">举头望明月，低头思故乡</label>
+                    </div>
+                </div>
+                <div class="form-group jianji_type_content">
+                    <label class="control-label col-xs-12 col-sm-2">字体大小：</label>
+                    <div class="col-xs-12 col-sm-6" >
+                        <input id="c-subtitle_site" data-rule="range(70~120)" class="form-control" name="row[subtitle_site]"  type="number" value="{$row ? $row.subtitle_site : '100'}" placeholder="字体大小,建议：100">
+                    </div>
+                    
+                </div>
+                <div class="form-group jianji_type_content">
+                    <label class="control-label col-xs-12 col-sm-2">位置(距离顶部百分比):</label>
+                    <div class="col-xs-12 col-sm-6" >
+                        <select  class="form-control" name="row[alignment]">
+                            <option value="0"  {if ($row && $row.alignment==0)}selected{/if}>随机(顶部/居中/底部)</option>
+                            <option value="10" {if ($row && $row.alignment==10)}selected{/if}>10%</option>
+                            <option value="15" {if (($row && $row.alignment==15) || !$row)}selected{/if}>15%</option>
+                            <option value="20" {if ($row && $row.alignment==20)}selected{/if}>20%</option>
+                            <option value="25" {if ($row && $row.alignment==25)}selected{/if}>25%</option>
+                            <option value="30" {if ($row && $row.alignment==30)}selected{/if}>30%</option>
+                            <option value="35" {if ($row && $row.alignment==35)}selected{/if}>35%</option>
+                            <option value="40" {if ($row && $row.alignment==40)}selected{/if}>40%</option>
+                            <option value="45" {if ($row && $row.alignment==45)}selected{/if}>45%</option>
+                            <option value="50" {if ($row && $row.alignment==50)}selected{/if}>50%</option>
+                            <option value="55" {if ($row && $row.alignment==55)}selected{/if}>55%</option>
+                            <option value="60" {if ($row && $row.alignment==60)}selected{/if}>60%</option>
+                            <option value="65" {if ($row && $row.alignment==65)}selected{/if}>65%</option>
+                            <option value="70" {if ($row && $row.alignment==70)}selected{/if}>70%</option>
+                            <option value="75" {if ($row && $row.alignment==75)}selected{/if}>75%</option>
+                            <option value="80" {if ($row && $row.alignment==80)}selected{/if}>80%</option>
+                            <option value="85" {if ($row && $row.alignment==85)}selected{/if}>85%</option>
+                            <option value="90" {if ($row && $row.alignment==90)}selected{/if}>90%</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="nr-menu-item-group-title jianji_type_content"></div>
+
+                <!-- <div class="form-group jianji_type_content">
+                    <label class="control-label col-xs-12 col-sm-2">字幕颜色:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <label>
+                            <input type="radio" name="row[sound_type]" {if ($row && $row.sound_type=='white_grad')}checked{/if} value="white_grad"> 
+                            <img src="https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/4238045461/p406887.png" />
+                        </label>
+                    </div>
+                </div> -->
+                <div class="form-group jianji_type_content">
+                    <label class="control-label col-xs-12 col-sm-2">字幕语音:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <div class="radio">
+                            <label >
+                                <input type="radio" class="diy_yuyin" name="diy_yuyin_radio"  {if ($row && !$row.diy_yuyin) || !$row}checked{/if} value="2">字幕转语音
+                            </label>
+                            <label>
+                                <input type="radio" class="diy_yuyin" name="diy_yuyin_radio" {if ($row && $row.diy_yuyin)}checked{/if} value="1">自定义语音转字幕
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group jianji_type_yuyin1" {if (!$row || !$row.diy_yuyin)}style="display:none"{/if}>
+                    <label class="control-label col-xs-12 col-sm-2">自定义语音:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <div class="input-group">
+                            <input id="c-diy_yuyin" class="form-control" size="50" name="row[diy_yuyin]" type="text" readonly="readonly" value="{$row ? $row.diy_yuyin : ''}">
+                            <div class="input-group-addon no-border no-padding">
+                                <span><button type="button" id="faupload-diy_yuyin" class="btn btn-danger faupload" data-input-id="c-diy_yuyin" data-mimetype="audio/mpeg,audio/ogg,audio/wav,audio/mp3" data-multiple="true" data-preview-id="p-diy_yuyin"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                                <span><button type="button" id="fachoose-diy_yuyin" class="btn btn-primary fachoose" data-input-id="c-diy_yuyin" data-mimetype="audio/mpeg,audio/ogg,audio/wav,audio/mp3" data-multiple="true"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                            </div>
+                            <span class="msg-box n-right" for="c-diy_yuyin"></span>
+                        </div>
+                        <ul class="row list-inline faupload-preview" id="p-diy_yuyin"></ul>
+                        <p style="margin-top:5px;color:#888;">音乐格式支持：MP3、ogg、wav</p>
+                    </div>
+                </div>
+
+                <div class="form-group jianji_type_content jianji_type_yuyin2" {if ($row && $row.diy_yuyin)}style="display:none"{/if}>
+                    <label class="control-label col-xs-12 col-sm-2">语音解说:</label>
+                    <div class="col-xs-12 col-sm-10">
+                        <textarea id="c-sound_text"  class="form-control " rows="5" name="row[sound_text]" cols="20" placeholder="请输入全程的语音解说，如开启解说模式，建议把BGM音量调低，多段语音用换行" >{$row ? $row.sound_text : ''}</textarea>
+                        <p style="margin-top:5px;color:#888;" class="sound_text_time">时长预估：10个字预计2.5秒</p>
+                        <p style="color:#888;">注意：通过换行可以随机多段解说，如开启解说模式，建议把BGM音量调低</p>
+                        <p style="color:#888;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;语句间隔用逗号隔开</p>
+                    </div>
+                </div>
+
+                <div class="form-group jianji_type_content ">
+                    <label class="control-label col-xs-12 col-sm-2">解说字幕:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <div class="radio">
+                            <label >
+                                <input type="radio" name="row[open_subtitle]"  {if ($row && $row.open_subtitle==1) || !$row}checked{/if} value="1">开启
+                            </label>
+                            <label>
+                                <input type="radio" name="row[open_subtitle]" {if ($row && $row.open_subtitle==0)}checked{/if} value="0">关闭
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group jianji_type_content">
+                    <label class="control-label col-xs-12 col-sm-2">口播解说音量:</label>
+                    <div class="col-xs-12 col-sm-5">
+                        <input id="range_koubo_volume" type="range" min="1" max="10" value="{$row ? $row.koubo_volume : 10}" name="row[koubo_volume]" onchange="change_koubo_volume()" style="display:inline-block;width: 90%;">
+                        <span id="value_koubo_volume" style="display:inline-block;font-size: 16px;">{$row ? $row.koubo_volume : 10}</span>
+                        <p style="margin-top:5px;color:#888;">默认10为原始音量，需要调节低音量请调节</p>
+                    </div>
+                </div>
+                <div class="form-group jianji_type_content ">
+                    <label class="control-label col-xs-12 col-sm-2">解说语速:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <div class="radio">
+                            <label >
+                                <input type="radio" name="row[speed]"  {if ($row && $row.speed==1.0) || !$row}checked{/if} value="1">正常
+                            </label>
+                            <label >
+                                <input type="radio" name="row[speed]"  {if ($row && $row.speed==1.2)}checked{/if} value="1.2">1.2倍速
+                            </label>
+                            <label >
+                                <input type="radio" name="row[speed]"  {if ($row && $row.speed==1.3)}checked{/if} value="1.3">1.3倍速
+                            </label>
+                            <label >
+                                <input type="radio" name="row[speed]"  {if ($row && $row.speed==1.5) }checked{/if} value="1.5">1.5倍速
+                            </label>
+                            <label >
+                                <input type="radio" name="row[speed]"  {if ($row && $row.speed==2) }checked{/if} value="2">2倍速
+                            </label>
+                        </div>
+                        <p style="color:#999">常规语速：10个字需要2.5秒（不含逗号）</p>
+                    </div>
+                </div>
+                <div class="form-group jianji_type_content ">
+                    <label class="control-label col-xs-12 col-sm-2">字幕大小/颜色:</label>
+                    <div class="col-xs-12 col-sm-6" >
+                        <input id="c-sound_text_size" data-rule="range(45~80)" class="form-control" name="row[sound_text_size]"  type="number" value="{$row ? $row.sound_text_size : 55}" placeholder="字体大小,建议：55">
+                    </div>
+                    <div class="col-xs-12 col-sm-2" >
+                        <input type="color" name="row[sound_text_color]" class="sound_text_color" style="height: 33px;" value="{$row ? $row.sound_text_color : '#ffffff'}">
+                    </div>
+                </div>
+                <div class="form-group jianji_type_content ">
+                    <label class="control-label col-xs-12 col-sm-2">描边大小/颜色:</label>
+                    <div class="col-xs-12 col-sm-6" >
+                        <input id="c-sound_text_outline" data-rule="range(1~5)" class="form-control" name="row[sound_text_outline]"  type="number" value="{$row ? $row.sound_text_outline : 3}" placeholder="字体大小,建议：3">
+                    </div>
+                    <div class="col-xs-12 col-sm-2" >
+                        <input type="color" name="row[sound_text_outline_color]" class="sound_text_outline_color" style="height: 33px;" value="{$row ? $row.sound_text_outline_color : '#000000'}">
+                    </div>
+                </div>
+                
+
+                <div class="form-group jianji_type_content ">
+                    <label class="control-label col-xs-12 col-sm-2">位置(距离顶部百分比):</label>
+                    <div class="col-xs-12 col-sm-6" >
+                        <select  class="form-control" name="row[subtitle_alignment]">
+                            <option value="0"  {if ($row && $row.subtitle_alignment==0)}selected{/if}>随机(顶部/居中/底部)</option>
+                            <option value="10" {if ($row && $row.subtitle_alignment==10)}selected{/if}>10%</option>
+                            <option value="15" {if ($row && $row.subtitle_alignment==15)}selected{/if}>15%</option>
+                            <option value="20" {if ($row && $row.subtitle_alignment==20)}selected{/if}>20%</option>
+                            <option value="25" {if ($row && $row.subtitle_alignment==25)}selected{/if}>25%</option>
+                            <option value="30" {if ($row && $row.subtitle_alignment==30)}selected{/if}>30%</option>
+                            <option value="35" {if ($row && $row.subtitle_alignment==35)}selected{/if}>35%</option>
+                            <option value="40" {if ($row && $row.subtitle_alignment==40)}selected{/if}>40%</option>
+                            <option value="45" {if ($row && $row.subtitle_alignment==45)}selected{/if}>45%</option>
+                            <option value="50" {if ($row && $row.subtitle_alignment==50)}selected{/if}>50%</option>
+                            <option value="55" {if ($row && $row.subtitle_alignment==55)}selected{/if}>55%</option>
+                            <option value="60" {if ($row && $row.subtitle_alignment==60)}selected{/if}>60%</option>
+                            <option value="65" {if ($row && $row.subtitle_alignment==65)}selected{/if}>65%</option>
+                            <option value="70" {if ($row && $row.subtitle_alignment==70)}selected{/if}>70%</option>
+                            <option value="75" {if ($row && $row.subtitle_alignment==75)}selected{/if}>75%</option>
+                            <option value="80" {if (($row && $row.subtitle_alignment==80) || !$row)}selected{/if}>80%</option>
+                            <option value="85" {if ($row && $row.subtitle_alignment==85)}selected{/if}>85%</option>
+                            <option value="90" {if ($row && $row.subtitle_alignment==90)}selected{/if}>90%</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group jianji_type_content jianji_type_yuyin2" {if ($row && $row.diy_yuyin)}style="display:none"{/if}>
+                    <label class="control-label col-xs-12 col-sm-2">解说语音包:</label>
+                    <div class="col-xs-12 col-sm-10">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="row[sound_type]" {if ($row && $row.sound_type=='aiyue') || !$row}checked{/if} value="aiyue">艾悦 
+                                <a href="https://ice-pub-media.myalicdn.com/smart/tts-audio/aiyue.MP3?spm=a2c4g.11186623.0.0.e3ef30b1koMnqv&file=aiyue.MP3" target="_blank">[温柔女]</a>
+                            </label>
+                            <label>
+                                <input type="radio" name="row[sound_type]" {if ($row && $row.sound_type=='zhitian')}checked{/if} value="zhitian">知甜 
+                                <a href="https://ice-pub-media.myalicdn.com/smart/tts-audio/zhitian.MP3?spm=a2c4g.11186623.0.0.e3ef30b1koMnqv&file=zhitian.MP3" target="_blank">[甜美女]</a>
+                            </label>
+                            <label>
+                                <input type="radio" name="row[sound_type]" {if ($row && $row.sound_type=='xiaoyun')}checked{/if} value="xiaoyun">小云 
+                                <a href="https://ice-pub-media.myalicdn.com/smart/tts-audio/xiaoyun.MP3?spm=a2c4g.11186623.0.0.e3ef30b1koMnqv&file=xiaoyun.MP3" target="_blank">[标准女]</a>
+                            </label>
+                            <label>
+                                <input type="radio" name="row[sound_type]" {if ($row && $row.sound_type=='ruoxi')}checked{/if} value="ruoxi">若兮 
+                                <a href="https://ice-pub-media.myalicdn.com/smart/tts-audio/ruoxi.MP3?spm=a2c4g.11186623.0.0.e3ef30b1koMnqv&file=ruoxi.MP3" target="_blank">[标准女]</a>
+                            </label>
+                            <label>
+                                <input type="radio" name="row[sound_type]" {if ($row && $row.sound_type=='jiajia')}checked{/if} value="jiajia">佳佳 
+                                <a href="https://ice-pub-media.myalicdn.com/smart/tts-audio/jiajia.MP3?spm=a2c4g.11186623.0.0.e3ef30b1koMnqv&file=jiajia.MP3" target="_blank">[粤语女]</a>
+                            </label>
+                            <label>
+                                <input type="radio" name="row[sound_type]" {if ($row && $row.sound_type=='aiwei')}checked{/if} value="aiwei">艾薇 
+                                <a href="https://ice-pub-media.myalicdn.com/smart/tts-audio/aiwei.MP3?spm=a2c4g.11186623.0.0.e3ef30b1koMnqv&file=aiwei.MP3" target="_blank">[萝莉女]</a>
+                            </label>
+                            <label>
+                                <input type="radio" name="row[sound_type]" {if ($row && $row.sound_type=='zhiqing')}checked{/if} value="zhiqing">知青 
+                                <a href="https://ice-pub-media.myalicdn.com/smart/tts-audio/zhiqing.MP3?spm=a2c4g.11186623.0.0.e3ef30b1koMnqv&file=zhiqing.MP3" target="_blank">[台湾女]</a>
+                            </label>
+
+                            <label>
+                                <input type="radio" name="row[sound_type]"  {if ($row && $row.sound_type=='aida')}checked{/if} value="aida">艾达 
+                                <a href="https://ice-pub-media.myalicdn.com/smart/tts-audio/aida.MP3?spm=a2c4g.11186623.0.0.e3ef30b1koMnqv&file=aida.MP3" target="_blank">[标准男]</a>
+                            </label>
+                            <label>
+                                <input type="radio" name="row[sound_type]" {if ($row && $row.sound_type=='aishuo')}checked{/if} value="aishuo">艾硕 
+                                <a href="https://ice-pub-media.myalicdn.com/smart/tts-audio/aishuo.MP3?spm=a2c4g.11186623.0.0.e3ef30b1koMnqv&file=aishuo.MP3" target="_blank">[自然男]</a>
+                            </label>
+                            <label>
+                                <input type="radio" name="row[sound_type]" {if ($row && $row.sound_type=='xiaoze')}checked{/if} value="xiaoze">小泽 
+                                <a href="https://ice-pub-media.myalicdn.com/smart/tts-audio/xiaoze.MP3?spm=a2c4g.11186623.0.0.e3ef30b1koMnqv&file=xiaoze.MP3" target="_blank">[湖南男]</a>
+                            </label>
+                            <label>
+                                <input type="radio" name="row[sound_type]" {if ($row && $row.sound_type=='kenny')}checked{/if} value="kenny">Kenny 
+                                <a href="https://ice-pub-media.myalicdn.com/smart/tts-audio/kenny.MP3?spm=a2c4g.11186623.0.0.e3ef30b1koMnqv&file=kenny.MP3" target="_blank">[沉稳男]</a>
+                            </label>
+                            <label>
+                                <input type="radio" name="row[sound_type]" {if ($row && $row.sound_type=='jielidou')}checked{/if} value="jielidou">杰力豆 
+                                <a href="https://ice-pub-media.myalicdn.com/smart/tts-audio/jielidou.MP3?spm=a2c4g.11186623.0.0.e3ef30b1koMnqv&file=jielidou.MP3" target="_blank">[童声男]</a>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+          </div>
+
+
+          <!-- 第3个tab -->
+        <div class="tab-box-div">
+            <div class="form-group ">
+                <label class="control-label col-xs-12 col-sm-2"><span class="red">*</span>视频尺寸:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <div class="radio">
+                        <label >
+                            <input type="radio" name="row[view_size]"  {if ($row && $row.view_size==1) || !$row}checked{/if} value="1">手机竖屏版
+                        </label>
+                        <label>
+                            <input type="radio" name="row[view_size]" {if ($row && $row.view_size==2)}checked{/if} value="2">电脑横屏版
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <input type="hidden" name="row[type]" value="2">
+
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-2"><span class="red">*</span>剪辑视频数:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input id="c-video_count" data-rule="required;range(1~100)" class="form-control" name="row[video_count]" type="number" maxlength="2" value="{$row ? $row.video_count : 1}" placeholder="剪辑视频数">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-2"><span class="red">*</span>预计时长(秒):</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input id="c-video_time" data-rule="required;range(5~120)" class="form-control" name="row[video_time]" type="number" maxlength="2" value="{$row ? $row.video_time : 30}" placeholder="视频时长">
+                </div>
+            </div>
+
+            <div class="form-group jianji_type_content">
+                <label class="control-label col-xs-12 col-sm-2">定制时长(秒):</label>
+                <div class="col-xs-12 col-sm-2">
+                    <input id="c-start_duration" data-rule="range(0~60)" class="form-control" name="row[start_duration]" type="number" maxlength="2" value="{$row ? $row.start_duration : ''}" placeholder="片头时长">
+                </div>
+                <div class="col-xs-12 col-sm-3">
+                    <input id="c-video_duration" data-rule="range(0~60)" class="form-control" name="row[video_duration]" type="number" maxlength="2" value="{$row ? $row.video_duration : ''}" placeholder="随机素材时长">
+                </div>
+                <div class="col-xs-12 col-sm-2">
+                    <input id="c-end_duration" data-rule="range(0~60)" class="form-control" name="row[end_duration]" type="number" maxlength="2" value="{$row ? $row.end_duration : ''}" placeholder="片尾时长">
+                </div>
+
+            </div>
+            <div class="form-group jianji_type_content">
+                <label class="control-label col-xs-12 col-sm-2"></label>
+                <div class="col-xs-12 col-sm-8">
+                    <div style="margin-top:5px;color:#888;">填写了定制时长，时长以定制时长为准，预计时长作为备用预计时长</div>
+                </div>
+
+            </div>
+
+            <div class="form-group jianji_type_content">
+                <label class="control-label col-xs-12 col-sm-2">视频封面(秒):</label>
+                <div class="col-xs-12 col-sm-3">
+                    <input id="c-cover_time" data-rule="range(0~300)" class="form-control" name="row[cover_time]" type="number" maxlength="3" value="{$row ? $row.cover_time : ''}" placeholder="视频封面（秒）">
+                </div>
+                <div style="margin-top:5px;color:#888;">封面图位于成片的第几秒，填0为随机封面</div>
+            </div>
+
+            <!-- <div class="form-group jianji_type_content" style="display: none;">
+                <label class="control-label col-xs-12 col-sm-2">随机开幕:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="row[start_open]" {if ($row && $row.start_open==1)}checked{/if} value="1">开启
+                        </label>
+                        <label>
+                            <input type="radio" name="row[start_open]" {if ($row && $row.start_open==0) || !$row}checked{/if} value="0">关闭
+                        </label>
+                    </div>
+                </div>
+            </div> -->
+
+            <div class="nr-menu-item-group-title jianji_type_content"></div>
+
+            <div class="form-group jianji_type_content">
+                <label class="control-label col-xs-12 col-sm-2">随机转场:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="row[transition_open]" {if ($row && $row.transition_open==1) || !$row}checked{/if} value="1">开启
+                        </label>
+                        <label>
+                            <input type="radio" name="row[transition_open]" {if ($row && $row.transition_open==0)}checked{/if} value="0">关闭
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group jianji_type_content">
+                <label class="control-label col-xs-12 col-sm-2">随机滤镜:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="row[filter_open]" {if ($row && $row.filter_open==1)}checked{/if} value="1">开启
+                        </label>
+                        <label>
+                            <input type="radio" name="row[filter_open]" {if ($row && $row.filter_open==0) || !$row}checked{/if} value="0">关闭
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-2">画面贴纸:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="row[sticker_open]" checked value="1">开启
+                        </label>
+                        <label>
+                            <input type="radio" name="row[sticker_open]"  value="0">关闭
+                        </label>
+                    </div>
+                </div>
+            </div> -->
+            <div class="form-group jianji_type_content">
+                <label class="control-label col-xs-12 col-sm-2">随机画面特效:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="row[stars_open]" {if ($row && $row.stars_open==1)}checked{/if} value="1">开启
+                        </label>
+                        <label>
+                            <input type="radio" name="row[stars_open]" {if ($row && $row.stars_open==0) || !$row}checked{/if} value="0">关闭
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+    
+
+
+    
+
+
+    
+
+
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed " >{:__('OK')}</button>
+        </div>
+    </div>
+
+</form>
+
+<script type="text/javascript" src='/storeadmin2/libs/jquery/dist/jquery.min.js?v=162913148'></script>
+<script type='text/javascript'>
+
+function change() {
+  var value = document.getElementById('range').value ;
+  document.getElementById('value').innerHTML = value;
+}
+
+function change_video_volume(){
+    var value = document.getElementById('range_video_volume').value ;
+    document.getElementById('value_video_volume').innerHTML = value;
+}
+
+function change_koubo_volume(){
+    var value = document.getElementById('range_koubo_volume').value ;
+    document.getElementById('value_koubo_volume').innerHTML = value;
+}
+
+$('.jianji_type').click(function(){
+    $('.jianji_type').removeClass('jianji_type_active');
+    $(this).addClass('jianji_type_active');
+
+    id = $(this).attr('data-id');
+    if(id == 1){
+        $('.jianji_type_content').hide();
+    }else{
+        $('.jianji_type_content').show();
+    }
+});
+
+$('.select_subtitle').change(function(){
+    data_value = $(this).val();;
+    $('.subtitle_font_eg').css('font-family',data_value);
+    // alert(data_value);
+    
+});
+
+
+$('.diy_yuyin').change(function(){
+    if(this.value == 2){
+        $('.jianji_type_yuyin1').hide();
+        $('.jianji_type_yuyin2').show();
+    }else{
+        $('.jianji_type_yuyin2').hide();
+        $('.jianji_type_yuyin1').show();
+    }
+    
+});
+
+$(document).bind('click', function(e) {
+  var e = e || window.event; //浏览器兼容性
+  var elem = e.target || e.srcElement;
+  while (elem) {
+    //循环判断至跟节点，防止点击的是div子元素
+    if (elem.id && elem.id == 'select_subtitle') {
+      return;
+    }
+    elem = elem.parentNode;
+  }
+  //点击的不是div或其子元素
+  $('.select_subtitle_option').css('position','absolute');
+});
+
+$('.subtitle_color').change(function(){
+    $('.subtitle_font_eg').css('color',this.value);
+});
+
+
+$('.subtitle_outline_color').change(function(){
+    $('.subtitle_font_eg').css('-webkit-text-stroke','1px '+this.value);
+});
+
+ 
+function mymouse(_index){
+    //让内容框的第 _index 个显示出来，其他的被隐藏
+    $(".tab-box>div").eq(_index).show(100).siblings().hide(150);
+    //改变选中时候的选项框的样式，移除其他几个选项的样式
+    $(".tab-menu>lable").eq(_index).addClass("change").siblings().removeClass("change");
+    $(".tab-menu>lable").eq(_index).attr("checked","checked").siblings().removeAttr("checked");
+    // var _checkinde = $("lable[checked='checked']").attr("value");
+    // return _checkinde;
+}
+
+
+</script>

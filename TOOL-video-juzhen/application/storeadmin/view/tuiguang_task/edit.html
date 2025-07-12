@@ -1,0 +1,184 @@
+<div class="panel panel-default panel-intro">
+    <style type="text/css">
+    .recomm_keyword,.no_recomm_keyword{background: #3ca793;padding: 5px ;margin-bottom: 10px;margin-right: 10px;color: #fff;display: inline-block;cursor: pointer;}
+    .delete_keyword{margin-left: 5px;color: #ccc;}
+    .radio label{margin-bottom: 20px;}
+    .radio_user input{vertical-align: middle;}
+    input[type=checkbox]{-webkit-appearance:none;width: 15px;height: 15px;padding: 0;border: 1px solid #999;position: relative;border-radius: 3px!important;background: #4a4a4a;}
+    input[type=checkbox]:checked{width: 15px;height: 15px;background:orange ;border-color: #orange;}
+    .title_video{width: 85px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;display: block;}
+    .title_user{display: inline-block;}
+    .type2{display: none;}
+    .type3{display: none;}
+    /*.send_type_time{display: none;}*/
+    .radio label{margin-bottom: 10px;}
+    .tuiguang_user_id,.tuiguang_user_all{margin-top: 1px !important;margin-right: 5px !important;}
+    .user_left img{border-radius: 50%;}
+    .user_left{float: left;width: 80px;}
+    .user_right{float: left;margin-top: 5px;}
+    .user_right p{margin: 0 0 0px;}
+</style>
+    <div class="panel-body">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="one">
+                <div class="widget-body no-padding">
+                    <div id="toolbar" class="toolbar">
+                        <a href="javascript:;" onclick="location.reload()"  class="btn btn-primary btn-refresh" title="{:__('Refresh')}" ><i class="fa fa-refresh"></i> </a>
+                        <a href="javascript:history.back(-1)" class="btn btn-success btn-add "  >返回</a>                        
+                    </div>
+                    
+
+                    <form id="edit-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">任务名:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-title" data-rule="required" class="form-control" name="row[title]" type="text" value="{$row.title|htmlentities}" placeholder="随意取一个名字吧">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-3 col-sm-2">视频描述:</label>
+                            <div class="col-xs-12 col-sm-8  ">
+                                <textarea id="c-video_text"  class="form-control "  data-rule="required" rows="5" name="row[video_text]" cols="30" placeholder="请输入简单描述，可为空，每行一句描述" >{$row.video_text|htmlentities}</textarea>
+                                <p style="color:#888;margin-top: 5px;">注：每行一个描述，随机取，建议每行30个字左右</p>
+                            </div>
+                        </div>
+
+                        <div style="width: 80%;height:1px;background: #505050;margin: 20px auto;"></div>
+
+                        <div class="form-group form_type " >
+                            <label class="control-label col-xs-12 col-sm-2">账号预设poi:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <p class="form-control " style="border:0px" >{$row.tu_poi_name}</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group form_type " >
+                            <label class="control-label col-xs-12 col-sm-2">发送视频:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <a  class="form-control " style="border:0px;color:#72afd2;"  href="{$row.oss_url}" target="_blank">点击查看原视频</a>
+                            </div>
+                        </div>
+
+                        <div class="form-group" >
+                            <label class="control-label col-xs-12 col-sm-2">挂载类型:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio"  class="type"  name="type" {if $row['poi_address']}checked{/if} value="1">POI地址挂载
+                                    </label>
+                                    <label>
+                                        <input type="radio"  class="type" name="type" {if $row['micro_app_id']}checked{/if} value="2">小程序挂载
+                                    </label>
+                                    <label>
+                                        <input type="radio"  class="type" name="type" {if $row['shop_url']}checked{/if}  value="3">橱窗挂载
+                                    </label>
+                                </div>
+                                <div style="color:#999;display:block;margin-top: 0px;">挂载功能仅支持抖音; </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group form_type type1" {if empty($row['poi_address'])}style="display:none;"{/if}>
+                            <label class="control-label col-xs-12 col-sm-2">挂载poi地址:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-poi_address"  class="form-control" name="row[poi_address]" type="text" value="{$row.poi_address|htmlentities}" placeholder="例如：https://v.douyin.com/8RE9Xe5/  此功能强烈建议使用，可使视频得到更大曝光度">
+                                <p style="margin-top:5px;color:#888;">从抖音app搜索栏搜索地点，获取地址分享链接，例如：https://v.douyin.com/8R1E9Xe5/ </p>
+                            </div>
+                        </div>
+                        <div class="form-group form_type type1" {if empty($row['poi_address'])}style="display:none;"{/if}>
+                            <label class="control-label col-xs-12 col-sm-2">poi地址名称(地址挂载必填):</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-poi_name"  class="form-control" name="row[poi_name]" type="text" value="{$row.poi_name|htmlentities}" placeholder="例如：广州酒家(荔胜广场店)">
+                            </div>
+                        </div>
+
+                        <div class="form-group form_type type2" {if empty($row['micro_app_id'])}style="display:none;"{/if}>
+                            <label class="control-label col-xs-12 col-sm-2">抖音小程序id:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-micro_app_id"  class="form-control" name="row[micro_app_id]" type="text" value="{$row.micro_app_id|htmlentities}" placeholder="例如：ttef91b112671b152ba">
+                            </div>
+                        </div>
+                        <div class="form-group form_type type2"  {if empty($row['micro_app_id'])}style="display:none;"{/if}>
+                            <label class="control-label col-xs-12 col-sm-2">抖音小程序名称:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-micro_app_title" class="form-control" name="row[micro_app_title]" type="text" value="{$row.micro_app_title|htmlentities}" placeholder="小程序标题">
+                            </div>
+                        </div>
+
+                        <div class="form-group form_type type2" {if empty($row['micro_app_id'])}style="display:none;"{/if}>
+                            <label class="control-label col-xs-12 col-sm-2">抖音小程序挂载:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-micro_app_url" class="form-control" name="row[micro_app_url]" type="text" value="{$row.micro_app_url|htmlentities}" placeholder="例如：path/pages/index">
+                                <p style="margin-top:5px;color:#888;">直接输入抖音小程序分享链接，例如：path/pages/index </p>
+                            </div>
+                        </div>
+                        <div class="form-group form_type type3" {if empty($row['shop_url'])}style="display:none;"{/if}>
+                            <label class="control-label col-xs-12 col-sm-2">橱窗商品链接:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-shop_url" class="form-control" name="row[shop_url]" type="text" value="{$row.shop_url|htmlentities}" placeholder="例如：https://haohuo.jinritemai.com/views/product/item2?id=3578430953573501732">
+                                <p style="margin-top:5px;color:#888;">链接请参考操作文档，例如：https://haohuo.jinritemai.com/views/product/item2?id=3572883796908979933</p>
+                                <p style="margin-top:-5px;color:#38e045;">注意：橱窗挂载请勾选的D音账号都必须开通达人橱窗功能，否则将发送失败；</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <label class="control-label col-xs-12 col-sm-2">@用户:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-alias" class="form-control" name="row[alias]" type="text" value="{$row.alias|htmlentities}" placeholder="请输入需要艾特的openid 或者 用户抖音链接">
+                                <p style="margin-top:5px;color:#83f104;">注意：新老接口请勿一起勾选发送，否则会导致艾特用户失效</p>
+                                <p style="margin-top:5px;color:#83f104;">1、抖音开放平台：前往矩阵号复制openid，例如：_000lO23tTIiDBRRtiOnL</p>
+                                <p style="margin-top:5px;color:#888;">2、抖音老接口：输入想要艾特的D音主页链接，可输入pc主页 或者 app主页分享链接，例如：例如：https://www.douyin.com/user/MS4wLjABAAAAWBxjAMa</p>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group send_type_time">
+                            <label class="control-label col-xs-12 col-sm-2">定时时间:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input class="form-control datetimepicker"
+                                       data-date-format="YYYY-MM-DD HH:mm"
+                                       data-use-current="true"
+                                       type="text"
+                                       name="row[send_time]"
+                                       placeholder="请选择指定时间发送视频" value="{$row.send_time|htmlentities}">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group layer-footer">
+                            <label class="control-label col-xs-12 col-sm-2"></label>
+                            <div class="col-xs-12 col-sm-8">
+                                {if $row['status']==1}
+                                <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+                                {/if}
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src='/storeadmin2/libs/jquery/dist/jquery.min.js?v=162913148'></script>
+<script type="text/javascript">
+    $('.type').change(function() {
+        if (this.value == 1) {
+            $('.form_type').hide();
+            $('.type1').show();
+        }else if (this.value == 2) {
+            $('.form_type').hide();
+            $('.type2').show();
+        }else if (this.value == 3) {
+            $('.form_type').hide();
+            $('.type3').show();
+        }
+    });
+
+    $('.send_type').change(function() {
+        if (this.value == 2) {
+            $('.send_type_time').show();
+        }else  {
+            $('.send_type_time').hide();
+        }
+    });
+</script>

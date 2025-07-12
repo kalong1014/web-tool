@@ -1,0 +1,75 @@
+<navbar text="绘画"></navbar>
+<view class="page" style="bottom: {{safeAreaHeight}}rpx; top: {{navBarHeight}}px;">
+    <scroll-view bindscroll="onListScroll" class="box-msg-list" scrollIntoView="{{lastViewId}}" scrollWithAnimation="{{true}}" scrollX="{{false}}" scrollY="{{true}}" wx:if="{{lists&&lists.length>0}}">
+        <view class="list">
+            <view class="message-group" wx:for="{{lists}}">
+                <view bindlongpress="copyText" class="message user" data-index="{{index}}">
+                    <view class="avatar">
+                        <image src="{{userAvatar}}"></image>
+                    </view>
+                    <view bindlongtap="copyText" class="text" data-text="{{item.message}}">
+                        <towxml content="{{item.message}}"></towxml>
+                        <view class="tools">
+                            <view bindtap="replayOptions" class="btn" data-id="{{item.draw_id}}">
+                                <image class="icon" src="/images/ic_copy.png"></image>
+                                <text>复用参数</text>
+                            </view>
+                            <text class="time">{{item.create_time}}</text>
+                        </view>
+                    </view>
+                </view>
+                <view class="message ai">
+                    <view class="avatar">
+                        <image src="{{aiAvatar}}"></image>
+                    </view>
+                    <view class="text">
+                        <imageComponent bindpreview="previewImage" bindretry="retryDraw" item="{{item}}"></imageComponent>
+                    </view>
+                </view>
+            </view>
+            <view id="lastViewId" style="height: 2rpx;width: 100%"></view>
+        </view>
+    </scroll-view>
+    <view class="welcome" wx:else>
+        <view class="nodata">
+            <image mode="widthFix" src="/images/ic_nodata.png"></image>
+            <view class="tips">您还没有作品，赶快去创作吧~</view>
+        </view>
+        <button bindtap="showDrawSetting" class="btn-create">
+            <image src="/images/ic_draw_white.png"></image>
+            <text>新建绘画</text>
+        </button>
+    </view>
+    <button bindtap="showDrawSetting" class="btn-create {{createButtonType==='mini'?'mini':''}}" style="{{'bottom:'+(safeAreaHeight+150)+'rpx;'}}" wx:if="{{lists&&lists.length>0}}">
+        <image src="/images/ic_draw_white.png"></image>
+        <text wx:if="{{createButtonType==='mini'}}">新建</text>
+        <text wx:else>新建绘画</text>
+    </button>
+    <popup id="drawPopup" mode="bottom" title="新建绘画" top="200rpx">
+        <scroll-view class="box-setting" scrollTop="{{settingScrollTop}}" scrollWithAnimation="{{false}}" scrollX="{{false}}" scrollY="{{true}}">
+            <drawMj id="drawSetting" wx:if="{{setting['platform']==='mj'}}"></drawMj>
+            <drawOpenai id="drawSetting" wx:elif="{{setting['platform']==='openai'}}"></drawOpenai>
+            <drawYijian id="drawSetting" settings="{{setting['options']}}" wx:elif="{{setting['platform']==='other'&&setting['channel']==='yijian'}}"></drawYijian>
+            <view class="share">
+                <picker bindchange="drawCatePick" range="{{drawCatePickArr}}" value="{{activeDrawCate.index}}">
+                    <view class="picker">
+                        <text wx:if="{{activeDrawCate.title}}">{{activeDrawCate.title}}</text>
+                        <text style="color: #999;" wx:else>请选择图片分类</text>
+                        <image class="ic_down" src="/images/ic_picker_down.png"></image>
+                    </view>
+                </picker>
+                <view class="agree">
+                    <label>
+                        <checkbox-group bindchange="isShareChange">
+                            <checkbox checked="{{is_share}}" color="#04BABE" value="{{1}}"></checkbox>
+                            <text>共享到图库</text>
+                        </checkbox-group>
+                    </label>
+                </view>
+            </view>
+            <view class="submit">
+                <button bindtap="submitDraw" class="btn-submit">开始绘画</button>
+            </view>
+        </scroll-view>
+    </popup>
+</view>

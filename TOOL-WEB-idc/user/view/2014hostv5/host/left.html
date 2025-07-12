@@ -1,0 +1,5 @@
+							{{foreach $groups as $v}}
+
+							<li><a {{if !empty($groupinfo) && $groupinfo.group_id==$v.group_id}}class="active"{{/if}} href="?c=nproduct&a=lists&group_id={{$v['group_id']}}">{{$v.group_name}}</a></li>
+
+							{{/foreach}}

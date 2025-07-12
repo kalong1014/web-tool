@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>授权</title>
+</head>
+<script type="text/javascript" src="/static/js/jquery-1.10.1.js"></script>
+<script type="text/javascript" src="/static/js/douyin_open.umd.js"></script>
+<body>
+    <div style="text-align: center;font-size: 40px;color: #888;margin-top: 50%;">授权中...</div>
+</body>
+<script type="text/javascript">
+    $(function(){
+        const sdk = window.DouyinOpenJSBridge;
+        const timestamp = "{$timestamp}"; // 类型为 String
+        const nonceStr = "{$nonce_str}"; // 生成签名用的随机字符串
+        const url = "{$url}";
+        const clientKey = "{$client_key}";
+        const sign = "{$sign}";
+        const ticket = "{$jsapi_ticket}";
+        const grant_permissions = "user_info";
+
+        const APP_VERSION_REGX = {
+          android: new RegExp("app_version/", "i"),
+          ios: new RegExp("aweme_", "i"),
+        };
+        const ua = navigator.userAgent;
+        const os = /(Android);?\s+([\d.]+)?/i.test(ua) ? "android" : "ios";
+        const version = parseFloat(ua.split(APP_VERSION_REGX[os])[1]);
+
+        sdk.config({
+          params: {
+            client_key: clientKey, // clientKey在你的网页应用申请通过后得到
+            signature: sign, // 服务端计算的签名，该签名被抖音开放平台验证通过后方可调用jsb方法
+            timestamp, // 时间戳
+            nonce_str: nonceStr,
+            url, // 为应用申请的 JSB 安全域名下的链接，需要携带协议。e.g. https://jsb.security.domain/page.html
+          },
+        });
+
+
+        sdk.ready(() => {
+          // Config Ready回调
+
+        });
+
+        sdk.error((res) => {
+          // Config error回调
+          alert(JSON.stringify(res))
+        });
+
+        setTimeout(function(){
+            sdk.showOpenAuth({
+                params: {
+                  client_key: clientKey,
+                  state: '',
+                  scopes: {
+                    user_info: 0, // 0: 必选；1: 可选，默认不选中； 2: 可选，默认选中
+                    'data.external.item':0
+                  },          
+                  response_type: 'code',
+                  redirect_uri:url,
+                },
+                success: ({ ticket }) => {
+                    // alert(ticket);
+                    // target = encodeURIComponent("https://tp1.hu29.com/AoDzFGlkr/?code="+ticket);
+                    // target_url = "https://link.wtturl.cn/?aid=1128&lang=zh-Hans&scene=qrcode&jumper_version=1&target="+target+"&channel_id=0&env=yunmai&active_id=58808&disable_auto_expose=1&font_scale=1.15&show_more_button=1&show_loading=1";
+                    // alert(target_url);
+                    location.href = "https://{$server_name}/A{$short_url}/?code="+ticket;
+                },
+                error: res => {
+                    // alert(`Auth Error: ${JSON.stringify(res)}`)
+                }
+             });
+        },500);
+    });
+    
+    
+</script>
+</html>

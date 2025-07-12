@@ -1,0 +1,31 @@
+<navbar text="{{page_title}}"></navbar>
+<view class="page {{isGpt4?' gold':''}}" style="bottom: {{safeAreaHeight+110}}rpx; top: {{navBarHeight}}px;">
+    <foxTabs bind:switch="onTabChange" class="tabs" current="{{activeAiIndex}}" keyName="alias" list="{{aiList}}"></foxTabs>
+    <swiper bindchange="onSwiperChange" class="lists" current="{{activeAiIndex}}" duration="300">
+        <swiper-item class="swiper-item" wx:for="{{aiList}}">
+            <chatMsgList activeAiIndex="{{activeAiIndex}}" aiAvatar="{{aiAvatar}}" aiIndex="{{index}}" aiName="{{item.name}}" bind:addToPlay="addToPlay" bind:playAudio="playAudio" bind:setMessage="setMessage" bind:startPlay="startPlay" bind:stopPlay="stopPlay" id="msgList{{index}}" speechIsOpen="{{speechIsOpen}}" userAvatar="{{userAvatar}}" welcome="{{welcome}}"></chatMsgList>
+        </swiper-item>
+    </swiper>
+    <view class="box-input {{speechIsOpen?'':'no-speech'}}">
+        <view class="tools" wx:if="{{speechIsOpen}}">
+            <button bindtap="switchInputModel" class="btn-tool" wx:if="{{speechIsOpen}}">
+                <image model="widthFix" src="/images/ic_input_audio.png" wx:if="{{inputModel=='text'}}"></image>
+                <image model="widthFix" src="/images/ic_input_text.png" wx:else></image>
+            </button>
+        </view>
+        <view class="input" wx:if="{{inputModel==='text'}}">
+            <textarea adjustPosition="{{true}}" autoHeight="{{true}}" bindconfirm="sendConfirm" bindinput="inputChange" confirmType="send" cursorSpacing="48rpx" disableDefaultPadding="{{true}}" maxlength="-1" placeholder="输入你的问题" showConfirmBar="{{false}}" type="text" value="{{message}}"></textarea>
+            <button bindtap="sendText" class="btn-send">
+                <image mode="widthFix" src="/images/ic_send.png"></image>
+            </button>
+        </view>
+        <view class="input" wx:else>
+            <view class="input-audio">
+                <speeching bind:send="sendAudio" bind:stopPlay="stopPlay"></speeching>
+            </view>
+        </view>
+    </view>
+    <notice notice="{{notice}}" wx:if="{{notice}}"></notice>
+    <privacy></privacy>
+    <player bind:end="onPlayerEnd" id="player"></player>
+</view>

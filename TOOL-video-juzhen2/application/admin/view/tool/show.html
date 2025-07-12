@@ -1,0 +1,27 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="modal-dialog" style="width:100%">
+    <div class="modal-content" style="width:100%;padding-bottom:20px">
+        <div class="modal-header">
+            <h4 class="modal-title">查看申请</h4>
+        </div>
+        <form class="form-horizontal" id="tool_cate_data"   action=""  method="post">
+            <input type="hidden" id="form_id" name="id" value="{$info.id}">
+            {foreach name="params" item="vo" key="key"}
+                <div class="form-group" style="margin-top: 20px;">
+                    <label class="col-sm-3 control-label">{$key}：</label>
+                    <div class="input-group col-sm-7">
+                        {if $vo.is_file==1}
+                        <a href="{$vo.value}" target="_blank">点击查看</a>
+                        {else /}
+                        <input type="text" class="form-control" name="title" value="{$vo.value|default=''}" readonly >
+                        {/if}
+                    </div>
+                </div>
+            {/foreach}
+        </form>
+    </div>
+</div>
+{include file="public/footer" /}
+</body>
+</html>

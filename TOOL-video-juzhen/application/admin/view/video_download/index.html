@@ -1,0 +1,57 @@
+<style type="text/css"> 
+    .table{table-layout:fixed;}.table td{text-overflow:ellipsis;overflow:hidden;white-space:nowrap;}.antd-pro-pages-comparison-scripts-extract-index-tools_common{width:100%;background-color:#3a3a3e;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:20px 20px 110px;}.antd-pro-pages-comparison-scripts-extract-index-tools_common .antd-pro-pages-comparison-scripts-extract-index-title{display:flex;flex-direction:column;align-items:center;font-size:24px;font-weight:600;color:#fff;margin:60px 0 58px;}.antd-pro-pages-comparison-scripts-extract-index-tools_common .antd-pro-pages-comparison-scripts-extract-index-title img{width:150px;height:90px;margin-bottom:20px;}.antd-pro-pages-comparison-scripts-extract-index-tools_common .antd-pro-pages-comparison-scripts-extract-index-exp{margin-bottom:6px;display: inline-block;text-align: left;width: 200px  ;margin-left: -450px;}.antd-pro-pages-comparison-scripts-extract-index-tools_common .antd-pro-pages-comparison-scripts-extract-index-exp span:last-child{color:#898e99;}.antd-pro-pages-comparison-scripts-extract-index-tools_common .antd-pro-pages-comparison-scripts-extract-index-search{width:650px;}.ant-input-group-wrapper{display:inline-block;width:100%;text-align:start;vertical-align:top;}.ant-input-group>.ant-input-affix-wrapper:not(:last-child) .ant-input{border-top-right-radius:0;border-bottom-right-radius:0;border-radius: 3px;}.ant-input-affix-wrapper .ant-input{position:relative;text-align:inherit;}.ant-input{min-height:100%;}.ant-btn{border:1px solid #e6e7eb;}.ant-btn-lg{height:40px;font-size:16px;border-radius:3px;padding:0 15px;}.ant-input-group .ant-input{float:left;width:500px;margin-bottom:0;text-align:inherit;display:inline-block;border:1px solid #ccc;margin-right:10px;padding-left:5px;height:40px;}.ant-input-affix-wrapper .ant-input:not(:last-child){padding-right:30px;}.antd-pro-pages-comparison-scripts-extract-index-tools_common .antd-pro-pages-comparison-scripts-extract-index-search .ant-input-search-button{width:112px;}.ant-btn>i,.ant-btn>span{display:inline-block;transition:margin-left .3s cubic-bezier(.645,.045,.355,1);pointer-events:none;}.ant-btn-primary{color:#fff;background-color:#f39c12;text-shadow:0 -1px 0 rgba(0,0,0,.12);box-shadow:0 2px 0 rgba(0,0,0,.045);border-color:#f39c12;}
+        .antd-pro-pages-comparison-scripts-extract-index-rest{margin-top: 10px;}
+        .jiaochen_panel{display: none;}
+        .jiaochen_panel img{position: absolute;z-index: 999;width: 300px;margin-left: 22%;}
+        .antd-pro-pages-comparison-scripts-extract-index-exp{cursor: pointer;}
+        .shuiyin_url{color: #333;}
+</style>
+<div class="panel panel-default panel-intro">
+    {:build_heading()}
+
+    <div class="panel-body">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="one">
+                <div class="jiaochen_panel">
+                    <img src="/assets/img/dy_video.png">
+                </div>
+                <div class="widget-body no-padding">
+                    <div class="antd-pro-pages-comparison-scripts-extract-index-script_extract antd-pro-pages-comparison-scripts-extract-index-tools_common"><div class="antd-pro-pages-comparison-scripts-extract-index-title"><img src="/assets/img/extract_script.png" alt="" referrerpolicy="noreferrer">视频去水印</div><div class="antd-pro-pages-comparison-scripts-extract-index-exp"><span>如何获取抖音视频链接？</span></div><div class="antd-pro-pages-comparison-scripts-extract-index-search"><span class="ant-input-search ant-input-search-enter-button ant-input-search-large ant-input-group-wrapper ant-input-group-wrapper-lg"><span class="ant-input-wrapper ant-input-group"><span class="ant-input-search ant-input-search-enter-button ant-input-search-large ant-input-affix-wrapper ant-input-affix-wrapper-lg"><input placeholder="请输入抖音视频链接，支持抖音网页版链接" class="ant-input ant-input-lg shuiyin_url" type="text" value=""><span class="ant-input-suffix"></span></span><span class="ant-input-group-addon"><button type="button" class="ant-btn ant-input-search-button ant-btn-primary ant-btn-lg shuiyin_btn">一键去水印</button></span></span></span></div>
+                        <div class="antd-pro-pages-comparison-scripts-extract-index-rest">
+                            <span style="margin-right: 8px;color: #999;">无水印视频一个小时后失效，可以<a style="margin-left: 5px;" href="index?jump_url=store_price&menu_url=store_price&desc=视频去水印" target="_blank">点击查看历史</a></span>
+                         </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src='/storeadmin2/libs/jquery/dist/jquery.min.js?v=162913148'></script>
+
+<script type="text/javascript">
+
+    $('.shuiyin_btn').click(function(){
+        var loading = layer.load(0, {shade: false,time: 30*1000});
+        $(this).attr('disabled','true');
+        $('.ant-btn-lg').removeClass('shuiyin_btn');
+
+        url = $('.shuiyin_url').val();
+        $.post('video_download/nomark',{douyin_url:url},function(data){  
+            $('.ant-btn-lg').addClass('shuiyin_btn');
+            $('.shuiyin_btn').removeAttr('disabled','true');
+            layer.close(loading);  
+            if(data.code==1){
+                alert(data.msg);
+            }else{
+                window.location.href = data.data;
+            }
+        },'json');
+    });
+
+    $('.antd-pro-pages-comparison-scripts-extract-index-exp').hover(function(){
+        $('.jiaochen_panel').show();
+    },function(){
+        $('.jiaochen_panel').hide();
+    });
+</script>

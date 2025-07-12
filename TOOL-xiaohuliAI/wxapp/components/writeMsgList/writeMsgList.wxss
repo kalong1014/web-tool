@@ -1,0 +1,97 @@
+.msg-list {
+    bottom: 132rpx;
+    box-sizing: border-box;
+    height: 100%;
+    left: 0;
+    overflow: hidden;
+    padding: 0 20rpx;
+    top: 0;
+    width: 100%;
+}
+
+.msg-list .list {
+    padding-bottom: 20rpx;
+}
+
+.message {
+    border-top: 2rpx solid #eee;
+    display: flex;
+    justify-content: flex-start;
+    padding: 30rpx;
+}
+
+.message:last-child {
+    border-bottom: 0;
+}
+
+.message.user {
+    border-top-left-radius: 20rpx;
+    border-top-right-radius: 20rpx;
+    margin-top: 20rpx;
+}
+
+.message.ai,.message.user {
+    background: hsla(0,0%,100%,.8);
+}
+
+.message.ai {
+    border-bottom-left-radius: 20rpx;
+    border-bottom-right-radius: 20rpx;
+}
+
+.message .text {
+    color: #343541;
+    font-size: 32rpx;
+    line-height: 52rpx;
+    overflow: hidden;
+    padding: 4rpx 0;
+    width: 596rpx;
+    word-break: break-all;
+}
+
+.message .text span {
+    display: inline;
+}
+
+.message .avatar {
+    align-items: center;
+    border-radius: 4rpx;
+    color: #fff;
+    display: flex;
+    font-size: 28rpx;
+    justify-content: center;
+    margin-right: 30rpx;
+    overflow: hidden;
+}
+
+.message .avatar,.message .avatar image,.message .avatar img {
+    height: 48rpx;
+    width: 48rpx;
+}
+
+.tools {
+    justify-content: space-between;
+    margin-top: 16rpx;
+}
+
+.tools,.tools .btn {
+    align-items: center;
+    display: flex;
+}
+
+.tools .btn {
+    color: #04babe;
+    float: left;
+    font-size: 32rpx;
+    margin-right: 10rpx;
+}
+
+.tools .btn:active {
+    opacity: .6;
+}
+
+.tools .btn .icon {
+    height: 32rpx;
+    margin-right: 6rpx;
+    width: 32rpx;
+}

@@ -1,0 +1,95 @@
+{include file="public/header" /}
+<body class="gray-bg">
+     <!-- start: Header -->
+    <div class="header-box">
+        <div class="pl25">
+            <h3 class="fs22 font-weight-500 c333">添加群发任务</h3>
+            <p class="fs14 c666">新增群发任务，点击 群发任务 进行完善</p>
+        </div>
+    </div>
+    <!-- start: Header -->  
+    
+    
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title" style="border-left: 4px solid red;color:#ff7752">
+                    <p>1.添加群发任务后，点击左侧导航栏发布任务——群发任务完善任务。</p>
+                    <p style="margin:0">2.一定要选择<b>组词策略</b></p>
+                </div>  
+                
+                
+                
+                <div class="ibox-content">
+                    <form  id="myform"  >
+                                <div class="form-group" style="margin-top:20px">
+                                    <label class="control-label font14 text-r" style="line-height:35px;float:left">任务名称：</label>
+                                    <div class="input-group col-sm-4">
+                                        <input  type="text" class="form-control" name="rwname" >
+                                        <em class="color-d5 color-zhu">创建成功后请到[任务列表]中去完善->发布</em>
+                                    </div>
+                                </div>
+                                    
+                                <div class="form-group">
+                                    <div class="col-col-sm-offset-3">
+                                        <botton class="btn btn-primary"  id='zhida_baocun' onclick="sub()" >
+                                            保&nbsp;&nbsp;&nbsp;存
+                                        </botton>
+                                    </div>
+                                </div>
+                            </form>
+                            
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{include file="public/footer" /}
+<script type="text/javascript">
+    function sub(){
+
+        $.ajax({
+         cache: false,
+         type: "POST",
+         url: "{:url('qunfa')}",
+         data: $('#myform').serialize(),  //序列化表单数据
+         async: true,                 //是否是异步，默认为异步
+         success: function(data) {
+
+            if(data.code==1){
+                    
+                layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+                    setInterval(function(){
+                        window.location.href="{:url('renwu')}";
+                    },1000);
+                return false;
+            }else{
+                layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+                return false;
+            }
+         }
+            });
+    }
+// $("#zhida_baocun").click(function(){
+//     $.post('{:url("qunfa")}',
+//         {id:1},
+//     function(data){
+         
+//         if(data.code==1){
+         
+//             layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+//             return false;
+//         }else{
+            
+//             layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+//             return false;
+//         }         
+        
+//     });
+// })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+.message-container {
+  position: relative;
+  z-index: 9999;
+}
+
+.message-box {
+  background-color: #fef0f0 !important;
+  width: 200px;
+  text-align: center;
+  margin-top: 5px;
+  border: 1px solid #fde2e2;
+  padding: 10px 10px 14px 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  color: #f56c6c;
+}
+
+.closeWrapper {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  top: 24px;
+  right: 20px;
+}
+
+.close {
+  position: relative;
+  top: 2px;
+  left: -10px;
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 1px solid #f56c6c;
+  border-radius: 20px;
+  background-color: #f56c6c !important;
+}
+
+.close::before,
+.close::after {
+  position: absolute;
+  content: ' ';
+  background-color: whitesmoke;
+  color: whitesmoke;
+  width: 0px;
+  height: 6px;
+  border: 1px solid;
+  left: 7px;
+  top: 3px;
+}
+
+.close::before {
+  transform: rotate(45deg);
+}
+
+.close::after {
+  transform: rotate(-45deg);
+}

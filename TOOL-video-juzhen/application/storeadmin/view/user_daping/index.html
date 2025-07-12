@@ -1,0 +1,177 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>账号数据大屏</title>
+<script type="text/javascript" src="/storeadmin2/store_dp/js/jquery.js"></script>
+<link rel="stylesheet" href="/storeadmin2/store_dp/css/comon0.css">
+</head>
+<body>
+<div class="loading">
+  <div class="loadbox"> <img src="/storeadmin2/store_dp/images/loading.gif"> 页面加载中... </div>
+</div>
+<div class="head">
+  <h1 style="letter-spacing: 8px;">矩阵数据大屏</h1>
+  <div class="time" id="showTime">{$today_time}</div>
+		<script>
+var t = null;
+    t = setTimeout(time,1000);//開始运行
+    function time()
+    {
+       clearTimeout(t);//清除定时器
+       dt = new Date();
+		var y=dt.getFullYear();
+		var mt=dt.getMonth()+1;
+		var day=dt.getDate();
+       var h=dt.getHours();//获取时
+       var m=dt.getMinutes();//获取分
+       var s=dt.getSeconds();//获取秒
+		var t = null;
+       document.getElementById("showTime").innerHTML = y+"/"+Appendzero(mt)+"/"+Appendzero(day)+" "+Appendzero(h)+":"+Appendzero(m)+":"+Appendzero(s)+"";
+        function Appendzero(obj){
+			if(obj<10) return "0" +""+ obj;
+			else return obj;
+		 }
+		t = setTimeout(time,1000); //设定定时器，循环运行     
+    } 
+
+</script>
+	
+</div>
+<div class="mainbox">
+  <ul class="clearfix">
+    <li>
+  
+	  <div class="boxall" style="height: calc(58% - .15rem)">
+		<div class="alltitle">视频热度排行</div>
+		 <div class=" boxnav " id="echarts4">
+        </div>
+      </div>
+      <div class="boxall" style="height: calc(42% - .15rem)">
+          <div class="alltitle">视频点赞/评论</div>
+          <div class="boxnav" id="echarts3"></div>
+        </div>
+    </li>
+    <li>
+        <div class="boxall" style="height: calc(20% - .15rem)">
+           <ul class="row h100 clearfix">
+            <li class="col-6">
+			   <div class="sqzs h100">
+				<p>播放数</p>
+				   <h1><span>{$view_count}</span></h1>
+				</div>
+			   </li>
+            <li class="col-6">
+                <ul class="row h100 clearfix">
+                    <li class="col-4">
+                      <div class="tit01">总点赞</div>
+                      <div class="piebox" id="pe01"></div>
+                    </li>
+                    <li class="col-4">
+                      <div class="tit01">总评论</div>
+                      <div class="piebox" id="pe02"></div>
+                    </li>
+                    <li class="col-4">
+                      <div class="tit01">总分享</div>
+                      <div class="piebox" id="pe03"></div>
+                    </li>
+                   </ul>
+
+            </li>
+           </ul>
+          </div>
+          <div class="boxall" style="height: calc(38% - .15rem)">
+            <div class="alltitle">视频发布统计</div>
+              <div class="boxnav" id="echarts1"></div>
+            </div>
+            <div class="boxall" style="height: calc(42% - .15rem)">
+              <div class="alltitle">视频分享/下载</div>
+                <div class="boxnav" id="echarts2"></div>
+              </div>
+
+    </li>
+    <li>
+      
+		<div class="boxall" style="height: calc(33.333% - .15rem)">
+
+			<div class="alltitle">视频排名变化</div>
+			<div class="boxnav" id="echarts5"></div>
+        
+      </div>
+      <div class="boxall" style="height: calc(30.333% - .15rem)">
+        <div class="alltitle">最新视频统计</div>
+		<div class="boxnav" id="">
+        <table border="0" cellspacing="0">
+          <tr>
+            <th></th>
+            <th>播放</th>
+            <th>点赞</th>
+            <th>评论</th>
+            <th>分享</th>
+
+          </tr>
+          <tr>
+            <th>抖音</th>
+            <td>{$douyin_view_count}</td>
+            <td>{$douyin_like_count}</td>
+            <td>{$douyin_comment_count}</td>
+            <td>{$douyin_share_count}</td>
+          </tr>
+          <tr>
+            <th>快手</th>
+            <td>{$ks_view_count}</td>
+            <td>{$ks_like_count}</td>
+            <td>{$ks_comment_count}</td>
+            <td>{$ks_share_count}</td>
+          </tr>
+          <tr>				
+            <th>哔哩</th>
+            <td>{$bili_view_count}</td>
+            <td>{$bili_like_count}</td>
+            <td>{$bili_comment_count}</td>
+            <td>{$bili_share_count}</td>
+          </tr>
+
+        </table>
+
+    </div>
+        
+	  </div>
+	  <div class="boxall" style="height: calc(35.333% - .15rem)">
+        <div class="alltitle">矩阵分布</div>
+		<div class="boxnav" id="echarts6" style="height:calc(110%);"></div>
+      </div>
+    </li>
+  </ul>
+</div>
+<script type="text/javascript">
+    var like_count = "{$like_count}";
+    var comment_count = "{$comment_count}";
+    var total_share = "{$total_share}";
+    var video_hot_rate = [{$video_hot_rate}];
+    var video_hot_value = [{$video_hot_value}];
+    var video_hot_key = [{$video_hot_key}];
+
+    var douyin_count = "{$douyin_count}";
+    var bili_count = "{$bili_count}";
+    var ks_count = "{$ks_count}";
+    var fenbu_count = "{$fenbu_count}";
+
+    var task_data_key = [{$task_data_key}];
+    var view_data = [{$view_data}];
+    var like_data = [{$like_data}];
+    var comment_data = [{$comment_data}];
+    var share_data = [{$share_data}];
+    var download_data = [{$download_data}];
+    var send_data = [{$send_data}];
+    var rank_data = [{$rank_data}];
+
+    setInterval(function(){
+        location.reload();
+    }, 60000);
+</script>
+	
+<script type="text/javascript" src="/storeadmin2/store_dp/js/echarts.min.js"></script> 
+<script language="JavaScript" src="/storeadmin2/store_dp/js/js.js?v={$now_time}"></script> 
+</body>
+</html>

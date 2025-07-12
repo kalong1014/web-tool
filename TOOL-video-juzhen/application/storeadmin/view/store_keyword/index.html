@@ -1,0 +1,57 @@
+<style type="text/css">
+    #jiexi_btn {
+    background: #000;
+    color: #fff;
+    width: 100px;display: inline-block;height: 35px;border-radius: 5px;line-height: 35px;text-align: center;font-size: 16px;cursor: pointer;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.recomm_keyword,.no_recomm_keyword,.all_keyword{background: #3ca793;padding: 5px ;margin-bottom: 10px;margin-right: 10px;color: #fff;display: inline-block;cursor: pointer;}
+ .delete_keyword{margin-left: 5px;color: #ccc;}
+ #add-form{margin-top: 20px;}
+</style>
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">主关键词:</label>
+        <div class="col-xs-12 col-sm-8">
+            <textarea id="c-main_keyword" data-rule="required" class="form-control " rows="7" name="row[main_keyword]" cols="20" placeholder="每行一个词，建议3-10个词">{$main_keyword_value}</textarea>
+            <p style="margin-top:5px;color:#888;">每行一个词，建议3-10个词，每个词10个字之内</p>
+            <p style="margin-top:-5px;color:#eee;">一般填行业，例如：二手车，房租赁</p>
+        </div>
+    </div>
+    
+        
+    
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">前缀(可填品牌或地区):</label>
+        <div class="col-xs-12 col-sm-8">
+            <textarea id="c-pre_keyword"  class="form-control " rows="7" name="row[pre_keyword]" cols="20"  placeholder="每行一个词，最多5个前缀">{$pre_keyword_value}</textarea>
+            <p style="margin-top:5px;color:#888;">每行一个词，建议3-5个词，每个词10个字之内</p>
+            <p style="margin-top:-5px;color:#eee;">可设置地区或者品牌，例如：广州，南京，某某品牌</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">后缀词:</label>
+        <div class="col-xs-12 col-sm-8">
+            <textarea id="c-next_keyword"  class="form-control " rows="7" name="row[next_keyword]" cols="20"  placeholder="每行一个词，最多5个后缀">{$next_keyword_value}</textarea>
+            <p style="margin-top:5px;color:#888;">每行一个词，建议3-5个词，每个词10个字之内</p>
+            <p style="margin-top:-5px;color:#eee;">例如：哪里好，价格，公司，门店，多少钱</p>
+        </div>
+    </div>
+
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed "  >{:__('OK')}</button>
+        </div>
+    </div>
+
+</form>
+<script type="text/javascript" src='/storeadmin2/libs/jquery/dist/jquery.min.js?v=162913148'></script>
+
+<script type="text/javascript">
+
+
+</script>

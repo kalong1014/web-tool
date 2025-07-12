@@ -1,0 +1,9 @@
+<view class="uploader">
+    <view class="image" style="width: {{width}}; height:{{height}};" wx:for="{{imageList}}">
+        <image bindtap="previewImage" data-url="{{item.url}}" mode="aspectFill" src="{{item.url}}"></image>
+        <image bindtap="deleteImage" class="delete" data-index="{{index}}" src="/images/ic_delete.png"></image>
+    </view>
+    <view bindtap="chooseImage" class="image btn-upload" style="width: {{width}}; height:{{height}};" wx:if="{{imageList.length<max}}">
+        <image src="/images/ic_upload.png"></image>
+    </view>
+</view>

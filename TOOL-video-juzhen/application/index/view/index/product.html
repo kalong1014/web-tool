@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<title>产品介绍-{$website_config['website_tdk_title']}</title>
+    <meta name="description" content="{$website_config['website_tdk_desc']}">
+    <meta name="keywords" content="{$website_config['website_tdk_keyword']}">
+	<link href="static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="static/css/font-awesome.css" rel="stylesheet">
+	<link href="static/css/animate.css" rel="stylesheet">
+	<link href="static/css/bootsnav.css" rel="stylesheet">
+    <link href="static/css/swiper.min.css" rel="stylesheet">
+	<link href="static/css/style.css" rel="stylesheet">
+    <script src="static/js/jquery-1.10.1.js"></script>
+    <script src="static/js/prefixfree.min.js"></script>
+	<script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/bootsnav.js"></script>
+    <script src="static/js/swiper.min.js"></script>
+    <script src="static/js/swiper.animate1.0.2.min.js"></script>
+    <script src="static/js/public.js"></script>
+    <script src="static/js/wow.min.js"></script>
+    <script>
+    var wow = new WOW({
+        boxClass: 'wow',
+        animateClass: 'animated',
+        offset: 0,
+        mobile: false,
+        live: true
+    });
+    wow.init();
+    </script>
+	<!--[if lt IE 9]>
+	  <script src="js/html5shiv.min.js"></script>
+	  <script src="js/respond.min.js"></script>
+	<![endif]-->    
+    <script>
+    	function scro(){
+			if($(document).scrollTop()>50){$(".headerBg").addClass("active");}else{$(".headerBg").removeClass("active");}
+		}
+		scro();
+		$(window).scroll(function(){
+			scro();
+		})
+    </script>
+</head>
+<body>
+{include file="index/head"}
+<div class="clearfix"></div>
+<div class="bannerN">
+	<div class="imgFull"><img src="static/picture/f003f2a3c034c511.jpg" class="img-responsive"></div>
+    <h2 class="banH2 wow fadeInUp">产品介绍</h2>
+</div>
+<div class="mainBg">
+    <div class="container">
+        <div class="">
+            <div class="container">
+                <div class="title text-center">
+                    <div class="titleBrief wow fadeInUp">
+                        <p>{$website_config['name']}采用SAAS模式为竞争情报分析、精准营销、人物画像、企业画像、行业市场研究、客户满意度分析、风险评估、产品及业务流程优化等等多个场景的应用。</p>
+                    </div>
+                </div>
+                <ul class="box2List list-unstyled row">
+                    <li class="col-xs-12 col-sm-4 col-md-4 wow fadeInUp">
+                        <div class="box2Con">
+                            <div class="box2Img"><img src="static/image/xiaozhu.png" class="img-responsive"></div>
+                            <h3 class="box2Tit"><span class="ellipsis">{$website_config['name']}</span></h3>
+                        </div>
+                    </li>
+                    <!-- <li class="col-xs-12 col-sm-4 col-md-4 wow fadeInUp">
+                        <div class="box2Con">
+                            <div class="box2Img"><img src="static/image/huoke.png" class="img-responsive"></div>
+                            <h3 class="box2Tit"><span class="ellipsis">获客系统</span></h3>
+                            
+                        </div>
+                    </li> -->
+                </ul>
+            </div> 
+        </div>        
+    </div>    
+</div>
+{include file="index/foot"}
+</body>
+</html>

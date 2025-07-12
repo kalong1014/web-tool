@@ -1,0 +1,23 @@
+.setting-row {
+    background: #f7f7f8;
+    border-radius: 20rpx;
+    box-sizing: border-box;
+    margin-bottom: 20rpx;
+    padding: 20rpx 30rpx;
+    width: 100%;
+}
+
+.setting-row .label {
+    align-items: center;
+    display: flex;
+    font-size: 32rpx;
+    justify-content: space-between;
+    line-height: 64rpx;
+    width: 100%;
+}
+
+.setting-row .values {
+    box-sizing: border-box;
+    padding: 20rpx 0;
+    width: 100%;
+}

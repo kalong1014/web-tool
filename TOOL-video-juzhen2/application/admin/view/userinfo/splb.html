@@ -1,0 +1,109 @@
+{include file="public/header" /}
+
+    <!-- start: Header -->
+    <div class="header-box">
+        <div class="pl25">
+            <h3 class="fs22 font-weight-500 c333">视频列表</h3>
+            <p class="fs14 c666">根据官方返回数据所展示得视频列表</p>
+        </div>
+    </div>
+    <!-- start: Header -->
+    
+<div class="wrapper wrapper-content animated fadeInRight">
+  
+    <div class="ibox float-e-margins">
+        <!--<div class="ibox-title">-->
+        <!--    <h5>视频列表</h5>-->
+            
+        <!--</div>-->
+        <div class="ibox-content">
+            <div style="margin:20px 0">
+                <p style="">
+                <!--一切数据均以官方返回数据为准-->
+                    <a href="javascript:gengxin(11)" class="btn btn-outline btn-primary">更新数据</a>
+                </p>
+            </div>
+            
+            
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th>封面</th>
+                                <th >标题</th>
+                                <th>播放</th>
+                                <th>点赞</th>
+                                <th>评论</th>
+                                <th>转发</th>
+                                <th>创建时间</th>
+                                <!--<th>状态</th>-->
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                       	
+                        <tbody id="article_list">
+                        	   {foreach name="user" item="vo"}
+                        	 <tr  style="text-align: center;">
+                        	    <td><img style='width:50px;height:50px' src="{$vo.cover}"></td>
+                        	    <td style="max-width: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;">{$vo.title}</td>
+                        	    <td>{$vo.play_count}</td>
+                        	    <td>{$vo.digg_count}</td>
+                        	    <td>{$vo.comment_count}</td>
+                        	    <td>{$vo.forward_count}</td>
+                        	    <td>{$vo.create_time|date='Y-m-d H:i:s',###}</td>
+                        	    <!--<td>{if $vo.video_status==1}已发布{elseif $vo.video_status==2}私密{else /}审核中{/if}</td>-->
+                        	    <td>{if $vo.type==1 || $vo.type==4}<a href="{$vo.share_url}" class="font-color" target=_blank>查看视频</a>{else /}{/if}</td>
+                        	 </tr>
+                             {/foreach}
+                        </tbody>
+                    </table>
+                    <div id="AjaxPage" onclick="fenye(1)" style=" text-align: center;">{$page}</div>
+                    <div id="allpage" style=" text-align: right;"></div>
+                </div>
+            </div>
+          
+        </div>
+    </div>
+</div>
+
+
+
+<input name="quanid" type="hidden" value="{$quanid}">
+{include file="public/footer" /}
+
+<script type="text/javascript" charset="utf-8">
+function gengxin(){
+        quanid  = $("input[name='quanid']").val();
+          $.post('{:url("gengxin")}',{quanid:quanid},function(data){
+           if(data.code==1){
+              layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+                setInterval(function(){
+                  location.reload();
+                },1000)
+           }else{
+            layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+             
+           }
+        })
+}   
+//   function Ajaxpage(){
+        
+//     //   $.getJSON('{:url("splb")}', {
+//     //         id: 1 
+//     //     }, function(data){      //data是后台返回过来的JSON数据
+           
+//     //     });
+//     }
+// function fenye(id){
+//   $.getJSON('{:url("splbs")}', {
+//             id: 89 
+//         }, function(data){      //data是后台返回过来的JSON数据
+           
+//         });
+// }
+  
+</script>

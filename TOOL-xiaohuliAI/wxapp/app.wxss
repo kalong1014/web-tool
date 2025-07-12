@@ -1,0 +1,53 @@
+page {
+    background: linear-gradient(180deg,#97e4db 0,#a9e9e0 80px,#dcf7f5 160px,#eef5f4 240px,#f2f8f8 320px);
+    box-sizing: border-box;
+    font-family: 微软雅黑;
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+button {
+    outline: none;
+}
+
+button::after {
+    display: none;
+}
+
+::-webkit-scrollbar {
+    color: transparent;
+    display: none;
+    height: 0;
+    width: 0;
+}
+
+.btn {
+    align-items: center;
+    border: none!important;
+    border-radius: 10rpx;
+    box-sizing: border-box;
+    display: flex;
+    font-size: 28rpx;
+    height: 72rpx;
+    justify-content: center;
+    line-height: 72rpx;
+    margin: 0;
+}
+
+.btn:active {
+    opacity: .6;
+}
+
+.btn-default {
+    background: #eee!important;
+    color: #444!important;
+}
+
+.btn-primary {
+    background: #04babe!important;
+    color: #fff!important;
+}
+
+.btn-primary-plain {
+    background: #d1f2f3!important;
+    color: #04babe!important;
+}

@@ -1,0 +1,30 @@
+<view>
+    <view class="tab-nav">
+        <view bindtap="switchTab" class="tab {{curTab==1?'active':''}}" data-index="1">直接推荐</view>
+        <view bindtap="switchTab" class="tab {{curTab==2?'active':''}}" data-index="2">间接推荐</view>
+    </view>
+    <view class="no-order" wx:if="{{!list||list.length==0}}">
+        <image class="no-order-img" src="/images/commission/no-order.png"></image>
+        <view class="text">没有记录</view>
+    </view>
+    <view class="page navbar com-down" wx:else>
+        <view class="fui-list-group">
+            <view class="fui-list" wx:for="{{list}}">
+                <view class="fui-list-media">
+                    <image src="{{item.avatar}}"></image>
+                </view>
+                <view class="fui-list-inner">
+                    <view class="row">
+                        <view class="row-text"> {{item.nickname||'无昵称'}} <text style="font-size: 24rpx; color: #666;" wx:if="{{item.id}}">(MID:{{item.id}})</text>
+                        </view>
+                    </view>
+                    <view class="subtitle">注册时间: {{item.create_time}}</view>
+                </view>
+                <view class="row-remark">
+                    <view>共消费<text style="color: red; margin: 0 4rpx;">{{item.order_count}}</text>笔</view>
+                </view>
+            </view>
+        </view>
+        <view class="no-more" wx:if="{{noMore}}">没有更多了~</view>
+    </view>
+</view>

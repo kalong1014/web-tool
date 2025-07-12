@@ -1,0 +1,123 @@
+{include file="public/header" /}
+
+<body class="gray-bg">
+ <div class="wrapper wrapper-content animated fadeInRight">
+  
+  <div class="ibox float-e-margins">
+    <div class="ibox-content m-t-md">
+      <div class="row-fluid" style="margin-top:0">
+        <div class="ibox-title" style="border-left: 4px solid red;color:#ff7752">
+            <!--<p onclick="window.open('https://www.kuaishou.com')" style="cursor: pointer;">1. 点击 此处 去认证！</p>-->
+            <p>1. 必填邀请码 123456 不填或填错系统无法返佣。</p>
+            <p style="margin:0;cursor: pointer;" onclick="window.open('http://kd.7asi.com/bjh.pdf')" >2. 如何进行百家号认证,点击查看</p>
+        </div>
+      </div>
+        <div class="tool-con">
+            
+            <div class="col-sm-12 m-b-md m-t-md"> 
+                    <div class="col-sm-1">
+                        <div class="input-group">  
+                            <a href="javascript:add()" class="btn btn-primary">提交返佣凭证</a> 
+                        </div>
+                    </div> 
+            </div>
+            <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th>提交认证日期</th>
+                                <th>客户昵称</th>
+                                <th>认证企业名称</th>
+                                <th>返佣状态</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody id="article_list">
+
+                            <tr>
+                                <td>2022-08-30</td>    
+                                <td>67fgdgeg</td>                                 
+                                <td>某某某有限公司</td> 
+                                <td style="color:#1ab394">已返佣</td>                                 
+                                <td>
+                                    <a href="javascript:;"  class="btn btn-primary btn-xs" onclick="del()">
+                                           删除</a>
+                                </td>                           
+                            </tr>
+                            <tr>
+                                <td>2022-08-30</td>    
+                                <td>67fgdgeg</td>                                 
+                                <td>某某某有限公司</td>  
+                                <td style="color:#b572c1">未返佣</td>                                 
+                                <td>
+                                    <a href="javascript:;"  class="btn btn-primary btn-xs" onclick="del()">
+                                           删除</a>
+                                </td>                           
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                </div>
+        </div>
+    </div>
+  </div>
+ </div> 
+ 
+ <!--添加返佣-->
+ <div class="modal  fade" id="add" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog" style="width:50%">
+            <div class="modal-content" style="width:100%;padding-bottom:20px">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">添加返佣凭证</h4>                  
+                </div>
+               <form class="form-horizontal" name="userAdd"   action=""  method="post">
+                    
+                  <div class="form-group" style="margin-top: 20px;">
+                    <label class="col-sm-5 control-label">提交认证日期即付款时间：</label>
+                    <div class="input-group col-sm-5">
+                        <input id="jifen" type="date" class="form-control" name="zhnumber"  >
+                    </div>
+                  </div>
+                  <div class="form-group" style="margin-top: 20px;">
+                    <label class="col-sm-5 control-label">提交认证营业执照主体名称：</label>
+                    <div class="input-group col-sm-5">
+                        <input id="jifen" type="text" class="form-control" name="zhnumber"  >
+                    </div>
+                  </div>
+                  <div class="form-group" style="margin-top: 20px;">
+                    <label class="col-sm-5 control-label">客户昵称：</label>
+                    <div class="input-group col-sm-5">
+                        <input id="jifen" type="text" class="form-control" name="zhnumber"  >
+                    </div>
+                  </div> 
+                  
+                  <div class="form-group" style="margin-top: 20px;">
+                    <label class="col-sm-5 control-label">百家号认证已通过截图：</label>
+                    <div class="input-group col-sm-5">
+                        <input id="jifen" type="file" class="form-control input-img" name="zhnumber"  >
+                    </div>
+                  </div>
+                <div class="form-group">
+                    <div class="col-sm-7 col-sm-offset-3">
+                        <button class="btn btn-primary" type="button" onclick="zhanghaocz()" > 确认</button>&nbsp;&nbsp;&nbsp;
+                       
+                    </div>
+                </div>
+                 </form>
+            </div>
+        </div>
+    </div>
+<!--添加-->
+
+ {include file="public/footer" /}
+
+<script type="text/javascript">
+    // 添加
+    function add(){
+          $('#add').modal('show');
+    }
+</script>
+</body>
+</html>

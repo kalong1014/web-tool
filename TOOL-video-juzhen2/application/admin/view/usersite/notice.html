@@ -1,0 +1,291 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<link rel="stylesheet" href="/static/admin/layui/css/layui.css" media="all">
+<div class="wrapper layui-card-body wrapper-content">
+    <div class="admin-con">
+        <div class="block-box">
+            <div class="col-12">
+                <a href="javascript:tianjia();">
+                            <button class="btn btn-outline btn-primary" type="button">添加</button>
+                </a>
+            </div>
+            <div class="col-12">
+                <div class="block">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                               <th>类型</th>
+                                <th>标题</th>
+                                <th>添加时间</th>
+                                <th style="width:50%">公告内容</th>
+
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="article_list">
+                             {foreach name="list" item="vo"}
+                             <tr>
+                                 <td>{if $vo.type==1}系统公告{else / }常见问题{/if}</td>
+                                 <td>{$vo.title}</td>
+                                 <td>{$vo.addtime||date='Y-m-d H:i:s',###}</td>
+                                 <td>{$vo.text}</td>
+                                 <td> 
+                                  <a href="javascript:;"  onclick="edit({$vo.id})">
+                                           编辑</a>&nbsp;&nbsp;
+                                 <a href="javascript:del({$vo.id})"  class="btn btn-danger btn-xs">
+                                            删除</a></td>
+                             </tr>
+                              {/foreach}
+                        </tbody>
+                    </table>
+                    <div id="AjaxPage" style=" text-align: right;"></div>
+                    <div id="allpage" style=" text-align: right;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--添加公告模态框-->
+<div class="modal fade" id="add" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog" style="width:50%">
+            <div class="modal-content" style="width:100%;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">添加公告</h4>                  
+                </div>
+                <div class="add-renwu">
+                    <div style="padding:5% 0">
+                            <form  id="add-renwuform"  >
+                                 <div class="form-group">
+                                    <label class="col-sm-2 control-label font13 text-r" style="line-height:35px;">选择类型：</label>
+                                    <div class="input-group col-sm-8">
+                                        <select class="form-control" name="type" id="type" >
+                                             <option value="1">系统公告</option>
+                                             <option value="2">常见问题</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label font13 text-r" style="line-height:35px;">填写标题：</label>
+                                    <div class="input-group col-sm-8">
+                                        <input  type="text" class="form-control" name="title" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label font13 text-r" style="line-height:35px;">公告内容：</label>
+                                    <div class="input-group col-sm-8">
+                                        <textarea class="text" name="text" id="" cols="50" rows="10"></textarea>
+
+<!--                                        <input  type="text" class="form-control" name="url" >-->
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-col-sm-offset-3">
+                                        <botton class="btn btn-primary ml-30 mt-5"  id='zhida_baocun' onclick="sub()" >
+                                            保&nbsp;&nbsp;&nbsp;存
+                                        </botton>
+                                    </div>
+                                </div>
+                            </form>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+<!--添加任务模态框结束-->    
+<!--编辑模态框-->
+<div class="modal fade" id="edit" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog" style="width:50%">
+            <div class="modal-content" style="width:100%;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">编辑公告</h4>                  
+                </div>
+                <div class="add-renwu">
+                    <div style="padding:5% 0">
+                            <form  id="add-renwuform"  >
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label font13 text-r" style="line-height:35px;">类型：</label>
+                                    <div class="input-group col-sm-8">
+                                        <input  type="text" class="form-control" name="notice_type"  readonly=“readonly” >
+                                            <em class="font12 font8c95b0">此类型不可编辑</em>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label font13 text-r" style="line-height:35px;">填写标题：</label>
+                                    <div class="input-group col-sm-8">
+                                        <input  type="text" class="form-control" name="notice_title" >
+                                        
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label font13 text-r" style="line-height:35px;">公告内容：</label>
+                                    <div class="input-group col-sm-8">
+                                        <textarea class="text2 font13" name="text" id="" cols="50" rows="10"></textarea>
+                                    </div>
+                                </div>
+<!--                                <div class="form-group">-->
+<!--                                    <label class="col-sm-2 control-label font14 text-r" style="line-height:35px;">填写url：</label>-->
+<!--                                    <div class="input-group col-sm-6">-->
+<!--                                        <input  type="text" class="form-control" name="notice_url" >-->
+<!--                                        -->
+<!--                                    </div>-->
+<!--                                </div>-->
+                                    <input type="hidden" name="notice_id" id="" value="" />
+                                   
+                                <div class="form-group">
+                                    <div class="col-col-sm-offset-3">
+                                        <botton class="btn btn-primary ml-30 mt-5"  id='zhida_baocun' onclick="edit_baocun()" >
+                                            保&nbsp;&nbsp;&nbsp;存
+                                        </botton>
+                                    </div>
+                                </div>
+                            </form>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+<!--编辑模态框结束-->    
+
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+/*添加*/
+function sub(){
+    // name =  $("input[name='rwname']").val();
+   var  type = $('#type  option:selected').val();//获取选中类型
+   var  title =  $("input[name='title']").val();//标题
+   // var  url =  $("input[name='url']").val();//链接地址
+    var  text =  $(".text").val();//链接地址
+   if(title ==''){
+       layer.msg('请填写标题',{icon:1,time:1500,shade: 0.1,});
+   }
+   //  if(url ==''){
+   //     layer.msg('请填链接地址',{icon:1,time:1500,shade: 0.1,});
+   // }
+    if(text ==''){
+        layer.msg('请填链接地址',{icon:1,time:1500,shade: 0.1,});
+    }
+   
+    $.post('{:url("add_notice")}',
+     {type:type,title:title,text:text},
+    function(data){
+        if(data.code==1){
+            layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+             setInterval(function(){
+                location.reload();
+             },1000)
+            return false;
+        }else{
+            layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+             setInterval(function(){
+                location.reload();
+             },1000)
+            return false;
+        }         
+        
+    });
+ }
+    function del(id){
+         $.post('{:url("del_notice")}',
+     {id:id},
+    function(data){
+        
+        if(data.code==1){
+           
+            layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+          
+             setInterval(function(){
+                location.reload();
+             },1000)
+            return false;
+        }else{
+           
+            layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+            setInterval(function(){
+                location.reload();
+             },1000)
+            
+            return false;
+        }         
+        
+    });
+    }
+function tianjia(){
+    $("#add").modal('show');
+}
+/*编辑获取数据*/
+function edit(id){
+     $("#edit").modal('show');
+            $.post('{:url("edit_notice")}',
+         {id:id},
+        function(data){
+              if(data.code==1){
+                  console.log(data.msg)
+                  $("input[name='notice_title']").val(data.msg.title);//标题
+                  $("input[name='notice_url']").val(data.msg.url);//链接地址
+                  $(".text2").val(data.msg.text);//链接地址
+                  $("input[name='notice_id']").val(data.msg.id);//id
+                
+                 
+                  if(data.msg.type ==1){
+                      $("input[name='notice_type']").val('系统公告');//类型 
+                  }else{
+                       $("input[name='notice_type']").val('常见问题');//类型
+                  }
+                   
+              } else{
+                 layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+                setInterval(function(){
+                    location.reload();
+                 },1000)
+                
+                return false;  
+              }     
+            
+        });
+}
+
+/*保存编辑*/
+function edit_baocun(){
+   
+   var title =  $("input[name='notice_title']").val();//标题
+   var url =  $("input[name='notice_url']").val();//链接地址
+   var id  =  $("input[name='notice_id']").val();//id
+    var  text =  $(".text2").val();//链接地址
+    if(title ==''){
+         layer.msg('请填写标题名称',{icon:2,time:1500,shade: 0.1,});
+    }
+    if(url ==''){
+         layer.msg('请填写URL地址',{icon:2,time:1500,shade: 0.1,});
+    }
+    if(text ==''){
+        layer.msg('请填链接地址',{icon:1,time:1500,shade: 0.1,});
+    }
+ 
+     $.post('{:url("edit_baocun")}',
+     {title:title,url:url,id:id,text:text},
+    function(data){
+        if(data.code==1){
+            layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+             setInterval(function(){
+                location.reload();
+             },1000)
+            return false;
+        }else{
+            layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+             setInterval(function(){
+                location.reload();
+             },1000)
+            return false;
+        }         
+        
+    });
+}
+
+
+</script>
+</body>
+</html>

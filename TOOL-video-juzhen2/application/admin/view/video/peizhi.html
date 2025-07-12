@@ -1,0 +1,1132 @@
+ {include file="public/header" /}
+{include file="public/footer" /}
+ <link rel="stylesheet" type="/static/admin/text/css" href="css/jackwei.slider.css">
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script src="/static/admin/JackWeiSlider/js/jackwei.slider.js"></script>
+   
+    <div class="panel panel-info">
+    <div class="panel-body jichudata">
+
+<style>
+  <style>
+    .layui-form-label{
+        width:140px!important;
+    }
+    .layui-input-block{
+        margin-left: 140px;
+    }
+  .layui-form-item .layui-input-inline{width:260px;}
+  .skai_body{
+  	    -webkit-text-size-adjust: 100%;
+    color: #333;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    position: fixed;
+    top: 50px;
+    left: 140px;
+    bottom: 0;
+    right: 0;
+    background: #FFF;
+  }
+  .skai_body_main{
+  	    -webkit-text-size-adjust: 100%;
+    color: #333;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    overflow-y: auto;
+    padding: 0;
+  }
+  .panel {
+  	    -webkit-text-size-adjust: 100%;
+    color: #fff;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    margin-bottom: 20px;
+    background-color: #2b2b2e;
+    border: 0px solid transparent;
+    /*border-radius: 4px;*/
+    /*box-shadow: 0 1px 1px rgba(0,0,0,.05);*/
+    border-color: #bce8f1;
+  }
+  	.panel-body {
+  		    -webkit-text-size-adjust: 100%;
+    color: #333;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    padding: 0;
+  	}
+  	.layui-fluid{
+  		    -webkit-text-size-adjust: 100%;
+    color: #333;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    position: relative;
+    margin: 0 auto;
+    padding: 0;
+  	}
+  	.layui-row{
+  		    -webkit-text-size-adjust: 100%;
+    color: #333;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    }
+    .layui-col-xs12{
+    	    -webkit-text-size-adjust: 100%;
+    color: #333;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    float: left;
+    width: 100%;
+    }
+    .layui-card{
+    	    -webkit-text-size-adjust: 100%;
+    color: #333;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    border-radius: 2px;
+    background-color: #2b2b2e;
+    /*box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);*/
+    margin-bottom: 0;
+    }
+    .layui-card-body{
+    	    -webkit-text-size-adjust: 100%;
+    color: #333;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    position: relative;
+    padding: 0 15px;
+    line-height: 24px;
+    }
+    .layui-elem-quote {
+    -webkit-text-size-adjust: 100%;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    margin-bottom: 10px;
+    padding: 0;
+    border-left: 5px solid #ff7752;
+    border-radius: 0 2px 2px 0;
+    background-color: #f2f2f2;
+    line-height: 22px;
+    font-size: 14px;
+    color: #666;
+    }
+    .layui-form{
+    	    -webkit-text-size-adjust: 100%;
+    color: #333;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    line-height: 24px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    }
+    .layui-form-item{
+    	    -webkit-text-size-adjust: 100%;
+    color: #333;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    line-height: 24px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    margin-bottom: 15px;
+    clear: both;
+    }
+    .layui-form-label{
+    	    -webkit-text-size-adjust: 100%;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    box-sizing: border-box;
+    max-width: 100%;
+    color: #d9d9d9;
+    vertical-align: middle;
+    margin-bottom: 0;
+    position: relative;
+    float: left;
+    display: block;
+    padding: 9px 15px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: right;
+    width: 140px!important;
+    }
+    .layui-input-inline{
+    	    -webkit-text-size-adjust: 100%;
+    color: #333;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    line-height: 24px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    float: left;
+    margin-right: 10px;
+    width: 260px;
+    }
+    .layui-input{
+    	    -webkit-text-size-adjust: 100%;
+    font: inherit;
+    color: #d9d9d9;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    font-family: inherit;
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+    outline: 0;
+    -webkit-appearance: none;
+    -webkit-transition: all .3s;
+    box-sizing: border-box;
+    border-color: #3e4040;
+    height: 38px;
+    line-height: 1.3;
+    border-width: 1px;
+    border-style: solid;
+    background-color: #3e4040;
+    border-radius: 2px;
+    display: block;
+    width: 100%;
+    padding-left: 10px;
+    }
+    .layui-form-mid{
+    	    -webkit-text-size-adjust: 100%;
+    font: 12px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    position: relative;
+    color: #999!important;
+    float: left;
+    display: block;
+    padding: 9px 0!important;
+    line-height: 20px;
+    margin-right: 10px;
+    }
+    .layui-form-label{
+    	    -webkit-text-size-adjust: 100%;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    box-sizing: border-box;
+    max-width: 100%;
+    color: #d9d9d9;
+    vertical-align: middle;
+    margin-bottom: 0;
+    position: relative;
+    float: left;
+    display: block;
+    padding: 9px 15px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: right;
+    width: 140px!important;
+    }
+    .layui-input-block{
+    	    -webkit-text-size-adjust: 100%;
+    color: #d9d9d9;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    line-height: 24px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    position: relative;
+    min-height: 36px;
+    margin-left: 140px;
+    }
+    .layui-unselect {
+    	    -webkit-text-size-adjust: 100%;
+    color: #333;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    box-sizing: border-box;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-user-select: none;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 28px;
+    margin: 6px 10px 0 0;
+    padding-right: 10px;
+    cursor: pointer;
+    font-size: 0;
+    }
+    .layui-anim {
+    	    -webkit-text-size-adjust: 100%;
+    font: 12px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    line-height: 28px;
+    cursor: pointer;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    font-family: layui-icon!important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    vertical-align: middle;
+    animation-duration: .3s;
+    animation-fill-mode: both;
+    margin-right: 8px;
+    font-size: 22px;
+    color: #5FB878;
+    display: inline-block;
+    }
+    .layui-unselect {
+    	    -webkit-text-size-adjust: 100%;
+    color: #333;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    box-sizing: border-box;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-user-select: none;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 28px;
+    margin: 6px 10px 0 0;
+    padding-right: 10px;
+    cursor: pointer;
+    font-size: 0;
+    }
+    .layui-inline{height: initial;display: inline-block;}
+    textarea{
+        background: #3e4040;border-color: #3e4040;height: 100px;
+    }
+    audio:not([controls]) {
+        display: block !important;
+    }
+    .bofang{float: left;}
+    .dtbo{float: left;margin:0 15px 10px 0; width:155px;display:none}
+    .dtbo:nth-child(3){display:block!important;}
+    .dtbo:nth-child(2){display:block!important;}
+    .jws-text{color: #fff;padding:0!important}
+    .jws-handle{background: #000;border-radius:10px}
+    embed { width:0}
+    button.bo{background: none;border-radius: 50%;line-height: 18px;height: 20px;width: 20px;text-align: center;border: 1px solid #3e4040;margin-left:5px;background:#3e4040;font-size:10px;color:#848181;float:left;margin-top:5px;}
+</style>
+<div class="header-box">
+        <div class="pl25">
+            <h3 class="fs22 font-weight-500 c333">配置修改</h3>
+            <p class="fs14 c666">根据提示修改混剪视频任务的配置</p>
+        </div>
+</div>
+<div class="ibox-title" style="border-left: 4px solid red;color:#ff7752">
+            <p>1.队列一经启动开始合成,参数将不支持修改！</p>
+            <p style="margin:0">2.请谨慎修改配置，非必要不修改。</p>
+        </div>
+    
+<div class="layui-fluid m-t-md">
+  <div class="layui-row">
+    <div class="layui-col-xs12">
+      <div class="layui-card">
+
+        <div class="layui-card-body">
+
+         
+            <input type="hidden" name="yunid" value="{$id}">
+             <div class="layui-form-item" style="margin-bottom:20px">
+                          <label class="layui-form-label">队列名称<span style="color:red;margin:0 5px;">*</span></label>
+                          <div class="layui-input-inline">
+                            <input type="text" name="yun_name"  placeholder="请输入混剪队列备注名称" autocomplete="off" class="layui-input" value="{$yun.yun_name}">
+                          </div>
+                          <div class="layui-form-mid layui-word-aux">AI视频生成队列影音分组</div>
+                        </div>   
+            
+                        <div class="layui-form-item"  style="padding-top: 10px;">
+                        <!--占位-->
+                         
+                        </div>            
+                        <div class="layui-form-item">
+                          <label class="layui-form-label">单次生成数量<span style="color:red;margin:0 5px;opacity:1;">*</span></label>
+                          <div class="layui-input-inline">
+                              <input type="number" name="yun_num" lay-verify="num" value="{$yun.yun_num}" placeholder="请输入该队列生成视频的数量" autocomplete="off" class="layui-input" >
+                          </div>
+                          <div class="layui-form-mid layui-word-aux">建议单次最多生成<span style="color:red;margin:0 6px;">20</span>条视频！如不够可点击n次生成,即可生成(单次生成量*n)条视频！</div>
+                        </div>            
+                        <div class="layui-form-item" style="padding-top: 10px;">
+                          <div class="layui-inline">
+                            <label class="layui-form-label">生成时长<span style="color:red;margin:0 5px;opacity:1;">*</span></label>
+                           
+                         
+                            <div class="layui-input-inline" style="width: 100px;">
+                              <input type="text" name="yun_max"  value="{$yun.yun_max?$yun.yun_max:'20'}" placeholder="最长时长60s" autocomplete="off" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid">秒</div>
+                          </div>
+                        </div>           
+                        <div class="layui-form-item" style="padding-top:10px">
+                          <label class="layui-form-label">视频比例<span style="color:red;margin:0 5px;opacity:1;">*</span></label>
+                          <div class="layui-input-block">
+                            <input type="radio" name="ctype" value="1"   checked="" lay-filter="up_hash" style="margin-top: 13px;">&nbsp;&nbsp;9:16&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio"  name="ctype"  value="2"   lay-filter="up_hash">&nbsp;&nbsp;4:3&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio"  name="ctype"  value="3"   lay-filter="up_hash">&nbsp;&nbsp;16:9&nbsp;&nbsp;&nbsp;&nbsp;
+                             <input type="radio" name="ctype" value="4"  lay-filter="up_hash">&nbsp;&nbsp;1:1&nbsp;&nbsp;&nbsp;&nbsp;
+                          </div>
+                          <div class="layui-form-mid layui-word-aux">视频平台官方推荐上传16:9，分辨率为720p（1280x720）及以上的竖版视频</div>
+                        </div>
+                        
+                        <div class="layui-form-item">
+                          <div class="layui-inline">
+                            <label class="layui-form-label">视频尺寸<span style="color:red;margin:0 5px;opacity:1;">*</span></label>
+                            <div class="layui-form-mid">宽:</div>
+                            <div class="layui-input-inline" style="width: 100px;">
+<input type="text" id="width" name="yun_width" onchange="Theight(this)" placeholder="视频宽度" value="{$yun.yun_width?$yun.yun_width:'720'}" autocomplete="off" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid">--高:</div>
+                           <div class="layui-input-inline" style="width: 100px;">
+                              <input type="text" id="height" name="yun_height"  readonly="" placeholder="" value="{$yun.yun_height?$yun.yun_height:'1280'}" autocomplete="off" class="layui-input">
+                            </div>
+                          </div>
+                        </div>            
+                        <div class="layui-form-item" style="padding-top:0">
+                          <label class="layui-form-label">比例效果<span style="color:red;margin:0 5px;opacity:0;">*</span></label>
+                          <div class="layui-input-block">
+                            <img src="__IMG__/169.jpg" alt="" style="width:120px">
+                            <img src="__IMG__/43.jpg" alt="" style="width:120px">
+                            <img src="__IMG__/916.jpg" alt="" style="width:120px">
+                            <img src="__IMG__/11.jpg" alt="" style="width:120px">
+                          </div>
+                        </div>            
+                        <script>
+                            $("#width").on('input',function(e)
+                            {
+                            var w=$("#width").val(),b=$('input[name="ctype"]:checked').val();
+                           
+                            console.log(e.delegateTarget.value);
+                            if(b==1){
+                                  if(parseInt(16*w/9)>2160){
+                                      var h=2160;
+                                      $("#width").val(h*9/16); 
+                                      $("#height").val(h);
+                                  }else{
+                                      $("#height").val(parseInt(16*w/9));
+                                  }
+                              }else if(b==2){
+                                  $("#height").val(parseInt(3*w/4));
+                              }else if(b==3){
+                                  $("#height").val(parseInt(9*w/16));
+                              }else{
+                                  $("#height").val(w);
+                              }
+                            });
+                           
+                            function tips(){
+                                layer.msg('填写宽度后,系统会根据比例自动生成高度！',{icon:5,time:3500}); return;  
+                            }
+                        </script>
+                        
+                        <div class="layui-form-item" style="padding-top: 0px;">
+                          <label class="layui-form-label">请输入标题<span style="color:red;margin:0 5px;">*</span></label>
+                          <div class="layui-inline">
+                            <!--<input type="text" name="yun_title"  placeholder="请输入标题" autocomplete="off" class="layui-input" value="">-->
+                            <textarea rows="10" cols="30" name="yun_ftitle" id="yun_ftitle" style="text-align:left;resize:none;color:#fff;width:250px;height:38px;float:left"  placeholder="请输入标题">{$yun.yun_ftitle?$yun.yun_ftitle:''}</textarea>
+                            <label class="layui-form-label">标题文字大小<br><span style="font-size:12px">(建议70)</span><span style="color:red;margin:0 5px;opacity:1;"></span></label>
+                            <div class="layui-input-inline" style="width: 100px;">
+                              <input type="number" name="yun_ftitlesize"  value="{$yun.yun_ftitlesize?$yun.yun_ftitlesize:'50'}" placeholder="请填写标题文字大小,建议40" autocomplete="off" class="layui-input">
+                            </div>
+                            <label class="layui-form-label">标题文字颜色<span style="color:red;margin:0 5px;opacity:1;"></span></label>
+                            <div class="layui-input-inline" style="width: 100px;">
+                              <input type="color" name="yun_ftitlecolor"  value="{$yun.yun_ftitlecolor?$yun.yun_ftitlecolor:'#000000'}"  autocomplete="off" class="layui-input" style="padding:0">
+                            </div>
+                        </div> 
+                        </div>
+                        
+                        <div class="layui-form-item" style="margin-bottom:20px">
+                            <label class="layui-form-label">请输入副标题<span style="color:red;margin:0 5px;">*</span></label>
+                            <div class="layui-inline">
+                                <!--<input type="text" name="yun_title"  placeholder="请输入标题" autocomplete="off" class    ="layui-input" value="">-->
+                                <textarea rows="10" cols="30" name="yun_title" id="yun_title" style="text-align:left;resize:none;color:#fff;width:250px;height:38px;float:left"  placeholder="请输入副标题">{$yun.yun_title?$yun.yun_title:''}</textarea>
+                                <label class="layui-form-label">副标题文字大小<br><span style="font-size:12px">(建议40)</span><span style="color:red;margin:0 5px;opacity:1;"></span></label>
+                                <div class="layui-input-inline" style="width: 100px;">
+                                  <input type="number" name="yun_titlesize"  value="{$yun.yun_titlesize?$yun.yun_titlesize:'40'}" placeholder="请填写文字大小,建议40" autocomplete="off" class="layui-input">
+                                </div>
+                                <label class="layui-form-label">副标题文字颜色<span style="color:red;margin:0 5px;opacity:1;"></span></label>
+                                <div class="layui-input-inline" style="width: 100px;">
+                                  <input type="color" name="yun_titlecolor"  value="{$yun.yun_titlecolor?$yun.yun_titlecolor:'#000000'}"  autocomplete="off" class="layui-input" style="padding:0">
+                                </div>
+                            </div> 
+                        </div>
+                        
+                        <div class="layui-form-item" style="padding-top:0px;">
+                          <label class="layui-form-label">请输入字幕<span style="color:red;margin:0 5px;">*</span></label>
+                          <div class="layui-inline">
+                           
+                            <textarea rows="10" cols="30" name="yun_zimu" id="yun_zimu" style="text-align:left;resize:none;color:#fff;;width:250px;height:38px;float:left"  placeholder="请输入字幕">{$yun.yun_zimu?$yun.yun_zimu:''}</textarea>
+                            <label class="layui-form-label">字幕文字大小<br><span style="font-size:12px">(建议40)</span><span style="color:red;margin:0 5px;opacity:1;"></span></label>
+                            <div class="layui-input-inline" style="width: 100px;">
+                              <input type="number" name="yun_zimusize"  value="{$yun.yun_zimusize?$yun.yun_zimusize:'40'}" placeholder="请填写文字大小,建议40" autocomplete="off" class="layui-input">
+                            </div>
+                            <label class="layui-form-label">字幕文字颜色<span style="color:red;margin:0 5px;opacity:1;"></span></label>
+                            <div class="layui-input-inline" style="width: 100px;">
+                              <input type="color" name="yun_zimucolor"  value="{$yun.yun_zimucolor?$yun.yun_zimucolor:'#000000'}"  autocomplete="off" class="layui-input" style="padding:0">
+                            </div>
+                          </div> 
+                        </div>
+                        
+                        <div class="layui-form-item" style="margin-top:20px">
+                          <label class="layui-form-label">人声播放<span style="color:red;margin:0 5px;opacity:1;">*</span></label>
+                          <div class="layui-input-block" style="">
+                              
+                            <audio id="embed_id" src=""></audio>
+                            <dt class="dtbo" style="height:35px;line-height:35px;">
+                                <div style="float:left">
+                                    <input type="radio" name="yun_zimuvideo" value="xiaoyun" title="标准女声" checked="" style="margin-top:0">
+                                    <span>标准女声</span>
+                                </div>
+                                
+                                <div class="bofang">
+                                    <button class="bo">▶</button>
+                                    <audio data-src="https://ice-pub-media.myalicdn.com/smart/tts-audio/xiaoyun.MP3?spm=a2c4g.11186623.0.0.5b6745a64RHyWT&amp;file=xiaoyun.MP3" preload="none" style="display:none;"></audio>
+                                </div>
+                            </dt>
+                            
+                            &nbsp;&nbsp;
+                            <dt class="dtbo" style="height:35px;line-height:35px;">
+                                <div style="float:left">
+                                    <input type="radio" name="yun_zimuvideo" value="xiaogang" title="标准男声" style="margin-top:0">
+                                    <span>标准男声</span>
+                                </div>
+                                
+                                <div class="bofang">
+                                    <button class="bo">▶</button>
+                                    <audio data-src="https://ice-pub-media.myalicdn.com/smart/tts-audio/xiaogang.MP3?spm=a2c4g.11186623.0.0.5b6745a64RHyWT&file=xiaogang.MP3" preload="none" style="display:none;"></audio>
+                                </div>
+                            </dt>
+                            
+                            <dt class="moreclick" style="height:35px;line-height:35px;float: left">更多</dt>
+
+                            &nbsp;&nbsp; 
+                            <dt class="dtbo" style="height:35px;line-height:35px;">
+                                <div style="float:left">
+                                    <input type="radio" name="yun_zimuvideo" value="ruoxi" title="温柔女声" style="margin-top:0">
+                                    <span>温柔女声</span>
+                                </div>
+                                
+                                <div class="bofang">
+                                    <button class="bo">▶</button>
+                                    <audio data-src="https://ice-pub-media.myalicdn.com/smart/tts-audio/ruoxi.MP3?spm=a2c4g.11186623.0.0.5b6745a64RHyWT&file=ruoxi.MP3" preload="none" style="display:none;"></audio>
+                                    <!--<i class="fa fa-youtube-play"></i>-->
+                                </div>
+                            </dt>
+                            
+                            &nbsp;&nbsp;
+                            <dt class="dtbo" style="height:35px;line-height:35px;">
+                                <div style="float:left">
+                                    <input type="radio" name="yun_zimuvideo" value="siqi" title="思琪" style="margin-top:0">
+                                    <span>思琪</span>
+                                </div>
+                                
+                                <div class="bofang">
+                                    <button class="bo">▶</button>
+                                    <audio data-src="https://ice-pub-media.myalicdn.com/smart/tts-audio/siqi.MP3?spm=a2c4g.11186623.0.0.5b6745a64RHyWT&file=siqi.MP3" preload="none" style="display:none;"></audio>
+                                    <!--<i class="fa fa-youtube-play"></i>-->
+                                </div>
+                            </dt>
+                            
+                            &nbsp;&nbsp;
+                            <dt class="dtbo" style="height:35px;line-height:35px;">
+                                <div style="float:left">
+                                    <input type="radio" name="yun_zimuvideo" value="sijia" title="思佳" style="margin-top:0">
+                                    <span>思佳</span>
+                                </div>
+                                
+                                <div class="bofang">
+                                    <button class="bo">▶</button>
+                                    <audio data-src="https://ice-pub-media.myalicdn.com/smart/tts-audio/sijia.MP3?spm=a2c4g.11186623.0.0.5b6745a64RHyWT&file=sijia.MP3" preload="none" style="display:none;"></audio>
+                                    <!--<i class="fa fa-youtube-play"></i>-->
+                                </div>
+                            </dt>
+                            &nbsp;&nbsp;
+                            <dt class="dtbo" style="height:35px;line-height:35px;">
+                                <div style="float:left">
+                                    <input type="radio" name="yun_zimuvideo" value="sicheng" title="思诚" style="margin-top:0">
+                                    <span>思诚</span>
+                                </div>
+                                
+                                <div class="bofang">
+                                    <button class="bo">▶</button>
+                                    <audio data-src="https://ice-pub-media.myalicdn.com/smart/tts-audio/sicheng.MP3?spm=a2c4g.11186623.0.0.5b6745a64RHyWT&file=sicheng.MP3" preload="none" style="display:none;"></audio>
+                                    <!--<i class="fa fa-youtube-play"></i>-->
+                                </div>
+                            </dt>
+                            &nbsp;&nbsp;
+                            <dt class="dtbo" style="height:35px;line-height:35px;">
+                                <div style="float:left">
+                                    <input type="radio" name="yun_zimuvideo" value="aiqi" title="艾琪" style="margin-top:0">
+                                    <span>艾琪</span>
+                                </div>
+                                
+                                <div class="bofang">
+                                    <button class="bo">▶</button>
+                                    <audio data-src="https://ice-pub-media.myalicdn.com/smart/tts-audio/aiqi.MP3?spm=a2c4g.11186623.0.0.5b6745a64RHyWT&file=aiqi.MP3" preload="none" style="display:none;"></audio>
+                                    <!--<i class="fa fa-youtube-play"></i>-->
+                                </div>
+                            </dt>
+                            &nbsp;&nbsp;
+                            <dt class="dtbo" style="height:35px;line-height:35px;">
+                                <div style="float:left">
+                                    <input type="radio" name="yun_zimuvideo" value="aijia" title="艾佳" style="margin-top:0">
+                                    <span>艾佳</span>
+                                </div>
+                                
+                                <div class="bofang">
+                                    <button class="bo">▶</button>
+                                    <audio data-src="https://ice-pub-media.myalicdn.com/smart/tts-audio/aijia.MP3?spm=a2c4g.11186623.0.0.5b6745a64RHyWT&file=aijia.MP3" preload="none" style="display:none;"></audio>
+                                    <!--<i class="fa fa-youtube-play"></i>-->
+                                </div>
+                            </dt>
+                            &nbsp;&nbsp;
+                            <dt class="dtbo" style="height:35px;line-height:35px;">
+                                <div style="float:left">
+                                    <input type="radio" name="yun_zimuvideo" value="aicheng" title="艾诚" style="margin-top:0">
+                                    <span>艾诚</span>
+                                </div>
+                                
+                                <div class="bofang">
+                                    <button class="bo">▶</button>
+                                    <audio data-src="https://ice-pub-media.myalicdn.com/smart/tts-audio/aicheng.MP3?spm=a2c4g.11186623.0.0.5b6745a64RHyWT&file=aicheng.MP3" preload="none" style="display:none;"></audio>
+                                    <!--<i class="fa fa-youtube-play"></i>-->
+                                </div>
+                            </dt>
+                            &nbsp;&nbsp;
+                            <dt class="dtbo" style="height:35px;line-height:35px;">
+                                <div style="float:left">
+                                    <input type="radio" name="yun_zimuvideo" value="aida" title="艾达" style="margin-top:0">
+                                    <span>艾达</span>
+                                </div>
+                                
+                                <div class="bofang">
+                                    <button class="bo">▶</button>
+                                    <audio data-src="https://ice-pub-media.myalicdn.com/smart/tts-audio/aida.MP3?spm=a2c4g.11186623.0.0.5b6745a64RHyWT&file=aida.MP3" preload="none" style="display:none;"></audio>
+                                    <!--<i class="fa fa-youtube-play"></i>-->
+                                </div>
+                            </dt>
+                            &nbsp;&nbsp;
+                            <dt class="dtbo" style="height:35px;line-height:35px;">
+                                <div style="float:left">
+                                    <input type="radio" name="yun_zimuvideo" value="ninger" title="宁儿" style="margin-top:0">
+                                    <span>宁儿</span>
+                                </div>
+                                
+                                <div class="bofang">
+                                    <button class="bo">▶</button>
+                                    <audio data-src="https://ice-pub-media.myalicdn.com/smart/tts-audio/ninger.MP3?spm=a2c4g.11186623.0.0.5b6745a64RHyWT&file=ninger.MP3" preload="none" style="display:none;"></audio>
+                                    <!--<i class="fa fa-youtube-play"></i>-->
+                                </div>
+                            </dt>
+                            &nbsp;&nbsp;
+                            <dt class="dtbo" style="height:35px;line-height:35px;">
+                                <div style="float:left">
+                                    <input type="radio" name="yun_zimuvideo" value="ruilin" title="瑞琳" style="margin-top:0">
+                                    <span>瑞琳</span>
+                                </div>
+                                
+                                <div class="bofang">
+                                    <button class="bo">▶</button>
+                                    <audio data-src="https://ice-pub-media.myalicdn.com/smart/tts-audio/ruilin.MP3?spm=a2c4g.11186623.0.0.5b6745a64RHyWT&file=ruilin.MP3" preload="none" style="display:none;"></audio>
+                                    <!--<i class="fa fa-youtube-play"></i>-->
+                                </div>
+                            </dt>
+                            &nbsp;&nbsp;
+                            <dt class="dtbo" style="height:35px;line-height:35px;">
+                                <div style="float:left">
+                                    <input type="radio" name="yun_zimuvideo" value="siyue" title="思悦" style="margin-top:0">
+                                    <span>思悦</span>
+                                </div>
+                                
+                                <div class="bofang">
+                                    <button class="bo">▶</button>
+                                    <audio data-src="https://ice-pub-media.myalicdn.com/smart/tts-audio/siyue.MP3?spm=a2c4g.11186623.0.0.5b6745a64RHyWT&file=siyue.MP3" preload="none" style="display:none;"></audio>
+                                    <!--<i class="fa fa-youtube-play"></i>-->
+                                </div>
+                            </dt>
+                            &nbsp;&nbsp;
+                            <dt class="dtbo" style="height:35px;line-height:35px;">
+                                <div style="float:left">
+                                    <input type="radio" name="yun_zimuvideo" value="aiya" title="艾雅" style="margin-top:0">
+                                    <span>艾雅</span>
+                                </div>
+                                
+                                <div class="bofang">
+                                    <button class="bo">▶</button>
+                                    <audio data-src="https://ice-pub-media.myalicdn.com/smart/tts-audio/aiya.MP3?spm=a2c4g.11186623.0.0.5b6745a64RHyWT&file=aiya.MP3" preload="none" style="display:none;"></audio>
+                                    <!--<i class="fa fa-youtube-play"></i>-->
+                                </div>
+                            </dt>
+                            &nbsp;&nbsp;
+                            <dt class="dtbo" style="height:35px;line-height:35px;">
+                                <div style="float:left">
+                                    <input type="radio" name="yun_zimuvideo" value="aixia" title="艾夏" style="margin-top:0">
+                                    <span>艾夏</span>
+                                </div>
+                                
+                                <div class="bofang">
+                                    <button class="bo">▶</button>
+                                    <audio data-src="https://ice-pub-media.myalicdn.com/smart/tts-audio/aixia.MP3?spm=a2c4g.11186623.0.0.5b6745a64RHyWT&file=aixia.MP3" preload="none" style="display:none;"></audio>
+                                    <!--<i class="fa fa-youtube-play"></i>-->
+                                </div>
+                            </dt>
+                            &nbsp;&nbsp;
+                            <dt class="dtbo" style="height:35px;line-height:35px;">
+                                <div style="float:left">
+                                    <input type="radio" name="yun_zimuvideo" value="aimei" title="艾美" style="margin-top:0">
+                                    <span>艾美</span>
+                                </div>
+                                
+                                <div class="bofang">
+                                    <button class="bo">▶</button>
+                                    <audio data-src="https://ice-pub-media.myalicdn.com/smart/tts-audio/aimei.MP3?spm=a2c4g.11186623.0.0.5b6745a64RHyWT&file=aimei.MP3" preload="none" style="display:none;"></audio>
+                                    <!--<i class="fa fa-youtube-play"></i>-->
+                                </div>
+                            </dt>
+                            &nbsp;&nbsp;
+                            <dt class="dtbo" style="height:35px;line-height:35px;">
+                                <div style="float:left">
+                                    <input type="radio" name="yun_zimuvideo" value="aiyu" title="艾雨" style="margin-top:0">
+                                    <span>艾雨</span>
+                                </div>
+                                
+                                <div class="bofang">
+                                    <button class="bo">▶</button>
+                                    <audio data-src="https://ice-pub-media.myalicdn.com/smart/tts-audio/aiyu.MP3?spm=a2c4g.11186623.0.0.5b6745a64RHyWT&file=aiyu.MP3" preload="none" style="display:none;"></audio>
+                                    <!--<i class="fa fa-youtube-play"></i>-->
+                                </div>
+                            </dt>
+                            &nbsp;&nbsp;
+                            <dt class="dtbo" style="height:35px;line-height:35px;">
+                                <div style="float:left">
+                                    <input type="radio" name="yun_zimuvideo" value="aiyue" title="艾悦" style="margin-top:0">
+                                    <span>艾悦</span>
+                                </div>
+                                
+                                <div class="bofang">
+                                    <button class="bo">▶</button>
+                                    <audio data-src="https://ice-pub-media.myalicdn.com/smart/tts-audio/aiyue.MP3?spm=a2c4g.11186623.0.0.5b6745a64RHyWT&file=aiyue.MP3" preload="none" style="display:none;"></audio>
+                                    <!--<i class="fa fa-youtube-play"></i>-->
+                                </div>
+                            </dt>
+                            &nbsp;&nbsp;
+                            <dt class="dtbo" style="height:35px;line-height:35px;">
+                                <div style="float:left">
+                                    <input type="radio" name="yun_zimuvideo" value="aijing" title="艾婧" style="margin-top:0">
+                                    <span>艾婧</span>
+                                </div>
+                                
+                                <div class="bofang">
+                                    <button class="bo">▶</button>
+                                    <audio data-src="https://ice-pub-media.myalicdn.com/smart/tts-audio/aijing.MP3?spm=a2c4g.11186623.0.0.5b6745a64RHyWT&file=aijing.MP3" preload="none" style="display:none;"></audio>
+                                    <!--<i class="fa fa-youtube-play"></i>-->
+                                </div>
+                            </dt>
+                            &nbsp;&nbsp;
+                            <dt class="dtbo" style="height:35px;line-height:35px;">
+                                <div style="float:left">
+                                    <input type="radio" name="yun_zimuvideo" value="xiaomei" title="小美" style="margin-top:0">
+                                    <span>小美</span>
+                                </div>
+                                
+                                <div class="bofang">
+                                    <button class="bo">▶</button>
+                                    <audio data-src="https://ice-pub-media.myalicdn.com/smart/tts-audio/xiaomei.MP3?spm=a2c4g.11186623.0.0.5b6745a64RHyWT&file=xiaomei.MP3" preload="none" style="display:none;"></audio>
+                                    <!--<i class="fa fa-youtube-play"></i>-->
+                                </div>
+                            </dt>
+                            &nbsp;&nbsp;
+                            <dt class="dtbo" style="height:35px;line-height:35px;">
+                                <div style="float:left">
+                                    <input type="radio" name="yun_zimuvideo" value="aina" title="艾娜" style="margin-top:0">
+                                    <span>艾娜</span>
+                                </div>
+                                
+                                <div class="bofang">
+                                    <button class="bo">▶</button>
+                                    <audio data-src="https://ice-pub-media.myalicdn.com/smart/tts-audio/aina.MP3?spm=a2c4g.11186623.0.0.5b6745a64RHyWT&file=aina.MP3" preload="none" style="display:none;"></audio>
+                                    <!--<i class="fa fa-youtube-play"></i>-->
+                                </div>
+                            </dt>
+                            &nbsp;&nbsp;
+                            <dt class="dtbo" style="height:35px;line-height:35px;">
+                                <div style="float:left">
+                                    <input type="radio" name="yun_zimuvideo" value="yina" title="伊娜" style="margin-top:0">
+                                    <span>伊娜</span>
+                                </div>
+                                
+                                <div class="bofang">
+                                    <button class="bo">▶</button>
+                                    <audio data-src="https://ice-pub-media.myalicdn.com/smart/tts-audio/yina.MP3?spm=a2c4g.11186623.0.0.5b6745a64RHyWT&file=yina.MP3" preload="none" style="display:none;"></audio>
+                                    <!--<i class="fa fa-youtube-play"></i>-->
+                                </div>
+                            </dt>
+                            &nbsp;&nbsp;
+                            <dt class="dtbo" style="height:35px;line-height:35px;">
+                                <div style="float:left">
+                                    <input type="radio" name="yun_zimuvideo" value="sijing" title="思婧" style="margin-top:0">
+                                    <span>思婧</span>
+                                </div>
+                                
+                                <div class="bofang">
+                                    <button class="bo">▶</button>
+                                    <audio data-src="https://ice-pub-media.myalicdn.com/smart/tts-audio/sijing.MP3?spm=a2c4g.11186623.0.0.5b6745a64RHyWT&file=sijing.MP3" preload="none" style="display:none;"></audio>
+                                    <!--<i class="fa fa-youtube-play"></i>-->
+                                </div>
+                            </dt>
+                            &nbsp;&nbsp;
+                            <dt class="dtbo" style="height:35px;line-height:35px;">
+                                <div style="float:left">
+                                    <input type="radio" name="yun_zimuvideo" value="sitong" title="思彤" style="margin-top:0">
+                                    <span>思彤</span>
+                                </div>
+                                
+                                <div class="bofang">
+                                    <button class="bo">▶</button>
+                                    <audio data-src="https://ice-pub-media.myalicdn.com/smart/tts-audio/sitong.MP3?spm=a2c4g.11186623.0.0.5b6745a64RHyWT&file=sitong.MP3" preload="none" style="display:none;"></audio>
+                                    <!--<i class="fa fa-youtube-play"></i>-->
+                                </div>
+                            </dt>
+                            &nbsp;&nbsp;
+                            <dt class="dtbo" style="height:35px;line-height:35px;">
+                                <div style="float:left">
+                                    <input type="radio" name="yun_zimuvideo" value="xiaobei" title="小北" style="margin-top:0">
+                                    <span>小北</span>
+                                </div>
+                                
+                                <div class="bofang">
+                                    <button class="bo">▶</button>
+                                    <audio data-src="https://ice-pub-media.myalicdn.com/smart/tts-audio/xiaobei.MP3?spm=a2c4g.11186623.0.0.5b6745a64RHyWT&file=xiaobei.MP3" preload="none" style="display:none;"></audio>
+                                    <!--<i class="fa fa-youtube-play"></i>-->
+                                </div>
+                            </dt>
+                            &nbsp;&nbsp;
+                            <dt class="dtbo" style="height:35px;line-height:35px;">
+                                <div style="float:left">
+                                    <input type="radio" name="yun_zimuvideo" value="aitong" title="艾彤" style="margin-top:0">
+                                    <span>艾彤</span>
+                                </div>
+                                
+                                <div class="bofang">
+                                    <button class="bo">▶</button>
+                                    <audio data-src="https://ice-pub-media.myalicdn.com/smart/tts-audio/aitong.MP3?spm=a2c4g.11186623.0.0.5b6745a64RHyWT&file=aitong.MP3" preload="none" style="display:none;"></audio>
+                                    <!--<i class="fa fa-youtube-play"></i>-->
+                                </div>
+                            </dt>
+                            &nbsp;&nbsp;
+                            <dt class="dtbo" style="height:35px;line-height:35px;">
+                                <div style="float:left">
+                                    <input type="radio" name="yun_zimuvideo" value="aiwei" title="艾薇" style="margin-top:0">
+                                    <span>艾薇</span>
+                                </div>
+                                
+                                <div class="bofang">
+                                    <button class="bo">▶</button>
+                                    <audio data-src="https://ice-pub-media.myalicdn.com/smart/tts-audio/aiwei.MP3?spm=a2c4g.11186623.0.0.5b6745a64RHyWT&file=aiwei.MP3" preload="none" style="display:none;"></audio>
+                                    <!--<i class="fa fa-youtube-play"></i>-->
+                                </div>
+                            </dt>
+                            &nbsp;&nbsp;
+                            <dt class="dtbo" style="height:35px;line-height:35px;">
+                                <div style="float:left">
+                                    <input type="radio" name="yun_zimuvideo" value="aibao" title="艾宝" style="margin-top:0">
+                                    <span>艾宝</span>
+                                </div>
+                                
+                                <div class="bofang">
+                                    <button class="bo">▶</button>
+                                    <audio data-src="https://ice-pub-media.myalicdn.com/smart/tts-audio/aibao.MP3?spm=a2c4g.11186623.0.0.5b6745a64RHyWT&file=aibao.MP3" preload="none" style="display:none;"></audio>
+                                    <!--<i class="fa fa-youtube-play"></i>-->
+                                </div>
+                            </dt>
+                            &nbsp;&nbsp;
+                            <dt class="dtbo" style="height:35px;line-height:35px;">
+                                <div style="float:left">
+                                    <input type="radio" name="yun_zimuvideo" value="qingqing" title="青青" style="margin-top:0">
+                                    <span>青青</span>
+                                </div>
+                                
+                                <div class="bofang">
+                                    <button class="bo">▶</button>
+                                    <audio data-src="https://ice-pub-media.myalicdn.com/smart/tts-audio/qingqing.MP3?spm=a2c4g.11186623.0.0.5b6745a64RHyWT&file=qingqing.MP3" preload="none" style="display:none;"></audio>
+                                    <!--<i class="fa fa-youtube-play"></i>-->
+                                </div>
+                            </dt>
+                            &nbsp;&nbsp;
+                            <dt class="dtbo" style="height:35px;line-height:35px;">
+                                <div style="float:left">
+                                    <input type="radio" name="yun_zimuvideo" value="cuijie" title="翠姐" style="margin-top:0">
+                                    <span>翠姐</span>
+                                </div>
+                                
+                                <div class="bofang">
+                                    <button class="bo">▶</button>
+                                    <audio data-src="https://ice-pub-media.myalicdn.com/smart/tts-audio/cuijie.MP3?spm=a2c4g.11186623.0.0.5b6745a64RHyWT&file=cuijie.MP3" preload="none" style="display:none;"></audio>
+                                    <!--<i class="fa fa-youtube-play"></i>-->
+                                </div>
+                            </dt>
+                            &nbsp;&nbsp;
+                            <dt class="dtbo" style="height:35px;line-height:35px;">
+                                <div style="float:left">
+                                    <input type="radio" name="yun_zimuvideo" value="xiaoze" title="小泽" style="margin-top:0">
+                                    <span>小泽</span>
+                                </div>
+                                
+                                <div class="bofang">
+                                    <button class="bo">▶</button>
+                                    <audio data-src="https://ice-pub-media.myalicdn.com/smart/tts-audio/xiaoze.MP3?spm=a2c4g.11186623.0.0.5b6745a64RHyWT&file=xiaoze.MP3" preload="none" style="display:none;"></audio>
+                                    <!--<i class="fa fa-youtube-play"></i>-->
+                                </div>
+                            </dt>
+                            &nbsp;&nbsp;
+                            <dt class="dtbo" style="height:35px;line-height:35px;">
+                                <div style="float:left">
+                                    <input type="radio" name="yun_zimuvideo" value="guijie" title="柜姐" style="margin-top:0">
+                                    <span>柜姐</span>
+                                </div>
+                                
+                                <div class="bofang">
+                                    <button class="bo">▶</button>
+                                    <audio data-src="https://ice-pub-media.myalicdn.com/smart/tts-audio/guijie.MP3?spm=a2c4g.11186623.0.0.5b6745a64RHyWT&file=guijie.MP3" preload="none" style="display:none;"></audio>
+                                    <!--<i class="fa fa-youtube-play"></i>-->
+                                </div>
+                            </dt>
+                            &nbsp;&nbsp;
+                            <dt class="dtbo" style="height:35px;line-height:35px;">
+                                <div style="float:left">
+                                    <input type="radio" name="yun_zimuvideo" value="Stella" title="Stella" style="margin-top:0">
+                                    <span>Stella</span>
+                                </div>
+                                
+                                <div class="bofang">
+                                    <button class="bo">▶</button>
+                                    <audio data-src="https://ice-pub-media.myalicdn.com/smart/tts-audio/stella.MP3?spm=a2c4g.11186623.0.0.5b6745a64RHyWT&file=stella.MP3" preload="none" style="display:none;"></audio>
+                                    <!--<i class="fa fa-youtube-play"></i>-->
+                                </div>
+                            </dt>
+                            &nbsp;&nbsp;
+                            <dt class="dtbo" style="height:35px;line-height:35px;">
+                                <div style="float:left">
+                                    <input type="radio" name="yun_zimuvideo" value="Stanley" title="Stanley" style="margin-top:0">
+                                    <span>Stanley</span>
+                                </div>
+                                
+                                <div class="bofang">
+                                    <button class="bo">▶</button>
+                                    <audio data-src="https://ice-pub-media.myalicdn.com/smart/tts-audio/stanley.MP3?spm=a2c4g.11186623.0.0.5b6745a64RHyWT&file=stanley.MP3" preload="none" style="display:none;"></audio>
+                                    <!--<i class="fa fa-youtube-play"></i>-->
+                                </div>
+                            </dt>
+                            &nbsp;&nbsp;
+                            <dt class="dtbo" style="height:35px;line-height:35px;">
+                                <div style="float:left">
+                                    <input type="radio" name="yun_zimuvideo" value="kenny" title="沉稳男声" style="margin-top:0">
+                                    <span>沉稳男声</span>
+                                </div>
+                                
+                                <div class="bofang">
+                                    <button class="bo">▶</button>
+                                    <audio data-src="https://ice-pub-media.myalicdn.com/smart/tts-audio/kenny.MP3?spm=a2c4g.11186623.0.0.5b6745a64RHyWT&file=kenny.MP3" preload="none" style="display:none;"></audio>
+                                    <!--<i class="fa fa-youtube-play"></i>-->
+                                </div>
+                            </dt>
+                            &nbsp;&nbsp;
+                            <dt class="dtbo" style="height:35px;line-height:35px;">
+                                <div style="float:left">
+                                    <input type="radio" name="yun_zimuvideo" value="rosa" title="自然女声" style="margin-top:0">
+                                    <span>自然女声</span>
+                                </div>
+                                
+                                <div class="bofang">
+                                    <button class="bo">▶</button>
+                                    <audio data-src="https://ice-pub-media.myalicdn.com/smart/tts-audio/rosa.MP3?spm=a2c4g.11186623.0.0.5b6745a64RHyWT&file=rosa.MP3" preload="none" style="display:none;"></audio>
+                                    <!--<i class="fa fa-youtube-play"></i>-->
+                                </div>
+                            </dt>
+                            &nbsp;&nbsp;
+                            <dt class="dtbo" style="height:35px;line-height:35px;">
+                                <div style="float:left">
+                                    <input type="radio" name="yun_zimuvideo" value="mashu" title="儿童剧男声" style="margin-top:0">
+                                    <span>儿童剧男声</span>
+                                </div>
+                                
+                                <div class="bofang">
+                                    <button class="bo">▶</button>
+                                    <audio data-src="https://ice-pub-media.myalicdn.com/smart/tts-audio/mashu.MP3?spm=a2c4g.11186623.0.0.5b6745a64RHyWT&file=mashu.MP3" preload="none" style="display:none;"></audio>
+                                    <!--<i class="fa fa-youtube-play"></i>-->
+                                </div>
+                            </dt>
+                        
+                        <dt class="dtbo moreclose" style="height:35px;line-height:35px;float: left">收回</dt>
+                    </div>
+            </div>
+                        <div class="layui-form-item" style="margin-top:20px">
+                          <label class="layui-form-label">视频原声<span style="color:red;margin:0 5px;opacity:1;">*</span></label>
+                          <div class="layui-input-block">
+                            <input type="radio" name="yun_spsy" value="1" title="开启"  style="margin-top:13px">&nbsp;&nbsp;开启&nbsp;&nbsp;
+                            <input type="radio" name="yun_spsy" value="0" title="关闭" checked="" style="margin-top:13px">&nbsp;&nbsp;关闭 &nbsp;&nbsp;
+                          </div>
+                        </div>  
+                        <div class="layui-form-item" style="margin-top:20px">
+                          <label class="layui-form-label">动态拼图特效<span style="color:red;margin:0 5px;opacity:1;">*</span></label>
+                          <div class="layui-input-block">
+                            <input type="radio" name="yun_pintu" value="1" title="开启" checked="" style="margin-top:13px">&nbsp;&nbsp;开启&nbsp;&nbsp;
+                            <input type="radio" name="yun_pintu" value="0" title="关闭" style="margin-top:13px">&nbsp;&nbsp;关闭 &nbsp;&nbsp;
+                          </div>
+                        </div>  
+             
+                        <div class="layui-form-item" style="margin-top:20px">
+                            <label class="layui-form-label">声音<span style="color:red;margin:0 5px;opacity:1;">*</span></label>
+                            <div id="sliderParent" style="padding: 0px;display: inline-block;">
+                            </div>
+                        </div> 
+                        
+                        <div class="layui-form-item" style="margin-top:20px">
+                                <label class="layui-form-label">视频节奏<span style="color:red;margin:0 5px;opacity:1;">*</span></label>
+                                <div class="layui-input-block">
+                                    <input type="radio" name="yun_jie" value="1" title="正常" checked="" style="margin-top:13px">&nbsp;&nbsp;正常&nbsp;&nbsp;
+                                    <input type="radio" name="yun_jie" value="2" title="快节奏" style="margin-top:13px">&nbsp;&nbsp;快节奏&nbsp;&nbsp;
+                                    <input type="radio" name="yun_jie" value="3" title="慢节奏" style="margin-top:13px">&nbsp;&nbsp;慢节奏&nbsp;&nbsp;
+                                </div>
+                        </div> 
+            <div class="layui-form-item">
+              <div class="layui-input-block">
+                <button class="btn btn-success" lay-submit="" lay-filter="demo1_hash" onclick="submit()">立即提交</button>
+                              </div>
+            </div>
+         
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+  </div>
+</div>
+
+  
+<script>
+var option = {
+        color: 'deepskyblue',
+        width: '400px',
+        progress: 0.3,
+        handleSrc: '/static/admin/JackWeiSlider/img/slider_handle.png',
+        isCustomText: false
+    };
+    $('#sliderParent')
+        .jackWeiSlider(option)
+        // .setText('2018-4-5 02:39:00')
+        .setProgress(0.1)
+        .setOnStartDragCallback(function () {
+            console.log('start');
+        })
+        .setOnDragCallback(function (p) {
+            console.log(p);
+        })
+        .setOnStopDragCallback(function () {
+            console.log('stop');
+        });
+        
+        function submit(){
+    var yun_name = $("input[name='yun_name']").val();//混剪名称
+    var yun_num = $("input[name='yun_num']").val();//混剪数量
+    var yun_max = $("input[name='yun_max']").val();//混剪时间
+    var yun_width = $("input[name='yun_width']").val();//宽度
+    var yun_height = $("input[name='yun_height']").val();//高度
+    var yun_pintu = $("input[name='yun_pintu']:checked").val();//动态拼图特效
+    var yun_dong = $('.jws-text').text();//声音大小
+    var yun_jie = $("input[name='yun_jie']:checked").val();//视频节奏
+    var yun_title = $("#yun_title").val();//标题
+    var yun_titlecolor = $("input[name='yun_titlecolor']").val();//标题颜色
+    var yun_titlesize = $("input[name='yun_titlesize']").val();//标题文字大小
+    var yun_ftitle = $("#yun_ftitle").val();//副标题
+    var yun_ftitlesize = $("input[name='yun_ftitlesize']").val();//副标题文字大小
+    var yun_ftitlecolor = $("input[name='yun_ftitlecolor']").val();//副标题颜色
+    var yun_zimu = $("#yun_zimu").val();//字幕
+    var yun_zimusize = $("input[name='yun_zimusize']").val();//字幕文字大小
+    var yun_zimucolor = $("input[name='yun_zimucolor']").val();//字幕颜色
+    var yun_zimuvideo = $("input[name=yun_zimuvideo]:checked").val();//人声
+    var yun_spsy = $("input[name='yun_spsy']:checked").val();//视频原声音
+    var yunid = $("input[name='yunid']").val();//任务id
+    if('' == yun_name){
+          layer.msg('混剪任务名称不能为空',{icon:2,time:1500,shade: 0.1});
+    }
+    
+    if(yun_num <=0){
+          layer.msg('请填写混剪数量',{icon:2,time:1500,shade: 0.1});
+    }
+     $.post('{:url("peizhi")}',
+                {yun_name:yun_name,yun_num:yun_num,yun_max:yun_max,yun_width:yun_width,yun_height:yun_height,yun_pintu:yun_pintu,yun_dong:yun_dong,yun_jie:yun_jie,yun_title:yun_title,yun_titlecolor:yun_titlecolor,yun_titlesize:yun_titlesize,yun_ftitlecolor:yun_ftitlecolor,yun_zimu:yun_zimu,yun_zimusize:yun_zimusize,yun_zimucolor:yun_zimucolor,yun_zimuvideo:yun_zimuvideo,yun_ftitle:yun_ftitle,yun_ftitlesize:yun_ftitlesize,yun_spsy:yun_spsy,yunid:yunid},
+             function(data){   
+                if(data.code==1){
+                    layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+                     layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+                    setInterval(function(){
+                        window.location.href="{:url('admin/video/videolist')}";
+                    },1000)
+                }else{
+                    //发布失败
+                    layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+                    return false;
+                    }         
+        
+            });
+    
+}
+$(function() {
+    $(".bo").click(function(){
+        var src = $(this).next().attr('data-src');
+        $("#embed_id").attr('src',src);
+        var audio = document.getElementById('embed_id'); 
+        audio.play()
+    
+    });
+    
+})
+
+    $(".moreclick").click(function(){
+        $(".dtbo").css('display','block');
+        $(".moreclick").css('display','none');
+    });
+    
+    $(".moreclose").click(function(){
+        $(".moreclick").css('display','block');
+        $(".dtbo").css('display','none');
+        $(".moreclose").css('display','none');
+    });
+    
+
+</script>
+
+  

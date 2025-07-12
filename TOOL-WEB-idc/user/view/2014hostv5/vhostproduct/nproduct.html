@@ -1,0 +1,165 @@
+{{dispatch c=public a='head'}}
+
+            <main id="main-container">
+                <!-- Page Header -->
+                <div class="content bg-gray-lighter">
+                    <div class="row items-push">
+                        <div class="col-sm-8">
+                            <h1 class="page-heading">
+                                购物车&nbsp; <small>购买虚拟主机</small>
+                            </h1>
+                        </div>
+                        <div class="col-sm-4 text-right hidden-xs">
+                            <ol class="breadcrumb push-10-t">
+                                <li><a class="link-effect" href="?c=user&a=index">账户首页</a></li>
+								<li>购物车</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <!-- END Page Header -->
+
+                <div class="content content-boxed">
+                    <div class="block">
+					<div class="block-content">
+					<div class="row">
+					
+                        <div class="col-sm-4 col-lg-4">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">
+                                            <a class="accordion-toggle">产品名称：{{$product.name}}</a>
+                                        </h3>
+                                    </div>
+                                    <div class="panel-collapse collapse in">
+                                        <div class="panel-body">
+                                            <p>
+                                        <table class="table table-borderless table-condensed">
+                                            <tbody>
+											{{$product.describe}}
+                                            </tbody>
+                                        </table>
+											</p>
+                                        </div>
+                                    </div>
+                                </div><a href="?c=nproduct&a=lists&group_id=1" class="btn btn-rounded btn-danger push-5-r push-10"><i class="fa fa-chevron-left"></i>&nbsp; 返回重选产品</a><br />&nbsp;
+						</div>
+                        <div class="col-sm-8 col-lg-8">
+						<h4><i class="fa fa-cogs"></i>&nbsp; 配置参数</h4><hr /><div style="height:8px;"></div>
+						<form class="form-horizontal" name='reg' action="?c=product&a=modBuy&product_id={{$product.id}}&nodename={{$nodename}}" method="post">
+						              {{if !$msg}}
+                                        <div class="form-group">
+                                            <div class="col-md-7">
+                                                <div class="input-group">
+                                                    <input class="form-control" type="text" id="name" name="name" placeholder="请输入FTP用户名">
+                                                    <span class="input-group-btn">
+													<input type="button" name="Submit" value="检查用户名" class="btn btn-default" onClick="check_name()">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-7">
+											<input name="passwd" type="password" id="passwd" class="form-control" placeholder="请输入FTP密码">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-7">
+											<input name="passwd2" type="password" id="passwd2" class="form-control" placeholder="请再次输入FTP密码">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-7">
+                                                    <input class="form-control" type="text" name="domain" placeholder="请输入绑定的域名（可不填）">
+                                            </div>
+                                        </div>
+										{{if $entkey}}
+						<div style="height:15px;"></div><h4><i class="fa fa-cut"></i>&nbsp; 优惠劵</h4><div style="height:18px;"></div>
+                                        <div class="form-group">
+                                            <div class="col-md-7">
+                                                <div class="input-group">
+                                                    <input class="form-control" type="text" id="key" name="ent_key" size=32 placeholder="请输入优惠劵">
+                                                    <span class="input-group-btn">
+													<input type="button" value="检查优惠劵" class="btn btn-default" onClick='check_entkey()'>
+                                                    </span>
+                                                </div>
+												<span id='checkresult'></span>
+                                            </div>
+                                        </div>
+					                    {{/if}}
+						<div style="height:15px;"></div><h4><i class="fa fa-money"></i>&nbsp; 产品价格/付款周期</h4><span style="font-size:14px; color:#FF9900;">* 如有使用优惠劵，则 <b>实际付款价格</b> = <b>应付价格</b> - <b>优惠劵面额</b>，实际价格非此处显示的<b>应付价格</b>！</span><div style="height:18px;"></div>
+						 <span style=" font-size:16px;">应付价格：<font color="#FF0000"><b>{{$product.price}}元</b></font> / {{($product.pay_cycle=='year') ? '年付' : "月付"}}</span>&nbsp; &nbsp;&nbsp;&nbsp;{{if $product.noagentprice}}<span style="font-size:12px; text-decoration: line-through;">原价：{{$product.noagentprice}}元 / {{($product.pay_cycle=='year') ? '年付' : "月付"}}</span>{{/if}}
+                                        <div style="height:40px;"></div>
+										<div class="form-group">
+                                            <div class="col-xs-7">
+											<input type="button" onClick="check_register()" value="购 买" class="btn btn-block btn-primary push-10"  data-toggle="block-option" data-action="refresh_toggle" data-action-mode="demo">
+                                            </div>
+                                        </div>
+										{{else}}
+										{{$msg}}
+										{{/if}}								
+                                    </form>
+
+
+						</div>
+						</div>
+						</div>
+					</div>
+				</div>
+
+</main>
+<script type='text/javascript'>
+	var nodename = '{{$nodename}}';
+
+	var product_id = '{{$product.id}}';
+</script>
+
+<script type='text/javascript' src='{{$STATIC}}js/nproduct.js'></script>
+
+<script type='text/javascript'>
+	var money = '{{$product.price}}';
+	function show_entkey_input() {
+		document.getElementById('key_onclick').style.display = 'none';
+		document.getElementById('key_input').style.display = 'block';
+	}
+	function checkMoney() {
+		$.ajax({
+			url : '?c=hosting&a=checkMoney&money=' + money,
+			dataType : 'json',
+			success : function(ret) {
+				if (ret['code'] != 200) {
+					art.dialog({
+						id : 'id22',
+						content : '<b class=red>余额不足'+money+'元,请充值后再继续本次操作</b>',
+						time : 4,
+						title : "提示",
+						icon : 'warning'
+					});
+
+				}
+			}
+		})
+	}
+	$(document).ready(function() {
+		checkMoney();
+	});
+	function check_entkey() {
+		var key = $.trim($("#key").val());
+		if (!key) {
+			return alert("请输入优惠折抵码");
+		}
+		$.ajax({
+			type : 'post',
+			url : '?c=entkey&a=checkKey',
+			data : 'key=' + key + '&product_id=' + product_id,
+			dataType : 'json',
+			success : function(ret) {
+				if (ret['code'] != 200) {
+					return alert(ret['msg'] ? ret['msg'] : '无效优惠劵或不适用于本产品');
+				}
+				//alert('可用');
+				$("#checkresult").html('<div style="height:10px;"></div><span style="color:#009900; font-size:14px;">优惠劵可用，结账时将使用此优惠劵抵扣金额！</span>');
+			}
+		});
+	}
+</script>

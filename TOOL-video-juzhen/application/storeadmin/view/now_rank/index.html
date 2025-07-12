@@ -1,0 +1,79 @@
+<style type="text/css"> 
+    .rank_title{width: 100%;text-align: center;font-weight: bold;font-size: 30px;letter-spacing: 3px;margin-top: 60px;}
+    .rank_content{width: 60%;margin: 0 auto;}
+    .rank_input input{width: 85%;height: 50px;border-radius: 50px 5px 5px 50px;padding-left: 20px;border: 0px;font-size: 16px;color: #333;}
+    .rank_input button{width: 13%;margin-left: 0.5%;height: 50px;border-radius: 5px 50px 50px 5px;border: 0px;font-size: 16px;background: #ccc;}
+    .select_btn{background: #f39c12 !important}
+    .rank_table ul li{display: inline-block;line-height: 50px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+    .rank_table {margin-top: 30px;font-size: 16px;text-align: center;}
+    .width_30{width: 33%;}
+    .width_20{width: 25%;}
+    .width_10{width: 12%;}
+    .rank_ul_head{border-bottom: 1px solid #717171;}
+    .rank_ul_body{margin: 30px 0;}
+    .rank_ul_body a{background: #e74c3c;color: #fff;border-radius: 5px;line-height: 35px;text-align: center;display: inline-block;width: 100px;}
+    .rank_beizhu{width: 100%;text-align: center;color: #999;margin-bottom: 30px;}
+</style>
+<div class="panel panel-default panel-intro">
+    {:build_heading()}
+
+    <div class="panel-body">
+        <div id="myTabContent" class="tab-content">
+            <p class="rank_title">关键词实时排名查询</p>
+            <div class="rank_beizhu">排名无时无刻在变化，数据仅供参考</div>
+            <div class="rank_content">
+                <div class="rank_input">
+                    <input type="text" class="keyword" placeholder="请输入关键长尾词查询实时排名"> 
+                    <button class="select_btn submit_btn">查询</button>
+                </div>
+                <div class="rank_table">
+                    <ul class="rank_ul_head">
+                        <li class="width_10">关键长尾词</li>
+                        <li class="width_30">抖音昵称</li>
+                        <li class="width_20">排名</li>
+                        <li class="width_20">排名视频</li>
+                    </ul>
+                    <ul class="rank_ul_body">
+                        暂无数据
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src='/storeadmin2/libs/jquery/dist/jquery.min.js?v=162913148'></script>
+
+<script type="text/javascript">
+
+    $('.select_btn').click(function(){
+        var loading = layer.load(0, {shade: false,time: 30*1000});
+        $(this).attr('disabled','true');
+        $('.submit_btn').removeClass('select_btn');
+
+        keyword = $('.keyword').val();
+        $.post('now_rank/new_select_rank',{keyword:keyword},function(data){  
+            $('.submit_btn').addClass('select_btn');
+            $('.select_btn').removeAttr('disabled','true');
+            layer.close(loading);  
+            if(data.code==1){
+                alert(data.msg);
+            }else{
+                data = data.data;
+                if(data.length > 0){
+                    html = '';
+                    for(var i=0;i < data.length;i++){
+                        html += '<li class="width_10">'+data[i]['keyword']+'</li>\
+                            <li class="width_30">'+data[i]['nickname']+'</li>\
+                            <li class="width_20">'+data[i]['rank']+'</li>\
+                            <li class="width_20"><a href="'+data[i]['url']+'" target="_blank">查看视频</a></li>';
+                    }
+                }else{
+                    html = '暂无数据';
+                }
+                
+                $('.rank_ul_body').html(html);
+            }
+        },'json');
+    });
+
+</script>

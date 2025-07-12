@@ -1,0 +1,86 @@
+{{dispatch c='public'  a='head'}}
+
+            <main id="main-container">
+                <!-- Page Header -->
+                <div class="content bg-gray-lighter">
+                    <div class="row items-push">
+                        <div class="col-sm-8">
+                            <h1 class="page-heading">
+                                消费记录&nbsp; <small>您账户的消费记录</small>
+                            </h1>
+                        </div>
+                        <div class="col-sm-4 text-right hidden-xs">
+                            <ol class="breadcrumb push-10-t">
+                                <li><a class="link-effect" href="?c=user&a=index">账户首页</a></li>
+								<li>消费记录</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <div class="content content-boxed">
+				
+                            <div class="block">
+                                <div class="block-header">
+                                    <ul class="block-options">
+                                        <li>
+                                            <button type="button" data-toggle="block-option" data-action="fullscreen_toggle"></button>
+                                        </li>
+                                        <li>
+                                            <button type="button" data-toggle="block-option" data-action="content_toggle"></button>
+                                        </li>                                    </ul>
+                                    </ul>
+                                    <h3 class="block-title"> 充值记录</h3>
+                                </div>
+                                <div class="block-content bg-gray-lighter">
+                                    <!-- Slick slider (.js-slider class is initialized in App() -> uiHelperSlick()) -->
+                                    <!-- For more info and examples you can check out http://kenwheeler.github.io/slick/ -->
+                                    <div style="height:10px;"></div>
+									<div class="row items-push">
+                                        <div class="col-xs-5 text-left">
+                                            <div class="text-muted"><small>充值记录共：</small><span class="font-w600 text-center" style="font-size:18px; color: #000000;"><b>{{$count}}</b></span><small> 条</small></div>
+                                        </div>
+                                        <div class="col-xs-7 text-right">
+									{{if $page>1}}<a href='?c=money&a=moneyout&page=0'><i class="fa fa-angle-double-left" style="font-size:20px;"></i></a>&nbsp;&nbsp;&nbsp;<a href='?c=money&a=moneyout&page={{$page-1}}'><i class="fa fa-angle-left" style="font-size:20px;"></i></a>{{else}}<i class="fa fa-angle-double-left" style="font-size:20px;"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-angle-left" style="font-size:20px;"></i>{{/if}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size:16px; color:#000000;"><b>{{$page}}</b></span><span style="font-size:16px;"> / <b>{{$total_page}}</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{if $page!=$total_page}}<a href='?c=money&a=moneyout&page={{$page+1}}'><i class="fa fa-angle-right" style="font-size:20px;"></i></a>&nbsp;&nbsp;&nbsp;<a href='?c=money&a=moneyout&page={{$total_page}}'><i class="fa fa-angle-double-right" style="font-size:20px;"></i></a>{{else}}<i class="fa fa-angle-right" style="font-size:20px;"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-angle-double-right" style="font-size:20px;"></i>{{/if}} 
+										</div>
+                                    </div>
+									<div style="height:10px;"></div>
+                                    <!-- END Slick slider -->
+                                </div>
+                                <div class="block-content">
+                              <p><div class="table-responsive">
+                            <table class="table text-center">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="color: #B3B3B3;">消费时间</th>
+                                        <th class="text-center" style="color:#B3B3B3;">消费金额</th>
+                                        <th class="text-center" style="color:#B3B3B3;">备注</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+								{{if $count<1}}
+                                    <tr>
+                                        <td class="hidden-xs hidden-sm"></td>
+                                        <td class="hidden-xs hidden-sm"></td>
+                                        <td class="hidden-xs hidden-sm"></td>
+                                    </tr>
+									</tbody>
+									</table>
+									<p class="text-center" style="font-size:16px;">您目前没有任何消费记录！</p><br />
+								{{else}}
+								{{foreach from=$list item=row}}
+                                    <tr>
+                                        <td style="color: #333333;">{{$row.add_time}}</td>
+                                        <td style="color: #333333;">{{$row.money/100}}元</td>
+                                        <td style="color: #333333;">{{$row.mem}}</td>
+                                    </tr>
+									{{/foreach}}
+									{{/if}}
+                                </tbody>
+                            </table></div>
+								</p>
+			
+                                </div>
+                            </div>
+
+				</div>
+</main>				

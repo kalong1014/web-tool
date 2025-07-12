@@ -1,0 +1,134 @@
+{include file="public/header" /}
+<style type="text/css" media="all">
+    .form-group{
+        width: 100%;
+        height: 30px;
+        margin-top:30px;
+      
+    }
+    .form-f{
+        width: 69%;
+        height: 30px;
+        float: left;
+        margin-left:80px;
+        margin-top: 15px;
+    }
+    .form-f > input{
+      width: 500px;
+    }
+    .form-f1{
+       width: 80px;
+        margin-right: 20px;
+    }
+
+    .form-control{
+      width: 500px;
+
+    }
+    
+    .btn-primary{
+        margin-top:40px;
+        margin-left:40%;
+        width: 300px;
+    }
+    .col-sm-2{
+      width: 10%;
+    }
+     <style>
+        .upload-box{
+            padding: 0 20px;
+            margin: 0 auto;
+            margin-top: 40px;
+        }
+
+        .upload-box .upload-tip{
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: #555;
+        }
+
+    </style>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- jieshu -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>版权信息</h5>
+        </div>
+        <div class="ibox-content">
+      
+          <form class="form-inline" method="post" action="" id="uploadForm">
+              <div class="form-group">
+                            <label class="col-sm-2 control-label">系统公告 :</label>
+                            <div class="input-group col-sm-4">
+                                <input id="title" type="text" class="form-control" name="xtgg" value="{$bat.xtgg}">
+                            </div>
+                  </div>
+                <div class="form-group">
+                            <label class="col-sm-2 control-label">系统名称 :</label>
+                            <div class="input-group col-sm-4">
+                                <input id="title" type="text" class="form-control" name="xtmc" value="{$bat.xtmc}">
+                            </div>
+                  </div>
+                  <div class="form-group">
+                            <label class="col-sm-2 control-label">当前版本 :</label>
+                            <div class="input-group col-sm-4">
+                                <input id="title" type="text" class="form-control" name="bat" value="{$bat.bat}">
+                            </div>
+                  </div>
+                  <div class="form-group">
+                            <label class="col-sm-2 control-label">技术团队 :</label>
+                            <div class="input-group col-sm-4">
+                                <input id="title" type="text" class="form-control" name="jstd" value="{$bat.jstd}" >
+                            </div>
+                  </div>
+                  <div class="form-group">
+                            <label class="col-sm-2 control-label">QQ :</label>
+                            <div class="input-group col-sm-4">
+                                <input id="title" type="text" class="form-control" name="qq" value="{$bat.qq}">
+                            </div>
+                  </div>
+                   <div class="form-group">
+                            <label class="col-sm-2 control-label">电话 :</label>
+                            <div class="input-group col-sm-4">
+                                <input id="title" type="text" class="form-control" name="phone" value="{$bat.phone}">
+                            </div>
+                  </div>
+                    <button type="button" class="btn btn-primary" onclick="banquan()">保存</button> 
+                </form>
+        </div>
+    </div>
+</div>
+{include file="public/footer" /}
+<script type="text/javascript">
+function banquan(){
+        bat = $('input[name="bat"]').val();
+        jstd = $('input[name="jstd"]').val();
+        qq = $('input[name="qq"]').val();
+        phone = $('input[name="phone"]').val();
+        xtmc = $('input[name="xtmc"]').val();
+        xtgg = $('input[name="xtgg"]').val();
+          $.post('{:url("index")}',
+             {bat:bat,jstd:jstd,qq:qq,phone:phone,xtmc:xtmc,xtgg:xtgg},
+            function(data){
+                if(data.code==1){
+             layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+             timer = setInterval(function(){
+                  location.reload();
+                
+             },1000)
+             
+        }else{
+             layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+            
+          
+            
+        }
+   });
+        
+}
+        
+
+</script>
+
+</html>

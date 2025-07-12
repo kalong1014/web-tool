@@ -1,0 +1,53 @@
+<scroll-view class="msg-list" scrollIntoView="{{lastViewId}}" scrollWithAnimation="{{false}}" scrollX="{{false}}" scrollY="{{true}}">
+    <view class="list" wx:if="{{lists&&lists.length>0}}">
+        <block wx:for="{{lists}}">
+            <view class="message ai" data-index="{{index}}" wx:if="{{item.user=='AI'}}">
+                <view class="avatar">
+                    <image src="{{aiAvatar}}"></image>
+                </view>
+                <view class="text markdown-body">
+                    <towxml content="{{item.message}}"></towxml>
+                    <view class="tools">
+                        <view>
+                            <view bindtap="copyText" class="btn" data-index="{{index}}">
+                                <image class="icon" src="/images/ic_copy.png"></image>
+                                <span>复制内容</span>
+                            </view>
+                        </view>
+                        <view>
+                            <view bindtap="retry" class="btn" data-index="{{index}}" style="margin-right: 0;" title="重新回答">
+                                <image class="icon" src="/images/ic_retry.png"></image>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view bindlongpress="copyText" class="message user" data-index="{{index}}" data-text="{{item.message}}" wx:else>
+                <view class="avatar">
+                    <image src="{{userAvatar}}"></image>
+                </view>
+                <view class="text markdown-body">
+                    <towxml content="{{item.message}}"></towxml>
+                </view>
+            </view>
+        </block>
+        <view class="message" style="background: rgba(255, 255, 255, 0.8);" wx:if="{{writing||writingText}}">
+            <view class="avatar">
+                <image src="{{aiAvatar}}"></image>
+            </view>
+            <view class="text markdown-body">
+                <towxml content="{{writingText}}" writing="{{!!(writing||writingText)}}"></towxml>
+                <view class="tools">
+                    <view>
+                        <view bindtap="stopFetch" class="btn">
+                            <image class="icon" src="/images/ic_stop.png"></image>
+                            <span>停止回复</span>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view id="lastViewId" style="height: 2rpx;width: 100%"></view>
+    </view>
+    <welcome aiAvatar="{{aiAvatar}}" bind:setMessage="setMessage" desc="{{welcome.desc}}" module="write" tips="{{welcome.tips}}" title="{{welcome.title}}" wx:else></welcome>
+</scroll-view>

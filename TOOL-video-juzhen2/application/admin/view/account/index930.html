@@ -1,0 +1,260 @@
+{include file="public/header" /}
+
+<body class="gray-bg">
+<link rel="stylesheet" href="/static/admin/layui/css/layui.css" media="all">
+<div class="wrapper layui-card-body wrapper-content">
+    <div class="admin-con">
+        <div class="block-box">
+            
+            <!--第一行数据-->
+            <div class="col-2">
+                <!-- 卡片盒子 -->
+                <div class="block card-group">
+                    <!-- 卡片信息 -->
+                    <div class="card-info">
+                        <span class="tips">
+                            视频总条数
+                        </span>
+                        <div class="num-or-price">
+                            <span>{$all_count}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <!-- 卡片盒子 -->
+                <div class="block card-group">
+                    <!-- 卡片信息 -->
+                    <div class="card-info">
+                        <span class="tips">
+                            视频总点赞量
+                        </span>
+                        <div class="num-or-price">
+                            <span>{$like_count}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <!-- 卡片盒子 -->
+                <div class="block card-group">
+                    <!-- 卡片信息 -->
+                    <div class="card-info">
+                        <span class="tips">
+                            视频总曝光量
+                        </span>
+                        <div class="num-or-price">
+                            <span>{$view_count}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <!-- 卡片盒子 -->
+                <div class="block card-group">
+                    <!-- 卡片信息 -->
+                    <div class="card-info">
+                        <span class="tips">
+                            视频总分享量
+                        </span>
+                        <div class="num-or-price">
+                            <span>{$new_share}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <!-- 卡片盒子 -->
+                <div class="block card-group">
+                    <!-- 卡片信息 -->
+                    <div class="card-info">
+                        <span class="tips">
+                            视频总转发量
+                        </span>
+                        <div class="num-or-price">
+                            <span>{$forward_count}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <!-- 卡片盒子 -->
+                <div class="block card-group">
+                    <!-- 卡片信息 -->
+                    <div class="card-info">
+                        <span class="tips">
+                            视频总评论数
+                        </span>
+                        <div class="num-or-price">
+                            <span>{$comment_count}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!--添加按钮-->
+            <div class="col-12">
+                <a href="javascript:tianjia();" id="jiediantianjia" ><button class="btn btn-outline btn-primary" type="button">添加企业号</button></a>
+            </div>
+            
+            <!--企业号列表-->
+            <div class="col-12">
+                <div class="block">
+                    <table class="layui-hide" id="test" lay-filter="test"></table>
+                    <!--<table class="layui-hide" id="table-page" lay-filter="table-page"></table>-->
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+</div>
+
+<!-- 模态框开始 -->
+<div class="modal  fade" id="myModal" tabindex="-1" role="dialog"  aria-hidden="true" style="margin-top:160px">
+    <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <a  href="{:url('shouquan')}?id=1" target="view_window" class="btn btn-primary" style="margin-left: 2px;width: 24%;float: left;" id="dou1yin"> 抖音</a>
+                        <a href="{:url('shouquan')}?id=2" target="view_window" class="btn btn-primary" style="margin-left: 2px;width: 24%;float: left;" id="xigua"> 西瓜</a>
+                        <a href="{:url('shouquan')}?id=3" target="view_window" class="btn btn-primary" style="margin-left: 2px;width: 24%;float: left;" id="toutiao"> 头条</a>
+                        <a href="{:url('shouquan')}?id=4" target="view_window" class="btn btn-primary" style="margin-left: 2px;width: 24%;float: left;" id="kuaishou"> 快手</a>
+                    </div>
+
+                </div>
+            </div>
+</div>
+<!-- 模态框结束 -->
+
+
+<input type="hidden" name="jiedian" id="" value="{$tianjia}" />
+
+{include file="public/footer" /}
+
+<script type="text/html" id="toolbarDemo">
+  <div class="layui-btn-container">
+    <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
+    <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
+    <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
+  </div>
+</script>
+<script type="text/html" id="barDemo">
+  <a class="layui-btn layui-btn-delete layui-btn-danger layui-btn-xs" lay-event="del">解绑账号</a>
+</script>
+
+<script src="/static/admin/layui/layui.js" charset="utf-8"></script>
+
+
+<script>
+layui.use('table', function(){
+  var table = layui.table;
+  
+  table.render({
+    elem: '#test'
+    ,url:'/static/admin/layui/demo1.json'/*tpa=https://www.layui.site/test/table/demo1.json*/
+    ,toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+    ,defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
+      title: '提示'
+      ,layEvent: 'LAYTABLE_TIPS'
+      ,icon: 'layui-icon-tips'
+    }]
+    ,title: '用户数据表'
+    ,cols: [[
+      {type: 'checkbox', fixed: 'left'}
+      //   ,{field:'id', title:'ID', width:80, fixed: 'left', unresize: true, sort: true}
+      ,{field:'platform', title:'平台'}
+      ,{field:'avatar', title:'头像'}
+      ,{field:'nickname', title:'账号名称'}
+      ,{field:'all_count', title:'视频数量'}
+      ,{field:'view_count', title:'曝光量'}
+      ,{field:'like_count', title:'点赞量'}
+      ,{field:'comment_count', title:'评论'}
+      ,{field:'new_share', title:'分享'}
+      ,{field:'addtime', title:'授权时间'}
+      ,{field:'stoptime', title:'到期时间'}
+      ,{fixed: 'right_btn', title:'操作', toolbar: '#barDemo'}
+    ]]
+    ,page: true
+  });
+  
+  //头工具栏事件
+  table.on('toolbar(test)', function(obj){
+    var checkStatus = table.checkStatus(obj.config.id);
+    switch(obj.event){
+      case 'getCheckData':
+        var data = checkStatus.data;
+        layer.alert(JSON.stringify(data));
+      break;
+      case 'getCheckLength':
+        var data = checkStatus.data;
+        layer.msg('选中了：'+ data.length + ' 个');
+      break;
+      case 'isAll':
+        layer.msg(checkStatus.isAll ? '全选': '未全选');
+      break;
+      
+      //自定义头工具栏右侧图标 - 提示
+      case 'LAYTABLE_TIPS':
+        layer.alert('这是工具栏右侧自定义的一个图标按钮');
+      break;
+    };
+  });
+  
+  //监听行工具事件
+  table.on('tool(test)', function(obj){
+    var data = obj.data;
+    //console.log(obj)
+    if(obj.event === 'del'){
+      layer.confirm('真的删除行么', function(index){
+        obj.del();
+        layer.close(index);
+      });
+    } else if(obj.event === 'edit'){
+      layer.prompt({
+        formType: 2
+        ,value: data.email
+      }, function(value, index){
+        obj.update({
+          email: value
+        });
+        layer.close(index);
+      });
+    }
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+    //任务日志 //data-toggle="modal" data-target="#jilu"
+
+    /**
+     * 判断是从哪里过来的链接
+     */
+    $(function(){
+        jiedian =  $("input[name='jiedian']").val();
+        if(jiedian==2){
+            document.getElementById('jiediantianjia').click();
+        }
+    })
+
+    
+    // $('#myModal5').map(function() {//用id选择器选中要关闭的模态框
+    //        $(this).modal('hide'); //关闭
+    // });
+
+
+    
+    function tianjia(){
+        $.post('{:url("quanxian")}',
+            {},
+            function(data){
+                    layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+            });
+    }
+
+
+</script>
+</body>
+</html>

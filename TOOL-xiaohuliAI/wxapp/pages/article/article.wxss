@@ -1,0 +1,27 @@
+page {
+    background: #f7f7f7;
+    box-sizing: border-box;
+}
+
+.panel {
+    background: #fff;
+    border-radius: 20rpx;
+    margin: 30rpx;
+    padding: 30rpx;
+}
+
+.title {
+    color: #aaa;
+    font-size: 32rpx;
+    margin-bottom: 30rpx;
+    text-align: center;
+}
+
+.content {
+    color: #666;
+    line-height: 1.6;
+}
+
+.content view {
+    margin-bottom: 20rpx;
+}

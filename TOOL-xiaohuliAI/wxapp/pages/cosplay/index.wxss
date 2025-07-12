@@ -1,0 +1,118 @@
+.page {
+    background: hsla(0,0%,100%,.8);
+    border-radius: 20rpx 20rpx 0 0;
+    bottom: 110rpx;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+}
+
+.group,.page {
+    overflow: hidden;
+}
+
+.type-title {
+    box-sizing: border-box;
+    height: 80rpx;
+    line-height: 108rpx;
+    padding: 0 0 0 26rpx;
+    position: relative;
+}
+
+.type-title text {
+    color: #1b1c1c;
+    font-size: 30rpx;
+    font-weight: 700;
+}
+
+.role-list {
+    box-sizing: border-box;
+    padding: 30rpx 0 0 24rpx;
+    width: 100%;
+}
+
+.role-item {
+    align-items: center;
+    background: #f0f6f6;
+    border-radius: 20rpx;
+    box-sizing: border-box;
+    display: flex;
+    float: left;
+    height: 130rpx;
+    margin: 0 22rpx 24rpx 0;
+    overflow: hidden;
+    padding: 0 20rpx 0 130rpx;
+    position: relative;
+    width: 340rpx;
+}
+
+.role-item:active {
+    opacity: .8;
+}
+
+.role-item .thumb {
+    border-radius: 10rpx;
+    height: 98rpx;
+    left: 16rpx;
+    overflow: hidden;
+    position: absolute;
+    top: 16rpx;
+    width: 98rpx;
+}
+
+.role-item .thumb image {
+    height: 100%;
+    width: 100%;
+}
+
+.role-item .title {
+    color: #1b1c1c;
+    font-size: 32rpx;
+    font-weight: 600;
+    line-height: 40rpx;
+    max-height: 60rpx;
+    overflow: hidden;
+    word-break: break-all;
+}
+
+.role-item .ops {
+    align-items: center;
+    display: flex;
+    height: 24rpx;
+    margin-top: 18rpx;
+}
+
+.role-item .ops .op-item {
+    align-items: center;
+    color: #a9afaf;
+    display: flex;
+    font-size: 20rpx;
+}
+
+.role-item .ops .op-item .icon {
+    height: 24rpx;
+    margin-right: 4rpx;
+    width: 24rpx;
+}
+
+.empty {
+    border-radius: 20rpx;
+    margin: 120rpx 60rpx 0;
+    padding: 80rpx 0 100rpx;
+    text-align: center;
+}
+
+.empty image {
+    height: 240rpx;
+    width: 240rpx;
+}
+
+.nomore {
+    color: #aaa;
+    font-size: 28rpx;
+    height: 48rpx;
+    padding: 20rpx 0 40rpx;
+    text-align: center;
+}

@@ -1,0 +1,28 @@
+.radio-group {
+    margin: 10rpx 0;
+}
+
+.radio-group .radio-item {
+    background: #fff;
+    border: 1px solid #eee;
+    color: #444;
+    font-size: 28rpx;
+    margin-right: -1px;
+    padding: 14rpx 30rpx;
+    text-align: center;
+}
+
+.radio-group .radio-item:first-child {
+    border-bottom-left-radius: 12rpx;
+    border-top-left-radius: 12rpx;
+}
+
+.radio-group .radio-item:last-child {
+    border-bottom-right-radius: 12rpx;
+    border-top-right-radius: 12rpx;
+}
+
+.radio-group .radio-item.active {
+    background: #04babe;
+    color: #fff;
+}

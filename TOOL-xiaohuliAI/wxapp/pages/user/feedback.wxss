@@ -1,0 +1,118 @@
+page {
+    background: #f7f7f7;
+}
+
+.page {
+    padding: 40rpx 30rpx;
+}
+
+.form {
+    background-color: #fff;
+    border-radius: 20rpx;
+    padding: 30rpx 60rpx;
+}
+
+.form-item {
+    margin-bottom: 30rpx;
+    width: 100%;
+}
+
+.form-item .label {
+    color: #758b97;
+    font-size: 32rpx;
+    line-height: 48rpx;
+    margin: 50rpx 0 30rpx;
+    position: relative;
+}
+
+.form-item textarea {
+    height: 6em;
+    margin-top: 16rpx;
+    padding: 20rpx;
+}
+
+.form-item .input,.form-item textarea {
+    background: #f6f6f6;
+    border-radius: 10rpx;
+    box-sizing: border-box;
+    color: #333;
+    font-size: 30rpx;
+    width: 100%;
+}
+
+.form-item .input {
+    height: 80rpx;
+    line-height: 80rpx;
+    padding: 0 20rpx;
+}
+
+.form-item label {
+    align-items: center;
+    display: flex;
+    float: left;
+    margin-right: 30rpx;
+}
+
+.form-item radio {
+    margin-right: 10rpx;
+    transform: scale(.75);
+}
+
+.image {
+    float: left;
+    height: 116rpx;
+    margin-bottom: 16rpx;
+    margin-right: 16rpx;
+    position: relative;
+    width: 116rpx;
+}
+
+.image .img {
+    height: 100%;
+    width: 100%;
+}
+
+.image .del {
+    background-color: rgba(0,0,0,.5);
+    border-bottom-left-radius: 6rpx;
+    height: auto;
+    padding: 2rpx 8rpx;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.image .del .icon {
+    font-size: 28rpx;
+}
+
+.btn-upload {
+    align-items: center;
+    background: #fafbfc;
+    border: 1px dashed #ccc;
+    border-radius: 6rpx;
+    display: flex;
+    float: left;
+    height: 116rpx;
+    justify-content: center;
+    margin-bottom: 16rpx;
+    overflow: hidden;
+    position: relative;
+    width: 116rpx;
+}
+
+.btn-upload .icon {
+    font-size: 52rpx;
+}
+
+.btn-submit {
+    background: #04babe;
+    border-radius: 40rpx;
+    color: #fff;
+    font-size: 32rpx;
+    height: 80rpx;
+    letter-spacing: 4rpx;
+    line-height: 80rpx;
+    margin-top: 80rpx;
+    width: 60%;
+}

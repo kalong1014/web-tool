@@ -1,0 +1,171 @@
+{include file="public/header" /}
+<body class="gray-bg">
+    <!-- start: Header -->
+    <div class="header-box">
+        <div class="pl25">
+            <h3 class="fs22 font-weight-500 c333">排名查询</h3>
+            <p class="fs14 c666">根据关键词在抖音平台的排名显示队列</p>
+        </div>
+    </div>
+    <!-- start: Header -->  
+    
+<div class="wrapper wrapper-content animated fadeInRight">
+  
+    <div class="ibox float-e-margins">
+       
+        <div class="ibox-content">
+           
+            <div class="row m-t-md m-b-md">
+                    <div class="col-sm-12">
+                        <div class="input-group">  
+                            <a href="javascript:tianjia();">
+                                <button class="btn btn-outline btn-primary" type="button">添加关键词</button>
+                            </a> 
+                        </div>
+                                                  
+                    </div>
+                
+                
+            </div>
+            
+            <!--<div class="hr-line-dashed"></div>-->
+            
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th>序号</th>
+                                <th>昵称</th>
+                                <th>主页链接</th>
+                                <th>关键词</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                       	
+                        <tbody id="article_list">
+                        	 {foreach name="list" item="vo"}
+                              <tr>
+                                <td>{$vo.id}</td>  
+                                <td>{$vo.dy_nickname}</td>  
+                                <td style="width:30%;word-break: break-all;">{$vo.web_url}</td>  
+                                <td>{$vo.keywords}</td>  
+                                <td>
+                                     <a href="{:url('admin/huoke/liebiao')}?dy_nickname={$vo.dy_nickname}"  class="btn btn-primary btn-xs">
+                                            查看</a>   
+                                </td>  
+                              </tr>     
+                            {/foreach}
+                        </tbody>
+                    </table>
+                    <div id="AjaxPage" style=" text-align: right;"></div>
+                    <div id="allpage" style=" text-align: right;"></div>
+                </div>
+            </div>
+          
+        </div>
+    </div>
+</div>
+
+</div>
+<!--添加任务模态框-->
+<div class="modal fade" id="add" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog" style="width:50%">
+            <div class="modal-content" style="width:100%;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">添加关键词</h4>             
+                </div>
+                <div class="add-renwu">
+                    <div style="padding:5% 0">
+                            <form  id="add-renwuform"  >
+                                 <div class="form-group">
+                                    <label class="col-sm-2 control-label font14 text-r" style="line-height:35px;">选择账号：</label>
+                                    <div class="input-group col-sm-9">
+                                       <select name="dy_nickname"   class="form-control" id="dy_nickname" style="width:60%;">
+                                       
+                                       {foreach name="username" item="v"}
+                                     <option value="{$v.nickname}">{$v.nickname}</option>
+                                            {/foreach}
+                                        </select>
+                                       
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label font14 text-r" style="line-height:35px;">填写关键词：</label>
+                                    <div class="input-group col-sm-9">
+                                      
+                                         <textarea rows="7" cols="70" name="keywords" id="keywords"></textarea>
+                                         可填写多个关键词例如:公司推荐,收费标准,厂家报价,厂家定制<br/>
+                                            <span style="color:red">注意:多个关键词用英文逗号隔开</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label font14 text-r" style="line-height:35px;">主页链接地址：</label>
+                                    <div class="input-group col-sm-9">
+                                        <input  type="text" class="form-control"  name="web_url"  >
+                                        例如:https://v.douyin.com/YLuYwcp/
+                                    </div>
+                                </div>
+                                    
+                                <div class="form-group">
+                                    <div class="col-col-sm-offset-3">
+                                        <botton class="btn btn-primary ml-30 mt-5"  id='zhida_baocun' onclick="tijiao()" >
+                                            提交关键词
+                                        </botton>
+                                    </div>
+                                </div>
+                            </form>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+<!--添加任务模态框结束-->    
+    
+
+
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+/**
+ * 添加任务
+*/
+function tijiao(){
+         dy_nickname = $('#dy_nickname  option:selected').val();
+       // keywords = $("input[name='keywords']").val();
+        web_url = $("input[name='web_url']").val();
+        // dy_nickname = $("input[name='dy_nickname']").val();
+        var  keywords =$( "#keywords" ).val();
+        if(web_url ==''){
+           layer.msg("请填写要查询的主页地址",{icon:2,time:1500,shade: 0.1,}); return false;
+        }
+       
+       if(keywords ==''){
+           layer.msg("请填写关键词",{icon:2,time:1500,shade: 0.1,});
+       }else{
+            $.post('{:url("chaxun")}',
+       {keywords:keywords,web_url:web_url,dy_nickname:dy_nickname},
+      function(data){
+        if(data.code==1){
+                layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+                setInterval(function(){
+                  window.location.href="{:url('admin/Huoke/liebiao')}";
+                },1000)
+       }else{
+            layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+       }
+     });
+       }
+    }
+    
+  
+function tianjia(){
+    $("#add").modal('show');
+}
+
+
+</script>
+</body>
+</html>

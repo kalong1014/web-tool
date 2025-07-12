@@ -1,0 +1,104 @@
+.setting-row {
+    background: #f7f7f8;
+    border-radius: 20rpx;
+    box-sizing: border-box;
+    margin-bottom: 20rpx;
+    padding: 20rpx 30rpx;
+    width: 100%;
+}
+
+.setting-row .label {
+    align-items: center;
+    display: flex;
+    font-size: 32rpx;
+    justify-content: space-between;
+    line-height: 64rpx;
+    width: 100%;
+}
+
+.setting-row .label .help {
+    align-items: center;
+    display: flex;
+    height: 64rpx;
+    justify-content: center;
+    width: 64rpx;
+}
+
+.setting-row .label .help image {
+    height: 32rpx;
+    width: 32rpx;
+}
+
+.setting-row .values {
+    box-sizing: border-box;
+    padding: 20rpx 0;
+    width: 100%;
+}
+
+.setting-row .values .slider {
+    align-items: center;
+    display: flex;
+}
+
+.setting-row .values .slider slider {
+    width: 460rpx;
+}
+
+.setting-row .values .slider text {
+    color: #666;
+    margin-left: 20rpx;
+}
+
+.setting-row .values .uploader {
+    height: 120rpx;
+    width: 120rpx;
+}
+
+.setting-row .values .input {
+    background: #fff;
+    border-radius: 8rpx;
+    font-size: 28rpx;
+    padding: 20rpx;
+}
+
+.setting-row .values .size-list {
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.setting-row .values .size-list .size-item {
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 8rpx;
+    box-sizing: border-box;
+    display: block;
+    display: flex;
+    flex-direction: column;
+    height: 140rpx;
+    justify-content: space-between;
+    padding: 10rpx;
+    position: relative;
+    text-align: center;
+    width: 86rpx;
+}
+
+.setting-row .values .size-list .size-item .size-block {
+    background: #ddd;
+    border-radius: 8rpx;
+}
+
+.setting-row .values .size-list .size-item text {
+    color: #333;
+    font-size: 28rpx;
+    text-align: center;
+}
+
+.setting-row .values .size-list .size-item.active {
+    border-color: #04babe;
+}
+
+.setting-row .values .size-list .size-item.active .size-block {
+    background-color: #04babe;
+}

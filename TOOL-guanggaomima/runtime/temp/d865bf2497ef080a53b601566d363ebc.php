@@ -1,0 +1,233 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:86:"D:\php\xp\phpstudy_pro\WWW\chigua.cc\public/../application/index\view\index\index.html";i:1722090858;}*/ ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport"
+        content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,viewport-fit=cover,minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="format-detection" content="telephone=no">
+  <title><?php echo $row['title']; ?></title>
+  <link rel="shortcut icon" href="/qt/cg.gif" type="image/x-icon" />
+  <script src="/qt/axios.min.js"></script>
+  <script src="/qt/base64.min.js"></script>
+  <link rel="stylesheet" href="/qt/message-box.css">
+  <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: "Microsoft Yahei", 微软雅黑, "Helvetica Neue", Helvetica, "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
+        line-height: 1.5715;
+        font-feature-settings: 'tnum', "tnum";
+        font-size: 1.12em;
+        letter-spacing: 1px;
+      }
+      body {
+        background-color: #f7f7f7;
+      }
+
+      .card-box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+      }
+
+      .card {
+        background-color: white;
+        width: 85%;
+        height: 560px;
+        margin: 0 auto;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 2px 8px -2px rgb(0 0 0 / 5%), 0 1px 4px -1px rgb(25 15 15 / 7%), 0 0 1px 0 rgb(0 0 0 / 8%);
+      }
+
+      .card div {
+        background-color: white;
+      }
+
+      .center {
+        margin: 0 auto;
+      }
+
+      #title {
+        color: #FF0000;
+        font-weight: 500;
+        line-height: 44.3123px;
+        height: 44.3123px;
+      }
+
+      .font-custom {
+
+      }
+
+      button {
+        width: 70%;
+        background: #07C160;
+        font-size: 18px;
+        height: 48px;
+        padding: 2px 15px 6px 15px;
+        border-radius: 5px;
+        outline: none;
+        position: relative;
+        display: inline-block;
+        font-weight: 400;
+        white-space: nowrap;
+        text-align: center;
+        box-shadow: 0.5px 0.5px 4px #999999;
+        font-weight: bold;
+        border: 1px solid transparent;
+        cursor: pointer;
+        transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+        line-height: 1.5714285714285714;
+        color: #fff;
+        letter-spacing: 2px;
+      }
+
+      input {
+        padding: 0;
+        outline: none;
+        position: relative;
+        display: inline-flex;
+        width: 95%;
+        min-width: 0;
+        padding: 4px 11px;
+        color: rgba(0, 0, 0, 0.88);
+        font-size: 18px;
+        line-height: 1.9714285714285714;
+        background-color: #f7f7f7;
+        background-image: none;
+        border-width: 1px;
+        border-style: solid;
+        border-color: #d9d9d9;
+        border-radius: 2px;
+        transition: all 0.2s;
+      }
+
+      input:focus,
+      input:hover {
+        border-color: #4096ff;
+        box-shadow: 0 0 0 2px rgb(5, 145, 255/10%);
+        border-inline-end-width: 1px;
+        outline: 0;
+      }
+
+      ::-webkit-input-placeholder {
+        /* WebKit, Blink, Edge */
+        color: darkgray;
+      }
+
+      :-moz-placeholder {
+        /* Mozilla Firefox 4 to 18 */
+        color: darkgray;
+      }
+
+      ::-moz-placeholder {
+        /* Mozilla Firefox 19+ */
+        color: darkgray;
+      }
+
+      :-ms-input-placeholder {
+        /* Internet Explorer 10-11 */
+        color: darkgray;
+      }
+    </style>
+</head>
+<body>
+<div class="card-box">
+  <div class="card">
+    <img src="/qt/06a832d0f9e2175676ed2fae9ebc709c.gif" style="width: 100px; height: 100px;" alt="">
+    <div id="title"><?php echo $row['title']; ?></div>
+    <input type="text" style="margin-top: 20px;" maxlength="4" oninput="checkCode(this.value)" placeholder="输入密码即可进入">
+    <div id="msg" style="position: absolute; left: 50%; transform: translateX(-50%); background-color: transparent;"></div>
+    <img src="/qt/1.gif" style="width: 40px; height: 35px; margin-top: 50px;" alt="">
+    <div class="center" style="margin-top: 15px;">
+      <button class="font-custom" onclick="window.location.href='<?php echo $row['b1_url']; ?>'"><?php echo $row['b1_text']; ?></button>
+      <button style="background: #f4f5f7;color: #07C160;margin: 30px 0 0 0;" onclick="window.location.href='<?php echo $row['b2_url']; ?>'"><?php echo $row['b2_text']; ?></button>
+      <button style="background: #fdc308;color: darkslategrey;margin: 30px 0 0 0;" onclick="window.location.href='<?php echo $row['b3_url']; ?>'"><?php echo $row['b3_text']; ?></button>
+    </div>
+  </div>
+</div>
+<script>
+      const BASE_URL = "<?php echo $url; ?>"
+      const url_list = []
+
+      let id = getQueryString("sbm")
+
+      function getSiteConfig(sbm) {
+        const config = {
+          url: BASE_URL + '/index/index/siteConfig',
+          method: 'get',
+          params: { sbm }
+        }
+        return axios(config)
+      }
+
+      function getQueryString(name) {
+        let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        let r = window.location.search.substr(1).match(reg); //获取url中"?"符后的字符串并正则匹配
+        let context = "";
+        if (r != null)
+            context = decodeURIComponent(r[2]);
+        reg = null;
+        r = null;
+        return context == null || context == "" || context == "undefined" ? "" : context;
+      }
+
+      function getLinkByIdAndCode(sbm,code) {
+        const config = {
+          url: '/index/index/code',
+          method: 'post',
+          data: {
+            sbm,
+            code
+          }
+        }
+        return axios(config)
+      }
+
+      getSiteConfig(id).then(res => {
+        res = res.data
+        if (res.code === 200) {
+          const data = res.data
+          document.getElementById('title').innerText = data.title
+          document.getElementsByTagName('title')[0].innerText = data.siteName
+          url_list.push(data.codeUrl)
+          url_list.push(data.course)
+          url_list.push(data.service)
+          id = data.id
+        }
+      })
+
+      function routeToUrl(index) {
+        if (url_list.length > 0) {
+          window.open(url_list[index])
+        }
+      }
+
+      function checkCode(value) {
+        if (value === '' || value.length != 4) {
+          return
+        }
+
+        getLinkByIdAndCode(id,value).then(res => {
+          res = res.data
+          if (res.code === 200) {
+            // window.location.href = res.data
+            window.location.href = "/index/index/content?sbm=" + id
+          } else {
+            // 使用示例
+            const messageBox = new MessageBox();
+            messageBox.error(res.msg);
+          }
+        })
+      }
+    </script>
+</body>
+</html>

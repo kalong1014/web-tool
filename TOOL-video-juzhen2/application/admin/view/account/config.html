@@ -1,0 +1,212 @@
+{include file="public/header" /}
+
+<body class="gray-bg">
+<link rel="stylesheet" href="/static/admin/layui/css/layui.css" media="all">
+<div class="wrapper layui-card-body wrapper-content">
+    <div class="admin-con">
+        <div class="block-box">
+            <!--添加按钮-->
+            <div class="col-12">
+                <button class="btn btn-outline btn-primary"  onclick="insert()" type="button">新建智能回复</button>
+            </div>
+            <!--企业号列表-->
+            <div class="col-12">
+                <div class="block">
+                    <table class="layui-hide" id="table-page" lay-filter="table-page"></table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="modal  fade" id="insert" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h3 class="modal-title">添加智能回评</h3>
+                </div>
+                <form class="form-horizontal" name="add_rule" id="add_rule" method="post" action="{:url('')}">
+                    <div class="ibox-content">
+
+                        <div class="form-group m-t-md">
+                            <label class="col-sm-3 control-label">添加命中关键词：&nbsp;&nbsp;&nbsp;</label>
+                            <div class="col-sm-8">
+                                <textarea rows="10" name="keyword" cols="30" style="width: 100%;resize:none;"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">随机回复话术：&nbsp;&nbsp;&nbsp;</label>
+                            <div class="col-sm-8">
+                                <textarea rows="10" name="content" cols="30" style="width: 100%;resize:none;"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">回复类型：&nbsp;&nbsp;&nbsp;</label>
+                            <div class="col-sm-8">
+                                <input type="radio" name="type" value="1">回复评论
+                                <input type="radio" name="type" value="2">回复私信
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> 保存</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i> 关闭</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="public/footer" /}
+<script src="/static/admin/layui/layui.js"></script>
+<script type="text/html" id="action">
+    <div class="layui-btn-group">
+        <a  class="btn btn-primary btn-xs" lay-event="del">
+            删除</a>
+    </div>
+</script>
+<script type="text/html" id="toolbar">
+    <div class="layui-btn-group">
+        <button class="layui-btn layui-btn-sm" lay-event="delete">批量删除</button>
+    </div>
+</script>
+<script>
+    function insert(){
+        $('#insert').modal('show');
+    }
+
+    layui.define(['table','form','upload'],function (exports) {
+        var table = layui.table;
+        var form = layui.form
+        var upload = layui.upload
+        //基本实例
+        var tableInit = table.render({
+            elem: '#table-page'//绑定容器
+            ,url: '/admin/account/config_list'
+            ,page: true
+            ,limit:10
+            ,toolbar: "#toolbar"
+            ,title:'回复配置'
+            ,defaultToolbar: []
+            ,autoSort:false
+            ,parseData: function(res){ //res 即为原始返回的数据
+                console.log(res)
+                return {
+                    "code": res.code, //解析接口状态
+                    "msg": res.msg, //解析提示文本
+                    "count": res.data.count, //解析数据长度
+                    "data": res.data.list //解析数据列表
+                };
+            }
+            ,response: {
+                statusCode: 1 //规定成功的状态码，默认：0
+            }
+            ,cellMinWidth:100
+            ,cols: [[ //在表头设置对应的字段
+                { minWidth:10, type: 'checkbox'}
+                ,{field: 'keyword', title: '命中词'}
+                ,{field: 'content', title: '回复话术'}
+                ,{field: 'type', title: '回复形式',templet:function (d) {
+                        switch (d.type)
+                        {
+                            case 1:
+                                color = 'yellow';
+                                name  = '评论回复';
+                                break;
+                            case 2:
+                                color = 'green';
+                                name  = '私信回复';
+                                break;
+                            default:
+                                color = 'grey';
+                                name  = '未检测到';
+                                break;
+                        }
+                        return '<span style="color:'+color+'">'+name+'</span>';
+                    }}
+                ,{field: 'create_date', title: '创建时间', sort: true}
+                ,{title:'操作', align:'center', toolbar: '#action'}
+            ]]
+        });
+
+        function delete_api(data) {
+            layer.confirm("您真的要删除此配置吗？",function (index) {
+                layer.close(index);
+                var ids = [];
+                if(data instanceof Array){
+                    layui.each(data,function (k,item) {
+                        ids.push(item.id);
+                    });
+                }else{
+                    ids = [data];
+                }
+                var load_index = layer.load(2);
+                $.post("config_delete",{ids:ids})
+                    .success(function (response) {
+                        if(response.code){
+                            layer.alert(response.msg)
+                            setTimeout(function () {
+                                tableInit.reload();
+                            },1000);
+                        }else{
+                            layer.alert(response.msg)
+                        }
+                    })
+                    .complete(function () {
+                        layer.close(load_index);
+                    });
+            });
+        }
+
+        //监听工具条
+        table.on('tool(table-page)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+            var data = obj.data; //获得当前行数据
+            var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+            var tr = obj.tr; //获得当前行 tr 的 DOM 对象（如果有的话）
+
+            if(layEvent === 'del'){ //删除
+                delete_api(data.id);
+            } else if(layEvent === 'LAYTABLE_TIPS'){
+                layer.alert('Hi，头部工具栏扩展的右侧图标。');
+            }
+        });
+        //监听事件
+        table.on('toolbar(table-page)', function(obj){
+            var checkStatus = table.checkStatus(obj.config.id);
+            switch(obj.event){
+                case 'refresh_data':
+                    refresh_data(checkStatus.data);
+                    break;
+                case 'refresh_reply':
+                    refresh_reply(checkStatus.data);
+                    break;
+                case 'refresh_customer':
+                    refresh_customer(checkStatus.data);
+                    break;
+                case 'delete':
+                    delete_api(checkStatus.data);
+                    break;
+            }
+        });
+
+        table.on('sort(table-page)', function(obj){
+            console.log(obj)
+            table.reload('table-page', {
+                initSort: obj //记录初始排序
+                , where: {
+                    field: obj.field //排序字段
+                    , order: obj.type //排序方式
+                }
+            });
+        });
+        form.on('submit(search-btn)',function (data) {
+            table.reload('table-page', {
+                where: data.field
+            });
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

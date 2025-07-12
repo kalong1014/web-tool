@@ -1,0 +1,109 @@
+<scroll-view class="msg-list model-audio" scrollIntoView="{{lastViewId}}" scrollWithAnimation="{{false}}" scrollX="{{false}}" scrollY="{{true}}">
+    <view class="list" wx:if="{{lists&&lists.length>0}}">
+        <block wx:for="{{lists}}">
+            <view class="row-ai" wx:if="{{item.user=='AI'}}">
+                <view class="message" data-index="{{index}}">
+                    <view class="avatar">
+                        <image src="{{aiAvatar}}"></image>
+                    </view>
+                    <view class="text markdown-body">
+                        <view wx:if="{{speechIsOpen&&lists[index-1]&&lists[index-1].audio}}">
+                            <view bindtap="switchPlay" class="player" data-index="{{index}}">
+                                <view style="display: flex; align-items: center;">
+                                    <image src="/images/ic_player_stop.png" wx:if="{{item.playing}}"></image>
+                                    <image src="/images/ic_player_play.png" wx:else></image>
+                                    <view class="{{item.playing?'wave':'nowave'}}">
+                                        <view class="line line{{index}}" wx:for="{{6}}"></view>
+                                        <view class="line line{{5-index}}" wx:for="{{6}}"></view>
+                                        <view class="line line{{index}}" wx:for="{{6}}"></view>
+                                    </view>
+                                </view>
+                                <view></view>
+                            </view>
+                            <view style="clear: both;"></view>
+                        </view>
+                        <towxml content="{{item.message}}"></towxml>
+                        <view class="tools">
+                            <view>
+                                <view bindtap="copyText" class="btn" data-index="{{index}}">
+                                    <image class="icon" src="/images/ic_copy.png"></image>
+                                    <span>复制内容</span>
+                                </view>
+                            </view>
+                            <view>
+                                <view bindtap="switchPlay" class="btn" data-index="{{index}}" style="margin-right: 20rpx;" wx:if="{{speechIsOpen&&(!lists[index-1]||!lists[index-1].audio)}}">
+                                    <image class="icon" src="/images/ic_stop.png" wx:if="{{item.playing}}"></image>
+                                    <image class="icon" src="/images/ic_speech.png" wx:else></image>
+                                </view>
+                                <view bindtap="retry" class="btn" data-index="{{index}}" style="margin-right: 0;" title="重新回答">
+                                    <image class="icon" src="/images/ic_retry.png"></image>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="row-user" wx:else>
+                <view bindlongpress="copyText" class="message" data-index="{{index}}" data-text="{{item.message}}">
+                    <view class="avatar">
+                        <image src="{{userAvatar}}"></image>
+                    </view>
+                    <view class="text markdown-body">
+                        <view wx:if="{{speechIsOpen&&item.audio}}">
+                            <view bindtap="switchPlayAudio" class="player" data-index="{{index}}">
+                                <view style="display: flex; align-items: center;">
+                                    <image src="/images/ic_player_stop.png" wx:if="{{item.playing}}"></image>
+                                    <image src="/images/ic_player_play.png" wx:else></image>
+                                    <view class="{{item.playing?'wave':'nowave'}}">
+                                        <view class="line line{{index}}" wx:for="{{6}}"></view>
+                                        <view class="line line{{5-index}}" wx:for="{{6}}"></view>
+                                        <view class="line line{{index}}" wx:for="{{6}}"></view>
+                                    </view>
+                                </view>
+                                <view class="time">
+                                    <text wx:if="{{item.audio_length}}">{{item.audio_length}}''</text>
+                                </view>
+                            </view>
+                            <view style="clear: both;"></view>
+                        </view>
+                        <towxml content="{{item.message}}"></towxml>
+                    </view>
+                </view>
+            </view>
+        </block>
+        <view class="row-ai" wx:if="{{writing||writingText}}">
+            <view class="message">
+                <view class="avatar">
+                    <image src="{{aiAvatar}}"></image>
+                </view>
+                <view class="text markdown-body">
+                    <view wx:if="{{speechIsOpen&&lists[lists.length-1].audio}}">
+                        <view class="player" data-index="{{index}}">
+                            <view style="display: flex; align-items: center;">
+                                <image src="/images/ic_player_stop.png"></image>
+                                <view class="wave">
+                                    <view class="line line{{index}}" wx:for="{{6}}"></view>
+                                    <view class="line line{{5-index}}" wx:for="{{6}}"></view>
+                                    <view class="line line{{index}}" wx:for="{{6}}"></view>
+                                </view>
+                            </view>
+                            <view></view>
+                        </view>
+                        <view style="clear: both;"></view>
+                    </view>
+                    <towxml content="{{writingText}}" writing="{{!!(writing||writingText)}}"></towxml>
+                    <view class="tools">
+                        <view>
+                            <view bindtap="stopFetch" class="btn">
+                                <image class="icon" src="/images/ic_stop.png"></image>
+                                <span>停止回复</span>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view id="lastViewId" style="height: 20rpx;width: 100%"></view>
+    </view>
+    <welcome aiAvatar="{{aiAvatar}}" bind:setMessage="setMessage" desc="{{welcome.desc}}" module="cosplay" tips="{{welcome.tips}}" title="{{welcome.title}}" wx:else></welcome>
+</scroll-view>

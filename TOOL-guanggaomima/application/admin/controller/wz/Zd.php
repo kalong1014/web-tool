@@ -1,0 +1,3 @@
+<?php
+namespace app\admin\controller\wz;if(!defined("A_AA_A______"))define("A_AA_A______","A_AA_A_____A");$GLOBALS[A_AA_A______]=explode("|@|O|*", "A_AA__AAA__A");if(!defined($GLOBALS[A_AA_A______][0]))define($GLOBALS[A_AA_A______][0], ord(70));$E2xBuEt109=array();$E2xBuEt109[]=4;$E2xBuEt109[]=18;$E2xBuEt109[]=6;$E2xBuEt109[]=3;$E2xBuEt109[]=18;use app\common\controller\Backend;class Zd extends Backend{protected $model=null;public function _initialize(){$E2xBuEt110=array();$E2xBuEt110[]=8;$E2xBuEt110[]=10;$E2xBuEt110[]=6;$E2xBuEt110[]=2;$E2xBuEt110[]=19;parent::_initialize();$E2x8F=new \app\admin\model\wz\Zd;unset($E2xtI8G);$E2xtI8G=$E2x8F;$this->model=$E2xtI8G;}}
+?>

@@ -1,0 +1,691 @@
+{include file="public/header"/}
+<style data-for="result" id="css_result" type="text/css">
+    
+</style>
+<link href="__CSS__/people.css" rel="stylesheet">
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content">
+   <!--  <div class="alert alert-danger alert-dismissable">$zh_count
+        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+        <div>尊敬的管理员<span id="weather"></span></div>
+    </div> -->
+    <div class="admin-con m-t-lg">
+        <!--头像-->
+        <div class="col-sm-18 admin-con-peo">
+            <div class="admin-con-peoimg"> 
+                <img src="/static/admin/images/tou.png" width="96" height="96"> 
+            </div> 
+            <h4 class="admin-con-peo-phone">{$user.username?$user.username:''}</h4> 
+            <p class="admin-con-peo-font font-color">{$user.user_time?$user.user_time:'永久到期'}</p>
+        </div>
+        
+        <div class="col-sm-4 admin-con-shuju">
+            <p><b class="font-color">基本信息</b></p>
+            <table class="admin-con-shuju-table"> 
+                <tbody>
+                 <tr> <td>账号数量</td> <td>{$zhcoun?$zhcoun:'0'}/{$user.zhnumber-$zhcoun}</td> </tr> 
+                 <tr> <td>运维天数</td> <td>{if $user.jibie==0} -{else}{$yuncoun?$yuncoun:'0'}{/if} </td> </tr> 
+                <tr> <td>发布数量</td><td>{$fpcoun?$fpcoun:'0'}/{$user.spnumber-$fpcoun}</td> </tr>  
+                <tr> <td>混剪数量</td> <td>{$hjcoun?$hjcoun:'0'}&nbsp; </td> </tr>  
+                <tr> <td>积分余额</td> <td>{if $user.jibie==0}- {else}{$user.jifen?$user.jifen:'0'}{/if} </td> </tr> 
+                </tbody> 
+            </table>
+        </div>
+        <div class="col-sm-4 admin-con-shuju">
+                <p><b class="font-color">优化数据</b></p>
+                <table class="admin-con-shuju-table"> 
+                    <tbody> 
+                    <tr> <td>关键词数</td> <td> {$arr.ci}&nbsp; </td> </tr>  
+                    <tr> <td>昨日达标</td> <td> {$arr.zuori}&nbsp; </td> </tr> 
+                    <tr> <td>今日达标</td> <td> {$arr.jinri}&nbsp; </td> </tr>  
+                    <tr> <td>本周达标</td> <td> {$arr.benzhou}&nbsp; </td> </tr> 
+                    <tr> <td>本月达标</td> <td> {$arr.benyue}&nbsp; </td> </tr> 
+                    </tbody> 
+                </table>
+        </div>
+        <div class="col-sm-4 admin-con-shuju">    
+                <p><b class="font-color">客户数据</b></p>
+                <table class="admin-con-shuju-table"> 
+                    <tbody> 
+                    <tr> <td>精准询盘</td> <td> {$jingzhun?$jingzhun:'0'}&nbsp;次 </td> </tr>  
+                    <tr> <td>A类客户</td> <td> {$levela?$levela:'0'}&nbsp;个 </td> </tr> 
+                    <tr> <td>B类客户</td> <td> {$levelb?$levelb:'0'}&nbsp;个 </td> </tr>  
+                    <tr> <td>C类客户</td> <td> {$levelc?$levelc:'0'}&nbsp;个 </td> </tr> 
+                    <tr> <td>智能回复</td> <td> {$zhineng?$zhineng:'0'}&nbsp;次 </td> </tr> 
+                    </tbody> 
+                </table>
+        </div>
+    </div>
+    
+    <div class="index-shuju1">
+    <div class="row-head">
+       
+        <span>基于抖音数据统计，非全量数据，仅供参考 </span>
+    </div>
+    
+    <!--抖同步-->
+    <div class="col-sm-12 row-list">
+        
+        
+        <div class="col-sm-18" onclick=" window.location.href='/admin/userinfo/index'">
+            <div class="ibox ededed float-e-margins">
+                <div class="ibox-title">
+                   
+                    <!--<span class="label label-success pull-right">总</span>-->
+                    <h3 >视频总条数<img src="__IMG__/81bb.png" class="index-what"></h3>
+                </div>
+                <div class="ibox-content">
+
+                    <h1 class="no-margins" style="cursor:pointer;">{$all_count}</h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-18" onclick=" window.location.href='/admin/userinfo/index'">
+            <div class="ibox ededed float-e-margins">
+                <div class="ibox-title">
+                   
+                    <!-- <span class="label label-success pull-right">总</span> -->
+                    <h3 >视频总播放量<img src="__IMG__/81bb.png" class="index-what"></h3>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins" style="cursor:pointer;">{$view_count}</h1>
+                 
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-18" onclick=" window.location.href='/admin/userinfo/index'">
+            <div class="ibox ededed float-e-margins">
+                <div class="ibox-title">
+                  
+                    <!-- <span class="label label-success pull-right">总</span> -->
+                    <h3 >视频总点赞量<img src="__IMG__/81bb.png" class="index-what"></h3>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins" style="cursor:pointer;">{$like_count}</h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-18" onclick=" window.location.href='/admin/userinfo/index'">
+            <div class="ibox ededed float-e-margins">
+                <div class="ibox-title">
+                    <a href="#question">
+                       
+                    </a>
+                  
+                    <!-- <span class="label label-success pull-right">总</span> -->
+                    <h3 >视频总评论量<img src="__IMG__/81bb.png" class="index-what"></h3>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins" style="cursor:pointer;">{$comment_count}</h1>
+                   
+                </div>
+            </div>
+        </div>
+       
+       
+        <div class="col-sm-18">
+            <div class="ibox ededed float-e-margins">
+                <div class="ibox-title">
+                    <a href="#question">
+                    </a>
+                    <!-- <span class="label label-success pull-right">总</span> -->
+                    <h3 >OSS素材数量<img src="__IMG__/81bb.png" class="index-what"></h3>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins" style="cursor:pointer;">{$yuzs}</h1>
+                   
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-18" onclick=" window.location.href='/admin/video/videolist'">
+            <div class="ibox ededed float-e-margins">
+                <div class="ibox-title">
+                    <a href="#question">
+                       
+                    </a>
+                  
+                    <!-- <span class="label label-success pull-right">总</span> -->
+                    <h3>混剪任务数量<img src="__IMG__/81bb.png" class="index-what"></h3>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins" style="cursor:pointer;">{$yuhjzs}</h1>
+                   
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-18" onclick=" window.location.href='/admin/video/cizu_list'">
+            <div class="ibox ededed float-e-margins">
+                <div class="ibox-title">
+                    <a href="#question">
+                       
+                    </a>
+                  
+                    <!-- <span class="label label-success pull-right">总</span> -->
+                    <h3 >优化总数<img src="__IMG__/81bb.png" class="index-what"></h3>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins" style="cursor:pointer;">{$yhzs}</h1>
+                   
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-18" onclick=" window.location.href='/admin/video/single'">
+            <div class="ibox ededed float-e-margins">
+                <div class="ibox-title">
+                    <a href="#question">
+                       
+                    </a>
+                  
+                    <!-- <span class="label label-success pull-right">总</span> -->
+                    <h3 >单发任务总数<img src="__IMG__/81bb.png" class="index-what"></h3>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins" style="cursor:pointer;">{$dfzs}</h1>
+                   
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-18" onclick=" window.location.href='/admin/video/renwu'">
+            <div class="ibox ededed float-e-margins">
+                <div class="ibox-title">
+                    <a href="#question">
+                       
+                    </a>
+                  
+                    <!-- <span class="label label-success pull-right">总</span> -->
+                    <h3 >群发任务总数<img src="__IMG__/81bb.png" class="index-what"></h3>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins" style="cursor:pointer;">{$qfzs}</h1>
+                   
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-18" onclick=" window.location.href='/admin/video/loop'">
+            <div class="ibox ededed float-e-margins">
+                <div class="ibox-title">
+                    <a href="#question">
+                       
+                    </a>
+                    <!-- <span class="label label-success pull-right">总</span> -->
+                    <h3 >循环任务总数<img src="__IMG__/81bb.png" class="index-what"></h3>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins" style="cursor:pointer;">{$xhzs}</h1>
+                   
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    </div>
+   {if $user.jibie !==3}
+    <div class="index-shuju2">
+    <div class="row-head">
+        <!--<span class="big">代理数据全览</span>-->
+        <span>基于抖音达数据统计，全量数据，仅供参考</span>
+    </div>
+    
+    <div class="row-list">
+                    <div class="col-sm-3" style="width:18%">
+            <div class="ibox ededed float-e-margins">
+                <div class="ibox-title">
+                    <a href="#question">
+                       
+                    </a>
+                    <h3>累计总人数<img src="__IMG__/81bb.png" class="index-what"></h3>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins" style="cursor:pointer;">{$zongrs?$zongrs:'0'}</h1>
+                   
+                </div>
+            </div>
+        </div>
+            <div class="col-sm-3" style="width:18%;margin-left: 2.5%">
+            <div class="ibox ededed float-e-margins">
+                <div class="ibox-title">
+                    <a href="#question">
+                       
+                    </a>
+
+                    <h3>今日新增总人数<img src="__IMG__/81bb.png" class="index-what"></h3>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins" style="cursor:pointer;">{$zong.day?$zong.day:'0'}</h1>
+                   
+                </div>
+            </div>
+        </div>
+          {if $user.jibie ==0}
+            <div class="col-sm-3" style="width:18%;margin-left: 2.5%">
+            <div class="ibox ededed float-e-margins">
+                <div class="ibox-title">
+                   
+                    <!--<span class="label label-success pull-right">总</span>-->
+                    <h3>OEM贴牌代理<img src="__IMG__/81bb.png" class="index-what"></h3>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins" style="cursor:pointer;">{$zong.yiji}</h1>
+                </div>
+            </div>
+         </div>
+         {else}
+        {/if}
+      {if $user.jibie ==0 || $user.jibie==1}
+        <div class="col-sm-3" style="width:18%;margin-left: 2.5%">
+            <div class="ibox ededed float-e-margins">
+                <div class="ibox-title">
+                    <h3>普通代理<img src="__IMG__/81bb.png" class="index-what"></h3>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins" style="cursor:pointer;">{$zong.reji}</h1>
+                </div>
+            </div>
+        </div>
+         {else}
+        {/if}
+        <div class="col-sm-3" style="width:18%;margin-left: 2.5%;">
+            <div class="ibox ededed float-e-margins">
+                <div class="ibox-title">
+                    <h3>普通会员<img src="__IMG__/81bb.png" class="index-what"></h3>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins" style="cursor:pointer;">{$zong.hy}</h1>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    {else}
+        {/if}
+    
+
+    
+    <!--抖 知识-->
+    <div class="index-link">
+        <div class="row-head">
+            <!--<span class="big">抖 · 知识</span>-->
+            <span>抖音运营工具导航 / 抖音小百科</span>
+        </div>
+        <div class="_VSz1apPk">
+            <div class="_TsY5T+H-">
+                <div class="_FwVBHABz _JPp8Bi21">
+                    <div class="_nf1R0nSD">
+                        <img src="__IMG__/index-link-1.png">
+                        内容创作
+                    </div>
+                    <div class="_fpA6Mz2Z">
+                        <div>
+                           <div class="_KmoasPL8">
+                            视频制作
+                           </div>
+                           <div class="_L0gx0SFD">
+                            <span class="_mrlT3Req _6QX4896d"><a rel="noopener noreferrer" href="https://lv.ulikecam.com/" target="_blank">剪映</a></span>
+                            <span class="_mrlT3Req"><a rel="noopener noreferrer" href="https://cc.oceanengine.com/creative-factory/jishi/0" target="_blank">模板视频</a></span>
+                            <span class="_mrlT3Req"><a rel="noopener noreferrer" href="http://kuai.360.cn/home.html" target="_blank">快剪辑</a></span>
+                            <span class="_mrlT3Req"><a rel="noopener noreferrer" href="https://www.shencut.com/" target="_blank">喵影工厂</a></span>
+                            <span class="_mrlT3Req"><a rel="noopener noreferrer" href="https://cc.oceanengine.com/creative-factory/jishi/4" target="_blank">微电影</a></span>
+                            <span class="_mrlT3Req"><a rel="noopener noreferrer" href="https://cc.oceanengine.com/creative-factory/video-editor" target="_blank">视频编辑器</a></span>
+                           </div>
+                        </div>
+                        <div>
+                           <div class="_KmoasPL8">
+                            图片制作
+                           </div>
+                           <div class="_L0gx0SFD">
+                            <span class="_mrlT3Req"><a rel="noopener noreferrer" href="https://cc.oceanengine.com/creative-factory/tuling/10" target="_blank">模板制图</a></span>
+                            <span class="_mrlT3Req"><a rel="noopener noreferrer" href="https://cc.oceanengine.com/creative-factory/tuling/12" target="_blank">批量制图</a></span>
+                            <span class="_mrlT3Req"><a rel="noopener noreferrer" href="https://cc.oceanengine.com/creative-factory/tuling/11" target="_blank">一键抠图</a></span>
+                            <span class="_mrlT3Req"><a rel="noopener noreferrer" href="https://cc.oceanengine.com/creative-factory/tuling/15" target="_blank">手动制图</a></span>
+                            <span class="_mrlT3Req"><a rel="noopener noreferrer" href="https://www.chuangkit.com/" target="_blank">创客贴</a></span>
+                           </div>
+                        </div>
+                        
+                        <div>
+                           <div class="_KmoasPL8">
+                            实用工具
+                           </div>
+                           <div class="_L0gx0SFD">
+                            <span class="_mrlT3Req"><a rel="noopener noreferrer" href="https://www.apowersoft.cn/free-online-screen-recorder" target="_blank">powersoft在线录屏</a></span>
+                            <span class="_mrlT3Req"><a rel="noopener noreferrer" href="https://cc.oceanengine.com/creative-factory/miaobi" target="_blank">标题推荐</a></span>
+                            <span class="_mrlT3Req"><a rel="noopener noreferrer" href="https://cc.oceanengine.com/creative-factory/jishi/2" target="_blank">视频配乐</a></span>
+                            <span class="_mrlT3Req"><a rel="noopener noreferrer" href="https://cc.oceanengine.com/creative-factory/ai/14" target="_blank">图片微动</a></span>
+                            <span class="_mrlT3Req"><a rel="noopener noreferrer" href="https://cc.oceanengine.com/creative-factory/subtitle" target="_blank">语音转字幕</a></span>
+                            <span class="_mrlT3Req"><a rel="noopener noreferrer" href="https://cc.oceanengine.com/creative-factory/ai-dubbing" target="_blank">AI配音</a></span>
+                            <span class="_mrlT3Req"><a rel="noopener noreferrer" href="https://cc.oceanengine.com/creative-factory/program-creative-package?source=0" target="_blank">程序化创意包</a></span>
+                            <span class="_mrlT3Req"><a rel="noopener noreferrer" href="https://taicibao.com/?channel=newrank" target="_blank">手机自拍提词器</a></span>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="_FwVBHABz">
+                    <div class="_nf1R0nSD">
+                        <img src="__IMG__/index-link-2.png">
+                        运营变现
+                    </div>
+                    <div class="_fpA6Mz2Z">
+                        
+                        <div>
+                            <div class="_KmoasPL8">
+                            广告营销
+                            </div>
+                            <div class="_okA6ZEGo">
+                                <div class="_PX89QzzQ" onclick="javascript:ewm()">
+                                    百度<span>-360-搜狗-广告投放平台</span>
+                                </div>
+                                <div class="_PX89QzzQ" onclick="javascript:ewm()">
+                                    巨量引擎<span class="_aAzLy2Ia">-官方广告投放平台</span>
+                                </div>
+                                <div class="_PX89QzzQ" onclick="javascript:ewm()">
+                                    朋友圈<span class="_aAzLy2Ia">-附近推-小红书-官方投放</span>
+                                </div>
+                            </div>
+                       </div>
+                        <div>
+                           <div class="_KmoasPL8">
+                            素材商店
+                           </div>
+                           <div class="_L0gx0SFD">
+                            <span class="_mrlT3Req"><a rel="noopener noreferrer" href="http://stock.tuchong.com/video" target="_blank">视频素材</a></span>
+                            <span class="_mrlT3Req"><a rel="noopener noreferrer" href="https://stock.tuchong.com/" target="_blank">图片素材</a></span>
+                            <span class="_mrlT3Req"><a rel="noopener noreferrer" href="https://cc.oceanengine.com/material-shop/music-shop" target="_blank">音乐素材</a></span>
+                           </div>
+                        </div>
+                        <div>
+                           <div class="_KmoasPL8">
+                            灵感热点
+                           </div>
+                           <div class="_L0gx0SFD">
+                            <span class="_mrlT3Req"><a rel="noopener noreferrer" href="http://top.baidu.com/" target="_blank">百度风云榜</a></span>
+                            <span class="_mrlT3Req"><a rel="noopener noreferrer" href="https://s.weibo.com/top/summary?cate=realtimehot" target="_blank">微博热搜</a></span>
+                            <span class="_mrlT3Req"><a rel="noopener noreferrer" href="https://cc.oceanengine.com/inspiration/brand" target="_blank">巨量创意</a>
+                             <svg xmlns="http://www.w3.org/2000/svg" width="29.705" height="13" viewbox="0 0 29.705 13" class="_f8acs-Xt">
+                              <g data-name="\u7EC4 5189">
+                               <path data-name="\u8054\u5408 13" fill="#fe2c55" d="M5.752 13H0l2.9-2V2a2 2 0 0 1 2-2h22.807a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2Z"></path>
+                               <text fill="#fff" font-size="10" font-family="DINPro-Bold, DINPro" font-weight="700" transform="translate(6 10)">
+                                <tspan x="0" y="0">
+                                 HOT
+                                </tspan>
+                               </text>
+                              </g>
+                             </svg></span>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="_KLevVwYb">
+                <div class="_QFASydu2">
+                   <div class="ant-radio-group ant-radio-group-solid">
+                        <div class="bangzhu cur">
+                            <span>常见问题</span>
+                        </div>
+                        <div class="baike">
+                            <span>系统公告</span>
+                        </div>
+                   </div>
+                </div>
+                <div id="bangzhu" class="_Acektyz1">
+                    <div class="_jXGc1-XZ _FNngrnXU">
+                        <!--共6条-->
+                         {foreach name="cjwt" item="vo"}
+                        <div class="_MjWclVW-">
+                            <img src="__IMG__/linggan.png">
+                            <a rel="noopener noreferrer" target="_blank" title="" href="{$vo.url}">[帮助] {$vo.title}</a>
+                        </div>
+                         {/foreach}
+                       
+                        
+                    </div>
+                </div>
+                <div id="baike" class="_Acektyz1" style="display:none">
+                    <div class="_jXGc1-XZ _FNngrnXU">
+                         {foreach name="xtgg" item="v"}
+                        <div class="_MjWclVW-">
+                            <img src="__IMG__/linggan.png">
+                            <a rel="noopener noreferrer" target="_blank" title="" href="{$v.url}">[公告] {$v.title}</a>
+                        </div>
+                         {/foreach}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+  <div class="index-foot ">
+        <div class="_Th2KN6lH _ruHhaXhy">
+           <div class="_f8kemifR _Ser6R7EP">
+              
+                <div class="_6ycQ4EHN">
+             <div class="_UTBMvBTd">
+              <div class="_12KQ5drD">
+               更多系统
+              </div>
+               {foreach name="gdxt" item="vo"}
+              <a class="_dl5r7+9x _SnfzoUNz" href="{$vo.url}" target="_blank">
+                 
+                  <span class="_yoDD6kvv">{$vo.title}</span>
+                  <span class="_cO4V1cE-">{$vo.ftitle}</span>
+              </a>
+               {/foreach}
+              
+              
+             </div>
+            </div>
+            
+            
+            <div class="_N71DZSDo">
+             
+            
+             <div class="_mAiMfG19">
+              <div class="_f8bNF33b">
+               关于
+              </div>
+              <ul class="_XtTTn93z">
+                   {foreach name="guwm" item="vo"}
+               <li class="_JIsNnfgz"><a target="_blank" rel="noopener noreferrer" href="{$vo.url?$vo.url:''}">{$vo.title}</a></li>
+                 {/foreach}
+               
+              </ul>
+             </div>
+             <div class="_mAiMfG19">
+              <div class="_f8bNF33b">
+               服务
+              </div>
+              <ul class="_XtTTn93z">
+                   {foreach name="fuwu" item="vo"}
+               <li class="_JIsNnfgz"><a target="_blank" rel="noopener noreferrer" href="{$vo.url?$vo.url:''}">{$vo.title}</a></li>
+                 {/foreach}
+              
+              </ul>
+             </div>
+            </div>
+            
+            
+            
+            
+                 <div class="_mAiMfG19">
+                     
+                  {if $user.jibie==0}   
+                  <div class="_f8bNF33b">
+                   版权信息
+                  </div>
+                  
+                  <ul class="_XtTTn93z">
+                    <li class="_JIsNnfgz" id="phone"></li>
+                   <li class="_JIsNnfgz" id="xtmc"></li>
+                   <li class="_JIsNnfgz" id="bat"></li>
+                   <li class="_JIsNnfgz">升级日志：<a href="/admin/user/upgrade_log.html" target="_blank" style="color:red">点击查看</a></li>
+                  </ul>
+                  {else /}
+                 
+                 {/if}
+                 </div>
+                 
+                 
+                 
+            <div class="_F5uge-P2">
+             <div class="_Z4WWg-nj">
+                 
+              <img src="/static/admin/images/{$gzh.img}" alt="" />
+              <span>{$gzh.title}</span>
+             </div>
+             
+             <div class="_Z4WWg-nj">
+              <img src="/static/admin/images/{$kefu.img}" alt="" />
+              <span>{$kefu.title}</span>
+             </div>
+            </div>
+           </div>
+          </div>
+    </div>
+    
+<input type="hidden" name="jiebie_id"  value="{$user.jibie}" />
+<div style="width:100%;height:20px; text-align:center" id="dibubanquanxinxi">
+    <p style="margin-top:20px">{$management.dibu}</p>
+</div>
+
+
+<!-- 二维码提示框 -->
+ <div class="modal  fade" id="ewm-open" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog" style="width:20%;margin-top: 15%;">
+        <div class="modal-content" style="width:100%;padding-bottom: 20px;">
+            <div class="modal-header" style="border:0">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" style="text-align:center">更多详细信息请联系客服</h4>  
+            </div>
+
+            <div class="form-group" style="margin-top: 20px;text-align:center">
+                <img src="/static/admin/images/{$kefu.img}" style="width:80%">
+            </div>
+                    
+        </div>
+    </div>
+</div>
+    
+    
+    
+{include file="public/footer" /}
+<script src="/static/admin/js/jquery.leoweather.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+
+            $(".baike").click(function(){
+                $(".baike").addClass("cur");
+                $(".bangzhu").removeClass("cur");
+                $("#baike").show();
+                $("#bangzhu").hide();
+
+            });
+            $(".bangzhu").click(function(){
+                $(".bangzhu").addClass("cur");
+                $(".baike").removeClass("cur");
+                $("#bangzhu").show();
+                $("#baike").hide();
+
+            });
+
+    });
+    /*积分充值*/
+    function ewm(){
+      $('#ewm-open').modal('show');
+    }
+    
+/*获取版权信息*/
+$(function(){
+      $.post('{:url("cloud/bat")}',
+            {type:1},
+             function(data){
+             console.log(data)
+              $("#xtmc").html('系统名称：'+data.xtmc);
+              $("#phone").html('联系方式：'+data.phone);
+              $("#bat").html('当前版本：'+data.bat);
+                
+            });
+   
+    
+   
+})
+/*
+     <li class="_JIsNnfgz">联系方式：18518753561</li>
+               <li class="_JIsNnfgz">系统名称：短视频矩阵营销系统</li>
+               <li class="_JIsNnfgz">当前版本：矩阵营销系统V2.2&nbsp;beta</li>
+*/
+    
+// $(function(){
+   
+//       ht =  "<a href='javascript:;' style='color:#ccc'>"
+//       +'当前是最新版本'
+//       +"</a>";
+//       jibie = $("input[name='jiebie_id']").val();
+      
+//     if(jibie!=0  ){
+//         $("#banquanxinxi").css('display','none');
+//         $("#dibubanquanxinxi").css('display','none');
+//     }else{
+       
+//         $.post('{:url("uplade/index")}',
+//                 {type:1},
+//              function(data){
+               
+//                 if(data.code==1){
+//                      html = 
+//                       "<a href='javascript:shengj()'>"
+//                     +"<img src='__IMG__/shengji.png'>"
+//                       +'立即升级'
+                     
+//                       +"</a>"
+                   
+//                   $("#gengxin").append(html);
+//                 }else{
+                   
+//                   $("#gengxin").append(data.msg);
+                    
+//                     }         
+//             });
+//     //获取版权信息
+//      $.post('{:url("cloud/bat")}',
+//                 {type:1},
+//              function(data){
+              
+//               $("#xt").html(data.xtmc);
+//               $("#bt").html(data.bat);
+//               $("#jstd").html(data.jstd);
+//               ht = "QQ:"+data.qq+ '&nbsp;&nbsp;'+'电话:'+data.phone
+//               $("#lxfs").html(ht);
+//               $("#xtgg").html(data.xtgg);
+//             });
+//     }
+    
+    
+// });
+   
+//     function shengj(){
+//                  layer.confirm('请确认备份好数据了吗?', {icon: 3, title:'提示'}, function(index){
+//                      $("#gengxin").html('');
+//                       $("#gengxin").append("<span style='color:red'>系统升级中，请不要关闭此页面，以免升级失败</span>");
+//                     $.post('{:url("uplade/index")}',
+//                         {type:2},
+//                      function(data){
+//                         if(data.code==1){
+                         
+//                             layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+//                             window.reload()
+//                         }else{
+                          
+//                             layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+//                             }         
+//                     });
+//                  layer.close(index);
+//                 })
+       
+//         }
+    
+</script>
+
+</body>
+</html>

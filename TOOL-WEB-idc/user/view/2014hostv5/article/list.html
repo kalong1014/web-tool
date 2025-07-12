@@ -1,0 +1,140 @@
+{{include file='common/head.html'}}
+
+            <!-- Main Container -->
+            <main id="main-container">
+                <!-- Hero Content -->
+                <div class="bg-image" style="background-image: url('{{$STATIC}}style/assets/img/photos/photo6@2x.jpg');">
+				<div class="bg-primary-dark-op">
+                    <section class="content content-full content-boxed">
+                        <!-- Section Content -->
+                        <div class="push-100-t push-50 text-center">
+                            <h1 class="h2 text-white push-10 visibility-hidden" data-toggle="appear" data-class="animated fadeInDown">帮助文档</h1>
+                            <h2 class="h5 text-white-op visibility-hidden" data-toggle="appear" data-class="animated fadeInDown">您可以在这里寻找一些常见问题的答案，如果没有您需要的答案，可以从以下方式联系我们！</h2><br /><br />
+                        </div>
+                        <!-- END Section Content -->
+                    </section>
+					</div>
+                </div>
+                <!-- END Hero Content -->
+                <!-- Categories -->
+                <div class="bg-white">
+                    <section class="content content-boxed overflow-hidden">
+                        <!-- Section Content -->
+                        <div class="content-grid">
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-3 visibility-hidden" data-toggle="appear" data-class="animated fadeInDown">
+                                    <a class="block block-bordered block-rounded block-link-hover3" href="javascript:void(0)">
+                                        <div class="block-content block-content-full border-b text-center">
+                                            <div class="item">
+											<div style="height:16px;"></div>
+                                                <i class="fa fa-qq text-amethyst"></i>
+                                            </div>
+                                        </div>
+                                        <div class="block-content block-content-full block-content-mini text-center">
+                                            <span class="font-w600 text-uppercase">在线QQ客服</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-xs-6 col-sm-3 visibility-hidden" data-toggle="appear" data-timeout="200" data-class="animated fadeInDown">
+                                    <a class="block block-bordered block-rounded block-link-hover3" href="?c=question&a=pageByuser">
+                                        <div class="block-content block-content-full border-b text-center">
+                                            <div class="item">
+											<div style="height:16px;"></div>
+                                                <i class="fa fa-edit text-city"></i>
+                                            </div>
+                                        </div>
+                                        <div class="block-content block-content-full block-content-mini text-center">
+                                            <span class="font-w600 text-uppercase">在线服务单</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-xs-6 col-sm-3 visibility-hidden" data-toggle="appear" data-timeout="400" data-class="animated fadeInDown">
+                                    <a class="block block-bordered block-rounded block-link-hover3" href="javascript:void(0)">
+                                        <div class="block-content block-content-full border-b text-center">
+                                            <div class="item">
+											<div style="height:16px;"></div>
+                                                <i class="fa fa-comments-o text-flat"></i>
+                                            </div>
+                                        </div>
+                                        <div class="block-content block-content-full block-content-mini text-center">
+                                            <span class="font-w600 text-uppercase">主机交流群</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-xs-6 col-sm-3 visibility-hidden" data-toggle="appear" data-timeout="600" data-class="animated fadeInDown">
+                                    <a class="block block-bordered block-rounded block-link-hover3" href="javascript:void(0)">
+                                        <div class="block-content block-content-full border-b text-center">
+                                            <div class="item">
+											<div style="height:16px;"></div>
+                                                <i class="si si-speech text-smooth"></i>
+                                            </div>
+                                        </div>
+                                        <div class="block-content block-content-full block-content-mini text-center">
+                                            <span class="font-w600 text-uppercase" style="font-size:12px;">客服论坛</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END Section Content -->
+                    </section>
+                </div>
+                <!-- END Categories -->
+                <!-- Search Form -->
+                <div class="bg-gray-lighter">
+                    <section class="content content-full content-boxed">
+                        <!-- Section Content -->
+                        <div class="row">
+                            <div class="col-sm-8 col-sm-offset-2">
+                                <form action="?c=article&a=lists&id=1&type=help" method="post">
+                                    <div class="input-group input-group-lg">
+                                        <input class="form-control" type="text" placeholder="请输入搜索内容..">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-default"><i class="fa fa-search"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- END Section Content -->
+                    </section>
+                </div>
+                <!-- END Search Form -->
+                <!-- FAQ -->
+                <div class="bg-white">
+                    <section class="content content-full content-boxed">
+                        <!-- Section Content -->
+                        <div class="row push-20-t push-20">
+                              <div class="col-xs-12 col-sm-3">						
+                              {{dispatch c='article' a='left'}}
+							   </div>
+                              <div class="col-xs-12 col-sm-9">						
+                            <!-- Blockquotes -->
+                                    <blockquote>
+                                        <h4>{{$row.title}}</h4><div style="height:10px;"></div>
+                                        <footer>更新时间：{{$row.createtime}}</footer><hr /><div style="height:5px;"></div>
+										<div style="font-size:14px;">{{$row.body}}</div>
+                                    </blockquote>
+                            <!-- END Blockquotes -->							
+							   </div>
+							
+							
+						</div>
+					</section>
+				</div>
+
+
+                <!-- Contact Us -->
+                <div class="bg-gray-lighter">
+                    <section class="content content-full content-boxed">
+                        <!-- Section Content -->
+                        <div class="push-20-t push-20 text-center">
+                            <h3 class="h4 push-20 visibility-hidden" data-toggle="appear">没有找到您想知道的问题答案？</h3>
+                            <a class="btn btn-rounded btn-noborder btn-lg btn-success visibility-hidden" data-toggle="appear" data-class="animated bounceIn" href="?c=question&a=pageByuser">在线提交工单</a>
+                        </div>
+                        <!-- END Section Content -->
+                    </section>
+                </div>
+                <!-- END Contact Us -->
+</main>
+{{include file='common/foot.html'}}

@@ -1,0 +1,159 @@
+{include file="public/header" /}
+
+<body class="gray-bg">
+<link rel="stylesheet" href="/static/admin/layui/css/layui.css" media="all">
+<div class="wrapper layui-card-body wrapper-content">
+    <div class="admin-con">
+        <div class="block-box">
+            <div class="col-12">
+                <div class="block">
+                    <div class="panel-body" style="margin:-10px -20px">
+                        <div class="content-all">
+                            <div class="content-left">
+                                <h2>联系人</h2>
+                                <div class="message_user_list">
+                                    {foreach name="list" item="value"}
+                                    <div class="message_user click_user" data-id="{$value['id']}" data-nickname="{$value['nickname']}">
+                                        <div class="message_user_img">
+                                            <img src="{$value['avatar']}">
+                                        </div>
+                                        <div class="message_user_content">
+                                            <h3>{$value['nickname']}</h3>
+                                            <p>{$value['last_chat_text']}</p>
+                                        </div>
+                                        <div class="message_user_time">
+                                            <span>{$value['last_chat_date']}</span>
+                                        </div>
+                                    </div>
+                                    {/foreach}
+                                </div>
+                            </div>
+                            <div id="content_html" class="content-right" style="display:none;">
+                                <h2 class="content-right-title" id="content-right-title">未知 - 我 聊天记录</h2>
+                                <div class="content-right-content" id="content-right-content">
+                                    <div class="message_con frnd_message">
+                                        <img src="/static/admin/images/tou.png">
+                                        <p>
+                                            加载失败...<br>
+                                            <span><?php echo date('Y-m-d H:i:s',time());?></span>
+                                        </p>
+                                    </div>
+                                    <div class="message_con my_message">
+                                        <p>
+                                            加载失败...<br>
+                                            <span><?php echo date('Y-m-d H:i:s',time());?></span></p>
+                                        <img src="/static/admin/images/tou.png">
+                                    </div>
+                                </div>
+        <!--                        <textarea class="content-right-send" placeholder="回车enter发送消息，消息不超过50个字"></textarea>-->
+                                <textarea id="Inputbox" name="text" class="content-right-send" placeholder="回车enter发送消息，消息不超过50个字"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <input type="hidden" id="cust_id" >
+        </div>
+    </div>
+</div>
+{include file="public/footer" /}
+<script>
+    $(function () {
+        let su_default = 0;
+        $(".click_user").click(function() {
+            var id = $(this).attr('data-id')
+            var nickname = $(this).attr('data-nickname')
+            $("#cust_id").val(id)
+            $("#content-right-title").text(nickname+' 和 我 的聊天记录')
+            $.ajax({
+                type: "GET",
+                url: "/admin/account/chat_list",
+                data: {to_cust_id:id},
+                dataType: "json",
+                success: function(data){
+                    if(data.code != 1) {
+                        layer.alert(data.msg)
+                        return false;
+                    }
+                    var chatlist = data.data
+                    // console.log(chatlist)
+                    var html = '';
+                    $.each(chatlist, function(index, value) {
+                        if(value.to_type == 2) {
+                            html += '<div class="message_con frnd_message"><img src="'+value.from_cust_avatar+'"><p>'+value.text+'<br><span>'+value.create_date+'</span></p></div>';
+                        } else {
+                            html += '<div class="message_con my_message"><p>'+value.text+'<br><span>'+value.create_date+'</span></p><img src="'+value.from_cust_avatar+'"></div>';
+                        }
+                        // console.log(index + ': ' + value.from_cust_nickname +'|'+value.to_type+'|'+value.from_cust_avatar+'|'+value.text);
+                    });
+                    $("#content-right-content").html(html)
+                    $("#content_html").show();
+                    var div = document.getElementById("content-right-content");
+                    $('.content-right-content').animate({ scrollTop: div.scrollHeight+100 }, 500);
+                    $("#Inputbox").focus()
+                }
+            });
+            // console.log(id)
+        })
+
+        $("#Inputbox").keydown( function(event){
+            event=(event)?event:((window.event)?window.event:"");
+            var keyCode=event.keyCode?event.keyCode:(event.which?event.which:event.charCode);
+            var altKey = event.ctrlKey || event.metaKey;
+            if(keyCode == 13 && altKey){ //ctrl+enter换行
+                var newDope=$(this).val()+"\n";// 获取textarea数据进行 换行
+                $(this).val(newDope);
+            }else if(keyCode==13){ //enter发送
+                var newDope=$(this).val()+"\n";// 获取textarea数据进行 换行
+                event.preventDefault();//禁止回车的默认换行
+                send_chat_msg(newDope)
+            }
+        });
+
+        function send_chat_msg(text) {
+            var to_cust_id = $("#cust_id").val();
+            if(!text || text.length <= 1) {
+                layer.msg('消息内容不能为空');
+                return false;
+            }
+            if(!to_cust_id) {
+                layer.msg('参数错误');
+                return false;
+            }
+            if(su_default == 1) {
+                return false;
+            }
+            su_default = 1;
+            layer.load(1)
+            let param = {
+                to_cust_id:to_cust_id,
+                text:text
+            }
+            $.ajax({
+                type: "POST",
+                url: "/admin/account/send_chat",
+                data: param,
+                dataType: "json",
+                success: function(response){
+                    layer.closeAll('loading');
+                    su_default = 0;
+                    if(response.code == 1) {
+                        var data = response.data;
+                        var html = $("#content-right-content").html()
+                        html += '<div class="message_con my_message"><p>'+data.text+'<br><span>'+data.create_date+'</span></p><img src="'+data.from_cust_avatar+'"></div>';
+                        $("#content-right-content").html(html)
+                        $("#Inputbox").val('');
+                        var div = document.getElementById("content-right-content");
+                        $('.content-right-content').animate({ scrollTop: div.scrollHeight+100 }, 500);
+                    } else {
+                        layer.msg(response.msg)
+                    }
+                    // console.log(response)
+                }
+            });
+        }
+    })
+</script>
+</body>
+</html>

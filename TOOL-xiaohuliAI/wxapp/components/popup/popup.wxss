@@ -1,0 +1,74 @@
+.popup {
+    position: fixed;
+    z-index: 99;
+}
+
+.popup,.popup .masker {
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+
+.popup .masker {
+    background: rgba(0,0,0,.3);
+    opacity: 0;
+    position: absolute;
+    transition: opacity .2s linear;
+    z-index: 1;
+}
+
+.popup .masker.show {
+    opacity: 1;
+}
+
+.popup .container {
+    background: #fff;
+    border-top-left-radius: 20rpx;
+    border-top-right-radius: 20rpx;
+    left: 0;
+    position: absolute;
+    transition: all .2s linear;
+    width: 100%;
+    z-index: 2;
+}
+
+.popup .container .header {
+    align-items: center;
+    display: flex;
+    height: 88rpx;
+    justify-content: space-between;
+    padding: 0 30rpx;
+}
+
+.popup .container .header .title {
+    color: #666;
+    font-size: 32rpx;
+    text-align: center;
+    width: 100%;
+}
+
+.popup .container .header .close {
+    align-items: center;
+    display: flex;
+    height: 64rpx;
+    justify-content: center;
+    position: absolute;
+    right: 12rpx;
+    top: 12rpx;
+    width: 64rpx;
+}
+
+.popup .container .header .close image {
+    height: 36rpx;
+    width: 36rpx;
+}
+
+.popup .container .main {
+    bottom: 0;
+    box-sizing: border-box;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 88rpx;
+}

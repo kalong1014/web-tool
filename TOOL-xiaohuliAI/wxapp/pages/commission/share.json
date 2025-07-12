@@ -1,0 +1,7 @@
+{
+    "navigationStyle": "custom",
+    "usingComponents": {
+        "foxTabs": "/components/foxTabs/foxTabs",
+        "navbar": "/components/navbar/navbar"
+    }
+}

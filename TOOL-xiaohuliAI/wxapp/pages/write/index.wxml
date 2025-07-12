@@ -1,0 +1,22 @@
+<navbar text="创作中心"></navbar>
+<view class="page" style="bottom: {{safeAreaHeight+110}}rpx; top: {{navBarHeight}}px;">
+    <view class="search">
+        <image class="ic_search" src="/images/write/ic_search.png"></image>
+        <input bindconfirm="doSearch" confirmType="search" maxlength="30" model:value="{{keyword}}" placeholder="输入关键词搜索" placeholderStyle="color: #acb2b2;" type="text"></input>
+        <view bindtap="clearKeyword" class="ic_clear" wx:if="{{keyword}}">
+            <image src="/images/write/ic_clear.png"></image>
+        </view>
+    </view>
+    <view wx:if="{{isSearch}}">
+        <foxTabs class="tabs" current="{{0}}" keyName="title" list="{{[ {id:'search',title:'搜索结果'} ]}}"></foxTabs>
+        <promptList activeTopicIndex="{{0}}" class="lists" id="search" topicIndex="{{0}}" topic_id="all"></promptList>
+    </view>
+    <view wx:else>
+        <foxTabs bind:switch="onTabChange" class="tabs" current="{{activeTopicIndex}}" keyName="title" list="{{topicList}}"></foxTabs>
+        <swiper bindchange="onSwiperChange" class="lists" current="{{activeTopicIndex}}" duration="300">
+            <swiper-item class="swiper-item" wx:for="{{topicList}}">
+                <promptList activeTopicIndex="{{activeTopicIndex}}" keyword="{{keyword}}" topicIndex="{{index}}" topic_id="{{item.id}}"></promptList>
+            </swiper-item>
+        </swiper>
+    </view>
+</view>

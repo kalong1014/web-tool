@@ -1,0 +1,475 @@
+ {include file="public/header" /}
+{include file="public/footer" /}
+
+    <div class="panel panel-info">
+    <div class="panel-body jichudata">
+
+<style>
+    .layui-input, .layui-textarea{
+        /*width:auto!important;*/
+    }
+    .layui-form-label{
+        width:140px!important;
+    }
+    /*
+    .jichudata .layui-form-item{
+        width:30%!important;
+        float: left;
+        clear: none!important;
+        margin-right:2%;
+    }*/
+    .layui-input-block{
+        margin-left: 140px;
+    }
+  .layui-form-item .layui-input-inline{width:260px;}
+  .skai_body{
+  	    -webkit-text-size-adjust: 100%;
+    color: #333;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    position: fixed;
+    top: 50px;
+    left: 140px;
+    bottom: 0;
+    right: 0;
+    background: #FFF;
+  }
+  .skai_body_main{
+  	    -webkit-text-size-adjust: 100%;
+    color: #333;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    overflow-y: auto;
+    padding: 15px;
+  }
+  .panel {
+  	    -webkit-text-size-adjust: 100%;
+    color: #333;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    border-color: #bce8f1;
+  }
+  	.panel-body {
+  		    -webkit-text-size-adjust: 100%;
+    color: #333;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    padding: 15px;
+  	}
+  	.layui-fluid{
+  		    -webkit-text-size-adjust: 100%;
+    color: #333;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    position: relative;
+    margin: 0 auto;
+    padding: 15px;
+  	}
+  	.layui-row{
+  		    -webkit-text-size-adjust: 100%;
+    color: #333;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    }
+    .layui-col-xs12{
+    	    -webkit-text-size-adjust: 100%;
+    color: #333;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    float: left;
+    width: 100%;
+    }
+    .layui-card{
+    	    -webkit-text-size-adjust: 100%;
+    color: #333;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    border-radius: 2px;
+    background-color: #fff;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
+    margin-bottom: 0;
+    }
+    .layui-card-body{
+    	    -webkit-text-size-adjust: 100%;
+    color: #333;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    position: relative;
+    padding: 10px 15px;
+    line-height: 24px;
+    }
+    .layui-elem-quote {
+    -webkit-text-size-adjust: 100%;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    margin-bottom: 10px;
+    padding: 15px;
+    border-left: 5px solid #ff7752;
+    border-radius: 0 2px 2px 0;
+    background-color: #f2f2f2;
+    line-height: 22px;
+    font-size: 14px;
+    color: #666;
+    }
+    .layui-form{
+    	    -webkit-text-size-adjust: 100%;
+    color: #333;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    line-height: 24px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    }
+    .layui-form-item{
+    	    -webkit-text-size-adjust: 100%;
+    color: #333;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    line-height: 24px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    margin-bottom: 15px;
+    clear: both;
+    }
+    .layui-form-label{
+    	    -webkit-text-size-adjust: 100%;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    box-sizing: border-box;
+    max-width: 100%;
+    color: #252424;
+    vertical-align: middle;
+    margin-bottom: 0;
+    position: relative;
+    float: left;
+    display: block;
+    padding: 9px 15px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: right;
+    width: 140px!important;
+    }
+    .layui-input-inline{
+    	    -webkit-text-size-adjust: 100%;
+    color: #333;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    line-height: 24px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    float: left;
+    margin-right: 10px;
+    width: 260px;
+    }
+    .layui-input{
+    	    -webkit-text-size-adjust: 100%;
+    font: inherit;
+    color: inherit;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    font-family: inherit;
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+    outline: 0;
+    -webkit-appearance: none;
+    -webkit-transition: all .3s;
+    box-sizing: border-box;
+    border-color: #e6e6e6;
+    height: 38px;
+    line-height: 1.3;
+    border-width: 1px;
+    border-style: solid;
+    background-color: #fff;
+    border-radius: 2px;
+    display: block;
+    width: 100%;
+    padding-left: 10px;
+    }
+    .layui-form-mid{
+    	    -webkit-text-size-adjust: 100%;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    position: relative;
+    color: #999!important;
+    float: left;
+    display: block;
+    padding: 9px 0!important;
+    line-height: 20px;
+    margin-right: 10px;
+    }
+    .layui-form-label{
+    	    -webkit-text-size-adjust: 100%;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    box-sizing: border-box;
+    max-width: 100%;
+    color: #252424;
+    vertical-align: middle;
+    margin-bottom: 0;
+    position: relative;
+    float: left;
+    display: block;
+    padding: 9px 15px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: right;
+    width: 140px!important;
+    }
+    .layui-input-block{
+    	    -webkit-text-size-adjust: 100%;
+    color: #333;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    line-height: 24px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    position: relative;
+    min-height: 36px;
+    margin-left: 140px;
+    }
+    .layui-unselect {
+    	    -webkit-text-size-adjust: 100%;
+    color: #333;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    box-sizing: border-box;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-user-select: none;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 28px;
+    margin: 6px 10px 0 0;
+    padding-right: 10px;
+    cursor: pointer;
+    font-size: 0;
+    }
+    .layui-anim {
+    	    -webkit-text-size-adjust: 100%;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    line-height: 28px;
+    cursor: pointer;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    font-family: layui-icon!important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    vertical-align: middle;
+    animation-duration: .3s;
+    animation-fill-mode: both;
+    margin-right: 8px;
+    font-size: 22px;
+    color: #5FB878;
+    display: inline-block;
+    }
+    .layui-unselect {
+    	    -webkit-text-size-adjust: 100%;
+    color: #333;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    box-sizing: border-box;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-user-select: none;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 28px;
+    margin: 6px 10px 0 0;
+    padding-right: 10px;
+    cursor: pointer;
+    font-size: 0;
+    }
+
+</style>
+
+<div class="layui-fluid">
+  <div class="layui-row">
+    <div class="layui-col-xs12">
+      <div class="layui-card">
+
+        <div class="layui-card-body">
+          <blockquote class="layui-elem-quote layui-text">
+             <p>1.请保证【视频库】中有视频!</p>
+             <p>2.默认视频库中视频仅使用一次，如无未发布过的视频则不会发布视频！</p>
+             <p>3.任务一旦开始，直到可发视频数量不够或视频发完才会停止任务！一旦提交,不支持修改</p>
+             <p>4.发布时机：如果满足发布环境，提交发布成功就会发布第一条视频,间隔一定时间后发送下一条！</p>
+          </blockquote>
+          <form class="layui-form" action="" method="post">
+          	 <div class="layui-form-item" style="width: 100%;">
+              <label class="layui-form-label" style="">视频来源</label>
+              <div class="layui-input-block" style="float:left;margin-left: 0px;">
+                <input type="radio" name="sucai" value="1" title="视频库" checked="" id="bendi" style="margin-top:13px">&nbsp;&nbsp;视频库&nbsp;&nbsp;
+                <input type="radio" name="sucai" value="2" id="hunjian" title="混剪库" style="margin-top:13px">&nbsp;&nbsp;混剪库 &nbsp;&nbsp;
+              </div>
+        <span style="float:left;width: 400px;height: 30px;line-height: 40px;"> 视频库共有{$list.video_count? $list.video_count : 0}个视频</span>
+            </div> 
+ 				<div class="layui-form-item"  style="padding-top: 10px;display: none;" id="liedui">
+              <div class="layui-inline" style="">
+                <label class="layui-form-label">混剪列队<span style="color:red;margin:0 5px;"></span></label>
+                <div class="layui-input-inline" style="width:260px;">
+                          <select name="liedui" id="selectliedui" class="form-control m-b">
+                            <option value="0">请选择</option>
+                                {foreach name="hun" item="vo"}
+                                <option value="{$vo.id}" style="margin-left:55px;">{$vo.yun_name}</option>
+                                 {/foreach}        
+                               
+                        </select> 
+                  </div>
+                 <div class="layui-form-mid layui-word-aux">发布该队列产出视频,如果没有列队,请先去创建列队</div>
+              </div>              
+            </div> 
+  			<div class="layui-form-item" style="width: 100%;">
+              <label class="layui-form-label" style="">重复使用</label>
+              <div class="layui-input-block" style="float:left;margin-left: 0px;">
+                <input type="radio" name="chongfu" value="2" title="允许" checked="" style="margin-top:13px">&nbsp;&nbsp;允许&nbsp;&nbsp;
+                <input type="radio" name="chongfu" value="1" title="禁止" style="margin-top:13px">&nbsp;&nbsp;禁止 &nbsp;&nbsp;
+              </div>
+              <span style="float:left;width: 400px;height: 30px;line-height: 40px;"> 对应视频库中视频是否允许重复发布？开启则支持，关闭则不发布已发布过的视频！</span>
+            </div>  
+ 
+             <div class="layui-form-item" style="margin-bottom:50px">
+              <label class="layui-form-label">发布数量</label>
+              <div class="layui-input-inline">
+                <input type="number" name="number" lay-verify="title" placeholder="发布视频数量" autocomplete="off" class="layui-input" value="">
+              </div>
+              <div class="layui-form-mid layui-word-aux">本次发布的视频数量！<span style="color:red">不填写默认1条</span></div>
+            </div>  
+              <div class="layui-form-item" style="margin-bottom:50px">
+              <label class="layui-form-label">间隔时间</label>
+              <div class="layui-input-inline">
+                <input type="number" name="jiange" lay-verify="title" placeholder="发布时间间隔,默认30分钟" autocomplete="off" class="layui-input" value="">
+              </div>
+              <div class="layui-form-mid layui-word-aux">平均两条视频发布时间间隔！不得低于30分钟。单位：分</div>
+            	</div>  
+            	 <div class="layui-form-item" style="margin-bottom:50px">
+              <!--<label class="layui-form-label">POI地址</label>-->
+             <!-- <div class="layui-input-inline">-->
+             <!--   <input type="text" name="poiadd"  placeholder="挂载地址" autocomplete="off" class="layui-input" value="">-->
+             <!--    <button class="btn btn-success"  lay-filter="demo1_hash">获取POI</button>-->
+             <!-- </div>-->
+
+             <!-- <div class="layui-form-mid layui-word-aux">请到抖音官方搜索要挂在的地址业链接复制到这里即可例如:https://v.douyin.com/</div>-->
+            	<!--</div>-->
+            	<!-- <div class="layui-form-item" style="margin-bottom:50px">-->
+             <!-- <label class="layui-form-label">挂载POI</label>-->
+             <!-- <div class="layui-input-inline">-->
+             <!--   <input type="text" name="poigz"  placeholder="点击上方获取POI填写" autocomplete="off" class="layui-input" value="">-->
+             <!-- </div>-->
+             <!-- <div class="layui-form-mid layui-word-aux">发布视频底部挂载地址显示名称</div>-->
+            	<!--</div>-->
+
+                <input type="hidden" name="uid" value="{$id}">
+ 
+            <div class="layui-form-item">
+              <div class="layui-input-block">
+                <a class="btn btn-success" lay-submit="" lay-filter="demo1_hash" id="fabu" >发布视频</a>
+                            </div>
+            </div>
+          </form>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+  </div>
+</div>
+
+   </div>
+</div>
+<script type="text/javascript">
+	$("#hunjian").click(function(){
+		$("#liedui").css('display','block');
+	})
+    $("#bendi").click(function(){
+        $("#liedui").css('display','none');
+    })
+
+    $("#fabu").click(function(){
+        //获取视频来源 选中的值 1本地 2混剪库
+        sucai =  $("input[name='sucai']:checked").val();
+        //重复使用 是否  1禁止 2允许
+        chongfu = $("input[name='chongfu']:checked").val();
+        //发布数量 
+        number = $("input[name='number']").val();
+        //时间间隔
+        jiange = $("input[name='jiange']").val();
+        //POI地址 
+        poiadd  = $("input[name='poiadd']").val();
+        //挂载POI
+         poigz  = $("input[name='poigz']").val();
+         //uid 
+         uid = $("input[name='uid']").val();
+         //列队 
+         liedui = $('#selectliedui option:selected').val();
+           
+          $.post('{:url("fabu_post")}',
+                {sucai:sucai,chongfu:chongfu,number:number,jiange:jiange,poiadd:poiadd,poigz:poigz,uid:uid,liedui:liedui},
+             function(data){   
+                if(data.code==1){
+                    //发布成功
+                    layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+                    //插入数据库成功 执行发布任务
+                    $.post('{:url("ksfb_uinfo")}',{uid:uid,id:data.id},function(data){
+                        console.log(data)
+                       })
+                    return false;
+                }else{
+                    //发布失败
+                    layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+                    return false;
+                    }         
+        
+            });
+    })
+</script>

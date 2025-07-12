@@ -1,0 +1,33 @@
+---------------------------------------------------------------
+[ 2024-08-03T18:31:46+08:00 ] 36.35.78.131 GET cg.2sb.top/ht.php/wz.conent?ref=addtabs
+[ error ] [1045]SQLSTATE[HY000] [1045] Access denied for user 'chigua_cc'@'localhost' (using password: YES)
+---------------------------------------------------------------
+[ 2024-08-03T18:31:49+08:00 ] 36.35.78.131 GET cg.2sb.top/ht.php
+[ error ] [1045]SQLSTATE[HY000] [1045] Access denied for user 'chigua_cc'@'localhost' (using password: YES)
+---------------------------------------------------------------
+[ 2024-08-03T18:31:54+08:00 ] 36.35.78.131 GET cg.2sb.top/ht.php
+[ error ] [1045]SQLSTATE[HY000] [1045] Access denied for user 'chigua_cc'@'localhost' (using password: YES)
+---------------------------------------------------------------
+[ 2024-08-03T18:31:57+08:00 ] 36.35.78.131 GET cg.2sb.top/ht.php
+[ error ] [1045]SQLSTATE[HY000] [1045] Access denied for user 'chigua_cc'@'localhost' (using password: YES)
+---------------------------------------------------------------
+[ 2024-08-03T18:32:16+08:00 ] 36.35.78.131 GET cg.2sb.top/ht.php
+[ error ] [1045]SQLSTATE[HY000] [1045] Access denied for user 'chigua_cc'@'localhost' (using password: YES)
+---------------------------------------------------------------
+[ 2024-08-03T18:32:16+08:00 ] 36.35.78.131 GET cg.2sb.top/ht.php
+[ error ] [1045]SQLSTATE[HY000] [1045] Access denied for user 'chigua_cc'@'localhost' (using password: YES)
+---------------------------------------------------------------
+[ 2024-08-03T18:32:17+08:00 ] 36.35.78.131 GET cg.2sb.top/ht.php
+[ error ] [1045]SQLSTATE[HY000] [1045] Access denied for user 'chigua_cc'@'localhost' (using password: YES)
+---------------------------------------------------------------
+[ 2024-08-03T18:32:17+08:00 ] 36.35.78.131 GET cg.2sb.top/ht.php
+[ error ] [1045]SQLSTATE[HY000] [1045] Access denied for user 'chigua_cc'@'localhost' (using password: YES)
+---------------------------------------------------------------
+[ 2024-08-03T18:32:48+08:00 ] 36.35.78.131 GET cg.2sb.top/ht.php
+[ error ] [1045]SQLSTATE[HY000] [1045] Access denied for user 'chigua_cc'@'localhost' (using password: YES)
+---------------------------------------------------------------
+[ 2024-08-03T18:32:49+08:00 ] 36.35.78.131 GET cg.2sb.top/ht.php
+[ error ] [1045]SQLSTATE[HY000] [1045] Access denied for user 'chigua_cc'@'localhost' (using password: YES)
+---------------------------------------------------------------
+[ 2024-08-03T18:32:50+08:00 ] 36.35.78.131 GET cg.2sb.top/ht.php
+[ error ] [1045]SQLSTATE[HY000] [1045] Access denied for user 'chigua_cc'@'localhost' (using password: YES)

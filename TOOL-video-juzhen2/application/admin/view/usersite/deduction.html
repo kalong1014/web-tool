@@ -1,0 +1,117 @@
+{include file="public/header" /}
+<style type="text/css" media="all">
+    .form-group{
+        width: 100%;
+        height: 30px;
+        margin-top:20px;
+      
+    }
+    .btn-primary{
+        margin-left:0;
+        width: 300px;
+    }
+        .control-label{
+            width: 150px;
+            height: 35px;
+            line-height: 35px;
+            font-weight: normal;
+            text-align: right;
+            margin-right: 10px;
+        }
+</style>
+<body class="gray-bg">
+<link rel="stylesheet" href="/static/admin/layui/css/layui.css" media="all">
+<div class="wrapper layui-card-body wrapper-content">
+    <div class="admin-con">
+        <div class="block-box">
+            <div class="col-12">
+                <div class="block">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">主词+头词扣费:</label>
+                            <div class="input-group col-sm-4">
+                                <input  type="number" class="form-control" name="subject" value="{$list.subject?$list.subject:'0'}" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">头词+尾词扣费 :</label>
+                            <div class="input-group col-sm-4">
+                                <input  type="number" class="form-control" name="headword" value="{$list.headword?$list.headword:'0'}" >
+                            </div>
+                        </div> 
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">主词+头词+尾词扣费 :</label>
+                            <div class="input-group col-sm-4">
+                                <input  type="number" class="form-control" name="coda" value="{$list.coda?$list.coda:'0'}" >
+                            </div>
+                        </div> 
+                         <div class="form-group">
+                            <label class="col-sm-2 control-label">头词扣费 :</label>
+                            <div class="input-group col-sm-4">
+                                <input  type="number" class="form-control" name="initial" value="{$list.initial?$list.initial:'0'}" >
+                            </div>
+                        </div> 
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">混剪扣费 :</label>
+                            <div class="input-group col-sm-4">
+                                <input  type="number" class="form-control" name="shear" value="{$list.shear?$list.shear:'0'}" >
+                            </div>
+                        </div> 
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">优惠券扣费 :</label>
+                            <div class="input-group col-sm-4">
+                                <input id="title" type="number" class="form-control" name="discount" value="{$list.discount?$list.discount:'0'}" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">去水印扣费 :</label>
+                            <div class="input-group col-sm-4">
+                                <input  type="number" class="form-control" name="watermark" value="{$list.watermark?$list.watermark:'0'}" >
+                            </div>
+                        </div> 
+                        <button  class="btn btn-primary m-t-md submit">保存</button> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{include file="public/footer" /}
+<script type="text/javascript" charset="utf-8">
+    $(".submit").click(function(){
+        //layer.load(3)
+        var subject     =   $("input[name='subject']").val();
+        var headword    =   $("input[name='headword']").val();
+        var coda        =   $("input[name='coda']").val();
+        var shear       =   $("input[name='shear']").val();
+        var discount    =   $("input[name='discount']").val();
+        var watermark   =   $("input[name='watermark']").val();
+        var initial   =   $("input[name='initial']").val();
+        $.ajax({
+        type: "POST",
+        url: "deduction_add",
+        data: {
+            subject:subject,headword:headword,coda:coda,shear:shear,discount:discount,watermark:watermark,initial:initial
+        },
+        success: function(data){
+            console.log(data)
+            layer.closeAll('loading');
+            if(data.code == 1){
+                layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+                // setInterval(function(){
+                //         //window.location.href="/admin/huoke/stock_keyword";
+                //     },1000)
+                return false;
+            }else{
+                  layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+            }
+        },
+        error:function() {
+            layer.closeAll('loading');
+            layer.alert('添加错误')
+    
+        }
+    });
+    })
+</script>
+
+</html>

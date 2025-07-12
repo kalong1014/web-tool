@@ -1,0 +1,164 @@
+<view class="panel">
+    <view class="content">
+        <view class="func-title">AI文字（普通版）</view>
+        <view class="table">
+            <view class="tr">
+                <view class="label">
+                    <text>单价</text>
+                </view>
+                <view class="value">
+                    <view wx:if="{{priceSetting.text35>0}}">
+                        <text class="weight">{{priceSetting.text35}}</text>
+                        <text> {{priceSetting.title}}/次</text>
+                    </view>
+                    <text wx:else>免费</text>
+                </view>
+            </view>
+            <view class="tr">
+                <view class="label">会员价</view>
+                <view class="value">
+                    <text wx:if="{{priceSetting.text35_vip!=0}}">会员免费</text>
+                    <view wx:elif="{{priceSetting.text35>0}}">
+                        <text class="weight">{{priceSetting.text35}}</text>
+                        <text> {{priceSetting.title}}/次</text>
+                    </view>
+                    <text wx:else>免费</text>
+                </view>
+            </view>
+            <view class="tr" style="height: 172rpx;">
+                <view class="label">说明</view>
+                <view class="value">
+                    <view>包含所有<text class="weight" style="margin: 0 4rpx;">普通版 AI</text>文本类创作：AI对话、创作、模拟、擂台、批量生成、长篇写作、思维导图、AI小工具（如写大纲、写歌词）等</view>
+                </view>
+            </view>
+        </view>
+        <view class="func-title">AI文字（高级版）</view>
+        <view class="table">
+            <view class="tr">
+                <view class="label">
+                    <text>单价</text>
+                </view>
+                <view class="value">
+                    <view wx:if="{{priceSetting.text40>0}}">
+                        <text class="weight">{{priceSetting.text40}}</text>
+                        <text> {{priceSetting.title}}/次</text>
+                    </view>
+                    <text wx:else>免费</text>
+                </view>
+            </view>
+            <view class="tr">
+                <view class="label">会员价</view>
+                <view class="value">
+                    <text wx:if="{{priceSetting.text40_vip!=0}}">会员免费</text>
+                    <view wx:elif="{{priceSetting.text40>0}}">
+                        <text class="weight">{{priceSetting.text40}}</text>
+                        <text> {{priceSetting.title}}/次</text>
+                    </view>
+                    <text wx:else>免费</text>
+                </view>
+            </view>
+            <view class="tr" style="height: 172rpx;">
+                <view class="label">说明</view>
+                <view class="value">
+                    <view>包含所有<text class="weight" style="margin: 0 4rpx;">高级版AI</text>文本类创作：AI对话、创作、模拟、擂台、批量生成、长篇写作、思维导图、AI小工具（如写大纲、写歌词）等</view>
+                </view>
+            </view>
+        </view>
+        <view wx:if="{{drawIsOpen}}">
+            <view class="func-title">AI绘画</view>
+            <view class="table">
+                <view class="tr">
+                    <view class="label">
+                        <text>单价</text>
+                    </view>
+                    <view class="value">
+                        <view wx:if="{{priceSetting.draw>0}}">
+                            <text class="weight">{{priceSetting.draw}}</text>
+                            <text> {{priceSetting.title}}/次</text>
+                        </view>
+                        <text wx:else>免费</text>
+                    </view>
+                </view>
+                <view class="tr">
+                    <view class="label">会员价</view>
+                    <view class="value">
+                        <text wx:if="{{priceSetting.draw_vip!=0}}">会员免费</text>
+                        <view wx:elif="{{priceSetting.draw>0}}">
+                            <text class="weight">{{priceSetting.draw}}</text>
+                            <text> {{priceSetting.title}}/次</text>
+                        </view>
+                        <text wx:else>免费</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view wx:if="{{videoIsOpen}}">
+            <view class="func-title">AI视频</view>
+            <view class="table">
+                <view class="tr">
+                    <view class="label">
+                        <text>单价</text>
+                    </view>
+                    <view class="value">
+                        <view wx:if="{{priceSetting.video>0}}">
+                            <text class="weight">{{priceSetting.video}}</text>
+                            <text> {{priceSetting.title}}/次</text>
+                        </view>
+                        <text wx:else>免费</text>
+                    </view>
+                </view>
+                <view class="tr">
+                    <view class="label">会员价</view>
+                    <view class="value">
+                        <text wx:if="{{priceSetting.video_vip!=0}}">会员免费</text>
+                        <view wx:elif="{{priceSetting.video>0}}">
+                            <text class="weight">{{priceSetting.video}}</text>
+                            <text> {{priceSetting.title}}/次</text>
+                        </view>
+                        <text wx:else>免费</text>
+                    </view>
+                </view>
+                <view class="tr">
+                    <view class="label">说明</view>
+                    <view class="value">
+                        <view>当前仅PC版支持AI视频</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view wx:if="{{musicIsOpen}}">
+            <view class="func-title">AI音乐</view>
+            <view class="table">
+                <view class="tr">
+                    <view class="label">
+                        <text>单价</text>
+                    </view>
+                    <view class="value">
+                        <view wx:if="{{priceSetting.music>0}}">
+                            <text class="weight">{{priceSetting.music}}</text>
+                            <text> {{priceSetting.title}}/次</text>
+                        </view>
+                        <text wx:else>免费</text>
+                    </view>
+                </view>
+                <view class="tr">
+                    <view class="label">会员价</view>
+                    <view class="value">
+                        <text wx:if="{{priceSetting.music_vip!=0}}">会员免费</text>
+                        <view wx:elif="{{priceSetting.music>0}}">
+                            <text class="weight">{{priceSetting.music}}</text>
+                            <text> {{priceSetting.title}}/次</text>
+                        </view>
+                        <text wx:else>免费</text>
+                    </view>
+                </view>
+                <view class="tr">
+                    <view class="label">说明</view>
+                    <view class="value">
+                        <view>当前仅PC版支持AI音乐</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

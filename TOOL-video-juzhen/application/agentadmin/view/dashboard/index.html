@@ -1,0 +1,210 @@
+<script type="text/javascript" src="/storeadmin2/echarts/dist/echarts.min.js"></script>
+<script type="text/javascript" src="/storeadmin2/js/china.js"></script>
+<style type="text/css">
+  
+
+    body{overflow-x:hidden;font-family:Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,"\5FAE\8F6F\96C5\9ED1",Arial,sans-serif}
+    @font-face {
+        font-family:LcdD;src:url(/storeadmin2/font/LcdD.773ee676.ttf);font-weight:700;font-style:normal
+    }
+    .main{float:left;width:48%;height:400px;margin-right:1%;background: #fff;margin-top: 20px;border-radius: 10px;}
+    .main_content{background:#f5f5f5;display:inline-block;background-size:contain;padding:0px 20px 20px 20px;width:100%}
+    .main_top{background:url(/storeadmin2/img/top_03.png) no-repeat;color:#fff;text-align:center;background-size:100%;height:40px;margin-bottom:30px}
+    .main_top h1{background-image:-webkit-linear-gradient(bottom,#565656530,#d4d5dc,#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-family:"微软雅黑";letter-spacing:5px;font-weight:700;font-size:28px;line-height:30px;height:40px}
+    .igs-flex.igs-flex11{-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}
+    /*.current{text-align:center;width:97%;height:170px;color:#97a8f7;background:url(/storeadmin2/img/top_01.png) no-repeat;background-size:100% 100%;padding:15px 10px 45px 10px;position:relative;display:inline-block;}*/
+    .current{text-align:center;width:97%;height:170px;color:#565656;background:#fff;background-size:100% 100%;padding:15px 10px 45px 10px;position:relative;display:inline-block;margin-top: 20px;border-radius: 10px;padding-top: 20px;}
+    .current .current_cont{padding-top:10px;height:100%}
+    .igs-flex.igs-flex4{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-justify-content:space-between;-webkit-box-align:center;-ms-flex-align:center;align-items:center}
+    .current .current_cont .cont{height:100%;width:14.28%;background:#fff;float:left}
+    .current .current_cont .cont p{text-align:left;font-size:16px;font-family:Source Han Sans CN;font-weight:700;color:#565656;line-height:40px;padding-left: 15px;}
+    .flex-start{-webkit-box-pack:start!important;-ms-flex-pack:start!important;justify-content:flex-start!important}
+    .wrapers{display:-webkit-box;height:auto;line-height:40px;border:none!important;padding:0;margin:0;background:0 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .white-color{color:#fff}
+    .box-item{width:auto;height:40px;list-style:none;font-size:30px;font-family:LcdD;font-weight:700;margin:0 0 0 -25px;color:#636363}
+    .unit-span{margin-left:5px;}
+    .current_title{position: relative;z-index: 2;top: -10px;text-align: center;font-weight: bold;font-size: 26px;letter-spacing: 3px;}
+    .xunpang_comment_content{text-align: center;display: block;margin:0 auto;font-size: 20px;font-weight: bold;letter-spacing: 3px;color: #565656;margin-top: 20px;}
+    #main_4{color: #97a8f2;}
+    #main_1,#main_2{padding-top: 20px}
+    .table-header{list-style: none;border-bottom: 1px solid #f3f3f3;height: 40px;line-height: 40px;padding: 0px 10px;}
+    .table-header li{display: inline-block;text-align: center;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;color: #565656;}
+    .xunpang_index{width: 30%}
+    .xunpang_comment{width: 30%}
+    .xunpang_nickname{width: 18%}
+    .xunpang_time{width: 17%}
+    .table-top li{font-size: 14px;color: #888;}
+     .content {min-height: 250px;padding: 0px;margin-right: auto;margin-left: auto;padding-left: 0px;padding-right: 0px;}
+     
+</style>
+    <div class="main_content">
+        <!-- <div class="main_top">
+            <h1>{$site.name|mb_substr=0,8,'utf-8'|mb_strtoupper='utf-8'|htmlentities}</h1>
+        </div> -->
+        <div  class="current">
+            <div class="current_title">代理 - 数据统计</div>
+            <div class="current_cont igs-flex igs-flex4">
+                <div class="cont">
+                    <p>直属商户数</p>
+                    <div class="wrapers flex-start">
+                        <ul class="box-item white-color">
+                            {$store_count}
+                        </ul>
+                        <div class="unit-span"></div>
+                    </div>
+                </div>
+                <div class="cont">
+                    <p>直属代理</p>
+                    <div class="wrapers flex-start">
+                        <ul class="box-item white-color">
+                            {$agent_count}
+                        </ul>
+                        <div class="unit-span">人</div>
+                    </div>
+                </div>               
+                
+                <div class="cont">
+                    <p>剩余点数</p>
+                    <div class="wrapers flex-start">
+                        <ul class="box-item white-color">
+                            {$agent['dianshu']}
+                        </ul>
+                        <div class="unit-span"></div>
+                    </div>
+                </div>
+                <div class="cont">
+                    <p>共享ip剩余</p>
+                    <div class="wrapers flex-start">
+                        <ul class="box-item white-color">
+                            {$agent['ip_count']}
+                        </ul>
+                        <div class="unit-span"></div>
+                    </div>
+                </div>
+                <div class="cont">
+                    <p>商家总充值</p>
+                    <div class="wrapers flex-start">
+                        <ul class="box-item white-color">
+                            {$all_price}
+                        </ul>
+                        <div class="unit-span"></div>
+                    </div>
+                </div>
+                <div class="cont">
+                    <p>商家今日充值</p>
+                    <div class="wrapers flex-start">
+                        <ul class="box-item white-color">
+                            {$today_price}
+                        </ul>
+                        <div class="unit-span"></div>
+                    </div>
+                </div>
+                <div class="cont">
+                    <p>下级代理商家充值</p>
+                    <div class="wrapers flex-start">
+                        <ul class="box-item white-color">
+                            {$agent_all_price}
+                        </ul>
+                        <div class="unit-span">元</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="main_1" class="main"></div>
+        <div id="main_2" class="main"></div>
+     
+    </div>
+<script type="text/javascript">
+
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main_1'));
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: '商户代理统计',
+                textStyle:{
+                    color:'#565656'
+                },
+                left: 'center',
+            },
+            tooltip: {},
+            legend: {
+                show:false
+            },
+            xAxis: {
+                data: [{$index_task_date}],
+                axisLabel:{
+                    textStyle:{
+                        color:'#565656'
+                    },
+                }
+
+            },
+            yAxis: {
+                axisLabel:{
+                    textStyle:{
+                        color:'#565656'
+                    },
+                }
+            },
+            series: [{
+                name: '获客量',
+                type: 'bar',
+                data: [{$index_task_count}],
+
+            }],
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+
+        var myChart = echarts.init(document.getElementById('main_2'));
+        option = {
+            title: {
+                text: '历史监控统计',
+                subtext: '',
+                left: 'center',
+                textStyle:{
+                    color:'#565656'
+                },
+            },
+            tooltip: {
+                trigger: 'item'
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                show:false
+            },
+            series: [
+                {
+                    name: '访问来源',
+                    type: 'pie',
+                    radius: '50%',
+                    data: [
+                        {value: {$store_count}, name: '直属商户数'},
+                        {value: {$agent_count}, name: '直属代理数'},
+                        {value: {$agent_store_count}, name: '下级代理商户数'},
+                    ],
+                    label: {  
+                        normal: {  
+                            show: true , //省份名称 
+                            textStyle: {
+                              color: "#565656",
+                              fontSize: 14,
+                            },
+                        },  
+                        emphasis: {  
+                            show: false  
+                        } , 
+                    }, 
+                }
+            ]
+        };
+        myChart.setOption(option);
+
+
+        function randomData() {  
+             return Math.round(Math.random()*500);  
+        } 
+
+    </script>

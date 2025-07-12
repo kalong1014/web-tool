@@ -1,0 +1,212 @@
+{include file="public/header" /}
+<style>
+    .top_key{
+        width: 100%;
+        height: 60px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+
+    .top_key1{
+        width: 20%;
+        float: left;
+    }
+    
+    .top_key1 > a >button{
+        background: #23c6c8;
+        color: #fff;
+    } 
+    .top_key1 > a >button:hover{
+        background: #23c6c8;
+        color: #fff;
+    } 
+    .top_keycon{
+        width: 300px;
+        height: 60px;
+        float: left;
+        margin-left: 15px;
+    }
+    .top_keyright{
+        float: right;
+    }
+    .top_keyright > a{
+        width: 50px;
+       
+       height: 60px;
+       margin-left: 5px;
+       margin-right: 5px;
+    }
+    .pldr{
+        background: #23c6c8;
+        color: #fff;
+        width: 100px;
+        height: 35px;
+    }
+        .pldr:hover{
+        background: #23c6c8;
+        color: #fff;
+    } 
+    .xamb{
+        background: #1ab394;
+        color: #fff;
+        width: 100px;
+        height: 35px;
+        margin-left: 20px;
+    }
+    .xamb:hover{
+        background: #1ab394;
+        color: #fff;
+    }
+
+</style>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- jieshu -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>关键词指数价格</h5>
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始-->           
+         
+               
+                <div  class="col-sm-2 top_key" >
+                    <div class="input-group top_key1"  >  
+                        <a href="{:url('key_add')}"><button class="btn btn-outline " type="button"><i class=" fa fa-check"></i> 新增关键词指数</button></a>  
+                    </div>
+                    <div class="top_keycon">
+                        <button class="btn btn-xs pldr " href="javascript:;" id="export"><i class="fa fa-edit"></i>批量导入</button>
+                        <button class="btn btn-xs xamb" href="javascript:;" id="export"><i class="fa fa-download"></i>下载模板</button>
+
+                    </div>
+                     <div class="input-group top_keyright"  >  
+                        <a href="{:url('')}"><button class="btn btn-outline btn-primary" type="button">百度</button></a> 
+                        <a href="{:url('')}"><button class="btn btn-outline btn-primary" type="button">百度移动</button></a> 
+                        <a href="{:url('')}"><button class="btn btn-outline btn-primary" type="button">360</button></a> 
+                        <a href="{:url('')}"><button class="btn btn-outline btn-primary" type="button">360移动</button></a> 
+                        <a href="{:url('')}"><button class="btn btn-outline btn-primary" type="button">搜狗</button></a> 
+                        <a href="{:url('')}"><button class="btn btn-outline btn-primary" type="button">搜狗移动</button></a> 
+                        <a href="{:url('')}"><button class="btn btn-outline btn-primary" type="button">神马</button></a> 
+ 
+                    </div>
+                    
+                     
+                </div>   
+
+             
+         
+           
+            <!--搜索框结束-->
+           
+ 
+
+
+  
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th>ID</th>
+                                <th>第一页价格</th>
+                                <th>指数范围</th>
+                                <th>搜索引擎</th>
+                                <th>第一页成本价格</th>
+                              
+                                <th>操作</th>
+                            </tr>
+                            
+                        </thead>
+                         <tr class="" style="text-align:center">
+                                 <td>12</td>
+                                <td>8</td>
+                                <td>>3</td>
+                                <td>百度PC</td>
+                                <td>5</td>
+                              
+                                <td> <a href="{:url('edit_key')}"  class="btn btn-primary btn-xs">
+                                                <i class="fa fa-paste"></i> 编辑</a>&nbsp;&nbsp;
+                                            <a href="javascript:;"  class="btn btn-danger btn-xs">
+                                                <i class="fa fa-trash-o"></i> 删除</a> </td>
+                            </tr>
+                          
+                        <tbody id="article_list"></tbody>
+                    </table>
+                    <div id="AjaxPage" style=" text-align: right;"></div>
+                    <div id="allpage" style=" text-align: right;"></div>
+                </div>
+              
+                 <!-- <a href="#"><span class="label label-info">10</span></a>-->
+                 <!-- <a href="#"> <span class="label label-info">20</span></a>-->
+                 <!--<a href="#">  <span class="label label-info">50</span></a>-->
+                 <!--<a href="#">  <span class="label label-info">100</span></a>-->
+            </div>
+           <!-- kaishi -->
+        </div>
+    </div>
+</div>
+<!-- kaishi -->
+
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+   
+
+function article_list(list){
+
+    var tpl = document.getElementById('arlist').innerHTML;
+    laytpl(tpl).render(list, function(html){
+        document.getElementById('article_list').innerHTML = html;
+    });
+}
+
+
+function userEdit(id){
+
+    location.href = './userEdit/id/'+id+'.html';
+}
+
+
+function userDel(id){
+    layer.confirm('确认删除此管理员?', {icon: 3, title:'提示'}, function(index){
+        //do something
+        $.getJSON('./userDel', {'id' : id}, function(res){
+            if(res.code == 1){
+                layer.msg(res.msg,{icon:1,time:1500});
+                Ajaxpage(1,5)
+            }else{
+                layer.msg(res.msg,{icon:0,time:1500});
+            }
+        });
+
+        layer.close(index);
+    })
+
+}
+
+function user_state(val){
+    $.post('{:url("user_state")}',
+    {id:val},
+    function(data){
+         
+        if(data.code==1){
+            var a='<span class="label label-danger">禁用</span>'
+            $('#zt'+val).html(a);
+            layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+            return false;
+        }else{
+            var b='<span class="label label-info">开启</span>'
+            $('#zt'+val).html(b);
+            layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+            return false;
+        }         
+        
+    });
+    return false;
+}
+
+
+</script>
+</body>
+</html>

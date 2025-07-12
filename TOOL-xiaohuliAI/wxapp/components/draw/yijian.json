@@ -1,0 +1,8 @@
+{
+    "component": true,
+    "usingComponents": {
+        "prompt": "/components/draw/prompt",
+        "foxUpload": "/components/foxUpload/foxUpload",
+        "navbar": "/components/navbar/navbar"
+    }
+}

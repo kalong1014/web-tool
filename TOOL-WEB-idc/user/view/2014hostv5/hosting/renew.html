@@ -1,0 +1,86 @@
+{{dispatch c='public'  a='head'}}
+            <main id="main-container">
+                <!-- Page Header -->
+                <div class="content bg-gray-lighter">
+                    <div class="row items-push">
+                        <div class="col-sm-8">
+                            <h1 class="page-heading">
+                                产品续费&nbsp; <small>续费当前虚拟主机产品</small>
+                            </h1>
+                        </div>
+                        <div class="col-sm-4 text-right hidden-xs">
+                            <ol class="breadcrumb push-10-t">
+                                <li><a class="link-effect" href="?c=user&a=index">账户首页</a></li>
+								<li>产品续费</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <div class="content content-boxed">
+				
+                            <div class="block">
+                                <div class="block-header">
+                                    <ul class="block-options">
+                                        <li>
+                                            <button type="button" data-toggle="block-option" data-action="fullscreen_toggle"></button>
+                                        </li>
+                                        <li>
+                                            <button type="button" data-toggle="block-option" data-action="content_toggle"></button>
+                                        </li>                                    </ul>
+                                    </ul>
+                                    <h3 class="block-title"> 续费主机</h3>
+                                </div>
+                                <div class="block-content bg-gray-lighter">
+                                    <!-- Slick slider (.js-slider class is initialized in App() -> uiHelperSlick()) -->
+                                    <!-- For more info and examples you can check out http://kenwheeler.github.io/slick/ -->
+                                    <div style="height:10px;"></div>
+									<div class="row items-push">
+                                        <div class="col-xs-12 text-left">
+                                            <div class="text-muted">
+											<span style="font-size:14px; color:#666666;">* 续费前请确认账户余额足够升级费用，如需充值请 <a href="?c=money&a=addFrom" style="color:#0066FF;"><b>点击这里</b></a></span>
+											</div>
+                                        </div>
+                                    </div>
+									<div style="height:10px;"></div>
+                                    <!-- END Slick slider -->
+                                </div>
+                                <div class="block-content">
+								<div style="height:30px;"></div>
+                                    <form class="form-horizontal" name='vhostform' action="?c=hosting&a=renew&product_id={{$product.id}}&product_type=n&name={{$name}}" method="post">
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-3 control-label">主机FTP用户名：</label>
+									<label for="inputEmail3" class="col-sm-5 control-label">
+									<div style="font-size:16px; color:#FF0000;" class="text-left">
+									{{$name}}
+									</div>
+									</label>
+								</div>
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-3 control-label">所属产品套餐：</label>
+									<label for="inputEmail3" class="col-sm-5 control-label">
+									<div style="font-size:16px; color:#FF0000;" class="text-left">
+									{{$product.name}}
+									</div>
+									</label>
+								</div>
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-3 control-label">价格：</label>
+									<label for="inputEmail3" class="col-sm-5 control-label">
+									<div style="font-size:16px; color:#FF0000;" class="text-left">
+									{{$product.price}}元
+									</div>
+									</label>
+								</div>
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-3 control-label"></label>
+									<div class="col-sm-5">
+                                                <button class="btn btn-success"  data-toggle="block-option" data-action="refresh_toggle" data-action-mode="demo" type="submit"><i class="fa fa-cny push-5-r"></i> 续费主机</button> &nbsp; <a class="btn btn-default" href="?c=hosting&a=pageHost"><i class="fa fa-chevron-left push-5-r"></i> 返 回</a>
+									</div>
+										</div>
+                                    </form><div style="height:30px;"></div>
+		
+                                </div>
+                            </div>
+
+				</div>
+</main>

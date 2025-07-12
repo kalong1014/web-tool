@@ -1,0 +1,83 @@
+<style type="text/css"> 
+    .table {table-layout:fixed;} 
+    .table td{text-overflow:ellipsis; overflow:hidden; white-space:nowrap; }
+
+    .qrcode-popul,.qrcode-popul-heji,.qrcode-popul-poi,.qrcode-popul_login{position: fixed;top: 0;left: 0;width: 100%;height: 100%;background: rgba(0,0,0,.6);z-index: 9999;}
+    .qrcode-populBox,.qrcode-populBox-poi{width: 400px;border: 2px solid #fff;margin: 20% auto 0;background: #fff;position: relative;height: 300px;}
+    .qrcode-populBox h6,.qrcode-populBox-poi h6{    text-align: center;height: 50px;width: 95%;margin: 0 auto;line-height: 50px;font-size: 18px;color: #007cc3;border-bottom: 1px solid #e8e8e8;}
+    .qrcode-populText{padding: 30px 20px;line-height: 23px;font-size: 14px;}
+    .closeQrcode,.closeQrcode-heji,.closeQrcode-poi,.closeQrcode_login{    position: absolute;top: 5px;right: 5px;font-size: 30px;color: #c3c3c3;font-weight: 700;cursor: pointer;}
+    .qrcode-img{    display: block;width: 260px;height: 260px;margin: 0 auto;padding: 30px 0;}
+    .erweima-main p{text-align: center;font-size: 16px;padding: 3px;}
+    #doctor_name{color: #007cc3;font-size: 18px;font-weight: 600;}
+    .erweima-main input,.erweima-main select {display:block;width: 80%;margin-left: 10%;margin-top: 30px;border-radius: 5px;line-height: 40px;height: 40px;border: 1px solid #ccc;padding-left: 10px;color: #333;}
+    .erweima-main button {display:block;width: 40%;margin-left: 30%;margin-top: 30px;border-radius: 5px;line-height: 40px;height: 40px;border: 0px;padding-left: 10px;color: #fff;background-color: #29a1e6;}
+</style>
+<div class="panel panel-default panel-intro">
+    {:build_heading()}
+
+    <div class="panel-body">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="one">
+                <div class="widget-body no-padding">
+                    <div id="toolbar" class="toolbar">
+                        <a href="javascript:;" class="btn btn-primary btn-refresh" title="{:__('Refresh')}" ><i class="fa fa-refresh"></i> </a>
+                        <a href="javascript:;" class="btn btn-success btn-add " title="{:__('Add')}" ><i class="fa fa-plus"></i> {:__('Add')}</a>
+
+                        <a href="javascript:;" class="btn btn-danger btn-del btn-disabled disabled " title="{:__('Delete')}" ><i class="fa fa-trash"></i> {:__('Delete')}</a>
+
+                        
+                    </div>
+                    <table id="table" class="table table-striped table-bordered table-hover table-nowrap" 
+                           width="100%" >
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- 配置poi -->
+<div class="qrcode-popul-poi" style="display: none;">
+    <div class="qrcode-populBox-poi">
+        <h6 class="qrcode-title-qrcode">绑定POI地址</h6>
+        <div class="erweima-main">
+            <input type="text" style="width: 80%;display: inline-block;" name="" class="poi_url" placeholder="请输入poi地址，如：https://v.douyin.com/xxxx/">
+            <input type="text" style="width: 80%;display: inline-block;" name="" class="poi_name" placeholder="请输入poi名称，如：xx门店">
+            <button class="poi_btn">绑定POI</button>
+        </div>
+        <span class="closeQrcode-poi">×</span>
+    </div>
+    <input type="hidden" name="" class="poi_input">
+</div>
+
+<script type="text/javascript" src='/storeadmin2/libs/jquery/dist/jquery.min.js?v=162913148'></script>
+<script type="text/javascript" src="/storeadmin2/js/jquery.qrcode.min.js"></script>
+
+<script type="text/javascript">
+    // poi地址
+    function poi(id,poi_url,poi_name)
+    {
+        $('.qrcode-popul-poi').show();
+        $('.poi_input').val(id);
+        $('.poi_url').val(poi_url);
+        $('.poi_name').val(poi_name);
+    }
+
+    $('.poi_btn').click(function(){
+        var loading = layer.load(0, {shade: false,time: 30*1000});
+        $('.qrcode-popul-poi').show();
+        $('.refresh-qrcode-xhs').hide();
+        $('.refresh-qrcode-shipinhao').hide();
+        $('.refresh-qrcode').hide();
+        $.post('tuiguang_user_group/bind_poi',{id:$('.poi_input').val(),poi_url:$('.poi_url').val(),poi_name:$('.poi_name').val()},function(data){
+            layer.close(loading);
+            alert(data.msg);
+            if(data.code == 1){
+                $('.qrcode-popul-poi').hide();
+                window.location.reload();
+            }
+        },'json');
+    });
+</script>

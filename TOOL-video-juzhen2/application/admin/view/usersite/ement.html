@@ -1,0 +1,164 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- jieshu -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>公告列表</h5>
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始-->           
+            <div class="row">
+                <div class="col-sm-12">   
+                <div  class="col-sm-2" style="width: 100px">
+                    <div class="input-group" >  
+                        <a href="{:url('notice_add')}"><button class="btn btn-outline btn-primary" type="button">添加公告</button></a> 
+                    </div>
+                </div>                                            
+                                          
+                </div>
+            </div>
+            <!--搜索框结束-->
+            <div class="hr-line-dashed"></div>
+
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th>ID</th>
+                                <th>会员组</th>
+                                <th>标题</th>
+                                <th>状态</th>
+                                <th>添加时间</th>
+                                <th>操作</th>
+                               
+                            </tr>
+                        </thead>
+                         <tr class="long-tr" style="text-align:center">
+                             <td>23</td>
+                             <td>平台</td>
+                             <td>短视频获客中</td>
+                             <td> <a class="red" href="javascript:;" onclick="user_state({{d[i].id}});">
+                                                <div id="zt{{d[i].id}}"><span class="label label-info">是</span></div>
+                                            </a></td></td>
+                             <td>2019-08-15 16:13:39</td>
+                                <td>
+                                   <a href="notice_edit"  class="btn btn-primary btn-xs">
+                                            <i class="fa fa-paste"></i> 编辑</a>&nbsp;&nbsp;
+                                        <a href="javascript:;" onclick="userDel({{d[i].id}})" class="btn btn-danger btn-xs">
+                                            <i class="fa fa-trash-o"></i> 删除</a>
+                                   
+                               </td>
+                              
+                            </tr>
+                     
+                        <tbody id="article_list"></tbody>
+                    </table>
+                    <div id="AjaxPage" style=" text-align: right;"></div>
+                    <div id="allpage" style=" text-align: right;"></div>
+                </div>
+            </div>
+           <!-- kaishi -->
+        </div>
+    </div>
+</div>
+<!-- kaishi -->
+</div>
+
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+   
+   
+    function Ajaxpage(curr){
+        var key=$('#key').val();
+        $.getJSON('{:url("User/index")}', {
+            page: curr || 1,key:key
+        }, function(data){      //data是后台返回过来的JSON数据
+            $(".spiner-example").css('display','none'); //数据加载完关闭动画 
+            if(data==''){
+                $("#article_list").html('<td colspan="20" style="padding-top:10px;padding-bottom:10px;font-size:16px;text-align:center">暂无数据</td>');
+            }else{
+                article_list(data); //模板赋值
+                laypage({
+                    cont: $('#AjaxPage'),//容器。值支持id名、原生dom对象，jquery对象,
+                    pages:'{}',//总页数
+                    skip: true,//是否开启跳页
+                    skin: '#1AB5B7',//分页组件颜色
+                    curr: curr || 1,
+                    groups: 3,//连续显示分页数
+                    jump: function(obj, first){
+
+                        if(!first){
+                            Ajaxpage(obj.curr)
+                        }
+                        $('#allpage').html('第'+ obj.curr +'页，共'+ obj.pages +'页');
+                    }
+                });
+            }
+        });
+    }
+
+    Ajaxpage();
+
+
+function article_list(list){
+
+    var tpl = document.getElementById('arlist').innerHTML;
+    laytpl(tpl).render(list, function(html){
+        document.getElementById('article_list').innerHTML = html;
+    });
+}
+
+
+function userEdit(id){
+
+    location.href = './userEdit/id/'+id+'.html';
+}
+
+
+function userDel(id){
+    layer.confirm('确认删除此管理员?', {icon: 3, title:'提示'}, function(index){
+        //do something
+        $.getJSON('./userDel', {'id' : id}, function(res){
+            if(res.code == 1){
+                layer.msg(res.msg,{icon:1,time:1500});
+                Ajaxpage(1,5)
+            }else{
+                layer.msg(res.msg,{icon:0,time:1500});
+            }
+        });
+
+        layer.close(index);
+    })
+
+}
+
+
+function user_state(val){
+    $.post('{:url("user_state")}',
+    {id:val},
+    function(data){
+         
+        if(data.code==1){
+            var a='<span class="label label-danger">禁用</span>'
+            $('#zt'+val).html(a);
+            layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+            return false;
+        }else{
+            var b='<span class="label label-info">开启</span>'
+            $('#zt'+val).html(b);
+            layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+            return false;
+        }         
+        
+    });
+    return false;
+}
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,243 @@
+{include file="public/header" /}
+<body class="gray-bg">
+    <!-- start: Header -->
+    <div class="header-box">
+        <div class="pl25">
+            <h3 class="fs22 font-weight-500 c333">企业号分组</h3>
+            <p class="fs14 c666">展示系统内所有企业的分组</p>
+        </div>
+    </div>
+    <!-- start: Header -->
+    
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins">
+        
+        <div class="ibox-content">          
+            <div class="row">
+                <div class="col-sm-12 row-btn" >   
+                    <div  class="col-sm-2">
+                        <div class="input-group" >  
+                            <!-- <button type="button" class="btn btn-primary btn-outline" data-toggle="modal" data-target="#myModal">新增分组</button>  -->
+                            <button type="button" class="btn btn-primary btn-outline" onclick="tianjia()" >新增分组</button>
+                        </div>
+                    </div> 
+                </div>
+       
+
+            </div>
+           
+            <div class="example-wrap" style="margin-top:20px">
+                <div class="example">
+                   
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr class="long-tr">
+                                  
+                                    <th >分组名称</th>
+                                    <th>分组备注</th>
+                                    <th >状态</th>
+                                    <th >添加时间</th>
+                                   
+                                    <th >操作</th>
+
+                                </tr>
+                            </thead>
+                            <tbody> 
+                            {foreach name="list" item="v"}
+                                    <tr>
+                                        <td>{$v.fzname}</td>
+                                        <td>{$v.count}</td>
+                                        <td>
+                                            {if $v.stat==1 }
+                                            已开启
+                                            {else /}
+                                            已关闭
+                                            {/if}
+                                        </td>
+                                        <td>{$v.addtime|date='Y-m-d H:i:s',###}</td>
+                                        <td>
+                                          
+                                   	 <a href="javascript:;" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#editfenzu" onclick="edit_fenzu({$v.id})" >
+                                               编辑</a>
+                                                <a href="javascript:del({$v.id});" class="btn btn-primary btn-xs"  >
+                                               删除</a>
+                                            
+                                        </td>
+                                    </tr>
+                            {/foreach}
+                            </tbody>
+                            
+                        </table>
+                   
+                </div>
+                 <div id="AjaxPage" style=" text-align: left;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+{include file="public/footer" /}
+    <div class="modal  fade" id="myModal" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h3 class="modal-title">添加分组</h3>                  
+                </div>
+                <form class="form-horizontal" name="add_rule" id="add_rule" method="post" action="{:url('add_qyfenzu')}">
+                    <div class="ibox-content">
+                          
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">分组名称：</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="fzname" id="title" placeholder="分组名称" class="form-control"/>
+                                    
+                                </div>
+                                <i style="color:red">*</i>
+                            </div>    
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">分组备注：</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="count" id="title" placeholder="分组备注" class="form-control"/>
+                                </div>
+                                
+                            </div>  
+                            <div class="form-group">
+                            <label class="col-sm-3 control-label">状&nbsp;态：</label>
+                            <div class="col-sm-6">
+                                <div class="radio ">                                        
+                                    <input type="checkbox" name='stat' value="1" class="js-switch" checked />&nbsp;&nbsp;默认开启                                     
+                                </div>
+                            </div>
+                        </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">分组排序：</label>
+                                <div class="col-sm-8">
+
+                                    <input type="number" name="fzpai" id="name" placeholder="分组排序" class="form-control"/>
+                                    <span class="help-block m-b-none">默认为50</span>
+                                </div>
+                            </div>  
+                            
+                           
+                                             
+                        </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> 保存</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i> 关闭</button>                    
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- 编辑分组模态框 -->
+     <div class="modal  fade" id="editfenzu" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h3 class="modal-title">编辑分组</h3>                  
+                </div>
+                <form class="form-horizontal" name="add_rule" id="add_rule" method="post" action="{:url('edit_updata')}">
+                    <input type="hidden" name="id" id="fenzu_id" value="">
+                   
+                    <div class="ibox-content">
+                          
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">分组名称:&nbsp;&nbsp;&nbsp;</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="fzname" id="fenzu_title"  class="form-control" value=""/>
+                                </div>
+                            </div>                      
+                           <div class="form-group">
+                                <label class="col-sm-3 control-label">分组备注:&nbsp;&nbsp;&nbsp;</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="count" id="beizhu" placeholder="分组备注" class="form-control"/>
+                                </div>
+                                
+                            </div> 
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">分组排序:&nbsp;&nbsp;&nbsp;</label>
+                                <div class="col-sm-8">
+
+                                    <input type="number" name="fzpai" id="fenzu_pai" placeholder="分组排序" class="form-control"/>
+                                    <span class="help-block m-b-none">默认为50 </span>
+                                </div>
+                            </div>  
+                             <div class="form-group">
+                                <label class="col-sm-3 control-label">状态:&nbsp;&nbsp;&nbsp;</label>
+                                <select name="stat" id="fenzu_status" class="form-control" style="width:200px;float:left">
+                                    <option value="1">开启</option>
+                                     <option value="0">关闭</option>    
+                                </select>
+                            </div>  
+                           
+                           
+                                             
+                        </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> 保存</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i> 关闭</button>                    
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- 结束 -->
+
+<script type="text/javascript">
+ function edit_fenzu(id){
+        $.post('{:url("edit_qyid")}',
+        {id:id},
+    function(data){
+        if(data.code==1){
+             $("#fenzu_title").val(data.msg.fzname);
+             $("#beizhu").val(data.msg.count);
+             $("#fenzu_pai").val(data.msg.fzpai);
+             $("#fenzu_id").val(data.msg.id);
+        }else{
+            layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+        }
+    });
+ }
+ function tianjia(){
+      $('#myModal').modal('show');
+//   $.post('{:url("quanxian")}',
+//       {},
+//       function(data){
+//           if(data.code==1){
+//             $('#myModal').modal('show');
+//               // layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+//               //location.reload();
+//           }else{
+//               layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+//           }
+//      });
+}
+
+/**
+ * 删除分组
+*/
+ function del(id){
+    layer.confirm('您确定要删除此分组吗?', {icon: 3, title:'提示'}, function(index){
+        $.post('{:url("qydel")}',
+        {id:id},
+        function(data){
+            if(data.code==1){
+                  layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+                   setInterval(function(){
+                              location.reload();
+                            },1000)
+            }else{
+                layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+            }
+        });
+    })
+}
+
+
+
+</script>
+</body>
+</html>

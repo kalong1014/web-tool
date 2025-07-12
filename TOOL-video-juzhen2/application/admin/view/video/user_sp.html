@@ -1,0 +1,74 @@
+{include file="public/header" /}
+
+    <!-- start: Header -->
+    <div class="header-box">
+        <div class="pl25">
+            <h3 class="fs22 font-weight-500 c333">视频列表</h3>
+            <p class="fs14 c666">根据官方返回数据所展示得视频列表</p>
+        </div>
+    </div>
+    <!-- start: Header -->
+    
+<div class="wrapper wrapper-content animated fadeInRight">
+  
+    <div class="ibox float-e-margins">
+      
+        <div class="ibox-content">
+            <div style="margin:20px 0">
+              
+            </div>
+            
+            
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th>封面</th>
+                                <th >标题</th>
+                                <th>播放</th>
+                                <th>点赞</th>
+                                <th>评论</th>
+                                <th>转发</th>
+                                <th>创建时间</th>
+                                <th>查看视频</th>
+                               
+                            </tr>
+                        </thead>
+                       	
+                        <tbody id="article_list">
+                        	   {foreach name="user" item="vo"}
+                        	 <tr  style="text-align: center;">
+                        	    <td><img style='width:50px;height:50px' src="{$vo.cover}"></td>
+                        	    <td style="max-width: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;">{$vo.title}</td>
+                        	    <td>{$vo.play_count}</td>
+                        	    <td>{$vo.digg_count}</td>
+                        	    <td>{$vo.comment_count}</td>
+                        	    <td>{$vo.forward_count}</td>
+                        	    <td>{$vo.create_time|date='Y-m-d H:i:s',###}</td>
+                        	    <td><a href="{$vo.share_url}" class="font-color" target=_blank>查看视频</a></td>
+                        	  
+                        	 </tr>
+                             {/foreach}
+                        </tbody>
+                    </table>
+                   
+                </div>
+            </div>
+          
+        </div>
+    </div>
+</div>
+
+
+
+
+{include file="public/footer" /}
+
+<script type="text/javascript" charset="utf-8">
+
+  
+</script>

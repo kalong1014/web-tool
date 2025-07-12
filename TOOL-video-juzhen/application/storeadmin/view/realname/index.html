@@ -1,0 +1,144 @@
+<style type="text/css"> 
+    .table {table-layout:fixed;} 
+    .table td{text-overflow:ellipsis; overflow:hidden; white-space:nowrap; }
+    .douyin_follow_content{text-align: center;font-size: 16px;font-family: "微软雅黑";padding-bottom: 50px;}
+    .douyin_form{width: 800px;margin: 0 auto;}
+    .douyin_login{margin: 20px auto;width: 150px;line-height: 25px;display: block;}
+    .douyin_status{margin-top: 20px;color: #999;}
+    .douyin_follow_list{width: 700px;margin:0 auto;display: block;}
+    .douyin_follow_list h2{margin-top: 50px;margin-bottom: 20px;font-weight: bold;color: #18bc9c;}
+    .douyin_follow_list ul{border-bottom:1px solid #ccc;padding: 0px;}
+    .douyin_follow_list ul li{list-style: none;display: inline-block;width: 30%;text-align: center;padding: 10px 0px;color: #888;}
+    .douyin_follow_list_head{border-top:1px solid #ccc;}
+    .douyin_follow_list_head li{font-weight: bold;color: #000!important;}
+    .delete_cookie{cursor: pointer;width: 60px;line-height: 30px;background: #ccc;text-align: center;display: inline-block;border-radius: 5px;color: #fff;}
+    .form-group {margin-bottom: 10px;margin-top: 20px;text-align: left;display: block;height: 40px;line-height: 40px;}
+    .form-group label{    font-weight: normal;margin-top: 5px;}
+    .douyin_follow_notice{width: 800px;margin: 0 auto;}
+    .douyin_follow_notice p{color:#999;text-align: left;line-height: 25px;}
+    .get_qrcode{display: block;width: 80px;margin: 0 auto;}
+    .douyin_form input{height: 40px;line-height: 40px;margin-top: 10px;}
+    .get_code_btn{padding:0px;line-height: 40px;background: #18bc9c;color: #fff;margin-top: 10px;text-align: center;cursor: pointer;}
+    .douyin_form input{border-radius: 5px;}
+    {if $store_realname['realname_type']==1}
+    .realname_type_qiye{display: none;}
+    {/if}
+    .input-group .input-group-addon{background: unset;}
+    .input-group .input-group-addon button{margin-top: 10px;height: 40px;margin-left: 10px;}
+</style>
+<div class="panel panel-default panel-intro">
+    {:build_heading()}
+
+    <div class="panel-body">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="one">
+                <div class="widget-body no-padding">
+                    <div id="toolbar" class="toolbar">
+                        <p style="color:#ff6a6a;text-align: center;font-size: 16px;">依法律法规需采用实名制发送内容，请勿发布违法违规视频，一经发现做封号处理同时将证据提交相关部门处理。</p>
+                    </div>
+                    <form id="edit-form"  role="form" data-toggle="validator" method="POST" action="/storeadmin/realname">
+                        <div class="douyin_follow_content">
+
+                            <div class="douyin_form">
+                                <div class="form-group">
+                                    <label class="control-label col-xs-12 col-sm-3">实名类型 :</label>
+                                    <div class="col-xs-12 col-sm-8" style="padding:0px;text-align: left;vertical-align: top;">
+                                        <div class="radio" style="margin-top:0">
+                                            <label>
+                                                <input type="radio" class="realname_type" name="row[realname_type]" {if $store_realname['realname_type']==1}checked{/if} value="1">个人实名
+                                            </label>
+                                            <label>
+                                                <input type="radio" class="realname_type" name="row[realname_type]" {if $store_realname['realname_type']==2}checked{/if} value="2">企业实名
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group realname_type_qiye">
+                                    <label class="control-label col-xs-12 col-sm-3">企业名称 :</label>
+                                    <div class="col-xs-12 col-sm-8" style="padding:0px;">
+                                        <input id="c-qiye_name"  class="form-control" name="row[qiye_name]" type="text" value="{$store_realname['qiye_name']}" placeholder="请输入企业名称" >
+                                    </div>
+                                </div>
+                                {if @$store_realname['status']!=2 && @$store_realname['status']!=1 }
+                                <div class="form-group realname_type_qiye">
+                                    <label class="control-label col-xs-12 col-sm-3">信用代码 :</label>
+                                    <div class="col-xs-12 col-sm-8" style="padding:0px;">
+                                        <input id="c-qiye_code"  class="form-control" name="row[qiye_code]" type="text" value="{$store_realname['qiye_code']}" placeholder="例如：914401*****6NGE64" >
+                                    </div>
+                                </div>
+
+                                <div class="form-group realname_type_qiye">
+                                    <label class="control-label col-xs-12 col-sm-3"><span >营业执照</span>:</label>
+                                    <div class="col-xs-12 col-sm-8" style="padding:0px;">
+                                        <div class="input-group">
+                                            <input id="c-qiye_image" class="form-control" size="50" name="row[qiye_image]" readonly="readonly" type="text" value="{$store_realname['qiye_image']}" >
+                                            <div class="input-group-addon no-border no-padding">
+                                                <span {if @$store_realname['status']!=2 && @$store_realname['status']!=1 }{else}style="display:none"{/if}><button type="button" id="faupload-qiye_image" class="btn btn-danger faupload" data-input-id="c-qiye_image" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp"  data-preview-id="p-qiye_image"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                                                
+                                            </div>
+                                            <span class="msg-box n-right" for="c-qiye_image"></span>
+                                        </div>
+                                        <ul class="row list-inline faupload-preview" id="p-qiye_image"></ul>
+                                    </div>
+                                </div>
+                                {/if}
+
+                                <div class="form-group">
+                                    <label class="control-label col-xs-12 col-sm-3">负责人姓名 :</label>
+                                    <div class="col-xs-12 col-sm-8" style="padding:0px;">
+                                        <input id="c-username" class="form-control" name="row[username]" data-rule="required" type="text" value="{$store_realname['username']}" placeholder="请输入负责人姓名" >
+                                    </div>
+                                </div>
+                                {if @$store_realname['status']!=2 && @$store_realname['status']!=1 }
+                                <div class="form-group">
+                                    <label class="control-label col-xs-12 col-sm-3">负责人身份证 :</label>
+                                    <div class="col-xs-12 col-sm-8" style="padding:0px;">
+                                        <input id="c-idcard" class="form-control" name="row[idcard]" data-rule="required" type="text" value="{$store_realname['idcard']}" placeholder="请输入负责人身份证" >
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-xs-12 col-sm-3"><span >身份证正面</span>:</label>
+                                    <div class="col-xs-12 col-sm-8" style="padding:0px;">
+                                        <div class="input-group">
+                                            <input id="c-card_image" class="form-control" size="50" data-rule="required" name="row[card_image]" readonly="readonly" type="text" value="{$store_realname['card_image']}" >
+                                            <div class="input-group-addon no-border no-padding">
+
+                                                <span {if @$store_realname['status']!=2 && @$store_realname['status']!=1 }{else}style="display:none"{/if}><button type="button" id="faupload-card_image" class="btn btn-danger faupload" data-input-id="c-card_image" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp"  data-preview-id="p-card_image"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                                                
+                                            </div>
+                                            <span class="msg-box n-right" for="c-card_image"></span>
+                                        </div>
+                                        <ul class="row list-inline faupload-preview" id="p-card_image"></ul>
+                                        <p style="color:#ff6a6a;text-align: left;font-size: 14px;">身份证图片建议1.5M以内的大小，无反光、清晰，否则将影响审核</p>
+                                    </div>
+
+                                </div>
+
+                                <button type="submit" class="btn btn-success" style="width:200px;line-height:30px;margin-top:20px;font-size: 18px;">提交实名</button>
+                                {/if}
+
+                            </div>
+
+                            
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src='/storeadmin2/libs/jquery/dist/jquery.min.js?v=123123'></script>
+<script type="text/javascript" src="/storeadmin2/js/jquery.qrcode.min.js"></script>
+<script type="text/javascript">
+    $('.realname_type').change(function() {
+        if (this.value == 1) {
+            $('.realname_type_qiye').hide();
+        }else{
+            $('.realname_type_qiye').show();
+        }
+    });
+</script>

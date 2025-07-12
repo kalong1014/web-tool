@@ -1,0 +1,91 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<link rel="stylesheet" href="/static/admin/layui/css/layui.css" media="all">
+<style>
+    .layui-form-label{width: 130px;}
+    .layui-form-item .layui-input-inline{width: 50%;}
+</style>
+<div class="wrapper layui-card-body wrapper-content">
+    <div class="admin-con">
+        <div class="block-box">
+            <div class="col-12">
+                <div class="block font13">
+                    <div class="layui-form-item m-t-md">
+                        <label class="layui-form-label ">主页链接：<span style="color:red;margin:0 5px;">*</span></label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="url" id="url" placeholder="请输入主页链接" autocomplete="off" class="layui-input url" value="">
+                        </div>
+                    </div>
+                    <div class="layui-form-item m-t-md">
+                        <label class="layui-form-label">主词：<span style="color:red;margin:0 5px;">*</span></label>
+                        <div class="layui-input-inline">
+                            <textarea id="c-main_keyword" class="form-control n-valid subject" rows="7" name="subject" cols="20" placeholder="每行一个词，建议3-10个词" width="50%" ></textarea>
+                            <div class="layui-form-mid layui-word-aux">每行一个词，建议3-10个词，每个词10个字之内</div>
+                        </div>
+                    </div>
+                    <div class="layui-form-item m-t-md">
+                        <label class="layui-form-label">头词：<span style="color:red;margin:0 5px;">*</span></label>
+                        <div class="layui-input-inline">
+                            <textarea id="c-main_keyword" class="form-control n-valid headword" rows="7" name="headword" cols="20" placeholder="每行一个词，最多5个前缀"></textarea>
+                            <div class="layui-form-mid layui-word-aux">每行一个词，建议3-5个词，每个词10个字之内</div>
+                        </div>
+                    </div>
+                    <div class="layui-form-item m-t-md">
+                        <label class="layui-form-label">尾词：<span style="color:red;margin:0 5px;">*</span></label>
+                        <div class="layui-input-inline">
+                            <textarea id="c-main_keyword" class="form-control n-valid coda" rows="7" name="coda" cols="20" placeholder="每行一个词，最多5个后缀"></textarea>
+                            <div class="layui-form-mid layui-word-aux">每行一个词，建议3-10个词，每个词10个字之内</div>
+                        </div>
+                    </div>  
+                    <div class="layui-form-item m-t-md">
+                        <label class="layui-form-label"></label>
+                        <div class="layui-input-inline">
+                            <button id="" class="btn btn-success submit">确定保存</button>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+          
+        </div>
+    </div>
+</div>
+
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+        $(".submit").click(function(){
+             layer.load(3)
+             var url = $(".url").val();//获取链接地址
+             var subject = $(".subject").val();//获取主词
+             var headword = $(".headword").val();//获取头词
+             var coda = $(".coda").val();//获取尾词
+            $.ajax({
+            type: "POST",
+            url: "/admin/huoke/set_ket_add",
+            data: {
+                url:url,subject:subject,headword:headword,coda:coda
+            },
+            success: function(data){
+                console.log(data.code)
+                layer.closeAll('loading');
+                if(data.code == 1){
+                    layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+                    setInterval(function(){
+                            window.location.href="/admin/huoke/stock_keyword";
+                        },1000)
+                    return false;
+                }else{
+                      layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+                }
+            },
+            error:function() {
+                layer.closeAll('loading');
+                layer.alert('添加错误')
+
+            }
+        });
+        })
+</script>
+</body>
+</html>

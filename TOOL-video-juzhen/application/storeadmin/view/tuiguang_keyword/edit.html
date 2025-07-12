@@ -1,0 +1,49 @@
+<style type="text/css">
+    .recomm_keyword,.no_recomm_keyword{background: #3ca793;padding: 5px ;margin-bottom: 10px;margin-right: 10px;color: #fff;display: inline-block;cursor: pointer;}
+ .delete_keyword{margin-left: 5px;color: #ccc;}
+ .radio label{margin-bottom: 20px;vertical-align: top;}
+ .title_video{width: 80px;overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;display: block;}
+</style>
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">回复类型:</label>
+        <div class="col-xs-12 col-sm-8">
+            <select  class="form-control" name="row[mode]">
+                <option value="1" {if $row.mode==1}selected{/if}>评论回复</option>
+                <option value="2" {if $row.mode==2}selected{/if}>私信回复</option>
+            </select>
+        </div>
+         
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">命中关键词:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-keyword"  class="form-control" maxlength="10" name="row[keyword]" type="text" value="{$row.keyword|htmlentities}" placeholder="请输入命中关键词，建议2-10个字">
+            <p style="margin-top:5px;color:#999;">评论内容包含该关键词即命中，留空则为默认全部回复</p>
+        </div>
+         
+    </div>
+
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">自动回复话术:</label>
+        <div class="col-xs-12 col-sm-8">
+            <textarea id="c-reply" data-rule="required" class="form-control " rows="10" name="row[reply]" cols="20" placeholder="每行一个话术，建议每个话术30个字之内">{$reply}</textarea>
+            <p style="margin-top:5px;color:#999;">每行一个话术，建议每个话术30个字之内，最多5个话术</p>
+            <p style="margin-top:5px;color:orange;">注意: 评论内容不能包含微信、手机号、网址等敏感信息</p>
+        </div>
+    </div>
+
+
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed " >{:__('OK')}</button>
+        </div>
+    </div>
+
+</form>
+
+<script type="text/javascript" src='/storeadmin2/libs/jquery/dist/jquery.min.js?v=162913148'></script>

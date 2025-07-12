@@ -1,0 +1,257 @@
+{include file="public/header" /}
+<style type="text/css" media="all">
+    .form-group{
+        width: 100%;
+        height: 30px;
+        margin-top:20px;
+      
+    }
+    .form-f{
+        width: 40%;
+        height: 30px;
+        float: left;
+        margin-left:80px;
+    }
+    .form-f1{
+       width: 80px;
+        margin-right: 20px;
+    }
+    .form-control{
+        margin-right:  40px;
+    }
+    .btn-primary{
+        margin-top:40px;
+        margin-left:40%;
+        width: 300px;
+    }
+    
+</style>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- jieshu -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>短信接口中心</h5>
+        </div>
+        <div class="ibox-content">
+      
+          <form class="form-inline" action="{:url('interface_interface')}" method="post">
+             <h3>短信宝</h3>
+             <input type="checkbox" name='dxb_st' value="1" class="js-switch4" checked />   
+            <div class="form-group" >
+             
+                  <div class="form-f">
+                       <label for="exampleInputName2" class="form-f1">账号:</label>
+                         <input type="text" name="dxb_name" class="form-control" id="exampleInputName2" placeholder="请输入账号">
+                        
+                  </div>
+               
+                  <div class="form-f">
+                       <label for="exampleInputName2" class="form-f1">密码:</label>
+                     <input type="text" class="form-control" name="dxb_pass" id="exampleInputName2" placeholder="请输入密码 ">
+                      
+                    
+                  </div>
+               
+              </div>
+              <div class="form-group" >
+                   <div class="form-f">
+                        <label for="exampleInputName2" class="form-f1">签名:</label>
+                     
+                        <input type="text" class="form-control" name="dxb_qian" id="exampleInputName2" placeholder="请输入签名">
+                      
+                         
+                    </div>
+                     <div class="form-f">
+                      
+                    <label for="exampleInputName2" class="form-f1">API</label>
+               
+                    <input type="text" class="form-control" name="dxb_api" id="exampleInputName2" placeholder="请填写API秘钥">
+                 
+                    
+                    </div>
+                </div>
+
+                 <h3>阿里云</h3>
+                  <input type="checkbox" name='aly_st' value="1" class="js-switch8" checked /> 
+            <div class="form-group" >
+             
+                  <div class="form-f">
+                       <label for="exampleInputName2" class="form-f1">账号:</label>
+                         <input type="text" class="form-control" name="aly_name" id="exampleInputName2" placeholder="请输入账号">
+                       
+                  </div>
+               
+                  <div class="form-f">
+                       <label for="exampleInputName2" class="form-f1">密码:</label>
+                     <input type="text" class="form-control" name="aly_pass" id="exampleInputName2" placeholder="请输入密码 ">
+                      
+                   
+                  </div>
+               
+              </div>
+              <div class="form-group" >
+                   <div class="form-f">
+                        <label for="exampleInputName2"  class="form-f1">签名:</label>
+                     
+                        <input type="text" class="form-control" name="aly_qian" id="exampleInputName2" placeholder="请输入签名">
+                      
+                      
+                    </div>
+                     <div class="form-f">
+                      
+                    <label for="exampleInputName2" class="form-f1">API</label>
+               
+                    <input type="text" class="form-control" name="aly_api" id="exampleInputName2" placeholder="请填写API秘钥">
+                 
+                     
+                    </div>
+                </div>
+               <h3>腾讯云</h3>
+                <input type="checkbox" name='txy_st' value="1" class="js-switch12" checked />  
+            <div class="form-group" >
+             
+                  <div class="form-f">
+                       <label for="exampleInputName2" class="form-f1">账号:</label>
+                         <input type="text" class="form-control" name="txy_name" id="exampleInputName2" placeholder="请输入账号">
+                       
+                  </div>
+               
+                  <div class="form-f">
+                       <label for="exampleInputName2" class="form-f1">密码:</label>
+                     <input type="text" class="form-control" name="txy_pass" id="exampleInputName2" placeholder="请输入密码 ">
+                      
+                  
+                  </div>
+               
+              </div>
+              <div class="form-group" >
+                   <div class="form-f">
+                        <label for="exampleInputName2" class="form-f1">签名:</label>
+                     
+                        <input type="text" class="form-control" name="txy_qian" id="exampleInputName2" placeholder="请输入签名">
+                      
+                          
+                    </div>
+                     <div class="form-f">
+                      
+                    <label for="exampleInputName2" class="form-f1">API</label>
+               
+                    <input type="text" class="form-control" name="txy_api" id="exampleInputName2" placeholder="请填写API秘钥">
+                 
+                    
+                    </div>
+                </div>
+            
+             
+
+            
+                        
+      <button type="submit" class="btn btn-primary">保存</button> 
+                </form>
+     
+
+ 
+         
+            
+                        
+    
+            <!--搜索框开始-->           
+            <!--<div class="row">-->
+            <!--    <div class="col-sm-12">   -->
+                                                        
+            <!--        <form name="admin_list_sea" class="form-search" method="post" action="{:url('chaxun')}">-->
+            <!--            <span style="width:100px;float:left">站长工具</span> -->
+                      <!--  <input type="text"  class="form-control" name="name" value="" placeholder="" style="width:200px;float:left"  disabled="tuue"/> -->
+            <!--        <input type="text"  class="form-control" name="key" value="" placeholder="请输入您的key值" style="width:300px;float:left" />   -->
+            <!--                <div class="form-group">-->
+                          
+            <!--                <div class="col-sm-6">-->
+            <!--                    <div class="radio ">                                        -->
+            <!--                        <input type="checkbox" name='status' value="1" class="js-switch" checked />&nbsp;&nbsp;默认开启                                     -->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--            </div>-->
+                        
+            <!--            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 保存</button> -->
+
+            <!--        </form>                         -->
+            <!--    </div>-->
+            <!--</div>-->
+           
+            <!--搜索框结束-->
+
+  
+         
+        </div>
+    </div>
+</div>
+<!-- kaishi -->
+
+
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+     var elem = document.querySelector('.js-switch');
+        var switchery = new Switchery(elem, {
+            color: '#1AB394'
+        });
+         var elem = document.querySelector('.js-switch1');
+        var switchery = new Switchery(elem, {
+            color: '#1AB394'
+        });
+        var elem = document.querySelector('.js-switch2');
+        var switchery = new Switchery(elem, {
+            color: '#1AB394'
+        });
+        var elem = document.querySelector('.js-switch3');
+        var switchery = new Switchery(elem, {
+            color: '#1AB394'
+        });
+        var elem = document.querySelector('.js-switch4');
+        var switchery = new Switchery(elem, {
+            color: '#1AB394'
+        });
+        var elem = document.querySelector('.js-switch5');
+        var switchery = new Switchery(elem, {
+            color: '#1AB394'
+        });
+        var elem = document.querySelector('.js-switch6');
+        var switchery = new Switchery(elem, {
+            color: '#1AB394'
+        });
+        var elem = document.querySelector('.js-switch7');
+        var switchery = new Switchery(elem, {
+            color: '#1AB394'
+        });
+        var elem = document.querySelector('.js-switch8');
+        var switchery = new Switchery(elem, {
+            color: '#1AB394'
+        });
+        var elem = document.querySelector('.js-switch9');
+        var switchery = new Switchery(elem, {
+            color: '#1AB394'
+        });
+         var elem = document.querySelector('.js-switch10');
+        var switchery = new Switchery(elem, {
+            color: '#1AB394'
+        });
+          var elem = document.querySelector('.js-switch11');
+        var switchery = new Switchery(elem, {
+            color: '#1AB394'
+        });
+          var elem = document.querySelector('.js-switch12');
+        var switchery = new Switchery(elem, {
+            color: '#1AB394'
+        });
+    
+    var config = {
+        '.chosen-select': {},                    
+    }
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+
+</script>
+
+</html>

@@ -1,0 +1,216 @@
+<style type="text/css">
+    .recomm_keyword,.no_recomm_keyword{background: #3ca793;padding: 5px ;margin-bottom: 10px;margin-right: 10px;color: #fff;display: inline-block;cursor: pointer;}
+ .delete_keyword{margin-left: 5px;color: #ccc;}
+ .radio label{margin-bottom: 20px;vertical-align: top;}
+ .title_video{width: 125px;overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;display: block;}
+ .title_user{display: inline-block;}
+.type2{display: none;}
+.send_type_time{display: none;}
+.radio label{margin-bottom: 0px;}
+.tuiguang_user_id,.tuiguang_user_all{margin-top: 1px !important;margin-right: 5px !important;}
+</style>
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">任务名:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-title" data-rule="required" class="form-control" name="row[title]" type="text" value="" placeholder="随意取一个名字吧">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">视频关键词:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-video_text" data-rule="required" class="form-control" name="row[video_text]" type="text" value="" placeholder="请以#建立，多个关键词请以#隔开">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">发送用户:</label>
+        <div class="col-xs-12 col-sm-10">
+            <label >
+                <div style="margin-top: 8px;"><input type="checkbox" class="tuiguang_user_all" ><span class="title_video title_user">全选</span></div>
+            </label>
+            <div class="radio radio_user" style="max-height:200px;overflow-y: scroll;">
+                
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">推广视频:</label>
+        <div class="col-xs-12 col-sm-10">
+            <!-- <input id="c-tuiguang_video_id" readonly class="form-control" name="row[tuiguang_video_id]" type="text" value="" placeholder="暂时不用填，目前系统自带有一个默认视频，等剪辑完全调试好再选择视频"> -->
+
+            <div class="radio radio_video" style="max-height:200px;overflow-y: scroll;">
+                
+            </div>
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">挂载类型:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="radio">
+                <label>
+                    <input type="radio"  class="type" name="type" checked value="1">POI地址挂载
+                </label>
+                <label>
+                    <input type="radio"  class="type" name="type"  value="2">小程序挂载
+                </label>
+            </div>
+        </div>
+    </div>
+    
+    <div class="form-group type1">
+        <label class="control-label col-xs-12 col-sm-2">挂载poi地址:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-poi_address"  class="form-control" name="row[poi_address]" type="text" value="" placeholder="例如：https://v.douyin.com/8RE9Xe5/  此功能强烈建议使用，可使视频得到更大曝光度">
+            <p style="margin-top:5px;color:#888;">从抖音app搜索栏搜索地点，获取地址分享链接，例如：https://v.douyin.com/8R1E9Xe5/ </p>
+        </div>
+    </div>
+    <div class="form-group type1">
+        <label class="control-label col-xs-12 col-sm-2">挂载地址名称:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-poi_name"  class="form-control" name="row[poi_name]" type="text" value="" placeholder="例如：杭州女装批发基地">
+        </div>
+    </div>
+
+    <div class="form-group type2">
+        <label class="control-label col-xs-12 col-sm-2">抖音小程序id:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-micro_app_id"  class="form-control" name="row[micro_app_id]" type="text" value="" placeholder="例如：ttef91b112671b152ba">
+        </div>
+    </div>
+    <div class="form-group type2">
+        <label class="control-label col-xs-12 col-sm-2">抖音小程序名称:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-micro_app_title" class="form-control" name="row[micro_app_title]" type="text" value="" placeholder="小程序标题">
+        </div>
+    </div>
+    <div class="form-group type2">
+        <label class="control-label col-xs-12 col-sm-2">抖音小程序path:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-micro_app_url" class="form-control" name="row[micro_app_url]" type="text" value="" placeholder="例如：pages/xxx/xxx">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">发送时间:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="radio">
+                <label>
+                    <input type="radio" class="send_type" name="send_type" checked value="1">立即发送
+                </label>
+                <label>
+                    <input type="radio" class="send_type" name="send_type" value="2">指定时间
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group send_type_time">
+        <label class="control-label col-xs-12 col-sm-2">定时时间:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input class="form-control datetimepicker"
+                   data-date-format="YYYY-MM-DD HH:mm"
+                   data-use-current="true"
+                   type="text"
+                   name="row[send_time]"
+                   placeholder="请选择指定时间发送视频">
+        </div>
+    </div>
+
+
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed " >{:__('OK')}</button>
+        </div>
+    </div>
+
+</form>
+
+<script type="text/javascript" src='/storeadmin2/libs/jquery/dist/jquery.min.js?v=162913148'></script>
+<script type="text/javascript">
+
+    $('.type').change(function() {
+        if (this.value == 1) {
+            $('.type1').show();
+            $('.type2').hide();
+        }else if (this.value == 2) {
+            $('.type2').show();
+            $('.type1').hide();
+        }
+    });
+
+    $('.send_type').change(function() {
+        if (this.value == 2) {
+            $('.send_type_time').show();
+        }else  {
+            $('.send_type_time').hide();
+        }
+    });
+
+    // $('.tuiguang_user_all')
+    $(".tuiguang_user_all").click(function(){ 
+        $(".tuiguang_user_id").each(function(){ 
+            if($(this).attr("checked")){ 
+                $(this).removeAttr("checked"); 
+            }else{ 
+                $(this).prop("checked","checked");
+                $(this).attr("checked","checked"); 
+            } 
+        });
+    });
+
+    ajax_page(1);
+    
+    function ajax_page(page){
+        $.post('/storeadmin/tuiguang_task/ajax_page',{page:page},function(data){
+            ajaxPage = data.ajaxPage;
+            data = data.data.data;
+            html = '';
+            if(data.length > 0){
+                for (var i = 0; i < data.length; i++) {
+                    checked_str = '';
+                    if(i==0){
+                        checked_str = 'checked';
+                    }
+                    html += '<label >\
+                                <input type="radio" name="row[tuiguang_video_id]" '+checked_str+' value="'+data[i]['id']+'"><span class="title_video">【'+data[i]['use_count']+'次】'+data[i]['title']+'</span>\
+                                <video style="width: 130px;height: 80px;" controls="controls" src="'+data[i]['video_url']+'"></video>\
+                            </label>';
+                }
+                if(ajaxPage!='null' && ajaxPage!=null){
+                    html += '<div class="pagelist">'+ajaxPage+'</div>';
+                }
+                
+            }
+            $('.radio_video').html(html);
+        },'json');
+    }
+
+    ajax_page_user(1);
+    
+    function ajax_page_user(page){
+        $.post('/storeadmin/tuiguang_task/ajax_page_user',{page:page},function(data){
+            ajaxPage = data.ajaxPage;
+            data = data.data.data;
+            html = '';
+            if(data.length > 0){
+                for (var i = 0; i < data.length; i++) {
+                    checked_str = '';
+
+                    html += '<label >\
+                                <div><input type="checkbox" class="tuiguang_user_id"  name="tuiguang_user_id[]" '+checked_str+' value="'+data[i]['id']+'"><span class="title_video title_user">'+data[i]['nickname']+'</span></div>\
+                                <img style="width: 50px;height: 50px;"  src="'+data[i]['head']+'" />\
+                            </label>';
+                }
+                if(ajaxPage!='null' && ajaxPage!=null){
+                    html += '<div class="pagelist">'+ajaxPage+'</div>';
+                }
+                
+            }
+            $('.radio_user').html(html);
+        },'json');
+    }
+</script>

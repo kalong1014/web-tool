@@ -1,0 +1,11 @@
+<view class="box-privacy" wx:if="{{showPrivacy}}">
+    <view class="mask"></view>
+    <view class="pannel" style="padding-bottom: {{safeAreaHeight}}rpx;">
+        <view class="title">用户隐私信息保护</view>
+        <view class="content"> 请阅读并同意<text bindtap="openPrivacy" class="btn-link">{{privacyName}}</text>，我们会严格遵守此协议处理你的个人信息。 </view>
+        <view class="footer">
+            <button bindtap="doRefuse" class="btn btn-refuse">拒绝</button>
+            <button bindagreeprivacyauthorization="doAgree" class="btn btn-agree" openType="agreePrivacyAuthorization">同意</button>
+        </view>
+    </view>
+</view>

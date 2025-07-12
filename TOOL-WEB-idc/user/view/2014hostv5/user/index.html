@@ -1,0 +1,348 @@
+{{dispatch c='public'  a='head'}}
+{{if $ucsynclogin}} {{$ucsynclogin}} {{/if}}
+<script language='javascript'>
+
+function piao_key_to()
+
+{
+
+	var p = document.getElementById('piao');
+
+	var pdiv = document.getElementById('piao_div');
+
+	var str = '';
+
+	var fstr = "<p><a href=javascript:close_piao('piao_div','piao')><b>关闭窗口</b></a></p>";
+
+		str += fstr;
+
+		str += "<from action=javascript:; method=post>";
+
+		str += "请输入折抵码:<input name='key' id='key' size='20'><input type='button' onclick='key_to()' value='提交'>";
+
+		str += "</from>";
+
+	var offset = $("#offset").offset();
+
+	pdiv.style.height = '100px';
+
+	pdiv.style.width = '300px';
+
+	pdiv.style.background = '#F5DEB3';
+
+	pdiv.innerHTML = str;
+
+	p.style.height = pdiv.style.height + 30 + 'px';
+
+	p.style.width = pdiv.style.width + 30 + 'px';
+
+	p.style.top  = offset.top-40;
+
+	p.style.left  = offset.left -60;
+
+	p.style.display = 'block';
+
+	
+
+}
+
+function key_to()
+
+{
+
+	var key = document.getElementById('key').value;
+
+	$.ajax({
+
+		type:'post',
+
+		url :'?c=entkey&a=keyToMoney',
+
+		data:'key=' + key,
+
+		dataType:'json',
+
+		success:function(ret) {
+
+			if (ret['code'] != 200) {
+
+				return alert(ret['msg'] ? ret['msg'] :"折底码不能为空");
+
+			}
+
+			alert("折抵成功.请查看账户余额");
+
+			close_piao('piao_div','piao');
+
+		}
+
+	});
+
+}
+
+function create_hash()
+
+{
+
+	$.ajax({
+
+		type:'get',
+
+		url :'?c=user&a=randAgentHash',
+
+		data:null,
+
+		dataType:'json',
+
+		success:function(ret) {
+
+			if (ret['code'] != 200) {
+
+				return alert(ret['msg'] ? ret['msg'] : "生成代理密钥失败");
+
+			}
+
+			window.location.reload();
+
+		}
+
+		
+
+		
+
+		
+
+	});
+
+	
+
+}
+
+</script>
+<div id='piao' class='piao' style='display: none'><div id='piao_div' class='piao_div overflow'></div></div>
+            <main id="main-container">
+                <!-- Page Header -->
+                <div class="content bg-gray-lighter">
+                    <div class="row items-push">
+                        <div class="col-sm-8">
+                            <h1 class="page-heading">
+                                账户首页&nbsp; <small>账户资料概览</small>
+                            </h1>
+                        </div>
+                        <div class="col-sm-4 text-right hidden-xs">
+                            <ol class="breadcrumb push-10-t">
+                                <li>账户首页</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <!-- END Page Header -->
+				
+				
+				<div class="content">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <!-- Content Grid -->
+                            <div class="content-grid">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <!-- Author of the Month -->
+                                        <div class="block block-link-hover2">
+                                            <div class="block-header">
+											<ul class="block-options">
+                                        <li>
+                                            <button type="button" data-toggle="block-option" data-action="content_toggle"></button>
+                                        </li>                                    </ul>
+                                                <h3 class="block-title">账户管理</h3>
+                                            </div>
+                                            <div class="block-content block-content-full text-center bg-image" style="background-image: url('{{$STATIC}}style/assets/img/photos/photo2.jpg');">
+                                                <div>
+                                                    <img class="img-avatar img-avatar96 img-avatar-thumb" src="http://q4.qlogo.cn/headimg_dl?dst_uin={{$user.id}}&spec=100" alt="">
+                                                </div>
+                                                <div class="h4 text-white push-15-t push-5">{{$user.username}}</div>
+												<div class="h6 text-white-op"><i class="fa fa-qq"></i>&nbsp; {{$user.id}}</div>
+                                            </div>
+                                            <div class="block-content">
+                                                <div class="row items-push text-center">
+												
+                                                    <div class="col-xs-6">
+                                                        <div class="push-5 text-muted"><span class="h3" style="color:#000000;">{{$user.money/100}}</span> 元</div>
+                                                        <div class="h6 font-w300 text-muted">账户余额</div>
+                                                    </div>
+												
+												
+                                                    <div class="col-xs-6">
+                                                        <a href="?c=money&a=addFrom"><div class="push-5"><i class="si si-wallet fa-2x"></i></div>
+                                                        <div class="h6 font-w300 text-muted">在线充值</div></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- END Author of the Month -->
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-lg-6">
+                                <a class="block block-link-hover2 text-center" href="?c=nproduct&a=lists&group_id=1">
+                                    <div class="block-content block-content-full">
+                                        <i class="si si-basket fa-4x text-success"></i>
+                                        <div class="font-w600 push-15-t">购买主机</div>
+                                    </div>
+                                </a>
+                            </div>                            
+							<div class="col-xs-6 col-sm-6 col-lg-6">
+                                <a class="block block-link-hover2 text-center" href="?c=hosting&a=pageHost">
+                                    <div class="block-content block-content-full">
+                                        <i class="si si-layers fa-4x text-warning"></i>
+                                        <div class="font-w600 push-15-t">产品管理</div>
+                                    </div>
+                                </a>
+                            </div>
+						</div>
+							
+                            <div class="block">
+                                <div class="block-content">
+                                    <ul class="list list-activity push">
+                                        {{dispatch c='public' a='leftarticle'}}
+                                    </ul>
+									<p class="text-right" style="font-size:12px;"><a href="?c=public&a=pagelistnews"><B>查看更多公告...</B></a></p>
+                                </div>
+                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END Content Grid -->
+                        </div>
+					
+					
+					
+                        <div class="col-lg-8">
+                            <!-- News -->
+                            <div class="block">
+                                <div class="block-header">
+                                    <ul class="block-options">
+                                        <li>
+                                            <button type="button" data-toggle="block-option" data-action="fullscreen_toggle"></button>
+                                        </li>
+                                        <li>
+                                            <button type="button" data-toggle="block-option" data-action="content_toggle"></button>
+                                        </li>                                    </ul>
+                                    <h3 class="block-title"> 账户等级</h3>
+                                </div>
+                                <div class="block-content bg-gray-lighter">
+                                    <!-- Slick slider (.js-slider class is initialized in App() -> uiHelperSlick()) -->
+                                    <!-- For more info and examples you can check out http://kenwheeler.github.io/slick/ -->
+                                    <div class="js-slider remove-margin-b" data-slider-autoplay="true" data-slider-autoplay-speed="4000">
+                                        <div>
+                            
+                                <div class="block-content">
+								{{if $user.agent_id>0}}
+                                    <div class="row items-push text-center">
+                                        <div class="col-sm-6 border-r">
+                                            <div class="h2 font-w700">{{$user.agent_name}}</div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="h5 font-w700">{{$user.agent_hash}}</div>
+                                            <div class="h6 text-uppercase push-5-t"><input type='button' value=' 获取/更换 密钥 ' onclick='create_hash()'></div>
+                                        </div>
+                                    </div>
+								{{else}}
+                                    <div class="row items-push text-center">
+                                        <div class="col-sm-6 border-r">
+                                            <div class="h2 font-w700">普通用户</div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="h5 font-w700">无</div>
+                                            <div class="h6 text-muted text-uppercase push-5-t">API秘钥</div>
+                                        </div>
+                                    </div>
+								{{/if}}
+                                </div>
+                                        </div>
+                                    </div>
+                                    <!-- END Slick slider -->
+                                </div>
+                                <div class="block-content">
+								<h3 class="block-title">本站账户级别不同，享受的服务和优惠折扣亦不相同。</h3><br />升级流程：<font color="#FF6600"><b>充值相应预付款</b></font> 或 <font color="#FF6600"><b>累计消费金额达到要求</b></font>，即可&nbsp; <a class="btn btn-success push-5-r push-10" href="http://wpa.qq.com/msgrd?v=3&uin=806847905&site=qq&menu=yes" style="font-size:12px;"><i class="fa fa-qq"></i>&nbsp; 联系客服</a> 提升级别！详细内容请参照下表（手机浏览可左右滑动表格查看全部内容）：
+                            <p><div class="table-responsive">
+								<table class="table table-striped table-borderless text-center">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 20%;"></th>
+                                            <th class="text-center">
+                                                普通用户
+                                            </th>
+                                            <th class="text-center">
+                                                中级会员
+                                            </th>
+                                            <th class="text-center">
+											高价会员
+                                            </th>
+                                            <th class="text-center">
+											钻石会员
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>购买主机</td>
+                                            <td>原价</td>
+                                            <td><b>8.5</b> 折</td>
+                                            <td><b>7</b> 折</td>
+                                            <td><b>6</b> 折</td>
+                                        </tr>
+                                        <tr>
+                                            <td>购买资源</td>
+                                            <td>原价</td>
+                                            <td><b>9</b> 折</td>
+                                            <td><b>8</b> 折</td>
+                                            <td><b>7</b> 折</td>
+                                        </tr>
+                                        <tr>
+                                            <td>远程协助</td>
+                                            <td><i class="si si-close text-danger"></i></td>
+                                            <td><i class="si si-close text-danger"></i></td>
+                                            <td>免费一次</td>
+                                            <td>免费三次</td>
+                                        </tr>
+                                        <tr>
+                                            <td>搬家服务</td>
+                                            <td><i class="si si-close text-danger"></i></td>
+                                            <td>免费一次</td>
+                                            <td>免费三次</td>
+                                            <td>免费五次</td>
+                                        </tr>
+                                        <tr>
+                                            <td>代理销售</td>
+                                            <td><i class="si si-close text-danger"></i></td>
+                                            <td><i class="si si-check text-success"></i></td>
+                                            <td><i class="si si-check text-success"></i></td>
+                                            <td><i class="si si-check text-success"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td>账户升级</td>
+                                            <td>无</td>
+                                            <td>预付款300元或<br />累计消费500元</td>
+                                            <td>预付款800元或<br />累计消费1000元</td>
+                                            <td>预付款1500元或<br />累计消费2000元</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 20%;"></td>
+                                            <td></td>
+                                            <td><a href="?c=money&a=addFrom" class="btn btn-primary" style="font-size:12px;">升 级</a></td>
+                                            <td><a href="?c=money&a=addFrom" class="btn btn-primary" style="font-size:12px;">升 级</a></td>
+                                            <td><a href="?c=money&a=addFrom" class="btn btn-primary" style="font-size:12px;">升 级</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+								</div></p>
+							
+                                </div>
+                            </div>
+                            <!-- END News -->
+                        </div>
+
+
+                    </div>
+				</div>
+
+
+ </main>

@@ -1,0 +1,99 @@
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <title>登录</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <script src="/static/admin/js/jquery.min.js"></script>
+    <style type="text/css">
+        /*html{background: url('static/images/bg2.png');}*/
+        body{margin: 0 auto;display: block;font-size: 1rem;font-family:"微软雅黑";max-width: 100%;}
+        body{background: #fff;}
+        .zwzd-login-logo {text-align: center;color: #ff0036;margin-top:2rem}
+        .zwzd-login-logo .zwzd-login-img{width: 5rem;}
+        .main_content{width: 85%;margin: 0 auto;margin-top: 1.9rem;}
+        .zwzd-index-box img{width:100%}
+        .btn-login{width: 100%;background:#ff0036 ;height: 50px;color: #fff;font-size:1rem;margin-top: 30px;outline-style: none;border:0;border-radius:5px}
+        /*手机号码弹出*/
+        .common-pay{position:fixed;width:100%;height:100%;top:0;background-color:#000;background:rgba(0,0,0,.6)}
+        .common-dialog{width:80%;left:10%;text-align:center;position:absolute;background:#fff;z-index:2;opacity:1;border-radius:.5rem;border:1px solid #f2f2f2;top:calc(40% - 5rem)}
+        .zwzd-pay-box{display:none}
+        .zwzd-pay{height:12rem}
+        .zwzd-input-tit{height:3rem;line-height:3rem;color:#333;font-size:1.16rem;border-bottom:1px solid #f2f2f2}
+        .pay-money{color:#333;font-size:.2rem;margin:.2rem 0;font-weight:700}
+        .zwzd-input-box input{width:80%;height:2.4rem;line-height:.4rem;border-radius:5px;border:1px solid #eee;color:#555;font-size:0.96rem;text-align:center;padding:0;margin-top:1.3rem}
+        .zwzd-pay-box .zwzd-btns{margin:1.58rem 0}
+        .zwzd-no-btn{width:5rem;height:2rem;border-radius:7px;line-height:.4rem;color:#969696;background:#fff;font-size:1rem;border:1px solid #969696}
+        .zwzd-yes-btn{width:5rem;height:2rem;border-radius:7px;line-height:.4rem;background:orange;color:#fff;font-size:1rem;border:none;margin-left:2rem;transition: 0.2s;}
+        .zwzd-yes-btn:active {background-color: #e04a1d;}
+    </style>
+</head>
+<body>
+    <div class="zwzd-contain">
+        <div class="zwzd-login-logo">
+            <img src="/static/admin/images/zwzd-logo.png" class="zwzd-login-img">
+            <h4>欢迎使用中网智达**********系统</h4>
+            <h4>{$info['real_name']}</h4>
+        </div>
+        <div class="main_content">
+            
+            <div class="zwzd-index-box">
+                <img src="/static/admin/images/zwzd-index-ad.png">
+                <button type="button" class="btn btn-login zwzd-get-btn">点击核销</button>
+            </div>  
+        </div>
+    </div>
+
+    <div class="common-pay zwzd-pay-box">
+        <div class="common-dialog zwzd-pay">
+            <div class="zwzd-input-tit">请输入领券时录入的手机号</div>
+            <div class="zwzd-input-box">
+                <input type="number" oninput="if(value.length>11)value=value.slice(0,11)" class="zwzd-input-phone phone" placeholder="请输入手机号码">
+            </div>
+            <div class="zwzd-btns">
+                <button class="zwzd-no-btn">取消</button>
+                <button class="zwzd-yes-btn">确认</button>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" class="confirm_status" value="1">
+<script src="/static/admin/js/layer/layer.js"></script>
+<script type="text/javascript">
+    $(window).on("load",function(){
+        var winHeight = $(window).height();
+    });
+
+    $(".zwzd-get-btn").on("click", function () {
+        $('.zwzd-pay-box').css("display", "block");
+    });
+
+    $(".zwzd-no-btn").on("click", function () {
+        $('.zwzd-pay-box').css("display", "none");
+    });
+
+    $(".zwzd-yes-btn").click(function() {
+        if($('.confirm_status').val()!=1){
+            return;
+        }
+        var phone = $('.phone').val();
+        if(phone=='' || phone.length!=11){
+            layer.alert('请输入正确的手机号码');return;
+        }
+        $('.confirm_status').val(0);
+        $.post('/index/active/search_phone',{phone:phone},function(data){
+            $('.confirm_status').val(1);
+            if(data.code==1){
+                window.location.href="/index/active/set_coupon?phone="+phone;
+            }else{
+                layer.alert(data.msg);
+            }
+
+        },'json');
+    })
+</script>
+</body>
+</html>

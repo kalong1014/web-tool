@@ -1,0 +1,172 @@
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3">{:__('Store_name')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-store_name" data-rule="required" class="form-control" name="row[store_name]" type="text" value="" placeholder="请输入商户名称">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3">{:__('Agent_id')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-agent_id" data-rule="required" class="form-control" name="row[agent_id]" type="text" value="0">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3">{:__('Username')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-username" data-rule="required" class="form-control" name="row[username]" type="text" value="" placeholder="请输入商户登录的账号，不能包含中文跟特殊字符">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3">{:__('Password')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-password" data-rule="required" class="form-control" name="row[password]" type="text" value="" placeholder="******">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3">发布优先级:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-send_sort" class="form-control" name="row[send_sort]" type="number" value="0">
+            <div style="margin-top: 5px;color: red;">矩阵发布的优先级，数字越大越先发</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3">点数:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-price" class="form-control" name="row[price]" type="number" value="0">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3">共享ip次数:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-ip_count" class="form-control" name="row[ip_count]" type="number" value="0">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3">AI创作字数:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-ai_chat_count"  class="form-control" name="row[ai_chat_count]" type="number" value="0">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3">去水印数:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-price" class="form-control" name="row[shuiyin_count]" type="number" value="-1">
+            <div style="margin-top: 5px;color: #ccc;">填-1则不限制</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3">企业号授权数:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-price" class="form-control" name="row[qiye_count]" type="number" value="-1">
+            <div style="margin-top: 5px;color: #ccc;">填-1则不限制</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3">普通号授权数:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-price" class="form-control" name="row[dy_count]" type="number" value="-1">
+            <div style="margin-top: 5px;color: #ccc;">填-1则不限制</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3">剪辑视频数:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-price" class="form-control" name="row[jianji_count]" type="number" value="-1">
+            <div style="margin-top: 5px;color: #ccc;">填-1则不限制</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3">矩阵视频数:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-price" class="form-control" name="row[juzhen_count]" type="number" value="-1">
+            <div style="margin-top: 5px;color: #ccc;">填-1则不限制</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3">引流外链数:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-price" class="form-control" name="row[card_count]" type="number" value="-1">
+            <div style="margin-top: 5px;color: #ccc;">填-1则不限制</div>
+        </div>
+    </div>
+    <div class="form-group" style="display:none">
+        <label class="control-label col-xs-12 col-sm-3">防封抖链数:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-price" class="form-control" name="row[link_count]" type="number" value="-1">
+            <div style="margin-top: 5px;color: #ccc;">填-1则不限制</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3">关键词设置数:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-price" class="form-control" name="row[keyword_count]" type="number" value="-1">
+            <div style="margin-top: 5px;color: #ccc;">填-1则不限制</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3">探店数(同时运行):</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-price" class="form-control" name="row[tandian_count]" type="number" value="-1">
+            <div style="margin-top: 5px;color: #ccc;">填-1则不限制</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3">剪辑清晰度:</label>
+        <div class="col-xs-12 col-sm-8">
+            <select class="form-control" name="row[ice_width]">
+                <option value="1080">全高清1080P</option>
+                <option value="720">高清</option>
+                <option value="540">标清</option>
+            </select>
+        </div>
+    </div>
+    <!-- <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3">{:__('Status')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-status" data-rule="required" class="form-control" name="row[status]" type="number" value="1">
+        </div>
+    </div> -->
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3">{:__('Out_date')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-out_date" class="form-control datetimepicker" data-date-format="YYYY-MM-DD" data-use-current="true" name="row[out_date]" type="text" value="{:date('Y-m-d')}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3">权限:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="radio">
+                <label>
+                    <input type="checkbox" name="row[qiye_status]" class="is_repeat" checked > 企业号运营
+                </label>
+                <label>
+                    <input type="checkbox" name="row[juzhen_status]" class="is_repeat" checked> 矩阵
+                </label>
+                <label>
+                    <input type="checkbox" name="row[jianji_status]" class="is_repeat" checked> 剪辑
+                </label>
+                <label>
+                    <input type="checkbox" name="row[card_status]" class="is_repeat" checked> 引流外链
+                </label>
+                <label>
+                    <input type="checkbox" name="row[seo_status]" class="is_repeat" checked > 排名
+                </label>
+                <label >
+                    <input type="checkbox" name="row[shucai_status]" class="is_repeat" checked > ai素材库
+                </label>
+                <label >
+                    <input type="checkbox" name="row[tandian_status]" class="is_repeat" checked > 探店码
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-3"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>

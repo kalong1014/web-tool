@@ -1,0 +1,28 @@
+{
+  "code": 1
+  ,"msg": ""
+  ,"count": 3000000
+  ,"data": [{
+    "platform": "抖音"
+    ,"avatar": ""
+    ,"nickname": "中网智达1"
+    ,"all_count": "156"
+    ,"view_count": "1345"
+    ,"like_count": "2356"
+    ,"comment_count": "3367"
+    ,"new_share": "4378"
+    ,"addtime": "2022-10-01"
+    ,"stoptime": "2022-11-01"
+  },{
+    "platform": "抖音"
+    ,"avatar": ""
+    ,"nickname": "中网智达6"
+    ,"all_count": "156"
+    ,"view_count": "1345"
+    ,"like_count": "2356"
+    ,"comment_count": "3367"
+    ,"new_share": "4378"
+    ,"addtime": "2022-10-01"
+    ,"stoptime": "2022-11-01"
+  }]
+}  

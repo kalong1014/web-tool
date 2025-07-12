@@ -1,0 +1,47 @@
+<navbar text="申请成为推广员"></navbar>
+<view class="page" style="bottom: {{safeAreaHeight+110}}rpx; top: {{navBarHeight}}px;">
+    <view class="container">
+        <view class="login-main">
+            <view class="audit-result" wx:if="{{lastApply&&!isEdit}}">
+                <view wx:if="{{lastApply.status==0}}">
+                    <image class="icon" src="/images/ic_audit.png"></image>
+                    <view class="message">申请已提交，正在审核中</view>
+                    <view class="time">{{lastApply.create_time}} 提交</view>
+                </view>
+                <view wx:if="{{lastApply.status==1}}">
+                    <image class="icon" src="/images/ic_pass.png"></image>
+                    <view class="message">恭喜你，已通过审核</view>
+                    <view class="time">{{lastApply.create_time}} 提交</view>
+                    <view bindtap="toCommission" class="btn">进入推广中心</view>
+                </view>
+                <view wx:if="{{lastApply.status==2}}">
+                    <image class="icon" src="/images/ic_reject.png"></image>
+                    <view class="message">审核被驳回，可调整后重新提交</view>
+                    <view class="time">{{lastApply.create_time}} 提交</view>
+                    <view bindtap="toEdit" class="btn">返回编辑</view>
+                    <view class="reject">驳回原因：{{lastApply.reject_reason?lastApply.reject_reason:'无'}}</view>
+                </view>
+            </view>
+            <view class="login-form" wx:else>
+                <view class="form-item">
+                    <text class="label">姓名</text>
+                    <input class="input" model:value="{{name}}" placeholder="请输入姓名" type="text"></input>
+                </view>
+                <view class="form-item">
+                    <text class="label">手机号</text>
+                    <input class="input" maxlength="11" model:value="{{phone}}" placeholder="请输入手机号" type="text"></input>
+                </view>
+                <view class="form-item" style="display: flex; align-items: center; padding-top: 30rpx;">
+                    <label class="agreement">
+                        <checkbox-group bindchange="checkboxChange">
+                            <checkbox checked="{{is_agree}}" class="check" color="#04BABE" value="{{true}}"></checkbox>阅读并同意 </checkbox-group>
+                    </label>
+                    <text bindtap="toAgreement" class="agreement" style="color:#04BABE;">《用户推广协议》</text>
+                </view>
+                <view class="form-item">
+                    <button bindtap="doSubmit" class="btn-login">立即申请</button>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

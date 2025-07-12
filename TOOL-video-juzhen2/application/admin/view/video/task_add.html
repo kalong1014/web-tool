@@ -1,0 +1,459 @@
+{include file="public/header" /}
+<style>
+    .form-group{
+        height: 45px;
+    }
+    .yulan{
+        max-height: 450px;
+        overflow: auto;
+    }
+    .btn-tishi img{
+        position:relative;
+        animation:mymove 5s infinite;
+        -webkit-animation:mymove 5s infinite;
+    }
+    @keyframes mymove
+    {
+        0% {left:0px;}
+        50%{left:100px;}
+        100% {left:0px;}
+    }
+    @-webkit-keyframes mymove /*Safari and Chrome*/
+    {
+        0% {left:0px;}
+        50%{left:100px;}
+        100% {left:0px;}
+    }
+    #spku-yulan >li {
+        margin-bottom: 20px;
+        margin-left: 2.6%;
+        width: 21.7%;
+    }
+    #spku-yulan {
+        -webkit-text-size-adjust: 100%;
+        color: #333;
+        font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .neiro {
+        width: 100%!important;
+        height: 215px!important;
+    }
+    .neiro img{width: 100%;height: 100%;}
+    .neiro video{height: 100%!important;}
+    .yulan #newli >li{
+        width: 15.7%;
+    }
+    .ds_div{
+        display: none;
+    }
+    .form-group label.control-label{
+        line-height: 35px!important;
+    }
+</style>
+
+<!--上传封面-->
+<style>
+    .yue_div dt{
+        display: flex;
+    }
+    #form_img img{
+        height: 80px;margin-right: 10px;margin-bottom: 10px;
+    }
+</style>
+<body class="gray-bg">
+
+<link href="__CSS__/wanshan.css" rel="stylesheet">
+<!-- start: Header -->
+<div class="header-box">
+    <div class="pl25">
+        <h3 class="fs22 font-weight-500 c333">发布任务</h3>
+        <p class="fs14 c666">根据提示添加任务相关信息</p>
+    </div>
+</div>
+<!-- start: Header -->
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+
+                <div class="ibox-content">
+                    <div class="btn-tishi" style="width:200px;position: absolute;right: 10%;top: 20px;height: 100px;">
+                        <div class="shan"></div>
+                        <img src="__IMG__/tishi.png" style="width:100%;opacity: .7;">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">活动任务名：</label>
+                        <div class="input-group col-sm-6">
+                            <input  type="text" class="form-control" name="rwname" placeholder="想个名字吧！">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">任务类型：</label>
+                        <div class="input-group col-sm-7">
+                            <select name="task_type" class="form-control" id="task_type" style="">
+                                <option value="1">探店</option>
+                                <option value="2">外卖</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">智能标题：</label>
+                        <div class="input-group col-sm-4">
+                            <select name="biaotid" class="form-control m-b" id="biaotid" style="width:200px">
+
+                                {foreach name='biaoti' item='bt'}
+                                <option value="{$bt.id}">{$bt.ci_name}</option>
+                                {/foreach}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">发布视频：</label>
+                        <div class="input-group col-sm-6">
+                            <select name="sucai" class="form-control m-b" id="sucai1" style="width:200px">
+                                <option  class="sucai1" value="0">请选择</option>
+                                <option id="zhida_shipin" class="sucai1222" value="3"  >本地素材库</option>
+                                <option id="inlineRadio3" class="sucai1222" value="2" >混剪库</option>
+                            </select>
+                            <p style="font-size:12px;color:#9d9d9d;line-height: 35px;" id="wenzi"></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">优惠券：</label>
+                        <div class="input-group col-sm-7">
+                            <select name="coupon_id" class="form-control" id="coupon_id" style="">
+                                <option value="0">选择优惠券</option>
+                                {foreach name='coupon' item='vo'}
+                                <option value="{$vo.id}">{$vo.title}</option>
+                                {/foreach}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">发券数：</label>
+                        <div class="input-group col-sm-7">
+                            <input type="number" class="form-control" name="coupon_num"  >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">视频是否重复：</label>
+                        <div class="input-group col-sm-4" style="line-height:35px">
+                            <label class="radio-inline" style="align-items: center;display: inline-flex;">
+                                <input type="radio" name="chongfu" id="inlineRadio1" value="2" checked style="align-items: center;display: inline-flex;"> 允许
+                            </label>
+                            <label class="radio-inline" style="align-items: center;display: inline-flex;">
+                                <input type="radio" name="chongfu" id="inlineRadio2" value="1" > 禁止
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group" style="height: auto;">
+                        <label class="col-sm-2 control-label">活动介绍：</label>
+                        <div class="input-group col-sm-6">
+                            <script id="container" name="text" type="text/plain"></script>
+                        </div>
+                    </div>
+                    <div class="form-group" style="padding-top:50px;">
+                        <button class="btn btn-primary" type="submit" onclick="tijiaofabu()" style="margin-left:16.66666667%"> 发布任务</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="btn-tishi" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">温馨提示</h4>
+            </div>
+            <div class="" style="padding:20px 0 " >
+                <p class="zhida_er_a">
+                    1、视频内容必须和主词相关，否则审核不通过或账号会存在限流风险。
+                </p>
+                <p class="zhida_er_a">
+                    2、创建任务必须有视频,否则发布不成功哦！
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<!--混剪库模态框-->
+<div class="modal fade" id="add" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">混剪库选择（可多选）</h4>
+            </div>
+            <div class="" style="" >
+                <div class="m-t-md m-b-md" id="zhida_zhanghao" style="padding:0 20px;">
+                    <div class="" style="width:100%;overflow:auto;">
+                        {foreach name="yun" item="v"}
+                        <div style="width:20%;float:left;margin-bottom: 1%;">
+                            <label class="checkbox-inline">
+                                <input type="checkbox"  value="{$v.id}" name="yun_yunid" class="zhida_chec" style="margin-top:5px">
+
+                                <span style="font-size:15px">{$v.yun_name}</span>
+                            </label>
+                        </div>
+                        {/foreach}
+                    </div>
+                </div>
+                <div class="form-group m-b-md" style="text-align:center;margin-bottom:20px">
+                    <div class="col-col-sm-offset-3">
+                        <button type="button" id="add_btn" class="close btn btn-outline btn-primary" data-dismiss="modal" style="opacity:1;float:initial;font-size: initial;font-weight: normal;padding:6px 12px;line-height: inherit;" onclick="queren(2)">确认选择</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--视频库-->
+<div class="modal fade" id="spku" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">视频库-素材分类列表选择</h4>
+            </div>
+            <div class="" style="" >
+                <div class="choose-spkzu m-l-md m-t-md" style="text-align:center">
+                    <span style="font-size:14px">选择本地素材分类列表：</span>
+                    <select name="spkzu" class="form-control" id="spkzu" style="width:200px;display: initial;">
+                        {foreach name="fenlei" item="v"}
+                        <option value="{$v.id}">{$v.uname}</option>
+                        {/foreach}
+                    </select>
+                    <button class="btn btn-info ml-10" onclick="queren(1)">确定选择</button>
+                </div>
+                <div class="yulan" style="margin-top:20px">
+                    <ul id="spku-yulan" class="sucai-page" >
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" name="video"  value="">
+<input type="hidden" name="id" id="id" value="{$id}">
+<input type="hidden" name="type"  value="" />
+<input type="hidden" name="img"  value="" />
+<!-- 模态框 添加组结束 -->
+{include file="public/footer" /}
+<script src="/static/admin/chengshi/bootstrap.min.js"></script>
+<script type="text/javascript" src="/static/admin/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="/static/admin/ueditor/ueditor.all.js"></script>
+<script type="text/javascript">
+    $("#sucai1").change(function() {
+        var sucai = $(this).val();
+        if(sucai == 3) {
+            $("#spku").modal('show');
+        }
+        if(sucai == 2) {
+            $("#add").modal('show');
+        }
+    })
+    function queren(type){
+        var  sucaitype =  $('input[name="type"]').val();
+        console.log(sucaitype)
+        var pid = $('input[name="id"]').val();//当前任务id
+        var id = 0;
+        if(type > 0) {
+            if(type==1){
+                id =    $("#spkzu").val();//本地素材库id
+            }else{
+                id = '';
+                $('input[name="yun_yunid"]:checked').each(function(){
+                    id += $(this).val()+',';
+
+                });
+            }
+            if(id ==''){
+                layer.msg('请选择素材',{icon:2,time:1500,shade: 0.1,}); return false;
+            }
+        }
+        $.post('{:url("bdscxz")}',
+            {id:id,type:type,pid:pid},
+            function(data){
+                $("#spku").modal('hide');
+                $("input[name='video']").val(data.video);
+                $("#wenzi").html('您选择的来源是：<b>'+data.name+'，包括'+data.video+'个视频，'+data.msg+'个图片</b>');
+
+            })
+    }
+    var editor = UE.getEditor('container',{
+        //这里可以选择自己需要的工具按钮名称,此处仅选择如下五个
+        toolbars:[[
+            'fullscreen', 'source', '|', 'undo', 'redo', '|',
+            'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
+            'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
+            'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
+            'directionalityltr', 'directionalityrtl', 'indent', '|',
+            'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase','|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
+            'simpleupload', 'insertimage', 'emotion'
+        ]],
+        //focus时自动清空初始化时的内容
+        autoClearinitialContent:true,
+        //关闭字数统计
+        wordCount:false,
+        //关闭elementPath
+        elementPathEnabled:false,
+        //默认的编辑区域高度
+        initialFrameHeight:300
+        //更多其他参数，请参考ueditor.config.js中的配置项
+    });
+    //第四步
+    function tijiaofabu(){
+        var rwname =  $('input[name="rwname"]').val();//任务名称
+        video = $('input[name="video"]').val();//获取视频数量
+        if(video==''){
+            layer.msg('请选择视频',{icon:2,time:1500,shade: 0.1,}); return false;
+        }
+        if(video <0){
+            layer.msg('请选择视频',{icon:2,time:1500,shade: 0.1,}); return false;
+        }
+        var  pid = $('input[name="id"]').val();//当前任务id
+        if(rwname==''){
+            layer.msg('请填写任务名称',{icon:2,time:1500,shade: 0.1,}); return false;
+        }
+        var  biaotid = $('#biaotid  option:selected').val();//获取标题id
+        var sucai1 = $('#sucai1  option:selected').val();//视频来运 2混剪库3本地素材库
+        type = sucai1;
+        if(sucai1==0){
+            layer.msg('请选择视频来源',{icon:2,time:1500,shade: 0.1,}); return false;
+        }
+        if(sucai1==3){
+            suid =$("#spkzu").val();//本地素材库id
+        }else{
+            suid = '';
+            $('input[name="yun_yunid"]:checked').each(function(){
+                suid += $(this).val()+',';
+            });
+        }
+
+        //优惠券
+        var task_type = $('#task_type  option:selected').val();//获取优惠券id
+       
+        var coupon_id = $('#coupon_id  option:selected').val();//获取优惠券id
+        if(coupon_id==0){
+             layer.msg('请选择优惠券',{icon:2,time:1500,shade: 0.1,});
+            return false;
+        }
+        var coupon_num =  $('input[name="coupon_num"]').val();//优惠券个数
+
+        var chongfu =  $("input[name=chongfu]:checked").val();//是否重复 2 允许 1禁止
+        if(biaotid==undefined || biaotid ==''){
+            layer.msg('请选择优化标题',{icon:2,time:1500,shade: 0.1,});
+            return false;
+        }
+        var formData = new FormData();
+        formData.append("text", editor.getContent());
+        formData.append("pid", pid);
+        formData.append("biaotid", biaotid);
+        formData.append("task_type", task_type);
+        formData.append("coupon_id", coupon_id);
+        formData.append("coupon_num", coupon_num);
+        formData.append("suid", suid);
+        formData.append("chongfu", chongfu);
+        formData.append("rwname", rwname);
+        formData.append("type", type);
+        $.ajax({
+            type:'post',
+            data: formData,
+            contentType : false,
+            processData : false,
+            url:'/admin/video/task_fabu',
+            success : function(data) {
+                if(data.code==1){
+
+                    layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+                    setInterval(function(){
+                        window.location.href="{:url('admin/cityfission/actlist')}";
+                    },1500);
+                }else{
+                    layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+                }
+
+            }
+        });
+    }
+
+    //获取select 选中的值
+    $('#spkzu').mouseout(function(){
+        id =     $("#spkzu").val();
+        $("#spku-yulan").html('');
+        var html="";
+        $.post('{:url("xun_bdsp")}',
+            {id:id},
+            function(data){
+                console.log(data)
+                if(data.code==1){
+
+                    $.each(data.msg, function (key, value) {
+                        //1 视频 2 图片
+                        if(value.data== "视频"){
+                            html = " <li style=' list-style: none;' class='lise'>"
+
+                                +" <div class='neiro' >"
+                                +"<video controls=''>"
+                                +" <source src='"+value.mediaIds+"' type='video/mp4'>"
+                                +" </video>"
+                                +"<div class='type'>"
+                                +"<div class='typename'>"
+                            value.data
+                            +"</div>"
+                            +"</div>"
+                            +"<div class='caozuo '>"
+                            +"<input lay-skin='primary' type='checkbox' checked='checked' name='1sucai' value='' >"
+
+                            +"</div>"
+                            +"</div>"
+
+                            +"</li>"
+                            $("#spku-yulan").append(html);
+                        }else{
+                            html = " <li style=' list-style: none;' class='lise'>"
+
+                                +" <div class='neiro' >"
+
+                                +"  <img src='"+value.mediaIds+"'>"
+
+                                +"<div class='type'>"
+                                +"<div class='typename'>"
+                            value.data
+                            +"</div>"
+                            +"</div>"
+                            +"<div class='caozuo '>"
+                            +"<input lay-skin='primary' type='checkbox' checked='checked' name='1sucai' value='' >"
+
+                            +"</div>"
+                            +"</div>"
+
+                            +"</li>"
+                            $("#spku-yulan").append(html);
+
+
+                        }
+
+                    });
+
+                }
+            })
+    })
+    // 温馨提示
+    $(".btn-tishi").click(function(){
+        $("#zhic").css('display',"none");
+        $("#btn-tishi").modal('show');
+    })
+</script>
+</body>
+</html>

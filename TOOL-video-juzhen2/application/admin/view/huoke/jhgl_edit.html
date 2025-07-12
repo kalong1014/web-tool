@@ -1,0 +1,291 @@
+ {include file="public/header" /}
+ <script src="/static/admin/rl/jquery.min.js"></script>
+<script src="/static/admin/rl/plugins/moment.min.js"></script>
+<script src="/static/admin/rl/datepicker.all.js"></script>
+<link rel="stylesheet" href="/static/admin/rl/css/datepicker.css">
+ <div class="modal-dialog" style="width: 100%;margin-top: 0px;">
+            <div class="modal-content" style="border:0px">
+                <div class="modal-header">
+                   
+                    <h3 class="modal-title">任务计划</h3>                  
+                </div>
+                <form class="form-horizontal" name="add_rule" id="add_rule" method="post" action="{:url('')}">
+                    <div class="ibox-content" style="padding: 0px;border: 0px;">
+                    	<div class="form-group" style="margin-left:10px;border:0px">
+                                <label class="col-sm-3 control-label">计划名称:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="title" id="title" placeholder="计划名称" class="form-control"/>
+                                </div>
+                            </div> 
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" style="margin-left:20px">关键词:</label>
+                                <div class="col-sm-8">
+                                   <a href="javascript:;"  class="btn btn-primary btn-xs">
+                                        童装&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-trash-o " id="del"></i> 
+                                    </a>
+                                    <a href="javascript:;"  class="btn btn-primary btn-xs">
+                                        童装&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-trash-o " id="del"></i> 
+                                    </a>
+                                    	<div class="col-sm-3" style="margin-left: -20px;">                                                      
+                                    <select name="pid" class="form-control m-b">
+                                        <option value="0">请选择</option>
+                                        <option value="0">请选择</option>
+                                        <option value="0">请选择</option>
+                                        <option value="0">请选择</option>
+                                        <option value="0">请选择</option>
+                                        <option value="0">请选择</option>
+                                                                                 
+                                      
+                                    </select>                                    
+                                </div>
+ <span class="" style="color:red;width:100%">最多可添加5个</span>
+                                </div>
+
+                            </div> 
+                              <div class="form-group">
+                                <label class="col-sm-3 control-label" style="margin-left:20px">线索词:</label>
+                                <div class="col-sm-8">
+                                   <a href="javascript:;"  class="btn btn-primary btn-xs">
+                                        童装&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-trash-o " id="del"></i> 
+                                    </a>
+                                    <a href="javascript:;"  class="btn btn-primary btn-xs">
+                                        童装&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-trash-o " id="del"></i> 
+                                    </a>
+                                    	<div class="col-sm-3" style="margin-left: -20px;">                                                      
+                                    <select name="pid" class="form-control m-b">
+                                        <option value="0">请选择</option>
+                                        <option value="0">请选择</option>
+                                        <option value="0">请选择</option>
+                                        <option value="0">请选择</option>
+                                        <option value="0">请选择</option>
+                                        <option value="0">请选择</option>
+                                                                                 
+                                      
+                                    </select>                                    
+                                </div>
+ 									<span class="" style="color:red;width:100%">最多可添加5个</span>
+                                </div>
+
+                            </div> 
+                       
+                 <div class="form-group" style="margin-bottom:1px;margin-left: 20px;">
+		                            <label class="col-sm-3 control-label" >执行时间：</label>
+		               
+		                <div class="mt40">
+				        
+				        <div class="c-datepicker-date-editor  J-datepicker-range-day mt10">
+				          <i class="c-datepicker-range__icon kxiconfont icon-clock"></i>
+				          <input placeholder="开始日期" name="" class="c-datepicker-data-input only-date" value="">
+				          <span class="c-datepicker-range-separator">-</span>
+				          <input placeholder="结束日期" name="" class="c-datepicker-data-input only-date" value="">
+				        </div>
+				      </div>
+                 </div>
+                 <div class="form-group" style="margin-bottom:1px;margin-left: 20px;margin-top: 10px;">
+                                    <label class="col-sm-3 control-label" >视频发布时间：</label>
+                       
+                        <div class="mt40" >
+                        
+                        <div class="c-datepicker-date-editor  J-datepicker-range-day mt10">
+                          <i class="c-datepicker-range__icon kxiconfont icon-clock"></i>
+                          <input placeholder="开始日期" name="" class="c-datepicker-data-input only-date" value="">
+                          <span class="c-datepicker-range-separator">-</span>
+                          <input placeholder="结束日期" name="" class="c-datepicker-data-input only-date" value="">
+                        </div>
+                      </div>
+                 </div>
+                        
+                
+                            <div class="form-group" style="margin-top:10px;margin-left:2px">
+                                <label class="col-sm-3 control-label">状态</label>
+                                <div class="col-sm-3">                                                      
+                                    <select name="pid" class="form-control m-b">
+                                        <option value="0">正常</option>
+                                        <option value="0">关闭</option>
+                                         <option value="0">已删除</option>                                           
+                                      
+                                    </select>                                    
+                                </div>
+                            </div>
+   	                 <div class="modal-footer" style="padding-top: 0px; border: 0px;margin-right: 100px;">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> 保存</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i> 关闭</button>                    
+                    </div>
+                        </div>
+
+                   
+                </form>
+            </div>
+        </div>
+        {include file="public/footer" /}
+        <script type="text/javascript">
+     $(function(){
+        var DATAPICKERAPI = {
+          // 默认input显示当前月,自己获取后填充
+          activeMonthRange: function () {
+            return {
+              begin: moment().set({ 'date': 1, 'hour': 0, 'minute': 0, 'second': 0 }).format('YYYY-MM-DD HH:mm:ss'),
+              end: moment().set({ 'hour': 23, 'minute': 59, 'second': 59 }).format('YYYY-MM-DD HH:mm:ss')
+            }
+          },
+          shortcutMonth: function () {
+            // 当月
+            var nowDay = moment().get('date');
+            var prevMonthFirstDay = moment().subtract(1, 'months').set({ 'date': 1 });
+            var prevMonthDay = moment().diff(prevMonthFirstDay, 'days');
+            return {
+              now: '-' + nowDay + ',0',
+              prev: '-' + prevMonthDay + ',-' + nowDay
+            }
+          },
+          // 注意为函数：快捷选项option:只能同一个月份内的
+          rangeMonthShortcutOption1: function () {
+            var result = DATAPICKERAPI.shortcutMonth();
+            return [{
+              name: '昨天',
+              day: '-1,-1',
+              time: '00:00:00,23:59:59'
+            }, {
+              name: '这一月',
+              day: result.now,
+              time: '00:00:00,'
+            }, {
+              name: '上一月',
+              day: result.prev,
+              time: '00:00:00,23:59:59'
+            }];
+          },
+          // 快捷选项option
+          rangeShortcutOption1: [{
+            name: '最近一周',
+            day: '-7,0'
+          }, {
+            name: '最近一个月',
+            day: '-30,0'
+          }, {
+            name: '最近三个月',
+            day: '-90, 0'
+          }],
+          singleShortcutOptions1: [{
+            name: '今天',
+            day: '0'
+          }, {
+            name: '昨天',
+            day: '-1',
+            time: '00:00:00'
+          }, {
+            name: '一周前',
+            day: '-7'
+          }]
+        };
+          //十分秒年月日单个
+          $('.J-datepicker').datePicker({
+            hasShortcut:true,
+            min:'2018-01-01 04:00:00',
+            max:'2019-04-29 20:59:59',
+            shortcutOptions:[{
+              name: '今天',
+              day: '0'
+            }, {
+              name: '昨天',
+              day: '-1',
+              time: '00:00:00'
+            }, {
+              name: '一周前',
+              day: '-7'
+            }],
+            hide:function(){
+              console.info(this)
+            }
+          });
+          
+          //年月日单个
+          $('.J-datepicker-day').datePicker({
+            hasShortcut: true,
+            format:'YYYY-MM-DD',
+            shortcutOptions: [{
+              name: '今天',
+              day: '0'
+            }, {
+              name: '昨天',
+              day: '-1'
+            }, {
+              name: '一周前',
+              day: '-7'
+            }]
+          });
+          
+          //年月日范围
+          $('.J-datepicker-range-day').datePicker({
+            hasShortcut: true,
+            format: 'YYYY-MM-DD',
+            isRange: true,
+            shortcutOptions: DATAPICKERAPI.rangeShortcutOption1
+          });
+
+          //十分年月日单个
+          $('.J-datepickerTime-single').datePicker({
+            format: 'YYYY-MM-DD HH:mm'
+          });
+          
+          //十分年月日范围
+          $('.J-datepickerTime-range').datePicker({
+            format: 'YYYY-MM-DD HH:mm',
+            isRange: true
+          });
+          
+          //十分秒年月日范围，包含最大最小值
+          $('.J-datepicker-range').datePicker({
+            hasShortcut: true,
+            min: '2018-01-01 06:00:00',
+            max: '2019-04-29 20:59:59',
+            isRange: true,
+            shortcutOptions: [{
+              name: '昨天',
+              day: '-1,-1',
+              time: '00:00:00,23:59:59'
+            },{
+              name: '最近一周',
+              day: '-7,0',
+              time:'00:00:00,'
+            }, {
+              name: '最近一个月',
+              day: '-30,0',
+              time: '00:00:00,'
+            }, {
+              name: '最近三个月',
+              day: '-90, 0',
+              time: '00:00:00,'
+            }]
+          });
+          //十分秒年月日范围，限制只能选择同一月，比如2018-10-01到2018-10-30
+          $('.J-datepicker-range-betweenMonth').datePicker({
+            isRange: true,
+            between:'month',
+            hasShortcut: true,
+            shortcutOptions: DATAPICKERAPI.rangeMonthShortcutOption1()
+          });
+          
+          //十分秒年月日范围，限制开始结束相隔天数小于30天
+          $('.J-datepicker-range-between30').datePicker({
+            isRange: true,
+            between: 30
+          });
+          
+          //年月单个
+          $('.J-yearMonthPicker-single').datePicker({
+            format: 'YYYY-MM',
+            min: '2018-01',
+            max: '2019-04'
+          });
+          
+          //选择年
+          $('.J-yearPicker-single').datePicker({
+            format: 'YYYY',
+            min: '2018',
+            max: '2020'
+          });
+          
+          
+      });
+</script>

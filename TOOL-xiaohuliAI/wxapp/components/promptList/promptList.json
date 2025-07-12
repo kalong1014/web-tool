@@ -1,0 +1,7 @@
+{
+    "component": true,
+    "usingComponents": {
+        "pages": "/components/pages/pages",
+        "navbar": "/components/navbar/navbar"
+    }
+}

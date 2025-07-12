@@ -1,0 +1,28 @@
+<view>
+    <view class="form">
+        <view class="form-item" style="border-bottom: none;">
+            <input bindinput="doInput" class="input" model:value="{{code}}" placeholder="请输入卡密" type="text"></input>
+        </view>
+        <view style="padding: 0 20rpx;" wx:if="{{card}}">
+            <view class="form-item">
+                <view class="label">面额</view>
+                <view class="value">
+                    <text wx:if="{{card.type=='vip'}}">vip会员 {{card.val}} 个月</text>
+                    <text wx:elif="{{card.type=='point'}}">{{card.val}} {{point_title}}</text>
+                    <text wx:else>-</text>
+                </view>
+            </view>
+            <view class="form-item">
+                <view class="label">状态</view>
+                <view class="value">
+                    <text class="text-red" wx:if="{{card.bind_time}}">{{card.bind_time}} 已使用</text>
+                    <text class="text-green" wx:else>未使用</text>
+                </view>
+            </view>
+        </view>
+        <view class="form-item" style="border-bottom: none;">
+            <view bindtap="getCardInfo" class="btn-submit" wx:if="{{!card}}">查询</view>
+            <view bindtap="bindCard" class="btn-submit" style="width: 100%;" wx:elif="{{!card.bind_time}}">立即兑换</view>
+        </view>
+    </view>
+</view>

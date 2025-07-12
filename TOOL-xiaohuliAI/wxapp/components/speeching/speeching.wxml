@@ -1,0 +1,24 @@
+<view class="box-speeching" style="bottom: {{safeAreaHeight+110}}rpx;" wx:if="{{speeching}}">
+    <view class="timer {{action=='cancel'?'warning':''}}">
+        <view>
+            <text class="time">{{timeStr}}</text>
+        </view>
+        <view class="wave">
+            <view class="line line{{index}}" wx:for="{{7}}"></view>
+            <view class="line line{{6-index}}" wx:for="{{7}}"></view>
+            <view class="line line{{index}}" wx:for="{{7}}"></view>
+        </view>
+    </view>
+    <view class="input">
+        <view class="tips">松手发送 上滑取消</view>
+        <view class="btn-record">
+            <image src="/images/ic_input_audio2.png"></image>
+        </view>
+    </view>
+</view>
+<view>
+    <button bind:touchcancel="doCancel" bind:touchend="onTouchEnd" bind:touchmove="onTouchMove" bind:touchstart="onTouchStart" class="btn-audio-press">
+        <image src="/images/ic_input_audio.png" style="width: 36rpx; height: 36rpx; opacity: 0.6; margin-right: 10rpx; margin-top: 2rpx;"></image>
+        <text>按住 说话</text>
+    </button>
+</view>

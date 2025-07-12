@@ -1,0 +1,58 @@
+.welcome {
+    height: 720rpx;
+    margin: 160rpx auto 0;
+    max-width: 100%;
+    width: 750rpx;
+}
+
+.welcome .title {
+    color: #333;
+    font-size: 80rpx;
+    font-weight: 700;
+    letter-spacing: 4rpx;
+    line-height: 96rpx;
+    margin: 60rpx 0;
+    text-align: center;
+}
+
+.welcome .tips {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.welcome .tips .column {
+    padding: 0 20rpx;
+    text-align: center;
+    width: 33%;
+}
+
+.welcome .tips .column .header {
+    margin-bottom: 40rpx;
+}
+
+.welcome .tips .column .header image {
+    height: 48rpx;
+    width: 48rpx;
+}
+
+.welcome .tips .column .header .tit {
+    font-size: 32rpx;
+    line-height: 88rpx;
+}
+
+.welcome .tips .list .item {
+    background: #f7f7f8;
+    border-radius: 8rpx;
+    color: #444;
+    cursor: default;
+    font-size: 26rpx;
+    line-height: 36rpx;
+    margin-bottom: 30rpx;
+    padding: 24rpx 30rpx;
+}
+
+.welcome .tips .list .item:active {
+    background: #e5e7eb;
+    color: #222;
+}

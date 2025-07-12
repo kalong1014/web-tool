@@ -1,0 +1,119 @@
+<navbar text="个人中心"></navbar>
+<scroll-view class="page" scrollWithAnimation="{{true}}" scrollX="{{false}}" scrollY="{{true}}" style="bottom: {{safeAreaHeight+110}}rpx; top: {{navBarHeight}}px;">
+    <view class="bg-user" style="{{showPay?'':'height: 200rpx;'}}">
+        <view class="userinfo">
+            <view bindtap="toSetting" class="avatar" wx:if="{{!userinfo.avatar}}">
+                <image src="/images/avatar.jpg"></image>
+            </view>
+            <view bindtap="toSetting" class="avatar" wx:else>
+                <image src="{{userinfo.avatar}}"></image>
+            </view>
+            <view bindtap="toSetting" class="info">
+                <view class="nickname" wx:if="{{!userinfo.nickname&&!userinfo.avatar}}">请登录</view>
+                <view class="nickname" wx:else>{{userinfo.nickname||'未设置昵称'}}</view>
+                <view style="display: flex; align-items: center; margin-top: 10rpx;">
+                    <view class="mid" style="padding-left: 2rpx;" wx:if="{{userinfo.user_id}}">MID: {{userinfo.user_id}}</view>
+                    <view class="phone">
+                        <image src="/images/user/ic_phone.png"></image>
+                        <text>{{userinfo.phone||'未绑定手机号'}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view bindtap="toPay" class="wallet" data-type="point" wx:if="{{showPay}}">
+            <view class="num">{{userinfo.balance_point}}</view>
+            <view class="label">{{point_title}}余额</view>
+        </view>
+        <view bindtap="toSetting" class="btn-setting" wx:else>
+            <image src="/images/user/ic_setting.png"></image>
+        </view>
+    </view>
+    <view class="box-vip" wx:if="{{showPay}}">
+        <view style="display: flex; align-items: center; line-height: 24px;">
+            <image class="icon" src="/images/ic_vip.png"></image>
+            <text>VIP会员</text>
+            <view class="line"></view>
+            <text wx:if="{{userinfo.vip_expire_time}}">{{userinfo.vip_expire_time}} 到期</text>
+            <text wx:else>高速通道 无限对话</text>
+        </view>
+        <view bindtap="toPay" data-type="vip">
+            <button class="btn-vip" style="width: 46px;" wx:if="{{userinfo.vip_expire_time}}">续费</button>
+            <button class="btn-vip" wx:else>立即开通</button>
+        </view>
+    </view>
+    <view class="menus" wx:if="{{!is_check}}">
+        <view bindtap="linkto" class="item" data-url="/pages/user/card">
+            <view class="value">
+                <image class="icon" src="/images/user/ic_card.png"></image>
+                <text class="text-grey">卡密兑换</text>
+            </view>
+            <image class="arrow" src="/images/ic_arrow_r.png"></image>
+        </view>
+        <view bindtap="linkto" class="item" data-url="/pages/task/index">
+            <view class="value">
+                <image class="icon" src="/images/user/ic_help.png"></image>
+                <text class="text-grey">每日任务</text>
+            </view>
+            <image class="arrow" src="/images/ic_arrow_r.png"></image>
+        </view>
+        <view bindtap="linkto" class="item" data-url="/pages/commission/index" wx:if="{{userinfo.is_commission}}">
+            <view class="value">
+                <image class="icon" src="/images/user/ic_commission.png"></image>
+                <text class="text-grey">推广中心</text>
+            </view>
+            <image class="arrow" src="/images/ic_arrow_r.png"></image>
+        </view>
+        <view bindtap="linkto" class="item" data-url="/pages/commission/apply" wx:if="{{userinfo.commission_is_open&&!userinfo.is_commission}}">
+            <view class="value">
+                <image class="icon" src="/images/user/ic_commission.png"></image>
+                <text class="text-grey">申请推广员</text>
+            </view>
+            <image class="arrow" src="/images/ic_arrow_r.png"></image>
+        </view>
+        <view bindtap="linkto" class="item" data-url="/pages/commission/share">
+            <view class="value">
+                <image class="icon" src="/images/user/ic_invite.png"></image>
+                <text class="text-grey">邀请好友</text>
+            </view>
+            <image class="arrow" src="/images/ic_arrow_r.png"></image>
+        </view>
+    </view>
+    <view class="menus">
+        <view bindtap="linkto" class="item" data-url="/pages/article/list?type=help">
+            <view class="value">
+                <image class="icon" src="/images/user/ic_help.png"></image>
+                <text class="text-grey">使用教程</text>
+            </view>
+            <image class="arrow" src="/images/ic_arrow_r.png"></image>
+        </view>
+        <view bindtap="linkto" class="item" data-url="/pages/price/price" wx:if="{{showPay}}">
+            <view class="value">
+                <image class="icon" src="/images/user/ic_price.png"></image>
+                <text class="text-grey">计费说明</text>
+            </view>
+            <image class="arrow" src="/images/ic_arrow_r.png"></image>
+        </view>
+        <view bindtap="linkto" class="item" data-url="/pages/user/feedback">
+            <view class="value">
+                <image class="icon" src="/images/user/ic_feedback.png"></image>
+                <text class="text-grey">意见反馈</text>
+            </view>
+            <image class="arrow" src="/images/ic_arrow_r.png"></image>
+        </view>
+        <view bindtap="linkto" class="item" data-url="/pages/article/article?type=about">
+            <view class="value">
+                <image class="icon" src="/images/user/ic_about.png"></image>
+                <text class="text-grey">关于我们</text>
+            </view>
+            <image class="arrow" src="/images/ic_arrow_r.png"></image>
+        </view>
+        <view bindtap="linkto" class="item" data-url="/pages/article/article?type=kefu">
+            <view class="value">
+                <image class="icon" src="/images/user/ic_kefu.png"></image>
+                <text class="text-grey">联系客服</text>
+            </view>
+            <image class="arrow" src="/images/ic_arrow_r.png"></image>
+        </view>
+    </view>
+    <view class="version">版本号 {{version}}</view>
+</scroll-view>

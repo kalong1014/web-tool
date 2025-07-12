@@ -1,0 +1,210 @@
+{include file="public/header" /}
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- jieshu -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>关键词列表</h5>
+            
+        </div>
+        <div class="ibox-title">
+            <button type="submit" class="btn btn-primary" style="display: none;"  id="shuju">数据查询中请不要关闭页面</button> 
+            
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始-->           
+            <div class="row">
+                <div class="col-sm-12">   
+                <!--<div  class="col-sm-2" style="width: 100px">-->
+                <!--    <div class="input-group" >  -->
+                <!--        <a href="{:url('userAdd')}"><button class="btn btn-outline btn-primary" type="button">添加用户</button></a> -->
+                <!--    </div>-->
+                <!--</div>                                            -->
+                    <!--<form name="admin_list_sea" class="form-search" method="post"  id="add_rule"  action="{:url('paiming')}">-->
+                    <form name="admin_list_sea" class="form-search" method="post"  id="add_rule"  action="{:url('paiming')}">
+                                
+                          
+                                <!--<input type="text"  class="form-control" name="key" value="" placeholder="输入需查询的用户名" style="width:200px;float:left" />   -->
+                                <!--<input type="text"  class="form-control" name="key" value="" placeholder="输入需查询的用户名" style="width:200px;float:left"/>   -->
+                                <input type="text"  class="form-control" name="zhan" value="" placeholder="输入需要查询的网站" style="width:200px;float:left"/>   
+                                 <input type="text"  class="form-control" name="ci" value="" placeholder="输入需查询的关键词" style="width:200px;float:left"/>
+                                 <!--<input type="text"  class="form-control" name="id" value="3" placeholder="输入需查询的关键词" style="width:200px;float:left"/>-->
+                                <!--<select name="" id="" class="form-control" style="width:200px;float:left">-->
+                                <!--    <option>请选择搜索引擎</option>-->
+                                <!--    <option>2</option>-->
+                                <!--</select>-->
+                               
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button> 
+                              
+                         
+                        
+                    </form>                         
+                </div>
+            </div>
+           
+            <!--搜索框结束-->
+
+  <div class="hr-line-dashed"></div>
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th id="guanjain">关键词</th>
+                                <th>所属域名</th>
+                                <th>搜索引擎</th>
+                                <th>所属用户</th>
+                                <th>客户价格</th>
+                                <th>代理利润</th>
+                                <th>平台利润</th>
+                                <th>排名更新时间</th>
+                                <th>排名<i class="fa fa-long-arrow-down"></i><i class="fa fa-long-arrow-up"></i></th>
+                                <!--<th>达标天数<i class="fa fa-long-arrow-down"></i><i class="fa fa-long-arrow-up"></i></th>-->
+                                <!--<th>排名截图</th>-->
+                                <!--<th>审核状态</th>-->
+                                <!--<th>优化状态</th>-->
+                                <th>操作</th>
+                            </tr>
+                            
+                        </thead>
+                        {volist name="list" id="vo"}
+                         <tr class="long-tr">
+                              
+                                <th id="">{$vo.keyword}</th>
+                                <th id="yuming">{$vo.area}</th>
+                                <th id="sousuo">{$vo.search_engine}</th>
+                                <th>{$vo.network}</th>
+                                <th>{$vo.site_url}</th>
+                                <th>{$vo.rank}</th>
+                                <th>{$vo.page_title}</th>
+                                <th>{$vo.site_weight}</th>
+                                <th>{$vo.ctime}</th>
+                              
+                                <th>审核状态</th>
+                                <th>优化状态</th>
+                                <th>操作</th>
+                              
+                            </tr>
+                            {/volist}
+                        <tbody id="article_list"></tbody>
+                    </table>
+                    <div id="AjaxPage" style=" text-align: right;"></div>
+                    <div id="allpage" style=" text-align: right;"></div>
+                </div>
+              
+                  <a href="#"><span class="label label-info">10</span></a>
+                  <a href="#"> <span class="label label-info">20</span></a>
+                 <a href="#">  <span class="label label-info">50</span></a>
+                 <a href="#">  <span class="label label-info">100</span></a>
+            </div>
+           <!-- kaishi -->
+        </div>
+    </div>
+</div>
+<!-- kaishi -->
+
+
+<<!-- 加载 -->
+<div class="spiner-example">
+    <div class="sk-spinner sk-spinner-three-bounce">
+        <div class="sk-bounce1"></div>
+        <div class="sk-bounce2"></div>
+        <div class="sk-bounce3"></div>
+    </div>
+</div>
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+  
+$("#guanjain").click(function(){
+    
+     var  myVar =    setInterval(function(){
+                            var data = 'taskid=31404267'
+                             
+                        $.post("{:url('doCurlPost')}",{data:data},function(result){
+                               console.log(result);
+                            //   console.log(result.data);
+                               if(result.errcode == 0){
+                                   window.location.reload();
+                                  $("#shuju").css("display","none");
+                                   window.clearInterval(myVar);
+                                    // window.location.reload()
+                               }
+                        //   if(result.code ==1){
+                              //定时器 异步运行 
+                        //     function hello(){ 
+                        //     alert("hello"); 
+                        // } 
+                        //重复执行某个方法 
+                       // var t1 = window.setInterval(complete,3000); 
+                      // var t2 = window.setInterval("hello()",3000); 
+                        //去掉定时器的方法 
+                        //window.clearInterval(t1);
+                        //   }
+                      });
+                     },5000);//5秒后返回首页
+})
+//查询
+
+    $(function(){
+        $('#add_rule').ajaxForm({
+           
+            success: complete, 
+            dataType: 'json'
+        });
+        
+       function complete(data){
+           
+            // console.log(1);
+            if(data.code == '1'){
+               
+                  //var t1 = window.setInterval(complete,3000); 
+                $("#shuju").css("display","block");
+                layer.msg(data.msg, {icon: 6,time:1500,shade: 0.1}, function(index){
+                  // var i=5;
+                    $(function(){
+                      
+                var  myVar =    setInterval(function(){
+                            
+                        $.post("{:url('doCurlPost')}",{data:data},function(result){
+                               console.log(result);
+                            //   console.log(result.data);
+                               if(result.errcode == 0){
+                                   window.location.reload();
+                                  $("#shuju").css("display","none");
+                                   window.clearInterval(myVar);
+                                    // window.location.reload()
+                               }
+                        //   if(result.code ==1){
+                              //定时器 异步运行 
+                        //     function hello(){ 
+                        //     alert("hello"); 
+                        // } 
+                        //重复执行某个方法 
+                       // var t1 = window.setInterval(complete,3000); 
+                      // var t2 = window.setInterval("hello()",3000); 
+                        //去掉定时器的方法 
+                        //window.clearInterval(t1);
+                        //   }
+                      });
+                     },5000);//5秒后返回首页
+                     
+                    });
+                   // window.location.href="{:url('menu/index')}";
+                });
+            }else{
+                layer.msg(data.msg, {icon: 6,time:1500,shade: 0.1});
+                return false;   
+            }
+        }
+     
+    });
+
+
+
+
+
+</script>
+
+</html>

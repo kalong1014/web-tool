@@ -1,0 +1,404 @@
+<style type="text/css">
+    .recomm_keyword,.no_recomm_keyword{background: #3ca793;padding: 5px ;margin-bottom: 10px;margin-right: 10px;color: #fff;display: inline-block;cursor: pointer;}
+    .delete_keyword{margin-left: 5px;color: #ccc;}
+    .radio label{margin-bottom: 20px;}
+    .radio_user input{vertical-align: middle;}
+    input[type=checkbox]{-webkit-appearance:none;width: 15px;height: 15px;padding: 0;border: 1px solid #999;position: relative;border-radius: 3px!important;background: #4a4a4a;}
+    input[type=checkbox]:checked{width: 15px;height: 15px;background:orange ;border-color: #orange;}
+    .title_video{width: 85px;text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      display: -moz-box;
+      -moz-line-clamp: 2;
+      -moz-box-orient: vertical;
+      overflow-wrap: break-word;
+      word-break: break-all;
+      white-space: normal;
+      overflow: hidden;}
+    .title_user{display: ;}
+    /*.type2{display: none;}*/
+    .send_type_time{display: none;}
+    .radio label{margin-bottom: 10px;}
+    .tuiguang_user_id,.tuiguang_user_all{margin-top: 1px !important;margin-right: 5px !important;}
+    .user_left img{border-radius: 50%;}
+    .user_left{float: left;width: 80px;}
+    .user_right{float: left;margin-top: 5px;}
+    .user_right p{margin: 0 0 0px;}
+    option{line-height: 30px;}
+</style>
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">任务名:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-title" data-rule="required" class="form-control" name="row[title]" type="text" value="{$row.title|htmlentities}" placeholder="随意取一个名字吧" >
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">视频描述:</label>
+        <div class="col-xs-12 col-sm-8  ">
+            <textarea id="c-video_text"  class="form-control " rows="5" name="row[video_text]"  data-rule="required" cols="30" placeholder="请输入简单描述，可为空，每行一句描述" >{$row.video_text|htmlentities}</textarea>
+            <p style="color:#888;margin-top: 5px;">注：每行一个描述，随机取，建议每行30个字左右</p>
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-3 col-sm-2">话题挂载:</label>
+        <div class="col-xs-12 col-sm-4">
+             <input id="c-video_text_keyword"  data-multiple="true" data-source="merge_keyword/index" data-field="merge_keyword"  class="form-control selectpage" data-params='{"custom[status]":"1","custom[store_id]":{$store_id}}'  name="row[video_text_keyword]" type="text" value="{$row.video_text_keyword|htmlentities}" placeholder="选择2-5个长尾关键词">
+             <div style="color:#ccc;margin-top: 5px;">用于排名，如未添加关键词，请先<a href="/storeadmin/index?jump_url=store_keyword&menu_url=store_keyword" target="_blank">添加长尾关键词</a></div>
+        </div>
+        <div class="col-xs-12 col-sm-4">
+             <input id="c-keyword_group_ids"  data-multiple="true" data-source="merge_keyword_group/index" data-field="name"  class="form-control selectpage" data-params='{"custom[store_id]":{$store_id}}'  name="row[keyword_group_ids]" type="text" value="{$row.keyword_group_ids|htmlentities}" placeholder="选择关键词分组">
+        </div>
+    </div>
+
+    <div style="width: 80%;height:1px;background: #505050;margin: 20px auto;"></div>
+    
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">发送用户:</label>
+        <div class="col-xs-12 col-sm-10">
+            <label >
+                <div style="margin-top: 8px;"><input type="checkbox" class="tuiguang_user_all" ><span class="title_video title_user">全选</span></div>
+            </label>
+            <div class="radio radio_user" style="max-height:200px;overflow-y: scroll;">
+                
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">账号分组:</label>
+        <div class="col-xs-12 col-sm-8">
+             <input id="c-group_ids"  data-multiple="true" data-source="tuiguang_user_group/index" data-field="name"  class="form-control selectpage" data-params='{"custom[store_id]":{$store_id}}'  name="row[group_ids]" type="text" value="{$row ? $row.group_ids : ''}" placeholder="选择分组账号">
+             <p style="margin-top:5px;color:#888;">与发送用户二选一，或者两者搭配使用 </p>
+        </div>
+    </div>
+
+    <div style="width: 80%;height:1px;background: #505050;margin: 20px auto;"></div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">视频封面图:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group">
+                <input id="c-cover_imgs" class="form-control" size="50" name="row[cover_imgs]" type="text" value="{$row ? $row.cover_imgs : ''}" >
+                <div class="input-group-addon no-border no-padding">
+                    <span><button type="button" id="faupload-cover_imgs" class="btn btn-danger faupload" data-input-id="c-cover_imgs" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="true" data-preview-id="p-cover_imgs"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                    <span><button type="button" id="fachoose-cover_imgs" class="btn btn-primary fachoose" data-input-id="c-cover_imgs" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="true"> {:__('Choose')}图片</button></span>
+                </div>
+                <span class="msg-box n-right" for="c-cover_imgs"></span>
+            </div>
+            <p style="margin-top:5px;color:#888;">快手、抖音允许视频封面，其他平台上传封面无效 </p>
+            <ul class="row list-inline faupload-preview" id="p-cover_imgs"></ul>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">视频随机素材:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group">
+                <input id="c-tuiguang_video_list" class="form-control" size="50" name="row[tuiguang_video_list]" type="text" value="{$row ? $row.tuiguang_video_ids : ''}" >
+                <div class="input-group-addon no-border no-padding">
+                    <span><button type="button" id="faupload-tuiguang_video_list" class="btn btn-danger faupload" data-input-id="c-tuiguang_video_list" data-mimetype="video/webm,video/mp4,video/ogg,image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="true" data-preview-id="p-tuiguang_video_list"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                    <span><button type="button" id="fachoose-tuiguang_video_list" class="btn btn-primary fachoose" data-input-id="c-tuiguang_video_list" data-mimetype="video/webm,video/mp4,video/ogg" data-multiple="true"> {:__('Choose')}视频</button></span>
+                </div>
+                <span class="msg-box n-right" for="c-tuiguang_video_list"></span>
+            </div>
+            <ul class="row list-inline faupload-preview" id="p-tuiguang_video_list"></ul>
+            <span style="color:#999;display:block;margin-top: 5px;">视频格式支持：MP4、ogg、WebM ; </span>
+        </div>
+    </div>
+
+     <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">剪辑任务:</label>
+        <div class="col-xs-12 col-sm-8">
+             <input id="c-make_video_list"  data-multiple="true" data-source="make_video/index" data-field="title"  class="form-control selectpage" data-params='{"custom[status]":"3","custom[store_id]":{$store_id}}'  name="row[make_video_ids]" type="text" value="{$row ? $row.make_video_ids : ''}" placeholder="选择剪辑任务">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">视频分组:</label>
+        <div class="col-xs-12 col-sm-8">
+             <input id="c-make_video_list"  data-multiple="true" data-source="tuiguang_video_group/index" data-field="name"  class="form-control selectpage" data-params='{"custom[store_id]":{$store_id}}'  name="row[tuiguang_video_groups]" type="text" value="{$row ? $row.tuiguang_video_groups : ''}" placeholder="选择视频">
+             <p style="margin-top:5px;color:#888;">与手动上传视频、剪辑任务三选一，或者搭配使用 </p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2"><span style="color:orange">哔哩分类(必填)</span>:</label>
+        <div class="col-xs-12 col-sm-8">
+            <select class="form-control" name="row[bili_tid]">
+                {foreach $bili_type as $k=>$v}
+                    <option value="{$v['tid']}" {if $v['tid']==$row['bili_tid']}selected{/if}>{$v['parent_name']} - {$v['name']}</option>
+                {/foreach}
+            </select>
+             <p style="margin-top:5px;color:#888;">哔哩哔哩必选分类，否则发布失败，其他平台不生效 </p>
+        </div>
+    </div>
+
+    <div style="width: 80%;height:1px;background: #505050;margin: 20px auto;"></div>
+
+    <div class="form-group" >
+        <label class="control-label col-xs-12 col-sm-2">挂载类型:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="radio">
+                <label>
+                    <input type="radio"  class="type" name="row[guazai_type]" {if $row['guazai_type']==1}checked{/if} value="1">POI地址挂载
+                </label>
+                <label>
+                    <input type="radio"  class="type" name="row[guazai_type]" {if $row['guazai_type']==2}checked{/if} value="2">小程序挂载
+                </label>
+                <label>
+                    <input type="radio"  class="type" name="row[guazai_type]" {if $row['guazai_type']==3}checked{/if}  value="3">橱窗挂载
+                </label>
+            </div>
+            <div style="color:#999;display:block;margin-top: 0px;">挂载功能仅支持抖音; </div>
+        </div>
+    </div>
+    
+    <div class="form-group form_type type1" {if $row['guazai_type']!=1}style="display:none;"{/if}>
+        <label class="control-label col-xs-12 col-sm-2">挂载poi地址:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-poi_address"  class="form-control" name="row[poi_address]" type="text" value="{$row.poi_address|htmlentities}" placeholder="例如：https://v.douyin.com/8RE9Xe5/  此功能强烈建议使用，可使视频得到更大曝光度">
+            <p style="margin-top:5px;color:#888;">从抖音app搜索栏搜索地点，获取地址分享链接，例如：https://v.douyin.com/8R1E9Xe5/ </p>
+        </div>
+    </div>
+    <div class="form-group form_type type1" {if $row['guazai_type']!=1}style="display:none;"{/if}>
+        <label class="control-label col-xs-12 col-sm-2">poi地址名称(地址挂载必填):</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-poi_name"  class="form-control" name="row[poi_name]" type="text" value="{$row.poi_name|htmlentities}" placeholder="例如：广州酒家(荔胜广场店)">
+        </div>
+    </div>
+
+
+    <div class="form-group form_type type2" {if $row['guazai_type']!=2}style="display:none;"{/if}>
+        <label class="control-label col-xs-12 col-sm-2">抖音小程序id:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-micro_app_id"  class="form-control" name="row[micro_app_id]" type="text" value="{$row.micro_app_id|htmlentities}" placeholder="例如：ttef91b112671b152ba">
+        </div>
+    </div>
+    <div class="form-group form_type type2"  {if $row['guazai_type']!=2}style="display:none;"{/if}>
+        <label class="control-label col-xs-12 col-sm-2">抖音小程序名称:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-micro_app_title" class="form-control" name="row[micro_app_title]" type="text" value="{$row.micro_app_title|htmlentities}" placeholder="小程序标题">
+        </div>
+    </div>
+
+    <div class="form-group form_type type2" {if $row['guazai_type']!=2}style="display:none;"{/if}>
+        <label class="control-label col-xs-12 col-sm-2">抖音小程序挂载:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-micro_app_url" class="form-control" name="row[micro_app_url]" type="text" value="{$row.micro_app_url|htmlentities}" placeholder="例如：path/pages/index">
+            <p style="margin-top:5px;color:#888;">直接输入抖音小程序分享链接，例如：path/pages/index </p>
+        </div>
+    </div>
+    <div class="form-group form_type type3" {if $row['guazai_type']!=3}style="display:none;"{/if}>
+        <label class="control-label col-xs-12 col-sm-2">橱窗商品链接:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-shop_url" class="form-control" name="row[shop_url]" type="text" value="{$row.shop_url|htmlentities}" placeholder="例如：https://haohuo.jinritemai.com/views/product/item2?id=3578430953573501732">
+            <p style="margin-top:5px;color:#888;">链接请参考操作文档，例如：https://haohuo.jinritemai.com/views/product/item2?id=3572883796908979933</p>
+            <p style="margin-top:-5px;color:#38e045;">注意：橱窗挂载请勾选的D音账号都必须开通达人橱窗功能，否则将发送失败；</p>
+        </div>
+    </div>
+
+    <div class="form-group ">
+        <label class="control-label col-xs-12 col-sm-2">@用户:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-alias" class="form-control" name="row[alias]" type="text" value="{$row.alias|htmlentities}" placeholder="请输入需要艾特的openid 或者 用户抖音链接">
+            <p style="margin-top:5px;color:#83f104;">注意：新老接口请勿一起勾选发送，否则会导致艾特用户失效</p>
+            <p style="margin-top:5px;color:#83f104;">1、抖音开放平台：前往矩阵号复制openid，例如：_000lO23tTIiDBRRtiOnL</p>
+            <p style="margin-top:5px;color:#888;">2、抖音老接口：输入想要艾特的D音主页链接，可输入pc主页 或者 app主页分享链接，例如：例如：https://www.douyin.com/user/MS4wLjABAAAAWBxjAMa</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">发送频率:</label>
+        <div class="col-xs-12 col-sm-8">
+            <label class="control-label">每&nbsp;&nbsp;&nbsp;</label>
+            <input id="c-day_count"  class="form-control" name="row[day_count]" type="number"  value="{$row.day_count|htmlentities}" placeholder="频率" style="width: 80px;display: inline-block;">
+            <label class="control-label">&nbsp;&nbsp;&nbsp;天，每个账号发送&nbsp;&nbsp;&nbsp;</label>
+            <input id="c-interval"  class="form-control" name="row[interval]" type="number"  value="{$row.interval|htmlentities}" placeholder="次数" style="width: 80px;display: inline-block;">
+            <label class="control-label">&nbsp;&nbsp;&nbsp;条视频</label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">发送时间:</label>
+        <div class="col-xs-12 col-sm-8">
+            <select class="form-control" name='row[start_time]' style="width: 80px;display: inline-block;" >
+                <option value="1" {if $row['start_time']==1}selected{/if}>01:00</option>
+                <option value="2" {if $row['start_time']==2}selected{/if}>02:00</option>
+                <option value="3" {if $row['start_time']==3}selected{/if}>03:00</option>
+                <option value="4" {if $row['start_time']==4}selected{/if}>04:00</option>
+                <option value="5" {if $row['start_time']==5}selected{/if}>05:00</option>
+                <option value="6" {if $row['start_time']==6}selected{/if}>06:00</option>
+                <option value="7" {if $row['start_time']==7}selected{/if}>07:00</option>
+                <option value="8" {if $row['start_time']==8}selected{/if}>08:00</option>
+                <option value="9" {if $row['start_time']==9}selected{/if}>09:00</option>
+                <option value="10" {if $row['start_time']==10}selected{/if}>10:00</option>
+                <option value="11" {if $row['start_time']==11}selected{/if}>11:00</option>
+                <option value="12" {if $row['start_time']==12}selected{/if}>12:00</option>
+                <option value="13" {if $row['start_time']==13}selected{/if}>13:00</option>
+                <option value="14" {if $row['start_time']==14}selected{/if}>14:00</option>
+                <option value="15" {if $row['start_time']==15}selected{/if}>15:00</option>
+                <option value="16" {if $row['start_time']==16}selected{/if}>16:00</option>
+                <option value="17" {if $row['start_time']==17}selected{/if}>17:00</option>
+                <option value="18" {if $row['start_time']==18}selected{/if}>18:00</option>
+                <option value="19" {if $row['start_time']==19}selected{/if}>19:00</option>
+                <option value="20" {if $row['start_time']==20}selected{/if}>20:00</option>
+                <option value="21" {if $row['start_time']==21}selected{/if}>21:00</option>
+                <option value="22" {if $row['start_time']==22}selected{/if}>22:00</option>
+                <option value="23" {if $row['start_time']==23}selected{/if}>23:00</option>
+            </select>
+
+            <label class="control-label">&nbsp;&nbsp;&nbsp;至&nbsp;&nbsp;&nbsp;</label>
+
+            <select class="form-control" name='row[end_time]' style="width: 80px;display: inline-block;">
+                <option value="1" {if $row['end_time']==1}selected{/if}>01:00</option>
+                <option value="2" {if $row['end_time']==2}selected{/if}>02:00</option>
+                <option value="3" {if $row['end_time']==3}selected{/if}>03:00</option>
+                <option value="4" {if $row['end_time']==4}selected{/if}>04:00</option>
+                <option value="5" {if $row['end_time']==5}selected{/if}>05:00</option>
+                <option value="6" {if $row['end_time']==6}selected{/if}>06:00</option>
+                <option value="7" {if $row['end_time']==7}selected{/if}>07:00</option>
+                <option value="8" {if $row['end_time']==8}selected{/if}>08:00</option>
+                <option value="9" {if $row['end_time']==9}selected{/if}>09:00</option>
+                <option value="10" {if $row['end_time']==10}selected{/if}>10:00</option>
+                <option value="11" {if $row['end_time']==11}selected{/if}>11:00</option>
+                <option value="12" {if $row['end_time']==12}selected{/if}>12:00</option>
+                <option value="13" {if $row['end_time']==13}selected{/if}>13:00</option>
+                <option value="14" {if $row['end_time']==14}selected{/if}>14:00</option>
+                <option value="15" {if $row['end_time']==15}selected{/if}>15:00</option>
+                <option value="16" {if $row['end_time']==16}selected{/if}>16:00</option>
+                <option value="17" {if $row['end_time']==17}selected{/if}>17:00</option>
+                <option value="18" {if $row['end_time']==18}selected{/if}>18:00</option>
+                <option value="19" {if $row['end_time']==19}selected{/if}>19:00</option>
+                <option value="20" {if $row['end_time']==20}selected{/if}>20:00</option>
+                <option value="21" {if $row['end_time']==21}selected{/if}>21:00</option>
+                <option value="22" {if $row['end_time']==22}selected{/if}>22:00</option>
+                <option value="23" {if $row['end_time']==23}selected{/if}>23:00</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">视频去重:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="radio">
+                <label>
+                    <input type="radio"  {if $row['is_repeat']==1}checked{/if} name="row[is_repeat]"   value="1"> <span title="选择去重时，视频全部发送完毕任务即结束；">去重</span> 
+                </label>
+                <label>
+                    <input type="radio"  name="row[is_repeat]" {if $row['is_repeat']==2}checked{/if} value="2"> <span title="选择允许重复视频时，会按视频最少发送次数的视频优先发送；">允许发重复视频</span> 
+                </label>
+            </div>
+            <p style="margin-top:0px;color:#888;">选择允许重复视频时，会按视频最少发送次数的视频优先发送；</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">状态:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="radio">
+                <label>
+                    <input type="radio"  {if $row['status']==1}checked{/if} name="row[status]"   value="1"> <span >运行中</span> 
+                </label>
+                <label>
+                    <input type="radio"  {if $row['status']==2}checked{/if} name="row[status]"   value="2"> <span >已完成</span> 
+                </label>
+                <label>
+                    <input type="radio"  {if $row['status']==3}checked{/if} name="row[status]"   value="3"> <span >暂停</span> 
+                </label>
+                <label>
+                    <input type="radio"  {if $row['status']==4}checked{/if} name="row[status]"   value="4"> <span >失败</span> 
+                </label>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed " >{:__('OK')}</button>
+        </div>
+    </div>
+
+</form>
+
+<script type="text/javascript" src='/storeadmin2/libs/jquery/dist/jquery.min.js?v=162913148'></script>
+<script type="text/javascript">
+    $('.type').change(function() {
+        if (this.value == 1) {
+            $('.form_type').hide();
+            $('.type1').show();
+        }else if (this.value == 2) {
+            $('.form_type').hide();
+            $('.type2').show();
+        }else if (this.value == 3) {
+            $('.form_type').hide();
+            $('.type3').show();
+        }
+    });
+
+    $('.send_type').change(function() {
+        if (this.value == 2) {
+            $('.send_type_time').show();
+        }else  {
+            $('.send_type_time').hide();
+        }
+    });
+
+    // $('.tuiguang_user_all')
+    $(".tuiguang_user_all").click(function(){ 
+        if($('.tuiguang_user_all').attr("checked")){ 
+            $(".tuiguang_user_id").each(function(){ 
+                $(this).removeAttr("checked"); 
+                $('.tuiguang_user_all').removeAttr("checked");
+            });
+        }else{
+            $(".tuiguang_user_id").each(function(){ 
+                $(this).prop("checked","checked");
+                $(this).attr("checked","checked");
+
+                $('.tuiguang_user_all').prop("checked","checked");
+                $('.tuiguang_user_all').attr("checked","checked"); 
+            });
+        }
+    });
+
+    ajax_page_user(1);
+    
+    function ajax_page_user(page){
+        $.post('/storeadmin/tuiguang_task/ajax_page_user',{page:page},function(data){
+            ajaxPage = data.ajaxPage;
+            data = data.data.data;
+            html = '';
+            if(data.length > 0){
+                for (var i = 0; i < data.length; i++) {
+                    checked_str = '';
+                    var tuiguang_user_arr = [];
+                    tuiguang_user_ids = "{$row['tuiguang_user_ids']}";
+                    tuiguang_user_arr  = tuiguang_user_ids.split(',');
+                    // 是否选中
+                    for (var j = 0; j < tuiguang_user_arr.length; j++) {
+                        if ($.inArray(data[i]['id'].toString(), tuiguang_user_arr) >= 0) {
+                            checked_str = ' checked="checked" ';
+                        }
+                    }
+                    html += '<label >\
+                                <div class="user_left"><input type="checkbox" class="tuiguang_user_id"  name="tuiguang_user_id[]" '+checked_str+' value="'+data[i]['id']+'" >\
+                                <img style="width: 50px;height: 50px;"  src="'+data[i]['head']+'" /></div>\
+                                <div class="user_right"><p class="title_video title_user">'+data[i]['nickname']+'</p>\
+                                <p style="color:#999">'+data[i]['type_name']+'</p></div>\
+                            </label>';
+                }
+                if(ajaxPage!='null' && ajaxPage!=null){
+                    html += '<div class="pagelist">'+ajaxPage+'</div>';
+                }
+                
+            }
+            $('.radio_user').html(html);
+        },'json');
+    }
+</script>

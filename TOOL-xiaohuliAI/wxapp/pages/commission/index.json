@@ -1,0 +1,9 @@
+{
+    "navigationBarTitleText": "推广中心",
+    "navigationBarBackgroundColor": "#f7f7f7",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true,
+    "usingComponents": {
+        "navbar": "/components/navbar/navbar"
+    }
+}

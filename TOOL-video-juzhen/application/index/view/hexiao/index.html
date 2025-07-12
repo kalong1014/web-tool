@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<title>核销订单</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+	{include file="mpublic/header"}
+
+    <style type="text/css">
+       body{background: #f7f7f7;}
+       .hexiao_phone{background: #fff;padding: 0.2rem 0;}
+       .phone{background: #f7f7f7;width: 94%;margin: 0 auto;border-radius: 0.2rem;border: 0px;line-height: 0.4rem;padding-left: 0.1rem;display: block;}
+       .hexiao_tab{background: #fff;line-height: 0.5rem;width: 100%;margin: 0 auto;display: flex;}
+       .hexiao_tab a{width: 50%;text-align: center;display: inline-block;color: #52a6e4;float: left;}
+       .hexiao_tab .active{background: #52a6e4;color: #fff;}
+       .hexiao_content_li{background: #fff;margin-top: 0.1rem;}
+       .hexiao_content_li_left{width: 80%;float: left;line-height: 0.3rem;}
+       .hexiao_content_li_right{width: 20%;float: right;}
+       .hexiao_content_li_right button{background: #52a6e4;color: #fff;width: 100%;line-height: 0.4rem;border-radius: 5px;border: 0;text-align: center;margin-top: 0.25rem;}
+       .hexiao_content_li_title{font-size: 16px;color: #efa568;;}
+       .hexiao_content_li_phone{font-size: 14px;}
+       
+       .hexiao_content_li_head{width: 100%;border-bottom: 1px solid #eee;padding: 0 0.1rem;display: flex;line-height: 0.3rem;}
+       .hexiao_content_li_time{font-size: 12px;color: #999;width: 50%;display: inline-block;float: left;text-align: right;}
+       .hexiao_content_li_name{width: 45%;display: inline-block;float: left;font-size: 14px;}
+       .hexiao_content_li_youxiao{font-size: 12px;color: #999;}
+       .hexiao_jian,.hexiao_zhe{background: red;width: 20px;line-height: 20px;border-radius: 2px;text-align: center;font-size: 12px;color: #fff;display: inline-block;margin-right: 0.05rem;}
+    </style>
+</head>
+<body>
+    <div class="contain">
+        <div class="hexiao_phone">
+            <input type="text" name="phone" placeholder="请输入手机或尾号后四位" class="phone" value="{$phone}">
+        </div>
+        <div class="hexiao_tab">
+            <a {if $status==1}class="active"{/if} href="?token={$token}&status=1">待核销</a>
+            <a {if $status==2}class="active"{/if} href="?token={$token}&status=2">已核销</a>
+        </div>
+        <div class="hexiao_content">
+            {if $users}
+                {foreach $users as $k=>$v}
+                <div class="hexiao_content_li">
+                    <div class="hexiao_content_li_head">
+                        <span class="hexiao_content_li_name">{if $v['type']==1}<span class="hexiao_jian">减</span>{else}<span class="hexiao_zhe">折</span>{/if} {$v['coupon_name']}  </span>
+                        <span class="hexiao_content_li_time">核销时间：{if $v['status']==1}未核销{else}{$v['use_time']}{/if}</span>
+                    </div>
+                    <div style="display: flex;padding: 0.15rem;">
+                        <div class="hexiao_content_li_left">
+                            <b class="hexiao_content_li_title">手机号：{$v['phone']}</b>
+                            <p class="hexiao_content_li_phone">满{$v['reach_price']}元{if $v['type']==1}减{$v['price']}元{else}打{$v['price']}折{/if}</p>
+                            <p class="hexiao_content_li_youxiao">有效期：{$v['start_time']} 至 {$v['end_time']}</p>
+                        </div>
+                        <div class="hexiao_content_li_right">
+                            {if $v['status']==1}
+                                <button onclick="hexiao({$v['id']},'{$token}')">核销</button>
+                            {else}
+                                <button style="background: #ccc;">已核销</button>
+                            {/if}
+                        </div>
+                    </div>
+                    
+                </div>
+
+                {/foreach}
+            {else}
+                <p style="text-align: center;margin-top: 1rem;font-size: 14px;color: #666;">暂无记录</p>
+            {/if}
+        </div>
+    </div>
+
+</body>
+<script type="text/javascript">
+   
+   $('.phone').keyup(function(event){
+      if(event.keyCode ==13){
+        phone = $('.phone').val();
+        location.href = '?token={$token}&status={$status}&phone='+phone;
+      }
+    });
+
+   function hexiao(id,token){
+    if(confirm('确定核销该记录！')){
+    　　 $.post('/index/hexiao/check',{id:id,token:token},function(data){
+            alert(data.msg);
+            if(data.code==1){
+                location.reload();
+            }
+        },'json');
+    }
+   }
+</script>
+</html>

@@ -1,0 +1,8 @@
+{
+    "component": true,
+    "usingComponents": {
+        "welcome": "/components/welcome2/index",
+        "towxml": "/towxml/towxml",
+        "navbar": "/components/navbar/navbar"
+    }
+}

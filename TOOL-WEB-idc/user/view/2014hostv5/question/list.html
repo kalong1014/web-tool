@@ -1,0 +1,94 @@
+{{dispatch c='public'  a='head'}}
+
+            <main id="main-container">
+                <!-- Page Header -->
+                <div class="content bg-gray-lighter">
+                    <div class="row items-push">
+                        <div class="col-sm-8">
+                            <h1 class="page-heading">
+                                服务单详情&nbsp; <small>在线服务单系统</small>
+                            </h1>
+                        </div>
+                        <div class="col-sm-4 text-right hidden-xs">
+                            <ol class="breadcrumb push-10-t">
+                                <li><a class="link-effect" href="?c=user&a=index">账户首页</a></li>
+								<li>服务单详情</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+			
+			
+                <div class="content content-boxed">
+                    <div class="row">
+
+
+                        <div class="col-sm-12 col-lg-12">
+                            <!-- Message List -->
+                            <div class="block">
+                                <div class="block-header bg-gray-lighter">
+                                    <ul class="block-options">
+                                        <li>
+                                            <button type="button" data-toggle="block-option" data-action="fullscreen_toggle"></button>
+                                        </li>
+                                        <li>
+                                            <button type="button" data-toggle="block-option" data-action="content_toggle"></button>
+                                        </li>                                   
+                                    </ul>
+                                    <div class="block-title text-normal">
+                                    <strong><i class="si si-speech"></i>&nbsp; {{$log.title}}</strong>
+									</div>
+                                </div>
+                                <div class="block-content">
+                                    <!-- Messages Options -->
+                                    <div class="push">
+                                        <div class="btn-group">
+                                            <a class="btn btn-primary" href="?c=question&a=pageByuser"><i class="si si-action-undo push-5-l push-5-r"></i> 返回服务单列表页</a>
+                                        </div><hr />
+                            <div class="row">
+							<div class="col-sm-12 col-xs-12" style="height:10px;"></div>
+                                <div class="col-sm-10 col-xs-12">
+                                    <!-- Success Alert -->
+                                    <div class="alert alert-info alert-dismissable">
+                                        <h5>您的提问：</h5><hr /><p>{{$log.body}}</p><br />
+										<p class="text-right" style="font-size:12px;"><em>提问时间：{{$log.add_time}}</em></p>
+                                    </div>
+                                    <!-- END Success Alert -->
+                                </div>
+								<div class="col-sm-2 col-xs-12"></div>
+								
+								<div class="col-sm-12 col-xs-12" style="height:30px;"></div>
+								
+                                <div class="col-sm-10 col-xs-12 pull-right">
+                                    <!-- Success Alert -->
+									{{if $log.reply_time!=""}}
+                                    <div class="alert alert-success alert-dismissable">
+                                        <h5>客服回复：</h5><hr /><p>{{$log.reply}}</p><br />
+										<p class="text-right" style="font-size:12px;"><em>回复时间：{{$log.reply_time}}</em></p>
+                                    </div>
+									{{else}}
+									<div class="alert alert-danger alert-dismissable">
+										<p>非常抱歉，亲。暂时还没有客服回复您的问题。<br />我们客服可能正在努力处理您的问题中而暂时来不及回复，请稍后再来查看，谢谢您的支持！</p>
+									</div>	
+									{{/if}}
+                                    <!-- END Success Alert -->
+                                </div>
+								<div class="col-sm-2 col-xs-12"></div>	
+                             </div>
+                                    <!-- Messages & Checkable Table (.js-table-checkable class is initialized in App() -> uiHelperTableToolsCheckable()) -->
+							
+							
+																	
+                                </div>
+                            </div>
+                            <!-- END Message List -->
+                        </div>
+
+
+			
+			
+			
+</div></div>			
+			
+</main>

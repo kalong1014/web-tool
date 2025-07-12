@@ -1,0 +1,152 @@
+.page {
+    background: #f2f8f8;
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.bg-header {
+    height: 450rpx;
+    top: 0;
+}
+
+.bg-footer,.bg-header {
+    left: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+}
+
+.bg-footer {
+    bottom: 0;
+    height: 360rpx;
+}
+
+.bg-footer image,.bg-header image {
+    height: 100%;
+    width: 100%;
+}
+
+.container {
+    bottom: 0;
+    box-sizing: border-box;
+    left: 0;
+    padding: 0 88rpx;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 3;
+}
+
+.container .title {
+    color: #1b1c1c;
+    font-size: 48rpx;
+    font-weight: 700;
+    letter-spacing: 4rpx;
+    margin-top: 180rpx;
+    text-align: center;
+}
+
+.btn-group {
+    margin-top: 200rpx;
+}
+
+.btn {
+    align-items: center;
+    background: #04babe;
+    border-radius: 50rpx;
+    color: #fff;
+    display: flex;
+    font-size: 36rpx;
+    height: 100rpx;
+    justify-content: center;
+    letter-spacing: 2rpx;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.btn:active {
+    opacity: .8;
+}
+
+.btn image {
+    height: 64rpx;
+    margin-right: 20rpx;
+    width: 64rpx;
+}
+
+.btn-phone {
+    background: none;
+    border: 2rpx solid #04babe!important;
+    box-sizing: border-box;
+    color: #04babe;
+    height: 92rpx;
+    margin-top: 40rpx;
+}
+
+.agreement {
+    align-items: center;
+    bottom: 100rpx;
+    color: #999;
+    display: flex;
+    font-size: 28rpx;
+    justify-content: center;
+    left: 0;
+    padding: 50rpx 0;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+
+.agreement text {
+    color: #04babe;
+}
+
+.agreement .check {
+    transform: scale(.75);
+}
+
+.form {
+    margin-top: 140rpx;
+}
+
+.form .form-item {
+    align-items: center;
+    display: flex;
+    margin-bottom: 30rpx;
+    position: relative;
+}
+
+.form .form-item .input {
+    background: #fff;
+    border: 4rpx solid #dadede;
+    border-radius: 50rpx;
+    height: 88rpx;
+    line-height: 88rpx;
+    padding: 0 88rpx;
+    width: 100%;
+}
+
+.form .form-item .icon {
+    height: 32rpx;
+    left: 36rpx;
+    position: absolute;
+    top: 32rpx;
+    width: 32rpx;
+}
+
+.form .form-item .eye {
+    left: auto;
+    right: 36rpx;
+}
+
+.btn-submit {
+    font-size: 32rpx;
+    height: 88rpx;
+    margin-top: 40rpx;
+}

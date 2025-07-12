@@ -1,0 +1,135 @@
+.setting-row {
+    background: #f7f7f8;
+    border-radius: 20rpx;
+    box-sizing: border-box;
+    margin-bottom: 20rpx;
+    padding: 20rpx 30rpx;
+    width: 100%;
+}
+
+.setting-row .label {
+    align-items: center;
+    display: flex;
+    font-size: 32rpx;
+    justify-content: space-between;
+    line-height: 64rpx;
+    width: 100%;
+}
+
+.setting-row .label .help {
+    align-items: center;
+    display: flex;
+    height: 64rpx;
+    justify-content: center;
+    width: 64rpx;
+}
+
+.setting-row .label .help image {
+    height: 32rpx;
+    width: 32rpx;
+}
+
+.setting-row .values {
+    box-sizing: border-box;
+    padding: 20rpx 0;
+    width: 100%;
+}
+
+.setting-row .values .uploader {
+    height: 120rpx;
+    width: 120rpx;
+}
+
+.setting-row .values .size-list {
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.setting-row .values .size-list .size-item {
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 8rpx;
+    box-sizing: border-box;
+    display: block;
+    display: flex;
+    flex-direction: column;
+    height: 130rpx;
+    justify-content: space-between;
+    padding: 10rpx;
+    position: relative;
+    text-align: center;
+    width: 86rpx;
+}
+
+.setting-row .values .size-list .size-item .size-block {
+    background: #ddd;
+    border-radius: 8rpx;
+}
+
+.setting-row .values .size-list .size-item text {
+    color: #333;
+    font-size: 28rpx;
+    text-align: center;
+}
+
+.setting-row .values .size-list .size-item.active {
+    border-color: #04babe;
+}
+
+.setting-row .values .size-list .size-item.active .size-block {
+    background-color: #04babe;
+}
+
+.setting-row .values .options {
+    width: 100%;
+}
+
+.setting-row .values .options .option-item {
+    align-items: center;
+    background-clip: padding-box,border-box;
+    background-origin: padding-box,border-box;
+    border: 4rpx solid transparent;
+    border-radius: 20rpx;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: flex;
+    float: left;
+    height: 120rpx;
+    justify-content: center;
+    margin-bottom: 10rpx;
+    margin-right: 10rpx;
+    overflow: hidden;
+    padding: 4rpx;
+    position: relative;
+    transition: all .2s;
+    width: 120rpx;
+}
+
+.setting-row .values .options .option-item.active {
+    border-color: #04babe;
+}
+
+.setting-row .values .options .option-item image {
+    border-radius: 20rpx;
+    height: 100%;
+    width: 100%;
+}
+
+.setting-row .values .options .option-item text {
+    background: linear-gradient(180deg,transparent,#000);
+    border-radius: 20rpx;
+    bottom: 4rpx;
+    color: #fff;
+    font-size: 24rpx;
+    font-weight: 500;
+    height: 72rpx;
+    left: 4rpx;
+    line-height: 88rpx;
+    position: absolute;
+    right: 4rpx;
+    text-align: center;
+    white-space: nowrap;
+    z-index: 9;
+}

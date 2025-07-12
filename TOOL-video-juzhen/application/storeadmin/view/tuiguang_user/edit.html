@@ -1,0 +1,47 @@
+<style type="text/css">
+    .recomm_keyword,.no_recomm_keyword{background: #3ca793;padding: 5px ;margin-bottom: 10px;margin-right: 10px;color: #fff;display: inline-block;cursor: pointer;}
+ .delete_keyword{margin-left: 5px;color: #ccc;}
+ .radio label{margin-bottom: 20px;vertical-align: top;}
+ .title_video{width: 80px;overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;display: block;}
+</style>
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group" style="display:none;">
+        <label class="control-label col-xs-12 col-sm-2">别名:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-name"  class="form-control"  maxlength="10" name="row[nickname]" type="text" value="{$row.nickname|htmlentities}" placeholder="请输入名称，建议2-10个字">
+            <p style="color:#999;margin-top:5px;">注意：系统可能会根据你填写的账号自动更新成最新的D音昵称</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">cookie:</label>
+        <div class="col-xs-12 col-sm-8">
+            <textarea id="c-cookie"  class="form-control" rows="25" name="row[cookie]" data-rule="required" type="text"  placeholder="请输入d音pc网页cookie">{$row.cookie|htmlentities}</textarea>
+            <p style="color:#999;margin-top:5px;">请填写完整的cookie，获取方法请看操作文档</p>
+            <p style="color:#fff;margin-top:5px;"><spans style="color:red">*注意*：</span>授权的D音账号需要在电脑网页的D音创作者平台发过一次视频，否则会触发手机验证码，导致发送失败</p>
+            <p style="color:#fff;margin-top:5px;"><spans style="color:red">*注意*：</span>授权完后不要主动退出D音账号，否则导致cookie失效（允许关闭浏览器）</p>
+            <!-- <a style="margin-top:5px;" href="https://zhansiwl.feishu.cn/docs/doccnVoLnPYi2nwHAbMfPClMGIb#r91AFN" target="_blank">获取教程：https://zhansiwl.feishu.cn/docs/doccnVoLnPYi2nwHAbMfPClMGIb#r91AFN</a> -->
+        </div>
+    </div>
+    <div class="form-group"  style="display:none;">
+        <label class="control-label col-xs-12 col-sm-2">PC主页链接:</label>
+        <div class="col-xs-12 col-sm-8">
+            <textarea id="c-blog_url"  class="form-control" rows="7"  name="row[blog_url]"  type="text"  placeholder="请输入d音pc网页博主的链接">{$row.blog_url|htmlentities}</textarea>
+            <p style="color:#999;margin-top:5px;">请正确填写，填写错误将影响视频数据更新，格式如：
+            https://www.douyin.com/user/MS4wLjABAAAA1LhnyX5rkhgkDHUrXq7s1rn8zTeTw2J3UIk4lAZ8zDc?vid=6913132154377620748</p>
+        </div>
+    </div>
+
+
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed " >{:__('OK')}</button>
+        </div>
+    </div>
+
+</form>
+
+<script type="text/javascript" src='/storeadmin2/libs/jquery/dist/jquery.min.js?v=162913148'></script>

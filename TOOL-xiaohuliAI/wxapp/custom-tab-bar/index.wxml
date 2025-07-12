@@ -1,0 +1,8 @@
+<view class="tab-bar tab-bar-bottom" style="background: {{backgroundColor}}" wx:if="{{list&&list.length>0}}">
+    <view class="tab-bar-border" style="background: {{borderColor}}"></view>
+    <view bindtap="switchTab" class="tab-bar-item" data-name="{{item.name}}" data-path="{{item.pagePath}}" wx:for="{{list}}" wx:key="index">
+        <image class="tab-bar-item-image" src="{{item.iconPath}}" style="opacity: {{selected===item.name?0:100}};"></image>
+        <image class="tab-bar-item-image" src="{{item.selectedIconPath}}" style="opacity: {{selected===item.name?100:0}};"></image>
+        <view class="tab-bar-item-text" style="font-size: {{fontSize}}rpx;color: {{selected===item.name?selectedColor:color}}">{{item.text}}</view>
+    </view>
+</view>

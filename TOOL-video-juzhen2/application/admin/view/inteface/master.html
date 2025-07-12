@@ -1,0 +1,253 @@
+{include file="public/header" /}
+<style type="text/css" media="all">
+    .form-group{
+        width: 100%;
+        height: 30px;
+        margin-top:30px;
+      
+    }
+    .form-f{
+        width: 40%;
+        height: 30px;
+        float: left;
+        margin-left:80px;
+    }
+    .form-f1{
+       width: 80px;
+        margin-right: 20px;
+    }
+    .form-control{
+        margin-right:  40px;
+    }
+    .btn-primary{
+        margin-top:40px;
+        margin-left:40%;
+        width: 300px;
+    }
+    
+</style>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- jieshu -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>站长工具</h5>
+        </div>
+        <div class="ibox-content">
+                        
+       <form class="form-inline" method="post" action="{:url('inte_add')}">
+         <input type="hidden" name="type" value="1">
+            <div class="form-group" >
+                  <div class="form-f">
+                       <label for="exampleInputName2" class="form-f1">百度-PC</label>
+                         <input type="text" class="form-control" id="exampleInputName2" placeholder="请填写key" name="bd_pc" value="{$list.bd_pc}">
+                         {if $list.bd_pc_s ==1}
+                        <input type="checkbox" name='bd_pc_s' value="1" class="js-switch" checked /> 
+                        {else /}
+                         <input type="checkbox" name='bd_pc_s' value="1" class="js-switch"  /> 
+                        {/if} 
+                  </div>
+                      
+                  <div class="form-f">
+                       <label for="exampleInputName2" class="form-f1">百度-移动</label>
+                     <input type="text" class="form-control" name="bd_yd" id="exampleInputName2" placeholder="请填写key " value="{$list.bd_yd}">
+                       {if $list.bd_yd_s ==1}
+                    <input type="checkbox" name='bd_yd_s' value="1" class="js-switch1" checked />  
+                      {else /}
+                      <input type="checkbox" name='bd_yd_s' value="1" class="js-switch1"  />  
+                      {/if} 
+                  </div>
+               
+              </div>
+              <div class="form-group" >
+                   <div class="form-f">
+                        <label for="exampleInputName2" class="form-f1">360-PC</label>
+                     
+                        <input type="text" class="form-control" name="360_pc" id="exampleInputName2" placeholder="请填写key" value="{$list.360_pc}">
+                      {if $list.360_pc_s ==1}
+                        <input type="checkbox" name='360_pc_s' value="1" class="js-switch3" checked /> 
+                          {else /}
+                       <input type="checkbox" name='360_pc_s' value="1" class="js-switch3"  /> 
+                      {/if} 
+                    </div>
+                     <div class="form-f">
+                      
+                    <label for="exampleInputName2" class="form-f1">360-移动</label>
+               
+                    <input type="text" class="form-control" name="360_yd" id="exampleInputName2" placeholder="请填写key" value="{$list.360_yd}">
+                 {if $list.360_yd_s ==1}
+                    <input type="checkbox" name='360_yd_s' value="1" class="js-switch4" checked /> 
+                     {else /}
+                       <input type="checkbox" name='360_yd_s' value="1" class="js-switch4"  /> 
+                      {/if}   
+                    </div>
+                </div>
+              <div class="form-group">
+                  <div class="form-f">
+                    <label for="exampleInputName2" class="form-f1">搜狗-PC</label>
+                 
+                    <input type="text" class="form-control" name="sg_pc" id="exampleInputName2" placeholder="请填写key" value="{$list.sg_pc}">
+                 {if $list.sg_pc_s ==1}
+                    <input type="checkbox" name='sg_pc_s' value="1" class="js-switch5" checked /> 
+                      {else /}
+                        <input type="checkbox" name='sg_pc_s' value="1" class="js-switch5"  />  
+                      {/if} 
+                    </div>
+
+                      <div class="form-f">
+                    <label for="exampleInputName2" class="form-f1">搜狗-移动</label>
+               
+                    <input type="text" class="form-control" name="sg_yd" id="exampleInputName2" placeholder="请填写key" value="{$list.sg_yd}">
+                {if $list.sg_yd_s ==1}
+                    <input type="checkbox" name='sg_yd_s' value="1" class="js-switch6" checked />
+                      {else /}
+                         <input type="checkbox" name='sg_yd_s' value="1" class="js-switch6"  />
+                      {/if} 
+                 </div>
+              </div>
+              <div class="form-group">
+                   <div class="form-f">
+                <label for="exampleInputName2" class="form-f1">神马</label>
+           
+                <input type="text" class="form-control" name="sm_pc" id="exampleInputName2" placeholder="请填写key" value="{$list.sm_pc}">
+                 {if $list.sm_pc_s ==1}
+                <input type="checkbox" name='sm_pc_s' value="1" class="js-switch7" checked />  
+                 {else /}
+                       <input type="checkbox" name='sm_pc_s' value="1" class="js-switch7"  /> 
+                      {/if} 
+                  </div>
+                   <div class="form-f">
+                <label for="exampleInputName2" class="form-f1">权重</label>
+          
+                <input type="text" class="form-control" name="qz" id="exampleInputName2" placeholder="请填写key" value="{$list.qz}">
+              {if $list.qz_s ==1}
+                <input type="checkbox" name='qz_s' value="1" class="js-switch8" checked /> 
+                 {else /}
+                          <input type="checkbox" name='qz_s' value="1" class="js-switch8"  />  
+                      {/if}
+                </div>
+              </div>
+              <div class="form-group" >
+                   <div class="form-f">
+                <label for="exampleInputName2" class="form-f1">长尾词</label>
+       
+                <input type="text" class="form-control" name="cwc" id="exampleInputName2" placeholder="请填写key" value="{$list.cwc}">
+             {if $list.cwc_s ==1}
+                <input type="checkbox" name='cwc_s' value="1" class="js-switch9" checked />
+                 {else /}
+                    <input type="checkbox" name='cwc_s' value="1" class="js-switch9"  />  
+                      {/if}
+                  </div>
+                  <div class="form-f">
+                    
+                <label for="exampleInputName2" class="form-f1">分析</label>
+            
+                <input type="text" class="form-control" name="fx" id="exampleInputName2" placeholder="请填写key" value="{$list.fx}">
+                {if $list.fx_s ==1}
+                <input type="checkbox" name='fx_s' value="1" class="js-switch10" checked /> 
+                 {else /}
+                      <input type="checkbox" name='fx_s' value="1" class="js-switch10"  /> 
+                      {/if}  
+                    </div>
+              </div>
+
+            
+                        
+      <button type="submit" class="btn btn-primary">保存</button> 
+                </form>
+            
+                        
+   
+            <!--搜索框开始-->           
+            <!--<div class="row">-->
+            <!--    <div class="col-sm-12">   -->
+                                                        
+            <!--        <form name="admin_list_sea" class="form-search" method="post" action="{:url('chaxun')}">-->
+            <!--            <span style="width:100px;float:left">站长工具</span> -->
+                      <!--  <input type="text"  class="form-control" name="name" value="" placeholder="" style="width:200px;float:left"  disabled="tuue"/> -->
+            <!--        <input type="text"  class="form-control" name="key" value="" placeholder="请输入您的key值" style="width:300px;float:left" />   -->
+            <!--                <div class="form-group">-->
+                          
+            <!--                <div class="col-sm-6">-->
+            <!--                    <div class="radio ">                                        -->
+            <!--                        <input type="checkbox" name='status' value="1" class="js-switch" checked />&nbsp;&nbsp;默认开启                                     -->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--            </div>-->
+                        
+            <!--            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 保存</button> -->
+
+            <!--        </form>                         -->
+            <!--    </div>-->
+            <!--</div>-->
+           
+            <!--搜索框结束-->
+
+  
+         
+        </div>
+    </div>
+</div>
+<!-- kaishi -->
+
+
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+        var elem = document.querySelector('.js-switch');
+
+        var switchery = new Switchery(elem, {
+            color: '#1AB394'
+           
+        });
+         var elem = document.querySelector('.js-switch1');
+        var switchery = new Switchery(elem, {
+            color: '#1AB394'
+        });
+        var elem = document.querySelector('.js-switch2');
+        var switchery = new Switchery(elem, {
+            color: '#1AB394'
+        });
+        var elem = document.querySelector('.js-switch3');
+        var switchery = new Switchery(elem, {
+            color: '#1AB394'
+        });
+        var elem = document.querySelector('.js-switch4');
+        var switchery = new Switchery(elem, {
+            color: '#1AB394'
+        });
+        var elem = document.querySelector('.js-switch5');
+        var switchery = new Switchery(elem, {
+            color: '#1AB394'
+        });
+        var elem = document.querySelector('.js-switch6');
+        var switchery = new Switchery(elem, {
+            color: '#1AB394'
+        });
+        var elem = document.querySelector('.js-switch7');
+        var switchery = new Switchery(elem, {
+            color: '#1AB394'
+        });
+        var elem = document.querySelector('.js-switch8');
+        var switchery = new Switchery(elem, {
+            color: '#1AB394'
+        });
+        var elem = document.querySelector('.js-switch9');
+        var switchery = new Switchery(elem, {
+            color: '#1AB394'
+        });
+         var elem = document.querySelector('.js-switch10');
+        var switchery = new Switchery(elem, {
+            color: '#1AB394'
+        });
+
+    var config = {
+        '.chosen-select': {},                    
+    }
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+
+</script>
+
+</html>

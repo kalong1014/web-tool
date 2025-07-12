@@ -1,0 +1,117 @@
+{{dispatch c='public'  a='head'}}
+            <main id="main-container">
+                <!-- Page Header -->
+                <div class="content bg-gray-lighter">
+                    <div class="row items-push">
+                        <div class="col-sm-8">
+                            <h1 class="page-heading">
+                                在线充值&nbsp; <small>为您的账户充值可用金额</small>
+                            </h1>
+                        </div>
+                        <div class="col-sm-4 text-right hidden-xs">
+                            <ol class="breadcrumb push-10-t">
+                                <li><a class="link-effect" href="?c=user&a=index">账户首页</a></li>
+								<li>在线充值</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <div class="content content-boxed">
+				
+                            <div class="block">
+                                <div class="block-header">
+                                    <ul class="block-options">
+                                        <li>
+                                            <button type="button" data-toggle="block-option" data-action="fullscreen_toggle"></button>
+                                        </li>
+                                        <li>
+                                            <button type="button" data-toggle="block-option" data-action="content_toggle"></button>
+                                        </li>                                    </ul>
+                                    </ul>
+                                    <h3 class="block-title"> 在线充值</h3>
+                                </div>
+                                <div class="block-content bg-gray-lighter">
+                                    <!-- Slick slider (.js-slider class is initialized in App() -> uiHelperSlick()) -->
+                                    <!-- For more info and examples you can check out http://kenwheeler.github.io/slick/ -->
+                                    <div style="height:10px;"></div>
+									<div class="row items-push">
+                                        <div class="col-xs-12 text-left">
+                                            <div class="text-muted">
+											<span style="font-size:14px; color:#666666;">* 请根据您的需要选择支付方式。</span><p>
+											<span style="font-size:14px; color:#666666;">* 支付宝付款成功后,请等待支付宝自动返回到网站显示充值成功</span><p>
+                           </div>
+                                    </div>
+									<div style="height:10px;"></div>
+                                    <!-- END Slick slider -->
+                                </div>
+                                <div class="block-content">
+								<div style="height:30px;"></div>
+							<form name='frm' action="?c=money&a=add" method="post" class="form-horizontal">
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-2 control-label">选择支付方式：</label>
+									<div class="col-sm-5">
+										{{if !$setting.alipay_close}}
+										<label class="css-input css-radio css-radio-success push-10-r">
+										<input type="radio" name="gw"  value="1" checked="checked"	onclick='show_china(1)' /><span></span> 在线支付
+
+										{{/if}}
+										{{if !$setting.china_close}}
+										<label class="css-input css-radio css-radio-success push-10-r">
+										<input type="radio" name="gw"  	value="2" checked="checked" onclick='show_china(2)' /><span></span> 在线网银
+										</label>
+										{{/if}}
+										{{if !$setting.tenpay_close}}
+										<label class="css-input css-radio css-radio-success push-10-r">
+										<input type="radio" name="gw"  	value="3" checked="checked" onclick='show_china(3)' /><span></span> 财付通
+										</label>
+										{{/if}}
+										<label class="css-input css-radio css-radio-success push-10-r">
+										<input type="radio" name="gw"  	value="100"  onclick='show_china(100)' /><span></span> 充值卡
+										</label> </div></div>
+								<div class="form-group" id="money_tr">
+									<label for="inputEmail3" class="col-sm-2 control-label">金额（元）：</label>
+									<div class="col-sm-5"> <input name='money' size="24" placeholder="请输入充值金额" class="form-control"/> </div>
+										</div>
+								<div class="form-group" id="entkey_tr" style="display:none">
+									<label for="inputEmail3" class="col-sm-2 control-label">充值卡号：</label>
+									<div class="col-sm-5"> <input name='ent_key' size="24" placeholder="请输入充值卡号"  class="form-control"/> </div>
+										</div>
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-2 control-label"></label>
+									<div class="col-sm-1">
+									<input type="submit" value="确 定" class="btn btn-primary"  data-toggle="block-option" data-action="refresh_toggle" data-action-mode="demo" />
+									</div>
+										</div>
+							</form>
+							
+							<div style="height:30px;"></div>
+			
+			
+                                </div>
+                            </div>
+
+				</div>
+		
+
+<script type="text/javascript">
+
+	function show_china(val) {
+		switch (val) {
+		case 1:
+		case 2:
+		case 3:
+			$("#entkey_tr").hide();
+			$("#money_tr").show();
+			break;
+		case 100:
+			$("#entkey_tr").show();
+			$("#money_tr").hide();
+			break;
+		default:
+			break;
+		
+		}
+	}
+</script>
+
+</main>	

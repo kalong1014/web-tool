@@ -1,0 +1,3 @@
+<view>
+    <towxml nodes="{{text2}}"></towxml>
+</view>

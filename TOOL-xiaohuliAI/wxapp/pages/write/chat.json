@@ -1,0 +1,8 @@
+{
+    "navigationStyle": "custom",
+    "usingComponents": {
+        "foxTabs": "/components/foxTabs/foxTabs",
+        "writeMsgList": "/components/writeMsgList/writeMsgList",
+        "navbar": "/components/navbar/navbar"
+    }
+}

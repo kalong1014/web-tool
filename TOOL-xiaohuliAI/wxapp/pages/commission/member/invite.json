@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "邀请下级推广员",
+    "usingComponents": {
+        "navbar": "/components/navbar/navbar"
+    }
+}

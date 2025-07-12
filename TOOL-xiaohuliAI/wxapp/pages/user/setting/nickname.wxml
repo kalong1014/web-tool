@@ -1,0 +1,9 @@
+<view class="form">
+    <view class="form-input">
+        <view class="label">昵称</view>
+        <input class="input" model:value="{{nickname}}" placeholder="请输入昵称" type="text"></input>
+    </view>
+    <view>
+        <button bindtap="doSubmit" class="btn-submit">确 定</button>
+    </view>
+</view>

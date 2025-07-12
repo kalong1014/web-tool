@@ -1,0 +1,81 @@
+.page {
+    background-color: #fff;
+    box-sizing: border-box;
+    font-family: 微软雅黑;
+    margin: 0;
+}
+
+.avatar-wrapper {
+    border-radius: 20rpx;
+    height: 120rpx;
+    margin: 80rpx auto;
+    padding: 0;
+    width: 120rpx;
+}
+
+.avatar-wrapper::after {
+    display: none;
+}
+
+.avatar {
+    height: 100%;
+    width: 100%;
+}
+
+.form-input {
+    align-items: center;
+    border-bottom: 2rpx solid #e2e2e2;
+    border-top: 2rpx solid #e2e2e2;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start;
+    padding: 10rpx 0;
+    width: 100%;
+}
+
+.form-input .label {
+    font-weight: 700;
+    padding-left: 60rpx;
+    width: 200rpx;
+}
+
+.form-input .input {
+    height: 80rpx;
+    line-height: 80rpx;
+    width: 400rpx;
+}
+
+.btn-submit {
+    align-items: center;
+    background: #04babe;
+    border-radius: 40rpx;
+    bottom: 200rpx;
+    box-shadow: 0 0 20rpx rgba(0,0,0,.05);
+    color: #fff;
+    display: flex;
+    height: 80rpx;
+    justify-content: center;
+    left: 15%;
+    position: fixed;
+    text-align: center;
+    width: 70%;
+}
+
+.btn-submit image {
+    height: 40rpx;
+    margin-right: 12rpx;
+    width: 40rpx;
+}
+
+.btn-submit text {
+    font-size: 36rpx;
+    letter-spacing: 1px;
+}
+
+.btn-submit::after {
+    border: none;
+}
+
+.btn-submit:active {
+    transform: scale(.95);
+}

@@ -1,0 +1,8 @@
+{
+    "navigationStyle": "custom",
+    "usingComponents": {
+        "foxTabs": "/components/foxTabs/foxTabs",
+        "promptList": "/components/promptList/promptList",
+        "navbar": "/components/navbar/navbar"
+    }
+}

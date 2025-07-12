@@ -1,0 +1,80 @@
+{include file="public/header" /}
+<style>
+    .example-wrap{
+        
+    }
+    .example-img{
+        margin-top: 20px;
+    }
+    .example-img > img{
+        width: 200px;
+    }
+   .example-sap{
+   
+    text-align: center;
+    margin-top: 20px;
+   }
+   .example-sap1{
+    text-align: center;
+    width: 20%;
+    font-size: 15px;
+  
+
+   }
+   .radio-inline{
+    margin-top: -8px;
+    margin-left: 5px;
+   }
+   .tijiao{
+    width: 100%;
+   float: left;
+   margin-top: 50px;
+   margin-left: 40%;
+   }
+   .tijiao > button{
+    width: 100px;
+   }
+  
+
+</style>
+<body class="gray-bg">
+<link rel="stylesheet" href="/static/admin/layui/css/layui.css" media="all">
+<div class="wrapper layui-card-body wrapper-content">
+    <div class="admin-con">
+        <div class="block-box">    
+            <div class="col-12">
+                <div class="block">
+                
+                    <div class="example-img">
+                          {if $img.image ==''}
+                          暂无二维码
+                          {else /}
+                        <img alt="image" class="" src="/uploads/images/{$img.image}"/>
+                        {/if}
+                 
+                        <div class="example-sap">
+                               <!--  <span class="example-sap1">备注信息 </span> -->
+                           
+                        </div>
+                    </div>
+                    <div class="tijiao">
+                           <!-- <button type="submit" class="btn btn-primary">确认</button>  -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+   
+   
+
+
+</script>
+</body>
+</html>

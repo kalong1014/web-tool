@@ -1,0 +1,451 @@
+<style type="text/css"> 
+    .table {table-layout:fixed;} 
+    .table td{text-overflow:ellipsis; overflow:hidden; white-space:nowrap; }
+    .toolbar .btn-success{border: 1px solid #6d6d6d;background: unset;margin-left: 10px;}
+    .fixed-table-toolbar{margin: 10px 0px;}
+    .toolbar a {height: 40px;line-height: 25px;font-weight: bold;letter-spacing: 2px;font-size: 18px;}
+    .btn_group{display: inline-block;padding: 8px 20px; vertical-align: middle;font-size: 16px;}
+    .toolbar select{margin-left: 20px;border-radius: 5px;display: inline-block;width: 120px;line-height: 25px;height: 40px;    vertical-align: middle;font-size: 14px;}
+    .layui-layer-content{color: #333;}
+</style>
+<div class="panel panel-default panel-intro">
+    {:build_heading()}
+
+    <div class="panel-body">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="one">
+                <div class="widget-body no-padding">
+                    <div id="toolbar" class="toolbar">
+                        {if $open_douyin_cookie==1}
+                            <p style="font-size:18px;line-height:40px;font-weight: bold;">D音工具授权码： <span style="background:#66BB6A;color: #fff;padding: 5px 10px;border-radius: 5px;">{$auth_code}</span>  <a href="http://8.134.67.83/dyauthorSetup.exe" style="margin-left: 20px;font-size: 16px;" target="_blank">工具下载</a>   </p>
+                        {/if}
+                        {if $open_douyin_open==1}
+                        <a href="javascript:;" class="btn btn-primary btn-refresh" title="{:__('Refresh')}" ><i class="fa fa-refresh"></i> </a>
+                        <a  class="btn btn-success btn-open-douyin"   target="_blank"> D音扫码【开放接口】 </a>
+                        {/if}
+                        {if $open_douyin_cookie==1}
+                            <a  class="btn btn-success btn-qrcode" title="{:__('Add')}" > D音扫码授权 </a>
+                            <!-- <a  class="btn btn-success btn-login" title="{:__('Add')}" > D音验证码登录 </a> -->
+                            <a href="tuiguang_user/add?type=1" target="_blank" class="btn btn-success btn-douyin btn-dialog" title="{:__('Add')}" > D音cookie授权 </a>
+                        {/if}
+                        <!-- <a href="tuiguang_user/add?type=2" target="_blank" class="btn btn-success btn-xigua" title="{:__('Add')}" >X瓜授权</a> -->
+                        <!-- <a href="tuiguang_user/add?type=3" target="_blank" class="btn btn-success btn-toutiao " title="{:__('Add')}" >T条授权</a> -->
+
+                        <a href="tuiguang_user/add?type=4" target="_blank" class="btn btn-success btn-kuaishou "  title="添加授权" >K手授权</a>
+                        <a href="tuiguang_user/add?type=5" target="_blank" class="btn btn-success btn-bili " title="BILI授权" >BILI授权</a>
+                        <a  class="btn btn-success btn-shipinhao "  title="添加授权" >视频号授权</a>
+                        <a  class="btn btn-success btn-xhs "  title="添加授权" >小红薯授权</a>
+                        <!-- <a  target="_blank" class="btn btn-success btn-hk " style="background: #6f6f6f;cursor: not-allowed;" title="待开发" >更多平台授权</a> -->
+
+                        <br><br>
+                        <select class="form-control user_group">
+                            <option value="">请选择分组</option>
+                            {foreach $groups as $k=>$v}
+                                <option value="{$v['id']}">{$v['name']}</option>
+                            {/foreach}
+                        </select>
+                        <a  class="btn btn-primary btn_group">移动分组</a> 
+
+                    </div>
+                    <table id="table" class="table table-striped table-bordered table-hover table-nowrap"
+                               data-operate-del="tuiguang_user/del" 
+                               width="100%">
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<style type="text/css">
+    .qrcode-popul,.qrcode-popul-heji,.qrcode-popul-poi,.qrcode-popul_login{position: fixed;top: 0;left: 0;width: 100%;height: 100%;background: rgba(0,0,0,.6);z-index: 9999;}
+    .qrcode-populBox,.qrcode-populBox-poi{width: 400px;border: 2px solid #fff;margin: 20% auto 0;background: #fff;position: relative;height: 300px;}
+    .qrcode-populBox h6,.qrcode-populBox-poi h6{    text-align: center;height: 50px;width: 95%;margin: 0 auto;line-height: 50px;font-size: 18px;color: #007cc3;border-bottom: 1px solid #e8e8e8;}
+    .qrcode-populText{padding: 30px 20px;line-height: 23px;font-size: 14px;}
+    .closeQrcode,.closeQrcode-heji,.closeQrcode-poi,.closeQrcode_login{    position: absolute;top: 5px;right: 5px;font-size: 30px;color: #c3c3c3;font-weight: 700;cursor: pointer;}
+    .qrcode-img{    display: block;width: 260px;height: 260px;margin: 0 auto;padding: 30px 0;}
+    .erweima-main p{text-align: center;font-size: 16px;padding: 3px;}
+    #doctor_name{color: #007cc3;font-size: 18px;font-weight: 600;}
+    .erweima-main input,.erweima-main select {display:block;width: 80%;margin-left: 10%;margin-top: 30px;border-radius: 5px;line-height: 40px;height: 40px;border: 1px solid #ccc;padding-left: 10px;color: #333;}
+    .erweima-main button {display:block;width: 40%;margin-left: 30%;margin-top: 30px;border-radius: 5px;line-height: 40px;height: 40px;border: 0px;padding-left: 10px;color: #fff;background-color: #29a1e6;}
+
+    .qrcode-popul-qrcode{position: fixed;top: 0;left: 0;width: 100%;height: 100%;background: rgba(0,0,0,.6);z-index: 9999;}
+    .qrcode-populBox-qrcode{width: 400px;border: 2px solid #fff;margin: 10% auto 0;background: #fff;position: relative;height: 400px;}
+    .qrcode-populBox-qrcode h6{    text-align: center;height: 50px;width: 95%;margin: 0 auto;line-height: 50px;font-size: 18px;color: #007cc3;border-bottom: 1px solid #e8e8e8;}
+    .qrcode-populText-qrcode{padding: 30px 20px;line-height: 23px;font-size: 14px;}
+    .closeQrcode-qrcode{    position: absolute;top: 5px;right: 5px;font-size: 30px;color: #c3c3c3;font-weight: 700;cursor: pointer;}
+    .qrcode-img-qrcode{    display: block;width: 260px;height: 260px;margin: 0 auto;padding: 30px 0;}
+    .erweima-main-qrcode p{text-align: center;font-size: 16px;padding: 3px;}
+    #doctor_name-qrcode{color: #007cc3;font-size: 18px;font-weight: 600;}
+    .erweima-main-qrcode input {display:block;width: 80%;margin-left: 10%;margin-top: 30px;border-radius: 5px;line-height: 40px;height: 40px;border: 1px solid #ccc;padding-left: 10px;color: #333;}
+    .erweima-main-qrcode button {display:block;width: 40%;margin-left: 30%;margin-top: 30px;border-radius: 5px;line-height: 40px;height: 40px;border: 0px;padding-left: 10px;color: #fff;background-color: #29a1e6;}
+    .douyin-qrcode-img{width: 200px;height: 200px;display: block;margin: 0 auto;margin-top: 20px;}
+    .douyin-qrcode-desc{color: #666;font-size: 14px;}
+
+</style>
+<!-- <div id="qrcode" ></div> -->
+<div class="qrcode-popul" style="display: none;">
+    <div class="qrcode-populBox">
+        <h6 class="qrcode-title">验证sms验证码</h6>
+        <div class="erweima-main">
+            <input type="text"  name="" class="verify_code" placeholder="请填写D音验证码">
+            <button class="verify_btn">验证</button>
+        </div>
+        <span class="closeQrcode">×</span>
+    </div>
+    <input type="hidden" name="" class="sms_input">
+</div>
+
+
+<div class="qrcode-popul_login" style="display: none;">
+    <div class="qrcode-populBox">
+        <h6 class="qrcode-title">验证码登录</h6>
+        <div class="erweima-main">
+            <input type="text" style="width: 40%;display: inline-block;" name="" class="mobile_login" placeholder="请输入手机号码">
+            <input type="button" style="width: 40%;display: inline-block;margin-left: 2%;background: #29a1e6;border:0px;color:#fff" name="" class="send_vode_login" value="发送">
+            <input type="text"  name="" class="verify_code_login" placeholder="请填写D音验证码">
+            <button class="verify_btn_login">验证</button>
+        </div>
+        <span class="closeQrcode_login">×</span>
+    </div>
+    <input type="hidden" name="" class="sms_input">
+</div>
+
+<div class="qrcode-popul-heji" style="display: none;">
+    <div class="qrcode-populBox">
+        <h6 class="qrcode-title">合集授权</h6>
+        <div class="erweima-main">
+            <select class="heji_select">
+                
+            </select>
+            <button class="heji_btn">授权</button>
+        </div>
+        <span class="closeQrcode-heji">×</span>
+    </div>
+    <input type="hidden" name="" class="heji_input">
+</div>
+<!-- 抖音扫码 -->
+<div class="qrcode-popul-qrcode" style="display: none;">
+    <div class="qrcode-populBox-qrcode">
+        <h6 class="qrcode-title-qrcode">扫码登录</h6>
+        <div class="erweima-main-qrcode">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYYAAAGGAQMAAABFTrSmAAAABlBMVEX///8AAABVwtN+AAAACXBIWXMAAA7EAAAOxAGVKw4bAAACYklEQVR4nO2Z0XHEMAhEmXEBLsmtqyQV4BlioQXku6QAlOVD8Rk9/dwGVpwI4//FpQi5uoiqLXqLfXyWQ58/h2/qJHYgun31I3GqQgcDaydOcUziFBLViSEBF0NK5ZHPI5VxijZL6HoAiV2It3LOe9aImSWxJTG2tKz8qqEcEpsRpo53ZVD0hacl3JF9a4hEYSIUMcXwx4IgsQORYYlmPcBcn708v/eRqE5c0eOnw5ulAASa/4c/IFGeGEVhuvob/t6qRTt9UXf/Uzkk9iCi6KMyRA+IJVgS5QkMcG6vEepPbZYH2EF/IrEBsYjBCSxZCjoOha5IFCfEWz6ezrU54IIfN4ImJDYgYOmQ8Mqgipbg+9IGkKhPWDbqgWXbLP84D/7PZzwk6hOzwAOTZXw3VRKTu/SJJIoTKPquiBE4xW3eb12DRG3ifbuzLS4aVIvYHJIiUZv4eJfa8Av+tH5mDUhsQUhIJQ1feAE4QWR9ikOiOnEsm0VybDPLg4bTdydIoj7hGAyfD/IkK4PN9bo7fRL1iS+V5Ba/5x0uGBI7ELZv0cbLBMrlgx4/hcQWBP73lznNiOXX1yaBCYktCLN0qm73s/lDFkh8/F5LojDRcXWDShRTnHT686N6gsQGBG7v824/r3OZsHcRqBEkahMZl9/jPdZTlm5AojpxuQIci4+v5r+aQBLViZ6K0LABUR5iXrc8kShPDAfQca13z78mPNYhPoldCB/EN1PJPECRle+jSJQnRqwqsVIQypnRSWxB2FaoRDXmtpeXgtXrkdiCwPevebdHpMm3d6/5LonKBOO/xQ8XHVgA7W2iSwAAAABJRU5ErkJggg==" class="douyin-qrcode-img">
+            <p class="douyin-qrcode-desc">30秒后未生成二维码，请重新刷新</p>
+            <button class="refresh-qrcode">重新刷新</button>
+            <button class="refresh-qrcode-shipinhao" style="display:none">重新刷新</button>
+            <button class="refresh-qrcode-xhs" style="display:none">重新刷新</button>
+        </div>
+        <span class="closeQrcode-qrcode">×</span>
+        <input type="hidden" name="" class="douyin_token_input">
+    </div>
+</div>
+
+<!-- 配置poi -->
+<div class="qrcode-popul-poi" style="display: none;">
+    <div class="qrcode-populBox-poi">
+        <h6 class="qrcode-title-qrcode">绑定POI地址</h6>
+        <div class="erweima-main">
+            <input type="text" style="width: 80%;display: inline-block;" name="" class="poi_url" placeholder="请输入poi地址，如：https://v.douyin.com/xxxx/">
+            <input type="text" style="width: 80%;display: inline-block;" name="" class="poi_name" placeholder="请输入poi名称，如：xx门店">
+            <button class="poi_btn">绑定POI</button>
+        </div>
+        <span class="closeQrcode-poi">×</span>
+    </div>
+    <input type="hidden" name="" class="poi_input">
+</div>
+
+<script type="text/javascript" src='/storeadmin2/libs/jquery/dist/jquery.min.js?v=162913148'></script>
+<script type="text/javascript" src="/storeadmin2/js/jquery.qrcode.min.js"></script>
+
+<style type="text/css">
+    #qrcode{display: inline-block;margin-left: 10px;vertical-align: middle;}
+    #qrcode canvas{width: 150px;height: 150px;}
+</style>
+<script type="text/javascript">
+    $('.btn-open-douyin').click(function(){
+        if(confirm("授权该功能后，可无需你操作发布，就可以同步发布视频到你的抖音账号中，请确认是否授权？")){
+            var tempwindow=window.open('_blank');
+            tempwindow.location='tuiguang_user/add?type=8&user_group='+$('.user_group').val() ;
+        }
+    });
+
+    $('.closeQrcode').click(function(){
+        $('.qrcode-popul').hide();
+    });
+
+    $('.closeQrcode-qrcode').click(function(){
+        if(typeof($dinshi) != 'undefined'){
+            clearInterval($dinshi);
+        }
+        $('.qrcode-popul-qrcode').hide();
+    });
+
+    $('.closeQrcode-heji').click(function(){
+        $('.qrcode-popul-heji').hide(); 
+    });
+
+    $('.closeQrcode-poi').click(function(){
+        $('.qrcode-popul-poi').hide(); 
+    });
+
+    // 短信登录
+    $('.closeQrcode_login').click(function(){
+        $('.qrcode-popul_login').hide();
+    });
+    $('.btn-login').click(function(){
+        $('.qrcode-popul_login').show();
+    });    
+    var send_vode_login = 0;
+    $('.send_vode_login').click(function(){
+        mobile = $('.mobile_login').val();
+        if(mobile == ""){
+            layer.msg("<span style='color:#fff'>请输入手机号</span>");
+            return false;
+        }
+        var loading = layer.load(0, {shade: false,time: 30*1000});
+        if(send_vode_login==1){
+            return false;
+        }
+        send_vode_login = 1;
+        $.post('user_qrcode/get_mobile_code',{mobile:mobile},function(data){
+            send_vode_login = 0;
+            layer.close(loading);
+            if(data.error_code == 0){
+                // alert('');
+            }
+            layer.msg("<span style='color:#fff'>"+data.message+"</span>");
+            
+        },'json');
+    });  
+    var verify_btn_login = 0;
+    $('.verify_btn_login').click(function(){
+        mobile = $('.mobile_login').val();
+        if(mobile == ""){
+            layer.msg("<span style='color:#fff'>请输入手机号</span>");
+            return false;
+        }
+        code = $('.verify_code_login').val();
+        if(code == ""){
+            layer.msg("<span style='color:#fff'>请输入手机验证码</span>");
+            return false;
+        }
+        var loading = layer.load(0, {shade: false,time: 30*1000});
+        if(verify_btn_login==1){
+            return false;
+        }
+        verify_btn_login = 1;
+        $.post('user_qrcode/verify_mobile_code',{mobile:mobile,code:code},function(data){
+            verify_btn_login = 0;
+            layer.close(loading);
+            layer.msg("<span style='color:#fff'>"+data.message+"</span>");
+            if(data.error_code == 0){
+                setTimeout(function(){
+                    location.reload();
+                },1000);
+                
+            }            
+        },'json');
+    });  
+
+    $('.btn-qrcode,.refresh-qrcode').click(function(){
+        var loading = layer.load(0, {shade: false,time: 30*1000});
+        $('.qrcode-popul-qrcode').show();
+        $('.refresh-qrcode-shipinhao').hide();
+        $('.refresh-qrcode-xhs').hide();
+        $('.refresh-qrcode').show();
+        $.post('tuiguang_user/get_qrcode',{},function(data){
+            layer.close(loading);
+            if(data.error_code == 0){
+                $('.douyin-qrcode-img').attr('src','data:image/png;base64,'+data.data.qrcode);
+                $('.douyin_token_input').val(data.data.token);
+                check_qrconnect();
+                $('.douyin-qrcode-desc').html('请使用D音APP扫码');
+                $('.douyin-qrcode-desc').css('color','#666');
+            }else{
+                alert(data.message);
+            }
+        },'json');
+    });
+
+    $('.btn-shipinhao,.refresh-qrcode-shipinhao').click(function(){
+        var loading = layer.load(0, {shade: false,time: 30*1000});
+        $('.qrcode-popul-qrcode').show();
+        $('.refresh-qrcode-shipinhao').show();
+        $('.refresh-qrcode-xhs').hide();
+        $('.refresh-qrcode').hide();
+        $.post('tuiguang_user/get_qrcode_shipinhao',{},function(data){
+            layer.close(loading);
+            if(data.error_code == 0){
+                $('.douyin-qrcode-img').attr('src',data.data.image);
+                $('.douyin_token_input').val(data.data.token);
+                check_qrconnect_shipinhao();
+                $('.douyin-qrcode-desc').html('请使用微信扫码');
+                $('.douyin-qrcode-desc').css('color','#666');
+            }else{
+                alert(data.message);
+            }
+        },'json');
+    });
+
+    $('.btn-xhs,.refresh-qrcode-xhs').click(function(){
+        var loading = layer.load(0, {shade: false,time: 30*1000});
+        $('.qrcode-popul-qrcode').show();
+        $('.refresh-qrcode-xhs').show();
+        $('.refresh-qrcode-shipinhao').hide();
+        $('.refresh-qrcode').hide();
+        $.post('user_qrcode/get_qrcode_xhs',{},function(data){
+            layer.close(loading);
+            if(data.error_code == 0){
+                $('.douyin-qrcode-img').attr('src',data.data.image);
+                $('.douyin_token_input').val(data.data.qrId);
+                check_qrconnect_xhs();
+                $('.douyin-qrcode-desc').html('请使用小红薯app扫码');
+                $('.douyin-qrcode-desc').css('color','#666');
+            }else{
+                alert(data.message);
+            }
+        },'json');
+    });
+
+    function check_qrconnect_xhs(){
+        if(typeof($dinshi) != 'undefined'){
+            clearInterval($dinshi);
+        }
+        var int_count = 0;
+        $dinshi = setInterval(function(){
+            int_count++;
+            if(int_count > 10){
+                $('.douyin-qrcode-desc').html('二维码已失效，请重新刷新');
+                $('.douyin-qrcode-desc').css('color','red');
+                clearInterval($dinshi);
+            }
+            $.post('user_qrcode/check_qrconnect_xhs',{token:$('.douyin_token_input').val()},function(data){
+                if(data.error_code == 0){
+                    if(data.data.status==2){
+                        $('.douyin-qrcode-desc').html('请使用小红薯app扫码');
+                    }else if(data.data.status==3){
+                        $('.douyin-qrcode-desc').html('已扫码，等待确认，请勿关闭该页面');
+                        $('.douyin-qrcode-desc').css('color','orange');
+                    }else if(data.data.status==4){
+                        $('.douyin-qrcode-desc').html('二维码已失效，请重新刷新');
+                        $('.douyin-qrcode-desc').css('color','red');
+                        clearInterval($dinshi);
+                    }else if(data.data.status==1){
+                        $('.douyin-qrcode-desc').html('登录成功，可刷新登录下一个账号');
+                        $('.douyin-qrcode-desc').css('color','#22bd2e');
+                        clearInterval($dinshi);
+                    }
+                }else{
+                    $('.douyin-qrcode-desc').html(data.message);
+                    $('.douyin-qrcode-desc').css('color','red');
+                    clearInterval($dinshi);
+                }
+            },'json');
+        },8000);
+    }
+
+    function check_qrconnect_shipinhao(){
+        if(typeof($dinshi) != 'undefined'){
+            clearInterval($dinshi);
+        }
+        var int_count = 0;
+        $dinshi = setInterval(function(){
+            int_count++;
+            if(int_count > 10){
+                $('.douyin-qrcode-desc').html('二维码已失效，请重新刷新');
+                $('.douyin-qrcode-desc').css('color','red');
+                clearInterval($dinshi);
+            }
+            $.post('tuiguang_user/check_qrconnect_shipinhao',{token:$('.douyin_token_input').val()},function(data){
+                if(data.error_code == 0){
+                    if(data.data.status==0){
+                        $('.douyin-qrcode-desc').html('请使用微信扫码');
+                    }else if(data.data.status==5){
+                        $('.douyin-qrcode-desc').html('已扫码，等待确认，请勿关闭该页面');
+                        $('.douyin-qrcode-desc').css('color','orange');
+                    }else if(data.data.status==4){
+                        $('.douyin-qrcode-desc').html('二维码已失效，请重新刷新');
+                        $('.douyin-qrcode-desc').css('color','red');
+                        clearInterval($dinshi);
+                    }else if(data.data.status==1){
+                        $('.douyin-qrcode-desc').html('登录成功，可刷新登录下一个账号');
+                        $('.douyin-qrcode-desc').css('color','#22bd2e');
+                        clearInterval($dinshi);
+                    }
+                }
+            },'json');
+        },8000);
+    }
+
+    function check_qrconnect(){
+        if(typeof($dinshi) != 'undefined'){
+            clearInterval($dinshi);
+        }
+        var int_count = 0;
+        $dinshi = setInterval(function(){
+            int_count++;
+            if(int_count > 10){
+                $('.douyin-qrcode-desc').html('二维码已失效，请重新刷新');
+                $('.douyin-qrcode-desc').css('color','red');
+                clearInterval($dinshi);
+            }
+            $.post('tuiguang_user/check_qrconnect',{token:$('.douyin_token_input').val()},function(data){
+                if(data.error_code == 0){
+                    if(data.data.status==1){
+                        $('.douyin-qrcode-desc').html('请使用D音APP扫码');
+                    }else if(data.data.status==2){
+                        $('.douyin-qrcode-desc').html('已扫码，等待确认，请勿关闭该页面');
+                        $('.douyin-qrcode-desc').css('color','orange');
+                    }else if(data.data.status==5){
+                        $('.douyin-qrcode-desc').html('二维码已失效，请重新刷新');
+                        $('.douyin-qrcode-desc').css('color','red');
+                        clearInterval($dinshi);
+                    }else if(data.data.status==3){
+                        $('.douyin-qrcode-desc').html('登录成功，可刷新登录下一个账号');
+                        $('.douyin-qrcode-desc').css('color','#22bd2e');
+                        clearInterval($dinshi);
+                    }
+                }else{
+                    $('.douyin-qrcode-desc').html(data.description);
+                    $('.douyin-qrcode-desc').css('color','red');
+                    clearInterval($dinshi);
+                }
+            },'json');
+        },8000);
+    }
+
+
+    // poi地址
+    function poi(id,poi_url,poi_name)
+    {
+        $('.qrcode-popul-poi').show();
+        $('.poi_input').val(id);
+        $('.poi_url').val(poi_url);
+        $('.poi_name').val(poi_name);
+    }
+
+    $('.poi_btn').click(function(){
+        var loading = layer.load(0, {shade: false,time: 30*1000});
+        $('.qrcode-popul-poi').show();
+        $('.refresh-qrcode-xhs').hide();
+        $('.refresh-qrcode-shipinhao').hide();
+        $('.refresh-qrcode').hide();
+        $.post('tuiguang_user/bind_poi',{id:$('.poi_input').val(),poi_url:$('.poi_url').val(),poi_name:$('.poi_name').val()},function(data){
+            layer.close(loading);
+            alert(data.msg);
+            if(data.code == 1){
+                $('.qrcode-popul-poi').hide();
+                window.location.reload();
+            }
+        },'json');
+    });
+
+
+</script>
+
+<!-- 复制 -->
+<textarea  id="copy_text" style="width:0.1px;height:0.1px;" readonly ></textarea>
+<script type="text/javascript">
+    
+</script>

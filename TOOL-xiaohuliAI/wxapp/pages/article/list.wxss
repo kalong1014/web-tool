@@ -1,0 +1,50 @@
+.list {
+    background: hsla(0,0%,100%,.8);
+    border-radius: 20rpx;
+    margin: 30rpx;
+    overflow: hidden;
+}
+
+.item {
+    border-bottom: 1px solid #f2f2f2;
+    border-radius: 10rpx;
+    color: #333;
+    font-size: 32rpx;
+    line-height: 40rpx;
+    padding: 40rpx;
+}
+
+.item:active {
+    background: #f0f6f6;
+}
+
+.item:last-child {
+    border-bottom: none;
+}
+
+.welcome {
+    height: 660rpx;
+    margin-top: 360rpx;
+    position: relative;
+}
+
+.welcome .nodata {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    text-align: center;
+    width: 600rpx;
+}
+
+.welcome .nodata image {
+    height: 300rpx;
+    width: 300rpx;
+}
+
+.welcome .nodata .tips {
+    color: #8d9393;
+    font-size: 32rpx;
+    margin-top: 40rpx;
+    width: 100%;
+}

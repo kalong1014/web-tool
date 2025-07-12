@@ -1,0 +1,179 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="modal-dialog" style="width:100%">
+    <div class="modal-content" style="width:100%;padding-bottom:20px">
+        <div class="modal-header">
+            <h4 class="modal-title">编辑优惠券</h4>
+        </div>
+        <form class="form-horizontal" id="coupon_data"   action=""  method="post">
+            <input type="hidden" id="form_id" name="id" value="{$info.id}">
+            <div class="form-group" style="margin-top: 20px;">
+                <label class="col-sm-3 control-label font13">优惠券名称：</label>
+                <div class="input-group col-sm-7">
+                    <input type="text" class="form-control" name="title" value="{$info.title|default=''}" placeholder="优惠券名称" >
+                </div>
+            </div>
+            <div class="form-group" style="margin-top: 20px;">
+                <label class="col-sm-3 control-label font13">优惠券类型：</label>
+                <div class="input-group col-sm-7" style="line-height:35px">
+                    <label class="font13"><input class="type_click" name="type" type="radio" value="1" {eq name="$info.type" value="1"}checked {/eq}/>满减券 </label>&nbsp;&nbsp;
+                    <label class="font13"><input class="type_click" name="type" type="radio" value="2"{eq name="$info.type" value="2"}checked {/eq} />折扣券 </label>
+                </div>
+            </div>
+            <div class="form-group type_check type1" style="margin-top: 20px;{eq name="$info.type" value="2"}display: none; {/eq}">
+                <label class="col-sm-3 control-label font13">满减：</label>
+                <div class="input-group col-sm-7 flex">
+                    <input type="text" class="form-control" style="width:50%;" name="full" placeholder="满足金额" value="{$info.full|default='0'}" >&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="text" class="form-control" style="width:50%;" name="cut" placeholder="减去金额" value="{$info.cut|default='0'}">
+                </div>
+            </div>
+            <div class="form-group type_check type2" style="margin-top: 20px;{eq name="$info.type" value="1"}display: none; {/eq}">
+                <label class="col-sm-3 control-label font13">折扣：</label>
+                <div class="input-group col-sm-7">
+                    <input type="number" class="form-control" name="dis" placeholder="折扣" value="{$info.dis|default='0'}">
+                </div>
+            </div>
+            <div class="form-group" style="margin-top: 20px;">
+                <label class="col-sm-3 control-label font13">到期时间：</label>
+                <div class="input-group col-sm-7" style="line-height:35px">
+                    <label class="font13"><input class="time_type_click" name="time_type" type="radio" value="1" {eq name="$info.time_type" value="1"}checked {/eq}/>指定时间 </label>&nbsp;&nbsp;
+                    <label class="font13"><input class="time_type_click" name="time_type" type="radio" value="2" {eq name="$info.time_type" value="2"}checked {/eq} />领取到期时间 </label>
+                </div>
+            </div>
+            <div class="form-group time_type_check time_type1" style="margin-top: 20px;{eq name="$info.time_type" value="2"}display: none; {/eq}">
+                <label class="col-sm-3 control-label font13">指定时间：</label>
+                <div class="input-group col-sm-7 font13 flex" style="line-height:35px;">
+                    <input name="time_between_0" type="date" value="{$info.time_between_0|default=''}" style="background:#2b2b2e;line-height:35px;border:0;width:47%"/>&nbsp;&nbsp;至&nbsp;&nbsp;<input name="time_between_1" type="date" value="{$info.time_between_1|default=''}" style="background:#2b2b2e;line-height:35px;border:0;width:47%"/>
+                </div>
+            </div>
+            <div class="form-group time_type_check time_type2" style='margin-top: 20px;{eq name="$info.time_type" value="1"}display: none; {/eq}'>
+                <label class="col-sm-3 control-label font13">领取到期时间(天)：</label>
+                <div class="input-group col-sm-7">
+                    <input type="number" class="form-control" name="time_day" placeholder="领取到期时间(天)"  value="{$info.time_day|default='0'}" >
+                </div>
+            </div>
+            <div class="form-group" style="margin-top: 20px;">
+                <label class="col-sm-3 control-label font13">发券数：</label>
+                <div class="input-group col-sm-7">
+                    <input type="number" class="form-control" name="num" placeholder="发券数"   value="{$info.num|default='0'}">
+                </div>
+            </div>
+            <div class="form-group" style="margin-top: 20px;">
+                <label class="col-sm-3 control-label font13">优惠券介绍：</label>
+                <div class="input-group col-sm-7">
+                    <textarea class="form-control editor summernote" name="desc" cols="30" rows="10">{$info.desc|default=''}</textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-7 col-sm-offset-3">
+                    <button class="btn btn-primary" type="button" onclick="confirm()" > 确&nbsp;&nbsp;&nbsp;认</button>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="public/footer" /}
+<script>
+
+
+    $(".type_click").click(function() {
+        var type = $(this).val();
+        $('.type_check').hide();
+        $('.type'+type).show();
+    })
+
+    $(".time_type_click").click(function() {
+        var type = $(this).val();
+        $('.time_type_check').hide();
+        $('.time_type'+type).show();
+    })
+
+    function check_valid(key) {
+        switch (key) {
+            case ("title"):
+                return '优惠券名称不能为空';
+                break;
+            case ("type"):
+                return '优惠券类型不能为空';
+                break;
+            case ("full"):
+                return '满足金额不能为空';
+                break;
+            case ("cut"):
+                return '减去金额不能为空';
+                break;
+            case ("dis"):
+                return '折扣不能为空';
+                break;
+            case ("time_type"):
+                return '到期类型不能为空';
+                break;
+            case ("time_between_0"):
+                return '开始时间不能为空';
+                break;
+            case ("time_between_1"):
+                return '结束时间不能为空';
+                break;
+            case ("time_day"):
+                return '过期时间不能为空';
+                break;
+            case ("num"):
+                return '发券数不能为空';
+                break;
+            case ("desc"):
+                return '优惠券介绍不能为空';
+                break;
+            default:
+                return '优惠券名称不能为空';
+                break;
+
+        }
+    }
+
+    //提交
+    function confirm() {
+        var load_index = layer.load(2);
+        var formData = $('#coupon_data').serializeArray();
+        // var data = Array();
+        var type = $("input[name=type]:checked").val();
+        var time_type = $("input[name=time_type]:checked").val();;
+        $.each(formData, function(i, field){
+            if(!field.value || field.value<=0) {
+                if(type == 1) {
+                    if(field.name == 'dis') return true;
+                }
+                if(type == 2) {
+                    if(field.name == 'full' || field.name == 'cut') return true;
+                }
+                if(time_type == 1) {
+                    if(field.name == 'time_day') return true;
+                }
+                if(time_type == 2) {
+                    if(field.name == 'time_between_0' || field.name == 'time_between_1') return true;
+                }
+                console.log(field.name+'---'+field.value)
+                var msg = check_valid(field.name)
+                layer.alert(msg)
+                return false;
+            }
+            // data[field.name] = field.value
+        });
+        $.ajax({
+            type: "POST",
+            url: "/admin/cityfission/tedit",
+            data: formData,
+            success: function(data){
+                layer.closeAll('loading');
+
+                parent.location.reload();
+            },
+            error:function() {
+                layer.closeAll('loading');
+                layer.alert('编辑失败')
+            }
+        });
+    }
+</script>
+</body>
+</html>

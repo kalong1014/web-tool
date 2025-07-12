@@ -1,0 +1,144 @@
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <title>领取优惠券</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <script src="/static/admin/js/jquery.min.js"></script>
+
+
+    <style type="text/css">
+        /*html{background: url('static/images/bg2.png');}*/
+        body{margin: 0 auto;display: block;font-size: 1rem;font-family:"微软雅黑";max-width: 100%;}
+        body{background: url('static/images/bg.png') no-repeat  scroll top center  #dd1200;background-size: cover;}
+        .main_content{width: 85%;margin: 0 auto;background-color: #fff5f1;border-radius: 10px;margin-top: 11.9rem;border: 4px solid orange;padding: 0.1rem;}
+        /*.main_content_img{background: url('static/images/bg_block.png');background-size: cover;padding: 0.1rem;background-repeat: round;}*/
+        .main_content_img img{width: 100%;height: 100%;max-height: 3rem;}
+        .zwzd-main-top-box{background: url('static/images/bg_coupon2.png');background-size: cover;padding: 1.1rem;background-repeat: round;padding-top: 1.35rem;margin-top: 1.2rem;}
+        .zwzd-main-top{background: url('/static/admin/images/coupon.png');width: 100%;height: 3.8rem;background-size: cover;padding:.5rem 0}
+        .zwzd-main-left{width: 65%;float: left;margin-left: 7%; line-height: 1.3rem;font-weight: bold;height:3.8rem}
+        .zwzd-main-right{color: #fff;width: 25%;float: left;height: 3.8rem;}
+        .zwzd-main-right-money{font-size: 2.3rem;font-weight: bold;position: absolute;left: 67%;height: 3.8rem;text-align: center;display: inline-block;width: 15%;}
+        .zwzd-main-right-span{font-size: 0.9rem;position: relative;line-height: 3.9rem;margin-left: 95%;}
+        .zwzd-main-left-store{margin-top: 0.1rem;}
+        .zwzd-main-left-discount{color: red;}
+
+        .zwzd-get-btn{width: 100%;margin: 0 auto;border: 0;position: fixed;color: #fff;line-height: 3rem;display: block;font-size: 1.3rem;bottom: 0;background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #fe7139), color-stop(1, #ffb64d)) !important;letter-spacing: 0.03rem;font-weight: bold;}
+        .zwzd-main-tit{margin-top: 1.2rem;text-align: center;font-weight: bold;color: #d2070a;}
+        .zwzd-main-titp{color: #fde5a3;margin:1.1rem;line-height: 1.26rem;background: #d2070a;padding: 1rem;border-radius: 5px;min-height: 4rem;max-height: 8.5rem;overflow-y: scroll;font-size: 0.84rem;}
+        .zwzd-main-title{text-align: center;margin:1rem;font-weight: bold;font-size: 1.2rem;color: #ef4009;letter-spacing: 0.02rem;}
+        /*微信识别*/
+        .weixin-tip{position: fixed; left:0; top:0; bottom:0; background: rgba(0,0,0,0.8); filter:alpha(opacity=80);  height: 100%; width: 100%; z-index: 100;display: none;}
+        .weixin-tip p{text-align: center; }
+        .weixin-tip img{width: 100%; opacity: 0.8;height: auto;}
+        /*手机号码弹出*/
+        .common-pay{position:fixed;width:100%;height:100%;top:0;background-color:#000;background:rgba(0,0,0,.6)}
+        .common-dialog{width:80%;left:10%;text-align:center;position:absolute;background:#fff;z-index:2;opacity:1;border-radius:.5rem;border:1px solid #f2f2f2;top:calc(40% - 5rem)}
+        .zwzd-pay-box{display:none}
+        .zwzd-pay{height:12rem}
+        .zwzd-input-tit{height:3rem;line-height:3rem;color:#333;font-size:1.16rem;border-bottom:1px solid #f2f2f2}
+        .pay-money{color:#333;font-size:.2rem;margin:.2rem 0;font-weight:700}
+        .zwzd-input-box input{width:80%;height:2.4rem;line-height:.4rem;border-radius:5px;border:1px solid #eee;color:#555;font-size:0.96rem;text-align:center;padding:0;margin-top:1.3rem}
+        .zwzd-pay-box .zwzd-btns{margin:1.58rem 0}
+        .zwzd-no-btn{width:5rem;height:2rem;border-radius:7px;line-height:.4rem;color:#969696;background:#fff;font-size:1rem;border:1px solid #969696}
+        .zwzd-yes-btn{width:5rem;height:2rem;border-radius:7px;line-height:.4rem;background:orange;color:#fff;font-size:1rem;border:none;margin-left:2rem;transition: 0.2s;}
+        .zwzd-yes-btn:active {background-color: #e04a1d;}
+    </style>
+</head>
+<body>
+    <div class="zwzd-contain">
+        <div class="main_content">
+            <div class="zwzd-main-title">
+                领取优惠券            
+            </div>
+            <div class="zwzd-main-top-box">
+                <div class="zwzd-main-top">
+                    <div class="zwzd-main-left">
+                        <p class="zwzd-main-left-store">{$coupon['title']}</p>
+                        <p class="zwzd-main-left-discount">{$coupon['c_desc']}</p>
+                    </div>
+<!--                    <div class="zwzd-main-right">-->
+<!--                        <span class="zwzd-main-right-money">6.0</span>-->
+<!--                        <span class="zwzd-main-right-span">折</span>-->
+<!--                    </div>-->
+                </div>
+            </div>
+            <div class="zwzd-main-tit">
+                -- 活动说明 --
+            </div>
+            <div class="zwzd-main-titp">
+                {$info['text']}
+            </div>   
+        </div>
+        <div style="height:0.7rem;width: 1px;"></div>
+        
+    </div>
+    <button class="zwzd-get-btn">转发视频并领取优惠</button>
+
+
+    <div class="common-pay zwzd-pay-box">
+        <div class="common-dialog zwzd-pay">
+            <div class="zwzd-input-tit">手机号用于订单核销</div>
+            <div class="zwzd-input-box">
+                <input type="number" oninput="if(value.length>11)value=value.slice(0,11)" class="zwzd-input-phone phone" placeholder="请输入手机号码">
+            </div>
+            <div class="zwzd-btns">
+                <button class="zwzd-no-btn">取消</button>
+                <button class="zwzd-yes-btn">确认</button>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="video_id" value="{$video['id']}">
+    <input type="hidden" id="biaoti" value="{$biaoti}">
+    <input type="hidden" id="ht" value="{$ht}">
+    <input type="hidden" id="src" value="{$video['url']}">
+    <input type="hidden" id="mech" value="{$mech}">
+    <input type="hidden" class="confirm_status" value="1">
+
+<script type="text/javascript">
+    $(window).on("load",function(){
+        var winHeight = $(window).height();
+    });
+
+    $(".zwzd-get-btn").on("click", function () {
+        $('.zwzd-pay-box').css("display", "block");
+    });
+
+    $(".zwzd-no-btn").on("click", function () {
+        $('.zwzd-pay-box').css("display", "none");
+    });
+
+    var id = "{$info['id']}";
+    $(".zwzd-yes-btn").on("click", function () {
+        if($('.confirm_status').val()!=1){
+            return;
+        }
+        var phone = $('.phone').val();
+        if(phone=='' || phone.length!=11){
+            alert('请输入正确的手机号码');return;
+        }
+        var video_id = $('#video_id').val();
+        var biaoti = $('#biaoti').val();
+        var ht = $('#ht').val();
+        var src = $('#src').val();
+        var mech = $('#mech').val();
+        $('.confirm_status').val(0);
+        $.post('/index/active/share',{phone:phone,id:id,biaoti:biaoti,src:src,video_id:video_id,ht:ht,mech:mech},function(data){
+            $('.confirm_status').val(1);
+            if(data.code==0){
+                window.location.href = data.data;
+            }else{
+                alert(data.msg);
+            }
+            
+        },'json');
+        
+    });
+   
+</script>
+</body>
+</html>

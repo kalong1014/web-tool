@@ -1,0 +1,193 @@
+page {
+    background: #f7f7f7;
+    height: 100%;
+}
+
+.container {
+    min-height: 100%;
+    overflow-x: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.tab-nav {
+    align-items: center;
+    background-color: #fff;
+    border-bottom: 1rpx solid #eee;
+    border-top: 1rpx solid #eee;
+    display: flex;
+    height: 88rpx;
+    justify-content: space-around;
+    line-height: 88rpx;
+    position: fixed;
+    top: 0rpx;
+    width: 100%;
+}
+
+.tab {
+    border-bottom: 6rpx solid #fff;
+    color: #233445;
+    font-size: 28rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    padding: 0 6rpx;
+    position: relative;
+}
+
+.list-num,.tab {
+    text-align: center;
+}
+
+.list-num {
+    background: #ff3456;
+    border-radius: 30rpx;
+    color: #fff;
+    font-size: 20rpx;
+    height: 30rpx;
+    line-height: 30rpx;
+    position: absolute;
+    right: -12rpx;
+    top: -2rpx;
+    width: 30rpx;
+}
+
+.active {
+    border-bottom: 6rpx solid #ff3456;
+    color: #ff3456;
+}
+
+.default {
+    border-bottom: 6rpx solid #fff;
+    color: #233445;
+}
+
+.no-order {
+    bottom: 0;
+    display: block;
+    left: 0;
+    padding-top: 203rpx;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 88rpx;
+    width: 100%;
+}
+
+.no-order-img {
+    height: 100rpx;
+    margin-bottom: 30rpx;
+    width: 100rpx;
+}
+
+.no-order .text {
+    color: #999;
+    font-size: 30rpx;
+    margin-bottom: 30rpx;
+    text-align: center;
+}
+
+.wrap {
+    height: auto;
+    padding-bottom: 50rpx;
+    width: 100%;
+}
+
+.box-order {
+    background: #fff;
+    border-radius: 10rpx;
+    margin: 30rpx 20rpx 0rpx;
+    padding-bottom: 30rpx;
+}
+
+.user {
+    align-items: center;
+    color: #333;
+    display: flex;
+    font-size: 28rpx;
+    font-weight: 500;
+    justify-content: flex-end;
+    line-height: 32rpx;
+}
+
+.user image {
+    border-radius: 50%;
+    height: 48rpx;
+    margin-right: 10rpx;
+    width: 48rpx;
+}
+
+.user .fee {
+    color: #ff3456;
+    font-size: 24rpx;
+}
+
+.order-header {
+    display: flex;
+    height: 90rpx;
+    justify-content: space-between;
+    line-height: 90rpx;
+    padding: 0 24rpx;
+}
+
+.order-header .status {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.order-header .status .pay-status {
+    color: #04babe;
+    font-size: 28rpx;
+    font-weight: 500;
+    height: 28rpx;
+    line-height: 32rpx;
+    padding: 8rpx 20rpx;
+}
+
+.order-info {
+    background-color: #fafafa;
+    border-radius: 10rpx;
+    color: #666;
+    font-size: 28rpx;
+    margin: 0 30rpx;
+    padding: 20rpx 30rpx;
+}
+
+.order-info .row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8rpx 0;
+    width: 100%;
+}
+
+.order-info .row .label {
+    min-width: 160rpx;
+}
+
+.order-info .row .goods-price {
+    color: #ff5151;
+    font-size: 30rpx;
+}
+
+.order-info .row .goods-num {
+    color: #666;
+    font-size: 28rpx;
+    height: 48rpx;
+    line-height: 48rpx;
+}
+
+.order-info .row .content .user {
+    font-size: 24rpx;
+}
+
+.order-info .row .content .user image {
+    height: 36rpx;
+    width: 36rpx;
+}
+
+.no-more-order {
+    color: #999;
+    font-size: 28rpx;
+    margin: 20rpx 0 30rpx;
+    text-align: center;
+}

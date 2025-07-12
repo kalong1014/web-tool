@@ -1,0 +1,54 @@
+{{include file='common/head.html'}}
+
+            <!-- Main Container -->
+            <main>
+                <!-- Hero Content -->
+                <div class="bg-image" style="background-image: url('{{$STATIC}}style/assets/img/photos/photo6@2x.jpg');">
+				<div class="bg-primary-dark-op">
+                    <section class="content content-full content-boxed">
+                        <!-- Section Content -->
+                        <div class="push-100-t push-50 text-center">
+                            <h1 class="h2 text-white push-10 visibility-hidden" data-toggle="appear" data-class="animated fadeInDown">新闻公告</h1>
+                        </div>
+                        <!-- END Section Content -->
+                    </section>
+					</div>
+                </div>
+
+                <div class="bg-white">
+                    <section class="content content-boxed">
+                        <!-- Section Content -->
+                            <div class="row items-push push-50-t push-30">
+                              <div class="col-xs-12 col-sm-12">						
+                            <!-- Blockquotes -->
+                                        <h4>新闻公告 <span style="font-size:14px;">（{{$count}}）</span>
+										<span class="pull-right">
+									{{if $page>1}}<a href='?c=public&a=pageListNews&page=0'><i class="fa fa-angle-double-left" style="font-size:20px;"></i></a>&nbsp;&nbsp;&nbsp;<a href='?c=public&a=pageListNews&page={{$page-1}}'><i class="fa fa-angle-left" style="font-size:20px;"></i></a>{{else}}<i class="fa fa-angle-double-left" style="font-size:20px;"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-angle-left" style="font-size:20px;"></i>{{/if}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size:16px; color:#000000;"><b>{{$page}}</b></span><span style="font-size:16px;"> / <b>{{$total_page}}</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{if $page!=$total_page}}<a href='?c=public&a=pageListNews&page={{$page+1}}'><i class="fa fa-angle-right" style="font-size:20px;"></i></a>&nbsp;&nbsp;&nbsp;<a href='?c=public&a=pageListNews&page={{$total_page}}'><i class="fa fa-angle-double-right" style="font-size:20px;"></i></a>{{else}}<i class="fa fa-angle-right" style="font-size:20px;"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-angle-double-right" style="font-size:20px;"></i>{{/if}} 
+										</span>
+										</h4><hr /><div style="height:5px;"></div>
+										<ul class="list list-simple-mini">
+										{{foreach from=$list item=row}}
+										<li><a href="?c=public&a=viewNewsById&id={{$row.id}}" class="font-w600">{{$row.title}}</a><span class="time pull-right hidden-xs hidden-sm">{{$row.add_time}}</span></li>
+										{{/foreach}}
+										</ul>
+                            <!-- END Blockquotes -->	
+													
+							   </div>
+						</div><br /><br /><br />
+					</section>
+				</div>
+                <!-- Sign Up Today -->
+                <div class="bg-gray-lighter">
+                    <section class="content content-full content-boxed">
+                        <!-- Section Content -->
+                        <div class="push-20-t push-20 text-center">
+                            <h3 class="h4 push-20 visibility-hidden" data-toggle="appear">加入我们，开启您的建站之旅！</h3>
+                            <a class="btn btn-rounded btn-noborder btn-lg btn-success visibility-hidden" data-toggle="appear" data-class="animated bounceIn" href="?c=public&a=register_n">立即注册账户</a>
+                        </div>
+                        <!-- END Section Content -->
+                    </section>
+                </div>
+                <!-- END Sign Up Today -->
+
+</main>
+{{include file='common/foot.html'}}

@@ -1,0 +1,275 @@
+.page {
+    bottom: 110rpx;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+}
+
+.bg-user,.page {
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+
+.bg-user {
+    height: 180rpx;
+    position: relative;
+    z-index: 1;
+}
+
+.userinfo {
+    align-items: center;
+    display: flex;
+    padding: 20rpx 0 0 60rpx;
+}
+
+.userinfo .avatar {
+    background-color: #f8f8f8;
+    border-radius: 10rpx;
+    height: 108rpx;
+    overflow: hidden;
+    width: 108rpx;
+}
+
+.userinfo .avatar image {
+    height: 100%;
+    width: 100%;
+}
+
+.userinfo .info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 30rpx;
+}
+
+.userinfo .info .nickname {
+    color: #1b1c1c;
+    font-size: 34rpx;
+    font-weight: 700;
+    line-height: 48rpx;
+    max-width: 330rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.userinfo .info .mid {
+    color: #1b1c1c;
+    font-size: 24rpx;
+    line-height: 36rpx;
+    margin-right: 10rpx;
+}
+
+.userinfo .info .phone {
+    align-items: center;
+    background-color: #8fded8;
+    border-radius: 18rpx;
+    color: #1b1c1c;
+    display: flex;
+    height: 36rpx;
+    padding: 0 16rpx;
+}
+
+.userinfo .info .phone image {
+    height: 20rpx;
+    width: 20rpx;
+}
+
+.userinfo .info .phone text {
+    font-size: 20rpx;
+}
+
+.bg-user .wallet {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100rpx;
+    justify-content: center;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 30rpx;
+    width: 200rpx;
+}
+
+.bg-user .wallet .num {
+    color: #04babe;
+    font-size: 32rpx;
+    font-weight: 700;
+    line-height: 44rpx;
+}
+
+.bg-user .wallet .label {
+    color: #666;
+    font-size: 26rpx;
+}
+
+.bg-user .btn-setting {
+    border-radius: 12rpx;
+    height: 48rpx;
+    padding: 16rpx;
+    position: absolute;
+    right: 40rpx;
+    top: 36rpx;
+    width: 48rpx;
+}
+
+.bg-user .btn-setting image {
+    height: 100%;
+    width: 100%;
+}
+
+.bg-user .btn-setting:active {
+    background: rgba(0,0,0,.2);
+}
+
+.nologin {
+    align-items: center;
+    display: flex;
+    padding: 20rpx 0 60rpx 30rpx;
+}
+
+.nologin .avatar {
+    height: 92rpx;
+    width: 92rpx;
+}
+
+.nologin .avatar image {
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+}
+
+.nologin .info {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-left: 20rpx;
+}
+
+.nologin .info .nickname {
+    color: #fff;
+    font-size: 30rpx;
+    font-weight: 700;
+}
+
+.box-vip {
+    align-items: center;
+    background: linear-gradient(30deg,#f7debe,#f4c384);
+    border: none;
+    border-radius: 20rpx;
+    box-sizing: border-box;
+    color: #9a5b12;
+    display: flex;
+    font-size: 26rpx;
+    height: 88rpx;
+    justify-content: space-between;
+    margin: 0 auto 30rpx;
+    padding: 0 30rpx;
+    position: relative;
+    width: 690rpx;
+}
+
+.box-vip .icon {
+    height: 48rpx;
+    margin-right: 20rpx;
+    width: 48rpx;
+}
+
+.box-vip .line {
+    background: rgba(154,91,18,.4);
+    display: inline-block;
+    height: 24rpx;
+    margin: 0 20rpx;
+    vertical-align: middle;
+    width: 2rpx;
+}
+
+.box-vip .btn-vip {
+    align-items: center;
+    background: #ffe8b5;
+    border: none;
+    border-radius: 24rpx;
+    color: #9a5b12;
+    cursor: pointer;
+    display: flex;
+    font-size: 24rpx;
+    height: 48rpx;
+    justify-content: center;
+    padding: 0;
+    width: 144rpx;
+}
+
+.menus {
+    background: linear-gradient(180deg,#edfaf9,#fbffff);
+    background: #faffff;
+    border-radius: 20rpx;
+    margin: 0 30rpx 30rpx;
+    padding: 20rpx 0;
+}
+
+.menus .item {
+    align-items: center;
+    border-bottom: 1px solid #f3f9f9;
+    box-sizing: border-box;
+    color: #1b1c1c;
+    display: flex;
+    font-size: 32rpx;
+    justify-content: space-between;
+    padding: 24rpx 40rpx 24rpx 45rpx;
+    width: 100%;
+}
+
+.menus .item .icon {
+    height: 36rpx;
+    margin-right: 16rpx;
+    width: 36rpx;
+}
+
+.menus .item .value {
+    align-items: center;
+    color: #1b1c1c;
+    display: flex;
+    font-size: 30rpx;
+}
+
+.menus .item .arrow {
+    height: 24rpx;
+    opacity: .8;
+    width: 24rpx;
+}
+
+.menus .item.button {
+    background: #fff;
+    border: none;
+    color: #444;
+    font-size: 32rpx;
+    line-height: 1em;
+    margin: 0;
+    outline: none;
+}
+
+.menus .item.button::after {
+    display: none;
+}
+
+.menus .item:active {
+    background: #f0f6f6;
+}
+
+.menus .item:last-child {
+    border-bottom: 0;
+}
+
+.text-grey {
+    color: #666;
+}
+
+.version {
+    color: #999;
+    font-size: 24rpx;
+    letter-spacing: 2rpx;
+    line-height: 72rpx;
+    padding: 0 0 30rpx;
+    text-align: center;
+}

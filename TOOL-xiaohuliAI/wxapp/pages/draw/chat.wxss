@@ -1,0 +1,292 @@
+.box-msg-list,.page {
+    bottom: 110rpx;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+}
+
+.box-msg-list {
+    z-index: 1;
+}
+
+.box-msg-list,.list {
+    box-sizing: border-box;
+}
+
+.list {
+    height: auto;
+    padding-bottom: 170rpx;
+    width: 100%;
+}
+
+.message-group {
+    background: hsla(0,0%,100%,.8);
+    border-radius: 20rpx;
+    margin: 40rpx 30rpx 0;
+    overflow: hidden;
+}
+
+.message {
+    display: flex;
+    justify-content: flex-start;
+    padding: 40rpx;
+}
+
+.message.user {
+    border-bottom: 2rpx solid #f6f6f6;
+    padding-bottom: 30rpx;
+}
+
+.message.ai {
+    padding-top: 30rpx;
+}
+
+.message .text {
+    color: #343541;
+    font-size: 32rpx;
+    line-height: 52rpx;
+    overflow: hidden;
+    padding: 3rpx 0;
+    width: 100%;
+    word-break: break-all;
+}
+
+.message .text span {
+    display: inline;
+}
+
+.message .avatar {
+    align-items: center;
+    background: none;
+    border-radius: 4rpx;
+    display: flex;
+    justify-content: center;
+    margin-right: 30rpx;
+    margin-top: 6rpx;
+    overflow: hidden;
+}
+
+.message .avatar,.message .avatar image,.message .avatar img {
+    height: 58rpx;
+    width: 58rpx;
+}
+
+.account {
+    align-items: center;
+    border-radius: 10rpx;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    margin: 20rpx 30rpx;
+    padding: 16rpx 24rpx;
+}
+
+.account .balance {
+    color: #666;
+    font-size: 24rpx;
+}
+
+.account .balance text {
+    color: #04babe;
+    margin-right: 6rpx;
+}
+
+.account .btn-pay {
+    color: #04babe;
+    display: inline-block;
+    font-size: 24rpx;
+    margin-left: 20rpx;
+}
+
+.tools {
+    justify-content: space-between;
+    margin-top: 12rpx;
+}
+
+.tools,.tools .btn {
+    align-items: center;
+    display: flex;
+}
+
+.tools .btn {
+    color: #04babe;
+    float: left;
+    font-size: 32rpx;
+    margin: 0 20rpx 0 0;
+    padding: 0;
+}
+
+.tools .btn:active {
+    opacity: .6;
+}
+
+.tools .btn .icon {
+    height: 32rpx;
+    margin-right: 6rpx;
+    width: 32rpx;
+}
+
+.tools .time {
+    color: #a8b3b3;
+    font-size: 24rpx;
+}
+
+.btn-create {
+    align-items: center;
+    background: #04babe;
+    border-radius: 44rpx;
+    bottom: 140rpx;
+    box-shadow: 0 0 30rpx rgba(0,0,0,.1);
+    color: #fff;
+    display: flex;
+    font-size: 34rpx;
+    height: 88rpx;
+    justify-content: center;
+    overflow: hidden;
+    position: fixed;
+    right: 28%;
+    transition: all .15s linear;
+    width: 44%;
+    z-index: 1;
+}
+
+.btn-create image {
+    height: 44rpx;
+    margin-right: 10rpx;
+    transition: all .1s linear;
+    width: 44rpx;
+}
+
+.btn-create text {
+    line-height: 32rpx;
+    transition: all .1s linear;
+    white-space: nowrap;
+}
+
+.btn-create.mini {
+    border-radius: 50%;
+    flex-direction: column;
+    font-size: 24rpx;
+    height: 108rpx;
+    margin: 0;
+    right: 30rpx;
+    width: 108rpx;
+}
+
+.btn-create.mini image {
+    height: 40rpx;
+    margin-right: 0;
+    width: 40rpx;
+}
+
+.welcome {
+    height: 660rpx;
+    margin-top: 360rpx;
+    position: relative;
+}
+
+.welcome .nodata {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    text-align: center;
+    width: 600rpx;
+}
+
+.welcome .nodata image {
+    height: 300rpx;
+    width: 300rpx;
+}
+
+.welcome .nodata .tips {
+    color: #8d9393;
+    font-size: 32rpx;
+    margin-top: 40rpx;
+    width: 100%;
+}
+
+.welcome .btn-create {
+    background: #04babe;
+    bottom: 20rpx;
+    box-shadow: none;
+    color: #fff;
+    position: absolute;
+}
+
+.box-setting {
+    bottom: 0;
+    box-sizing: border-box;
+    height: 100%;
+    left: 0;
+    padding: 0 30rpx;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+}
+
+.box-setting .share {
+    align-items: center;
+    display: flex;
+}
+
+.box-setting .share .agree {
+    margin-left: 30rpx;
+}
+
+.box-setting .share .agree checkbox {
+    transform: scale(.7);
+}
+
+.box-setting .share .agree text {
+    color: #999;
+    font-size: 28rpx;
+}
+
+.box-setting .share .picker {
+    background: #f7f7f8;
+    border-radius: 10rpx;
+    box-sizing: border-box;
+    color: #444;
+    font-size: 28rpx;
+    height: 72rpx;
+    line-height: 72rpx;
+    overflow: hidden;
+    padding: 0 64rpx 0 24rpx;
+    position: relative;
+    white-space: nowrap;
+    width: 360rpx;
+}
+
+.box-setting .share .picker .ic_down {
+    background: #f7f7f8;
+    height: 64rpx;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 64rpx;
+}
+
+.box-setting .submit {
+    background: #fff;
+    box-sizing: border-box;
+    padding: 50rpx 0;
+    width: 100%;
+}
+
+.box-setting .submit .btn-submit {
+    background: #04babe;
+    color: #fff;
+    height: 84rpx;
+    letter-spacing: 4rpx;
+    line-height: 84rpx;
+    width: 100%;
+}
+
+.box-setting .submit .btn-submit:active {
+    opacity: .8;
+}

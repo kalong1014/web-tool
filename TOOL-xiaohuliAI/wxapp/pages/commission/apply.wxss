@@ -1,0 +1,149 @@
+.page {
+    bottom: 110rpx;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+}
+
+.container {
+    padding: 0;
+    position: relative;
+}
+
+.login-bg {
+    background: #04babe;
+    height: 80rpx;
+    position: relative;
+    width: 750rpx;
+}
+
+.login-bg .wave {
+    bottom: 0;
+    height: 38rpx;
+    left: 0;
+    position: absolute;
+    width: 750rpx;
+}
+
+.login-main {
+    background: hsla(0,0%,100%,.8);
+    border-radius: 20rpx;
+    margin: 60rpx 30rpx 0;
+    padding: 80rpx;
+}
+
+.form-item {
+    align-items: center;
+    display: flex;
+    margin-bottom: 40rpx;
+    position: relative;
+}
+
+.form-item .input {
+    border: none;
+    border-bottom: 2px solid #04babe;
+    height: 80rpx;
+    line-height: 80rpx;
+    padding: 0 20rpx 0 180rpx;
+    width: 100%;
+}
+
+.form-item .label {
+    font-size: 32rpx;
+    left: 20rpx;
+    line-height: 40rpx;
+    position: absolute;
+    top: 20rpx;
+}
+
+.form-item .icon {
+    left: 20rpx;
+}
+
+.form-item .eye,.form-item .icon {
+    height: 36rpx;
+    position: absolute;
+    top: 20rpx;
+    width: 36rpx;
+}
+
+.form-item .eye {
+    right: 20rpx;
+    z-index: 10;
+}
+
+.form-item .check {
+    margin-right: 6rpx;
+    transform: scale(.75);
+}
+
+.form-item .agreement {
+    align-items: center;
+    color: #666;
+    display: flex;
+    font-size: 28rpx;
+}
+
+.form-item .agreement text {
+    color: #000;
+}
+
+.btn-login {
+    background: #04babe;
+    border-radius: 44rpx;
+    color: #fff;
+    font-size: 32rpx;
+    height: 88rpx;
+    line-height: 88rpx;
+    margin: 100rpx auto 0;
+    text-align: center;
+    width: 100%;
+}
+
+.audit-result {
+    margin-top: 88rpx;
+    text-align: center;
+}
+
+.audit-result .icon {
+    height: 120rpx;
+    width: 120rpx;
+}
+
+.audit-result .message {
+    color: #666;
+    font-size: 36rpx;
+    line-height: 44rpx;
+    margin-top: 60rpx;
+    width: 100%;
+}
+
+.audit-result .time {
+    color: #999;
+    font-size: 24rpx;
+    line-height: 44rpx;
+    margin-top: 20rpx;
+    width: 100%;
+}
+
+.audit-result .btn {
+    border: 1px solid #666;
+    border-radius: 10rpx;
+    color: #666;
+    font-size: 28rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    margin: 60rpx auto 0;
+    text-align: center;
+    width: 240rpx;
+}
+
+.audit-result .reject {
+    color: red;
+    font-size: 28rpx;
+    line-height: 44rpx;
+    margin-top: 40rpx;
+}

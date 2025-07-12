@@ -1,0 +1,76 @@
+
+{{*避免变量覆盖 重新赋值*}}
+
+{{$new_products=$products}}
+{{dispatch c=public a='head'}}
+
+            <main>
+                <!-- Hero Content -->
+                <div class="bg-image" style="background-image: url('{{$STATIC}}style/assets/img/photos/photo6@2x.jpg');">
+				<div class="bg-primary-dark-op">
+                    <section class="content content-full content-boxed">
+                        <!-- Section Content -->
+                        <div class="push-100-t push-50 text-center">
+                            <h1 class="h2 text-white push-10 visibility-hidden" data-toggle="appear" data-class="animated fadeInDown">{{$groupinfo.group_name}}</h1>
+							<p style="font-size:14px; color:#FFFFFF;">{{$groupinfo.group_info}}</p>
+                        </div>
+                        <!-- END Section Content -->
+                    </section>
+					</div>
+                </div>
+                <!-- END Hero Content -->
+				
+                <div class="bg-gray-lighter">
+                    <section class="content content-full content-boxed">
+                        <!-- Section Content -->
+                        <div class="push-20-t push-20 text-center">
+                        <div class="row">
+                            <div class="col-sm-12">
+                             {{dispatch c=nproduct a='left'}}
+                            </div>
+                        </div>
+                        </div>
+                        <!-- END Section Content -->
+                    </section>
+                </div>
+				
+                <!-- Pricing -->
+                <div class="bg-white">
+                    <section class="content content-boxed overflow-hidden">
+                        <!-- Section Content -->
+                        <div class="row push-20-t push-20">
+						{{if !empty($new_products)}}
+							{{foreach $new_products as $v}}
+                            <div class="col-sm-6 col-lg-3 visibility-hidden" data-toggle="appear" data-offset="50" data-timeout="200" data-class="animated fadeInUp">
+                                <!-- Startup Plan -->
+                                <a class="block block-bordered block-link-hover3 text-center" href="?c=product&a=sellForm&product=n_{{$v.id}}">
+                                    <div class="block-header">
+                                        <h3 class="block-title text-primary">{{$v.name}}</h3>
+                                    </div>
+                                    <div class="block-content block-content-full bg-gray-lighter">
+                                        <div class="h1 font-w700 text-primary push-10"><i class="fa fa-cny"></i> {{$v.price}}</div>
+                                        <div class="h5 font-w300 text-muted">{{($groupinfo.pay_cycle=='year') ? '年付' : '月付'}}</div>
+                                    </div>
+                                    <div class="block-content">
+                                        <table class="table table-borderless table-condensed">
+                                            <tbody>
+											{{$v.describe}}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="block-content block-content-mini block-content-full bg-gray-lighter">
+                                        <span class="btn btn-primary">立即购买</span>
+                                    </div>
+                                </a>
+                                <!-- END Startup Plan -->
+                            </div>
+						{{/foreach}}
+						{{/if}}
+						 </div>
+                        <!-- END Section Content -->
+                    </section>
+                </div>
+                <!-- END Pricing -->
+				
+
+</main>

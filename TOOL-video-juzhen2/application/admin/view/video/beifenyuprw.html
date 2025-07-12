@@ -1,0 +1,163 @@
+
+ {include file="public/header" /}
+
+
+
+<body>
+    <!-- start: Header -->
+    <div class="header-box">
+        <div class="pl25">
+            <h3 class="fs22 font-weight-500 c333">云素材任务</h3>
+            <p class="fs14 c666">根据素材管理中上传的内容展示的队列</p>
+        </div>
+    </div>
+    <!-- start: Header -->
+  
+   
+    <div class="row-fluid" style="margin-top:0">
+        
+        <div class="ibox-title" style="border-left: 4px solid red;color:#ff7752">
+
+            <p>1. 队列自动开始上传,无需手动！</p>
+            <p style="margin:0">2. 队列内容上传成功后显示在素材管理页面</p>
+
+        </div>
+     
+ 
+    
+      
+      
+      <!--<ul class="breadcrumb" style="margin-left:20px">-->
+      <!--  <li>-->
+       <!--<button class="btn btn-small btn-info">创建</button>-->
+          <!-- <a href="index.html">创建</a> --> 
+          
+      <!--  </li>-->
+       <!--  <li><a href="#">Tables</a></li> -->
+      <!--</ul>-->
+
+      <div class="row-fluid sortable">    
+        <div class="span12">
+          <!-- <div class="box-header" data-original-title>
+            <h2><i class="halflings-icon white user"></i><span class="break"></span>Members</h2>
+            <div class="box-icon">
+              <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
+              <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
+              <a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
+            </div>
+          </div> -->
+          <div class="box-content">
+            <table class="table table-striped table-bordered bootstrap-datatable datatable">
+              <thead>
+                <tr>
+                  <th>序号</th>
+                  <th>文件名称</th>
+                  <th>添加时间</th>
+                  <th>状态</th>
+                 
+                 
+                </tr>
+              </thead>   
+              <tbody>
+              {foreach name="list" item="vo"}
+               <tr>
+                <td>{$vo.id}</td>
+                <td class="center">{$vo.name}</td>
+                <td class="center">{$vo.addtime|date='Y-m-d H:i:s',###}</td>
+
+               <td class="center">
+                  {if $vo.status==2}
+                  <span class="label label-important label-1">上传</span>
+                 
+                  {else}
+                  <span class="label label-important label-4">上传中</span>
+                  {/if}
+                </td>
+              </tr>
+              {/foreach}
+             
+              </tbody>
+            </table>            
+          </div>
+        </div><!--/span-->
+      
+      </div><!--/row-->
+    </div>
+  
+{include file="public/footer" /}
+<script type="text/javascript">
+$(function(){
+   $.post('{:url("upsc")}',
+                {},
+             function(data){ 
+                if(data.code==1){
+                    //发布成功
+                    layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+                   
+                    return false;
+                }else{
+                    //发布失败
+                    layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+                    return false;
+                    }         
+        
+            });
+})
+  function jianji(id,num){
+
+      jinbi = $('input[name="jinbi"]').val();
+      jinbi = num * jinbi
+      
+  layer.confirm('确认生成？将消耗您'+jinbi+'个金币?', {icon: 3, title:'提示'}, function(index){
+          $.post('{:url("jianji")}',
+                {id:id},
+             function(data){ 
+                if(data.code==1){
+                    //发布成功
+                    layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+                   setInterval(function(){
+                          location.reload();
+                        },1000)
+                    return false;
+                }else{
+                    //发布失败
+                    layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+                    return false;
+                    }         
+        
+            }); 
+    })
+
+   
+  }
+  function del(id){
+     $.post('{:url("quanxian")}',
+       {},
+      function(data){
+          if(data.code==1){
+           layer.confirm('您确定要删除，如有任务正在使用肯能会发布不成功', {icon: 3, title:'提示'}, function(index){
+                $.post('{:url("del_liedui")}',{id:id},function(data){
+                   if(data.code==1){
+                      layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+                        setInterval(function(){
+                          location.reload();
+                        },1000)
+                   }else{
+                    layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+                      setInterval(function(){
+                          location.reload();
+                        },1000)
+                   }
+                })
+            })
+          }else{
+               layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+                      
+          }
+     });
+     
+  }
+</script>
+  
+</body>
+</html>

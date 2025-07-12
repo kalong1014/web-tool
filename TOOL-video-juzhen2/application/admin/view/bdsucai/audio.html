@@ -1,0 +1,228 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<link rel="stylesheet" href="/static/admin/layui/css/layui.css" media="all">
+    
+<div class="wrapper layui-card-body wrapper-content">
+    <div class="admin-con">
+        <div class="block-box">
+            <!--添加按钮-->
+            <div class="col-12">
+                <button type="button" class="btn btn-primary btn-outline" onclick="tianjia()" >新增音乐素材分类</button>
+            </div>
+           
+            <div class="col-12">
+                <div class="block">
+                    <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr class="long-tr">
+                                    <th >ID</th>
+                                    <th >分类名称</th>
+                                  
+                                    <th >时间</th>
+                                    <th >操作</th>
+                                </tr>
+                            </thead>
+                            <tbody> 
+                            {foreach name="list" item="v"}
+                            <tr>
+                                <td>{$v.id}</td>
+                                <td>{$v.uname}</td>
+                             
+                                
+                                <td>{$v.addtime|date='Y-m-d H:i:s',###}</td>
+                                <td>
+                                <a href="{:url('admin/bdsucai/audio_add_list')}?fid={$v.id}" class="btn btn-primary btn-xs"  >
+                                               上传素材</a>
+                                <a href="{:url('admin/bdsucai/audio_list')}?audio_id={$v.id}" class="btn btn-primary btn-xs"  >
+                                               查看素材</a>
+                                <a href="javascript:qiyong({$v.id});" class="btn btn-primary btn-xs"  >
+                                               删除</a>
+                                
+                                </td>
+                            </tr>
+                             {/foreach}
+                            </tbody>
+                            
+                        </table>
+                   
+                    <div id="AjaxPage" style=" text-align: left;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{include file="public/footer" /}
+    <div class="modal  fade" id="myModal" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog" style="width:50%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">添加音乐素材分类</h4>                  
+                </div>
+                <form class="form-horizontal" name="add_rule" id="add_rule" method="post" action="{:url('add_scfz')}">
+                    <div class="ibox-content m-t-md">
+                          
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label font13">音乐素材分类名称：</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="uname"  placeholder="分类名称" class="form-control"/>
+                                    
+                                </div>
+                               
+                            </div>    
+
+                                             
+                        </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="fladd()"><i class="fa fa-save"></i> 保存</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i> 关闭</button>                    
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- 编辑分组模态框 -->
+     <div class="modal  fade" id="editfenzu" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h3 class="modal-title">编辑预剪素材分类名称</h3>                  
+                </div>
+                <form class="form-horizontal" name="add_rule" id="add_rule" method="post" action="{:url('edit_updata')}">
+                    <input type="hidden" name="id" id="fenzu_id" value="">
+                   
+                    <div class="ibox-content">
+                          
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">预剪素材分类名称：&nbsp;&nbsp;&nbsp;</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="" id="fenzu_title"  class="form-control" value=""/>
+                                </div>
+                            </div>                      
+              
+                        </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="scfzbc()"><i class="fa fa-save"></i> 保存</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i> 关闭</button>                    
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- 结束 -->
+
+<script type="text/javascript">
+/*添加分类*/
+
+function fladd(){
+   
+    uname = $("input[name='uname']").val();
+    if(uname ==""){
+         layer.msg("请填写分类名称",{icon:2,time:1500,shade: 0.1,}); return false;
+    }
+    
+    $.post('{:url("audio_add")}',
+        {uname:uname},
+    function(data){
+        if(data.code==1){
+             layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+             setInterval(function(){
+              location.reload();
+            },1000)
+        }else{
+            layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+        }
+    });
+    
+}
+/*编辑*/
+ function edit_fenzu(id){
+
+        $.post('{:url("edit_fz")}',
+        {id:id},
+    function(data){
+        if(data.code==1){
+            $('#editfenzu').modal('show');
+             $("#fenzu_title").val(data.msg.uname);
+             $("#fenzu_id").val(data.msg.id);
+            
+        }else{
+            layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+        }
+    });
+ }
+ /*编辑保存*/
+ function scfzbc(){
+    id =  $("#fenzu_id").val();
+    name = $("#fenzu_title").val();
+   if(name ==''){
+        layer.msg("分组名称不能为空",{icon:2,time:1500,shade: 0.1,});
+   }
+   
+   $.post('{:url("scfzbc")}',
+        {id:id,name:name},
+    function(data){
+        if(data.code==1){
+           layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+            setInterval(function(){
+                              location.reload();
+                            },1000)
+        }else{
+            layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+        }
+    });
+ }
+ function tianjia(){
+      $('#myModal').modal('show');
+
+}
+
+/*弃用分组*/
+function qiyong(id){
+    
+    layer.confirm('您确定要删除分类吗?', {icon: 3, title:'提示'}, function(index){
+        $.post('{:url("audio_qiyong")}',
+        {id:id},
+        function(data){
+            if(data.code==1){
+                  layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+                   setInterval(function(){
+                              location.reload();
+                            },1000)
+            }else{
+                layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+            }
+        });
+    })
+
+}
+/**/
+
+/**
+ * 删除分组
+*/
+//  function del(id){
+//     layer.confirm('您确定要删除此分组吗?', {icon: 3, title:'提示'}, function(index){
+//         $.post('{:url("qydel")}',
+//         {id:id},
+//         function(data){
+//             if(data.code==1){
+//                   layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+//                   setInterval(function(){
+//                               location.reload();
+//                             },1000)
+//             }else{
+//                 layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+//             }
+//         });
+//     })
+// }
+
+
+
+</script>
+</body>
+</html>

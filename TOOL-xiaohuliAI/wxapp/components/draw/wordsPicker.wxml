@@ -1,0 +1,27 @@
+<view class="picker-main">
+    <foxTabs backgroundColor="#ffffff" bind:switch="onTabChange" class="tabs" current="{{activePcateIndex}}" keyName="title" list="{{pcateList}}"></foxTabs>
+    <swiper bind:change="onSwiperChange" class="lists" current="{{activePcateIndex}}" duration="{{300}}">
+        <swiper-item class="swiper-item" wx:for="{{pcateList}}">
+            <scroll-view class="scate-list" scrollWithAnimation="{{true}}" scrollX="{{false}}" scrollY="{{true}}" showScrollbar="{{false}}">
+                <view bindtap="changeScate" class="item {{index===activeScateIndex?'active':''}}" data-id="{{item.id}}" data-index="{{index}}" wx:for="{{cates[activePcateIndex].children}}">
+                    <text>{{item.title}}</text>
+                    <text class="count" wx:if="{{tools.pickedCount(wordsPicked,'scate',item.id)>0}}">{{tools.pickedCount(wordsPicked,'scate',item.id)}}</text>
+                </view>
+            </scroll-view>
+            <scroll-view class="words-list" scrollWithAnimation="{{true}}" scrollX="{{false}}" scrollY="{{true}}">
+                <view bindtap="pickWord" class="item {{tools.includes(pickedIds,item.id)?'active':''}}" data-index="{{index}}" wx:for="{{wordsList}}">{{item.title}}</view>
+                <view style="clear: both"></view>
+                <view class="empty" wx:if="{{!wordsList}}">
+                    <image src="/images/nodata.png"></image>
+                </view>
+            </scroll-view>
+        </swiper-item>
+    </swiper>
+    <view class="picker-footer">
+        <view class="footer">
+            <button bindtap="closeWordsPicker" class="btn btn-default">取 消</button>
+            <button bindtap="setWords" class="btn btn-primary">确 定</button>
+        </view>
+    </view>
+</view>
+<wxs module="tools" src="../../utils/tools.wxs" />

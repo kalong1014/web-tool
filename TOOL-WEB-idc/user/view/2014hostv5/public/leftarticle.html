@@ -1,0 +1,16 @@
+
+
+			<!--wrap_side-->
+
+				{{if $news}}
+							{{foreach $news as $n key=key}}
+										<li>
+										   <i class="si si-bell text-success"></i>
+											<div><a href="?c=public&a=viewNewsById&id={{$n.id}}" >{{$n.title|truncate:24}}</a></div>
+                                        </li>
+							{{/foreach}}
+				{{/if}}
+				
+			<!--//wrap_side-->
+
+			

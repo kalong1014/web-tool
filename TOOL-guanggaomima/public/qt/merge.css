@@ -1,0 +1,139 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background: #f1f1f1;
+}
+
+.view {
+    width: 100%;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.merge_create_time {
+    text-align: center;
+    margin: 30px auto 0;
+    font-size: 14px;
+    color: #ccc;
+}
+
+.avatar_nickname {
+    width: 86%;
+    margin: 20px auto 10px;
+    display: flex;
+}
+.avatar_nickname .avatar {
+    width: 30px;
+    height: 30px;
+}
+.avatar_nickname .avatar img {
+    width: 30px;
+    height: 30px;
+}
+.avatar_nickname .nickname {
+    flex: 1;
+    line-height: 40px;
+    margin-left: 10px;
+    color: #999;
+    font-size: 16px;
+}
+
+.merge_content {
+    width: 86%;
+    margin: 0 auto 100px;
+}
+.merge_content p {
+    font-size: 19px;
+}
+.merge_content img {
+    max-width: 100%;
+    display: block;
+}
+
+.view .error {
+    width: 86%;
+    margin: 30px auto;
+    display: block;
+    background: #eee;
+    text-align: center;
+    font-size: 15px;
+    padding: 15px 0;
+    border-radius: 10px;
+}
+.btns{
+    margin: 10px auto 10px auto;
+}
+
+.btns span {
+    display: block;
+    background: #07C160;
+
+    padding: 10px 0;
+    text-align: center;
+    box-shadow: 0.5px 0.5px 4px #999999;
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.btnsss{
+    margin: 20px auto 20px auto;
+}
+
+.btnsss span {
+    display: block;
+    background: #fdc308;
+    box-shadow: 0.5px 0.5px 4px #999999;
+    padding: 10px 0;
+    text-align: center;
+
+    color: #000000;
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 5px;
+}
+.btnss{
+    margin: 20px auto 20px auto;
+}
+
+.btnss span {
+    display: block;
+    background: #DF0101;
+    box-shadow: 0.5px 0.5px 4px #999999;
+    padding: 10px 0;
+    text-align: center;
+
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+#preview {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(0, 0, 0);
+}

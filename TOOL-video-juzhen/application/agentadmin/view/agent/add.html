@@ -1,0 +1,141 @@
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">代理昵称:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-agent_name" data-rule="required" class="form-control" name="row[agent_name]" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">剩余点数:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-dianshu"  class="form-control" name="row[dianshu]" type="number" value="0">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">共享ip次数:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-ip_count"  class="form-control" name="row[ip_count]" type="number" value="0">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">AI创作字数:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-ai_chat_count"  class="form-control" name="row[ai_chat_count]" type="number" value="0">
+        </div>
+    </div>
+    <div class="form-group" style="display:none">
+        <label class="control-label col-xs-12 col-sm-2">佣金分红(%):</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-rate"  class="form-control" name="row[rate]" type="number" value="100">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Store_count')}数:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-store_count" data-rule="required" class="form-control" name="row[store_count]" type="number" value="0">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Username')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-username" data-rule="required" class="form-control" name="row[username]" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Password')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-password" data-rule="required" class="form-control" name="row[password]" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">到期时间:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-out_date" class="form-control datetimepicker" data-date-format="YYYY-MM-DD" data-use-current="true" name="row[out_date]" type="text" value="{:date('Y-m-d')}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">阿里云bucket:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-aliyun_bucket" data-rule="" class="form-control" name="row[aliyun_bucket]" type="text" value="" placeholder="阿里云bucket">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">阿里云keyid:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-aliyun_keyid" data-rule="" class="form-control" name="row[aliyun_keyid]" type="text" value="" placeholder="阿里云keyid">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">阿里云secret:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-aliyun_secret" data-rule="" class="form-control" name="row[aliyun_secret]" type="text" value="" placeholder="阿里云secret">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">企业号授权数:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-qiye_count" data-rule="" class="form-control" name="row[qiye_count]" type="text" value="1" placeholder="开商户企业号授权最大数">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">矩阵号授权数:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-dy_count" data-rule="" class="form-control" name="row[dy_count]" type="text" value="1" placeholder="开商户矩阵号授权最大数">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">防封外链授权数:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-link_count" data-rule="" class="form-control" name="row[link_count]" type="text" value="0" placeholder="开商户防封外链授权最大数">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">权限:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="radio">
+                {if $rules['qiye_status']==1}
+                <label>
+                    <input type="checkbox" name="row[qiye_status]" class="is_repeat" checked > 企业号运营
+                </label>
+                {/if}
+                {if $rules['juzhen_status']==1}
+                    <label>
+                        <input type="checkbox" name="row[juzhen_status]" class="is_repeat" checked> 矩阵视频
+                    </label>
+                {/if}
+                {if $rules['jianji_status']==1}
+                <label>
+                    <input type="checkbox" name="row[jianji_status]" class="is_repeat" checked> 云剪辑
+                </label>
+                {/if} 
+                {if $rules['card_status']==1}
+                <label>
+                    <input type="checkbox" name="row[card_status]" class="is_repeat" checked> 引流外链
+                </label>
+                {/if} 
+                {if $rules['seo_status']==1}
+                <label>
+                    <input type="checkbox" name="row[seo_status]" class="is_repeat" checked > seo排名
+                </label>
+                {/if}
+                {if $rules['shucai_status']==1}
+                <label >
+                    <input type="checkbox" name="row[shucai_status]" class="is_repeat" checked > ai素材库
+                </label>
+                {/if}
+                {if $rules['tandian_status']==1}
+                <label >
+                    <input type="checkbox" name="row[tandian_status]" class="is_repeat" checked > 探店码
+                </label>
+                {/if}
+            </div>
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>

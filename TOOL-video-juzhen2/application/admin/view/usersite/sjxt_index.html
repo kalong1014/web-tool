@@ -1,0 +1,164 @@
+{include file="public/header" /}
+<!--<link rel="stylesheet" href="/static/admin/texiao/static/css/style.css">-->
+<body class="gray-bg">
+<script src="/static/admin/texiao/static/js/prefixfree.min.js"></script>
+<style type="text/css" media="all">
+    .form-group{
+        width: 100%;
+        height: 30px;
+        margin-top:30px;
+      
+    }
+    .col-sm-2{
+      width: 10%;
+      height: 45px;
+      line-height: 45px;
+      font-weight: normal;
+      text-align: right;
+      margin-right: 10px;
+    }
+    .input-group.col-sm-4{
+        line-height: 45px;
+        color: #999;
+        font-size: 14px;
+    }
+    .shengji{
+        background: #ff0036;
+        color: #fff;
+        border:0;
+        border-radius: 8px;
+        padding: 5px 10px;
+    }
+</style>
+<link rel="stylesheet" href="/static/admin/layui/css/layui.css" media="all">
+<div class="wrapper layui-card-body wrapper-content">
+    <div class="admin-con">
+        <div class="block-box">
+            <div class="col-12">
+                <div class="block">
+                    <div class="ibox-content font13">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">系统公告 :</label>
+                            <div class="input-group col-sm-4">
+                                {$bat.xtgg}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">系统名称 :</label>
+                            <div class="input-group col-sm-4">
+                               短视频矩阵营销系统
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">当前版本 :</label>
+                            <div class="input-group col-sm-4">
+                                {$bat.bat}
+                            </div>
+                        </div>
+                 
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">技术团队 :</label>
+                            <div class="input-group col-sm-4">
+                                 {$bat.jstd}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">联系电话 :</label>
+                            <div class="input-group col-sm-4">
+                               {$bat.phone}
+                            </div>
+                        </div>
+                 
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">升级日志 :</label>
+                            <a class="input-group col-sm-4" href="{:url('user/upgrade_log')}" target="_blank">
+                                点击查看
+                            </a>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">检查版本 :</label>
+                            <div class="input-group col-sm-4">
+                                {if $bat.shengji==1}
+                                 <div class="input-group col-sm-4">
+                               当前已是最新版本
+                                </div>
+                                {else /}
+                               
+                                <a class="shengji" href="javascript:shengji();">检查新版本</a>
+
+                                {/if}
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- kaishi -->
+
+<!--shengji模态框-->
+<div class="modal fade" id="shengji" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog" style="width:100%;height:100%;margin: 0;">
+            <div class="modal-content" style="width:100%;height:100%;background: none;margin: 0;">
+                <div class="" style="width:250px;margin:15% auto 0;;text-align: center;">
+                    <p style="color: #fff;">系统正在升级中......</p>
+                    <p style="color: #fff;">若长时间页面未更新，请刷新当前页面。</p>
+                    <div class="load-2" style="width:100%;">
+                
+                        <div class="k-line k-line6-1"></div>
+                        <div class="k-line k-line6-2"></div>
+                        <div class="k-line k-line6-3"></div>
+                        <div class="k-line k-line6-4"></div>
+                        <div class="k-line k-line6-5"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--shengji模态框结束--> 
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+     
+      function shengji(){
+         layer.confirm('发现新版本,可以升级。', {icon: 1, title:'提示'}, function(index){
+                    layer.confirm('升级前一定要备份好源代码和数据库，升级有出现部分BUG的可能性，您是否确定已备份好？', {icon: 3, title:'提示'}, function(index){  
+                    $.post('{:url("uplade/index")}',
+                        {type:2},
+                     function(data){
+                        if(data.code==1){
+                         $("#shengji").modal('hide');
+                                layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+                                 setInterval(function(){
+                                  location.reload();
+                                },1000);
+                       
+                            
+                        }else{
+                          
+                            layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+                            }         
+                    });
+                    layer.close(index);
+                     $("#shengji").modal('show');
+                  })
+                  
+                })
+                
+        
+       
+        
+    }
+    var config = {
+        '.chosen-select': {},                    
+    }
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+
+</script>
+
+</html>

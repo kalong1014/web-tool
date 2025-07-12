@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<title>个人中心</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+	<script src="/assets/js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript">
+        var html = document.getElementsByTagName("html")[0];
+        function getFontSize(){
+        var width=document.documentElement.clientWidth
+        ||document.body.clientWidth+"px";
+        var fontSize=(100/375)*width;
+        if(width>=375){
+        fontSize="100";
+        }
+        return fontSize;
+        }
+        html.style.fontSize=getFontSize()+"px";
+        window.onresize=function(){
+        setTimeout(function(){
+        html.style.fontSize=getFontSize()+"px";
+        },100)
+        };
+    </script>
+    <style type="text/css">
+        @charset "utf-8";*{margin:0;padding:0}
+        img{display:block;border:none}
+        em,i{font-style:normal}
+        blockquote,body,dd,div,dl,dt,fieldset,font,form,h1,h2,h3,h4,h5,h6,input,li,ol,p,pre,td,textarea,th,ul{margin:0;padding:0;font-family:"微软雅黑"}
+        table{border-collapse:collapse;border-spacing:0}
+        h1,h2,h3,h4,h5,h6{font-weight:400;font-size:100%}
+        dd,dl,dt,li,ol,ul{list-style:none}
+        button,checkbox,form,input,radio,select,textarea{vertical-align:top}
+        a{color:#000;text-decoration:none}
+        a:link,a:visited{text-decoration:none}
+        a:hover{color:#cd0200;text-decoration:underline}
+        button,input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:none}
+
+
+        body{margin: 0 auto;display: block;font-size: 0.16rem;font-family:"微软雅黑";max-width: 7.5rem;}
+        .head_div{width: 100%;height: 200px;background: #16B998;color: #fff;}
+        .head_div p{text-align: center;margin-top: 10px;font-size: 14px;}
+        .head_div img{width: 60px;height: 60px;border-radius: 50%;display: block;margin: 0 auto;}
+        .zixun_contain{font-size: 14px;}
+        .zixun_contain p{border-bottom: 1px solid #e8e8e8;padding-left: 20px;line-height: 40px;}
+        .zixun_contain img{width: 20px;height: 20px;border-radius: 50%; display: inline-block;vertical-align: sub;margin-right: 5px;}
+    </style>
+</head>
+<body>
+    <div class="contain">
+        <div class="head_div">
+            <div style="height: 50px;"></div>
+            <img src="{$avatar}">
+            <p>游客</p>
+        </div>
+        <ul class="zixun_contain">
+            <p class="card_div"><img src="/static/image/icon/lianjie.png">我的卡片</p>
+            <p class="card_guangzhu"><img src="/static/image/icon/notice.png" style="margin-right: 6px;">我的关注</p>
+            <p class="card_user"><img src="/static/image/icon/kehu.png">个人信息</p>
+        </ul>
+    </div>
+
+</body>
+<script type="text/javascript">
+    $('.card_div').click(function(){
+        alert('暂无卡片');
+    });
+    $('.card_guangzhu').click(function(){
+        alert('暂无关注');
+    });
+    $('.card_user').click(function(){
+        alert('游客暂无信息');
+    });
+</script>
+</html>

@@ -1,0 +1,7 @@
+<scroll-view class="tab-wrap" scrollLeft="{{scrollLeft}}" scrollWithAnimation="true" scrollX="{{true}}" scrollY="{{false}}" style="background-color: {{backgroundColor}};">
+    <view class="tab-list" style="width: {{tabsWidth}}rpx;">
+        <view bindtap="switchTab" class="tab {{current===index?'active':''}}" data-index="{{index}}" style="width: {{item.width}}rpx;padding-right:{{item.badge&&item.badge>0?48:16}}rpx;" wx:for="{{tabs}}"> {{item[keyName]}} <text class="badge" wx:if="{{item.badge&&item.badge>0}}">{{item.badge}}</text>
+        </view>
+        <view class="line" style="left: {{lineLeft}}rpx;"></view>
+    </view>
+</scroll-view>

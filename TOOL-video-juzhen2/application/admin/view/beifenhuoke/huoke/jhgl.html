@@ -1,0 +1,166 @@
+{include file="public/header" /}
+
+<style>
+
+    .top1{
+        width:80%;
+        height: 40px;
+       
+        float: left;
+        margin-left: 0px;
+      
+
+    }
+    .topleft{
+        width: 23%;
+        height: 40px;
+        float: left;
+        
+    }
+    .topright{
+        width:65%;
+        height: 40px;
+        float: left;
+        
+    }
+    .topright > form > input{
+        width: 200px;
+        float: left;
+    }
+    #zhida_addci{
+    	width: 100px;
+    	float: left;
+    	
+    }
+    .ibox-title{
+    	width: 100%;
+    	height: 60px;
+    	
+    }
+
+</style>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight" style="padding-top:0px;">
+    <!-- jieshu -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h3 style="margin-top:5px;color: #66B3FF;float: left;width: 150px;">计划获客</h3>
+        
+        <div class="top1">
+            
+                 <div class="col-sm-12 topright">   
+                                                                
+                    <form name="admin_list_sea" class="form-search" method="post" action="{:url('index')}">
+
+                        <input type="text"  class="form-control" name="ci" value="" placeholder="计划标题"  autocomplete="off" />
+
+                        <select name="url_pc" id="" class="form-control" style="width:100px;float:left">
+                            <option value="0">关键词</option>
+                            <option value="0">关键词</option>
+                            <option value="0">关键词</option>
+                            <option value="0">关键词</option>
+                            <option value="0">关键词</option>
+                            <option value="0">关键词</option>
+                            <option value="0">关键词</option>
+                           
+                           
+                        </select>
+                        <select name="url_pc" id="" class="form-control" style="width:100px;float:left">
+                            <option value="0">线索词</option>
+                            <option value="0">线索词</option>
+                            <option value="0">线索词</option>
+                            <option value="0">线索词</option>
+                            <option value="0">线索词</option>
+                            <option value="0">线索词</option>
+                            <option value="0">线索词</option>
+                           
+                           
+                        </select>
+                        <select name="url_pc" id="" class="form-control" style="width:100px;float:left">
+                            <option value="0">状态</option>
+                            <option value="1c">正常</option>
+                            <option value="2">关闭</option>
+                            <option value="3">已删除</option>
+                           
+                        </select>
+                       
+                        
+                              
+                        
+                         <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button> 
+                    </form> 
+                                         
+                </div>
+
+                <div id="zhida_addci"> <a href="{:url('jhgl_add')}" class="btn btn-primary" >新增计划</a>  </div>
+                 <span style="color:#FFDC35;font-size: 18px;margin-left: 40px;line-height: 20px;">剩余计划数量：70</span>
+			  	
+        </div>
+      </div>
+      		<div style="width:100%;background:#FFF8D7;height:40px;margin-top:10px;line-height: 40px;font-size: 15px;">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;添加后无法修改,请确认关键词的准确性</div>
+        <div class="ibox-content">
+          
+
+  
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th>计划名称</th>
+                                <th>视频关键词</th>
+                                <th>线索词</th>
+                                <th>线索数</th>
+                                <th>执行时间</th>
+                                <th>创建时间</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                               
+                               
+                              
+                            </tr>
+                            
+                        </thead>
+                        
+                        <tbody id="article_list">
+                        	
+                        	 <tr  style="text-align: center;">
+                                <td>计划1</td>
+                                <td>买房(23)</td>
+                                <td>多少钱(34)</td>
+                                <td>12</td>
+                                <td>2022/3/2-2022/3/2</td>
+                                <td>2022/3/2-2022/3/2</td>
+                                <td>
+                                	<a class="label label-info" href="javascript:;">正常</a>
+                                </td>
+                                <td>
+                                	<a class="btn btn-primary" href="{:url('jhgl_edit')}">编辑</a>
+                                	 <a class="btn btn-danger" href="javascript:;">删除</a>
+                                </td>
+                                
+                              
+                             </tr>
+                        </tbody>
+                    </table>
+                    <div id="AjaxPage" style=" text-align: right;"></div>
+                    <div id="allpage" style=" text-align: right;"></div>
+                </div>
+              
+                
+            </div>
+           <!-- kaishi -->
+        </div>
+    </div>
+</div>
+<!-- kaishi -->
+
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+    
+</script>
+</body>
+</html>

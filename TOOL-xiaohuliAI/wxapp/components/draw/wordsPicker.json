@@ -1,0 +1,7 @@
+{
+    "component": true,
+    "usingComponents": {
+        "foxTabs": "/components/foxTabs/foxTabs",
+        "navbar": "/components/navbar/navbar"
+    }
+}

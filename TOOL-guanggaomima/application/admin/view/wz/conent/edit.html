@@ -1,0 +1,70 @@
+<form id="edit-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Title')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-title" data-rule="required" class="form-control" name="row[title]" type="text" value="{$row.title|htmlentities}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('B1_text')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-b1_text" data-rule="required" class="form-control" name="row[b1_text]" type="text" value="{$row.b1_text|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('B1_url')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-b1_url" data-rule="required" class="form-control" name="row[b1_url]" type="text" value="{$row.b1_url|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('B2_text')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-b2_text" data-rule="required" class="form-control" name="row[b2_text]" type="text" value="{$row.b2_text|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('B2_url')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-b2_url" data-rule="required" class="form-control" name="row[b2_url]" type="text" value="{$row.b2_url|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('B3_text')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-b3_text" data-rule="required" class="form-control" name="row[b3_text]" type="text" value="{$row.b3_text|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('B3_url')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-b3_url" data-rule="required" class="form-control" name="row[b3_url]" type="text" value="{$row.b3_url|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Pwd')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-pwd" data-rule="required" class="form-control" name="row[pwd]" type="text" value="{$row.pwd|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Wz_nr')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <textarea id="c-wz_nr" data-rule="required" class="form-control editor" rows="5" name="row[wz_nr]" cols="50">{$row.wz_nr|htmlentities}</textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Sort')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-sort" data-rule="required" class="form-control" name="row[sort]" type="number" value="{$row.sort|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-primary btn-embossed disabled">{:__('OK')}</button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,138 @@
+.page {
+    bottom: 0;
+    overflow: hidden;
+    right: 0;
+}
+
+.page,.tabs {
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.tabs {
+    height: 88rpx;
+}
+
+.lists {
+    bottom: 140rpx;
+    height: auto;
+    right: 0;
+    top: 88rpx;
+}
+
+.box-input,.lists {
+    left: 0;
+    position: absolute;
+    width: 100%;
+}
+
+.box-input {
+    background: #fff;
+    border-top: 1px solid #eee;
+    bottom: 0;
+    box-sizing: border-box;
+    padding: 30rpx;
+}
+
+.box-input,.box-input .tools {
+    align-items: flex-end;
+    display: flex;
+    justify-content: space-between;
+}
+
+.box-input .tools .btn-tool {
+    align-items: center;
+    background: none;
+    background: #fff;
+    border: 4rpx solid #dae0e0;
+    border-radius: 40rpx;
+    display: flex;
+    height: 80rpx;
+    justify-content: center;
+    margin-right: 20rpx;
+    padding: 0;
+    width: 80rpx;
+}
+
+.box-input .tools .btn-tool image {
+    height: 48rpx;
+    width: 48rpx;
+}
+
+.box-input .input {
+    align-items: flex-end;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    width: 600rpx;
+}
+
+.box-input .input textarea {
+    box-sizing: initial;
+    font-size: 28rpx;
+    line-height: 40rpx;
+    max-height: 800rpx;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 20rpx 10rpx 20rpx 24rpx;
+    width: 500rpx;
+}
+
+.box-input .input .input-audio,.box-input .input textarea {
+    background: #f6ffff;
+    border: 4rpx solid #04babe;
+    border-radius: 40rpx;
+    color: #4c4d52;
+}
+
+.box-input .input .input-audio {
+    box-sizing: border-box;
+    height: 80rpx;
+    line-height: 80rpx;
+    text-align: center;
+    width: 100%;
+}
+
+.box-input .input .btn-send {
+    align-items: center;
+    background: none;
+    border: none;
+    display: flex;
+    height: 80rpx;
+    justify-content: center;
+    margin-left: 20rpx;
+    padding: 0;
+    width: 80rpx;
+    z-index: 9;
+}
+
+.box-input .input .btn-send::after {
+    display: none;
+}
+
+.box-input .input .btn-send:active {
+    background: #f2f2f2;
+}
+
+.box-input .input .btn-send image {
+    height: 100%;
+    width: 100%;
+}
+
+.gold .box-input .input textarea {
+    border-color: #ffa41a;
+}
+
+.no-speech .input {
+    margin-left: 0;
+    width: 690rpx;
+}
+
+.no-speech .input textarea {
+    width: 590rpx;
+}

@@ -1,0 +1,36 @@
+<style type="text/css"> 
+    .table {table-layout:fixed;} 
+    .table td{text-overflow:ellipsis; overflow:hidden; white-space:nowrap; }
+</style>
+<div class="panel panel-default panel-intro">
+    {:build_heading()}
+    <div class="panel-heading">
+        <ul class="nav nav-tabs" data-field="status">
+            <li class="{:$Think.get.status === null ? 'active' : ''}"><a href="/storeadmin/index?jump_url=activity_user&menu_url=activity_user"  target="_parent">{:__('All')}</a></li>
+            <li class="{:$Think.get.status == 2 ? 'active' : ''}"><a href="/storeadmin/index?jump_url=activity_user&menu_url=activity_user&status=2" target="_parent">发送成功</a></li>
+            <li class="{:$Think.get.status == 1 ? 'active' : ''}"><a href="/storeadmin/index?jump_url=activity_user&menu_url=activity_user&status=1" target="_parent">临时调用</a></li>
+        </ul>
+    </div>
+
+    <div class="panel-body">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="one">
+                <div class="widget-body no-padding">
+                    <div id="toolbar" class="toolbar">
+                        <a href="javascript:;" class="btn btn-primary btn-refresh" title="{:__('Refresh')}" ><i class="fa fa-refresh"></i> </a>
+                        <!-- <a href="javascript:;" class="btn btn-success btn-add " title="{:__('Add')}" ><i class="fa fa-plus"></i> {:__('Add')}</a> -->
+
+                        <a href="javascript:;" class="btn btn-danger btn-del btn-disabled disabled {:$auth->check('activity_user/del')?'':'hide'}" title="{:__('Delete')}" ><i class="fa fa-trash"></i> {:__('Delete')}</a>
+
+                        <span style="margin-left:20px;color: #999;">核销地址（免登陆地址）：<a style="color: #2196F3;" target="_blank" href="{$hexiao_url}"> {$hexiao_url}</a></span>
+                        
+                    </div>
+                    <table id="table" class="table table-striped table-bordered table-hover table-nowrap" 
+                           width="100%" >
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

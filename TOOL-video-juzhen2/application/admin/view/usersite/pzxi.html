@@ -1,0 +1,300 @@
+{include file="public/header" /}
+
+<body class="gray-bg">
+<link rel="stylesheet" href="/static/admin/layui/css/layui.css" media="all">
+<div class="wrapper layui-card-body wrapper-content">
+    <div class="admin-con">
+        <div class="block-box">
+            <div class="col-12">
+                <button type="button" onclick="addfenlei()" class="btn btn-outline btn-primary">添加配置</button>
+            </div>
+        
+            <div class="col-12">
+                <div class="block">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th>类型</th>
+                              
+                                <th>标题</th>
+                                <th>副标题</th>
+                                <th>添加时间</th>
+                                <th>图片</th>
+                                <th>URL</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody id="article_list">
+                         {foreach name="list" item="vo"}
+                            <tr>
+                                 <td>{if $vo.type==1}更多系统{elseif $vo.type==2 }服务{elseif $vo.type==3 }关于我们{elseif $vo.type==4 }公众号{else /}客服{/if}</td>
+                                 
+                                 <td>{$vo.title?$vo.title:'无'}</td>
+                                 <td>{$vo.ftitle?$vo.ftitle:'无'}</td>
+                                 <td>{$vo.addtime||date='Y-m-d H:i:s',###}</td>
+                                 <td>{if $vo.img==''}无{else /}<img src="/static/admin/images/{$vo.img}" alt="" style="width:100px;height:100px;" />{/if}</td>
+                                 <td>{$vo.url?$vo.url:'无'}</td>
+                                 <td> 
+                                  <!--<a href="javascript:;"  onclick="edit({$vo.id})">-->
+                                  <!--         编辑</a>&nbsp;&nbsp;-->
+                                 <a href="javascript:del({$vo.id})"  class="btn btn-danger btn-xs">
+                                            删除</a></td>
+                             </tr>
+                          {/foreach}
+                        </tbody>
+                    </table>
+                    <div id="AjaxPage" style=" text-align: right;"></div>
+                    <div id="allpage" style=" text-align: right;"></div>
+                </div>
+          
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--添加等级分类开始-->
+    <div class="modal  fade" id="myModal" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h3 class="modal-title">添加配置信息</h3>                  
+                </div>
+                <form class="form-horizontal" name="add_rule" id="add_rule" method="post" action="{:url('add_pzxi')}" enctype="multipart/form-data">
+                    <div class="ibox-content">
+                          
+                            <div class="form-group m-t-md">
+                                <label class="col-sm-3 control-label">选择服务：&nbsp;&nbsp;&nbsp;</label>
+                                <select name="type" id="type" class="form-control" style="width: 66.666%;" onclick="xuanze()">
+                                    <option value="0">请选择</option>
+                                    <option value="1">更多系统</option>
+                                    <!--<option value="2">服务</option>-->
+                                    <option value="3">关于我们</option>
+                                    <option value="4">公众号</option>
+                                    <option value="5">客服</option>
+                                    
+                                </select>
+                            </div>                   
+                            
+                            <div class="form-group" id="xtmc" style="display:none">
+                                <label class="col-sm-3 control-label font14 text-r" style="line-height:35px;">标题：&nbsp;&nbsp;&nbsp;</label>
+                                   <div class="input-group col-sm-4">
+                                <input id="title" type="text" class="form-control" name="title" value="">
+                            </div> 
+                            </div>
+                            <div class="form-group" id="xtfbt" style="display:none">
+                                <label class="col-sm-3 control-label font14 text-r" style="line-height:35px;">副标题：&nbsp;&nbsp;&nbsp;</label>
+                                   <div class="input-group col-sm-4">
+                                <input id="title" type="text" class="form-control" name="ftitle" value="">
+                            </div> 
+                            </div>
+                              
+                            <div class="form-group" id="url" style="display:none">
+                                <label class="col-sm-3 control-label font14 text-r" style="line-height:35px;">URL地址：&nbsp;&nbsp;&nbsp;</label>
+                                   <div class="input-group col-sm-4">
+                                <input id="title" type="text" class="form-control" name="url" value="">
+                            </div> 
+                            </div>
+                           
+                            <div class="form-group" id="luesuotu" style="display:none">
+                               <label class="col-sm-3 control-label font14 text-r">上传图片：&nbsp;&nbsp;&nbsp;</label>
+                               <div class="input-group col-sm-4">
+                                   <input id="title" type="file" class="form-control" name="img" value="" class="col-sm-8" style="background:none">
+                               </div>
+                                
+                            </div>
+                           
+                            
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> 保存</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i> 关闭</button>                    
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<!--添加等级分类结束-->
+<!--编辑分类开始-->
+    <div class="modal  fade" id="bianji" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h3 class="modal-title">编辑分类</h3>                  
+                </div>
+                <form class="form-horizontal" name="add_rule" id="add_rule" method="post" action="{:url('')}">
+                    <div class="ibox-content">
+                          
+                             <div class="form-group m-t-md">
+                                <label class="col-sm-3 control-label">选择分类级别：&nbsp;&nbsp;&nbsp;</label>
+                                <select name="sattus" id="" class="form-control" style="width:200px;float:left">
+                                    <option value="1">A级分类</option>
+                                    <option value="2">B级分类</option>
+                                    <option value="3">C级分类</option>
+                                </select>
+                            </div>                   
+                           
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">填写关键词：&nbsp;&nbsp;&nbsp;</label>
+                                <div class="col-sm-8">
+
+                                    <input type="number" name="fzpai" id="name" placeholder="填写关键词" class="form-control"/>
+                                </div>
+                            </div>  
+                        </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> 保存</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i> 关闭</button>                    
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<!--编辑分类结束-->
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+
+
+/**
+ * 删除
+*/
+function del(id){
+    layer.confirm('您确定要删除吗?', {icon: 3, title:'提示'}, function(index){
+      $.post('{:url("del_pz")}',{id:id},function(data){
+         if(data.code==1){
+             layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+              setInterval(function(){
+                 location.reload();
+                },1000)
+         }else{
+             layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+             setInterval(function(){
+                 location.reload();
+                },1000)
+         }
+      })
+        
+
+        layer.close(index);
+    })
+}
+
+/**
+ * 添加分类
+*/
+ function addfenlei(){
+    $('#myModal').modal('show');
+}
+/**
+ * 编辑
+*/
+/*获取select 选中的值*/
+function xuanze(){
+   type = $('#type  option:selected').val();
+   if(type==0){
+	         $("#xtmc").css('display',"none");
+	         $("#xtfbt").css('display',"none");
+	         $("#fwmc").css('display',"none");
+	         $("#url").css('display',"none");
+	         $("#luesuotu").css('display',"none");
+	       
+	         $("#biaoti").css('display',"none");
+	       
+	    }else if(type==1){
+	      
+	        $("#biaoti").css('display',"none");
+	        $("#fwmc").css('display',"none");
+	        $("#xtmc").css('display',"block");
+	        $("#xtfbt").css('display',"block");
+	        $("#url").css('display',"block");
+	        $("#luesuotu").css('display',"none");
+	    }else if(type==2){
+	      
+	      
+	         $("#xtmc").css('display',"block");
+	         $("#xtfbt").css('display',"none");
+	         $("#fwmc").css('display',"none");
+	         $("#luesuotu").css('display',"none");
+	          $("#url").css('display',"block");
+	         $("#fwmc").css('display',"block");
+	    }else if(type==3){
+	       
+	       
+	         $("#biaoti").css('display',"none");
+	        
+	         
+	         $("#luesuotu").css('display',"none");
+	         $("#url").css('display',"block");
+	          $("#xtmc").css('display',"block");
+	    }else if(type==4){
+	       
+	        
+	         $("#xtmc").css('display',"block");
+	         $("#xtfbt").css('display',"none");
+	          $("#luesuotu").css('display',"block");
+	         $("#url").css('display',"none");
+	          $("#fwmc").css('display',"none");
+	    }else if(type==5){
+	         $("#biaoti").css('display',"block");
+	         $("#xtmc").css('display',"block");
+	         $("#xtfbt").css('display',"none");
+	          $("#luesuotu").css('display',"block");
+	         $("#url").css('display',"none");
+	         
+	    }
+}
+// 	$('#type').mouseout(function(){
+// 	    type =  $("#type").val();
+	   
+// 	    if(type==0){
+// 	         $("#xtmc").css('display',"none");
+// 	         $("#xtfbt").css('display',"none");
+// 	         $("#fwmc").css('display',"none");
+// 	         $("#url").css('display',"none");
+// 	         $("#luesuotu").css('display',"none");
+// 	         $("#erweima").css('display',"none");
+// 	         $("#biaoti").css('display',"none");
+	       
+// 	    }else if(type==1){
+// 	        $("#erweima").css('display',"none");
+// 	        $("#biaoti").css('display',"none");
+// 	        $("#fwmc").css('display',"none");
+// 	        $("#xtmc").css('display',"block");
+// 	        $("#xtfbt").css('display',"block");
+// 	        $("#url").css('display',"block");
+// 	        $("#luesuotu").css('display',"block");
+// 	    }else if(type==2){
+// 	        $("#erweima").css('display',"none");
+// 	        $("#biaoti").css('display',"none");
+// 	         $("#xtmc").css('display',"none");
+// 	         $("#xtfbt").css('display',"none");
+// 	         $("#fwmc").css('display',"none");
+// 	         $("#luesuotu").css('display',"none");
+// 	          $("#url").css('display',"block");
+// 	         $("#fwmc").css('display',"block");
+// 	    }else if(type==3){
+	       
+// 	         $("#erweima").css('display',"none");
+// 	         $("#biaoti").css('display',"none");
+// 	         $("#xtmc").css('display',"none");
+// 	         $("#xtfbt").css('display',"none");
+// 	         $("#luesuotu").css('display',"none");
+// 	         $("#url").css('display',"block");
+// 	          $("#fwmc").css('display',"block");
+// 	    }else if(type==4){
+	        
+// 	    }else if(type==5){
+	        
+// 	    }
+// 	});
+    
+
+ 
+ 
+</script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<link rel="stylesheet" href="/static/admin/layui/css/layui.css" media="all">
+<div class="wrapper layui-card-body wrapper-content">
+    <div class="admin-con">
+        <div class="block-box">
+            <div class="col-12">
+                <div class="block font13 font8c95b0">
+                    <p class="fs14 c666">1、根据提示信息添加会员</p>
+                    <p class="fs14 c666">2、添加完成会员请手动充值发布视频数量和账号数量</p>
+                </div>
+            </div>
+            
+            <div class="col-12">
+                <div class="block font13">
+                    <form class="form-horizontal" name="userAdd"  method="post" action="{:url('member_add')}">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">会员名称：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="username" type="text" class="form-control" name="username" required="required">
+                            </div>
+                        </div>
+                             <div class="form-group">
+                            <label class="col-sm-2 control-label">请选择会员组：</label>
+                            <div class="input-group col-sm-4">
+                                <select class="form-control" name="hyz"  >
+                                     {foreach name ="zu" item="vo"}
+                                     <option value="{$vo.id}">{$vo.username}</option>
+                                    {/foreach}
+                                    </select>
+                            </div>
+                            
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">登录密码：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="password" type="text" class="form-control" name="password"  required="required">
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <label class="col-sm-2 control-label">积分:</label>
+                            <div class="input-group col-sm-4">
+                                <input id="money" type="number" class="form-control" name="jifen" value=0 >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">公司名称：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="real_name" type="text" required="required" class="form-control" name="real_name" >
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">联系方式：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="real_name" type="text" class="form-control" name="phone" >
+
+                            </div>
+                        </div>
+                     <div class="form-group">
+                            <label class="col-sm-2 control-label">到期时间：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="" type="date"  class="form-control" name="user_time"  >
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">状&nbsp;态：</label>
+                            <div class="col-sm-6">
+                                <div class="radio ">                                        
+                                    <input type="checkbox" name='status' value="1" class="js-switch" checked />&nbsp;&nbsp;默认开启                                     
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> 保存</button>&nbsp;&nbsp;&nbsp;
+                                <a class="btn btn-danger" href="javascript:history.go(-1);"><i class="fa fa-close"></i> 返回</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{include file="public/footer" /}
+<script type="text/javascript">
+
+
+    $(function(){
+        $('#userAdd').ajaxForm({
+            beforeSubmit: checkForm, 
+            success: complete, 
+            dataType: 'json'
+        });
+        
+        function checkForm(){
+            if( '' == $.trim($('#username').val())){
+                layer.msg('请输入用户名',{icon:2,time:1500,shade: 0.1}, function(index){
+                layer.close(index);
+                });
+                return false;
+            }
+            
+            if( '' == $.trim($('#groupid').val())){
+                layer.msg('请选择用户角色',{icon:2,time:1500,shade: 0.1}, function(index){
+                layer.close(index);
+                });
+                return false;
+            }
+
+            if( '' == $.trim($('#password').val())){
+                layer.msg('请输入登录密码',{icon:2,time:1500,shade: 0.1}, function(index){
+                layer.close(index);
+                });
+                return false;
+            }
+
+            if( '' == $.trim($('#real_name').val())){
+                layer.msg('请输入真实姓名',{icon:2,time:1500,shade: 0.1}, function(index){
+                layer.close(index);
+                });
+                return false;
+            }
+        }
+
+
+        function complete(data){
+           
+            if(data.code==1){
+                layer.msg(data.msg, {icon: 6,time:1500,shade: 0.1}, function(index){
+                    window.location.href="{:url('user/index')}";
+                });
+            }else{
+                layer.msg(data.msg, {icon: 5,time:1500,shade: 0.1});
+                return false;   
+            }
+        }
+     
+    });
+
+
+
+    //IOS开关样式配置
+   var elem = document.querySelector('.js-switch');
+        var switchery = new Switchery(elem, {
+            color: '#ff7752'
+        });
+    var config = {
+        '.chosen-select': {},                    
+    }
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+
+</script>
+</body>
+</html>

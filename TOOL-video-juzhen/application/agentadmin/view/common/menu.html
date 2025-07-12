@@ -1,0 +1,67 @@
+<!-- 左侧菜单栏 -->
+<section class="sidebar">
+    <!-- 管理员信息 -->
+    <!-- <div class="user-panel hidden-xs" style="height: 60px;">
+        <div class="pull-left image">
+           <img src="{$admin_avatar|cdnurl|htmlentities}" class="img-circle" />
+        </div>
+        <div class="pull-left info" style="padding:0px;text-align: left;    margin-top: 5px;left: 65px;">
+            <p>{$agent_name|htmlentities}</p>
+            <i class="fa fa-circle text-success"></i> 到期:{$out_date}
+        </div>
+    </div> -->
+
+    <!-- 菜单搜索 -->
+ <!--    <form action="" method="get" class="sidebar-form" onsubmit="return false;">
+        <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="{:__('Search menu')}">
+            <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+            </span>
+            <div class="menuresult list-group sidebar-form hide">
+            </div>
+        </div>
+    </form> -->
+
+    <!-- 移动端一级菜单 -->
+    <div class="mobilenav visible-xs">
+
+    </div>
+    <style type="text/css">
+        #header{background: #333}
+        .skin-black-green .treeview-menu > li > a{color: #b8c7ce ;font-size: 16px;}
+        .treeview-menu li span{padding-left:30px;}
+        .treeview-menu{display: none;}
+        .skin-black-green .treeview-menu > li:hover,.skin-black-green .treeview-menu > li.active > a {background-color: #4f4e71;color: #5FD8CD;}
+        .skin-black-green .sidebar-menu > li:hover,.skin-black-green .sidebar-menu > li.active > a {color: #5FD8CD;background: #4f4e71;border-left-color: #18bc9c;}
+        .skin-black-green .sidebar-menu > li > a:hover{background-color: #4f4e71;color: #5FD8CD;}
+        .sidebar-menu .treeview-menu > li > a {padding: 10px 5px 10px 15px;display: block;font-size: 14px;}
+        .sidebar-menu .treeview-menu > li > a:hover{color: #5FD8CD;}
+        a{cursor: pointer;}
+        .sidebar-menu > li{font-size: 16px;}
+        
+    </style>
+    <!--如果想始终显示子菜单,则给ul加上show-submenu类即可,当multiplenav开启的情况下默认为展开-->
+    <ul class="sidebar-menu {if $Think.config.fastadmin.multiplenav}show-submenu{/if}" style="margin-top:20px;">
+        <li {if $menu_url==''}class="active"{/if}><a href="/agentadmin/index" py="kzt" pinyin="kongzhitai" title="控制台"><i class="fa fa-dashboard fa-fw"></i> <span>数据面板</span> <span class="pull-right-container"> </span></a> </li>
+
+        <li {if $menu_url=='store'}class="active"{/if}><a href="/agentadmin/index?jump_url=store&menu_url=store"  py="dlgl" pinyin="dailiguanli" title="商户管理"><i class="fa  fa-users fa-fw"></i> <span>商户管理</span> </a> </li>
+        {if $agent['level']==1 || $agent['level']==2}
+        <li {if $menu_url=='agent'}class="active"{/if}><a href="/agentadmin/index?jump_url=agent&menu_url=agent"  py="dlgl" pinyin="dailiguanli" title="代理管理"><i class="fa fa-handshake-o fa-fw"></i> <span>代理管理</span> </a> </li>
+        {/if}
+
+        <!-- <li {if $menu_url=='commission'}class="active"{/if}><a href="/agentadmin/index?jump_url=commission&menu_url=commission"  py="dlgl" pinyin="dailiguanli" title="佣金记录"><i class="fa fa-yen fa-fw"></i> <span>佣金记录</span> </a> </li> -->
+        {if $agent['level']==1 && $agent['agent_host']!=""}
+        <li {if $menu_url=='agent_config'}class="active"{/if}><a href="/agentadmin/index?jump_url=agent_config&menu_url=agent_config"  py="dlgl" pinyin="dailiguanli" title="网站配置"><i class="fa fa-television fa-fw"></i> <span>官网配置</span> </a> </li>
+        <li {if $menu_url=='agent_price'}class="active"{/if}><a href="/agentadmin/index?jump_url=agent_price&menu_url=agent_price"  py="dlgl" pinyin="dailiguanli" title="费用定制"><i class="fa fa-money fa-fw"></i> <span>费用定制</span> </a> </li>
+        {/if}
+
+        <li {if $menu_url=='profile'}class="active"{/if}><a href="/agentadmin/index?jump_url=profile&menu_url=profile"  py="dlgl" pinyin="dailiguanli" title="个人信息"><i class="fa fa-user fa-fw"></i> <span>个人中心</span> </a> </li>
+
+        <!-- <li  ><a  onclick="alert('正在快马加鞭赶来中，请耐心等候');"><i class="fa fa-address-book fa-fw"></i> D音定时监控(更新预告) </a> </li> -->
+        
+
+    </ul>
+</section>
+<script type="text/javascript" src="/storeadmin2/libs/jquery/dist/jquery.min.js?v=1629984200"></script>

@@ -1,0 +1,83 @@
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <title>登录</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <script src="/static/admin/js/jquery.min.js"></script>
+
+
+    <style type="text/css">
+        /*html{background: url('static/images/bg2.png');}*/
+        body{margin: 0 auto;display: block;font-size: 1rem;font-family:"微软雅黑";max-width: 100%;}
+        body{background: url('/static/admin/images/loginbg.png') no-repeat  scroll top center  #fff;background-size: 100%;}
+        .zwzd-login-logo {text-align: center;color: #fff;margin-top:2rem}
+        .zwzd-login-logo .zwzd-login-img{width: 5rem;}
+        .main_content{width: 85%;margin: 0 auto;background-color: #fff;border-radius: 10px;margin-top: 1.9rem;padding: 1rem;box-shadow: 0 5px 5px #eee;}
+        .input-group input{border: 0;border-bottom:1px solid #d6d6d6;color: #333;width:100%;height: 50px;line-height: 50px;margin-bottom: 20px;padding: 0;font-size: 14px;padding-left: 10px;background: #fff;border-radius: 5px;}
+        .btn-login{width: 100%;background:#ff0036 ;height: 50px;color: #fff;font-size:1rem;margin-top: 30px;outline-style: none;border:0;border-radius:5px}
+    </style>
+</head>
+<body>
+    <div class="zwzd-contain">
+        <div class="zwzd-login-logo">
+                <img src="" class="zwzd-login-img">
+                <h4>中网智达</h4>
+        </div>
+        <div class="main_content">
+            
+            <div class="zwzd-login-box">
+                <form>
+                    <div class="input-group m-b-md">
+                      <input type="text" class="form-control" id="username" placeholder="请输入登录账号" name="username" autocomplete="off" value="">
+                    </div>
+                    <div class="input-group m-b-md">
+                      <input type="password" class="form-control" id="password" placeholder="请输入登录密码" name="password" autocomplete="off" value="" data-target="#errtips">
+                    </div>
+                    <div class="form-group">
+                        <button id="login_btn" type="button"  class="btn btn-login">
+                            登 录                      </button>
+                    </div>
+                </form>
+            </div>  
+        </div>
+    </div>
+
+
+<script src="/static/admin/js/layer/layer.js"></script>
+<script type="text/javascript">
+    $(window).on("load",function(){
+        var winHeight = $(window).height();
+    });
+
+    $(function () {
+        var lock = false;
+        $('#login_btn').click(function(){
+            if(lock){
+                return;
+            }
+            lock = true;
+            $('#err_msg').hide();
+            $('#login_btn').removeClass('btn-success').addClass('btn-danger').val('登陆中...');
+            var username = $('#username').val();
+            var password = $('#password').val();
+            $.post("{:url('/index/active/doLogin')}",{'username':username, 'password':password},function(data){
+                lock = false;
+                if(data.code!=1){
+                    layer.msg(data.msg)
+                    return;
+                }else{
+                    layer.msg('恭喜您，登录成功', {icon: 1,time:2000}, function(index){
+                        window.location.href=data.data;
+                    });
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

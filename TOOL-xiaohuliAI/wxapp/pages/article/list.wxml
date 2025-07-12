@@ -1,0 +1,12 @@
+<navbar text="使用教程"></navbar>
+<view>
+    <view class="welcome" wx:if="{{!list||list.length==0}}">
+        <view class="nodata">
+            <image mode="widthFix" src="/images/ic_nodata.png"></image>
+            <view class="tips">暂无数据~</view>
+        </view>
+    </view>
+    <view class="list" wx:else>
+        <view bindtap="toArticle" class="item" data-id="{{item.id}}" wx:for="{{list}}">{{index+1}}、{{item.title}}</view>
+    </view>
+</view>

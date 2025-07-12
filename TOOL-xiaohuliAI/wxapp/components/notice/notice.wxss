@@ -1,0 +1,116 @@
+.box-notice {
+    align-items: center;
+    background: rgba(0,0,0,.4);
+    bottom: 110rpx;
+    display: flex;
+    justify-content: center;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 99;
+}
+
+.box-notice .pannel {
+    background-color: #fff;
+    border-radius: 20rpx;
+    overflow: hidden;
+    position: relative;
+    width: 85%;
+    z-index: 2;
+}
+
+.box-notice .pannel .bg {
+    height: 200rpx;
+    position: relative;
+    width: 100%;
+    z-index: 1;
+}
+
+.box-notice .pannel .bg image {
+    height: 100%;
+    width: 100%;
+}
+
+.box-notice .pannel .main {
+    margin-top: -200rpx;
+    position: relative;
+    z-index: 2;
+}
+
+.box-notice .title {
+    box-sizing: border-box;
+    font-size: 36rpx;
+    font-weight: 700;
+    padding: 30rpx 50rpx 20rpx;
+    text-align: center;
+    width: 100%;
+}
+
+.box-notice .btn-close {
+    align-items: center;
+    display: flex;
+    height: 80rpx;
+    justify-content: center;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 80rpx;
+}
+
+.box-notice .btn-close image {
+    height: 48rpx;
+    width: 48rpx;
+}
+
+.box-notice .content {
+    color: #333;
+    font-size: 32rpx;
+    line-height: 48rpx;
+    max-height: 720rpx;
+    min-height: 120rpx;
+    overflow: hidden;
+    overflow-y: auto;
+    padding: 0 50rpx 30rpx;
+}
+
+.box-notice .content image {
+    max-width: 100%;
+}
+
+.box-notice .btn-link {
+    color: #1d8ccc;
+}
+
+.box-notice .footer {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 40rpx 40rpx 30rpx;
+    text-align: center;
+}
+
+.box-notice .btn {
+    border-radius: 44rpx;
+    font-size: 30rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    margin: 0;
+    width: 260rpx;
+}
+
+.box-notice .btn:active {
+    opacity: .6;
+}
+
+.btn-refuse {
+    background: #fff;
+    border: 1px solid #dae0e0;
+    color: #1b1c1c;
+}
+
+.btn-agree {
+    background: #04babe;
+    color: #fff;
+}

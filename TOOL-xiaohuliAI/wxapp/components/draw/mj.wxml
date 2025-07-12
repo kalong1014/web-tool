@@ -1,0 +1,173 @@
+<view>
+    <view class="setting-row">
+        <view class="label">
+            <text>✳ 画面描述</text>
+        </view>
+        <view class="values">
+            <prompt id="prompt" type="mj"></prompt>
+        </view>
+    </view>
+    <view class="setting-row">
+        <view class="label">
+            <text>✳ 画布比例</text>
+            <view bindtap="showHelp" class="help" data-text="指定生成图像的宽高比">
+                <image src="/images/ic_help.png"></image>
+            </view>
+        </view>
+        <view class="values">
+            <view class="size-list">
+                <view bindtap="changeSize" class="size-item {{options.ar==='1:1'?'active':''}}" data-value="1:1">
+                    <view class="size-block" style="width: 64rpx; height: 64rpx;"></view>
+                    <text>1:1</text>
+                </view>
+                <view :class="{active: options.ar === '16:9'}" bindtap="changeSize" class="size-item {{options.ar==='16:9'?'active':''}}" data-value="16:9">
+                    <view class="size-block" style="width: 64rpx; height: 36rpx;"></view>
+                    <text>16:9</text>
+                </view>
+                <view :class="{active: options.ar === '9:16'}" bindtap="changeSize" class="size-item {{options.ar==='9:16'?'active':''}}" data-value="9:16">
+                    <view class="size-block" style="width: 36rpx; height: 64rpx;"></view>
+                    <text>9:16</text>
+                </view>
+                <view :class="{active: options.ar === '3:2'}" bindtap="changeSize" class="size-item {{options.ar==='3:2'?'active':''}}" data-value="3:2">
+                    <view class="size-block" style="width: 64rpx; height: 42rpx;"></view>
+                    <text>3:2</text>
+                </view>
+                <view :class="{active: options.ar === '4:3'}" bindtap="changeSize" class="size-item {{options.ar==='4:3'?'active':''}}" data-value="4:3">
+                    <view class="size-block" style="width: 64rpx; height: 48rpx;"></view>
+                    <text>4:3</text>
+                </view>
+                <view :class="{active: options.ar === '3:4'}" bindtap="changeSize" class="size-item {{options.ar==='3:4'?'active':''}}" data-value="3:4">
+                    <view class="size-block" style="width: 48rpx; height: 64rpx;"></view>
+                    <text>3:4</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="setting-row">
+        <view class="label">
+            <text>✳ 参考图 & 权重 --iw</text>
+            <view bindtap="showHelp" class="help" data-text="参考图尺寸限1500x1500像素以内; 权重值越大越像参考图，取值范围0.5-2， 默认1">
+                <image src="/images/ic_help.png"></image>
+            </view>
+        </view>
+        <view class="values">
+            <view style="display: flex; align-items: center; padding: 0 10rpx;">
+                <view class="uploader">
+                    <foxUpload bind:afterRead="uploadAfterRead" bind:delete="uploadDelete" height="120rpx" imageList="{{imageList}}" max="{{1}}" name="image" width="120rpx"></foxUpload>
+                </view>
+                <view class="slider">
+                    <slider activeColor="#04BABE" bindchanging="onSlideChange" blockSize="20" data-name="iw" max="20" min="5" style="width: 326rpx;" value="{{options.iw}}"></slider>
+                    <text>{{options.iw/10}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="setting-row">
+        <view class="label">
+            <text>✳ 图片质量 --q</text>
+            <view bindtap="showHelp" class="help" data-text="设置图片的质量，越大质量越高，取值范围0.3-5，默认值1">
+                <image src="/images/ic_help.png"></image>
+            </view>
+        </view>
+        <view class="values">
+            <view class="slider">
+                <slider activeColor="#04BABE" bindchanging="onSlideChange" blockSize="20" data-name="q" max="50" min="3" value="{{options.q}}"></slider>
+                <text>{{options.q/10}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="setting-row">
+        <view class="label">
+            <text>✳ 风格化值 --s</text>
+            <view bindtap="showHelp" class="help" data-text="设置生成图片时的风格化程度，值越大，风格化的程度越高，取值范围0-1000，默认值100">
+                <image src="/images/ic_help.png"></image>
+            </view>
+        </view>
+        <view class="values">
+            <view class="slider">
+                <slider activeColor="#04BABE" bindchanging="onSlideChange" blockSize="20" data-name="s" max="1000" min="0" value="{{options.s}}"></slider>
+                <text>{{options.s}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="setting-row">
+        <view class="label">
+            <text>✳ 混乱值 --c</text>
+            <view bindtap="showHelp" class="help" data-text="本参数会控制生成4张图的差别， 值越大，生成4张图的区别越大，值越小,生成的4张图越接近，取值范围0-100， 默认值0">
+                <image src="/images/ic_help.png"></image>
+            </view>
+        </view>
+        <view class="values">
+            <view class="slider">
+                <slider activeColor="#04BABE" bindchanging="onSlideChange" blockSize="20" data-name="c" max="100" min="0" value="{{options.c}}"></slider>
+                <text>{{options.c}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="setting-row">
+        <view class="label">
+            <text>✳ 排除内容 --no</text>
+            <view bindtap="showHelp" class="help" data-text="指定图片内要排除的生成内容">
+                <image src="/images/ic_help.png"></image>
+            </view>
+        </view>
+        <view class="values">
+            <input class="input" model:value="{{options.no}}" placeholder="请输入排除的内容" type="text"></input>
+        </view>
+    </view>
+    <view class="setting-row">
+        <view class="label">
+            <text>✳ 种子 --seed</text>
+            <view bindtap="showHelp" class="help" data-text="种子用于指定生成效果，可以用于生成套图，保障生成的一系列图片保持同一种风格">
+                <image src="/images/ic_help.png"></image>
+            </view>
+        </view>
+        <view class="values">
+            <input class="input" model:value="{{options.seed}}" placeholder="请输入seed种子编号" type="text"></input>
+        </view>
+    </view>
+    <view class="setting-row">
+        <view class="label">
+            <text>✳ niji渲染模型 --niji</text>
+            <view bindtap="showHelp" class="help" data-text="niji是动漫模型">
+                <image src="/images/ic_help.png"></image>
+            </view>
+        </view>
+        <view class="values">
+            <foxRadio bind:change="onRadioChange" checked="{{options.niji}}" lists="{{[ {title:'默认',value:''},{title:'niji6',value:'6'},{title:'niji5',value:'5'},{title:'niji4',value:'4'} ]}}" name="niji"></foxRadio>
+        </view>
+    </view>
+    <view class="setting-row">
+        <view class="label">
+            <text>✳ 风格 --style</text>
+            <view bindtap="showHelp" class="help" data-text="指定midjourney的风格，一般用于设置niji风格">
+                <image src="/images/ic_help.png"></image>
+            </view>
+        </view>
+        <view class="values">
+            <foxRadio bind:change="onRadioChange" checked="{{options.style}}" lists="{{[ {title:'默认',value:''},{title:'expressive-3d',value:'expressive'},{title:'cute',value:'cute'},{title:'raw',value:'raw'} ]}}" name="style"></foxRadio>
+        </view>
+    </view>
+    <view class="setting-row">
+        <view class="label">
+            <text>✳ MJ渲染模型 --v</text>
+            <view bindtap="showHelp" class="help" data-text="指定midjourney的渲染模型">
+                <image src="/images/ic_help.png"></image>
+            </view>
+        </view>
+        <view class="values">
+            <foxRadio bind:change="onRadioChange" checked="{{options.v}}" lists="{{[ {title:'默认',value:''},{title:'v6',value:'6.0'},{title:'v5.2',value:'5.2'},{title:'v5.1',value:'5.1'},{title:'v5',value:'5'} ]}}" name="v"></foxRadio>
+        </view>
+    </view>
+    <view class="setting-row">
+        <view class="label">
+            <text>✳ MJ拼贴图模式 --tile</text>
+            <view bindtap="showHelp" class="help" data-text="用于生成无限拼贴图">
+                <image src="/images/ic_help.png"></image>
+            </view>
+        </view>
+        <view class="values">
+            <foxRadio bind:change="onRadioChange" checked="{{options.tile}}" lists="{{[ {title:'不开启',value:0},{title:'开启',value:1} ]}}" name="tile"></foxRadio>
+        </view>
+    </view>
+</view>

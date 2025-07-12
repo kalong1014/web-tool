@@ -1,0 +1,17 @@
+.v-apis__search {
+  margin-bottom: 10px;
+}
+
+.v-apis-widget {
+  .el-collapse {
+    --el-collapse-header-height: 36px !important;
+  }
+  .el-collapse-item:last-child {
+    .el-collapse-item__wrap {
+      border-bottom: none;
+    }
+  }
+  .v-item__tag {
+    width: 50px;
+  }
+}

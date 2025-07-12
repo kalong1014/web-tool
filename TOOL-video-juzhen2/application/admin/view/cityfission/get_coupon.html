@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+	<title>领取优惠</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+	<script src="static/js/jquery-2.1.1.min.js"></script>
+
+
+    <style type="text/css">
+        /*html{background: url('static/images/bg2.png');}*/
+        body{background: url('static/images/bg.png') no-repeat  scroll top center  #dd1200;background-size: cover;}
+        .main_content{width: 80%;margin: 0 auto;background-color: #fff5f1;border-radius: 10px;margin-top: 1.9rem;border: 4px solid orange;padding: 0.1rem;}
+        /*.main_content_img{background: url('static/images/bg_block.png');background-size: cover;padding: 0.1rem;background-repeat: round;}*/
+        .main_content_img img{width: 100%;height: 100%;max-height: 3rem;}
+        .main_content_coupon{background: url('static/images/bg_coupon2.png');background-size: cover;padding: 0.1rem;background-repeat: round;    padding-top: 0.35rem;margin-top: 0.2rem;}
+        .main_content_coupon_child{background: url('static/images/coupon.png');width: 100%;height: 0.8rem;background-size: cover;}
+        .main_content_coupon_child_left{width: 65%;float: left;margin-left: 7%; line-height: 0.3rem;font-weight: bold;height: 0.8rem;}
+        .main_content_coupon_child_right{color: red;width: 25%;float: left;height: 0.8rem;}
+        .coupon_right_money{font-size: 0.3rem;font-weight: bold;position: absolute;left: 67%;height: 0.8rem;line-height: 0.8rem;text-align: center;display: inline-block;width: 15%;}
+        .coupon_right_span{font-size: 0.14rem;position: relative;height: 0.8rem;line-height: 0.9rem;margin-left: 86%;}
+        .coupon_left_store{margin-top: 0.1rem;}
+        .coupon_left_discount{color: red;}
+
+        .receive_btn{width: 100%;margin: 0 auto;border: 0;position: fixed;color: #fff;line-height: 0.5rem;display: block;font-size: 0.18rem;bottom: 0;background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #fe7139), color-stop(1, #ffb64d)) !important;letter-spacing: 0.03rem;font-weight: bold;}
+        .main_content_span{margin-top: 0.2rem;text-align: center;font-weight: bold;color: #d2070a;}
+        .main_content_text{color: #fde5a3;margin-top: 0.05rem;;margin-bottom: 0.1rem;line-height: 0.26rem;background: #d2070a;padding: 0.1rem;border-radius: 5px;min-height: 1rem;max-height: 1.5rem;overflow-y: scroll;font-size: 0.14rem;}
+        .main_content_title{text-align: center;margin-bottom: 0.1rem;font-weight: bold;font-size: 0.2rem;color: #ef4009;letter-spacing: 0.02rem;}
+        /*微信识别*/
+        .weixin-tip{position: fixed; left:0; top:0; bottom:0; background: rgba(0,0,0,0.8); filter:alpha(opacity=80);  height: 100%; width: 100%; z-index: 100;display: none;}
+        .weixin-tip p{text-align: center; }
+        .weixin-tip img{width: 100%; opacity: 0.8;height: auto;}
+        /*手机号码弹出*/
+        .common-part{position:fixed;width:100%;height:100%;top:0;background-color:#000;background:rgba(0,0,0,.6)}
+        .common-dialog{width:80%;left:10%;text-align:center;position:absolute;background:#fff;z-index:2;opacity:1;border-radius:.1rem;border:1px solid #f2f2f2;top:2rem}
+        .pay-part{display:none}
+        .pay-dialog{height:2.2rem}
+        .dialog-title{height:.5rem;line-height:.5rem;color:#333;font-size:.16rem;border-bottom:1px solid #f2f2f2}
+        .pay-money{color:#333;font-size:.2rem;margin:.2rem 0;font-weight:700}
+        .pay-password input{width:80%;height:.4rem;line-height:.4rem;border-radius:5px;border:1px solid #eee;color:#555;font-size:.16rem;text-align:center;padding:0;margin-top:.3rem}
+        .pay-part .btns{margin:.28rem 0}
+        .cancel-btn{width:1rem;height:.4rem;border-radius:7px;line-height:.4rem;color:#969696;background:#fff;font-size:.18rem;border:1px solid #969696}
+        .confirm-btn{width:1rem;height:.4rem;border-radius:7px;line-height:.4rem;background:orange;color:#fff;font-size:.18rem;border:none;margin-left:.3rem;transition: 0.2s;}
+        .confirm-btn:active {background-color: #e04a1d;}
+    </style>
+</head>
+<body>
+    <div class="contain">
+        <div class="main_content">
+            <div class="main_content_title">
+                测试打折            </div>
+                        <div class="main_content_coupon">
+                <div class="main_content_coupon_child">
+                    <div class="main_content_coupon_child_left">
+                        <p class="coupon_left_store">测试折扣优惠券</p>
+                        <p class="coupon_left_discount">满100.0元打9.0折</p>
+                    </div>
+                    <div class="main_content_coupon_child_right">
+                        <span class="coupon_right_money">9.0</span>
+                                                    <span class="coupon_right_span">折</span>
+                                            </div>
+                </div>
+            </div>
+                        <div class="main_content_span">
+                -- 活动说明 -- 
+            </div>
+            <div class="main_content_text">
+                测试折扣            </div>
+                    </div>
+        <div style="height:0.7rem;width: 1px;"></div>
+        
+    </div>
+    <button class="receive_btn">转发视频并领取优惠</button>
+
+
+    <!--<div class="weixin-tip">-->
+    <!--    <p>-->
+    <!--        <img src="static/picture/wechat_bg.jpg" alt="微信打开"/>-->
+    <!--    </p>-->
+    <!--</div>-->
+
+
+    <div class="common-part pay-part">
+        <div class="common-dialog pay-dialog">
+            <div class="dialog-title">手机号用于订单核销</div>
+            <div class="pay-password">
+                <input type="number" oninput="if(value.length>11)value=value.slice(0,11)" class="real-ipt phone" placeholder="请输入手机号码">
+            </div>
+            <div class="btns">
+                <button class="cancel-btn">取消</button>
+                <button class="confirm-btn">确认</button>
+            </div>
+        </div>
+    </div>
+
+    <input type="hidden" class="confirm_status" value="1">
+</body>
+<script type="text/javascript">
+    $(window).on("load",function(){
+        var winHeight = $(window).height();
+        function is_weixin() {
+            var ua = navigator.userAgent.toLowerCase();
+            if (ua.match(/MicroMessenger/i) == "micromessenger") {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        var isWeixin = is_weixin();
+        if(isWeixin){
+            // $(".weixin-tip").css("height",winHeight);
+            $(".weixin-tip").show();
+        }
+    });
+
+    $(".receive_btn").on("click", function () {
+        $('.pay-part').css("display", "block");
+    });
+
+    $(".cancel-btn").on("click", function () {
+        $('.pay-part').css("display", "none");
+    });
+
+    var activity_id = 21
+    $(".confirm-btn").on("click", function () {
+        if($('.confirm_status').val()!=1){
+            return;
+        }
+        phone = $('.phone').val();
+        if(phone=='' || phone.length!=11){
+            alert('请输入正确的手机号码');return;
+        }
+        $('.confirm_status').val(0);
+        $.post('/index/activity/send',{phone:phone,activity_id:activity_id},function(data){
+            $('.confirm_status').val(1);
+            if(data.code==1){
+                location.href = data.data;
+            }else{
+                alert(data.msg);
+            }
+            
+        },'json');
+        
+    });
+   
+</script>
+</html>

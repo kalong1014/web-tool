@@ -1,0 +1,61 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="modal-dialog" style="width:100%">
+    <div class="modal-content" style="width:100%;padding-bottom:20px">
+        <div class="modal-header">
+            <h4 class="modal-title">查看申请</h4>
+        </div>
+        <form class="form-horizontal" id="tool_cate_data"   action=""  method="post">
+            {foreach name="params" item="vo" key="key"}
+            <div class="form-group" style="margin-top: 20px;">
+                <label class="col-sm-3 control-label">{$key}：</label>
+                <div class="input-group col-sm-7">
+                    {if $vo.is_file==1}
+                    <a href="{$vo.value}" target="_blank">点击查看</a>
+                    {else /}
+                    <input type="text" class="form-control" value="{$vo.value|default=''}" readonly >
+                    {/if}
+                </div>
+            </div>
+            {/foreach}
+            <input type="hidden" id="form_id" name="id" value="{$info.id}">
+            <div class="form-group" style="margin-top: 20px;">
+                <label class="col-sm-3 control-label">类型：</label>
+                <div class="input-group col-sm-7">
+                    <label><input name="status" type="radio" value="0" {eq name="$info.status" value="0"}checked {/eq}/>待审核 </label>
+                    <label><input name="status" type="radio" value="1"{eq name="$info.status" value="1"}checked {/eq} />已返佣 </label>
+                    <label><input name="status" type="radio" value="2"{eq name="$info.status" value="2"}checked {/eq} />不通过 </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-7 col-sm-offset-3">
+                    <button class="btn btn-primary" type="button" onclick="confirm()" > 确认</button>&nbsp;&nbsp;&nbsp;
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="public/footer" /}
+<script>
+    //提交
+    function confirm() {
+        var load_index = layer.load(2);
+        var formData = $('#tool_cate_data').serializeArray();
+        $.ajax({
+            type: "POST",
+            url: "/admin/tool/examine_edit",
+            data: formData,
+            success: function(data){
+                layer.closeAll('loading');
+                parent.location.reload();
+            },
+            error:function() {
+                layer.closeAll('loading');
+                layer.alert('添加失败')
+            }
+        });
+    }
+</script>
+</body>
+</html>

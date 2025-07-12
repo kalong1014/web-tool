@@ -1,0 +1,117 @@
+.modal {
+    height: 100%;
+    position: fixed;
+    width: 100%;
+    z-index: 99;
+}
+
+.modal,.modal .mask {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+
+.modal .mask {
+    background: rgba(0,0,0,.3);
+    position: absolute;
+    z-index: 1;
+}
+
+.modal .main {
+    background-color: #fff;
+    border-radius: 20rpx;
+    height: 400rpx;
+    left: 50%;
+    margin-left: -315rpx;
+    margin-top: -180rpx;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    width: 630rpx;
+    z-index: 2;
+}
+
+.title {
+    color: #999;
+    font-size: 40rpx;
+    margin-top: 30rpx;
+    text-align: center;
+    width: 100%;
+}
+
+.body {
+    box-sizing: border-box;
+    padding: 20rpx 30rpx;
+}
+
+.form-item {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 50rpx;
+}
+
+.form-item .input {
+    border: 1px solid #ddd;
+    border-radius: 10rpx;
+    box-sizing: border-box;
+    font-size: 32rpx;
+    height: 88rpx;
+    line-height: 88rpx;
+    padding: 0 10rpx;
+    text-align: center;
+    width: 220rpx;
+}
+
+.form-item .captcha {
+    background: #f8f8f8;
+    border-radius: 10rpx;
+    cursor: pointer;
+    display: inline-block;
+    height: 88rpx;
+    overflow: hidden;
+    width: 144px;
+}
+
+.form-item .captcha image {
+    height: 72rpx;
+}
+
+.footer {
+    bottom: 0;
+    box-sizing: border-box;
+    height: 120rpx;
+    justify-content: space-between;
+    left: 0;
+    padding: 0 30rpx;
+    position: absolute;
+    width: 100%;
+}
+
+.footer,.footer .btn {
+    align-items: center;
+    display: flex;
+}
+
+.footer .btn {
+    background: #04babe;
+    border-radius: 10rpx;
+    color: #fff;
+    font-size: 36rpx;
+    height: 72rpx;
+    justify-content: center;
+    letter-spacing: 2rpx;
+    margin: 0 auto;
+    width: 240rpx;
+}
+
+.footer .btn:active {
+    opacity: .8;
+}
+
+.footer .btn-cancel {
+    background: #fff;
+    border: 2rpx solid #04babe;
+    color: #04babe;
+}

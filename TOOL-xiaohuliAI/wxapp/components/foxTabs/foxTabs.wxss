@@ -1,0 +1,61 @@
+.tab-wrap {
+    box-sizing: border-box;
+    height: 88rpx;
+    line-height: 88rpx;
+    width: 100%;
+    z-index: 99;
+}
+
+.tab-list {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    margin: 0 auto;
+    width: auto;
+}
+
+.tab,.tab-list {
+    position: relative;
+}
+
+.tab {
+    box-sizing: border-box;
+    color: #1b1c1c;
+    font-size: 28rpx;
+    height: 88rpx;
+    line-height: 88rpx;
+    padding: 0 16rpx;
+    text-align: center;
+    transition: all .2s linear;
+}
+
+.tab.active {
+    font-size: 30rpx;
+    font-weight: 700;
+}
+
+.tab .badge {
+    background: #f56c6c;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 12px;
+    height: 16px;
+    line-height: 16px;
+    margin-left: 10px;
+    position: absolute;
+    right: 10rpx;
+    text-align: center;
+    top: 28rpx;
+    width: 16px;
+}
+
+.line {
+    background: #04babe;
+    border-radius: 4rpx;
+    bottom: 0;
+    height: 6rpx;
+    left: 0;
+    position: absolute;
+    transition: left .2s ease-out;
+    width: 60rpx;
+}

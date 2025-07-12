@@ -1,0 +1,159 @@
+{include file="public/header" /}
+
+<style>
+
+    .top1{
+        width:80%;
+        height: 40px;
+       
+        float: left;
+        margin-left: 0px;
+      
+
+    }
+    .topleft{
+        width: 23%;
+        height: 40px;
+        float: left;
+        
+    }
+    .topright{
+        width:65%;
+        height: 40px;
+        float: left;
+        
+    }
+    .topright > form > input{
+        width: 200px;
+        float: left;
+    }
+    #zhida_addci{
+    	width: 100px;
+    	float: left;
+    	
+    }
+    .ibox-title{
+    	width: 100%;
+    	height: 60px;
+    	
+    }
+
+</style>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight" style="padding-top:0px;">
+    <!-- jieshu -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h3 style="margin-top:5px;color: #66B3FF;float: left;width: 150px;">监控账号</h3>
+        
+        <div id="zhida_addci" data-toggle="modal" data-target="#myModal"> <a href="javascript:;" class="btn btn-primary" >添加账号</a>  </div>
+      </div>
+      		
+        <div class="ibox-content">
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th>ID</th>
+                                <th>监控账号</th>
+                                <th>账号链接</th>
+                                <th>商机数</th>
+                                <th>作品数</th>
+                                <th>粉丝数</th>
+                                <th>获赞数</th>
+                                <th>关注数</th>
+                                <th>监控时间</th>
+                                <th>添加时间</th>
+                                <th>状态</th>
+                                <th>操作</th> 
+                            </tr>
+                            
+                        </thead>
+                        
+                        <tbody id="article_list">
+                        	
+                        	 <tr  style="text-align: center;">
+                                <td>1</td>
+                                <td>监控账号</td>
+                                <td ><a href="">https://www.iesdouyin.com/share/user/MS4wLjABAAAAbnfJ4we8faGZNZBpvsUKg28RsL1NeVJBGmSzYttk5uo?did=MS4wLjABAAAA9_r88xbDvGl8Kw9P8EYJ10Saaj5qKndc9GtQtgtL7IqGCZfI_dvDdk5Ba3fvuw3S&iid=MS4wLjABAAAA3f2LApB</a></td>
+                                <td>12</td>
+                                <td>23</td>
+                                <td>45</td>
+                                <td>5</td>
+                                <td>2</td>
+                                <td>2022/3/1</td>
+                                <td>2022/3/4</td>
+                                
+                                <td>
+                                	<a class="label label-info" href="javascript:;">正常</a>
+                                </td>
+                                <td>
+                                	
+                                	 <a class="btn btn-danger" href="javascript:;" onclick="del('1')">删1除</a>
+                                </td>
+
+                             </tr>
+                        </tbody>
+                    </table>
+                    <div id="AjaxPage" style=" text-align: right;"></div>
+                    <div id="allpage" style=" text-align: right;"></div>
+                </div>
+              
+                
+            </div>
+           <!-- kaishi -->
+        </div>
+    </div>
+</div>
+<!-- 模态框开始 -->
+ <div class="modal  fade" id="myModal" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h3 class="modal-title">添加账号监控</h3>                  
+                </div>
+                <form class="form-horizontal" name="add_rule" id="add_rule" method="post" action="{:url('')}">
+                    <div class="ibox-content">
+                           
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">链接</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="title" id="title" placeholder="输入链接地址" class="form-control"/>
+                                </div>
+                            </div>  
+                            <div class="form-group" style="margin-left:150px">
+                            <p>1、打开抖音APP,找到并打开你想要监控的作者</p>                    
+                            <p>2、点击右上角分享,底部会出现功能框，点击分享主页</p>                    
+                            <p>3、然后在出现的功能框下面点击复制链接</p>                    
+                            <p>4、把复制号的链接通过粘贴或输入到文本框即可</p>                    
+                            <p>5、目前只支持抖音APP端的用户链接地址</p>                    
+                          
+                             </div>               
+                        </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> 保存</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i> 关闭</button>                    
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<!-- 模态框结束 -->
+
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+    function del(id){
+        alert(id);
+         $.ajax({url:"del",data:id,
+            success:function(result){
+        alert(result)
+    }});
+    }
+</script>
+</body>
+</html>

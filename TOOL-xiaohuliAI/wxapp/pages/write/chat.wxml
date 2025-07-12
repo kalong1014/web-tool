@@ -1,0 +1,17 @@
+<navbar text="{{page_title}}"></navbar>
+<view class="page {{isGpt4?' gold':''}}" style="bottom: {{safeAreaHeight}}rpx; top: {{navBarHeight}}px;">
+    <foxTabs bind:switch="onTabChange" class="tabs" current="{{activeAiIndex}}" keyName="alias" list="{{aiList}}"></foxTabs>
+    <swiper bindchange="onSwiperChange" class="lists" current="{{activeAiIndex}}" duration="300" style="bottom: {{140+inputHeight-36}}rpx;">
+        <swiper-item class="swiper-item" wx:for="{{aiList}}">
+            <writeMsgList activeAiIndex="{{activeAiIndex}}" aiAvatar="{{aiAvatar}}" aiIndex="{{index}}" aiName="{{item.name}}" bind:setMessage="setMessage" id="msgList{{index}}" promptId="{{prompt_id}}" userAvatar="{{userAvatar}}" welcome="{{welcome}}"></writeMsgList>
+        </swiper-item>
+    </swiper>
+    <view class="box-input">
+        <view class="input">
+            <textarea adjustPosition="{{true}}" autoHeight="{{true}}" bindfocus="inputFocus" bindinput="inputChange" cursorSpacing="48rpx" disableDefaultPadding="{{true}}" maxlength="-1" placeholder="{{prompt.hint}}" showConfirmBar="{{false}}" style="min-height: {{inputHeight}}rpx;" type="text" value="{{message}}"></textarea>
+            <button bindtap="sendText" class="btn-send">
+                <image mode="widthFix" src="/images/ic_send.png"></image>
+            </button>
+        </view>
+    </view>
+</view>
